@@ -1,0 +1,133 @@
+<!--
+  Generated template for the CutiListPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+    <ion-navbar>
+        <ion-title>
+            <span ion-text color="light" class="fw500">Absensi</span>
+        </ion-title>
+        <ion-buttons end *ngIf="isAtasan" style="padding-right:5px;">
+            <button ion-button (click)="presentPopover($event)">
+                <ion-icon style="font-size:2.4rem;padding-right:16px;" name="more" color="light"></ion-icon>
+                <ion-badge class="my-badges"
+                    *ngIf="!isLoadingBadges  && !isEmptyObject(badgesList) && parse(badgesList['JUMLAH_ABSEN_BELUM_KOREKSI'])"
+                    color="danger">{{ badgesList['JUMLAH_ABSEN_BELUM_KOREKSI'] }}</ion-badge>
+            </button>
+        </ion-buttons>
+    </ion-navbar>
+</ion-header>
+
+<ion-content>
+    <div class="divs">
+        <ion-item no-lines style="padding-left:8px !important">
+            <ion-select [(ngModel)]="bulan" placeholder="Pilih Bulan">
+                <ion-option *ngFor="let bulan of bulanList" value="{{ bulan['val'] }}">{{ bulan['bulan'] }}</ion-option>
+            </ion-select>
+        </ion-item>
+        <ion-item no-lines style="padding-left:8px !important">
+            <ion-select [(ngModel)]="tahun" placeholder="Pilih Tahun" (ionChange)="onChangeYear()">
+                <ion-option *ngFor="let tahun of tahunList" value="{{tahun}}">{{tahun}}</ion-option>
+            </ion-select>
+        </ion-item>
+
+        <button ion-button block icon-start class="button" margin-top (click)="selectVal(bulan,tahun)">
+            <ion-icon name="md-search"></ion-icon>
+            Lihat
+        </button>
+    </div>
+
+
+    <ion-grid fixed no-padding *ngIf='isLoading == false'>
+        <ion-row>
+            <ion-col col-12 no-padding>
+                <ion-list class="dining_List">
+                    <ion-item tapplable *ngFor="let absen of absenList" >
+                        <span item-start>
+                            <img src="assets/imgs/menu-icon/absensi.png" class="icons">
+                        </span>
+                        <div class="overlay" (click)="showOption(1,absen)"></div>
+
+                        <div style="display: table;width:100%;">
+                            <div style="display: table-cell;">
+                                <span ion-text wrap-text style="font-size:1.3rem;"><b>Tanggal
+                                        {{absen.TANGGAL}}</b></span>
+                            </div>
+
+                            <div style="display: table-cell;text-align: right;">
+                                <span ion-text text-wrap class="font" color="danger"
+                                    *ngIf="absen.KETERANGAN == 'Mangkir'">{{ absen.KETERANGAN }}
+                                </span>
+                                <span ion-text text-wrap class="font" color="secondary"
+                                    *ngIf="absen.KETERANGAN == 'Hadir'">{{ absen.KETERANGAN }}
+                                </span>
+                                <span ion-text text-wrap class="font" color="primary"
+                                    *ngIf="absen.KETERANGAN == 'Sabtu' || absen.KETERANGAN == 'Minggu' ">
+                                    {{ absen.KETERANGAN }}</span>
+                                    <span ion-text text-wrap class="font" color="secondary"
+                                    *ngIf="absen.KET_HADIRKOE != ''">
+                                    <br>
+                                    {{ absen.KET_HADIRKOE }}
+                                </span>
+                                <br>
+                                <div style="width: 100%;" (click)="goToAbsenMobileDetail(absen)" *ngIf="isHadirkoe">
+                                    <img src="assets/flat-icon/absen_mobile.png" class="icons-absen-mobile">
+                                </div>   
+                            </div>
+                        </div>
+
+                        <span ion-text wrap-text class="font" color="color4">Datang : </span>
+                        <span *ngIf="absen.JAM_DATANG == '' || absen.JAM_DATANG == null">&nbsp; - </span>
+                        <span ion-text wrap-text class="font"><b>{{absen.JAM_DATANG}}</b></span>
+                        <span ion-text wrap-text class="font" color="color4"
+                            *ngIf="absen.STATUS_DATANG!='' || absen.STATUS_DATANG!=null">&nbsp; | &nbsp; Status :
+                        </span>
+                        <span ion-text wrap-text class="font" color="primary"
+                            *ngIf="absen.STATUS_DATANG!='' || absen.STATUS_DATANG!=null">{{ absen.STATUS_DATANG }}</span>
+                        <br>
+                        <span ion-text wrap-text class="font" color="color4">Ket. Datang :</span> <br>
+                        <span *ngIf="absen.KETERANGAN_MASUK == '' || absen.KETERANGAN_MASUK == null">&nbsp; -
+                            &nbsp;</span>
+                        <span ion-text text-wrap>{{absen.KETERANGAN_MASUK}}</span> <br><br>
+
+
+                        <span ion-text wrap-text class="font" color="color4">Pulang : </span>
+                        <span *ngIf="absen.JAM_PULANG == '' || absen.JAM_PULANG == null">&nbsp; - </span>
+                        <span ion-text wrap-text class="font"><b>{{absen.JAM_PULANG}}</b></span>
+                        <span ion-text wrap-text class="font" color="color4"
+                            *ngIf="absen.STATUS_PULANG!='' || absen.STATUS_PULANG!=null">&nbsp; | &nbsp; Status :
+                        </span>
+                        <span ion-text wrap-text class="font" color="primary"
+                            *ngIf="absen.STATUS_PULANG!='' || absen.STATUS_PULANG!=null">{{ absen.STATUS_PULANG }}</span>
+                        <br>
+                        <span ion-text wrap-text class="font" color="color4">Ket. Pulang :</span> <br>
+                        <span *ngIf="absen.KETERANGAN_PULANG == '' || absen.KETERANGAN_PULANG == null">&nbsp; -
+                            &nbsp;</span>
+                        <span ion-text text-wrap>{{absen.KETERANGAN_PULANG}}</span> <br>
+
+                        <span ion-text text-wrap class="text-sm bold keterangan"
+                            *ngIf="absen.KETERANGAN != 'Hadir' && absen.KETERANGAN != 'Mangkir' && absen.KETERANGAN != 'Sabtu' && absen.KETERANGAN != 'Minggu'">
+                            <b>{{ absen.KETERANGAN }}</b>
+                        </span>
+
+                    </ion-item>
+
+                </ion-list>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+
+    <ion-list *ngIf='isLoading == true'>
+        <ion-card *ngFor='let fake of fakeUsers'>
+            <ion-item>
+                <h2 class="animate-skeleton-background"></h2>
+                <h3 class="animate-skeleton-background"></h3>
+                <p class="animate-skeleton-background"> </p>
+            </ion-item>
+        </ion-card>
+    </ion-list>
+
+</ion-content>

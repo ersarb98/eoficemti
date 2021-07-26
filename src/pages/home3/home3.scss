@@ -1,0 +1,403 @@
+page-home3 {
+    .my-slider-img {
+        border-radius: 20px;
+        box-shadow: 1px 2px 5px -2px rgba(0,0,0,0.58);
+        -webkit-box-shadow: 1px 2px 5px -2px rgba(0,0,0,0.58);
+        -moz-box-shadow: 1px 2px 5px -2px rgba(0,0,0,0.58);
+    }
+
+    .my-slide {
+        padding-left: 16px;
+        padding-right: 16px;
+    }
+
+    .titleicon div{
+        display:inline-block;        
+    }
+
+    .load-3 {
+        background-color: lightgrey;
+        margin-bottom: 2px;
+        margin-left: auto;
+        margin-right: auto;
+        padding: 9px;
+        width: 48px;
+        height: 48px;
+        border-radius: 50%;
+    }
+
+    ion-badge {
+        padding: 0 !important;
+        min-width: 20px;
+        min-height: 20px;
+    }
+
+    .my-badge {
+        position: absolute;
+        left: 65%;
+        border-radius: 50%;
+        top: 5%;     
+        padding: 4px !important;    
+        width: 22px !important;
+        height: 22px !important;  
+        display: block;
+    }
+
+    .my-badge-2 {
+        position: absolute;
+        left: 17.5%;
+        border-radius: 50%;        
+        top: 144px;
+        padding: 4px !important;    
+        width: 22px !important;
+        height: 22px !important;
+        display: block;
+    }
+
+    .my-badge-3 {
+        position: absolute;
+        right: 3%;
+        top: 37%;
+        z-index: 99;
+        padding: 4px !important;
+        width: 22px !important;
+        height: 22px !important;
+        border-radius: 50%;
+        display: block;
+    }
+
+    .my-badge-4 {
+        left: 65%;
+        position: absolute;
+        top: 5%;
+        z-index: 99;
+        padding: 4px !important;
+        width: 22px !important;
+        height: 22px !important;
+        border-radius: 50%;
+        display: block;
+    }
+
+    .my-badge-5 {
+        position: absolute;
+        left: 40%;        
+        top: 231px;
+        z-index: 99;
+        padding: 4px !important;    
+        width: 22px !important;
+        height: 22px !important;
+        border-radius: 50%;            
+        display: block;
+    }
+
+    .my-badge-6 {
+        position: absolute;
+        left: 85%;
+        border-radius: 50%;
+        top: 144px;
+        padding: 4px !important;
+        width: 22px !important;
+        height: 22px !important;
+        display: block;
+    }
+
+    .my-badge-7 {
+        position: absolute;
+        left: 228px;
+        border-radius: 50%;        
+        top: 144px;
+        padding: 4px !important;    
+        width: 22px !important;
+        height: 22px !important;
+        display: block;
+    }
+
+    .my-badge-8 {
+        left: 86%;
+        position: absolute;
+        top: 231px;
+        z-index: 99;
+        padding: 4px !important;
+        width: 22px !important;
+        height: 22px !important;
+        border-radius: 50%;
+        display: block;
+    }
+
+    .my-badge-9 {
+        left: 63%;
+        position: absolute;
+        top: 231px;
+        z-index: 99;
+        padding: 4px !important;
+        width: 22px !important;
+        height: 22px !important;
+        border-radius: 50%;
+        display: block;
+    }
+
+    .my-badge-10 {
+        position: absolute;
+        left: 41.5%;
+        border-radius: 50%;        
+        top: 144px;
+        padding: 4px !important;    
+        width: 22px !important;
+        height: 22px !important;
+        display: block;
+    }
+
+    .my-badge-11 {
+        left: 19%;
+        position: absolute;
+        top: 41%;
+        z-index: 99;
+        padding: 4px !important;
+        width: 22px !important;
+        height: 22px !important;
+        border-radius: 50%;
+        display: block;
+    }
+
+    
+
+
+    .toolbar-background {
+        // background-image: linear-gradient(to bottom right, #FA6625, #FFC61A );     
+        //background-image: linear-gradient(to right, #DE3037, #F45E36 ) !important; 
+        background-color: transparent !important;   
+        //background-image: linear-gradient(to bottom right, #D52054, #EB4D63 ) !important;   
+    }
+
+    .header-md::after, .tabs-md[tabsPlacement="top"] > .tabbar::after, .footer-md::before, .tabs-md[tabsPlacement="bottom"] > .tabbar::before {
+        background-image: unset !important;
+    }
+
+    .header-ios .toolbar-ios:last-child .toolbar-background-ios {
+
+    }border-width: 0 !important;
+
+    .header-container {
+        height: 120px;
+    }
+
+    .welcome-class {
+        position: absolute;
+        top: 0;
+        padding-left: 16px;
+        color: black;
+ 
+    }
+
+    .header-img {
+        background-image: url(../../assets/imgs/header-bg.png);
+        height: 100%;
+        background-size: cover; 
+        width: 100%;        
+        margin-top: -15px;
+        background-position-y: center;
+        background-position-x: center;
+        background-repeat: no-repeat;      
+    }
+
+    // .scroll-content {
+    //     overflow-y: hidden !important;
+    // }
+
+    .header-card {
+        position: absolute;
+        top: 260px;
+        width: calc(100% - 32px);
+        border-radius: 15px;
+        padding: 8px;
+        left: 16px;
+        height: 80px;
+        right: 16px;
+        margin: 0 !important;
+        box-shadow: 1px 2px 5px -2px rgba(0,0,0,0.58) !important;
+        -webkit-box-shadow: 1px 2px 5px -2px rgba(0,0,0,0.58);
+        -moz-box-shadow: 1px 2px 5px -2px rgba(0,0,0,0.58);
+    }
+
+    .menu-container {        
+        display: table;
+        width:90%;
+        height: 50px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .menu-content {        
+        width: 90px;
+        position: relative;
+        display: table-cell;        
+        height: 100%;
+        text-align: center;
+        justify-content: center;
+        align-items: center;
+        font-size:1.3rem !important;
+    }
+
+    .menu-content-2 {
+        width: 80px;
+        position: relative;
+        display: table-cell;        
+        height: 100%;
+        text-align: center;
+        justify-content: center;
+        align-items: center;
+        font-size:1.3rem !important;
+    }
+
+    .img-container {        
+        margin-bottom: 2px;
+        margin-left: auto;
+        margin-right: auto;
+        padding: 9px;
+        width: 48px;
+        height: 48px;
+        border-radius: 50%;
+    }
+
+    .img-container-2 {        
+        margin-bottom: 2px;
+        margin-left: auto;
+        margin-right: auto;
+        padding: 10px;
+        width: 45px;
+        height: 45px;
+        border-radius: 50%;
+        border:1px solid lightgray;
+    }
+
+    .color-1 {
+        background-image: linear-gradient(to bottom right, #F55145, #f99790);     
+    }
+
+    .color-2 {
+        background-image: linear-gradient(to bottom right, #FF9E0F, #feba55);  
+    }
+
+    .color-3 {
+        background-image: linear-gradient(to bottom right, #9C27B0, #cd65df);     
+    }   
+    
+    .color-4 {
+        background-image: linear-gradient(to bottom right, #0396FF, #ABDCFF);     
+    }   
+
+    .color-5 {
+        background-image: linear-gradient(to bottom right, #7367F0, #CE9FFC);  
+    }   
+
+    .color-6 {
+        background-image: linear-gradient(to bottom right, #6886F2, #6EE2F5);      
+    }   
+
+    .color-7 {
+        background-image: linear-gradient(to bottom right, #FF881B, #FFCF1B);        
+    }   
+
+    .color-8 {
+        background-color: #F1F1F1;     
+    }   
+
+    .divider {
+        height: 10px;
+        background-color: #F1F1F1;
+        margin: 16px 0 16px 0;
+    }
+
+    .my-card {
+        border-radius: 8px;
+        //border: 1px solid #e6e6e6;
+        box-shadow: none !important;        
+        // margin-bottom: 10px;     
+
+        .item-md {
+            background-image: linear-gradient(to right, #AD74FF, #5FB4FA);
+            color: white;
+            // text-align: center;
+        }
+    
+        .item-ios {
+            background-image: linear-gradient(to right, #AD74FF, #5FB4FA);
+            color: white;
+            // text-align: center;
+        }
+    }
+
+    ion-slides {        
+        // height: 160px;
+        height: auto !important;
+    }   
+
+    ion-slide.swiper-slide {
+        align-items: flex-start;
+        padding-bottom: 15px;
+    } 
+
+    .swiper-pagination {
+        bottom: 0px !important;
+    }
+
+    .agenda-title-container {
+        // text-align:center;
+        margin-top:15px; 
+        padding-left: 16px;       
+    }
+
+    .font-mini {
+        font-size: 1.2rem;
+    }
+
+    .font-small {
+        font-size: 1.4rem;
+        color: white; 
+    }
+
+    .title-icon { 
+        vertical-align: middle;
+        height: 18px;
+        margin-right: 3px;
+    }    
+
+    .my-card-2 {
+        border-radius: 8px;
+        //border: 1px solid #e6e6e6;
+        box-shadow: none !important;        
+        margin-bottom: 25px;             
+        // width: 100% !important;
+
+        .item-md {
+            background-image: linear-gradient(to right, #FF5F9B, #FFAD68);
+            color: white;
+            // text-align: center;
+        }
+    
+        .item-ios {
+            background-image: linear-gradient(to right, #FF5F9B, #FFAD68);
+            color: white;
+            // text-align: center;
+        }
+    }
+
+    .my-card-3 {        
+        padding: 8px;
+        border-radius: 8px;
+        display: table;
+        width: calc(100% - 20px);
+        border: 1px solid #e6e6e6;
+        margin: 35px 10px 10px 10px;
+    }
+
+    .my-card-3-content {
+        display: table-cell;
+        
+        text-align: center;
+        //padding: 8px;        
+    }    
+
+}
+
+

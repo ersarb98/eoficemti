@@ -1,0 +1,86 @@
+<!--
+  Generated template for the UpdateUserdataPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      <span ion-text color="light">Ubah Data Diri</span>
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-item *ngIf="updateType == 'email'">
+    <span item-left>
+      <img src="assets/imgs/setting-icon/email.png" class="icons">
+    </span>
+    <ion-label stacked>Email</ion-label>
+    <ion-input type="text" [(ngModel)]="email"></ion-input>
+  </ion-item>
+
+  <ion-item *ngIf="updateType == 'hp'">
+    <span item-left>
+      <img src="assets/imgs/setting-icon/phone.png" class="icons">
+    </span>
+    <ion-label stacked>No. Telpon</ion-label>
+    <ion-input type="number" [(ngModel)]="hp"></ion-input>
+  </ion-item>
+
+  <div *ngIf="updateType == 'pass'">
+    <ion-item>
+      <span item-left>
+        <img src="assets/imgs/setting-icon/pass3.png" class="icons">
+      </span>
+      <ion-label stacked>Password Lama (harus diisi)</ion-label>
+      <ion-input type="password" [(ngModel)]="passLama"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <span item-left>
+        <img src="assets/imgs/setting-icon/pass1.png" class="icons">
+      </span>
+      <ion-label stacked>Password Baru</ion-label>
+      <ion-input type="password" [(ngModel)]="passBaru"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <span item-left>
+        <img src="assets/imgs/setting-icon/pass2.png" class="icons">
+      </span>
+      <ion-label stacked>Confirm Password</ion-label>
+      <ion-input type="password" [(ngModel)]="confPass"></ion-input>
+    </ion-item>
+  </div>
+
+  <div *ngIf="updateType == 'ttd' || updateType == 'foto' ">
+    <ion-card class="my-card" (click)="getImage()">
+      <ion-item>
+        <img  class="photo" src="{{ imageURI }}" />
+        <div style="text-align: -webkit-center;">
+            <span ion-text text-wrap style="text-align:center;color:gray;" *ngIf="updateType == 'ttd'" >Upload Tanda Tangan</span>
+            <span ion-text text-wrap style="text-align:center;color:gray;" *ngIf="updateType == 'foto'">Upload Foto CV (akan ditampilkan di E-CV)</span>
+        </div>
+        
+      </ion-item>
+    </ion-card>
+  </div>
+
+  <br>
+  <div class="row">
+    <div class="col">
+      <button ion-button full icon-start color="danger" style="border-radius: 5px;" (click)="back()">
+        <ion-icon name="close"></ion-icon>
+        Batal
+      </button>
+    </div>
+    <div class="col">
+      <button ion-button full icon-end style="border-radius: 5px;" (click)="doUpdate()">
+        Ubah
+        <ion-icon name="arrow-forward"></ion-icon>
+      </button>
+    </div>
+  </div>
+</ion-content>

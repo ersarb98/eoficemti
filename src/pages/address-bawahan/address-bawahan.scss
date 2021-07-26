@@ -1,0 +1,161 @@
+page-address-bawahan {
+    .pin-icon {
+        width: 80%;
+        margin-top: 12px;
+      }
+
+    .box {
+        display: flex;
+        align-items:center;
+     }
+
+     .header {
+        display: flex;
+        align-items:center;
+        // width: 100%;        
+     }
+
+     .container-header {
+        width: 100%;
+        padding: 5px;
+     }
+
+    .foto-2 {
+        // position: absolute;
+        object-fit: cover;
+        object-position: center;
+        width: 70px;
+        z-index: 99;
+        // height: 100%;
+        height: 80px;
+        border-radius: 12px;
+        //border-radius: 3px;
+        // border-bottom-left-radius: 3px;
+        // border-top-left-radius: 3px;
+    }
+
+    .foto {
+        position: absolute;
+        object-fit: cover;
+        object-position: center;
+        width: 100px;
+        z-index: 99;
+        height: 100%;
+        //border-radius: 3px;
+        border-bottom-left-radius: 3px;
+        border-top-left-radius: 3px;
+    }
+
+    .item-md h2, .item-ios h2 {
+        font-size: 1.8rem !important;        
+    }
+
+    .item-md p, .item-ios p {
+        font-size: 1.5rem;
+    }
+
+    ion-badge {
+        font-size: 1rem !important;
+    }
+
+    .header-card {
+        text-align: center;
+        background-color: color($colors, color6);
+        border: none !important;
+    }
+
+    .font-header {
+        color: color($colors, light);
+        font-size: 1.5rem;      
+        
+          
+    }
+
+    button[ion-fab] {
+        overflow: visible;
+        position: relative;
+    
+        ion-label {
+            position: absolute;
+            top: -8px;
+            right: 40px;
+    
+            color: white;
+            background-color: rgba(0,0,0,0.7);
+            line-height: 24px;
+            padding: 4px 8px;
+            border-radius: 4px;
+        }
+    }
+    
+    .fab{
+        contain: layout;
+    }
+
+    .fab {
+        contain: layout;
+    }
+	
+	.icons{
+		width: 25px;		
+	} 
+	
+	.font{
+		font-size:1.2rem;
+	} 
+	
+	.font2{
+		font-size:1.3rem;
+    }  
+
+    .font3 {
+        font-size: 1.4rem
+    }
+
+    .font4 {
+        font-size: 1.7rem;
+    }
+
+    .font5 {
+        font-size: 1.1rem;
+    }
+    
+    // 
+
+    .card-md {
+        position: relative;
+        // min-height: 100px;
+        border-radius: 3px;
+        border-left: 4px solid mediumpurple !important; 
+        border: 1px solid #e6e6e6;
+        box-shadow: none !important;
+    }
+
+    .card-ios {
+        position: relative;
+        border-radius: 3px;
+        // min-height: 100px;
+        border-left: 4px solid mediumpurple !important; 
+        border: 1px solid #e6e6e6;
+        box-shadow: none !important;
+    }
+      
+    // .header .toolbar .bar-button .icon {
+    //   color: color($colors, color5);
+    // }
+
+    .font-mini {
+        font-size: 1.2rem;
+    }
+
+    .font-small {
+        font-size: 1.3rem;
+        color: gray;
+    }
+    
+    // .font-header {
+    //     // color: color($colors, red);
+    //     font-size: 1.3rem;            
+    //     color: black;
+    // }   
+}

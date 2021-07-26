@@ -1,0 +1,85 @@
+<!--
+  Generated template for the SppdListPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      <span ion-text color="light" class="fw500">SPPD</span>
+    </ion-title>
+
+    <ion-buttons end>
+      <button ion-button (click)="searchSppd()">
+        <ion-icon style="font-size:2.4rem;" name="md-search" color="light"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <ion-list class="dining_List" *ngIf="sppdList.length == 0  && isLoading == false">
+    <ion-card class="primary-bg">
+      <ion-card-content>
+        <span style="font-size:1.3rem">Tidak ada data SPPD.</span>
+      </ion-card-content>
+    </ion-card>
+  </ion-list>
+
+  <ion-list class="dining_List" *ngIf="sppdList.length != 0 && isLoading == false">
+    <ion-card *ngFor="let sppd of sppdList" class="my-card" (click)="goToDetail(sppd)">
+      <ion-item>
+        <span item-start>
+          <img src="assets/imgs/menu-icon/sppd.png" class="icons">
+        </span>
+        <div>
+          <span ion-text text-wrap class="font3" color="danger" *ngIf="sppd['TEMPAT_SPPD'] == '' || sppd['TEMPAT_SPPD'] == null"><b> - </b></span>
+          <span ion-text text-wrap class="font3" color="danger"><b>{{ sppd['TEMPAT_SPPD'] }}</b></span><br />
+        </div>
+
+        <div>
+          <span ion-text text-wrap class="font3" *ngIf="sppd['PERIHAL'] == '' || sppd['PERIHAL'] == null"><b> - </b></span>
+          <span ion-text text-wrap class="font2">{{ sppd['PERIHAL'] }}</span><br>
+        </div>
+        
+        <span ion-text text-wrap class="font" color="color4" >
+          {{ sppd['TGL_MULAI'] }} <span ion-text text-wrap color="color4">s/d</span>
+          {{ sppd['TGL_AKHIR'] }}
+        </span> <br>
+        <span ion-text text-wrap style="font-size: 1.2rem;" color="primary"><b>{{ sppd['KETERANGAN'] }}</b></span>
+      </ion-item>
+    </ion-card>
+  </ion-list>
+
+  <ion-list *ngIf='sppdList.length == 0 && isLoading == true'>
+    <ion-card *ngFor='let fake of fakeUsers'>
+      <ion-item>
+        <div class="animate-skeleton-background load-2"></div>
+        <div class="animate-skeleton-background load-3"></div>
+        <div class="animate-skeleton-background load-1"> </div>
+      </ion-item>
+    </ion-card>
+  </ion-list>
+
+  <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
+    <ion-infinite-scroll-content>
+
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+
+  <ion-refresher (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content pullingIcon="arrow-dropdown" pullingText="Pull to refresh" refreshingSpinner="circles"
+      refreshingText="Refreshing...">
+    </ion-refresher-content>
+  </ion-refresher>
+
+</ion-content>
+
+<ion-footer>
+  <ion-fab right bottom style="margin-right:10px; margin-bottom: 10px;">
+    <button ion-fab color="red" (click)="goToForm()">
+      <ion-icon name="md-add" color="light"></ion-icon>
+    </button>
+  </ion-fab>
+</ion-footer>

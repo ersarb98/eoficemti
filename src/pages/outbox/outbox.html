@@ -1,0 +1,80 @@
+<ion-header>
+	<ion-navbar>
+		<ion-title>
+			<span ion-text color="light" class="fw500">Surat Keluar</span>
+		</ion-title>
+
+		<ion-buttons end>
+			<button ion-button (click)="showModal('SearchOutboxPage')">
+				<ion-icon style="font-size:2.4rem;" name="md-search" color="light"></ion-icon>
+			</button>
+		</ion-buttons>
+
+		<form action="." (ngSubmit)="submitSearch()">
+			<ion-searchbar *ngIf="isSearch" style="font-size:2.4rem;" [(ngModel)]="inputSearch"
+				[ngModelOptions]="{standalone: true}" (ionCancel)="showSearch()">
+			</ion-searchbar>
+		</form>
+
+	</ion-navbar>
+</ion-header>
+
+<ion-content>
+	<ion-grid *ngIf="isEmptyObject(messages[0]) && isLoading == false" fixed>
+		<ion-row>
+			<ion-col col-12>
+				<ion-card class="primary-bg">
+					<ion-card-content>
+						<span style="font-size:1.3rem">Tidak Ada Pesan.</span>
+					</ion-card-content>
+				</ion-card>
+			</ion-col>
+		</ion-row>
+	</ion-grid>
+
+	<ion-list *ngIf='!isEmptyObject(messages[0])'>
+		<ion-card *ngFor='let message of messages' (click)="goToDetail(message)" class="my-card">
+			<ion-item>
+				<span item-start>
+					<ion-icon name="mail" color="danger" class="msg-icon"></ion-icon>										
+				</span>
+				<!-- <span ion-text text-wrap class="font-header" color="danger" >
+					<b>{{message['Nomor Surat']}}</b>
+				</span><br> -->
+				<span color="black" ion-text text-wrap class="font-mini">
+					{{message['Perihal'].substring(0,80) }}
+					<span *ngIf="message['Perihal'].length > 80"> ... </span>
+				</span><br>
+				<span ion-text text-wrap class="font-mini" color="primary" >
+					{{message['Tanggal Surat']}}
+				</span><br>
+				<span>
+					<span color="primary" ion-text text-wrap class="font-mini">
+						<b>{{message['Status'] }}</b>
+					</span>
+				</span>
+			</ion-item>
+		</ion-card>
+	</ion-list>
+
+	<ion-list *ngIf='isEmptyObject(messages[0]) && isLoading == true'>
+		<ion-card *ngFor='let fake of fakeUsers'>
+			<ion-item>
+				<div class="animate-skeleton-background load-2"></div>
+				<div class="animate-skeleton-background load-3"></div>
+				<div class="animate-skeleton-background load-1"> </div>
+			</ion-item>
+		</ion-card>
+	</ion-list>
+
+	<ion-infinite-scroll (ionInfinite)="doInfinite($event)">
+		<ion-infinite-scroll-content></ion-infinite-scroll-content>
+	</ion-infinite-scroll>
+
+	<ion-refresher (ionRefresh)="doRefresh($event)">
+		<ion-refresher-content pullingIcon="arrow-dropdown" pullingText="Pull to refresh" refreshingSpinner="circles"
+			refreshingText="Refreshing...">
+		</ion-refresher-content>
+	</ion-refresher>
+
+</ion-content>

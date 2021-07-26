@@ -1,0 +1,269 @@
+<ion-header>
+	<ion-navbar>
+		<ion-title></ion-title>
+		<ion-buttons end>
+			<button ion-button (click)="goToLogSurat()">
+				<!-- <ion-icon style="font-size:2.4rem;" name="md-analytics" color="light"></ion-icon> -->
+				<img src="assets/imgs/logo/history.png" style="    max-height: 27px;
+				margin-right: 5px;">
+			</button>
+			<button ion-button (click)="downloadInbox(messageData['DOWNLOAD_SURAT'])">
+				<ion-icon style="font-size:2.4rem;" name="md-download" color="light"></ion-icon>
+			</button>
+		</ion-buttons>
+	</ion-navbar>
+</ion-header>
+
+
+<ion-content>
+	<div *ngIf="isLoading == true && isEmptyObject(messageDetail)">
+		<ion-item no-lines>
+			<div class="animate-skeleton-background load-2"></div>
+			<div class="animate-skeleton-background load-3"></div>
+			<div class="garis"></div>
+			<div class="animate-skeleton-background load-1"> </div>
+			<div class="animate-skeleton-background load-3"></div>
+			<div class="animate-skeleton-background load-1"> </div>
+			<div class="animate-skeleton-background load-3"></div>
+		</ion-item>
+	</div>
+	<div *ngIf="isLoading == false && !isEmptyObject(messageDetail)">
+			<ion-card class="header-menu">
+					<ion-item no-padding margin-left>
+						<span ion-text text-wrap style="font-size:1.5rem;">
+							<b>{{ messageDetail['Perihal'] }}</b>
+						</span> <br>
+						<span ion-text text-wrap style="font-size:1.2rem; color:gray;">
+							{{ messageDetail['No Surat'] }}
+						</span>
+						<span item-end (click)="show()">
+							<button ion-button icon-only clear >
+								<ion-icon name="ios-arrow-down-outline" *ngIf="!showDetailPesan"></ion-icon>
+								<ion-icon name="ios-arrow-up-outline" *ngIf="showDetailPesan"></ion-icon>
+							</button>
+						</span>
+					</ion-item>
+				</ion-card>
+		
+				<ion-card class="my-card" style="margin-top:10px !important;" *ngIf="showDetailPesan">
+					<ion-item>
+						<span ion-text text-wrap class="font" color="color4">Tanggal :
+						</span><br />
+						<span ion-text text-wrap color='dark' class="font2">
+							{{ messageDetail['Tanggal Surat'] }}
+						</span> <br>
+		
+						<span ion-text text-wrap class="font" color="color4">Pengirim :
+						</span><br />
+						<span ion-text text-wrap color='dark' class="font2">
+							{{ messageDetail['Pengirim']['Nama Jabatan'] }}
+						</span> <br>
+
+						<div *ngIf="messageDetail['Kode Jenis Surat'] == 'surat_perintah' || messageDetail['Kode Jenis Surat'] == 'undangan' || messageDetail['Kode Jenis Surat'] == 'surat_dinas' || messageDetail['Kode Jenis Surat'] == 'nd_undangan' || messageDetail['Kode Jenis Surat'] == 'nd_sppd'" >
+							<span ion-text text-wrap class="font" color="color4">Tanggal Mulai :
+							</span><br />
+							<span ion-text text-wrap color='dark' class="font2">
+								{{ messageDetail['Agenda']['Tanggal Mulai'] }}
+							</span> 
+							<span ion-text text-wrap *ngIf="messageDetail['Agenda']['Tanggal Mulai'] == null"  color='dark' class="font2">
+								-
+							</span>
+							<br>
+	
+							<span ion-text text-wrap class="font" color="color4">Tanggal Akhir :
+							</span><br />
+							<span ion-text text-wrap color='dark' class="font2">
+								{{ messageDetail['Agenda']['Tanggal Akhir'] }}
+							</span> 
+							<span ion-text text-wrap *ngIf="messageDetail['Agenda']['Tanggal Akhir'] == null"  color='dark' class="font2">
+								-
+							</span>
+							<br>
+	
+							<span ion-text text-wrap class="font" color="color4">Lokasi :
+							</span><br />
+							<span ion-text text-wrap color='dark' class="font2">
+								{{ messageDetail['Agenda']['Lokasi'] }}
+							</span> 
+							<span ion-text text-wrap *ngIf="messageDetail['Agenda']['Lokasi'] == null"  color='dark' class="font2">
+								-
+							</span>
+							<br>
+						</div>
+		
+						<div *ngIf="messageDetail['Penerima Jabatan'].length > 0">
+							<span ion-text text-wrap class="font" color="color4">Penerima Jabatan :
+							</span>
+							<span ion-text text-wrap class="font" color="primary"
+								*ngIf="messageDetail['Penerima Jabatan'].length > 1" (click)="showMore(1)" style="float:right;">
+								View more
+							</span> <br>
+							<div *ngIf="!showAllPenerimaJabatan">
+								<span ion-text text-wrap color='dark' class="font2">
+									1. {{ messageDetail['Penerima Jabatan'][0] }}
+								</span>
+							</div>
+							<div *ngIf="showAllPenerimaJabatan">
+								<span *ngFor="let p of messageDetail['Penerima Jabatan']; let i = index" ion-text text-wrap
+									color='dark' class="font2">
+									{{ i + 1 }}. {{ p }} <br />
+								</span>
+							</div>
+						</div>
+						<div *ngIf="messageDetail['Tembusan Jabatan'].length > 0">
+							<span ion-text text-wrap class="font" color="color4">Tembusan Jabatan :
+							</span>
+							<span ion-text text-wrap class="font" color="primary"
+								*ngIf="messageDetail['Tembusan Jabatan'].length > 1" (click)="showMore(2)" style="float:right;">
+								View more
+							</span> <br>
+							<div *ngIf="!showAllTembusanJabatan">
+								<span ion-text text-wrap color='dark' class="font2">
+									1. {{ messageDetail['Tembusan Jabatan'][0] }}
+								</span>
+							</div>
+							<div *ngIf="showAllTembusanJabatan">
+								<span *ngFor="let p of messageDetail['Tembusan Jabatan']; let i = index" ion-text text-wrap
+									color='dark' class="font2">
+									{{ i + 1 }}. {{ p }} <br />
+								</span>
+							</div>
+						</div>
+		
+						<div *ngIf="messageDetail['Penerima Pekerja'].length > 0">
+							<span ion-text text-wrap class="font" color="color4">Penerima Pekerja :
+							</span>
+							<span ion-text text-wrap class="font" color="primary"
+								*ngIf="messageDetail['Penerima Pekerja'].length > 1" (click)="showMore(3)" style="float:right;">
+								View more
+							</span> <br>
+							<div *ngIf="!showAllPenerimaPekerja">
+								<span ion-text text-wrap color='dark' class="font2">
+									1. {{ messageDetail['Penerima Pekerja'][0] }}
+								</span>
+							</div>
+							<div *ngIf="showAllPenerimaPekerja">
+								<span *ngFor="let p of messageDetail['Penerima Pekerja']; let i = index" ion-text text-wrap
+									color='dark' class="font2">
+									{{ i + 1 }}. {{ p }} <br />
+								</span>
+							</div>
+						</div>
+		
+						<div *ngIf="messageDetail['Tembusan Pekerja'].length > 0">
+							<span ion-text text-wrap class="font" color="color4">Tembusan Pekerja :
+							</span>
+							<span ion-text text-wrap class="font" color="primary"
+								*ngIf="messageDetail['Tembusan Pekerja'].length > 1" (click)="showMore(4)" style="float:right;">
+								View more
+							</span> <br>
+							<div *ngIf="!showAllTembusanPekerja">
+								<span ion-text text-wrap color='dark' class="font2">
+									1. {{ messageDetail['Tembusan Pekerja'][0] }}
+								</span>
+							</div>
+							<div *ngIf="showAllTembusanPekerja">
+								<span *ngFor="let p of messageDetail['Tembusan Pekerja']; let i = index" ion-text text-wrap
+									color='dark' class="font2">
+									{{ i + 1 }}. {{ p }} <br />
+								</span>
+							</div>
+						</div>
+		
+						<div *ngIf="messageDetail['Penerima Non Pekerja'].length > 0">
+							<span ion-text text-wrap class="font" color="color4">Penerima Non Pekerja
+								: </span>
+							<span ion-text text-wrap class="font" color="primary"
+								*ngIf="messageDetail['Penerima Non Pekerja'].length > 1" (click)="showMore(5)"
+								style="float:right;">
+								View more
+							</span> <br>
+							<div *ngIf="!showAllPenerimaNonPekerja">
+								<span ion-text text-wrap color='dark' class="font2">
+									1. {{ messageDetail['Penerima Non Pekerja'][0] }}
+								</span>
+							</div>
+							<div *ngIf="showAllPenerimaNonPekerja">
+								<span *ngFor="let p of messageDetail['Penerima Non Pekerja']; let i = index" ion-text text-wrap
+									color='dark' class="font2">
+									{{ i + 1 }}. {{ p }} <br />
+								</span>
+							</div>
+						</div>
+		
+						<div *ngIf="messageDetail['Tembusan Non Pekerja'].length > 0">
+							<span ion-text text-wrap class="font" color="color4">Tembusan Non Pekerja
+								: </span>
+							<span ion-text text-wrap class="font" color="primary"
+								*ngIf="messageDetail['Tembusan Non Pekerja'].length > 1" (click)="showMore(6)"
+								style="float:right;">
+								View more
+							</span> <br>
+							<div *ngIf="!showAllTembusanNonPekerja">
+								<span ion-text text-wrap color='dark' class="font2">
+									1. {{ messageDetail['Tembusan Non Pekerja'][0] }}
+								</span>
+							</div>
+							<div *ngIf="showAllTembusanNonPekerja">
+								<span *ngFor="let p of messageDetail['Tembusan Non Pekerja']; let i = index" ion-text text-wrap
+									color='dark' class="font2">
+									{{ i + 1 }}. {{ p }} <br />
+								</span>
+							</div>
+						</div>
+		
+						<span ion-text text-wrap class="font" style="color:#959595">Attachment :
+						</span><br />
+						<div *ngIf="attachmentList.length > 0">
+							<span ion-text text-wrap color='dark' *ngFor="let attachment of attachmentList"
+								(click)="downloadAttach(attachment)" class="font2" color="primary">
+								{{ subStrAttachment(attachment) }}
+								<br>
+							</span>
+						</div>
+						<div *ngIf="attachmentList.length == 0">
+							<span ion-text text-wrap color='dark' class="font2" color="primary">
+								-
+							</span>
+						</div>
+					</ion-item>
+		
+				</ion-card>
+		
+				<br>
+
+		<ion-grid no-padding fixed>		
+
+			<ion-row>
+				<ion-col col-12>
+					<ion-list>
+						<ion-item no-lines *ngIf="messageDetail['Jenis Surat'] == 'Surat Perintah'" padding-left padding-right
+							text-wrap>
+							<span ion-text text-wrap class="font2" style="color:black;"><b>Dasar</b></span>
+						</ion-item>
+
+						<ion-item *ngIf="messageDetail['Jenis Surat'] == 'Surat Perintah'" padding-left padding-right
+							text-wrap >
+							<div [innerHtml]="dasarSuratPerintah"></div>
+						</ion-item>
+
+						<ion-item no-lines *ngIf="messageDetail['Jenis Surat'] == 'Surat Perintah'" padding-left padding-right
+							text-wrap>
+							<span ion-text text-wrap class="font2" style="color:black;"><b>Perintah</b></span>
+						</ion-item>
+
+						<ion-item *ngIf="messageDetail['Jenis Surat'] == 'Surat Perintah'" padding-left padding-right
+							text-wrap >
+							<div [innerHtml]="isiPerintah"></div>
+						</ion-item>
+
+						<ion-item *ngIf="messageDetail['Jenis Surat'] != 'Surat Perintah'" padding-left padding-right
+							margin-bottom text-wrap>
+							<div [innerHtml]="messageDetail['Isi Surat']"></div>
+						</ion-item>
+					</ion-list>
+				</ion-col>
+			</ion-row>
+		</ion-grid>
+	</div>
+</ion-content>

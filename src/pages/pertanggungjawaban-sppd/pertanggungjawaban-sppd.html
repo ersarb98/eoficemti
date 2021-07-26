@@ -1,0 +1,116 @@
+<!--
+  Generated template for the PertanggungjawabanSppdPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+  <ion-navbar>
+    <ion-title><span style="color:#FFF">Pertanggungjawaban SPPD</span></ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only (click)="cancel()">
+        <ion-icon name="ios-close-outline" style="color:#FFF"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-card class="my-card">
+    <ion-item>
+      <span ion-text text-wrap class="font-mini" color="color4">
+        Nomor Pengajuan SPPD
+      </span><br>
+      <span ion-text text-wrap class="font-small">
+        {{ messageData['No_Surat'] }}
+      </span><br>
+
+      <span ion-text text-wrap class="font-mini" color="color4">
+        Perihal
+      </span><br>
+      <span ion-text text-wrap class="font-small">
+        {{ messageData['PERIHAL'] }}
+      </span><br>
+
+      <span ion-text text-wrap class="font-mini" color="color4">
+        Penanggung Jawab
+      </span><br>
+      <span ion-text text-wrap class="font-small" *ngIf="userdataTPK != null">
+        {{ this.userdataTPK['data']['NAMA'] }}
+      </span><br>
+
+      <span ion-text text-wrap class="font-mini" color="color4">
+        Tanggal Pengajuan SPPD
+      </span><br>
+      <span ion-text text-wrap class="font-small">
+        {{ messageData['TGL_SURAT'] }}
+      </span><br>
+
+      <span ion-text text-wrap class="font-mini" color="color4">
+        Tanggal Awal Pelaksanaan
+      </span><br>
+      <span ion-text text-wrap class="font-small">
+        {{ messageData['TGL_MULAI'] }}
+      </span><br>
+
+      <span ion-text text-wrap class="font-mini" color="color4">
+        Tanggal Akhir Pelaksanaan
+      </span><br>
+      <span ion-text text-wrap class="font-small">
+        {{ messageData['TGL_AKHIR'] }}
+      </span><br>
+
+      <span ion-text text-wrap class="font-mini" color="color4">
+        Kota Tujuan
+      </span><br>
+      <span ion-text text-wrap class="font-small">
+        {{ messageData['TEMPAT_SPPD'] }}
+      </span><br>
+    </ion-item>
+  </ion-card>
+
+  <br>
+
+  <ion-card class="my-card">
+    <ion-item>
+      <span item-left>
+        <img src="assets/imgs/logo/document-icon.png" class="icons">
+      </span>
+      <ion-label stacked>Upload File</ion-label>
+      <ion-select [(ngModel)]="fileType" cancelText="Cancel" okText="OK">
+        <div>
+          <ion-option value="file">File</ion-option>
+          <ion-option value="gambar">Foto</ion-option>          
+        </div>
+      </ion-select>
+    </ion-item>
+
+    <div *ngIf="fileType == 'gambar'">      
+      <div class="image-container">
+        <img (click)="takeImage(0)" class="photo" src="{{ imageShow }}" />
+        <span ion-text style="text-align:center;color:gray;">Upload Foto (png, jpg, jpeg)</span>
+      </div>
+    </div> 
+    <ion-item *ngIf="fileType == 'file'">
+      <ion-label stacked>Upload File (docx, doc, xlxs, xls,xlsx, pdf)</ion-label>      
+      <ion-input type="text" [(ngModel)]="fileName" [readonly]="true" (ionFocus)="openChooser()" (click)="openChooser()" placeholder="pilih file"></ion-input>
+    </ion-item>
+
+    <!-- <ion-item>
+      <ion-label stacked>Upload File (png, jpg, jpeg, docx, doc, pdf)</ion-label>
+      <ion-input type="text" [(ngModel)]="fileName" [readonly]="true" (ionFocus)="openChooser()" (click)="openChooser()"
+        placeholder="klik disini untuk pilih file"></ion-input>
+    </ion-item>     -->
+
+    <div class="row">
+      <div class="col">
+        <button ion-button full icon-end style="border-radius: 5px;" [disabled]="isDisable()" (click)="upload()">
+          Upload
+          <ion-icon name="arrow-forward"></ion-icon>
+        </button>
+      </div>
+    </div>
+  </ion-card>
+
+  <br>
+</ion-content>

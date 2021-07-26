@@ -1,0 +1,136 @@
+<!--
+  Generated template for the CutiListPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+    <ion-navbar>
+        <ion-title>
+            <span ion-text color="light" class="fw500">Koreksi Absen Bawahan</span>
+        </ion-title>
+    </ion-navbar>
+</ion-header>
+
+
+<ion-content>
+    <div class="divs">
+        <ion-item no-lines style="padding-left:8px !important">
+            <ion-select [(ngModel)]="bulan" placeholder="Pilih Bulan">
+                <!-- <ion-option *ngFor="let m of bulanList" value="{{m['bulan']}}_{{m['tahun']}}">{{ convertMonths2(m['bulan']) }} {{m['tahun']}}</ion-option>                    </ion-select> -->
+                <ion-option value="1">Januari</ion-option>
+                <ion-option value="2">Februari</ion-option>
+                <ion-option value="3">Maret</ion-option>
+                <ion-option value="4">April</ion-option>
+                <ion-option value="5">Mei</ion-option>
+                <ion-option value="6">Juni</ion-option>
+                <ion-option value="7">Juli</ion-option>
+                <ion-option value="8">Agustus</ion-option>
+                <ion-option value="9">September</ion-option>
+                <ion-option value="10">Oktober</ion-option>
+                <ion-option value="11">November</ion-option>
+                <ion-option value="12">Desember</ion-option>
+            </ion-select>
+        </ion-item>
+        <ion-item no-lines style="padding-left:8px !important">
+            <ion-select [(ngModel)]="tahun" placeholder="Pilih Tahun">
+                <ion-option *ngFor="let tahun of tahunList" value="{{tahun}}">{{tahun}}</ion-option>
+            </ion-select>
+        </ion-item>
+
+        <button ion-button block icon-start color="primary" class="button" margin-top (click)="searchDataKoreksi()"
+            [disabled]="(bulan == null || tahun == null) ? true : false">
+            <ion-icon name="md-search"></ion-icon>
+            Cari
+        </button>
+    </div>
+
+    <div *ngIf="!isLoading">
+        <ion-grid fixed no-padding *ngIf="dataKoreksiList.length == 0" fixed>
+            <ion-row>
+                <ion-col col-12>
+
+                    <ion-card class="primary-bg">
+                        <ion-card-content>
+                            <p text-center class="text-white">Tidak ada data koreksi</p>
+                        </ion-card-content>
+                    </ion-card>
+
+                </ion-col>
+            </ion-row>
+        </ion-grid>
+
+        <div *ngIf="dataKoreksiList.length > 0">
+            <ion-card *ngFor="let dataKoreksi of dataKoreksiList" (click)="showOption(dataKoreksi)">
+                <ion-item tapplable>
+                    <span ion-text text-wrap class="font2 bold" color="dark">{{ dataKoreksi['NAMA'] }} | </span>
+                    <span ion-text text-wrap class="font2" color="danger">Tanggal {{dataKoreksi['TANGGAL']}}
+                    </span> <br>
+
+                    <div style="display: table;width:100%;">
+                        <div style="display: table-cell;">
+                            <span ion-text text-wrap class="font" style="color:#959595">Datang :</span>
+                            <span ion-text text-wrap class="font2"
+                                *ngIf="dataKoreksi['JAM MASUK'] == '' || dataKoreksi['JAM MASUK'] == null"> -
+                            </span>
+                            <span ion-text text-wrap class="font2"
+                                *ngIf="dataKoreksi['JAM MASUK'] != '' || dataKoreksi['JAM MASUK'] != null">
+                                {{ dataKoreksi['JAM MASUK'] }} </span>
+                        </div>
+
+                        <div style="display: table-cell;text-align: right;">
+                            <span ion-text text-wrap class="font" color="primary"
+                                *ngIf="dataKoreksi['STATUS KOREKSI DATANG'] == 'POSTED'">
+                                {{ dataKoreksi['STATUS KOREKSI DATANG'] }}
+                            </span>
+                            <span ion-text text-wrap class="font" color="secondary"
+                                *ngIf="dataKoreksi['STATUS KOREKSI DATANG'] == 'APPROVED'">
+                                {{ dataKoreksi['STATUS KOREKSI DATANG'] }}</span>
+                        </div>
+                    </div>
+
+                    <span ion-text text-wrap class="font" style="color:#959595">Ket. koreksi datang :</span>
+                    <br>
+                    <span ion-text text-wrap class="font2"
+                        *ngIf="dataKoreksi['KETERANGAN KOREKSI DATANG'] == '' || dataKoreksi['KETERANGAN KOREKSI DATANG'] == null">
+                        -
+                    </span>
+                    <span ion-text text-wrap class="font2">{{ dataKoreksi['KETERANGAN KOREKSI DATANG'] }}</span>
+
+                    <br><br>
+
+                    <div style="display: table;width:100%;">
+                        <div style="display: table-cell;">
+                            <span ion-text text-wrap class="font" style="color:#959595">Pulang :</span>
+                            <span ion-text text-wrap class="font2"
+                                *ngIf="dataKoreksi['JAM PULANG'] == '' || dataKoreksi['JAM PULANG'] == null"> -
+                            </span>
+                            <span ion-text text-wrap class="font2"
+                                *ngIf="dataKoreksi['JAM PULANG'] != '' || dataKoreksi['JAM PULANG'] != null">{{ dataKoreksi['JAM PULANG'] }}</span>
+                        </div>
+
+                        <div style="display: table-cell;text-align: right;">
+                            <span ion-text text-wrap class="font" color="primary"
+                                *ngIf="dataKoreksi['STATUS KOREKSI PULANG'] == 'POSTED'">
+                                {{ dataKoreksi['STATUS KOREKSI PULANG'] }}
+                            </span>
+                            <span ion-text text-wrap class="font" color="secondary"
+                                *ngIf="dataKoreksi['STATUS KOREKSI PULANG'] == 'APPROVED'">
+                                {{ dataKoreksi['STATUS KOREKSI PULANG'] }}</span>
+                        </div>
+                    </div>
+
+                    <span ion-text text-wrap class="font" style="color:#959595">Ket. koreksi Pulang :</span>
+                    <br>
+                    <span ion-text text-wrap class="font2"
+                        *ngIf="dataKoreksi['KETERANGAN KOREKSI PULANG'] == '' || dataKoreksi['KETERANGAN KOREKSI PULANG'] == null">
+                        -
+                    </span>
+                    <span ion-text text-wrap class="font2">{{ dataKoreksi['KETERANGAN KOREKSI PULANG'] }}</span>
+                </ion-item>
+            </ion-card>
+        </div>
+
+    </div>
+</ion-content>

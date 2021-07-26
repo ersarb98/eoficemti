@@ -1,0 +1,61 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title><span style="color:#FFF">Koreksi Absen</span></ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only (click)="cancel()">
+        <ion-icon name="ios-close-outline" style="color:#FFF"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content padding>
+  <form [formGroup]="ApprovalForm" class="list-form">
+    <ion-item no-padding>
+      <span item-left>
+        <img src="assets/imgs/logo/alasan.png" class="icons">
+      </span>
+      <ion-label stacked>Alasan</ion-label>
+      <ion-select formControlName="fcAlasan" placeholder="">
+        <div *ngIf="alasanList.length != 0" >
+            <ion-option  *ngFor="let alasan of alasanList"  value="{{alasan['JENIS_ALASAN']}}">{{ alasan['JENIS_ALASAN'] }}</ion-option>
+        </div>                
+      </ion-select>
+    </ion-item>
+
+    <ion-item no-padding>
+      <span item-left>
+        <img src="assets/imgs/logo/start_date.png" class="icons">
+      </span>
+      <ion-label stacked>Jumlah hari</ion-label>
+      <ion-input type="number" min='1' max='5' formControlName="fcJmlHari" placeholder=""></ion-input>
+    </ion-item>
+
+    <ion-item no-padding>
+      <span item-left>
+        <img src="assets/imgs/logo/perihal.png" class="icons">
+      </span>
+      <ion-label stacked>Keterangan</ion-label>
+      <ion-input type="text" formControlName="fcKeterangan" placeholder=""></ion-input>
+    </ion-item>
+
+    <p ion-text align="start" color="danger">{{errorMsg}}</p>
+
+    <div class="row">
+      <div class="col">
+        <button ion-button icon-start full color="danger" style="border-radius: 5px;" (click)="cancel()" margin-top>
+          <ion-icon name="md-close"></ion-icon>
+          Batal
+        </button>
+      </div>
+      <div class="col">
+        <button ion-button icon-start full color="primary" style="border-radius: 5px;" margin-top (click)="submit()"
+          [disabled]="!ApprovalForm.valid">
+          <ion-icon name="md-checkmark"></ion-icon>
+          Submit
+        </button>
+      </div>
+    </div>
+  </form>
+</ion-content>

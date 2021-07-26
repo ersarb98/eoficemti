@@ -1,0 +1,56 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      <span ion-text color="light" class="fw500">Kategori Pengajuan</span>
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-list class="dining_List" *ngIf="kategoriList.length == 0 && isLoading == false">
+    <ion-item tapplable>
+      <div style="padding:7px">
+        <span text-wrap ion-text class="font">Tidak ada Kategori</span><br />
+      </div>
+    </ion-item>
+  </ion-list>
+
+  <ion-list class="dining_List" *ngIf="kategoriList.length > 0 && isLoading == false">
+    <ion-card class="my-card" *ngFor="let kategori of kategoriList">
+      <ion-item>
+        <span item-start>
+          <img src="assets/imgs/logo/category-icon.png" class="icons">
+        </span>
+        <div style="padding:8px">
+          <span ion-text text-wrap class="font bold">{{ kategori['KATEGORI'] }}</span><br />
+          <span ion-text text-wrap color="primary" class="font">{{ userdataIPCContact['DIREKTORAT'] }}</span>
+        </div>
+      </ion-item>
+    </ion-card>
+  </ion-list>   
+
+  <ion-list *ngIf='kategoriList.length == 0 && isLoading == true'>
+    <ion-card *ngFor='let fake of fakeUsers'>
+      <ion-item>
+        <div class="animate-skeleton-background load-2"></div>
+        <div class="animate-skeleton-background load-3"></div>
+        <div class="animate-skeleton-background load-1"> </div>
+      </ion-item>
+    </ion-card>
+  </ion-list>
+
+  <ion-refresher (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content pullingIcon="arrow-dropdown" pullingText="Pull to refresh" refreshingSpinner="crescent">
+    </ion-refresher-content>
+  </ion-refresher>
+
+</ion-content>
+
+<ion-footer>
+  <ion-fab right bottom style="right:20px;bottom:20px;">
+    <button ion-fab color="primary" (click)="openModal('AddKategoriPengajuanPage')">
+      <ion-icon name="add"></ion-icon>
+    </button>
+  </ion-fab>
+</ion-footer>

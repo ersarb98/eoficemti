@@ -1,0 +1,181 @@
+page-absen-mobile-detail {
+    .font{
+		font-size:1.2rem;
+    } 
+
+    .font3{
+		font-size:1.3rem;
+    } 
+    
+    .font2 {
+        font-size: 2.2rem;
+    }
+
+    .card-md {
+        border-radius: 15px !important;
+    }
+
+    .card-ios {
+        border-radius: 15px !important;
+    }
+
+    .icons{
+        height:25px;
+        width:25px;
+        margin:8px;
+    }
+
+    .foto-check {
+        width: 300px;
+        height: 150px;
+        object-fit: cover;
+        object-position: center;
+        margin-right: 10px;
+        border-radius:10px;
+    }
+
+    .foto-check-dummy {
+        width: 300px;
+        height: 150px;
+        object-fit: cover;
+        object-position: center;
+        margin-right: 10px;
+        border-radius:10px;
+        // transform: scale(2,2);
+    }
+
+    .lihat-foto-checkout {
+        // border: 2px solid #04458F;
+        border: 2px solid #E3E9ED;
+        // padding: 5px;
+        border-radius: 10px;
+        width: 100%;
+        color:#374957;        
+    }
+
+    .lihat-foto-checkin {
+        border: 2px solid #E3E9ED;
+        // padding: 5px;
+        border-radius: 10px;
+        width: 100%;
+        color:#374957;        
+    }
+
+    .loading-1, .loading-3, .loading-4, .loading-5 {
+        background-color: lightgrey;
+        opacity: 0.6;
+        height: 13px;   
+        border-radius: 10px;
+        margin : 5px;     
+    }
+    
+    .loading-1 {
+        width: 30%;
+    }
+
+    .loading-2 {
+        width: 50%;
+        background-color: lightgrey;
+        opacity: 0.6;
+        height: 30px;    
+        margin: 5px;     
+        border-radius: 10px;
+    }
+
+    .loading-3 {
+        width: 70%;
+    }
+
+    .loading-4 {
+        width: 40%;
+    }
+
+    .loading-5 {
+        width: 50%;
+    }
+
+    .header-md::after, .tabs-md[tabsPlacement="top"] > .tabbar::after, .footer-md::before, .tabs-md[tabsPlacement="bottom"] > .tabbar::before {
+        background-image: none !important;
+    }
+
+    .header-bawahan {
+        height: 50x;
+        border-bottom-left-radius: 20px;
+        border-bottom-right-radius: 20px;
+        background-color: #0061CD;
+        text-align: center;
+        box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
+    }
+
+    .my-button {
+        // width: 100%;        
+        margin-left: 8px;
+        /* align-self: flex-end; */
+        border-radius: 12px;
+    }
+
+    .my-button-2 {        
+        // position: absolute;
+        /* margin-left: 8px; */
+        // width: 103px;
+        width: 100%;
+        /* align-self: flex-end; */
+        border-radius: 12px;
+        // margin-right: 2.5px;
+        padding: 0 !important;
+        // top: 46%;
+        // left: 9%;
+    }
+
+    .my-button-3 {        
+        // position: absolute;
+        /* margin-left: 8px; */
+        // width: 103px;
+        /* align-self: flex-end; */
+        width: 100%;
+        // margin-left: 2.5px;
+        border-radius: 12px;
+        padding: 0 !important;
+        // top: 46%;
+        // left: 9%;
+    }
+
+    .my-table {
+        position: absolute;
+        /* margin-left: 8px; */
+        // width: calc(100% - 15px);
+        width: calc(100% - 10px);
+        /* align-self: flex-end; */
+        border-radius: 12px;
+        /* top: 46%; */
+        bottom: 0;
+        /* left: 9%; */
+        margin: 5px;
+    }
+
+    .my-button {
+        // width: 100%;
+        display: table-cell;
+        vertical-align: bottom;
+        margin: 0 !important;
+        text-transform: none !important;
+        /* align-self: flex-end; */
+        border-radius: 12px;
+    }
+
+    .add-taks {
+        position: absolute;        
+        background-color: color($colors, googleColor);
+        z-index: 99;
+        right: 0;
+        border-bottom-left-radius: 10px;
+        top: 0;
+    }
+
+    .add-task-icon {
+        padding: 10px;
+        font-size: 1.8rem;
+    }
+
+    
+}

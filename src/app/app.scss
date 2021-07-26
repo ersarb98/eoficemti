@@ -1,0 +1,212 @@
+// http://ionicframework.com/docs/theming/
+
+
+// App Global Sass
+// --------------------------------------------------
+// Put style rules here that you want to apply globally. These
+// styles are for the entire app and not just one component.
+// Additionally, this file can be also used as an entry point
+// to import other Sass files to be included in the output CSS.
+//
+// Shared Sass variables, which can be used to adjust Ionic's
+// default Sass variables, belong in "theme/variables.scss".
+//
+// To declare rules for a specific mode, create a child rule
+// for the .md, .ios, or .wp mode classes. The mode class is
+// automatically applied to the <body> element in the app.
+.toolbar-background {
+  // background-image: linear-gradient(to bottom right, #FA6625, #FFC61A );     
+  //background-image: linear-gradient(to right, #DE3037, #F45E36 ) !important; 
+  background-color: color($colors, danger) !important;   
+  //background-image: linear-gradient(to bottom right, #D52054, #EB4D63 ) !important;   
+}
+
+.header-md::after, .tabs-md[tabsPlacement="top"] > .tabbar::after, .footer-md::before, .tabs-md[tabsPlacement="bottom"] > .tabbar::before {
+  background-image: unset !important;
+}
+
+
+.my-modal2 .modal-wrapper {
+  z-index: 99;
+  position: absolute;
+  height: 300px;;
+  top:25%;
+  right: 5%;
+  bottom: 0;
+  left: 5%;    
+  background-color: #efefef;
+  text-align: center;
+  border-radius: 15px;
+}
+
+.my-modal2 ion-backdrop {
+  visibility: visible !important;
+  opacity: 0.5 !important;
+}
+
+.my-modal3 .modal-wrapper {
+  z-index: 99;
+  position: absolute;
+  height: 330px;;
+  top:25%;
+  right: 5%;
+  bottom: 0;
+  left: 5%;    
+  background-color: #efefef;
+  text-align: center;
+  border-radius: 3px;
+}
+
+.my-modal3 ion-backdrop {
+  visibility: visible !important;
+  opacity: 0.5 !important;
+}
+
+.my-action-sheet{
+  .action-sheet-disable {
+      color : lightgrey !important;        
+  }
+}
+
+.my-modal10 .modal-wrapper { 
+  z-index: 99;
+  position: absolute;
+  height: 25%;    
+  width: 100%;
+  bottom: 0;    
+  background-color: #efefef;
+  text-align: center;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+}
+
+.my-modal10 ion-backdrop {
+  visibility: visible !important;
+  opacity: 0.5 !important;
+} 
+
+@font-face {
+  font-family: 'Poppins', sans-serif;
+}
+
+.button-md {
+    text-transform: unset;     
+}    
+
+.mymodal {
+    .modal-wrapper {
+      position: absolute !important;
+      width: 100% !important;
+      height: 70% !important;
+      border-top-left-radius: 10px;
+      border-top-right-radius: 10px;
+      top: 30% !important;
+    }
+}
+
+.mymodal ion-backdrop {
+  visibility: visible !important;
+  opacity: 0.5 !important;
+}
+
+ion-header ion-icon.back-button-icon.icon {
+  color: map-get($colors, white);
+}
+
+ion-icon.back-button-icon.icon {
+  color: map-get($colors, white);
+}
+
+.load-1, .load-2, .load-3 {
+  background-color: lightgrey;
+  opacity: 0.6;
+  height: 13px;
+  margin-top: 10px;              
+}
+
+.load-2 {
+  width: 40%;        
+  }
+   
+  .load-3 {
+  width: 80%;        
+  } 
+  
+  .load-1 {
+  width: 100%;        
+  }
+
+  .header-menu {
+      border-bottom: 1px solid lightgray;
+      box-shadow: none !important;
+      // padding:10px;
+      margin:5px;
+      width: calc(100% - 10px) !important;     
+  }
+
+  .animate-skeleton-background {
+      -webkit-animation: infinite bgcolorchange 4s;
+      animation: 4s infinite bgcolorchange;
+      opacity: 0.5;
+      }
+      
+      @keyframes bgcolorchange {
+      0% {
+      color: #f2f2f2;
+      }
+      25% {
+      background: lightgray;
+      }
+      50% {
+      background: #f2f2f2;
+      }
+      75% {
+      background: lightgray;
+      }
+      100% {
+      background-color: #f2f2f2;
+      }
+      }
+      
+      @-webkit-keyframes bgcolorchange {
+      0% {
+      background: #f2f2f2;
+      }
+      25% {
+      background: lightgray;
+      }
+      50% {
+      background: #f2f2f2;
+      }
+      75% {
+      background: lightgray;
+      }
+      100% {
+      background: #f2f2f2;
+      }
+  }
+
+  .alert-ios .alert-radio-label{
+    white-space: pre-line;
+    }
+  
+  .alert-md .alert-radio-label{
+  white-space: pre-line;
+  }
+  
+  .alert-wp .alert-radio-label{
+  white-space: pre-line;
+  }
+
+  
+  .alert-ios .alert-checkbox-label{
+    white-space: pre-line;
+    }
+  
+  .alert-md .alert-checkbox-label{
+  white-space: pre-line;
+  }
+  
+  .alert-wp .alert-checkbox-label{
+  white-space: pre-line;
+  }  

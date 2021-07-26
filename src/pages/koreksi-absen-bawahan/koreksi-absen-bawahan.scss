@@ -1,0 +1,83 @@
+page-koreksi-absen-bawahan {
+	ion-label {
+			font-size: 1.5rem !important;
+	}
+
+	p {
+			font-size: 1.5rem !important; 
+	}
+	
+	.icons{
+		height:20px;
+		margin:10px;
+	}
+
+	ion-select {
+		border: 1px solid lightgray;    
+		text-align: -webkit-center;
+		max-width: 100% !important;
+		border-radius: 8px;
+		font-size: 1.5rem;
+		margin-bottom: 5px;
+		width: 100%;
+	}	
+
+	.button{
+		border-radius:5px;
+		height:3.2em;		
+		color:#fff !important;
+	}
+
+	.divs{
+		padding:10px;
+		width: 100%;
+	} 	
+	
+	.headers{
+		background-color:#f6821e;
+		color:#fff;
+		padding:10px !important;
+	}
+	
+	.keterangan{
+		font-size:1.3rem !important;
+		color:#f36820;
+	}
+
+	.icons{
+		height:20px;
+		margin:10px;
+	} 
+	
+	.buttons{
+		border-radius:5px;
+		height:3em;
+		background-color:#f25d21 !important;
+		color:#fff !important;
+	}
+	
+	.font{
+		font-size:1.2rem;
+	} 
+	
+	.font2{
+		font-size:1.3rem;
+	}
+	
+	.bold{
+		font-weight:600;
+	}
+	
+	.card-md {
+		border-radius: 3px;
+		border: 1px solid #e6e6e6;
+		box-shadow: none !important;
+	}
+
+	.card-ios {
+		border-radius: 3px;
+		border: 1px solid #e6e6e6;
+		box-shadow: none !important;
+	}
+	
+}

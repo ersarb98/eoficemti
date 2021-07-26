@@ -1,0 +1,52 @@
+<ion-content padding class="login-bg" scrollX="false" scrollY="false">
+  <div class="grand-parent-contaniner">
+    <div class="parent-container">
+      <div class="bg-color">
+        <img id="logo" src="assets/imgs/ipc-tpk-logo.png" />
+        <br>        
+        <div text-center style="margin-bottom:15px;">
+          <span ion-text color="dark" style="font-size: 2.1rem;font-weight: bold;">E-Office IPCTPK</span>
+          <br>
+          <span ion-text color="color4" style="font-size: 1.4rem;">Masukkan NIPP dan password anda</span>
+        </div>
+        <div id="login-form">
+          <form [formGroup]="formLogin" class="item-login" (ngSubmit)="doLogin()">
+            <div class="input-item">
+              <ion-item no-lines>
+                <!-- <ion-label class="login-label" color="dark" stacked>Username</ion-label> -->
+                <ion-icon name="person" item-left no-margin class="my-icons" color="danger"></ion-icon>
+                <ion-input type="text" formControlName="username" placeholder="Username"></ion-input>
+              </ion-item>
+              <ion-item no-lines>
+                <!-- <ion-label class="login-label" color="dark" stacked>Password</ion-label> -->
+                <ion-icon name="lock" item-left no-margin class="my-icons" color="danger"></ion-icon>
+                <ion-input type="password" formControlName="password" placeholder="Password"></ion-input>
+              </ion-item>
+            </div>            
+            <!-- <div text-center>
+              <span ion-text text-wrap style="font-size: 1.3rem;" color="dark">swipe to right to confirm your are not robot</span> <br><br>
+              <input type="range" type="range" min="1" max="10" value="1" class="my-slider" />
+            </div> -->
+            <div class="swipe-cont" >
+              <ion-item no-lines>
+                <ion-label ion-text text-wrap style="font-size: 1.3rem;">Swipe to right to confirm you are not robot
+                </ion-label>
+                <ion-toggle formControlName="swipe"></ion-toggle>swipe
+              </ion-item>
+            </div>
+
+            <br>
+
+            <span ion-text text-wrap color="color6">{{errorMessage}}</span>
+
+            <button margin-top class="login-button" ion-button icon-start block color="danger" tappable type="submit"  [disabled]="disableButton()" >
+              <ion-icon name="log-in"></ion-icon>
+              Login
+            </button>
+          </form>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</ion-content>

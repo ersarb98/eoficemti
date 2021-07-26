@@ -1,0 +1,605 @@
+<!--
+  Generated template for the InsertNoteAttendancePage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      <span ion-text color="light" *ngIf="fromPage != 'AbsenActivityPage'">Activity</span>
+      <span ion-text color="light" *ngIf="fromPage == 'AbsenActivityPage'">{{ date }}</span>
+    </ion-title>
+
+  </ion-navbar>
+</ion-header>
+
+<ion-content no-padding style="background-color:#FFF">
+  <div padding *ngIf="fromPage == 'CheckInPage'">
+
+    <div *ngIf="activityList != null && isLoading == false">
+      <br>
+      <table>
+        <tr>
+          <td width="48px" align="left">
+            <img src="assets/flat-icon/fingerprint.png" class="icons">
+          </td>
+          <td>
+            <span text-wrap ion-text style="color:#959595">Jenis Absen</span><br />
+            <span text-wrap ion-text>{{ attendanceType }}</span> <br /><br>
+          </td>
+        </tr>
+      </table>
+      <br>
+
+      <!-- <ion-item *ngIf="activityList['CHECK_IN_ACTIVITY_SPV'] != ''" no-lines>
+        <span item-left>
+          <img src="assets/flat-icon/checkin.png" class="icons" *ngIf="checkType == 'Check In'">
+          <img src="assets/flat-icon/checkout.png" class="icons" *ngIf="checkType == 'Check Out'">
+        </span>
+        <span text-wrap ion-text style="color:#959595; font-size: 1.2rem;">Arahan Tambahan</span><br />
+        <span text-wrap ion-text
+          style="white-space: pre-line !important;">{{ activityList['CHECK_IN_ACTIVITY_SPV'] }}</span>
+        <br>
+      </ion-item> -->
+
+
+      <!-- <ion-item>
+        <span item-left>
+
+          <img src="assets/flat-icon/checkin.png" class="icons" *ngIf="checkType == 'IN'">
+          <img src="assets/flat-icon/checkout.png" class="icons" *ngIf="checkType == 'OUT'">
+        </span>
+        <ion-label stacked>Activity</ion-label>
+        <ion-textarea [(ngModel)]="activity" #myInput id="myInput" rows="5">
+        </ion-textarea>
+      </ion-item> -->
+
+      <!-- <ion-grid no-margin>
+        <ion-row>
+          <ion-col col-12>
+            <button ion-button icon-end class="my-button" style=" border-radius: 12px;" color="secondary" [disabled]="activity == null || activity == ''"
+              (click)="doInsert()">
+              Submit
+              <ion-icon name="md-checkmark"></ion-icon>
+            </button>
+          </ion-col>
+        </ion-row>
+      </ion-grid> -->
+      <div *ngFor="let inputActivity of inputActivityList; let i = index" class="my-card">
+        <div class="delete-class" *ngIf="i > 0 && inputActivity['att_activity_id'] == ''">
+          <button ion-button icon-only color="danger" clear style="border-radius: 8px !important;"
+            (click)="delActivity(i)">
+            <ion-icon name="md-close"></ion-icon>
+            <!-- Delete -->
+          </button>
+        </div>
+
+        <ion-item>
+          <span item-left>
+            <img src="assets/flat-icon/alasan.png" class="icons">
+          </span>
+          <ion-label stacked>Activity</ion-label>
+          <!-- <ion-input type="text" [(ngModel)]="inputActivity['activity']"></ion-input> -->
+          <ion-textarea [(ngModel)]="inputActivity['activity']" rows="2">
+          </ion-textarea>
+          <!-- <ion-input type="text" [(ngModel)]="inputActivity['activity']" *ngIf="inputActivity['att_activity_id'] == ''"></ion-input>
+          <ion-input type="text" [readonly]="true" [(ngModel)]="inputActivity['activity']" *ngIf="inputActivity['att_activity_id'] != ''"></ion-input> -->
+        </ion-item>
+        <br>
+
+        <ion-item style="width:80%;" lines *ngIf="checkType == 'CHECK_OUT'">
+          <span item-left>
+            <img src="assets/flat-icon/jenis_cuti.png" class="icons">
+          </span>
+          <ion-label stacked>Status</ion-label>
+          <ion-select [(ngModel)]="inputActivity['status']" placeholder="" (ionChange)="onChangeStatus($event, i)">
+            <!-- <div *ngIf="inputActivity['status'] == null" > -->
+            <ion-option value="Batal">Batal</ion-option>
+            <ion-option value="Dalam Proses - 0%">Dalam Proses - 0%</ion-option>
+            <ion-option value="Dalam Proses - 10%">Dalam Proses - 10%</ion-option>
+            <ion-option value="Dalam Proses - 20%">Dalam Proses - 20%</ion-option>
+            <ion-option value="Dalam Proses - 30%">Dalam Proses - 30%</ion-option>
+            <ion-option value="Dalam Proses - 40%">Dalam Proses - 40%</ion-option>
+            <ion-option value="Dalam Proses - 50%">Dalam Proses - 50%</ion-option>
+            <ion-option value="Dalam Proses - 60%">Dalam Proses - 60%</ion-option>
+            <ion-option value="Dalam Proses - 70%">Dalam Proses - 70%</ion-option>
+            <ion-option value="Dalam Proses - 80%">Dalam Proses - 80%</ion-option>
+            <ion-option value="Dalam Proses - 90%">Dalam Proses - 90%</ion-option>
+            <ion-option value="Selesai - 100%">Selesai - 100%</ion-option>
+            <!-- </div> -->
+            <!-- <div *ngIf="inputActivity['status'] != null">
+              <ion-option value="Batal">Batal</ion-option>                     
+              <ion-option value="Dalam Proses - 0%" *ngIf="inputActivity['status'] <= this.numberExtractor('Dalam Proses - 0%')">Dalam Proses - 0%</ion-option>
+              <ion-option value="Dalam Proses - 10%" *ngIf="inputActivity['status'] <= this.numberExtractor('Dalam Proses - 10%')">Dalam Proses - 10%</ion-option>
+              <ion-option value="Dalam Proses - 20%" *ngIf="inputActivity['status'] <= this.numberExtractor('Dalam Proses - 20%')">Dalam Proses - 20%</ion-option>
+              <ion-option value="Dalam Proses - 30%" *ngIf="inputActivity['status'] <= this.numberExtractor('Dalam Proses - 30%')">Dalam Proses - 30%</ion-option>
+              <ion-option value="Dalam Proses - 40%" *ngIf="inputActivity['status'] <= this.numberExtractor('Dalam Proses - 40%')">Dalam Proses - 40%</ion-option>
+              <ion-option value="Dalam Proses - 50%" *ngIf="inputActivity['status'] <= this.numberExtractor('Dalam Proses - 50%')">Dalam Proses - 50%</ion-option>
+              <ion-option value="Dalam Proses - 60%" *ngIf="inputActivity['status'] <= this.numberExtractor('Dalam Proses - 60%')">Dalam Proses - 60%</ion-option>
+              <ion-option value="Dalam Proses - 70%" *ngIf="inputActivity['status'] <= this.numberExtractor('Dalam Proses - 70%')">Dalam Proses - 70%</ion-option>
+              <ion-option value="Dalam Proses - 80%" *ngIf="inputActivity['status'] <= this.numberExtractor('Dalam Proses - 80%')">Dalam Proses - 80%</ion-option>
+              <ion-option value="Dalam Proses - 90%" *ngIf="inputActivity['status'] <= this.numberExtractor('Dalam Proses - 90%')">Dalam Proses - 90%</ion-option>
+              <ion-option value="Selesai - 100%">Selesai - 100%</ion-option>        
+            </div> -->
+
+          </ion-select>
+        </ion-item>
+
+        <div style="margin-left: 10px;" *ngIf="checkType == 'CHECK_OUT' && inputActivity['att_activity_id'] != ''">
+          <div
+            *ngIf="inputActivity['status'] != null && originalActivityList[i]['status'] != null && inputActivity['status'] != '' && originalActivityList[i]['status'] != ''">
+            <span text-wrap ion-text style="color:red; font-size: 1.2rem;"
+              *ngIf="inputActivity['status'] != 'Batal' && (numberExtractor(originalActivityList[i]['status']) > numberExtractor(inputActivityList[i]['status']))">*Presentase
+              status tidak boleh kurang dari sebelumnya ( {{ numberExtractor(originalActivityList[i]['status']) }}%
+              ).</span>
+            <br>
+          </div>
+          <!-- <span text-wrap ion-text style="color:red; font-size: 1.2rem;" >{{ originalActivityList[i]['status'] }}</span> -->
+        </div>
+        <!-- <ion-item *ngIf="checkType == 'CHECK_OUT'">
+          <span item-left>
+            <img src="assets/flat-icon/end_date.png" class="icons">
+          </span>
+          <ion-label color="color4" stacked>Tanggal Awal</ion-label>
+          <ion-input type="text" [readonly]="true" [(ngModel)]="inputActivity['tgl_awal']" (ionFocus)="checkFocus(1, i)" (click)="showDatePicker(1, i)"></ion-input>          
+        </ion-item> -->
+
+        <!-- <ion-item *ngIf="checkType == 'CHECK_OUT'">
+          <span item-left>
+            <img src="assets/flat-icon/start_date.png" class="icons">
+          </span>
+          <ion-label color="color4" stacked>Tanggal Akhir</ion-label>
+          <ion-input type="text" [readonly]="true" [(ngModel)]="inputActivity['tgl_akhir']" (ionFocus)="checkFocus(2, i)" (click)="showDatePicker(2, i)"></ion-input>
+        </ion-item> -->
+      </div>
+
+      <!-- <table width="100%" *ngIf="checkType != 'CHECK_OUT'"> -->
+      <table width="100%">
+        <tr>
+          <td width="50%" align="center" (click)="addNewActivity()">
+            <button ion-button icon-start style="width: 95% !important;border-radius: 10px;">
+              <ion-icon name="ios-add"></ion-icon>
+              Tambah
+            </button>
+          </td>
+          <td width="50%" align="center">
+            <button ion-button icon-start style="width: 95% !important;border-radius: 10px;" color="secondary"
+              (click)="submitActivity('INSERT')" [disabled]="disableSubmitButton()">
+              <ion-icon name="md-checkmark-circle-outline"></ion-icon>
+              Submit
+            </button>
+          </td>
+        </tr>
+      </table>
+
+      <!-- <table width="100%" *ngIf="checkType == 'CHECK_OUT'">
+        <tr>
+          <td width="100%" align="center">
+            <button ion-button icon-start style="width: 100% !important;border-radius: 10px;" color="secondary" (click)="submitActivity('UPDATE')"
+              [disabled]="disableSubmitButton()">
+              <ion-icon name="md-checkmark-circle-outline"></ion-icon>
+              Submit
+            </button>
+          </td>
+        </tr>
+      </table> -->
+      <br>
+
+    </div>
+
+    <!-- <div *ngIf="activityList == null && isLoading == true"> -->
+    <div *ngIf="inputActivityList.length == 0 && isLoading == true">
+      <div class="data-container">
+        <div class="my-card">
+          <ion-item>
+            <span item-left>
+              <img src="assets/flat-icon/alasan.png" class="icons">
+            </span>
+            <div style="padding-top: 10px;" class="animate-skeleton-background load-3"></div>
+          </ion-item>
+
+          <ion-item style="width:80%;">
+            <span item-left>
+              <img src="assets/flat-icon/jenis_cuti.png" class="icons">
+            </span>
+            <div style="padding-top: 10px;" class="animate-skeleton-background load-3"></div>
+          </ion-item>
+        </div>
+
+        <div class="my-card">
+          <ion-item>
+            <span item-left>
+              <img src="assets/flat-icon/alasan.png" class="icons">
+            </span>
+            <div style="padding-top: 10px;" class="animate-skeleton-background load-3"></div>
+          </ion-item>
+
+          <ion-item style="width:80%;">
+            <span item-left>
+              <img src="assets/flat-icon/jenis_cuti.png" class="icons">
+            </span>
+            <div style="padding-top: 10px;" class="animate-skeleton-background load-3"></div>
+          </ion-item>
+        </div>
+
+        <div class="my-card">
+          <ion-item>
+            <span item-left>
+              <img src="assets/flat-icon/alasan.png" class="icons">
+            </span>
+            <div style="padding-top: 10px;" class="animate-skeleton-background load-3"></div>
+          </ion-item>
+
+          <ion-item style="width:80%;">
+            <span item-left>
+              <img src="assets/flat-icon/jenis_cuti.png" class="icons">
+            </span>
+            <div style="padding-top: 10px;" class="animate-skeleton-background load-3"></div>
+          </ion-item>
+        </div>
+
+        <div class="my-card">
+          <ion-item>
+            <span item-left>
+              <img src="assets/flat-icon/alasan.png" class="icons">
+            </span>
+            <div style="padding-top: 10px;" class="animate-skeleton-background load-3"></div>
+          </ion-item>
+
+          <ion-item style="width:80%;">
+            <span item-left>
+              <img src="assets/flat-icon/jenis_cuti.png" class="icons">
+            </span>
+            <div style="padding-top: 10px;" class="animate-skeleton-background load-3"></div>
+          </ion-item>
+        </div>
+
+        <div class="my-card">
+          <ion-item>
+            <span item-left>
+              <img src="assets/flat-icon/alasan.png" class="icons">
+            </span>
+            <div style="padding-top: 10px;" class="animate-skeleton-background load-3"></div>
+          </ion-item>
+
+          <ion-item style="width:80%;">
+            <span item-left>
+              <img src="assets/flat-icon/jenis_cuti.png" class="icons">
+            </span>
+            <div style="padding-top: 10px;" class="animate-skeleton-background load-3"></div>
+          </ion-item>
+        </div>
+      </div>
+
+      <!-- <br>
+      <div class="animate-skeleton-background load-1"></div>
+      <div class="animate-skeleton-background load-2"></div>
+
+      <ion-item>
+        <div class="animate-skeleton-background load-3"></div>
+        <div class="animate-skeleton-background load-3"></div>
+        <div class="animate-skeleton-background load-3"></div>
+      </ion-item> -->
+
+    </div>
+
+  </div>
+
+
+  <div *ngIf="fromPage == 'AbsenActivityPage'">
+
+    <!-- <div *ngIf="activityList != null && isLoading == false"> -->
+    <div *ngIf="inputActivityList.length > 0 && isLoading == false">
+      <!-- <div class="image-container"> -->
+      <!-- <img class="photo" src="{{ photo }}" /> -->
+      <!-- <img class="photo" [src]="photo" />
+      </div> -->
+      <div padding class="data-container">
+        <!-- <div class="header-container">
+          <br>
+          <span ion-text text-wrap class="font" color="danger" *ngIf="checkType == 'CHECK_OUT'"><b>Check
+              Out</b><br></span>
+          <span ion-text text-wrap class="font" color="secondary" *ngIf="checkType == 'CHECK_IN'"><b>Check
+              In</b><br></span>
+          <span ion-text text-wrap class="font2"><b>{{ checkTime }}</b></span><br>
+          <span ion-text text-wrap class="font1" style="color:gray;">{{ attendanceType }}</span><br><br>
+
+          <button ion-button icon-start outline class="my-button2" color="googleColor" (click)="openMap()">
+            <ion-icon name="ios-pin-outline"></ion-icon>
+            Location
+          </button> -->
+        <!--           
+          <button ion-button icon-start outline class="my-button2" color="color2" *ngIf="checkType == 'CHECK_OUT' && (activityList['CHECK_IN_RATE'] == '' || activityList['CHECK_IN_RATE'] == '0')" (click)="openModalRating('rate')">
+            <ion-icon name="md-star-outline"></ion-icon>
+            Rate
+          </button> -->
+        <!-- <br>          
+          <div *ngIf="checkType == 'CHECK_OUT' && (activityList['CHECK_IN_RATE'] != '' && activityList['CHECK_IN_RATE'] != '0')" >
+            <span *ngFor="let item of createRange(5);let i = index" style="font-size:1.8rem;" >
+              <ion-icon name="star" color="color2" *ngIf="i+1 <= activityList['CHECK_IN_RATE']" ></ion-icon> 
+              <ion-icon name="star" color="color4" *ngIf="i+1 > activityList['CHECK_IN_RATE']" ></ion-icon>                         
+            </span>                                      
+          </div>          
+        </div>
+        <br> -->
+
+        <!-- <div >
+          <span text-wrap ion-text style="color:#959595">Arahan Tambahan</span><br />
+         
+        </div> -->
+
+        <!-- <ion-item *ngIf="activityList['CHECK_IN_ACTIVITY_SPV'] != ''" no-lines>
+          <span item-left>
+            <img src="assets/flat-icon/checkin.png" class="icons" *ngIf="checkType == 'Check In'">
+            <img src="assets/flat-icon/checkout.png" class="icons" *ngIf="checkType == 'Check Out'">
+          </span>
+          <span text-wrap ion-text style="color:#959595; font-size: 1.2rem;">Arahan Tambahan</span><br />
+          <span text-wrap ion-text> 
+            {{ activityList['CHECK_IN_ACTIVITY_SPV'] }}
+          </span>
+        </ion-item>
+
+        <br> -->
+
+        <!-- <ion-item *ngIf="activityList['CHECK_IN_ACTIVITY_SPV'] != ''">
+          <span item-left>
+            <img src="assets/flat-icon/checkin.png" class="icons" *ngIf="checkType == 'Check In'">
+            <img src="assets/flat-icon/checkout.png" class="icons" *ngIf="checkType == 'Check Out'">
+          </span>
+          <ion-label stacked>Arahan Tambahan</ion-label>
+          <ion-textarea [readonly]="true" rows="3" [(ngModel)]="arahanAtasan">
+          </ion-textarea>
+          <br>
+        </ion-item> -->
+
+
+
+
+        <!-- <ion-item>
+          <span item-left>
+            <img src="assets/flat-icon/checkin.png" class="icons" *ngIf="checkType == 'Check In'">
+            <img src="assets/flat-icon/checkout.png" class="icons" *ngIf="checkType == 'Check Out'">
+          </span>
+          <ion-label stacked>Activity</ion-label>
+          <ion-textarea [(ngModel)]="activity" #myInput id="myInput" rows="4">
+          </ion-textarea>
+        </ion-item> -->
+
+        <!-- <ion-grid no-margin>
+          <ion-row>
+            <ion-col col-12>
+              <button ion-button icon-end class="my-button" style=" border-radius: 12px;" color="secondary" [disabled]="activity == null || activity == ''"
+                (click)="doInsert()">
+                Submit
+                <ion-icon name="md-checkmark"></ion-icon>
+              </button>
+            </ion-col>
+          </ion-row>
+        </ion-grid> -->
+
+        <div *ngFor="let inputActivity of inputActivityList; let i = index" class="my-card">
+          <div class="delete-class" *ngIf="i > 0 && inputActivity['att_activity_id'] == ''">
+            <button ion-button icon-only color="danger" clear style="border-radius: 8px !important;"
+              (click)="delActivity(i)">
+              <ion-icon name="md-close"></ion-icon>
+            </button>
+          </div>
+
+          <ion-item>
+            <span item-left>
+              <img src="assets/flat-icon/alasan.png" class="icons">
+            </span>
+            <ion-label stacked>Activity</ion-label>
+            <!-- <ion-input type="text" [(ngModel)]="inputActivity['activity']"></ion-input> -->
+            <ion-textarea [(ngModel)]="inputActivity['activity']" rows="2">
+            </ion-textarea>
+
+            <!-- <ion-input type="text" [(ngModel)]="inputActivity['activity']" *ngIf="inputActivity['att_activity_id'] == ''"></ion-input>
+            <ion-input type="text" [readonly]="true" [(ngModel)]="inputActivity['activity']" *ngIf="inputActivity['att_activity_id'] != ''"></ion-input> -->
+          </ion-item>
+          <br>
+
+          <ion-item style="width:80%;" lines *ngIf="checkType == 'CHECK_OUT'">
+            <span item-left>
+              <img src="assets/flat-icon/jenis_cuti.png" class="icons">
+            </span>
+            <ion-label stacked>Status</ion-label>
+            <ion-select [(ngModel)]="inputActivity['status']" placeholder="" (ionChange)="onChangeStatus($event, i)">
+              <ion-option value="Batal">Batal</ion-option>
+              <ion-option value="Dalam Proses - 0%">Dalam Proses - 0%</ion-option>
+              <ion-option value="Dalam Proses - 10%">Dalam Proses - 10%</ion-option>
+              <ion-option value="Dalam Proses - 20%">Dalam Proses - 20%</ion-option>
+              <ion-option value="Dalam Proses - 30%">Dalam Proses - 30%</ion-option>
+              <ion-option value="Dalam Proses - 40%">Dalam Proses - 40%</ion-option>
+              <ion-option value="Dalam Proses - 50%">Dalam Proses - 50%</ion-option>
+              <ion-option value="Dalam Proses - 60%">Dalam Proses - 60%</ion-option>
+              <ion-option value="Dalam Proses - 70%">Dalam Proses - 70%</ion-option>
+              <ion-option value="Dalam Proses - 80%">Dalam Proses - 80%</ion-option>
+              <ion-option value="Dalam Proses - 90%">Dalam Proses - 90%</ion-option>
+              <ion-option value="Selesai - 100%">Selesai - 100%</ion-option>
+            </ion-select>
+            <br>
+
+          </ion-item>
+
+          <div style="margin-left: 10px;" *ngIf="checkType == 'CHECK_OUT' && inputActivity['att_activity_id'] != ''">
+            <div
+              *ngIf="inputActivity['status'] != null && originalActivityList[i]['status'] != null && inputActivity['status'] != '' && originalActivityList[i]['status'] != ''">
+              <span text-wrap ion-text style="color:red; font-size: 1.2rem;"
+                *ngIf="inputActivity['status'] != 'Batal' && (numberExtractor(originalActivityList[i]['status']) > numberExtractor(inputActivityList[i]['status']))">*Presentase
+                status tidak boleh kurang dari sebelumnya ( {{ numberExtractor(originalActivityList[i]['status']) }}%
+                ).</span>
+              <br>
+            </div>
+            <!-- <span text-wrap ion-text style="color:red; font-size: 1.2rem;" >{{ originalActivityList[i]['status'] }}</span> -->
+          </div>
+
+
+
+          <!-- <ion-item *ngIf="checkType == 'CHECK_OUT'">
+            <span item-left>
+              <img src="assets/flat-icon/end_date.png" class="icons">
+            </span>
+            <ion-label color="color4" stacked>Tanggal Awal</ion-label>
+            <ion-input type="text" [readonly]="true" [(ngModel)]="inputActivity['tgl_awal']" (ionFocus)="checkFocus(1, i)" (click)="showDatePicker(1, i)"></ion-input>          
+          </ion-item> -->
+
+          <!-- <ion-item *ngIf="checkType == 'CHECK_OUT'">
+            <span item-left>
+              <img src="assets/flat-icon/start_date.png" class="icons">
+            </span>
+            <ion-label color="color4" stacked>Tanggal Akhir</ion-label>
+            <ion-input type="text" [readonly]="true" [(ngModel)]="inputActivity['tgl_akhir']" (ionFocus)="checkFocus(2, i)" (click)="showDatePicker(2, i)"></ion-input>
+          </ion-item> -->
+        </div>
+
+
+        <!-- <table width="100%" *ngIf="checkType != 'CHECK_OUT'"> -->
+        <table width="100%">
+          <tr>
+            <td width="50%" align="center" (click)="addNewActivity()">
+              <button ion-button icon-start style="width: 95% !important;border-radius: 10px;">
+                <ion-icon name="ios-add"></ion-icon>
+                Tambah
+              </button>
+            </td>
+            <td width="50%" align="center">
+              <button ion-button icon-start style="width: 95% !important;border-radius: 10px;" color="secondary"
+                (click)="submitActivity('INSERT')" [disabled]="disableSubmitButton()">
+                <ion-icon name="md-checkmark-circle-outline"></ion-icon>
+                Submit
+              </button>
+            </td>
+          </tr>
+        </table>
+
+        <!-- <table width="100%" *ngIf="checkType == 'CHECK_OUT'">
+          <tr>
+            <td width="100%" align="center">
+              <button ion-button icon-start style="width: 100% !important;border-radius: 10px;" color="secondary"
+                (click)="submitActivity('UPDATE')" [disabled]="disableSubmitButton()">
+                <ion-icon name="md-checkmark-circle-outline"></ion-icon>
+                Submit
+              </button>
+            </td>
+          </tr>
+        </table> -->
+        <br>
+      </div>
+    </div>
+
+    <!-- <div *ngIf="activityList == null && isLoading == true"> -->
+    <div padding *ngIf="inputActivityList.length == 0 && isLoading == true">
+      <div class="data-container">
+        <div class="my-card">
+          <ion-item>
+            <span item-left>
+              <img src="assets/flat-icon/alasan.png" class="icons">
+            </span>
+            <div style="padding-top: 10px;" class="animate-skeleton-background load-3"></div>
+          </ion-item>
+
+          <ion-item style="width:80%;">
+            <span item-left>
+              <img src="assets/flat-icon/jenis_cuti.png" class="icons">
+            </span>
+            <div style="padding-top: 10px;" class="animate-skeleton-background load-3"></div>
+          </ion-item>
+        </div>
+
+        <div class="my-card">
+          <ion-item>
+            <span item-left>
+              <img src="assets/flat-icon/alasan.png" class="icons">
+            </span>
+            <div style="padding-top: 10px;" class="animate-skeleton-background load-3"></div>
+          </ion-item>
+
+          <ion-item style="width:80%;">
+            <span item-left>
+              <img src="assets/flat-icon/jenis_cuti.png" class="icons">
+            </span>
+            <div style="padding-top: 10px;" class="animate-skeleton-background load-3"></div>
+          </ion-item>
+        </div>
+
+        <div class="my-card">
+          <ion-item>
+            <span item-left>
+              <img src="assets/flat-icon/alasan.png" class="icons">
+            </span>
+            <div style="padding-top: 10px;" class="animate-skeleton-background load-3"></div>
+          </ion-item>
+
+          <ion-item style="width:80%;">
+            <span item-left>
+              <img src="assets/flat-icon/jenis_cuti.png" class="icons">
+            </span>
+            <div style="padding-top: 10px;" class="animate-skeleton-background load-3"></div>
+          </ion-item>
+        </div>
+
+        <div class="my-card">
+          <ion-item>
+            <span item-left>
+              <img src="assets/flat-icon/alasan.png" class="icons">
+            </span>
+            <div style="padding-top: 10px;" class="animate-skeleton-background load-3"></div>
+          </ion-item>
+
+          <ion-item style="width:80%;">
+            <span item-left>
+              <img src="assets/flat-icon/jenis_cuti.png" class="icons">
+            </span>
+            <div style="padding-top: 10px;" class="animate-skeleton-background load-3"></div>
+          </ion-item>
+        </div>
+
+        <div class="my-card">
+          <ion-item>
+            <span item-left>
+              <img src="assets/flat-icon/alasan.png" class="icons">
+            </span>
+            <div style="padding-top: 10px;" class="animate-skeleton-background load-3"></div>
+          </ion-item>
+
+          <ion-item style="width:80%;">
+            <span item-left>
+              <img src="assets/flat-icon/jenis_cuti.png" class="icons">
+            </span>
+            <div style="padding-top: 10px;" class="animate-skeleton-background load-3"></div>
+          </ion-item>
+        </div>
+      </div>
+
+      <!-- <div class="image-container">
+        <img src="assets/flat-icon/photo_dummy_2.png" class="animate-skeleton-background photo">
+      </div> -->
+      <!-- <div padding class="data-container">
+        <div class="header-container">
+          <br>
+          <div class="animate-skeleton-background load-1"></div><br>
+          <div class="animate-skeleton-background load-1"></div>
+          <div class="animate-skeleton-background load-2"></div>
+          <div class="animate-skeleton-background load-1"></div><br>
+          <div class="animate-skeleton-background load-2"></div>
+          <br>
+        </div>
+        <br>
+
+        <ion-item>
+          <div class="animate-skeleton-background load-3"></div>
+          <div class="animate-skeleton-background load-3"></div>
+          <div class="animate-skeleton-background load-3"></div>
+        </ion-item>
+
+      </div> -->
+    </div>
+
+
+  </div>
+
+
+
+</ion-content>

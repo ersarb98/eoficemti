@@ -1,0 +1,34 @@
+page-approve-koreksi-absen {
+    .item-md ion-icon[item-left] + .item-inner {
+        margin-left: 0 !important;
+    }
+
+    .item.item-block.item-select .select-text {
+        text-align: left !important;
+    }
+
+    .icons{
+		height:23px;
+		margin:8px;
+	}	
+
+	.my-padding {
+		padding:16px 16px 0 16px;
+	}
+	.msg-icon {
+		padding:10px;
+		font-size:25px !important;
+	}
+
+	.font{
+		font-size:1.3rem;
+	} 
+
+	.font2{
+		font-size:1.4rem;
+	}
+
+	.bold{
+		font-weight:500;
+	}
+}

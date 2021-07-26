@@ -1,0 +1,34 @@
+<ion-header>
+    <ion-navbar>
+        <ion-title><span style="color:#FFF">Pengajuan</span></ion-title>
+        <ion-buttons end>
+            <button ion-button icon-only (click)="cancel()">
+                <ion-icon name="ios-close-outline" style="color:#FFF"></ion-icon>
+            </button>
+        </ion-buttons>
+    </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+    <form [formGroup]="addKategoriForm" class="list-form">
+        <ion-item *ngIf="!isLoading">
+            <span item-left>
+                <img src="assets/imgs/logo/direktorat-icon.png" class="icons">
+            </span>
+            <span class="bold" ion-text text-wrap color="iconColor">
+                {{ userdataIPCContact['DIREKTORAT'] }}
+            </span> 
+        </ion-item>
+
+        <ion-item>
+            <span item-left>
+                <img src="assets/imgs/logo/category-icon.png" class="icons">
+            </span>            
+            <ion-label stacked>Kategori</ion-label>
+            <ion-input type="text" formControlName="fcKategori"></ion-input>
+        </ion-item>
+
+        <button style="border-radius: 5px;" ion-button block color="primary" margin-top (click)="sendData()"
+            [disabled]="!addKategoriForm.valid">Ajukan</button>
+    </form>
+</ion-content>

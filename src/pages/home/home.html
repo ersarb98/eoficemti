@@ -1,0 +1,239 @@
+<!--
+  Generated template for the HomePage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+
+<ion-header no-border>
+  <ion-navbar color="color1">
+    <ion-title>
+      <img src="assets/imgs/ipc-tpk-logo.png" style="width:80px; padding-top: 4px;" />      
+    </ion-title>
+    <ion-buttons end>
+      <button ion-button (click)="logout()">
+        <ion-icon style="font-size:2.5rem;" name="md-settings" color="light"></ion-icon>
+      </button>
+      <button ion-button (click)="logout()">
+        <ion-icon style="font-size:2.5rem;" name="md-log-out" color="light"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding-bottom>
+  <!-- <div class="my-header">
+    <div class="my-title" padding>
+      <span ion-text color="light">Mobile IVO TPK</span>
+    </div>
+  </div>
+
+  <div class="img-container" (click)="goToHome2()">
+    <img src="../../assets/imgs/user-img.jpg" class="my-img" />
+  </div>
+
+  <div class="user-info">
+    <span ion-text class="user-info-name">John Van Deer Mor</span><br>
+    <span ion-text text-wrap class="user-info-jab">DVP Operasi dan Hubungan Internasional</span>
+  </div>
+
+  <div class="button-container">
+    <button ion-button round class="setting-button" (click)="goToSetting()">Setting</button>
+    <button ion-button round outline color="danger">Logout</button>
+  </div> -->
+
+  <div class="profile-container" (click)="goToHome2()">
+    <img src="../../assets/imgs/user-img.jpg" class="my-img" />
+
+    <div class="user-info">
+      <span ion-text class="user-info-name">John Van Deer Mor</span><br>
+      <span ion-text text-wrap class="user-info-jab">DVP Operasi dan Hubungan Internasional</span>
+    </div>
+  </div>
+
+  <ion-row>
+    <ion-col class="col-left">
+      <div>
+        <span ion-text text-wrap class="user-info-name" color="orange">25</span> <br>
+        <span ion-text text-wrap style="font-size:1.3rem; color: gray;">Belum dibaca</span>
+      </div>
+    </ion-col>
+    <ion-col class="col-right">
+      <div>
+        <span ion-text text-wrap class="user-info-name" color="orange">7</span> <br>
+        <span ion-text text-wrap style="font-size:1.3rem; color: gray;">Approval</span>
+      </div>
+    </ion-col>
+  </ion-row>
+
+  <div class="agenda-title-container">
+    <span ion-text text-wrap style="font-size:1.5rem;">
+      <b>Agenda anda saat ini</b>
+    </span>
+  </div>
+
+
+
+  <ion-slides pager="true" paginationType="bullets">
+    <ion-slide>
+      <ion-card class="my-card">
+        <ion-item>
+          <span ion-text text-wrap class="font-mini">
+            19 agustus 2019 08.00 - 09.00
+          </span> <br>
+          <span ion-text text-wrap class="font-mini">
+            Wisma SMR Lantai 10
+          </span>
+          <div style="
+                    width:100%;
+                    border-bottom: 1px solid white;
+                    padding: 5px;
+                    margin-bottom:5px;">
+          </div>
+          <span ion-text text-wrap class="font-small">
+            <b>Meeting Kick Off E-Office IPC TPK</b>
+          </span>
+        </ion-item>
+      </ion-card>
+    </ion-slide>
+    <ion-slide>
+      <ion-card class="my-card">
+        <ion-item>
+          <span ion-text text-wrap class="font-mini">
+            19 agustus 2019 08.00 - 09.00
+          </span> <br>
+          <span ion-text text-wrap class="font-mini">
+            Wisma SMR Lantai 10
+          </span>
+          <div style="
+                    width:100%;
+                    border-bottom: 1px solid lightgray;
+                    padding: 5px;
+                    margin-bottom:5px;">
+          </div>
+          <span ion-text text-wrap class="font-small">
+            <b>Meeting Kick Off E-Office IPC TPK</b>
+          </span>
+        </ion-item>
+      </ion-card>
+    </ion-slide>
+  </ion-slides>
+
+  <div class="agenda-title-container">
+    <span ion-text text-wrap style="font-size:1.5rem;">
+      <b>Surat Menyurat</b>
+    </span>
+  </div>
+
+  <div class="menu-parent">
+    <div style="width: 33.3%" *ngFor="let item of suratMenu" tappable (click)="openPage(item.component)">
+      <div class="container-menu-4">
+        <img src="{{item.img}}" style="width: 35%; 
+                height: auto;          
+                max-width: 35vw;">
+      </div>
+      <div align="center">
+        <span style="font-size:1.3rem !important"><b>{{item.title}}</b></span>
+      </div>
+    </div>
+  </div>
+
+  <ion-card class="my-card-2">
+    <ion-item>
+      <div style="display: flex;align-items: center;">
+        <img src="assets/imgs/menu-icon/p2b-white.png" style="width: 10%;height: auto;          
+            max-width: 35vw;margin-right: 10px;">
+        <span ion-text text-wrap class="font-small">
+          <b>P2B</b>
+        </span>
+      </div>
+      <br>
+      <span ion-text text-wrap class="font-mini">
+        Karyawan dapat menambah, mengubah, submit serta melakukan approval P2B.
+      </span>
+
+      <button ion-button item-end round outline color="white" style="font-size:1.4rem;">BUKA</button>
+
+    </ion-item>
+  </ion-card>
+
+
+  <div class="agenda-title-container">
+    <span ion-text text-wrap style="font-size:1.5rem;">
+      <b>Self Service</b>
+    </span>
+  </div>
+
+  <div class="menu-parent">
+    <div style="width: 25%" *ngFor="let item of selfServiceMenu.slice(0, 4);let i=index " tappable
+      (click)="openPage(item.component)">
+      <div class="container-menu-selfservice1-{{ i }}">
+        <img src="{{item.img}}" style="width: 40%; 
+                height: auto;          
+                max-width: 35vw;">
+      </div>
+      <div align="center">
+        <span style="font-size:1.3rem !important">{{item.title}}</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="menu-parent">
+    <div style="width: 25%" *ngFor="let item of selfServiceMenu.slice(4, 8);let i=index " tappable
+      (click)="openPage(item.component)">
+      <div class="container-menu-selfservice2-{{ i }}">
+        <img src="{{item.img}}" style="width: 40%; 
+                height: auto;          
+                max-width: 35vw;">
+      </div>
+      <div align="center">
+        <span style="font-size:1.3rem !important">{{item.title}}</span>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- <div class="agenda-title-container">
+    <span ion-text text-wrap style="font-size:1.4rem;">
+      <b>P2B</b>
+    </span>
+  </div>
+
+
+  <div class="menu-parent">
+    <div style="width: 25%" *ngFor="let item of p2bMenu" tappable (click)="openPage(item.component)">
+      <div class="container-menu">
+        <img src="{{item.img}}" style="width: 50%; 
+                  height: auto;          
+                  max-width: 35vw;">
+      </div>
+      <div align="center">
+        <span style="font-size:1.3rem !important">{{item.title}}</span>
+      </div>
+    </div>
+  </div> -->
+
+  <div class="agenda-title-container">
+    <span ion-text text-wrap style="font-size:1.5rem;">
+      <b>Budget Monitoring</b>
+    </span>
+  </div>
+
+  <div class="menu-parent">
+    <div style="width: 25%" *ngFor="let item of budgtMonitoringMenu" tappable (click)="openPage(item.component)">
+      <div class="container-menu">
+        <img src="{{item.img}}" style="width: 40%; 
+                height: auto;          
+                max-width: 35vw;">
+      </div>
+      <div align="center">
+        <span style="font-size:1.3rem !important">{{item.title}}</span>
+      </div>
+    </div>
+  </div>
+
+
+
+
+
+</ion-content>

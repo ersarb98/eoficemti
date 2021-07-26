@@ -1,0 +1,76 @@
+page-kategori-pengajuan-list {
+    .item-md h2, .item-ios h2 {
+        font-size: 1.8rem !important;        
+    }
+
+    .item-md p, .item-ios p {
+        font-size: 1.5rem;
+    }
+
+    button[ion-fab] {
+        overflow: visible;
+        position: relative;
+    
+        ion-label {
+            position: absolute;
+            top: -8px;
+            right: 40px;
+    
+            color: white;
+            background-color: rgba(0,0,0,0.7);
+            line-height: 24px;
+            padding: 4px 8px;
+            border-radius: 4px;
+        }
+    }
+    
+    .fab{
+        contain: layout;
+    }
+
+    .fab {
+        contain: layout;
+    }
+	
+	.icons{
+		width: 30px;
+		// margin:10px; 
+	} 
+	
+	.font{
+		font-size:1.3rem;
+	} 
+	
+	.font2{
+		font-size:1.4rem;
+    }      
+
+    .card-md {
+        border-radius: 3px;
+        border-left: 4px solid mediumpurple !important; 
+        border: 1px solid #e6e6e6;
+        box-shadow: none !important;
+    }
+
+    .card-ios {
+        border-radius: 3px;
+        border-left: 4px solid mediumpurple !important; 
+        border: 1px solid #e6e6e6;
+        box-shadow: none !important;
+    }        
+
+    .font-mini {
+        font-size: 1.2rem;
+    }
+
+    .font-small {
+        font-size: 1.3rem;
+        color: gray;
+    }
+    
+    .font-header {
+        // color: color($colors, red);
+        font-size: 1.3rem;            
+        color: black;
+    }
+}

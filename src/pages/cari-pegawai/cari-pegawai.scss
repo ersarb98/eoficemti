@@ -1,0 +1,73 @@
+page-cari-pegawai {
+    .icons{
+		height:25px;
+		margin:8px;
+	}	
+
+    .icons2{
+        width:50px;
+        max-width: 100%;
+        height: auto; 
+		margin:5px;
+	}	
+	.my-padding {
+		padding:16px 16px 0 16px;
+	}
+	.msg-icon {
+		padding:10px;
+		font-size:25px !important;
+	}
+
+	.font2{
+		font-size:1.3rem;
+    } 
+    
+    .font3{
+		font-size:1.2rem;
+	} 
+
+	.font1{
+		font-size:1.4rem;
+	}
+
+	.bold{
+		font-weight:500;
+	}
+
+	.item-periksa {
+		background-color: whitesmoke;
+	}
+
+	ion-badge {
+		font-size: 1.1rem !important;
+	}
+
+	.card-md {
+        border-radius: 3px;
+        border-left: 4px solid mediumpurple !important; 
+        border: 1px solid #e6e6e6;
+        box-shadow: none !important;
+    }
+
+    .card-ios {
+        border-radius: 3px;
+        border-left: 4px solid mediumpurple !important; 
+        border: 1px solid #e6e6e6;
+        box-shadow: none !important;
+    }
+
+	.font-mini {
+		font-size: 1.2rem;
+	}
+
+	.font-small {
+		font-size: 1.3rem;
+		color: gray;
+	}
+	
+	.font-header {
+		// color: color($colors, red);
+		font-size: 1.3rem;            
+		color: black;
+	}			
+}

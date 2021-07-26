@@ -1,0 +1,151 @@
+<!--
+  Generated template for the CutiDetailPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      <span ion-text color="light">Detail Cuti/Izin</span>
+    </ion-title>
+    <ion-buttons end>
+        <button ion-button (click)="goToLogSurat()">
+          <!-- <ion-icon style="font-size:2.4rem;" name="md-analytics" color="light"></ion-icon> -->
+          <img src="assets/imgs/menu-icon/history.png" style="    max-height: 27px;
+          margin-right: 5px;">
+        </button>
+        <button ion-button (click)="downloadInbox(replaceNomorSurat(messageData['No_Surat']))">
+          <ion-icon style="font-size:2.4rem;" name="md-download" color="light"></ion-icon>
+        </button>
+      </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <div *ngIf="isLoading == false && !isEmptyObject(messageDetail)">
+    <ion-card class="header-card">
+      <ion-card-content>
+        <span ion-text text-wrap class="font-header" >
+          <b>{{ messageDetail['Judul Surat'] }}</b>
+        </span>
+      </ion-card-content>
+    </ion-card>
+
+    <ion-card class="my-card">
+      <ion-item>
+        <span ion-text text-wrap class="font-mini" color="color4">
+          Tanggal Pengajuan
+        </span><br>
+        <span ion-text text-wrap class="font-small">
+          {{ messageDetail['Tanggal Pengajuan'] }}
+        </span><br>
+
+        <span ion-text text-wrap class="font-mini" color="color4">
+          Jenis Pengajuan
+        </span><br>
+        <span ion-text text-wrap class="font-small">
+          {{ messageDetail['Jenis Pengajuan'] }}
+        </span>
+        <br>
+
+        <span ion-text text-wrap class="font-mini" color="color4">
+          tanggal Cuti/Izin
+        </span><br>
+        <span ion-text text-wrap class="font-small">
+          {{ messageDetail['Tanggal Mulai Cuti'] }}
+        </span> <span ion-text text-wrap class="font-small" color="primary"> s/d </span>
+        <span ion-text text-wrap class="font-small">
+          {{ messageDetail['Tanggal Selesai Cuti'] }}
+        </span>        
+        <br>
+
+        <span ion-text text-wrap class="font-mini" color="color4">
+          Alamat Selama Cuti/Izin
+        </span><br>
+        <span ion-text text-wrap class="font-small">
+          {{ messageDetail['Alamat Cuti'] }}
+        </span>
+        <br>
+
+        <span ion-text text-wrap class="font-mini" color="color4">
+          Alasan
+        </span><br>
+        <span ion-text text-wrap class="font-small">
+          {{ messageDetail['Alasan'] }}
+        </span>
+        <br>
+      </ion-item>
+    </ion-card>
+
+    <ion-card class="my-card">
+      <ion-item>
+        <div class="header-text">
+          <span ion-text text-wrap>
+            <img src="assets/imgs/setting-icon/nipp.png" class="icons">
+          </span>
+          <span ion-text text-wrap class="font-small">
+            <b>Biodata Pemohon</b>
+          </span>
+        </div>
+        <div class="garis"></div>
+        <span ion-text text-wrap class="font-mini" color="color4">
+          NIPP
+        </span><br>
+        <span ion-text text-wrap class="font-small">
+          {{ messageDetail['NIPP Pemohon'] }}
+        </span><br>
+
+        <span ion-text text-wrap class="font-mini" color="color4">
+          Nama
+        </span><br>
+        <span ion-text text-wrap class="font-small">
+          {{ messageDetail['Nama Pemohon'] }}
+        </span>
+        <br>
+
+        <span ion-text text-wrap class="font-mini" color="color4">
+          Menyetujui
+        </span><br>
+        <span ion-text text-wrap class="font-small" color="primary">
+          <b>{{ messageDetail['NIPP Menyetujui'] }}</b>
+        </span> <br>
+        <span ion-text text-wrap class="font-small">
+          {{ messageDetail['Nama Menyetujui'] }} |
+          {{ messageDetail['Jabatan Menyetujui'] }}
+        </span>
+        <br>
+
+        <span ion-text text-wrap class="font-mini" color="color4">
+          Mengetahui
+        </span><br>
+        <span *ngIf="messageDetail['NIPP Mengetahui'] == '' || messageDetail['NIPP Mengetahui'] == null" ion-text
+          text-wrap class="font-small" color="primary">
+          -
+        </span>
+        <span *ngIf="messageDetail['NIPP Mengetahui'] != '' || messageDetail['NIPP Mengetahui'] != null" ion-text
+          text-wrap class="font-small" color="primary">
+          <b>{{ messageDetail['NIPP Mengetahui'] }}</b>
+        </span> <br>
+        <span *ngIf="messageDetail['Nama Mengetahui'] != '' || messageDetail['Nama Mengetahui'] != null" ion-text
+          text-wrap class="font-small">
+          {{ messageDetail['Nama Mengetahui'] }} |
+          {{ messageDetail['Jabatan Mengetahui'] }}
+        </span>
+      </ion-item>
+    </ion-card>
+  </div>
+
+  <div *ngIf="isLoading == true && isEmptyObject(messageDetail)">
+    <ion-item no-lines>
+      <div class="animate-skeleton-background load-2"></div>
+      <div class="animate-skeleton-background load-3"></div>
+      <div class="garis"></div>
+      <div class="animate-skeleton-background load-1"> </div>
+      <div class="animate-skeleton-background load-3"></div>
+      <div class="animate-skeleton-background load-1"> </div>
+      <div class="animate-skeleton-background load-3"></div>
+    </ion-item>
+  </div>
+
+</ion-content>

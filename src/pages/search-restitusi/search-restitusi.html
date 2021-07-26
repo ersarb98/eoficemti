@@ -1,0 +1,96 @@
+<!--
+  Generated template for the SearchRestitusiPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title><span style="color:#FFF">Search Restitusi</span></ion-title>
+    <ion-buttons end>
+          <button ion-button icon-only (click)="closeModal()">
+            <ion-icon name="ios-close-outline" style="color:#FFF"></ion-icon>
+          </button>
+    </ion-buttons>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content style="background-color:#F6F6F6">
+	<div class="appForm" class="divs">
+        <ion-list dining>                                                                  
+            <ion-item>
+                <span item-left>
+                    <img src="assets/img/home/restitusi.png" class="icons">
+                </span>       
+                <ion-input type="text" [(ngModel)]="nomorRestitusi" placeholder="Nomor Restitusi"></ion-input> 
+            </ion-item> 
+
+            <ion-item>
+                <span item-left>
+                    <img src="assets/img/home/document-icon.png" class="icons">
+                </span>       
+                <!-- <ion-input type="text" placeholder="Status Restitusi"></ion-input>  -->
+                <ion-select [(ngModel)]="statusRestitusi" placeholder="Status Restitusi">                    
+                    <ion-option value="Approve" >Approved</ion-option>
+                    <ion-option value="Reject" >Rejected</ion-option>
+                    <ion-option value="new" >New</ion-option>
+                    <ion-option value="Draft" >Draft</ion-option>
+                    <ion-option value="Submit" >Submit</ion-option>                    
+                </ion-select>
+            </ion-item> 
+                        
+            <ion-item>
+                <span item-left>
+                    <img src="assets/img/home/time-icon.png" class="icons">
+                </span>                                 
+                <ion-input type="text" [readonly]="true" [(ngModel)]="startDate" (ionFocus)="checkFocus(1)" (click)="showDatePicker(1)" placeholder="Start Date"></ion-input>
+            </ion-item> 
+
+            <ion-item>
+                <span item-left>
+                    <img src="assets/img/home/time-icon.png" class="icons">
+                </span>                                 
+                <ion-input type="text" [readonly]="true" [(ngModel)]="endDate" (ionFocus)="checkFocus(2)" (click)="showDatePicker(2)" placeholder="End Date"></ion-input>
+            </ion-item> 
+            
+                               
+        </ion-list> 
+        <ion-grid no-margin >
+            <ion-row>
+                <ion-col col-6>
+                    <button ion-button block class="button" (click)="doSearch()" margin-top [disabled]="nomorRestitusi == '' && statusRestitusi == '' && tanggalPengajuan == '' ? true : false" >Cari</button>
+                </ion-col>
+                <ion-col col-6>
+                    <button ion-button block class="button" (click)="clearField()" margin-top>clear</button>
+                </ion-col>
+            </ion-row>
+        </ion-grid>                                    
+    </div>
+
+    <ion-list *ngIf="!isLoading"  class="dining_List"   > 	
+        <ion-item *ngIf="isEmptyObject(restitusiList[0])" tapplable>           
+            <div style="padding:7px"> 
+                <span style="font-size:1.3rem;font-weight:500;text-align:center;" class="bold">Tidak ada data restitusi</span><br />                
+            </div>             
+        </ion-item>           
+        <div *ngIf="!isEmptyObject(restitusiList[0])">
+            <ion-item *ngFor="let restitusi of restitusiList" (click)="goToDetail(restitusi)" tapplable>
+                <span item-start>
+                    <img src="assets/img/home/restitusi.png" class="icons">
+                </span>
+                <div style="padding:7px"> 
+                    <span style="font-size:1.3rem;font-weight:500" class="bold">{{ restitusi['NO_RESTITUSI'] }}</span><br />
+                    <span style="font-size:1.3rem">{{ restitusi['TGL_PENGAJUAN'] }}</span><br /> 
+                    <div style="font-size:1.5rem;padding-top:6px"><span style="color:#F60">Rp. {{ convertCurrency(restitusi['JUMLAH'])  }}</span></div>
+                </div> 
+                <ion-badge *ngIf="restitusi['STATUS_RESTITUSI'] != 'Reject'" color="secondary" item-end>{{ restitusi['STATUS_RESTITUSI'] }}</ion-badge>
+            <ion-badge *ngIf="restitusi['STATUS_RESTITUSI'] == 'Reject'" color="danger" item-end>{{ restitusi['STATUS_RESTITUSI'] }}</ion-badge>
+            </ion-item>  
+        </div>            
+    </ion-list> 
+     
+    
+</ion-content>

@@ -1,0 +1,202 @@
+<!--
+  Generated template for the CheckInPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      <span ion-text color="light" *ngIf="type == 'checkin'">Check In</span>
+      <span ion-text color="light" *ngIf="type == 'checkout'">Check Out</span>
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content no-padding style="background-color:#FFF">
+
+  <div class="image-container">
+    <!-- <img class="photo" src="{{ imageShow }}" /> -->
+    <img class="photo" [src]="imageShow" />
+  </div>
+
+  <div class="data-container" padding *ngIf="userdataTPK != null">
+    <br>
+    <table>
+      <tr>
+        <td width="48px" align="left">
+          <img src="assets/flat-icon/nama.png" class="icons">
+        </td>
+        <td>
+          <span text-wrap ion-text style="color:#959595">Nama / NIPP</span><br />
+          <span text-wrap ion-text>
+            {{userdataTPK['data']['NAMA']}} / {{userdataTPK['data']['NIPP']}}
+          </span> <br /><br>
+        </td>
+      </tr>
+      <tr>
+         <td>
+          <img src="assets/flat-icon/jabatan.png" class="icons">
+        </td>
+        <td>
+          <span text-wrap ion-text style="color:#959595">Jabatan</span><br />
+          <span text-wrap ion-text>
+            {{userdataTPK['data']['NAMAJABATAN']}}
+          </span> <br /><br>
+        </td>
+      </tr>
+      <!-- <tr>
+        <td width="48px" align="left">
+          <img src="assets/flat-icon/nipp.png" class="icons">
+        </td>
+        <td>
+          <span text-wrap ion-text style="color:#959595">NIPP</span><br />
+          <span text-wrap ion-text>
+            {{userdataTPK['data']['NIPP']}}
+          </span> <br /><br>
+        </td>
+      </tr> -->
+      <!-- <tr *ngIf="type == 'checkout'">
+        <td>
+          <img src="assets/flat-icon/jenis_cuti.png" class="icons">
+        </td>
+        <td>
+          <span text-wrap ion-text style="color:#959595">Evaluasi Atasan </span>
+          <span *ngIf="rate == '1'" style="color: red;font-weight: 500;">Kurang</span>
+          <span *ngIf="rate == '2'" style="color: red;font-weight: 500;">Cukup</span>
+          <span *ngIf="rate == '3'" style="color: orange;font-weight: 500;">Baik</span>
+          <span *ngIf="rate == '4'" style="color: green;font-weight: 500;">Memuaskan</span>
+          <span *ngIf="rate == '5'" style="color: green;font-weight: 500;">Sangat Memuaskan</span>
+          <br />
+          <rating [(ngModel)]="rate" readOnly="false" max="5" emptyStarIconName="star-outline"
+            halfStarIconName="star-half" starIconName="star" nullable="true">
+          </rating>
+        </td>
+      </tr> -->
+      <tr>
+        <td>
+          <img src="assets/flat-icon/fingerprint.png" class="icons">
+        </td>
+        <td>
+          <span ion-text="" style="color:#959595" text-wrap="" class="text text-md">Jenis Absen</span>
+
+          <div style="margin-top:10px;" *ngIf="dataValidasi['WFH'] == true" >
+            <label class="radio-button">
+              <input type="radio" [(ngModel)]="attendanceType" id="WFH" name="absence_type" value="WFH" checked>
+              <!-- <label for="WFH">WFH (Work From Home)</label> -->
+              <span class="label-visible">
+                <span class="fake-radiobutton"></span>
+                WFH (Work From Home)
+              </span>
+            </label>
+          </div>
+          <div style="margin-top:15px;" *ngIf="dataValidasi['WFC'] == true">
+            <label class="radio-button">
+              <input type="radio" [(ngModel)]="attendanceType" id="WFC" name="absence_type" value="WFC">
+              <!-- <label for="WFC">WFC (Work From Client)</label> -->
+              <span class="label-visible">
+                <span class="fake-radiobutton"></span>
+                WFC (Work From Client)
+              </span>
+            </label>
+          </div>
+          <div style="margin-top:15px;" *ngIf="dataValidasi['WFO'] == true">
+            <label class="radio-button">
+              <input type="radio" [(ngModel)]="attendanceType" id="WFO" name="absence_type" value="WFO">            
+              <span class="label-visible">
+                <span class="fake-radiobutton"></span>
+                WFO (Work From Office)
+              </span>
+            </label>
+          </div>
+          <br>
+        </td>
+      </tr>
+    </table>
+
+    <ion-grid no-margin>
+      <ion-row>
+        <ion-col col-6>
+          <button ion-button class="my-button" *ngIf="type == 'checkout'" style=" border-radius: 12px;"
+            color="secondary" (click)="vadidasiAlamat()">
+            Check Out
+            <!-- <ion-icon name="md-finger-print"></ion-icon> -->
+          </button>
+          <button ion-button icon-end class="my-button" *ngIf="type == 'checkin'" style=" border-radius: 12px;"
+            color="secondary" (click)="vadidasiAlamat()">
+            Check In
+            <!-- <ion-icon name="md-finger-print"></ion-icon> -->
+          </button>
+        </ion-col>
+        <ion-col col-6>
+          <button ion-button icon-end outline class="my-button" style=" border-radius: 12px;" color="danger"
+            (click)="cancel()">
+            cancel
+            <ion-icon name="md-close"></ion-icon>
+          </button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+  <!-- <ion-list dining>     -->
+  <!-- <ion-item>
+        <span item-left>
+          
+        </span>
+        <ion-label stacked>Nama</ion-label>
+        <ion-input type="text" [readonly]="true" value="{{userdataTPK['data']['NAMA']}}"></ion-input>
+      </ion-item>
+    
+      <ion-item>
+        <span item-left>
+          
+        </span>
+        <ion-label stacked>Jabatan</ion-label>
+        <ion-input type="text" [readonly]="true" value="{{userdataTPK['data']['POSISI']}}"></ion-input>
+      </ion-item> -->
+
+  <!-- <ion-item>
+        <span item-left>
+          <img src="assets/flat-icon/fingerprint.png" class="icons">
+        </span>
+        <ion-label stacked>Jenis Absen</ion-label>
+        <ion-select [(ngModel)]="absence_type" cancelText="Cancel" okText="OK" placeholder="pilih jenis absen">
+          <ion-option value="WFH">WFH (Work From Home)</ion-option>
+          <ion-option value="WFO">WFO (Work From Office)</ion-option>
+          <ion-option value="WFC">WFC (Work From Client)</ion-option>
+          <ion-option value="Absence">Absence</ion-option>
+        </ion-select>
+      </ion-item> -->
+
+  <!-- <ion-item>
+        <span item-left>
+          <img src="assets/img/home/document-icon.png" class="icons">
+        </span>
+        <ion-label stacked>Keterangan</ion-label>
+        <ion-textarea [(ngModel)]="note" #myInput id="myInput" rows="3">
+        </ion-textarea>
+      </ion-item> -->
+  <!-- </ion-list> -->
+  <!-- <ion-row>
+    <br>
+    <ion-col col-12 class="image-container" (click)="takeImage(1)">
+      <img class="photo" src="{{ imageShow }}" />
+      <span ion-text style="text-align:center;color:gray;">Upload Foto</span>
+    </ion-col>
+  </ion-row>  -->
+
+  <!-- <ion-card *ngIf="userdataTPK != null" class="my-ion-card">
+    <ion-card-content>
+     
+    </ion-card-content>
+  </ion-card> -->
+</ion-content>
+
+<!-- <ion-footer>
+  <ion-toolbar class="footer-toolbar" >
+    <button ion-button icon-end class="my-button" style=" border-radius: 12px;" color="secondary" (click)="goToPage()">
+      Check In
+      <ion-icon name="md-finger-print"></ion-icon>
+    </button>
+  </ion-toolbar>
+</ion-footer> -->

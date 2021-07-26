@@ -1,0 +1,128 @@
+<!--
+  Generated template for the SearchCutiPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+    <ion-navbar>
+        <ion-title><span style="color:#FFF">Search Cuti</span></ion-title>
+        <ion-buttons end>
+            <button ion-button icon-only (click)="closeModal()">
+                <ion-icon name="ios-close-outline" style="color:#FFF"></ion-icon>
+            </button>
+        </ion-buttons>
+    </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+    <ion-item no-padding>
+        <span item-left>
+            <img src="assets/imgs/logo/jenis_cuti.png" class="icons">
+        </span>
+        <ion-label stacked>Jenis Cuti</ion-label>
+        <ion-select [(ngModel)]="cutiType" placeholder="">
+            <ion-option value="Izin">Izin</ion-option>
+            <ion-option value="Izin Dispensasi">Izin Dispensasi</ion-option>
+            <ion-option value="Izin Perjam">Izin Perjam</ion-option>
+            <ion-option value="Cuti Bersalin">Cuti Bersalin/Gugur Kandungan</ion-option>
+            <ion-option value="Cuti Tahunan">Cuti Tahunan</ion-option>
+            <ion-option value="Cuti Besar">Cuti Besar</ion-option>
+            <ion-option value="Cuti Penting">Cuti Karena Alasan Penting</ion-option>
+            <ion-option value="Cuti Diluar">Cuti Diluar Tanggungan Perusahaan</ion-option>
+            <ion-option value="Cuti Sakit">Cuti Sakit</ion-option>
+            <ion-option value="Izin Haid">Masa Haid</ion-option>
+        </ion-select>
+    </ion-item>
+
+    <ion-item no-padding>
+        <span item-left>
+            <img src="assets/imgs/logo/alasan.png" class="icons">
+        </span>
+        <ion-label stacked>Approval Status</ion-label>
+        <ion-select [(ngModel)]="approvalStatus" placeholder="">
+            <ion-option value="KIRIM">Kirim</ion-option>
+            <ion-option value="PERIKSA">Periksa</ion-option>
+        </ion-select>
+    </ion-item>
+
+    <ion-item no-padding>
+        <span item-left>
+            <img src="assets/imgs/logo/start_date.png" class="icons">
+        </span>
+        <ion-label stacked>Start Date</ion-label>
+        <ion-input type="text" [readonly]="true" [(ngModel)]="startDate" (ionFocus)="checkFocus(1)"
+            (click)="showDatePicker(1)" placeholder=""></ion-input>
+    </ion-item>
+    <ion-item no-padding>
+        <span item-left>
+            <img src="assets/imgs/logo/end_date.png" class="icons">
+        </span>
+        <ion-label stacked>End Date</ion-label>
+        <ion-input type="text" [readonly]="true" [(ngModel)]="endDate" (ionFocus)="checkFocus(2)"
+            (click)="showDatePicker(2)" placeholder=""></ion-input>
+    </ion-item>
+
+    <div class="row">
+        <div class="col">
+            <button ion-button icon-start full color="danger" style="border-radius: 5px;" (click)="clearField()"
+                margin-top>
+                <ion-icon name="md-close"></ion-icon>
+                clear
+            </button>
+        </div>
+        <div class="col">
+            <button ion-button icon-start full color="primary" style="border-radius: 5px;" margin-top
+                (click)="doSearch()"
+                [disabled]="cutiType == '' && approvalStatus == '' && startDate == '' && endDate == '' ? true : false">
+                <ion-icon name="md-checkmark"></ion-icon>
+                Cari
+            </button>
+        </div>
+    </div>
+
+    <ion-list class="dining_List" *ngIf="cutiList.length == 0  && isLoading == false">
+        <ion-card class="primary-bg">
+            <ion-card-content>
+                <span style="font-size:1.3rem">Tidak ada data izin/cuti.</span>
+            </ion-card-content>
+        </ion-card>
+    </ion-list>     
+
+    <ion-list class="dining_List" *ngIf="cutiList.length != 0 && isLoading == false">
+        <ion-card *ngFor="let cuti of cutiList" class="my-card" (click)="goToDetail(cuti)">
+            <ion-item>
+              <span item-start>
+                <img src="assets/imgs/menu-icon/cuti.png" class="icons">
+              </span>
+              <span ion-text text-wrap class="font3" color="danger"><b>{{ cuti['Jumlah'] }} hari</b></span><br />
+              <span ion-text text-wrap class="font2"><b>{{ cuti['Jenis'] }}</b></span><br>
+              <span ion-text text-wrap class="font">
+                {{ cuti['Tanggal Mulai'] }} <span ion-text text-wrap color="primary"><b>s/d</b></span> {{ cuti['Tanggal Selesai'] }}
+              </span>
+              <span ion-text text-wrap style="font-size: 1.2rem;" color="primary"  item-end><b>{{ cuti['Status'] }}</b></span>
+            </ion-item>
+          </ion-card>
+    </ion-list>
+
+    <ion-list *ngIf='cutiList.length == 0 && isLoading == true'>
+        <ion-card *ngFor='let fake of fakeUsers'>
+            <ion-item>
+              <div class="animate-skeleton-background load-2"></div>
+              <div class="animate-skeleton-background load-3"></div>
+              <div class="animate-skeleton-background load-1"> </div>
+            </ion-item>
+          </ion-card>
+    </ion-list>
+
+    <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
+        <ion-infinite-scroll-content>
+
+        </ion-infinite-scroll-content>
+    </ion-infinite-scroll>
+
+
+</ion-content>

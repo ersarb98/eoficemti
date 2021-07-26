@@ -1,0 +1,186 @@
+page-insert-note-attendance {
+    .alert-ios .alert-radio-label{
+        white-space: pre-line;
+    }
+      
+    .alert-md .alert-radio-label{
+         white-space: pre-line;
+    }
+    
+    .alert-wp .alert-radio-label{
+        white-space: pre-line;
+    }
+
+    .icons{
+        height:25px;
+        width:25px;
+        margin:8px;
+    }
+
+    .item-md {
+        padding-left: 0px !important;
+    }
+
+    .item-ios {
+        padding-left: 0px !important;
+    }
+
+    #myInput {
+        width: calc(100% - 10px);
+        border: 0;
+        border-radius: 0;
+        background: transparent;
+    }    
+
+    .my-ion-card {
+        border-radius: 10px;
+    }
+
+    .list-md .item-block .item-inner {
+        border-bottom: 1px solid #dedede !important;
+    }
+
+    .item.item-block.item-select .select-text {
+        text-align: left !important;
+    }
+
+    .item.item-block.item-select .select-text, .appForm .item.item-input .input, .appForm .item.item-datetime .datetime .datetime-text, .appForm .item.item-checkbox .label {
+        font-weight: normal !important;
+        font-size: 1.4rem !important;        
+    }
+
+    [padding] .scroll-content {
+        padding: 16px 10px !important;
+    }
+
+    .image-container {
+        height: 46vh;        
+        border-radius: 8px;    
+        text-align: center;            
+        width: 100%;
+    }
+
+    .photo {
+        // margin-left: auto;
+        // margin-right: auto; 
+        // display: block;  
+        // opacity: 1;      
+        // width: 120px;
+        width: 100%;
+        height: 100%;
+        margin-left: auto;
+        margin-right: auto;
+        display: block;
+        opacity: auto;
+        object-fit: cover;
+        object-position: center;
+    }
+
+    .my-button {
+        width: 100%;
+        display: table-cell;
+        vertical-align: bottom;
+        /* align-self: flex-end; */
+        border-radius: 12px;
+    }
+
+    .my-button2 {                
+        /* align-self: flex-end; */
+        border-radius: 12px;
+        text-transform: none !important;
+    }
+
+    #myInput {
+        width: calc(100% - 10px);
+        border: 0;
+        border-radius: 0;
+        background: transparent;
+    }    
+
+    .footer-md::before, .tabs-md[tabsPlacement="bottom"] > .tabbar::before {
+        top:0 !important;
+        bottom: 0 !important;
+        height: 0 !important;
+    }
+
+    .footer-toolbar {
+        .toolbar-background-md {
+            border-color: transparent !important;
+            background: transparent !important;
+        }
+    }
+
+    .data-container {
+        // position: absolute;
+        // bottom:0;
+        width: 100%;
+        background-color: white; 
+        z-index: 99;       
+    }
+
+    .header-container {
+        width: 100%;
+        text-align: center;
+        // border-bottom: 1px solid lightgray;
+        // padding-bottom: 10px;
+    }
+
+    .font {
+        font-size: 1.3rem;
+    }
+    .font2 {
+        font-size: 2.4rem;
+    }
+
+    .lihat-location {        
+        border: 2px solid #E3E9ED;
+        // padding: 5px;
+        border-radius: 10px;
+        width: 100%;
+        color:#374957;            
+    }
+
+    .load-1, .load-2, .load-3 {
+        background-color: lightgrey;
+        opacity: 0.6;
+        height: 13px;   
+        border-radius: 10px;
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: 5px;
+        margin-bottom: 5px;
+        
+    }
+
+    .load-1 {
+        width: 30%;
+    }
+
+    .load-2 {
+        width: 40%;
+    }
+
+    .load-3 {
+        width: 100%;
+    }
+
+    .my-card {
+        position: relative;
+        margin-top: 8px;
+        margin-bottom: 8px;
+        border-radius: 4px;
+        border-left: 4px solid mediumpurple !important;
+        border: 1px solid #e6e6e6;
+        box-shadow: none !important;
+        padding: 10px 5px 10px 5px;
+    }
+
+    .delete-class {
+        position: absolute;
+        z-index: 99;
+        top: 2px;
+        right: 4px;
+    }
+
+    
+}

@@ -1,0 +1,65 @@
+<ion-header>
+    <ion-navbar>
+        <ion-title><span style="color:#FFF">Disposisi</span></ion-title>
+        <ion-buttons end>
+            <button ion-button icon-only (click)="cancel()">
+                <ion-icon name="ios-close-outline" style="color:#FFF"></ion-icon>
+            </button>
+        </ion-buttons>
+    </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+    <ion-item no-padding>
+        <span item-left>
+            <img src="assets/imgs/logo/person.png" class="icons">
+        </span>
+        <ion-label stacked>Kepada</ion-label>
+        <ion-input type="text" placeholder="" (keyup)="getKepada()" [(ngModel)]="fcKepada" (ionFocus)="openSelect()" (click)="openSelect()"></ion-input>
+    </ion-item>
+
+    <!-- <div *ngIf="searchResultList.length > 0 && showResult">
+        <ion-item *ngFor="let SearchResult of searchResultList" no-margin>
+            <p ion-text text-wrap style="font-size:1.3rem !important;" *ngIf="tipeDisposisi == 'jabatan'"
+                (click)="setKepada(SearchResult)">{{ SearchResult['NAMA JABATAN'] }} |
+                {{ SearchResult['NAMA'] }}</p>
+            <p ion-text text-wrap style="font-size:1.3rem !important;" ion-text text-wrap
+                *ngIf="tipeDisposisi == 'pekerja'" (click)="setKepada(SearchResult)"> {{ SearchResult['NAMA'] }}
+                | {{ SearchResult['NIPP'] }} | {{ SearchResult['NAMA JABATAN'] }}</p>
+        </ion-item>
+    </div> -->
+
+    <ion-item no-padding>
+        <span item-left>
+            <img src="assets/imgs/logo/jenis_cuti.png" class="icons">
+        </span>
+        <ion-label stacked>Perintah</ion-label>
+        <ion-select [(ngModel)]="fcPerintah" placeholder="">
+            <ion-option *ngFor="let perintah of perintahList" value="{{ perintah }}">{{ perintah }}</ion-option>
+        </ion-select>
+    </ion-item>
+
+    <ion-item no-padding>
+        <span item-left>
+            <img src="assets/imgs/logo/perihal.png" class="icons">
+        </span>
+        <ion-label stacked>Catatan</ion-label>
+        <ion-input type="text" [(ngModel)]="fcCacatan" placeholder="" clearInput></ion-input>
+    </ion-item>
+
+    <div class="row">
+        <div class="col">
+            <button ion-button icon-start full color="danger" style="border-radius: 5px;" (click)="cancel()" margin-top>
+                <ion-icon name="md-close"></ion-icon>
+                Batal
+            </button>
+        </div>
+        <div class="col">
+            <button ion-button icon-start full color="primary" style="border-radius: 5px;" margin-top
+                (click)="sendData()" [disabled]="fcKepada == '' || fcPerintah == '' || fcCacatan == '' ? true : false">
+                <ion-icon name="md-checkmark"></ion-icon>
+                Simpan
+            </button>
+        </div>
+    </div>
+</ion-content>

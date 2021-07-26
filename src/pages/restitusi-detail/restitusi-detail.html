@@ -1,0 +1,243 @@
+<!--
+  Generated template for the RestitusiDetailPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      <span ion-text color="light" class="fw500">Detail Restitusi</span>
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <ion-card class="header-card">
+    <ion-card-content>
+      <span ion-text text-wrap class="font-header">
+        <b>{{ dataRestitusi['PERIHAL'] }}</b>
+      </span>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card class="my-card">
+    <ion-card-content>
+      <div class="row">
+        <div class="col">
+          <span ion-text text-wrap class="font-mini" color="color4">
+            Jenis Restitusi
+          </span><br>
+          <span ion-text text-wrap class="font-small">
+            {{ dataRestitusi['JENIS'] }}
+          </span>
+        </div>
+        <div class="col">
+          <span ion-text text-wrap class="font-mini" color="color4">
+            Tanggal Pengajuan
+          </span><br>
+          <span ion-text text-wrap class="font-small">
+            {{ dataRestitusi['TGL_PENGAJUAN'] }}
+          </span>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <span ion-text text-wrap class="font-mini" color="color4">
+            Jumlah Total
+          </span><br>
+          <span ion-text text-wrap class="font-small">
+            <b>Rp. {{ jumlahTotal }}</b>
+          </span>
+        </div>
+        <div class="col">
+          <span ion-text text-wrap class="font-mini" color="color4">
+            Status
+          </span><br>
+          <span ion-text text-wrap class="font-small" color="primary">
+            {{ dataRestitusi['KETERANGAN'] }}
+          </span>
+        </div>
+      </div>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card class="my-card">
+    <ion-card-content>
+      <div class="header-text">
+        <span ion-text text-wrap>
+          <img src="assets/imgs/menu-icon/Restitusi.png" class="icons">
+        </span>
+        <span ion-text text-wrap class="font-small">
+          <b>Detail Restitusi</b>
+        </span>
+      </div>
+      <div class="garis"></div>
+      <br>
+
+      <table width="100%">
+        <tr *ngFor="let detail of dataRestitusi['DETAIL'];let i = index">
+          <td valign="top" width="10%">{{ i+1 }}.</td>
+          <td valign="top" width="90%">
+            <table width="100%" >
+              <tr>
+                <td width="45%" >
+                  <span ion-text text-wrap class="font-small" color="danger">
+                    Tanggal Nota
+                  </span>
+                </td>
+                <td width="5%" >
+                  <span ion-text text-wrap class="font-small" color="danger">
+                     : 
+                  </span>
+                </td>
+                <td width="50%" >
+                  <span ion-text text-wrap class="font-small" color="danger">
+                    {{ detail['TANGGAL_NOTA'] }}
+                  </span>
+                </td>
+              </tr>
+
+              <tr>
+                <td>
+                  <span ion-text text-wrap class="font-small">
+                    Nama Pasien
+                  </span>
+                </td>
+                <td>
+                  <span ion-text text-wrap class="font-small">
+                    :
+                  </span>
+                </td>
+                <td>
+                  <span ion-text text-wrap class="font-small">
+                    {{ detail['NAMA_PASIEN'] }}
+                  </span>
+                </td>
+              </tr>
+
+              <tr>
+                <td>
+                  <span ion-text text-wrap class="font-small">
+                    Status Keluarga
+                  </span> 
+                </td>
+                <td>
+                  <span ion-text text-wrap class="font-small">
+                    :
+                  </span> 
+                </td>
+                <td>
+                  <span ion-text text-wrap class="font-small">
+                   {{ detail['STATUS_KELUARGA'] }}
+                  </span> 
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <span ion-text text-wrap class="font-small">
+                    Rincian Biaya
+                  </span> 
+                </td>
+                <td>
+                  <span ion-text text-wrap class="font-small">
+                    :
+                  </span> 
+                </td>
+                <td>
+                  <span ion-text text-wrap class="font-small">
+                   
+                  </span> 
+                </td>
+              </tr>
+            </table>                                          
+            
+            <div class="row">
+              <div class="col">
+                <span ion-text text-wrap class="font-mini" color="color4">
+                  Biaya Dokter
+                </span><br>
+                <span ion-text text-wrap class="font-small"
+                  *ngIf="detail['BIAYA_DOKTER'] == null || detail['BIAYA_DOKTER'] == ''">
+                  Rp. 0
+                </span>
+                <span ion-text text-wrap class="font-small">
+                  Rp. {{ detail['BIAYA_DOKTER'] }}
+                </span>
+              </div>
+              <div class="col">
+                <span ion-text text-wrap class="font-mini" color="color4">
+                  Biaya Obat
+                </span><br>
+                <span ion-text text-wrap class="font-small"
+                  *ngIf="detail['BIAYA_OBAT'] == null || detail['BIAYA_OBAT'] == ''">
+                  Rp. 0
+                </span>
+                <span ion-text text-wrap class="font-small">
+                  Rp. {{ detail['BIAYA_OBAT'] }}
+                </span>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col">
+                <span ion-text text-wrap class="font-mini" color="color4">
+                  Biaya Tindakan
+                </span><br>
+                <span ion-text text-wrap class="font-small"
+                  *ngIf="detail['BIAYA_TINDAKAN'] == null || detail['BIAYA_TINDAKAN'] == ''">
+                  Rp. 0
+                </span>
+                <span ion-text text-wrap class="font-small">
+                  Rp. {{ detail['BIAYA_TINDAKAN'] }}
+                </span>
+              </div>
+              <div class="col">
+                <span ion-text text-wrap class="font-mini" color="color4">
+                  Biaya Perawatan
+                </span><br>
+                <span ion-text text-wrap class="font-small"
+                  *ngIf="detail['BIAYA_PERAWATAN'] == null || detail['BIAYA_PERAWATAN'] == ''">
+                  Rp. 0
+                </span>
+                <span ion-text text-wrap class="font-small">
+                  Rp. {{ detail['BIAYA_PERAWATAN'] }}
+                </span>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col">
+                <span ion-text text-wrap class="font-mini" color="color4">
+                  Biaya Administrasi
+                </span><br>
+                <span ion-text text-wrap class="font-small"
+                  *ngIf="detail['BIAYA_ADMINISTRASI'] == null || detail['BIAYA_ADMINISTRASI'] == ''">
+                  Rp. 0
+                </span>
+                <span ion-text text-wrap class="font-small">
+                  Rp. {{ detail['BIAYA_ADMINISTRASI'] }}
+                </span>
+              </div>
+              <div class="col">
+                <span ion-text text-wrap class="font-mini" color="color4">
+                  Biaya Lain-lain
+                </span><br>
+                <span ion-text text-wrap class="font-small"
+                  *ngIf="detail['BIAYA_LAIN_LAIN'] == null || detail['BIAYA_LAIN_LAIN'] == ''">
+                  Rp. 0
+                </span>
+                <span ion-text text-wrap class="font-small">
+                  Rp. {{ detail['BIAYA_LAIN_LAIN'] }}
+                </span>
+              </div>
+            </div>
+            <br>
+          </td>
+        </tr>
+
+      </table>
+    </ion-card-content>
+  </ion-card>
+</ion-content>
+

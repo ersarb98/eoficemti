@@ -1,0 +1,221 @@
+<!--
+  Generated template for the Home3Page page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+  <ion-navbar>
+    <img src="assets/imgs/ipc-tpk-logo.png" style="width:65px;height:auto; margin-left:10px; display:inline-block"
+      height="40px" />
+    <ion-title class="titleicon" style="display:inline-block">
+      <span ion-text><b>PPI Office System</b></span>
+    </ion-title>
+    <ion-buttons end>
+      <button ion-button (click)="openPage('SettingPage')">
+        <ion-icon style="font-size:2.5rem;" name="md-settings" color="color6"></ion-icon>
+      </button>
+      <button ion-button (click)="logout()">
+        <ion-icon style="font-size:2.5rem;" name="md-log-out" color="color6"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <div class="header-container" *ngIf="userdataTPK != null">
+    <div class="welcome-class">
+      <span ion-text text-wrap>Welcome,</span> <br>
+      <span *ngIf="userdataTPK != null" ion-text text-wrap> <b>{{ userdataTPK['data']['NAMA'] }}</b></span>
+    </div>
+    <!-- <div class="header-img"></div> -->
+
+    <ion-slides style="margin-top: 50px;" autoplay="5000" loop="true" speed="500">
+      <ion-slide class="my-slide">
+        <img src="assets/imgs/slide-1.png" class="my-slider-img">
+      </ion-slide>
+      <ion-slide class="my-slide">
+        <img src="assets/imgs/slide-2.png" class="my-slider-img">
+      </ion-slide>
+      <ion-slide class="my-slide">
+        <img src="assets/imgs/slide-3.png" class="my-slider-img">
+      </ion-slide>
+    </ion-slides>
+
+    <ion-card class="header-card" *ngIf="isLoadingHadirkoe == false && dataValidasi != null">
+      <div class="menu-container">
+        <div class="menu-content" (click)="openPage('InboxPage')">
+          <div class="img-container color-1"><img src="assets/imgs/menu-icon/inbox-white.png"></div>
+          <span ion-text text-wrap>Surat Masuk</span>
+          <ion-badge class="my-badge" *ngIf="badgesList != null && parse(badgesList['JUMLAH_SURAT_ALL_BADGES'])"
+            color="danger">{{badgesList['JUMLAH_SURAT_ALL_BADGES']}}</ion-badge>
+        </div>
+
+        <div class="menu-content" (click)="openPage('OutboxPage')">
+          <div class="img-container color-2"><img src="assets/imgs/menu-icon/outbox-white.png"></div>
+          <span ion-text text-wrap>Surat Keluar</span>
+        </div>
+
+        <!-- <div class="menu-content" *ngIf="userdataTPK['data']['TNO'] == true || dataValidasi['HADIRKOE'] == false"
+          (click)="openPage('SppdListPage')">
+          <div class="img-container color-3"><img src="assets/imgs/menu-icon/sppd-white.png"></div>
+          <span ion-text text-wrap>SPPD</span>
+        </div> -->
+        <div class="menu-content"
+          (click)="showModal('FingerprintModalPage')">
+          <div class="img-container color-8"><img src="assets/flat-icon/hadirkoe.png"></div>
+          <span ion-text text-wrap>HadirKoe</span>
+        </div>
+      </div>
+    </ion-card>
+
+    <ion-card class="header-card" *ngIf="isLoadingHadirkoe == true && dataValidasi == null">
+      <div class="menu-container">
+        <div class="menu-content">
+          <div class="animate-skeleton-background load-3"></div>
+        </div>
+
+        <div class="menu-content">
+          <div class="animate-skeleton-background load-3"></div>
+        </div>
+
+        <div class="menu-content">
+          <div class="animate-skeleton-background load-3"></div>
+        </div>
+      </div>
+    </ion-card>
+  </div>
+
+  <!-- <div class="my-card-3">
+    <div class="my-card-3-content" style="border-right: 1px solid #e6e6e6;">
+      <span ion-text text-wrap color="danger"
+        *ngIf="badgesList != null"><b>{{ badgesList['JUMLAH_SURAT_BELUM_APPROVE'] }} surat</b></span>
+      <span ion-text text-wrap color="danger" *ngIf="badgesList == null"><b>0 surat</b></span>
+      <br>
+      <span ion-text text-wrap class="font-mini" color="gray">Butuh Approval</span>
+    </div>
+    <div class="my-card-3-content">
+      <span ion-text text-wrap color="danger"><b>5 surat</b></span> <br>
+      <span ion-text text-wrap class="font-mini" color="gray">Belum Didisposisi</span>
+    </div>
+  </div> -->
+  <br>
+  <div *ngIf="userdataTPK != null">
+    <div *ngIf="userdataTPK['data']['TNO'] == false">
+      <div style="margin-top: 175px;" class="menu-container">
+        <div class="menu-content-2" (click)="openPage('AbsenListPage')">
+          <div class="img-container-2"><img src="assets/imgs/menu-icon/absensi.png"></div>
+          <span ion-text text-wrap>Absensi</span>
+          <ion-badge class="my-badge" *ngIf="badgesList != null && parse(badgesList['JUMLAH_ABSEN_BELUM_KOREKSI'])"
+            color="danger">{{ badgesList['JUMLAH_ABSEN_BELUM_KOREKSI'] }}
+          </ion-badge>
+        </div>
+
+        <div class="menu-content-2" (click)="openPage('CutiListPage')">
+          <div class="img-container-2"><img src="assets/imgs/menu-icon/cuti.png"></div>
+          <span ion-text text-wrap>Cuti/Izin</span>
+        </div>
+
+        <div class="menu-content-2" (click)="openPage('SppdListPage')">
+          <div class="img-container-2"><img src="assets/imgs/menu-icon/sppd-2.png"></div>
+          <span ion-text text-wrap>SPPD</span>
+        </div>
+
+        <div class="menu-content-2" (click)="openPage('')">
+          <div class="img-container-2"><img src="assets/imgs/menu-icon/survey.png"></div>
+          <span ion-text text-wrap>Arsip Personal</span>
+        </div>
+      </div>
+
+      <div *ngIf="dataValidasi != null">
+        <div style="margin-top: 20px;" class="menu-container">
+          <div class="menu-content-2" (click)="openPage('SppdListPage')">
+            <div class="img-container-2"><img src="assets/imgs/menu-icon/sppd-2.png"></div>
+            <span ion-text text-wrap>E-CV</span>
+          </div>
+
+          <div class="menu-content-2">
+          </div>
+
+          <div class="menu-content-2">
+          </div>
+
+          <div class="menu-content-2">
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+
+  <br>
+
+  <div class="divider"></div>
+
+
+
+  <div class="agenda-title-container">
+    <span ion-text text-wrap style="font-size:1.5rem;">
+      <b>AGENDA</b>
+    </span> <br>
+    <span ion-text text-wrap class="font-mini" color="gray">
+      Daftar agenda anda saat ini
+    </span>
+  </div>
+
+  <ion-card *ngIf='isLoading == true && agendaList.length == 0' class="my-card">
+    <ion-item>
+      <div class="animate-skeleton-background load-2"></div>
+      <div class="animate-skeleton-background load-1"></div>
+      <div style="
+              width:100%;
+              border-bottom: 1px solid lightgray;
+              padding: 5px;
+              margin-bottom:5px;">
+      </div>
+      <div class="animate-skeleton-background load-2"> </div>
+    </ion-item>
+  </ion-card>
+
+  <ion-card class="my-card" *ngIf="isLoading == false && agendaList.length == 0">
+    <ion-item>
+      <span ion-text text-wrap class="font-small" style="text-align:center;">
+        Tidak ada agenda hari ini.
+      </span>
+    </ion-item>
+  </ion-card>
+
+  <ion-slides pager="true" paginationType="bullets" *ngIf='agendaList.length > 0'>
+    <ion-slide *ngFor="let agenda of agendaList">
+      <ion-card class="my-card">
+        <ion-item>
+          <span ion-text text-wrap class="font-mini">
+            {{ agenda['Tanggal_Mulai'] }} {{ agenda['Start_Time'] }} - {{ agenda['End_Time'] }}
+          </span> <br>
+          <span ion-text text-wrap class="font-mini">
+            {{ agenda['Nama_Tempat'] }}
+          </span>
+          <div style="
+                      width:100%;
+                      border-bottom: 1px solid white;
+                      padding: 5px;
+                      margin-bottom:5px;">
+          </div>
+          <span ion-text text-wrap class="font-small">
+            <b>{{ agenda['Acara'] }}</b>
+          </span>
+        </ion-item>
+      </ion-card>
+    </ion-slide>
+  </ion-slides>
+  <br>
+  <br>
+
+  <ion-refresher (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content pullingIcon="arrow-dropdown" pullingText="Pull to refresh" refreshingSpinner="circles"
+      refreshingText="Refreshing...">
+    </ion-refresher-content>
+  </ion-refresher>
+
+</ion-content>

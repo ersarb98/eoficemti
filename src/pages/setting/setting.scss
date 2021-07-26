@@ -1,0 +1,104 @@
+page-setting {
+    .header-img {
+        background-image: url(../../assets/imgs/header-bg.png);
+        height: 100%;
+        background-size: cover; 
+        width: 100%;        
+        margin-top: -15px;
+        background-position-y: center;
+        background-position-x: center;
+        background-repeat: no-repeat;      
+    }
+
+    .header-container {
+        height: 98px;
+    }
+
+    .header-md::after, .tabs-md[tabsPlacement="top"] > .tabbar::after, .footer-md::before, .tabs-md[tabsPlacement="bottom"] > .tabbar::before {
+        background-image: unset !important;
+    }
+
+    .setting-card {
+        border-radius: 3px;
+        border-left: 4px solid lightcoral;
+    }
+
+    .font-mini {
+        font-size: 1.2rem;
+    }
+
+    .font-small {
+        font-size: 1.4rem;
+        color: black; 
+    }
+
+    .icons{
+        width: 35px;
+        border-right: 1px solid lightgray;
+        /* padding-top: 5px; */
+        /* padding-bottom: 5px; */
+        padding: 10px 10px 10px 0;
+    } 
+    
+    .item-md {
+        padding-left: 10px !important;
+    }    
+
+    .item-ios {
+        padding-left: 10px !important;
+    }   
+
+    .img-container {        
+        position: absolute;
+        width: 100%;
+        top:25px;
+        margin-left: auto;
+        margin-right: auto;
+
+    }
+
+     .my-img {
+         background-color: white;
+        width: 100px;                
+        height: 100px; 
+        margin-right: auto;
+        margin-left: auto;
+        display: table;
+        border-radius: 50%;
+        border: 4px solid white;
+        box-shadow: 1px 1px 5px grey;       
+    }
+
+    .user-info {
+        margin-top: 10px;   
+        margin-bottom: 25px;   
+        text-align: center;              
+    }
+
+    .user-info-name {
+        font-size: 1.6rem;
+        font-weight: 500;
+    }
+
+    .user-info-jab {
+        font-size: 1.4rem;        
+        color:gray;
+    }
+
+    .edit-profile {
+        position: absolute;
+        top: 3%;
+        width: 32px;
+        right: 33%;        
+    }
+
+    .version {
+        position: fixed;         
+        top: 97%;
+        font-weight: 500;
+        text-align: center;
+        color: gray;
+        width: 100%;    
+    }
+
+}

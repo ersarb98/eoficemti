@@ -1,0 +1,41 @@
+page-pertanggungjawaban-sppd {
+    .my-card {
+        border-radius: 5px;
+        border: 1px solid #e6e6e6;
+        box-shadow: none !important;  
+        margin: 0 !important;  
+        width: 100%;           
+    }
+
+    .font-mini {
+        font-size: 1.2rem;
+    }
+
+    .font-small {
+        font-size: 1.4rem;
+        color: black; 
+    }
+
+    .photo {
+        margin-left: auto;
+        margin-right: auto; 
+        display: block;  
+        opacity: 1;      
+        width: 120px;
+    }
+
+    .image-container {
+        border: 1px dashed #F04E64 ;
+        border-radius: 8px;    
+        text-align: center;  
+        margin-left: 10px;
+        margin-right: 10px;  
+        
+    }
+
+    .icons{
+        height:23px;
+        width:auto;
+		margin:8px;
+    }
+}

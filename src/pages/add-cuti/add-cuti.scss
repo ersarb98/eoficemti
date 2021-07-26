@@ -1,0 +1,58 @@
+page-add-cuti {
+    .header-card {
+        padding: 0 !important;
+        margin: 0  !important;
+        width: calc(100%);
+        color: color($colors, color6);
+        border-radius: 5px;
+        // border: 1px solid #e6e6e6;
+        border: none !important;    
+        box-shadow: none !important;      
+    }
+
+    .font-header {
+        color: color($colors, color6);
+        font-size: 1.5rem;
+    }
+
+
+    .icons{
+		height:23px;
+		margin:8px;
+    }
+    
+    .item-md {
+        padding-left: 0px !important;
+    }
+
+    #myInput {
+        width: calc(100% - 10px);
+        border: 0;
+        border-radius: 0;
+        background: transparent;
+    }    
+
+    .image-container {
+        border: 1px dashed #F04E64 ;
+        border-radius: 8px;    
+        text-align: center;    
+    }
+
+    .photo {
+        margin-left: auto;
+        margin-right: auto; 
+        display: block;  
+        opacity: 0.7;      
+        width: 110px;
+    }
+ 
+    .my-card {
+        border-radius: 5px;
+        border: 1px solid #e6e6e6;
+        box-shadow: none !important;           
+    }
+
+    .item-md.item-block .item-inner {
+        border-bottom: 1px solid #dedede !important; 
+    }
+}

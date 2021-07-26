@@ -1,0 +1,74 @@
+<!--
+  Generated template for the AddressBawahanPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      <span ion-text color="light" class="fw500">Request Approval</span>
+    </ion-title>   
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <ion-list class="dining_List" *ngIf="addressData.length == 0  && isLoading == false">
+    <ion-card class="primary-bg">
+      <ion-card-content>
+        <span style="font-size:1.3rem">Tidak ada Request Approval Domisili.</span>
+      </ion-card-content>
+    </ion-card>
+  </ion-list>
+
+  <ion-list class="dining_List" *ngIf="addressData.length != 0 && isLoading == false">
+    <ion-card *ngFor="let address of addressData" class="my-card" (click)="doAction(address)">
+      <!-- <img *ngIf="absen['CHECK_IN'] != null && absen['CHECK_OUT'] == null" src="{{absen['CHECK_IN_PHOTO']}}" class="foto">
+      <img *ngIf="absen['CHECK_IN'] == null && absen['CHECK_OUT'] != null" src="{{absen['CHECK_OUT_PHOTO']}}" class="foto">
+      <img *ngIf="absen['CHECK_IN'] != null && absen['CHECK_OUT'] != null" src="{{absen['CHECK_IN_PHOTO']}}" class="foto"> -->
+      <ion-item>       
+        <span ion-text text-wrap class="font2"><b>{{ address['NAMA'] }}</b></span><br>
+        <span ion-text text-wrap style="font-size:1.2rem;color:gray;">
+          {{ address['NM_JABATAN'] }}
+        </span><br> 
+        <!-- <table>
+          <tr>
+            <td width="10%" align="left" valign="top"> 
+              <img class="pin-icon" src="assets/flat-icon/pin.png" /> 
+            </td>
+            <td> 
+              <span ion-text text-wrap style="font-size:1.2rem;">
+                {{ address['GEOLOCATION'] }}
+              </span>
+          </td>
+          </tr>
+        </table>    -->
+        <span ion-text text-wrap style="font-size:1.2rem;color:gray;">
+          Lokasi Domisili :
+        </span><br> 
+        <span ion-text text-wrap style="font-size:1.2rem;">
+          {{ address['GEOLOCATION'] }}
+        </span>
+        <ion-badge item-end color="secondary">{{ address['STATUS'] }}</ion-badge>
+        
+       
+      </ion-item>
+    </ion-card>
+  </ion-list>
+
+  <ion-list *ngIf='addressData.length == 0 && isLoading == true'>
+    <ion-card *ngFor='let fake of fakeUsers'>
+      <ion-item>
+        <div class="animate-skeleton-background load-2"></div>
+        <div class="animate-skeleton-background load-3"></div>
+        <div class="animate-skeleton-background load-1"> </div>
+      </ion-item>
+    </ion-card>
+  </ion-list>
+
+  <ion-refresher (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content pullingIcon="arrow-dropdown" pullingText="Pull to refresh" refreshingSpinner="circles"
+      refreshingText="Refreshing...">
+    </ion-refresher-content>
+  </ion-refresher>
+</ion-content>
