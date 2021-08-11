@@ -7,7 +7,6 @@ import { IonicStorageModule } from '@ionic/storage';
 import { CurrencyPipe } from '@angular/common';
 import { DatePicker } from '@ionic-native/date-picker';
 import { DatePipe } from '@angular/common';
-import {P2bDetailPage} from '../pages/p2b-detail/p2b-detail';
 import { OneSignal } from '@ionic-native/onesignal';
 
 import { Camera } from '@ionic-native/camera';
@@ -16,7 +15,7 @@ import { FilePath } from '@ionic-native/file-path';
 import { FileTransfer, FileTransferObject } from '@ionic-native/file-transfer';
 import { HttpClientModule } from '@angular/common/http';
 import { FileChooser } from '@ionic-native/file-chooser';
-import { InAppBrowser } from '@ionic-native/in-app-browser';
+import { InAppBrowser } from '@ionic-native/in-app-browser'; 
 
 import { Device } from '@ionic-native/device';
 
@@ -39,8 +38,7 @@ var config = {
 
 @NgModule({
   declarations: [
-    MyApp, 
-    P2bDetailPage
+    MyApp
   ],
   imports: [
     BrowserModule, 
@@ -50,9 +48,7 @@ var config = {
   ],
   bootstrap: [IonicApp],
   entryComponents: [
-    MyApp,
-    P2bDetailPage
-
+    MyApp
   ],
   providers: [
     StatusBar,

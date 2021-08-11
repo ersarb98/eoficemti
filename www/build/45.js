@@ -1,14 +1,14 @@
 webpackJsonp([45],{
 
-/***/ 332:
+/***/ 329:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MenuIpcContactPageModule", function() { return MenuIpcContactPageModule; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RestitusiDetailPageModule", function() { return RestitusiDetailPageModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(50);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__menu_ipc_contact__ = __webpack_require__(419);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(100);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__restitusi_detail__ = __webpack_require__(387);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -18,33 +18,33 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 
-var MenuIpcContactPageModule = /** @class */ (function () {
-    function MenuIpcContactPageModule() {
+var RestitusiDetailPageModule = /** @class */ (function () {
+    function RestitusiDetailPageModule() {
     }
-    MenuIpcContactPageModule = __decorate([
+    RestitusiDetailPageModule = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["J" /* NgModule */])({
             declarations: [
-                __WEBPACK_IMPORTED_MODULE_2__menu_ipc_contact__["a" /* MenuIpcContactPage */],
+                __WEBPACK_IMPORTED_MODULE_2__restitusi_detail__["a" /* RestitusiDetailPage */],
             ],
             imports: [
-                __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__menu_ipc_contact__["a" /* MenuIpcContactPage */]),
+                __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__restitusi_detail__["a" /* RestitusiDetailPage */]),
             ],
         })
-    ], MenuIpcContactPageModule);
-    return MenuIpcContactPageModule;
+    ], RestitusiDetailPageModule);
+    return RestitusiDetailPageModule;
 }());
 
-//# sourceMappingURL=menu-ipc-contact.module.js.map
+//# sourceMappingURL=restitusi-detail.module.js.map
 
 /***/ }),
 
-/***/ 419:
+/***/ 387:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MenuIpcContactPage; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return RestitusiDetailPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(50);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(100);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -57,60 +57,34 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 /**
- * Generated class for the MenuIpcContactPage page.
+ * Generated class for the RestitusiDetailPage page.
  *
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
  */
-var MenuIpcContactPage = /** @class */ (function () {
-    function MenuIpcContactPage(navCtrl, navParams, viewCtrl, app) {
+var RestitusiDetailPage = /** @class */ (function () {
+    function RestitusiDetailPage(navCtrl, navParams) {
         this.navCtrl = navCtrl;
         this.navParams = navParams;
-        this.viewCtrl = viewCtrl;
-        this.app = app;
-        this.IPCContactUserData = navParams.get('IPCContactUserData');
-        this.badges = navParams.get('badges');
+        this.dataRestitusi = this.navParams.get('dataRestitusi');
+        this.jumlahTotal = this.navParams.get('jumlahTotal');
+        console.log(this.dataRestitusi);
+        console.log(this.jumlahTotal);
     }
-    MenuIpcContactPage.prototype.ionViewDidLoad = function () {
-        console.log('ionViewDidLoad MenuIpcContactPage');
-        console.log(this.IPCContactUserData);
+    RestitusiDetailPage.prototype.ionViewDidLoad = function () {
+        console.log('ionViewDidLoad RestitusiDetailPage');
     };
-    MenuIpcContactPage.prototype.goToPage = function (page) {
-        var _this = this;
-        this.viewCtrl.dismiss().then(function () {
-            _this.app.getRootNav().push(page, {});
-        });
-    };
-    MenuIpcContactPage.prototype.isEmptyObject = function (obj) {
-        for (var prop in obj) {
-            if (obj.hasOwnProperty(prop)) {
-                return false;
-            }
-        }
-        return true;
-    };
-    MenuIpcContactPage.prototype.parse = function (val) {
-        var intValue = parseInt(val);
-        if (intValue > 0) {
-            return true;
-        }
-        else {
-            return false;
-        }
-    };
-    MenuIpcContactPage = __decorate([
+    RestitusiDetailPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
-            selector: 'page-menu-ipc-contact',template:/*ion-inline-start:"/Users/itadmin/Downloads/ERDA/POS_PPI/src/pages/menu-ipc-contact/menu-ipc-contact.html"*/'<ion-list padding-left padding-right padding-bottom no-margin>\n  <ion-list-header class="header" no-padding no-margin>\n    <b>Menu</b>\n  </ion-list-header>\n  <button ion-item (click)="goToPage(\'AdminDirektoratListPage\')"\n    *ngIf="IPCContactUserData[\'ID_LEVEL\'] == \'0\'">Admin Direktorat</button>\n  <button ion-item (click)="goToPage(\'PetugasDirektoratListPage\')"\n    *ngIf="IPCContactUserData[\'ID_LEVEL\'] == \'1\' || IPCContactUserData[\'ID_LEVEL\'] == \'0\'">Petugas Direktorat</button>\n  <button ion-item (click)="goToPage(\'KategoriPengajuanListPage\')"\n    *ngIf="IPCContactUserData[\'ID_LEVEL\'] == \'1\'">Kategori Pengajuan</button>\n  <button ion-item (click)="goToPage(\'IpcContactQuestionListPage\')"\n    *ngIf="IPCContactUserData[\'ID_LEVEL\'] == \'2\'">Pertanyaan / permasalahan <ion-badge\n      style="position:absolute; right:20px;" *ngIf="parse(badges)" color="danger">{{ badges }}</ion-badge> </button>\n  <!-- <button ion-item (click)="goToPage(\'SearchIpcContactHistoryPage\')"\n    *ngIf="IPCContactUserData[\'ID_LEVEL\'] == \'0\' || IPCContactUserData[\'ID_LEVEL\'] == \'1\'">Download History</button> -->\n</ion-list>'/*ion-inline-end:"/Users/itadmin/Downloads/ERDA/POS_PPI/src/pages/menu-ipc-contact/menu-ipc-contact.html"*/,
+            selector: 'page-restitusi-detail',template:/*ion-inline-start:"/Users/itadmin/Downloads/ERDA/POS_PPI/src/pages/restitusi-detail/restitusi-detail.html"*/'<!--\n  Generated template for the RestitusiDetailPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n  <ion-navbar>\n    <ion-title>\n      <span ion-text color="light" class="fw500">Detail Restitusi</span>\n    </ion-title>\n  </ion-navbar>\n</ion-header>\n\n<ion-content>\n  <ion-card class="header-card">\n    <ion-card-content>\n      <span ion-text text-wrap class="font-header">\n        <b>{{ dataRestitusi[\'PERIHAL\'] }}</b>\n      </span>\n    </ion-card-content>\n  </ion-card>\n\n  <ion-card class="my-card">\n    <ion-card-content>\n      <div class="row">\n        <div class="col">\n          <span ion-text text-wrap class="font-mini" color="color4">\n            Jenis Restitusi\n          </span><br>\n          <span ion-text text-wrap class="font-small">\n            {{ dataRestitusi[\'JENIS\'] }}\n          </span>\n        </div>\n        <div class="col">\n          <span ion-text text-wrap class="font-mini" color="color4">\n            Tanggal Pengajuan\n          </span><br>\n          <span ion-text text-wrap class="font-small">\n            {{ dataRestitusi[\'TGL_PENGAJUAN\'] }}\n          </span>\n        </div>\n      </div>\n      <div class="row">\n        <div class="col">\n          <span ion-text text-wrap class="font-mini" color="color4">\n            Jumlah Total\n          </span><br>\n          <span ion-text text-wrap class="font-small">\n            <b>Rp. {{ jumlahTotal }}</b>\n          </span>\n        </div>\n        <div class="col">\n          <span ion-text text-wrap class="font-mini" color="color4">\n            Status\n          </span><br>\n          <span ion-text text-wrap class="font-small" color="primary">\n            {{ dataRestitusi[\'KETERANGAN\'] }}\n          </span>\n        </div>\n      </div>\n    </ion-card-content>\n  </ion-card>\n\n  <ion-card class="my-card">\n    <ion-card-content>\n      <div class="header-text">\n        <span ion-text text-wrap>\n          <img src="assets/imgs/menu-icon/Restitusi.png" class="icons">\n        </span>\n        <span ion-text text-wrap class="font-small">\n          <b>Detail Restitusi</b>\n        </span>\n      </div>\n      <div class="garis"></div>\n      <br>\n\n      <table width="100%">\n        <tr *ngFor="let detail of dataRestitusi[\'DETAIL\'];let i = index">\n          <td valign="top" width="10%">{{ i+1 }}.</td>\n          <td valign="top" width="90%">\n            <table width="100%" >\n              <tr>\n                <td width="45%" >\n                  <span ion-text text-wrap class="font-small" color="danger">\n                    Tanggal Nota\n                  </span>\n                </td>\n                <td width="5%" >\n                  <span ion-text text-wrap class="font-small" color="danger">\n                     : \n                  </span>\n                </td>\n                <td width="50%" >\n                  <span ion-text text-wrap class="font-small" color="danger">\n                    {{ detail[\'TANGGAL_NOTA\'] }}\n                  </span>\n                </td>\n              </tr>\n\n              <tr>\n                <td>\n                  <span ion-text text-wrap class="font-small">\n                    Nama Pasien\n                  </span>\n                </td>\n                <td>\n                  <span ion-text text-wrap class="font-small">\n                    :\n                  </span>\n                </td>\n                <td>\n                  <span ion-text text-wrap class="font-small">\n                    {{ detail[\'NAMA_PASIEN\'] }}\n                  </span>\n                </td>\n              </tr>\n\n              <tr>\n                <td>\n                  <span ion-text text-wrap class="font-small">\n                    Status Keluarga\n                  </span> \n                </td>\n                <td>\n                  <span ion-text text-wrap class="font-small">\n                    :\n                  </span> \n                </td>\n                <td>\n                  <span ion-text text-wrap class="font-small">\n                   {{ detail[\'STATUS_KELUARGA\'] }}\n                  </span> \n                </td>\n              </tr>\n              <tr>\n                <td>\n                  <span ion-text text-wrap class="font-small">\n                    Rincian Biaya\n                  </span> \n                </td>\n                <td>\n                  <span ion-text text-wrap class="font-small">\n                    :\n                  </span> \n                </td>\n                <td>\n                  <span ion-text text-wrap class="font-small">\n                   \n                  </span> \n                </td>\n              </tr>\n            </table>                                          \n            \n            <div class="row">\n              <div class="col">\n                <span ion-text text-wrap class="font-mini" color="color4">\n                  Biaya Dokter\n                </span><br>\n                <span ion-text text-wrap class="font-small"\n                  *ngIf="detail[\'BIAYA_DOKTER\'] == null || detail[\'BIAYA_DOKTER\'] == \'\'">\n                  Rp. 0\n                </span>\n                <span ion-text text-wrap class="font-small">\n                  Rp. {{ detail[\'BIAYA_DOKTER\'] }}\n                </span>\n              </div>\n              <div class="col">\n                <span ion-text text-wrap class="font-mini" color="color4">\n                  Biaya Obat\n                </span><br>\n                <span ion-text text-wrap class="font-small"\n                  *ngIf="detail[\'BIAYA_OBAT\'] == null || detail[\'BIAYA_OBAT\'] == \'\'">\n                  Rp. 0\n                </span>\n                <span ion-text text-wrap class="font-small">\n                  Rp. {{ detail[\'BIAYA_OBAT\'] }}\n                </span>\n              </div>\n            </div>\n\n            <div class="row">\n              <div class="col">\n                <span ion-text text-wrap class="font-mini" color="color4">\n                  Biaya Tindakan\n                </span><br>\n                <span ion-text text-wrap class="font-small"\n                  *ngIf="detail[\'BIAYA_TINDAKAN\'] == null || detail[\'BIAYA_TINDAKAN\'] == \'\'">\n                  Rp. 0\n                </span>\n                <span ion-text text-wrap class="font-small">\n                  Rp. {{ detail[\'BIAYA_TINDAKAN\'] }}\n                </span>\n              </div>\n              <div class="col">\n                <span ion-text text-wrap class="font-mini" color="color4">\n                  Biaya Perawatan\n                </span><br>\n                <span ion-text text-wrap class="font-small"\n                  *ngIf="detail[\'BIAYA_PERAWATAN\'] == null || detail[\'BIAYA_PERAWATAN\'] == \'\'">\n                  Rp. 0\n                </span>\n                <span ion-text text-wrap class="font-small">\n                  Rp. {{ detail[\'BIAYA_PERAWATAN\'] }}\n                </span>\n              </div>\n            </div>\n\n            <div class="row">\n              <div class="col">\n                <span ion-text text-wrap class="font-mini" color="color4">\n                  Biaya Administrasi\n                </span><br>\n                <span ion-text text-wrap class="font-small"\n                  *ngIf="detail[\'BIAYA_ADMINISTRASI\'] == null || detail[\'BIAYA_ADMINISTRASI\'] == \'\'">\n                  Rp. 0\n                </span>\n                <span ion-text text-wrap class="font-small">\n                  Rp. {{ detail[\'BIAYA_ADMINISTRASI\'] }}\n                </span>\n              </div>\n              <div class="col">\n                <span ion-text text-wrap class="font-mini" color="color4">\n                  Biaya Lain-lain\n                </span><br>\n                <span ion-text text-wrap class="font-small"\n                  *ngIf="detail[\'BIAYA_LAIN_LAIN\'] == null || detail[\'BIAYA_LAIN_LAIN\'] == \'\'">\n                  Rp. 0\n                </span>\n                <span ion-text text-wrap class="font-small">\n                  Rp. {{ detail[\'BIAYA_LAIN_LAIN\'] }}\n                </span>\n              </div>\n            </div>\n            <br>\n          </td>\n        </tr>\n\n      </table>\n    </ion-card-content>\n  </ion-card>\n</ion-content>\n\n'/*ion-inline-end:"/Users/itadmin/Downloads/ERDA/POS_PPI/src/pages/restitusi-detail/restitusi-detail.html"*/,
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavController */],
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* NavParams */],
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["q" /* ViewController */],
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["c" /* App */]])
-    ], MenuIpcContactPage);
-    return MenuIpcContactPage;
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* NavParams */]])
+    ], RestitusiDetailPage);
+    return RestitusiDetailPage;
 }());
 
-//# sourceMappingURL=menu-ipc-contact.js.map
+//# sourceMappingURL=restitusi-detail.js.map
 
 /***/ })
 

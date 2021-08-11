@@ -5,19 +5,19 @@
         <img id="logo" src="assets/imgs/ipc-tpk-logo.png" />
         <br>        
         <div text-center style="margin-bottom:15px;">
-          <span ion-text color="dark" style="font-size: 2.1rem;font-weight: bold;">E-Office IPCTPK</span>
+          <span ion-text color="dark" style="font-size: 1.8rem;font-weight: bold;">PPI Office System</span>
           <br>
-          <span ion-text color="color4" style="font-size: 1.4rem;">Masukkan NIPP dan password anda</span>
+          <span ion-text color="dark" style="font-size: 1.3rem;">Masukkan username dan password anda</span>
         </div>
         <div id="login-form">
           <form [formGroup]="formLogin" class="item-login" (ngSubmit)="doLogin()">
             <div class="input-item">
-              <ion-item no-lines>
+              <ion-item no-lines style="font-size:1.4rem !important;">
                 <!-- <ion-label class="login-label" color="dark" stacked>Username</ion-label> -->
                 <ion-icon name="person" item-left no-margin class="my-icons" color="danger"></ion-icon>
                 <ion-input type="text" formControlName="username" placeholder="Username"></ion-input>
               </ion-item>
-              <ion-item no-lines>
+              <ion-item no-lines style="font-size:1.4rem !important;">
                 <!-- <ion-label class="login-label" color="dark" stacked>Password</ion-label> -->
                 <ion-icon name="lock" item-left no-margin class="my-icons" color="danger"></ion-icon>
                 <ion-input type="password" formControlName="password" placeholder="Password"></ion-input>
