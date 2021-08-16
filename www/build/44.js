@@ -1,14 +1,14 @@
 webpackJsonp([44],{
 
-/***/ 336:
+/***/ 325:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SearchTeamAbsenPageModule", function() { return SearchTeamAbsenPageModule; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "PhotoViewerPageModule", function() { return PhotoViewerPageModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(100);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__search_team_absen__ = __webpack_require__(394);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__photo_viewer__ = __webpack_require__(381);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -18,36 +18,33 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 
-var SearchTeamAbsenPageModule = /** @class */ (function () {
-    function SearchTeamAbsenPageModule() {
+var PhotoViewerPageModule = /** @class */ (function () {
+    function PhotoViewerPageModule() {
     }
-    SearchTeamAbsenPageModule = __decorate([
+    PhotoViewerPageModule = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["J" /* NgModule */])({
             declarations: [
-                __WEBPACK_IMPORTED_MODULE_2__search_team_absen__["a" /* SearchTeamAbsenPage */],
+                __WEBPACK_IMPORTED_MODULE_2__photo_viewer__["a" /* PhotoViewerPage */],
             ],
             imports: [
-                __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__search_team_absen__["a" /* SearchTeamAbsenPage */]),
+                __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__photo_viewer__["a" /* PhotoViewerPage */]),
             ],
         })
-    ], SearchTeamAbsenPageModule);
-    return SearchTeamAbsenPageModule;
+    ], PhotoViewerPageModule);
+    return PhotoViewerPageModule;
 }());
 
-//# sourceMappingURL=search-team-absen.module.js.map
+//# sourceMappingURL=photo-viewer.module.js.map
 
 /***/ }),
 
-/***/ 394:
+/***/ 381:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return SearchTeamAbsenPage; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return PhotoViewerPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(100);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_date_picker__ = __webpack_require__(201);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_storage__ = __webpack_require__(101);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_common__ = __webpack_require__(26);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -59,66 +56,33 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 
 
-
-
-
 /**
- * Generated class for the SearchTeamAbsenPage page.
+ * Generated class for the PhotoViewerPage page.
  *
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
  */
-var SearchTeamAbsenPage = /** @class */ (function () {
-    function SearchTeamAbsenPage(navCtrl, navParams, storage, datepipe, datePicker) {
-        var _this = this;
+var PhotoViewerPage = /** @class */ (function () {
+    function PhotoViewerPage(navCtrl, navParams) {
         this.navCtrl = navCtrl;
         this.navParams = navParams;
-        this.storage = storage;
-        this.datepipe = datepipe;
-        this.datePicker = datePicker;
-        this.storage.get('userdataTPK').then(function (val) {
-            _this.userdataTPK = val;
-            console.log(_this.userdataTPK);
-        });
+        this.photo = navParams.get('photo');
+        console.log(this.photo);
     }
-    SearchTeamAbsenPage.prototype.ionViewDidLoad = function () {
-        console.log('ionViewDidLoad SearchTeamAbsenPage');
+    PhotoViewerPage.prototype.ionViewDidLoad = function () {
+        console.log('ionViewDidLoad PhotoViewerPage');
     };
-    SearchTeamAbsenPage.prototype.doSearch = function () {
-        var _this = this;
-        this.navCtrl.push('AbsenTeamHadirkoePage', {
-            "idUser": this.userdataTPK['data']['IDUSER'],
-            "date": this.tanggal,
-            "fromPage": "AbsenActivityPage"
-        }).then(function () {
-            _this.navCtrl.remove(1, 2);
-        });
-    };
-    SearchTeamAbsenPage.prototype.showDatePicker = function (type) {
-        var _this = this;
-        this.datePicker.show({
-            date: new Date(),
-            mode: 'date',
-            maxDate: new Date().valueOf(),
-            androidTheme: this.datePicker.ANDROID_THEMES.THEME_HOLO_LIGHT
-        }).then(function (date) {
-            _this.tanggal = _this.datepipe.transform(date, 'dd-MM-yyyy');
-        }, function (err) { return console.log('Error occurred while getting date: ', err); });
-    };
-    SearchTeamAbsenPage = __decorate([
+    PhotoViewerPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
-            selector: 'page-search-team-absen',template:/*ion-inline-start:"/Users/itadmin/Downloads/ERDA/POS_PPI/src/pages/search-team-absen/search-team-absen.html"*/'<!--\n  Generated template for the UpdateUserdataPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n  <ion-navbar>\n    <ion-title>\n      <span ion-text color="light">Pilih Tanggal</span>\n    </ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n<ion-content padding>\n\n  <ion-item>\n    <span item-left>\n      <img src="assets/imgs/menu-icon/start_date.png" class="icons">\n    </span>\n    <ion-label stacked>Tanggal</ion-label>\n    <ion-input type="text" [readonly]="true" (ionFocus)="showDatePicker(1)" (click)="showDatePicker(1)"\n      [(ngModel)]="tanggal"></ion-input>\n  </ion-item>\n\n  <br>\n  <div class="row">   \n    <div class="col">\n      <button ion-button full icon-end style="border-radius: 5px;" [disabled]="tanggal == null || tanggal ==\'\'" (click)="doSearch()">\n        Cari\n        <ion-icon name="md-search"></ion-icon>\n      </button>\n    </div>\n  </div>\n</ion-content>'/*ion-inline-end:"/Users/itadmin/Downloads/ERDA/POS_PPI/src/pages/search-team-absen/search-team-absen.html"*/,
+            selector: 'page-photo-viewer',template:/*ion-inline-start:"/Users/itadmin/Downloads/ERDA/POS_PPI/src/pages/photo-viewer/photo-viewer.html"*/'<!--\n  Generated template for the PhotoViewerPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n  <ion-navbar>\n    <ion-title>\n      <span ion-text color="light" class="fw500">Photo</span>\n    </ion-title>\n  </ion-navbar>\n</ion-header>\n\n<ion-content padding>\n<div style="width: 100%;height: 100%;" >\n  <img [src]="photo">\n</div>\n</ion-content>\n'/*ion-inline-end:"/Users/itadmin/Downloads/ERDA/POS_PPI/src/pages/photo-viewer/photo-viewer.html"*/,
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavController */],
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* NavParams */],
-            __WEBPACK_IMPORTED_MODULE_3__ionic_storage__["b" /* Storage */],
-            __WEBPACK_IMPORTED_MODULE_4__angular_common__["e" /* DatePipe */],
-            __WEBPACK_IMPORTED_MODULE_2__ionic_native_date_picker__["a" /* DatePicker */]])
-    ], SearchTeamAbsenPage);
-    return SearchTeamAbsenPage;
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* NavParams */]])
+    ], PhotoViewerPage);
+    return PhotoViewerPage;
 }());
 
-//# sourceMappingURL=search-team-absen.js.map
+//# sourceMappingURL=photo-viewer.js.map
 
 /***/ })
 

@@ -1,14 +1,14 @@
 webpackJsonp([26],{
 
-/***/ 306:
+/***/ 300:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CutiListPageModule", function() { return CutiListPageModule; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CariPegawaiPageModule", function() { return CariPegawaiPageModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(100);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__cuti_list__ = __webpack_require__(363);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__cari_pegawai__ = __webpack_require__(355);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -18,33 +18,33 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 
-var CutiListPageModule = /** @class */ (function () {
-    function CutiListPageModule() {
+var CariPegawaiPageModule = /** @class */ (function () {
+    function CariPegawaiPageModule() {
     }
-    CutiListPageModule = __decorate([
+    CariPegawaiPageModule = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["J" /* NgModule */])({
             declarations: [
-                __WEBPACK_IMPORTED_MODULE_2__cuti_list__["a" /* CutiListPage */],
+                __WEBPACK_IMPORTED_MODULE_2__cari_pegawai__["a" /* CariPegawaiPage */],
             ],
             imports: [
-                __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__cuti_list__["a" /* CutiListPage */]),
+                __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__cari_pegawai__["a" /* CariPegawaiPage */]),
             ],
         })
-    ], CutiListPageModule);
-    return CutiListPageModule;
+    ], CariPegawaiPageModule);
+    return CariPegawaiPageModule;
 }());
 
-//# sourceMappingURL=cuti-list.module.js.map
+//# sourceMappingURL=cari-pegawai.module.js.map
 
 /***/ }),
 
-/***/ 343:
+/***/ 341:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return SoapService; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__soapclient_js__ = __webpack_require__(344);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__soapclient_js__ = __webpack_require__(342);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__soapclient_js___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__soapclient_js__);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -96,7 +96,7 @@ var SoapService = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 344:
+/***/ 342:
 /***/ (function(module, exports) {
 
 /*****************************************************************************\
@@ -551,16 +551,17 @@ module.exports = {
 
 /***/ }),
 
-/***/ 363:
+/***/ 355:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CutiListPage; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CariPegawaiPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(100);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__soap_service__ = __webpack_require__(343);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_storage__ = __webpack_require__(101);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__config__ = __webpack_require__(199);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_forms__ = __webpack_require__(16);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__soap_service__ = __webpack_require__(341);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_storage__ = __webpack_require__(101);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__config__ = __webpack_require__(199);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -575,93 +576,137 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
 /**
- * Generated class for the CutiListPage page.
+ * Generated class for the CariPegawaiPage page.
  *
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
  */
-var CutiListPage = /** @class */ (function () {
-    function CutiListPage(navCtrl, navParams, soapService, loadingCtrl, storage, alertCtrl, modalCtrl, toastCtrl) {
+var CariPegawaiPage = /** @class */ (function () {
+    function CariPegawaiPage(navCtrl, navParams, _fb, soapService, loadingCtrl, alertCtrl, modalCtrl, storage, toastCtrl) {
         this.navCtrl = navCtrl;
         this.navParams = navParams;
+        this._fb = _fb;
         this.soapService = soapService;
         this.loadingCtrl = loadingCtrl;
-        this.storage = storage;
         this.alertCtrl = alertCtrl;
         this.modalCtrl = modalCtrl;
+        this.storage = storage;
         this.toastCtrl = toastCtrl;
-        this.isLoading = true;
-        this.cutiList = [];
-        this.fakeUsers = new Array(5);
+        this.isLoading = false;
+        this.searchDataList = [];
+        this.jumlahPegawai = 0;
         this.batasAtas = 1;
-        this.batasBawah = 10;
+        this.batasBawah = 20;
+        this.pegawaiForm = this._fb.group({
+            fcSearch: ['', __WEBPACK_IMPORTED_MODULE_2__angular_forms__["f" /* Validators */].compose([
+                    __WEBPACK_IMPORTED_MODULE_2__angular_forms__["f" /* Validators */].required
+                ])]
+        });
     }
-    CutiListPage.prototype.ionViewDidEnter = function () {
+    CariPegawaiPage.prototype.ionViewDidEnter = function () {
+        // this.getJumlahPegawai();
     };
-    CutiListPage.prototype.ionViewDidLoad = function () {
+    CariPegawaiPage.prototype.ionViewDidLoad = function () {
+        console.log('ionViewDidLoad CariPegawaiPage');
+    };
+    // getJumlahPegawai() {
+    //   let loading = this.loadingCtrl.create({
+    //     spinner: 'dots',
+    //     content: "Mohon Tunggu...",       
+    //     cssClass: 'transparent',
+    //     dismissOnPageChange:true
+    //   });
+    //   loading.present();
+    //   this.isLoading = true;
+    //   this.soapService
+    //   //.post(api_base_url,'eoffice_data_direktorat_ipcc',{fStream:JSON.stringify(
+    //   .post(api_base_url,'eoffice_bypass_wso',{fStream:JSON.stringify(
+    //     {
+    //       // usernameEDI : api_user, 
+    //       // passwordEDI : api_pass
+    //       sc_type: 'countpeg',
+    //       sc_code: sc_code,        
+    //       data : {}         
+    //     }
+    //   )}).then(result => {
+    //     var responData = JSON.parse(String(result));
+    //     console.log(responData);
+    //     if (responData['rcmsg'] == "SUCCESS") {        
+    //       this.jumlahPegawai = responData['data'][0]['JUMLAH'];
+    //     } else {        
+    //       let toast = this.toastCtrl.create({
+    //         message: 'Mohon Maaf Sedang Terjadi Kesalahan, Coba Beberapa Saat Lagi.',
+    //         duration: 3000,
+    //         position: 'bottom'
+    //       });
+    //       toast.present();  
+    //     }  
+    //     loading.dismiss();
+    //     this.isLoading = false;    
+    //   })
+    //   .catch(error => {
+    //     console.log(error);
+    //     let toast = this.toastCtrl.create({
+    //       message: 'Terjadi Masalah Koneksi, Silahkan Coba Kembali.',
+    //       duration: 3000,
+    //       position: 'bottom'
+    //     });
+    //     toast.present();          
+    //     loading.dismiss();
+    //     this.isLoading = false;       
+    //   });
+    // }
+    CariPegawaiPage.prototype.doSearch = function () {
+        this.batasAtas = 1;
+        this.batasBawah = 20;
+        this.searchDataList = [];
+        this.getSearchList('first', '');
+    };
+    CariPegawaiPage.prototype.getSearchList = function (type, functionName) {
         var _this = this;
-        this.storage.get('userdataTPK').then(function (val) {
-            _this.userdataTPK = val;
-            if (_this.userdataTPK['data']['DATA_BAWAHAN'].length == 0 && _this.userdataTPK['data']['DATA_BAWAHAN_TNO'].length == 0) {
-                _this.isAtasan = false;
-            }
-            else {
-                _this.isAtasan = true;
-            }
-            _this.getCutiList('first', '');
+        var loading = this.loadingCtrl.create({
+            spinner: 'dots',
+            content: "Mohon Tunggu...",
+            cssClass: 'transparent',
+            dismissOnPageChange: true
         });
-    };
-    CutiListPage.prototype.goToForm = function () {
-        var modal = this.modalCtrl.create("AddCutiPage", {
-            openFrom: 'CutiListPage'
-        }, {
-            enableBackdropDismiss: true,
-            showBackdrop: true,
-        });
-        modal.present();
-    };
-    CutiListPage.prototype.getCutiList = function (type, functionName) {
-        var _this = this;
         if (type == 'first' && functionName == '') {
-            this.isLoading = true;
+            loading.present();
         }
+        var searchInput = this.pegawaiForm.controls.fcSearch.value;
         this.soapService
-            .post(__WEBPACK_IMPORTED_MODULE_4__config__["a" /* api_base_url */], 'eoffice_cuti_list', {
-            fStream: JSON.stringify({
-                usernameEDI: __WEBPACK_IMPORTED_MODULE_4__config__["e" /* api_user */],
-                passwordEDI: __WEBPACK_IMPORTED_MODULE_4__config__["c" /* api_pass */],
-                id_user: this.userdataTPK['data']['IDUSER'],
-                search_jenis: "",
-                search_tgl_pengajuan: "",
-                search_tgl_mulai: "",
-                search_tgl_selesai: "",
-                search_alasan: "",
+            .post(__WEBPACK_IMPORTED_MODULE_5__config__["a" /* api_base_url */], 'eoffice_findemployee', { fStream: JSON.stringify({
+                usernameEDI: __WEBPACK_IMPORTED_MODULE_5__config__["d" /* api_user */],
+                passwordEDI: __WEBPACK_IMPORTED_MODULE_5__config__["b" /* api_pass */],
+                search: searchInput.toUpperCase(),
                 atas: this.batasAtas,
                 bawah: this.batasBawah
-            })
-        }).then(function (result) {
+            }) }).then(function (result) {
             var responData = JSON.parse(String(result));
+            // console.log(responData);
             if (responData['rcmsg'] == "SUCCESS") {
                 if (type == 'refresh' && functionName != '') {
-                    _this.cutiList = [];
+                    _this.searchDataList = [];
                 }
-                if (responData['data']['Cuti Personal'].length > 0) {
-                    for (var i = 0; i < responData['data']['Cuti Personal'].length; i++) {
-                        _this.cutiList.push(responData['data']['Cuti Personal'][i]);
+                if (responData['data'].length > 0 && !_this.isEmptyObject(responData['data'][0])) {
+                    for (var i = 0; i < responData['data'].length; i++) {
+                        _this.searchDataList.push(responData['data'][i]);
                     }
                 }
+                // console.log(this.searchDataList);        
             }
             else {
                 var toast = _this.toastCtrl.create({
-                    message: 'Gagal mendapatkan data cuti, silahkan coba kembali.',
+                    message: 'Mohon Maaf Sedang Terjadi Kesalahan, Coba Beberapa Saat Lagi.',
                     duration: 3000,
                     position: 'bottom'
                 });
                 toast.present();
             }
             if (type == 'first' && functionName == '') {
-                _this.isLoading = false;
+                loading.dismiss();
             }
             else if (type == 'infinite' && functionName != '') {
                 functionName.complete();
@@ -669,15 +714,18 @@ var CutiListPage = /** @class */ (function () {
             else if (type == 'refresh' && functionName != '') {
                 functionName.complete();
             }
+            //this.isLoading = false;  
         })
             .catch(function (error) {
+            // console.log(error);
             var toast = _this.toastCtrl.create({
-                message: 'Gagal mendapatkan data cuti, periksa koneksi internet anda.',
+                message: 'Terjadi Masalah Koneksi, Silahkan Coba Kembali.',
                 duration: 3000,
                 position: 'bottom'
             });
             toast.present();
             if (type == 'first' && functionName == '') {
+                loading.dismiss();
                 _this.isLoading = false;
             }
             else if (type == 'infinite' && functionName != '') {
@@ -686,53 +734,55 @@ var CutiListPage = /** @class */ (function () {
             else if (type == 'refresh' && functionName != '') {
                 functionName.complete();
             }
-            _this.isLoading = false;
         });
     };
-    CutiListPage.prototype.doInfinite = function (infiniteScroll) {
-        if (this.cutiList.length >= 10) {
+    CariPegawaiPage.prototype.doInfinite = function (infiniteScroll) {
+        if (this.searchDataList.length >= 20) {
             this.batasAtas = this.batasBawah + 1;
-            this.batasBawah = this.batasBawah + 10;
-            this.getCutiList('infinite', infiniteScroll);
+            this.batasBawah = this.batasBawah + 20;
+            this.getSearchList('infinite', infiniteScroll);
         }
         else {
             infiniteScroll.complete();
         }
     };
-    CutiListPage.prototype.doRefresh = function (refresher) {
-        this.batasAtas = 1;
-        this.batasBawah = 10;
-        this.getCutiList('refresh', refresher);
+    // goToDetailPegawai(data) {
+    //   let modal = this.modalCtrl.create("CariPegawaiDetailPage",{ dataPegawai: data }, {
+    //     enableBackdropDismiss: true,
+    //     showBackdrop:true       
+    //   });
+    //   modal.present();
+    // } 
+    CariPegawaiPage.prototype.convertImage = function (data) {
+        return btoa(data);
     };
-    CutiListPage.prototype.searchCuti = function () {
-        var modal = this.modalCtrl.create('SearchCutiPage');
-        modal.present();
+    CariPegawaiPage.prototype.isEmptyObject = function (obj) {
+        for (var prop in obj) {
+            if (obj.hasOwnProperty(prop)) {
+                return false;
+            }
+        }
+        return true;
     };
-    CutiListPage.prototype.goToDetail = function (data) {
-        this.navCtrl.push("CutiDetailPage", {
-            "data": data,
-            "nipp": this.userdataTPK['data']['NIPP'],
-            "userdataTPK": this.userdataTPK
-        });
-    };
-    CutiListPage = __decorate([
+    CariPegawaiPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
-            selector: 'page-cuti-list',
-            providers: [__WEBPACK_IMPORTED_MODULE_2__soap_service__["a" /* SoapService */]],template:/*ion-inline-start:"/Users/itadmin/Downloads/ERDA/POS_PPI/src/pages/cuti-list/cuti-list.html"*/'<!--\n  Generated template for the CutiListPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n  <ion-navbar>\n    <ion-title>\n      <span ion-text color="light" class="fw500">Izin/Cuti</span>\n    </ion-title>\n\n    <ion-buttons end>\n      <button ion-button (click)="searchCuti()">\n        <ion-icon style="font-size:2.4rem;" name="md-search" color="light"></ion-icon>\n      </button>\n\n      <!-- <button ion-button *ngIf="isAtasan" (click)="presentPopover($event)">\n            <ion-icon style="font-size:2.4rem;" name="more" color="danger"></ion-icon>\n          </button>  -->\n    </ion-buttons>\n  </ion-navbar>\n</ion-header>\n\n<ion-content>\n\n  <ion-list class="dining_List" *ngIf="cutiList.length == 0  && isLoading == false">\n    <ion-card class="primary-bg">\n      <ion-card-content>\n        <span style="font-size:1.3rem">Tidak ada data izin/cuti.</span>\n      </ion-card-content>\n    </ion-card>\n  </ion-list>\n\n  <ion-list class="dining_List" *ngIf="cutiList.length != 0 && isLoading == false">   \n    <ion-card *ngFor="let cuti of cutiList" class="my-card" (click)="goToDetail(cuti)">\n      <ion-item>\n        <span item-start>\n          <img src="assets/imgs/menu-icon/cuti.png" class="icons">\n        </span>\n        <span ion-text text-wrap class="font3" color="danger"><b>{{ cuti[\'Jumlah\'] }} hari</b></span><br />\n        <span ion-text text-wrap class="font2"><b>{{ cuti[\'Jenis\'] }}</b></span><br>\n        <span ion-text text-wrap class="font">\n          {{ cuti[\'Tanggal Mulai\'] }} <span ion-text text-wrap color="primary"><b>s/d</b></span> {{ cuti[\'Tanggal Selesai\'] }}\n        </span>\n        <span ion-text text-wrap style="font-size: 1.2rem;" color="primary"  item-end><b>{{ cuti[\'Status\'] }}</b></span>\n      </ion-item>\n    </ion-card>\n  </ion-list>\n\n  <ion-list *ngIf=\'cutiList.length == 0 && isLoading == true\'>\n    <ion-card *ngFor=\'let fake of fakeUsers\'>\n      <ion-item>\n        <div class="animate-skeleton-background load-2"></div>\n        <div class="animate-skeleton-background load-3"></div>\n        <div class="animate-skeleton-background load-1"> </div>\n      </ion-item>\n    </ion-card>\n  </ion-list>\n\n  <ion-infinite-scroll (ionInfinite)="doInfinite($event)">\n    <ion-infinite-scroll-content>\n\n    </ion-infinite-scroll-content>\n  </ion-infinite-scroll>\n\n  <ion-refresher (ionRefresh)="doRefresh($event)">\n    <ion-refresher-content pullingIcon="arrow-dropdown" pullingText="Pull to refresh" refreshingSpinner="circles"\n      refreshingText="Refreshing...">\n    </ion-refresher-content>\n  </ion-refresher>\n</ion-content>\n\n<ion-footer>\n  <ion-fab right bottom style="margin-right:10px; margin-bottom: 10px;">\n    <button ion-fab color="red" (click)="goToForm()">\n      <ion-icon name="md-add" color="light"></ion-icon>\n    </button>\n  </ion-fab>\n</ion-footer>'/*ion-inline-end:"/Users/itadmin/Downloads/ERDA/POS_PPI/src/pages/cuti-list/cuti-list.html"*/,
+            selector: 'page-cari-pegawai',
+            providers: [__WEBPACK_IMPORTED_MODULE_3__soap_service__["a" /* SoapService */]],template:/*ion-inline-start:"/Users/itadmin/Downloads/ERDA/POS_PPI/src/pages/cari-pegawai/cari-pegawai.html"*/'<!--\n\n  Generated template for the CariPegawaiPage page.\n\n\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n\n  Ionic pages and navigation.\n\n-->\n\n<ion-header>\n\n\n\n    <ion-navbar>\n\n        <ion-title>\n\n            <span ion-text color="light" class="fw500">Cari Pegawai</span>\n\n        </ion-title>\n\n    </ion-navbar>\n\n\n\n</ion-header>\n\n\n\n\n\n<ion-content>\n\n    <div class="my-padding">\n\n        <form [formGroup]="pegawaiForm" class="list-form">\n\n            <ion-item no-padding>\n\n                <span item-left>\n\n                    <img src="assets/imgs/menu-icon/contact-icon.png" class="icons">\n\n                </span>\n\n                <ion-label stacked>Cari (Nama/NIPP/Jabatan) </ion-label>\n\n                <ion-input type="text" formControlName="fcSearch" placeholder=""></ion-input>\n\n            </ion-item>\n\n            <button ion-button icon-start block class="button" margin-top (click)="doSearch()" [disabled]="!pegawaiForm.valid">\n\n                <ion-icon name="ios-search"></ion-icon>\n\n                Cari\n\n            </button>\n\n        </form>\n\n    </div>\n\n\n\n    <ion-list *ngIf="isLoading == false && !isEmptyObject(searchDataList[0])">\n\n        <div align="center" class="headers">\n\n            <br>\n\n            <span class="font3" ion-text text-center color="gray">{{ searchDataList.length }} Hasil\n\n                Pencarian</span>\n\n        </div>\n\n\n\n        <ion-card *ngFor="let searchData of searchDataList" class="my-card">\n\n            <ion-item>\n\n                <span item-start>\n\n                    <img *ngIf="searchData[\'FOTO\'] == \'\'" src="assets/imgs/logo/peserta_pekerja.png" class="icons2">\n\n                    <img *ngIf="searchData[\'FOTO\'] != \'\'" src="{{ searchData[\'FOTO\'] }}" class="icons2">\n\n                </span>\n\n                <span class="font2">{{ searchData[\'NIPP\'] }}</span><br>\n\n                <span ion-text text-wrap class="font1"><b>{{ searchData[\'NAMA\'] }}</b></span>            \n\n                <br />\n\n                <span ion-text text-wrap class="font2">{{ searchData[\'NAMA_CABANG\'] }}</span>\n\n                <br />\n\n                <span ion-text text-wrap class="font3" color="gray">{{ searchData[\'NAMA_JABATAN\'] }}</span>\n\n                <br />\n\n                <span ion-text text-wrap class="font3" color="danger">\n\n                    {{ searchData[\'EMAIL\'] }}\n\n                </span>\n\n            </ion-item>\n\n        </ion-card>\n\n    </ion-list>\n\n\n\n\n\n    <ion-infinite-scroll (ionInfinite)="doInfinite($event)">\n\n        <ion-infinite-scroll-content></ion-infinite-scroll-content>\n\n    </ion-infinite-scroll>\n\n\n\n</ion-content>'/*ion-inline-end:"/Users/itadmin/Downloads/ERDA/POS_PPI/src/pages/cari-pegawai/cari-pegawai.html"*/,
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavController */],
             __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* NavParams */],
-            __WEBPACK_IMPORTED_MODULE_2__soap_service__["a" /* SoapService */],
+            __WEBPACK_IMPORTED_MODULE_2__angular_forms__["a" /* FormBuilder */],
+            __WEBPACK_IMPORTED_MODULE_3__soap_service__["a" /* SoapService */],
             __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* LoadingController */],
-            __WEBPACK_IMPORTED_MODULE_3__ionic_storage__["b" /* Storage */],
             __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["b" /* AlertController */],
             __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* ModalController */],
+            __WEBPACK_IMPORTED_MODULE_4__ionic_storage__["b" /* Storage */],
             __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["p" /* ToastController */]])
-    ], CutiListPage);
-    return CutiListPage;
+    ], CariPegawaiPage);
+    return CariPegawaiPage;
 }());
 
-//# sourceMappingURL=cuti-list.js.map
+//# sourceMappingURL=cari-pegawai.js.map
 
 /***/ })
 

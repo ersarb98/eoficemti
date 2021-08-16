@@ -8,8 +8,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CheckInPageModule", function() { return CheckInPageModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(100);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__check_in__ = __webpack_require__(361);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_ionic2_rating__ = __webpack_require__(346);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__check_in__ = __webpack_require__(359);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_ionic2_rating__ = __webpack_require__(344);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -41,13 +41,13 @@ var CheckInPageModule = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 343:
+/***/ 341:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return SoapService; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__soapclient_js__ = __webpack_require__(344);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__soapclient_js__ = __webpack_require__(342);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__soapclient_js___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__soapclient_js__);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -99,7 +99,7 @@ var SoapService = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 344:
+/***/ 342:
 /***/ (function(module, exports) {
 
 /*****************************************************************************\
@@ -554,7 +554,7 @@ module.exports = {
 
 /***/ }),
 
-/***/ 345:
+/***/ 343:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -738,13 +738,13 @@ var Ionic2Rating = (function () {
 
 /***/ }),
 
-/***/ 346:
+/***/ 344:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ionic2_rating_module__ = __webpack_require__(347);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ionic2_rating_module__ = __webpack_require__(345);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return __WEBPACK_IMPORTED_MODULE_0__ionic2_rating_module__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ionic2_rating__ = __webpack_require__(345);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ionic2_rating__ = __webpack_require__(343);
 /* unused harmony reexport Ionic2Rating */
 
 
@@ -752,7 +752,7 @@ var Ionic2Rating = (function () {
 
 /***/ }),
 
-/***/ 347:
+/***/ 345:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -760,7 +760,7 @@ var Ionic2Rating = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_common__ = __webpack_require__(26);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(100);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic2_rating__ = __webpack_require__(345);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic2_rating__ = __webpack_require__(343);
 
 
 
@@ -793,7 +793,7 @@ var Ionic2RatingModule = (function () {
 
 /***/ }),
 
-/***/ 361:
+/***/ 359:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -806,7 +806,7 @@ var Ionic2RatingModule = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ionic_native_file_path__ = __webpack_require__(202);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ionic_native_file__ = __webpack_require__(203);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__config__ = __webpack_require__(199);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__soap_service__ = __webpack_require__(343);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__soap_service__ = __webpack_require__(341);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__angular_common__ = __webpack_require__(26);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__angular_common_http__ = __webpack_require__(200);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__angular_platform_browser__ = __webpack_require__(30);
@@ -876,7 +876,7 @@ var CheckInPage = /** @class */ (function () {
         this.address = navParams.get('address');
         this.addressData = navParams.get('addressData');
         this.dataValidasi = navParams.get('dataValidasi');
-        this.imageShow = __WEBPACK_IMPORTED_MODULE_7__config__["i" /* url_image */] + '/' + this.filename;
+        this.imageShow = __WEBPACK_IMPORTED_MODULE_7__config__["h" /* url_image */] + '/' + this.filename;
         //this.imageShow = this.sanitizer.bypassSecurityTrustUrl("data:Image/*;base64," + this.fileBase64);
         console.log(this.dataValidasi);
         // this.imageShow = url_image + '/' + '20200625_094623_1770451718.jpg';
@@ -1101,8 +1101,8 @@ var CheckInPage = /** @class */ (function () {
                 // 'Access-Control-Allow-Origin': 'http://localhost:8100',
                 // 'x-ibm-client-id': client_id,
                 // 'x-ibm-client-secret': client_secret,
-                'username': __WEBPACK_IMPORTED_MODULE_7__config__["e" /* api_user */],
-                'password': __WEBPACK_IMPORTED_MODULE_7__config__["c" /* api_pass */],
+                'username': __WEBPACK_IMPORTED_MODULE_7__config__["d" /* api_user */],
+                'password': __WEBPACK_IMPORTED_MODULE_7__config__["b" /* api_pass */],
                 'externalId': rand.toString(),
                 'timestamp': formattedDate,
                 'Content-Type': 'application/json'
@@ -1119,9 +1119,9 @@ var CheckInPage = /** @class */ (function () {
                 }
                 else {
                     var shiftDate = this.datepipe.transform(new Date(), 'dd/MM/yyyy');
-                    this.http.post(__WEBPACK_IMPORTED_MODULE_7__config__["d" /* api_res */] + "am1_insert_absen_res.php", {
-                        "usernameEDI": __WEBPACK_IMPORTED_MODULE_7__config__["e" /* api_user */],
-                        "passwordEDI": __WEBPACK_IMPORTED_MODULE_7__config__["c" /* api_pass */],
+                    this.http.post(__WEBPACK_IMPORTED_MODULE_7__config__["c" /* api_res */] + "am1_insert_absen_res.php", {
+                        "usernameEDI": __WEBPACK_IMPORTED_MODULE_7__config__["d" /* api_user */],
+                        "passwordEDI": __WEBPACK_IMPORTED_MODULE_7__config__["b" /* api_pass */],
                         "nipp": this.userdataTPK['data']['NIPP'],
                         "photo": '',
                         "lat": '',
@@ -1138,9 +1138,9 @@ var CheckInPage = /** @class */ (function () {
                     }, {}).subscribe(function (data) {
                         console.log(data);
                         if (data['rcmsg'] == "SUCCESS") {
-                            _this.http.post(__WEBPACK_IMPORTED_MODULE_7__config__["d" /* api_res */] + 'am1_insert_absen_res.php', {
-                                "usernameEDI": __WEBPACK_IMPORTED_MODULE_7__config__["e" /* api_user */],
-                                "passwordEDI": __WEBPACK_IMPORTED_MODULE_7__config__["c" /* api_pass */],
+                            _this.http.post(__WEBPACK_IMPORTED_MODULE_7__config__["c" /* api_res */] + 'am1_insert_absen_res.php', {
+                                "usernameEDI": __WEBPACK_IMPORTED_MODULE_7__config__["d" /* api_user */],
+                                "passwordEDI": __WEBPACK_IMPORTED_MODULE_7__config__["b" /* api_pass */],
                                 "nipp": _this.userdataTPK['data']['NIPP'],
                                 "photo": _this.filename,
                                 "lat": _this.lat.toString(),
@@ -1211,9 +1211,9 @@ var CheckInPage = /** @class */ (function () {
                 }
             }
             else {
-                this.http.post(__WEBPACK_IMPORTED_MODULE_7__config__["d" /* api_res */] + 'am1_insert_absen_res.php', {
-                    "usernameEDI": __WEBPACK_IMPORTED_MODULE_7__config__["e" /* api_user */],
-                    "passwordEDI": __WEBPACK_IMPORTED_MODULE_7__config__["c" /* api_pass */],
+                this.http.post(__WEBPACK_IMPORTED_MODULE_7__config__["c" /* api_res */] + 'am1_insert_absen_res.php', {
+                    "usernameEDI": __WEBPACK_IMPORTED_MODULE_7__config__["d" /* api_user */],
+                    "passwordEDI": __WEBPACK_IMPORTED_MODULE_7__config__["b" /* api_pass */],
                     "nipp": this.userdataTPK['data']['NIPP'],
                     "photo": this.filename,
                     "lat": this.lat.toString(),
@@ -1412,7 +1412,7 @@ var CheckInPage = /** @class */ (function () {
     };
     CheckInPage.prototype.pushnotif = function () {
         var tgl = this.datepipe.transform(new Date(), 'dd-MM-yyyy');
-        this.http.post(__WEBPACK_IMPORTED_MODULE_7__config__["d" /* api_res */] + "hadirkoe_notif/notif_atasan.php", {
+        this.http.post(__WEBPACK_IMPORTED_MODULE_7__config__["c" /* api_res */] + "hadirkoe_notif/notif_atasan.php", {
             "usernameEDI": "EDI-USERNAME",
             "passwordEDI": "RURJLVBBU1NXT1JE",
             "nipp": this.userdataTPK['data']['NIPP'],

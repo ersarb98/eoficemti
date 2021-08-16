@@ -1,14 +1,14 @@
 webpackJsonp([14],{
 
-/***/ 322:
+/***/ 319:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MenuAbsenPageModule", function() { return MenuAbsenPageModule; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "LoginPageModule", function() { return LoginPageModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(100);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__menu_absen__ = __webpack_require__(380);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__login__ = __webpack_require__(374);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -18,33 +18,33 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 
-var MenuAbsenPageModule = /** @class */ (function () {
-    function MenuAbsenPageModule() {
+var LoginPageModule = /** @class */ (function () {
+    function LoginPageModule() {
     }
-    MenuAbsenPageModule = __decorate([
+    LoginPageModule = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["J" /* NgModule */])({
             declarations: [
-                __WEBPACK_IMPORTED_MODULE_2__menu_absen__["a" /* MenuAbsenPage */],
+                __WEBPACK_IMPORTED_MODULE_2__login__["a" /* LoginPage */],
             ],
             imports: [
-                __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__menu_absen__["a" /* MenuAbsenPage */]),
+                __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__login__["a" /* LoginPage */]),
             ],
         })
-    ], MenuAbsenPageModule);
-    return MenuAbsenPageModule;
+    ], LoginPageModule);
+    return LoginPageModule;
 }());
 
-//# sourceMappingURL=menu-absen.module.js.map
+//# sourceMappingURL=login.module.js.map
 
 /***/ }),
 
-/***/ 343:
+/***/ 341:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return SoapService; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__soapclient_js__ = __webpack_require__(344);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__soapclient_js__ = __webpack_require__(342);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__soapclient_js___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__soapclient_js__);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -96,7 +96,7 @@ var SoapService = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 344:
+/***/ 342:
 /***/ (function(module, exports) {
 
 /*****************************************************************************\
@@ -551,16 +551,18 @@ module.exports = {
 
 /***/ }),
 
-/***/ 380:
+/***/ 374:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MenuAbsenPage; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return LoginPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(100);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_storage__ = __webpack_require__(101);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__soap_service__ = __webpack_require__(343);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__config__ = __webpack_require__(199);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_forms__ = __webpack_require__(16);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__config__ = __webpack_require__(199);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__soap_service__ = __webpack_require__(341);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ionic_storage__ = __webpack_require__(101);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ionic_native_onesignal__ = __webpack_require__(102);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -575,108 +577,166 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
+
+// import { api_base_url } from '../../config';
+// import { HttpClient } from '@angular/common/http';
 /**
- * Generated class for the MenuAbsenPage page.
+ * Generated class for the LoginPage page.
  *
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
  */
-var MenuAbsenPage = /** @class */ (function () {
-    function MenuAbsenPage(navCtrl, navParams, viewCtrl, app, storage, soapService, alertCtrl, platform) {
+var LoginPage = /** @class */ (function () {
+    function LoginPage(navCtrl, navParams, platform, formBuilder, loadingCtrl, alertCtrl, storage, toastCtrl, soapService, oneSignal) {
         this.navCtrl = navCtrl;
         this.navParams = navParams;
-        this.viewCtrl = viewCtrl;
-        this.app = app;
-        this.storage = storage;
-        this.soapService = soapService;
-        this.alertCtrl = alertCtrl;
         this.platform = platform;
-        this.isLoadingBadges = true;
+        this.formBuilder = formBuilder;
+        this.loadingCtrl = loadingCtrl;
+        this.alertCtrl = alertCtrl;
+        this.storage = storage;
+        this.toastCtrl = toastCtrl;
+        this.soapService = soapService;
+        this.oneSignal = oneSignal;
+        this.isValid = true;
+        this.formLogin = formBuilder.group({
+            username: ['', __WEBPACK_IMPORTED_MODULE_2__angular_forms__["f" /* Validators */].required],
+            password: ['', __WEBPACK_IMPORTED_MODULE_2__angular_forms__["f" /* Validators */].required],
+            swipe: [false, __WEBPACK_IMPORTED_MODULE_2__angular_forms__["f" /* Validators */].requiredTrue]
+        });
     }
-    MenuAbsenPage.prototype.ionViewDidEnter = function () {
+    LoginPage.prototype.ionViewDidLoad = function () {
+        console.log('ionViewDidLoad LoginPage');
+    };
+    LoginPage.prototype.doLogin = function () {
         var _this = this;
-        this.storage.get('userdataTPK').then(function (val) {
-            _this.userdataTPK = val;
-            _this.getBadges();
-        });
-    };
-    MenuAbsenPage.prototype.ionViewDidLoad = function () {
-        console.log('ionViewDidLoad MenuAbsenPage');
-    };
-    MenuAbsenPage.prototype.goToPage = function (page) {
-        var _this = this;
-        this.navCtrl.push(page).then(function () { _this.viewCtrl.dismiss(); });
-    };
-    MenuAbsenPage.prototype.getBadges = function () {
-        var _this = this;
-        this.isLoadingBadges = true;
-        this.soapService
-            .post(__WEBPACK_IMPORTED_MODULE_4__config__["a" /* api_base_url */], 'eoffice_countbadges', { fStream: JSON.stringify({
-                usernameEDI: __WEBPACK_IMPORTED_MODULE_4__config__["e" /* api_user */],
-                passwordEDI: __WEBPACK_IMPORTED_MODULE_4__config__["c" /* api_pass */],
-                iduser: this.userdataTPK['data']['IDUSER'],
-                idjabatan: this.userdataTPK['data']['IDJABATAN'],
-                nipp: this.userdataTPK['data']['NIPP']
-            }) }).then(function (result) {
-            var responData = JSON.parse(String(result));
-            if (responData['rcmsg'] == "SUCCESS") {
-                _this.badgesList = responData['data'];
-            }
-            else {
-                var alert_1 = _this.alertCtrl.create({
-                    title: '',
-                    subTitle: 'Gagal mendapatkan data Notifikasi (1)',
-                    buttons: ['OK']
-                });
-                //alert.present();
-            }
-            _this.isLoadingBadges = false;
-        })
-            .catch(function (error) {
-            var alert = _this.alertCtrl.create({
-                title: '',
-                subTitle: 'Gagal mendapatkan data Notifikasi (2)',
-                buttons: ['OK']
-            });
-            //alert.present();    
-            _this.isLoadingBadges = false;
-        });
-    };
-    MenuAbsenPage.prototype.isEmptyObject = function (obj) {
-        for (var prop in obj) {
-            if (obj.hasOwnProperty(prop)) {
-                return false;
-            }
+        if (!this.formLogin.valid) {
+            this.isValid = false;
+            this.errorMessage = ' *Username dan Password harus diisi';
         }
-        return true;
+        else {
+            var loading_1 = this.loadingCtrl.create({
+                spinner: 'dots',
+                content: "Mohon Tunggu...",
+                cssClass: 'transparent',
+                dismissOnPageChange: true
+            });
+            loading_1.present();
+            this.soapService
+                .post(__WEBPACK_IMPORTED_MODULE_3__config__["a" /* api_base_url */], 'eoffice_login', {
+                fStream: JSON.stringify({
+                    usernameEDI: __WEBPACK_IMPORTED_MODULE_3__config__["d" /* api_user */],
+                    passwordEDI: __WEBPACK_IMPORTED_MODULE_3__config__["b" /* api_pass */],
+                    username: this.formLogin.controls.username.value,
+                    password: this.formLogin.controls.password.value
+                })
+            })
+                .then(function (result) {
+                _this.responData = JSON.parse(String(result));
+                console.log(_this.responData);
+                if (_this.responData['rcmsg'] == "SUCCESS") {
+                    if (_this.responData['data']['login_status'] == '404 Not Found') {
+                        _this.isValid = false;
+                        _this.errorMessage = ' *Username atau Password Salah';
+                        loading_1.dismiss();
+                    }
+                    else if (_this.responData['data'] == undefined) {
+                        _this.isValid = false;
+                        _this.errorMessage = ' *Username atau Password Salah';
+                        loading_1.dismiss();
+                    }
+                    else if (_this.responData['data']['login_status'] == 'AP NOT ALLOWED') {
+                        _this.isValid = false;
+                        _this.errorMessage = ' *Login Hanya Untuk Pusat dan Cabang';
+                        loading_1.dismiss();
+                    }
+                    else {
+                        _this.isValid = true;
+                        _this.storage.set('userdataTPK', _this.responData);
+                        if (_this.platform.is('cordova')) {
+                            _this.registerOneSignal(loading_1);
+                            loading_1.dismiss();
+                            _this.navCtrl.setRoot('Home3Page');
+                        }
+                        else {
+                            loading_1.dismiss();
+                            _this.navCtrl.setRoot('Home3Page');
+                        }
+                    }
+                }
+                else if (_this.responData['rcmsg'] == "User not found") {
+                    _this.isValid = false;
+                    _this.errorMessage = ' *Username Anda Tidak Terdaftar di IVO';
+                    loading_1.dismiss();
+                }
+                else {
+                    _this.isValid = false;
+                    _this.errorMessage = ' *Username atau Password Salah';
+                    loading_1.dismiss();
+                }
+            })
+                .catch(function (error) {
+                _this.isValid = false;
+                _this.errorMessage = ' *Login Gagal, Periksa Koneksi Internet Anda';
+                loading_1.dismiss();
+            });
+        }
     };
-    MenuAbsenPage.prototype.parse = function (val) {
-        var intValue = parseInt(val);
-        if (intValue > 0) {
+    LoginPage.prototype.registerOneSignal = function (loading) {
+        var _this = this;
+        this.oneSignal.startInit(__WEBPACK_IMPORTED_MODULE_3__config__["e" /* oneSignalAppId */], __WEBPACK_IMPORTED_MODULE_3__config__["g" /* sender_id */]);
+        var notificationOpenedCallback = function (jsonData) {
+        };
+        this.oneSignal.getIds().then(function (id) {
+            _this.soapService
+                .post(__WEBPACK_IMPORTED_MODULE_3__config__["a" /* api_base_url */], 'eoffice_regis_notif_user', {
+                fStream: JSON.stringify({
+                    id_user: _this.responData['data']['IDUSER'],
+                    nipp: _this.responData['data']['NIPP'],
+                    player_ids: id.userId,
+                    usernameEDI: __WEBPACK_IMPORTED_MODULE_3__config__["d" /* api_user */],
+                    passwordEDI: __WEBPACK_IMPORTED_MODULE_3__config__["b" /* api_pass */]
+                })
+            }).then(function (result) {
+                _this.responData = JSON.parse(String(result));
+                loading.dismiss();
+                _this.navCtrl.setRoot('Home3Page');
+            }).catch(function (error) {
+                _this.errorMessage = ' *Login Gagal, Silahkan Coba Kembali.';
+                loading.dismiss();
+            });
+        });
+        this.oneSignal.endInit();
+    };
+    LoginPage.prototype.disableButton = function () {
+        if (this.formLogin.valid == false) {
             return true;
         }
         else {
             return false;
         }
     };
-    MenuAbsenPage = __decorate([
+    LoginPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
-            selector: 'page-menu-absen',
-            providers: [__WEBPACK_IMPORTED_MODULE_3__soap_service__["a" /* SoapService */]],template:/*ion-inline-start:"/Users/itadmin/Downloads/ERDA/POS_PPI/src/pages/menu-absen/menu-absen.html"*/'\n  <ion-list padding-left padding-right padding-bottom no-margin>\n    <ion-list-header class="header" no-padding no-margin >\n      <b>Menu</b>\n    </ion-list-header>      \n    <button ion-item no-padding no-margin no-lines style="font-size:1.5rem;" (click)="goToPage(\'AbsenBawahanPage\')">Absen Harian Bawahan</button>  \n    <button ion-item no-padding no-margin no-lines style="font-size:1.5rem;" (click)="goToPage(\'KoreksiAbsenBawahanPage\')">\n      Koreksi Absen Bawahan     \n      <ion-badge style="position:absolute; right:25px;" *ngIf="!isLoadingBadges  && !isEmptyObject(badgesList) && parse(badgesList[\'JUMLAH_ABSEN_BELUM_KOREKSI\'])" color="color6">{{ badgesList[\'JUMLAH_ABSEN_BELUM_KOREKSI\'] }}</ion-badge>            \n    </button>  \n  </ion-list>\n'/*ion-inline-end:"/Users/itadmin/Downloads/ERDA/POS_PPI/src/pages/menu-absen/menu-absen.html"*/,
+            selector: 'page-login',
+            providers: [__WEBPACK_IMPORTED_MODULE_4__soap_service__["a" /* SoapService */]],template:/*ion-inline-start:"/Users/itadmin/Downloads/ERDA/POS_PPI/src/pages/login/login.html"*/'<ion-content padding class="login-bg" scrollX="false" scrollY="false">\n  <div class="grand-parent-contaniner">\n    <div class="parent-container">\n      <div class="bg-color">\n        <img id="logo" src="assets/imgs/ipc-tpk-logo.png" />\n        <br>        \n        <div text-center style="margin-bottom:15px;">\n          <span ion-text color="dark" style="font-size: 1.8rem;font-weight: bold;">PPI Office System</span>\n          <br>\n          <span ion-text color="dark" style="font-size: 1.3rem;">Masukkan username dan password anda</span>\n        </div>\n        <div id="login-form">\n          <form [formGroup]="formLogin" class="item-login" (ngSubmit)="doLogin()">\n            <div class="input-item">\n              <ion-item no-lines style="font-size:1.4rem !important;">\n                <!-- <ion-label class="login-label" color="dark" stacked>Username</ion-label> -->\n                <ion-icon name="person" item-left no-margin class="my-icons" color="danger"></ion-icon>\n                <ion-input type="text" formControlName="username" placeholder="Username"></ion-input>\n              </ion-item>\n              <ion-item no-lines style="font-size:1.4rem !important;">\n                <!-- <ion-label class="login-label" color="dark" stacked>Password</ion-label> -->\n                <ion-icon name="lock" item-left no-margin class="my-icons" color="danger"></ion-icon>\n                <ion-input type="password" formControlName="password" placeholder="Password"></ion-input>\n              </ion-item>\n            </div>            \n            <!-- <div text-center>\n              <span ion-text text-wrap style="font-size: 1.3rem;" color="dark">swipe to right to confirm your are not robot</span> <br><br>\n              <input type="range" type="range" min="1" max="10" value="1" class="my-slider" />\n            </div> -->\n            <div class="swipe-cont" >\n              <ion-item no-lines>\n                <ion-label ion-text text-wrap style="font-size: 1.3rem;">Swipe to right to confirm you are not robot\n                </ion-label>\n                <ion-toggle formControlName="swipe"></ion-toggle>swipe\n              </ion-item>\n            </div>\n\n            <br>\n\n            <span ion-text text-wrap color="color6">{{errorMessage}}</span>\n\n            <button margin-top class="login-button" ion-button icon-start block color="danger" tappable type="submit"  [disabled]="disableButton()" >\n              <ion-icon name="log-in"></ion-icon>\n              Login\n            </button>\n          </form>\n        </div>\n      </div>\n\n    </div>\n  </div>\n</ion-content>'/*ion-inline-end:"/Users/itadmin/Downloads/ERDA/POS_PPI/src/pages/login/login.html"*/,
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavController */],
             __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* NavParams */],
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["q" /* ViewController */],
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["c" /* App */],
-            __WEBPACK_IMPORTED_MODULE_2__ionic_storage__["b" /* Storage */],
-            __WEBPACK_IMPORTED_MODULE_3__soap_service__["a" /* SoapService */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["n" /* Platform */],
+            __WEBPACK_IMPORTED_MODULE_2__angular_forms__["a" /* FormBuilder */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* LoadingController */],
             __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["b" /* AlertController */],
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["n" /* Platform */]])
-    ], MenuAbsenPage);
-    return MenuAbsenPage;
+            __WEBPACK_IMPORTED_MODULE_5__ionic_storage__["b" /* Storage */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["p" /* ToastController */],
+            __WEBPACK_IMPORTED_MODULE_4__soap_service__["a" /* SoapService */],
+            __WEBPACK_IMPORTED_MODULE_6__ionic_native_onesignal__["a" /* OneSignal */]])
+    ], LoginPage);
+    return LoginPage;
 }());
 
-//# sourceMappingURL=menu-absen.js.map
+//# sourceMappingURL=login.js.map
 
 /***/ })
 

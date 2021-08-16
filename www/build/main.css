@@ -96001,104 +96001,6 @@ page-disposisi .bold {
   font-weight: 500;
 }
 
-page-eval-bawahan-list .my-badge {
-  width: 50%;
-}
-
-page-eval-bawahan-list .font {
-  font-size: 1.3rem;
-}
-
-page-eval-bawahan-list .font2 {
-  font-size: 1.4rem;
-}
-
-page-eval-bawahan-list .bold {
-  font-weight: bold;
-}
-
-page-eval-bawahan-list .card-md {
-  border-radius: 3px;
-  border: 1px solid #e6e6e6;
-  -webkit-box-shadow: none !important;
-  box-shadow: none !important;
-}
-
-page-eval-bawahan-list .font-mini {
-  font-size: 1.2rem;
-}
-
-page-eval-bawahan-list .font-small {
-  font-size: 1.3rem;
-  color: gray;
-}
-
-page-eval-bawahan-list .font-header {
-  font-size: 1.3rem;
-  color: black;
-}
-
-page-eval-bawahan-list h2, page-eval-bawahan-list h3, page-eval-bawahan-list p {
-  background-color: lightgrey;
-  opacity: 0.6;
-  height: 1em;
-  margin-top: 10px;
-}
-
-page-eval-bawahan-list h2 {
-  width: 40%;
-}
-
-page-eval-bawahan-list h3 {
-  width: 80%;
-}
-
-page-eval-bawahan-list p {
-  width: 50%;
-}
-
-page-eval-bawahan-list .animate-skeleton-background {
-  -webkit-animation: infinite bgcolorchange 4s;
-  animation: 4s infinite bgcolorchange;
-  opacity: 0.5;
-}
-
-@keyframes bgcolorchange {
-  0% {
-    color: #f2f2f2;
-  }
-  25% {
-    background: lightgray;
-  }
-  50% {
-    background: #f2f2f2;
-  }
-  75% {
-    background: lightgray;
-  }
-  100% {
-    background-color: #f2f2f2;
-  }
-}
-
-@-webkit-keyframes bgcolorchange {
-  0% {
-    background: #f2f2f2;
-  }
-  25% {
-    background: lightgray;
-  }
-  50% {
-    background: #f2f2f2;
-  }
-  75% {
-    background: lightgray;
-  }
-  100% {
-    background: #f2f2f2;
-  }
-}
-
 page-fingerprint-modal .content .scroll-content {
   margin-top: 0px !important;
 }
@@ -96919,7 +96821,7 @@ page-home3 .header-container {
 
 page-home3 .welcome-class {
   position: absolute;
-  top: 0;
+  top: 60px;
   padding-left: 16px;
   color: black;
 }
@@ -96937,7 +96839,7 @@ page-home3 .header-img {
 
 page-home3 .header-card {
   position: absolute;
-  top: 260px;
+  top: 315px;
   width: calc(100% - 32px);
   border-radius: 15px;
   padding: 8px;
@@ -98164,104 +98066,6 @@ page-rate-absensi .hr {
 page-rate-absensi .my-header {
   margin-top: 10%;
   padding: 5px;
-}
-
-page-rencana-kerja-bawahan-list .my-badge {
-  width: 50%;
-}
-
-page-rencana-kerja-bawahan-list .font {
-  font-size: 1.3rem;
-}
-
-page-rencana-kerja-bawahan-list .font2 {
-  font-size: 1.4rem;
-}
-
-page-rencana-kerja-bawahan-list .bold {
-  font-weight: bold;
-}
-
-page-rencana-kerja-bawahan-list .card-md {
-  border-radius: 3px;
-  border: 1px solid #e6e6e6;
-  -webkit-box-shadow: none !important;
-  box-shadow: none !important;
-}
-
-page-rencana-kerja-bawahan-list .font-mini {
-  font-size: 1.2rem;
-}
-
-page-rencana-kerja-bawahan-list .font-small {
-  font-size: 1.3rem;
-  color: gray;
-}
-
-page-rencana-kerja-bawahan-list .font-header {
-  font-size: 1.3rem;
-  color: black;
-}
-
-page-rencana-kerja-bawahan-list h2, page-rencana-kerja-bawahan-list h3, page-rencana-kerja-bawahan-list p {
-  background-color: lightgrey;
-  opacity: 0.6;
-  height: 1em;
-  margin-top: 10px;
-}
-
-page-rencana-kerja-bawahan-list h2 {
-  width: 40%;
-}
-
-page-rencana-kerja-bawahan-list h3 {
-  width: 80%;
-}
-
-page-rencana-kerja-bawahan-list p {
-  width: 50%;
-}
-
-page-rencana-kerja-bawahan-list .animate-skeleton-background {
-  -webkit-animation: infinite bgcolorchange 4s;
-  animation: 4s infinite bgcolorchange;
-  opacity: 0.5;
-}
-
-@keyframes bgcolorchange {
-  0% {
-    color: #f2f2f2;
-  }
-  25% {
-    background: lightgray;
-  }
-  50% {
-    background: #f2f2f2;
-  }
-  75% {
-    background: lightgray;
-  }
-  100% {
-    background-color: #f2f2f2;
-  }
-}
-
-@-webkit-keyframes bgcolorchange {
-  0% {
-    background: #f2f2f2;
-  }
-  25% {
-    background: lightgray;
-  }
-  50% {
-    background: #f2f2f2;
-  }
-  75% {
-    background: lightgray;
-  }
-  100% {
-    background: #f2f2f2;
-  }
 }
 
 page-restitusi-detail .header-card {

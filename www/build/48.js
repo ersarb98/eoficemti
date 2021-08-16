@@ -1,14 +1,14 @@
 webpackJsonp([48],{
 
-/***/ 311:
+/***/ 307:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Home2PageModule", function() { return Home2PageModule; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DisposisiPageModule", function() { return DisposisiPageModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(100);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__home2__ = __webpack_require__(368);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__disposisi__ = __webpack_require__(362);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -18,31 +18,31 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 
-var Home2PageModule = /** @class */ (function () {
-    function Home2PageModule() {
+var DisposisiPageModule = /** @class */ (function () {
+    function DisposisiPageModule() {
     }
-    Home2PageModule = __decorate([
+    DisposisiPageModule = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["J" /* NgModule */])({
             declarations: [
-                __WEBPACK_IMPORTED_MODULE_2__home2__["a" /* Home2Page */],
+                __WEBPACK_IMPORTED_MODULE_2__disposisi__["a" /* DisposisiPage */],
             ],
             imports: [
-                __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__home2__["a" /* Home2Page */]),
+                __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__disposisi__["a" /* DisposisiPage */]),
             ],
         })
-    ], Home2PageModule);
-    return Home2PageModule;
+    ], DisposisiPageModule);
+    return DisposisiPageModule;
 }());
 
-//# sourceMappingURL=home2.module.js.map
+//# sourceMappingURL=disposisi.module.js.map
 
 /***/ }),
 
-/***/ 368:
+/***/ 362:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return Home2Page; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return DisposisiPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(100);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -56,77 +56,132 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 
 
+// import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 /**
- * Generated class for the Home2Page page.
+ * Generated class for the DisposisiPage page.
  *
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
  */
-var Home2Page = /** @class */ (function () {
-    function Home2Page(navCtrl, modalCtrl, navParams) {
+var DisposisiPage = /** @class */ (function () {
+    function DisposisiPage(navCtrl, navParams, 
+        // private _fb: FormBuilder,
+        viewCtrl, modalCtrl) {
         this.navCtrl = navCtrl;
-        this.modalCtrl = modalCtrl;
         this.navParams = navParams;
-        this.suratMenu = [];
-        this.p2bMenu = [];
-        this.budgtMonitoringMenu = [];
-        this.selfServiceMenu = [];
-        this.suratMenu = [
-            { img: 'assets/imgs/menu-icon/inbox-white.png', title: 'Surat Masuk', component: 'InboxPage' },
-            { img: 'assets/imgs/menu-icon/outbox-white.png', title: 'Surat Keluar', component: 'OutboxPage' },
-            { img: 'assets/imgs/menu-icon/sppd-white.png', title: 'SPPD', component: 'AbsenListPage' },
-            { img: 'assets/imgs/menu-icon/show-more.png', title: 'Show More', component: 'showMore' }
+        this.viewCtrl = viewCtrl;
+        this.modalCtrl = modalCtrl;
+        // public disposisiForm: FormGroup;
+        this.perintahList = [
+            "Selesaikan",
+            "ACC dan Aksi",
+            "Evaluasi-Tanggapan",
+            "Saran Pendapat",
+            "Laporkan Hasilnya",
+            "Tunda Dulu",
+            "Bicarakan dengan Dirut",
+            "Koordinasi dengan Dirut",
+            "UDK dan Seperlunya",
+            "Arsip"
         ];
-        this.p2bMenu = [
-            { img: 'assets/imgs/menu-icon/p2b.png', title: 'P2B', component: 'CutiListPage' }
-        ];
-        this.budgtMonitoringMenu = [
-            { img: 'assets/imgs/menu-icon/approval-prpo.png', title: 'Approval PR/PO', component: 'CutiListPage' },
-            { img: 'assets/imgs/menu-icon/uang-muka.png', title: 'Pengajuan Uang Muka', component: 'CutiListPage' }
-        ];
-        this.selfServiceMenu = [
-            { img: 'assets/imgs/menu-icon/absensi.png', title: 'Absensi', component: 'InboxPage' },
-            { img: 'assets/imgs/menu-icon/cuti.png', title: 'Izin/Cuti', component: 'OutboxPage' },
-            { img: 'assets/imgs/menu-icon/payslip.png', title: 'Payslip', component: 'AbsenListPage' },
-            { img: 'assets/imgs/menu-icon/show-more.png', title: 'Show More', component: 'showMore' },
-        ];
+        this.kepadaList = [];
+        this.disposisiJabatanList = [];
+        this.disposisiPekerjaList = [];
+        this.searchResultList = [];
+        this.showResult = false;
+        this.fcKepada = '';
+        this.kepadaId = '';
+        this.fcPerintah = '';
+        this.fcCacatan = '';
+        // this.disposisiForm = this._fb.group({
+        //   fcKepada: ['', Validators.compose([
+        //     Validators.required
+        //   ])],
+        //   fcPerintah: ['', Validators.compose([
+        //     Validators.required
+        //   ])],
+        //   fcCacatan: ['', Validators.compose([
+        //     Validators.required
+        //   ])]      
+        // });
     }
-    Home2Page.prototype.ionViewDidLoad = function () {
-        console.log('ionViewDidLoad Home2Page');
+    DisposisiPage.prototype.ionViewWillLoad = function () {
+        this.kepadaList = this.navParams.get("kepadaList");
+        // console.log(this.kepadaList);
+        this.tipeDisposisi = this.navParams.get('tipeDisposisi');
+        this.fcCacatan = this.navParams.get('lastCatatan');
     };
-    Home2Page.prototype.ionViewDidEnter = function () {
+    DisposisiPage.prototype.ionViewDidLoad = function () {
+        console.log('ionViewDidLoad DisposisiPage');
     };
-    Home2Page.prototype.openPage = function (item) {
-        if (item == 'showMore') {
-            var profileModal = this.modalCtrl.create("ShowMorePage", {}, {
-                showBackdrop: true,
-                enableBackdropDismiss: true,
-                cssClass: "mymodal"
-            });
-            profileModal.present();
+    DisposisiPage.prototype.getKepada = function () {
+        var input = this.fcKepada.toUpperCase();
+        if (this.fcKepada.length > 1) {
+            this.searchResultList = this.kepadaList.filter(function (x) { return x.NAMA.includes(input) || x['NAMA JABATAN'].includes(input); });
+            this.showResult = true;
         }
         else {
-            this.navCtrl.push(item);
+            this.searchResultList = [];
         }
     };
-    Home2Page.prototype.goToSetting = function () {
-        this.navCtrl.push('SettingPage');
+    DisposisiPage.prototype.setKepada = function (kepadaResult) {
+        console.log(kepadaResult);
+        if (this.tipeDisposisi == 'jabatan') {
+            this.fcKepada = kepadaResult['NAMA JABATAN'] + " | " + kepadaResult['NAMA'];
+            this.kepadaId = kepadaResult['ID USER'] + "_" + kepadaResult['ID JABATAN'] + "_" + kepadaResult['NIPP'] + "_" + kepadaResult['NAMA'] + "_" + kepadaResult['NAMA JABATAN'];
+        }
+        else if (this.tipeDisposisi == 'pekerja') {
+            this.fcKepada = kepadaResult['NAMA'] + " | " + kepadaResult['NIPP'] + " | " + kepadaResult['NAMA JABATAN'];
+            this.kepadaId = kepadaResult['ID USER'] + "_" + kepadaResult['ID JABATAN'] + "_" + kepadaResult['NIPP'] + "_" + kepadaResult['NAMA'] + "_" + kepadaResult['NAMA JABATAN'];
+        }
+        this.showResult = false;
     };
-    Home2Page.prototype.goToHome = function () {
-        this.navCtrl.push("HomePage");
+    DisposisiPage.prototype.sendData = function () {
+        var id = this.kepadaId;
+        var tindakan = this.fcPerintah;
+        var catatan = this.fcCacatan;
+        for (var index = 0; index < this.kepadaList.length; index++) {
+            this.kepadaList[index].selected = false;
+        }
+        if (this.tipeDisposisi == 'jabatan') {
+            this.disposisiJabatanList.push({ id_user: id.split('_')[0], id_jabatan: id.split('_')[1], tindakan: tindakan, catatan: catatan, nipp: id.split('_')[2], nama: id.split('_')[3], nama_jabatan: id.split('_')[4] });
+            this.viewCtrl.dismiss({ disposisiJabatanList: this.disposisiJabatanList, disposisiPekerjaList: this.disposisiPekerjaList, lastCatatan: catatan });
+        }
+        else if (this.tipeDisposisi == 'pekerja') {
+            this.disposisiPekerjaList.push({ id_user: id.split('_')[0], id_jabatan: id.split('_')[1], tindakan: tindakan, catatan: catatan, nipp: id.split('_')[2], nama: id.split('_')[3], nama_jabatan: id.split('_')[4] });
+            this.viewCtrl.dismiss({ disposisiJabatanList: this.disposisiJabatanList, disposisiPekerjaList: this.disposisiPekerjaList, lastCatatan: catatan });
+        }
     };
-    Home2Page = __decorate([
+    DisposisiPage.prototype.cancel = function () {
+        for (var index = 0; index < this.kepadaList.length; index++) {
+            this.kepadaList[index].selected = false;
+        }
+        this.viewCtrl.dismiss();
+    };
+    DisposisiPage.prototype.openSelect = function () {
+        var _this = this;
+        var modal = this.modalCtrl.create('SelectBawahanDisposisiPage', { 'kepadaList': this.kepadaList });
+        modal.onDidDismiss(function (data) {
+            console.log(data);
+            if (data != null) {
+                _this.setKepada(data);
+            }
+        });
+        modal.present();
+    };
+    DisposisiPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
-            selector: 'page-home2',template:/*ion-inline-start:"/Users/itadmin/Downloads/ERDA/POS_PPI/src/pages/home2/home2.html"*/'<ion-header no-border>\n  <ion-navbar color="color1">\n    <ion-title>\n      <img src="assets/imgs/ipc-tpk-logo.png" style="width:80px; padding-top: 4px;" />\n    </ion-title>\n    <ion-buttons end>\n      <button ion-button (click)="logout()">\n        <ion-icon style="font-size:2.5rem;" name="md-settings" color="light"></ion-icon>\n      </button>\n      <button ion-button (click)="logout()">\n        <ion-icon style="font-size:2.5rem;" name="md-log-out" color="light"></ion-icon>\n      </button>\n    </ion-buttons>\n  </ion-navbar>\n</ion-header>\n\n\n\n<ion-content padding-bottom>\n  <!-- <div class="my-header">\n    <div class="my-title" padding>\n      <span ion-text color="light">Mobile IVO TPK</span>\n    </div>\n  </div>\n\n  <div class="img-container">\n    <img src="../../assets/imgs/user-img.jpg" class="my-img" />\n  </div>\n\n  <div class="user-info">\n    <span ion-text class="user-info-name">John Van Deer Mor</span><br>\n    <span ion-text text-wrap class="user-info-jab">DVP Operasi dan Hubungan Internasional</span>\n  </div>\n\n  <div class="button-container">\n    <button ion-button round class="setting-button" (click)="goToSetting()">Setting</button>\n    <button ion-button round outline color="danger">Logout</button>\n  </div>\n\n  -->\n\n\n\n  <div class="profile-container" (click)="goToHome()">\n    <img src="../../assets/imgs/user-img.jpg" class="my-img" />\n\n    <div class="user-info">\n      <span ion-text class="user-info-name">John Van Deer Mor</span><br>\n      <span ion-text text-wrap class="user-info-jab">DVP Operasi dan Hubungan Internasional</span>\n    </div>\n  </div>\n\n  <ion-row>\n    <ion-col class="col-left">\n      <div>\n        <span ion-text text-wrap class="user-info-name" color="orange">25</span> <br>\n        <span ion-text text-wrap style="font-size:1.3rem; color: gray;">Belum dibaca</span>\n      </div>\n    </ion-col>\n    <ion-col class="col-right">\n      <div>\n        <span ion-text text-wrap class="user-info-name" color="orange">7</span> <br>\n        <span ion-text text-wrap style="font-size:1.3rem; color: gray;">Approval</span>\n      </div>\n    </ion-col>\n  </ion-row>\n\n  <div class="agenda-title-container">\n    <img src="assets/imgs/agenda.png" class="title-icon">\n    <span ion-text text-wrap style="font-size:1.5rem;">\n      <b>Agenda anda saat ini</b>\n    </span>\n  </div>\n\n\n\n  <ion-slides pager="true" paginationType="bullets">\n    <ion-slide>\n      <ion-card class="my-card">\n        <ion-item>\n          <span ion-text text-wrap class="font-mini">\n            19 agustus 2019 08.00 - 09.00\n          </span> <br>\n          <span ion-text text-wrap class="font-mini">\n            Wisma SMR Lantai 10\n          </span>\n          <div style="\n                    width:100%;\n                    border-bottom: 1px solid white;\n                    padding: 5px;\n                    margin-bottom:5px;">\n          </div>\n          <span ion-text text-wrap class="font-small">\n            <b>Meeting Kick Off E-Office IPC TPK</b>\n          </span>\n        </ion-item>\n      </ion-card>\n    </ion-slide>\n    <ion-slide>\n      <ion-card class="my-card">\n        <ion-item>\n          <span ion-text text-wrap class="font-mini">\n            19 agustus 2019 08.00 - 09.00\n          </span> <br>\n          <span ion-text text-wrap class="font-mini">\n            Wisma SMR Lantai 10\n          </span>\n          <div style="\n                    width:100%;\n                    border-bottom: 1px solid lightgray;\n                    padding: 5px;\n                    margin-bottom:5px;">\n          </div>\n          <span ion-text text-wrap class="font-small">\n            <b>Meeting Kick Off E-Office IPC TPK</b>\n          </span>\n        </ion-item>\n      </ion-card>\n    </ion-slide>\n  </ion-slides>\n\n  <div class="agenda-title-container">\n\n    <span ion-text text-wrap style="font-size:1.5rem;">\n      <img src="assets/imgs/menu.png" class="title-icon">\n      <b>Menu Utama</b>\n    </span>\n  </div>\n\n  <div class="menu-parent">\n    <div style="width: 33.3%" *ngFor="let item of suratMenu;let i=index" tappable (click)="openPage(item.component)">\n      <div class="container-menu-{{ i }}">\n        <img src="{{item.img}}" style="width: 38%; \n                height: auto;          \n                max-width: 35vw;">\n      </div>\n      <div align="center">\n        <span style="font-size:1.3rem !important">{{item.title}}</span>\n      </div>\n    </div>\n  </div>\n\n  <ion-card class="my-card-2">\n    <ion-item>\n      <div style="display: flex;align-items: center;">\n        <img src="assets/imgs/menu-icon/p2b-white.png" style="width: 10%;height: auto;          \n            max-width: 35vw;margin-right: 10px;">\n        <span ion-text text-wrap class="font-small">\n          <b>P2B</b>\n        </span>\n      </div>\n      <br>\n      <span ion-text text-wrap class="font-mini">\n        Karyawan dapat menambah, mengubah, submit serta melakukan approval P2B.\n      </span>\n\n      <button ion-button item-end round outline color="white" style="font-size:1.4rem;">BUKA</button>\n\n    </ion-item>\n  </ion-card>\n\n\n  <!-- <div class="agenda-title-container">\n    <span ion-text text-wrap style="font-size:1.5rem;">\n      <b>Self Service</b>\n    </span>\n  </div>\n\n  <div class="menu-parent">\n    <div style="width: 25%" *ngFor="let item of selfServiceMenu.slice(0, 4) " tappable\n      (click)="openPage(item.component)">\n      <div class="container-menu">\n        <img src="{{item.img}}" style="width: 50%; \n                height: auto;          \n                max-width: 35vw;">\n      </div>\n      <div align="center">\n        <span style="font-size:1.3rem !important">{{item.title}}</span>\n      </div>\n    </div>\n  </div> -->\n\n  <!-- <div class="menu-parent">\n    <div style="width: 25%" *ngFor="let item of selfServiceMenu.slice(4, 8) " tappable\n      (click)="openPage(item.component)">\n      <div class="container-menu">\n        <img src="{{item.img}}" style="width: 50%; \n                height: auto;          \n                max-width: 35vw;">\n      </div>\n      <div align="center">\n        <span style="font-size:1.3rem !important">{{item.title}}</span>\n      </div>\n    </div>\n  </div> -->\n\n\n\n  <!-- <div class="agenda-title-container">\n    <span ion-text text-wrap style="font-size:1.4rem;">\n      <b>P2B</b>\n    </span>\n  </div>\n\n\n  <div class="menu-parent">\n    <div style="width: 25%" *ngFor="let item of p2bMenu" tappable (click)="openPage(item.component)">\n      <div class="container-menu">\n        <img src="{{item.img}}" style="width: 50%; \n                  height: auto;          \n                  max-width: 35vw;">\n      </div>\n      <div align="center">\n        <span style="font-size:1.3rem !important">{{item.title}}</span>\n      </div>\n    </div>\n  </div> -->\n\n  <!-- <div class="agenda-title-container">\n    <span ion-text text-wrap style="font-size:1.5rem;">\n      <b>Budget Monitoring</b>\n    </span>\n  </div>\n\n  <div class="menu-parent">\n    <div style="width: 25%" *ngFor="let item of budgtMonitoringMenu" tappable (click)="openPage(item.component)">\n      <div class="container-menu">\n        <img src="{{item.img}}" style="width: 50%; \n                height: auto;          \n                max-width: 35vw;">\n      </div>\n      <div align="center">\n        <span style="font-size:1.3rem !important">{{item.title}}</span>\n      </div>\n    </div>\n  </div> -->\n\n\n\n\n\n</ion-content>'/*ion-inline-end:"/Users/itadmin/Downloads/ERDA/POS_PPI/src/pages/home2/home2.html"*/,
+            selector: 'page-disposisi',template:/*ion-inline-start:"/Users/itadmin/Downloads/ERDA/POS_PPI/src/pages/disposisi/disposisi.html"*/'<ion-header>\n    <ion-navbar>\n        <ion-title><span style="color:#FFF">Disposisi</span></ion-title>\n        <ion-buttons end>\n            <button ion-button icon-only (click)="cancel()">\n                <ion-icon name="ios-close-outline" style="color:#FFF"></ion-icon>\n            </button>\n        </ion-buttons>\n    </ion-navbar>\n</ion-header>\n\n<ion-content padding>\n    <ion-item no-padding>\n        <span item-left>\n            <img src="assets/imgs/logo/person.png" class="icons">\n        </span>\n        <ion-label stacked>Kepada</ion-label>\n        <ion-input type="text" placeholder="" (keyup)="getKepada()" [(ngModel)]="fcKepada" (ionFocus)="openSelect()" (click)="openSelect()"></ion-input>\n    </ion-item>\n\n    <!-- <div *ngIf="searchResultList.length > 0 && showResult">\n        <ion-item *ngFor="let SearchResult of searchResultList" no-margin>\n            <p ion-text text-wrap style="font-size:1.3rem !important;" *ngIf="tipeDisposisi == \'jabatan\'"\n                (click)="setKepada(SearchResult)">{{ SearchResult[\'NAMA JABATAN\'] }} |\n                {{ SearchResult[\'NAMA\'] }}</p>\n            <p ion-text text-wrap style="font-size:1.3rem !important;" ion-text text-wrap\n                *ngIf="tipeDisposisi == \'pekerja\'" (click)="setKepada(SearchResult)"> {{ SearchResult[\'NAMA\'] }}\n                | {{ SearchResult[\'NIPP\'] }} | {{ SearchResult[\'NAMA JABATAN\'] }}</p>\n        </ion-item>\n    </div> -->\n\n    <ion-item no-padding>\n        <span item-left>\n            <img src="assets/imgs/logo/jenis_cuti.png" class="icons">\n        </span>\n        <ion-label stacked>Perintah</ion-label>\n        <ion-select [(ngModel)]="fcPerintah" placeholder="">\n            <ion-option *ngFor="let perintah of perintahList" value="{{ perintah }}">{{ perintah }}</ion-option>\n        </ion-select>\n    </ion-item>\n\n    <ion-item no-padding>\n        <span item-left>\n            <img src="assets/imgs/logo/perihal.png" class="icons">\n        </span>\n        <ion-label stacked>Catatan</ion-label>\n        <ion-input type="text" [(ngModel)]="fcCacatan" placeholder="" clearInput></ion-input>\n    </ion-item>\n\n    <div class="row">\n        <div class="col">\n            <button ion-button icon-start full color="danger" style="border-radius: 5px;" (click)="cancel()" margin-top>\n                <ion-icon name="md-close"></ion-icon>\n                Batal\n            </button>\n        </div>\n        <div class="col">\n            <button ion-button icon-start full color="primary" style="border-radius: 5px;" margin-top\n                (click)="sendData()" [disabled]="fcKepada == \'\' || fcPerintah == \'\' || fcCacatan == \'\' ? true : false">\n                <ion-icon name="md-checkmark"></ion-icon>\n                Simpan\n            </button>\n        </div>\n    </div>\n</ion-content>'/*ion-inline-end:"/Users/itadmin/Downloads/ERDA/POS_PPI/src/pages/disposisi/disposisi.html"*/,
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavController */],
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* ModalController */],
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* NavParams */]])
-    ], Home2Page);
-    return Home2Page;
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* NavParams */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["q" /* ViewController */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* ModalController */]])
+    ], DisposisiPage);
+    return DisposisiPage;
 }());
 
-//# sourceMappingURL=home2.js.map
+//# sourceMappingURL=disposisi.js.map
 
 /***/ })
 

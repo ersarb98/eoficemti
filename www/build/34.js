@@ -5,10 +5,10 @@ webpackJsonp([34],{
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AddKategoriPengajuanPageModule", function() { return AddKategoriPengajuanPageModule; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AbsenTeamHadirkoePageModule", function() { return AbsenTeamHadirkoePageModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(100);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__add_kategori_pengajuan__ = __webpack_require__(351);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__absen_team_hadirkoe__ = __webpack_require__(349);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -18,33 +18,33 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 
-var AddKategoriPengajuanPageModule = /** @class */ (function () {
-    function AddKategoriPengajuanPageModule() {
+var AbsenTeamHadirkoePageModule = /** @class */ (function () {
+    function AbsenTeamHadirkoePageModule() {
     }
-    AddKategoriPengajuanPageModule = __decorate([
+    AbsenTeamHadirkoePageModule = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["J" /* NgModule */])({
             declarations: [
-                __WEBPACK_IMPORTED_MODULE_2__add_kategori_pengajuan__["a" /* AddKategoriPengajuanPage */],
+                __WEBPACK_IMPORTED_MODULE_2__absen_team_hadirkoe__["a" /* AbsenTeamHadirkoePage */],
             ],
             imports: [
-                __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__add_kategori_pengajuan__["a" /* AddKategoriPengajuanPage */]),
+                __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__absen_team_hadirkoe__["a" /* AbsenTeamHadirkoePage */]),
             ],
         })
-    ], AddKategoriPengajuanPageModule);
-    return AddKategoriPengajuanPageModule;
+    ], AbsenTeamHadirkoePageModule);
+    return AbsenTeamHadirkoePageModule;
 }());
 
-//# sourceMappingURL=add-kategori-pengajuan.module.js.map
+//# sourceMappingURL=absen-team-hadirkoe.module.js.map
 
 /***/ }),
 
-/***/ 343:
+/***/ 341:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return SoapService; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__soapclient_js__ = __webpack_require__(344);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__soapclient_js__ = __webpack_require__(342);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__soapclient_js___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__soapclient_js__);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -96,7 +96,7 @@ var SoapService = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 344:
+/***/ 342:
 /***/ (function(module, exports) {
 
 /*****************************************************************************\
@@ -551,17 +551,18 @@ module.exports = {
 
 /***/ }),
 
-/***/ 351:
+/***/ 349:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AddKategoriPengajuanPage; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AbsenTeamHadirkoePage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(100);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_forms__ = __webpack_require__(16);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__soap_service__ = __webpack_require__(343);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__config__ = __webpack_require__(199);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__soap_service__ = __webpack_require__(341);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_storage__ = __webpack_require__(101);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__config__ = __webpack_require__(199);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__angular_common__ = __webpack_require__(26);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__angular_common_http__ = __webpack_require__(200);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -577,123 +578,156 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
 /**
- * Generated class for the AddKategoriPengajuanPage page.
+ * Generated class for the AbsenTeamHadirkoePage page.
  *
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
  */
-var AddKategoriPengajuanPage = /** @class */ (function () {
-    function AddKategoriPengajuanPage(navCtrl, navParams, _fb, viewCtrl, soapService, loadingCtrl, storage, alertCtrl, modalCtrl, toastCtrl) {
+var AbsenTeamHadirkoePage = /** @class */ (function () {
+    function AbsenTeamHadirkoePage(navCtrl, navParams, soapService, storage, datepipe, http, alertCtrl) {
+        var _this = this;
         this.navCtrl = navCtrl;
         this.navParams = navParams;
-        this._fb = _fb;
-        this.viewCtrl = viewCtrl;
         this.soapService = soapService;
-        this.loadingCtrl = loadingCtrl;
         this.storage = storage;
+        this.datepipe = datepipe;
+        this.http = http;
         this.alertCtrl = alertCtrl;
-        this.modalCtrl = modalCtrl;
-        this.toastCtrl = toastCtrl;
-        this.isLoading = true;
-        this.addKategoriForm = this._fb.group({
-            fcKategori: ['', __WEBPACK_IMPORTED_MODULE_2__angular_forms__["f" /* Validators */].compose([
-                    __WEBPACK_IMPORTED_MODULE_2__angular_forms__["f" /* Validators */].required
-                ])]
+        this.isLoading = false;
+        this.fakeUsers = new Array(5);
+        this.absenList = [];
+        this.notAbsenList = [];
+        this.isPageAbsen = true;
+        this.isPageNotAbsen = false;
+        this.isAtasan = false;
+        this.idUser = navParams.get('idUser');
+        this.date = navParams.get('date');
+        var split = this.date.split("-");
+        this.dateConvert = new Date(split[2], split[1], split[0]);
+        var weekday = new Array(7);
+        weekday[0] = "Minggu";
+        weekday[1] = "Senin";
+        weekday[2] = "Selasa";
+        weekday[3] = "Rabu";
+        weekday[4] = "Kamis";
+        weekday[5] = "Jumat";
+        weekday[6] = "Sabtu";
+        var month = new Array();
+        month[0] = "Januari";
+        month[1] = "Februari";
+        month[2] = "Maret";
+        month[3] = "April";
+        month[4] = "Mei";
+        month[5] = "Juni";
+        month[6] = "Juli";
+        month[7] = "Agustus";
+        month[8] = "September";
+        month[9] = "Oktober";
+        month[10] = "November";
+        month[11] = "Desember";
+        console.log('get day : ' + this.dateConvert.getDay());
+        console.log('get month : ' + this.dateConvert.getMonth());
+        this.dayConvert = weekday[this.dateConvert.getDay()];
+        this.monthConvert = month[this.dateConvert.getMonth()];
+        this.dateConvert = split[0];
+        this.yearConvert = split[2];
+        console.log(this.dayConvert + ", " + this.dateConvert + " " + this.monthConvert + " " + this.yearConvert);
+        console.log("dateconvert : " + this.dateConvert);
+        this.getList(this.idUser, this.date);
+        this.storage.get('userdataTPK').then(function (val) {
+            _this.userdataTPK = val;
+            console.log(_this.userdataTPK);
+            if (_this.isEmptyObject(_this.userdataTPK['data']['LISTOFFICER'][0]) && _this.isEmptyObject(_this.userdataTPK['data']['DATA_BAWAHAN'][0]) && _this.isEmptyObject(_this.userdataTPK['data']['DATA_BAWAHAN_TNO'][0])) {
+                _this.isAtasan = false;
+            }
+            else {
+                _this.isAtasan = true;
+            }
         });
     }
-    AddKategoriPengajuanPage.prototype.ionViewDidEnter = function () {
+    AbsenTeamHadirkoePage.prototype.ionViewDidLoad = function () {
+        console.log('ionViewDidLoad AbsenTeamHadirkoePage');
+    };
+    AbsenTeamHadirkoePage.prototype.getList = function (idUser, mydate) {
         var _this = this;
-        var loading = this.loadingCtrl.create({
-            spinner: 'dots',
-            content: "Mohon Tunggu...",
-            cssClass: 'transparent',
-            dismissOnPageChange: true
-        });
-        loading.present();
         this.isLoading = true;
-        this.storage.get('userdataIPCContact').then(function (val2) {
-            _this.userdataIPCContact = val2;
-            //console.log(this.userdataIPCContact);
-            loading.dismiss();
+        this.http.post(__WEBPACK_IMPORTED_MODULE_2__config__["c" /* api_res */] + 'am8_team.php', {
+            usernameEDI: __WEBPACK_IMPORTED_MODULE_2__config__["d" /* api_user */],
+            passwordEDI: __WEBPACK_IMPORTED_MODULE_2__config__["b" /* api_pass */],
+            id_user: idUser,
+            tgl: mydate
+        }).subscribe(function (data) {
+            console.log(data);
+            //var responData = JSON.parse(data); 
+            if (data['rcmsg'] == 'SUCCESS') {
+                _this.absenList = data['data']['ABSEN'];
+                _this.notAbsenList = data['data']['NOT_ABSEN'];
+            }
+            else {
+                var alert_1 = _this.alertCtrl.create({
+                    title: '',
+                    subTitle: 'Gagal mendapatkan data, coba kembali.',
+                    buttons: ['OK']
+                });
+                alert_1.present();
+            }
+            _this.isLoading = false;
+        }, function (err) {
+            console.log(err);
             _this.isLoading = false;
         });
     };
-    AddKategoriPengajuanPage.prototype.ionViewDidLoad = function () {
-        console.log('ionViewDidLoad AddKategoriPengajuanPage');
+    AbsenTeamHadirkoePage.prototype.openFilter = function () {
+        this.navCtrl.push('SearchTeamAbsenPage');
     };
-    AddKategoriPengajuanPage.prototype.sendData = function () {
-        var _this = this;
-        var loading = this.loadingCtrl.create({
-            spinner: 'dots',
-            content: "Mohon Tunggu...",
-            cssClass: 'transparent',
-        });
-        loading.present();
-        this.isLoading = true;
-        this.soapService
-            .post(__WEBPACK_IMPORTED_MODULE_5__config__["a" /* api_base_url */], 'eoffice_add_cat_ipcc', { fStream: JSON.stringify({
-                usernameEDI: __WEBPACK_IMPORTED_MODULE_5__config__["e" /* api_user */],
-                passwordEDI: __WEBPACK_IMPORTED_MODULE_5__config__["c" /* api_pass */],
-                kategori: this.addKategoriForm.controls.fcKategori.value,
-                id_dir: this.userdataIPCContact['ID_DIR']
-            }) }).then(function (result) {
-            var responData = JSON.parse(String(result));
-            //console.log(responData);
-            if (responData['rcmsg'] == "SUCCESS") {
-                var toast = _this.toastCtrl.create({
-                    message: 'Tambah Kategori Berhasil',
-                    duration: 3000,
-                    position: 'bottom'
-                });
-                toast.present().then(function () {
-                    _this.viewCtrl.dismiss();
-                });
-            }
-            else {
-                var toast = _this.toastCtrl.create({
-                    message: 'Mohon Maaf Sedang Terjadi Kesalahan, Coba Beberapa Saat Lagi.',
-                    duration: 3000,
-                    position: 'bottom'
-                });
-                toast.present();
-            }
-            loading.dismiss();
-        })
-            .catch(function (error) {
-            //console.log(error);
-            var toast = _this.toastCtrl.create({
-                message: 'Terjadi Masalah Koneksi, Silahkan Coba Kembali.',
-                duration: 3000,
-                position: 'bottom'
-            });
-            toast.present();
-            loading.dismiss();
+    AbsenTeamHadirkoePage.prototype.goToAbsenMobileDetail = function (absen) {
+        this.navCtrl.push('AbsenMobileDetailPage', {
+            id_user: absen['ID_USER'],
+            nipp: absen['NIPP'],
+            nama: absen['NAMA'],
+            shift: "",
+            date: absen['SHIFT_DATE'],
+            fromPage: "AbsenListPage"
         });
     };
-    AddKategoriPengajuanPage.prototype.cancel = function () {
-        this.viewCtrl.dismiss();
+    AbsenTeamHadirkoePage.prototype.openAddressPage = function () {
+        this.navCtrl.push('AddressBawahanPage', {});
     };
-    AddKategoriPengajuanPage = __decorate([
+    AbsenTeamHadirkoePage.prototype.openSudahAbsen = function () {
+        this.isPageAbsen = true;
+        this.isPageNotAbsen = false;
+    };
+    AbsenTeamHadirkoePage.prototype.openBelumAbsen = function () {
+        this.isPageAbsen = false;
+        this.isPageNotAbsen = true;
+    };
+    AbsenTeamHadirkoePage.prototype.isEmptyObject = function (obj) {
+        for (var prop in obj) {
+            if (obj.hasOwnProperty(prop)) {
+                return false;
+            }
+        }
+        return true;
+    };
+    AbsenTeamHadirkoePage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
-            selector: 'page-add-kategori-pengajuan',
-            providers: [__WEBPACK_IMPORTED_MODULE_3__soap_service__["a" /* SoapService */]],template:/*ion-inline-start:"/Users/itadmin/Downloads/ERDA/POS_PPI/src/pages/add-kategori-pengajuan/add-kategori-pengajuan.html"*/'<ion-header>\n    <ion-navbar>\n        <ion-title><span style="color:#FFF">Pengajuan</span></ion-title>\n        <ion-buttons end>\n            <button ion-button icon-only (click)="cancel()">\n                <ion-icon name="ios-close-outline" style="color:#FFF"></ion-icon>\n            </button>\n        </ion-buttons>\n    </ion-navbar>\n</ion-header>\n\n<ion-content padding>\n    <form [formGroup]="addKategoriForm" class="list-form">\n        <ion-item *ngIf="!isLoading">\n            <span item-left>\n                <img src="assets/imgs/logo/direktorat-icon.png" class="icons">\n            </span>\n            <span class="bold" ion-text text-wrap color="iconColor">\n                {{ userdataIPCContact[\'DIREKTORAT\'] }}\n            </span> \n        </ion-item>\n\n        <ion-item>\n            <span item-left>\n                <img src="assets/imgs/logo/category-icon.png" class="icons">\n            </span>            \n            <ion-label stacked>Kategori</ion-label>\n            <ion-input type="text" formControlName="fcKategori"></ion-input>\n        </ion-item>\n\n        <button style="border-radius: 5px;" ion-button block color="primary" margin-top (click)="sendData()"\n            [disabled]="!addKategoriForm.valid">Ajukan</button>\n    </form>\n</ion-content>'/*ion-inline-end:"/Users/itadmin/Downloads/ERDA/POS_PPI/src/pages/add-kategori-pengajuan/add-kategori-pengajuan.html"*/,
+            selector: 'page-absen-team-hadirkoe',
+            providers: [__WEBPACK_IMPORTED_MODULE_3__soap_service__["a" /* SoapService */]],template:/*ion-inline-start:"/Users/itadmin/Downloads/ERDA/POS_PPI/src/pages/absen-team-hadirkoe/absen-team-hadirkoe.html"*/'<!--\n  Generated template for the AbsenTeamHadirkoePage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n  <ion-navbar>\n    <ion-title>\n      <span ion-text color="light" class="fw500">Team</span>\n    </ion-title>\n\n    <ion-buttons end>\n      <button ion-button (click)="openAddressPage()" *ngIf=\'isAtasan == true\' >\n        <!-- <ion-icon style="font-size:2.4rem;" name="md-analytics" color="light"></ion-icon> -->\n        <img src="assets/flat-icon/address.png" style="    max-height: 27px;\n				margin-right: 5px;">\n      </button>\n      <button ion-button (click)="openFilter()">\n        <!-- <ion-icon style="font-size:2.4rem;" name="md-analytics" color="light"></ion-icon> -->\n        <img src="assets/imgs/menu-icon/absensi_white.png" style="    max-height: 27px;\n				margin-right: 5px;">\n      </button>\n    </ion-buttons>\n  </ion-navbar>\n</ion-header>\n\n<ion-content>\n  <div *ngIf="isLoading == false" style="margin-top: 16px;margin-bottom: 10px;">\n    <table width="100%">\n      <tr>\n        <td width="100%" align="center">          \n          <table>\n            <tr>\n              <td valign="center" style="vertical-align: middle;">\n                <img style="width: 20px;\n                height: auto;          \n                margin-right: 5px;" src="assets/imgs/menu-icon/jumHari.png" />              \n              </td>\n              <td valign="center" style="vertical-align: middle;">\n                <span *ngIf="absenList.length != 0" ion-text text-wrap class="font2">{{ absenList[0][\'DATE\'] }}</span>\n                <span *ngIf="absenList.length == 0" ion-text text-wrap class="font2">{{ dayConvert }}, {{this.dateConvert}} {{monthConvert}} {{yearConvert}}</span>\n              </td>\n            </tr>\n          </table>          \n        </td>\n      </tr>    \n    </table>\n\n    <table width="100%">\n      <tr>\n        <td align="right">\n          <button ion-button outline class="my-button" color="secondary" (click)="openSudahAbsen()">\n            Sudah Absen            \n          </button>\n        </td> \n        <td align="left">\n          <button ion-button outline class="my-button" color="danger" (click)="openBelumAbsen()">\n            Belum Absen       \n          </button>\n        </td>        \n      </tr>   \n    </table>\n      \n    \n  </div>\n  <ion-list class="dining_List" *ngIf="absenList.length == 0  && isLoading == false && isPageAbsen == true">\n    <ion-card class="primary-bg">\n      <ion-card-content>\n        <span style="font-size:1.3rem">Tidak ada data absen.</span>\n      </ion-card-content>\n    </ion-card>\n  </ion-list>\n\n  <ion-list class="dining_List" *ngIf="notAbsenList.length == 0  && isLoading == false && isPageNotAbsen == true">\n    <ion-card class="primary-bg">\n      <ion-card-content>\n        <span style="font-size:1.3rem">Tidak ada data belum absen.</span>\n      </ion-card-content>\n    </ion-card>\n  </ion-list>\n\n  <ion-list class="dining_List" *ngIf="absenList.length != 0 && isLoading == false && isPageAbsen == true">\n    <ion-card *ngFor="let absen of absenList" class="my-card" (click)="goToAbsenMobileDetail(absen)">\n      <!-- <img *ngIf="absen[\'CHECK_IN\'] != null && absen[\'CHECK_OUT\'] == null" src="{{absen[\'CHECK_IN_PHOTO\']}}" class="foto">\n      <img *ngIf="absen[\'CHECK_IN\'] == null && absen[\'CHECK_OUT\'] != null" src="{{absen[\'CHECK_OUT_PHOTO\']}}" class="foto">\n      <img *ngIf="absen[\'CHECK_IN\'] != null && absen[\'CHECK_OUT\'] != null" src="{{absen[\'CHECK_IN_PHOTO\']}}" class="foto"> -->\n      <ion-item>\n        <img *ngIf="absen[\'CHECK_IN\'] != null && absen[\'CHECK_OUT\'] == null" src="{{absen[\'CHECK_IN_PHOTO\']}}"\n          class="foto-2" item-start>\n        <img *ngIf="absen[\'CHECK_IN\'] == null && absen[\'CHECK_OUT\'] != null" src="{{absen[\'CHECK_OUT_PHOTO\']}}"\n          class="foto-2" item-start>\n        <img *ngIf="absen[\'CHECK_IN\'] != null && absen[\'CHECK_OUT\'] != null" src="{{absen[\'CHECK_IN_PHOTO\']}}"\n          class="foto-2" item-start>\n        <span ion-text text-wrap class="font2"><b>{{ absen[\'NAMA\'] }}</b></span><br>\n        <span ion-text text-wrap style="font-size:1.2rem; color:gray;">\n          {{ absen[\'NM_JABATAN\'] }}\n        </span><br>\n        <table width="100%">\n          <tr>\n            <td width="50%">\n              <span ion-text text-wrap style="font-size:1.2rem; color:gray;">In :</span>\n              <!-- <div class="box" >\n                <img style="width: 25px;\n                  height: auto;          \n                  margin-right: 5px;" src="assets/flat-icon/checkin.png" /> \n                  <span ion-text text-wrap *ngIf="absen[\'CHECK_IN\'] == null" class="font2"><b>-</b></span>  \n                  <span ion-text text-wrap *ngIf="absen[\'CHECK_IN\'] != null" class="font2"><b>{{ absen[\'CHECK_IN\'] }}</b></span>  \n              </div> -->\n              <!-- <div class="box" >\n                <img style="width: 25px;\n                  height: auto;          \n                  margin-right: 5px;" src="assets/flat-icon/type_checkin.png" /> \n                  <span ion-text text-wrap *ngIf="absen[\'CHECK_IN_TYPE\'] == null" class="font2"><b>-</b></span>  \n                  <span ion-text text-wrap *ngIf="absen[\'CHECK_IN_TYPE\'] != null" class="font2"><b>{{ absen[\'CHECK_IN_TYPE\'] }}</b></span>  \n              </div> -->\n              <div>\n                <span ion-text text-wrap *ngIf="absen[\'CHECK_IN_TYPE\'] != null" class="font2"\n                  style="color:#00AF80;"><b>{{ absen[\'CHECK_IN_TYPE\'] }}</b></span>\n                <span ion-text text-wrap *ngIf="absen[\'CHECK_IN\'] == null" class="font2">-</span>\n                <span ion-text text-wrap *ngIf="absen[\'CHECK_IN\'] != null"\n                  class="font2"><b>{{ absen[\'CHECK_IN\'] }}</b></span>\n              </div>\n            </td>\n            <td width="50%">\n              <span ion-text text-wrap style="font-size:1.2rem; color:gray;">Out :</span>\n              <!-- <div class="box">\n                <img style="width: 25px;\n                height: auto;          \n                margin-right: 5px;" src="assets/flat-icon/checkout.png" /> \n                <span ion-text text-wrap *ngIf="absen[\'CHECK_OUT\'] == null" class="font2"><b>-</b></span>\n                <span ion-text text-wrap *ngIf="absen[\'CHECK_OUT\'] != null" class="font2"><b>{{ absen[\'CHECK_OUT\'] }}</b></span>\n              </div> -->\n              <!-- <div class="box">\n                <img style="width: 25px;\n                height: auto;          \n                margin-right: 5px;" src="assets/flat-icon/type_checkout.png" /> \n                <span ion-text text-wrap *ngIf="absen[\'CHECK_OUT_TYPE\'] == null" class="font2"><b>-</b></span>\n                <span ion-text text-wrap *ngIf="absen[\'CHECK_OUT_TYPE\'] != null" class="font2"><b>{{ absen[\'CHECK_OUT_TYPE\'] }}</b></span>\n              </div> -->\n              <div>\n                <span ion-text text-wrap *ngIf="absen[\'CHECK_OUT_TYPE\'] != null" class="font2"\n                  style="color:#FB5252;"><b>{{ absen[\'CHECK_OUT_TYPE\'] }}</b></span>\n                <span ion-text text-wrap *ngIf="absen[\'CHECK_OUT\'] == null" class="font2">-</span>\n                <span ion-text text-wrap *ngIf="absen[\'CHECK_OUT\'] != null"\n                  class="font2"><b>{{ absen[\'CHECK_OUT\'] }}</b></span>\n              </div>\n            </td>\n          </tr>\n        </table>\n        <!-- <span ion-text text-wrap class="font">\n          {{ absen[\'Tanggal Mulai\'] }} <span ion-text text-wrap color="primary"><b>s/d</b></span>\n          {{ absen[\'Tanggal Selesai\'] }}\n        </span>\n        <span ion-text text-wrap style="font-size: 1.2rem;" color="primary" item-end><b>{{ absen[\'Status\'] }}</b></span> -->\n      </ion-item>\n    </ion-card>\n  </ion-list>\n\n  <ion-list class="dining_List" *ngIf="notAbsenList.length != 0 && isLoading == false && isPageNotAbsen == true">\n    <ion-card *ngFor="let absen of notAbsenList" class="my-card">      \n      <ion-item>\n        <img *ngIf="absen[\'CHECK_IN\'] != null && absen[\'CHECK_OUT\'] == null" src="{{absen[\'CHECK_IN_PHOTO\']}}"\n          class="foto-2" item-start>\n        <img *ngIf="absen[\'CHECK_IN\'] == null && absen[\'CHECK_OUT\'] != null" src="{{absen[\'CHECK_OUT_PHOTO\']}}"\n          class="foto-2" item-start>\n        <img *ngIf="absen[\'CHECK_IN\'] != null && absen[\'CHECK_OUT\'] != null" src="{{absen[\'CHECK_IN_PHOTO\']}}"\n          class="foto-2" item-start>\n        <span ion-text text-wrap class="font2"><b>{{ absen[\'NAMA\'] }}</b></span><br>\n        <span ion-text text-wrap style="font-size:1.2rem; color:gray;">\n          {{ absen[\'NM_JABATAN\'] }}\n        </span><br>\n        <table width="100%">\n          <tr>\n            <td width="50%">\n              <span ion-text text-wrap style="font-size:1.2rem; color:gray;">In :</span>               \n              <div>\n                <span ion-text text-wrap *ngIf="absen[\'CHECK_IN_TYPE\'] != null" class="font2"\n                  style="color:#00AF80;"><b>{{ absen[\'CHECK_IN_TYPE\'] }}</b></span>\n                <span ion-text text-wrap *ngIf="absen[\'CHECK_IN\'] == null" class="font2">-</span>\n                <span ion-text text-wrap *ngIf="absen[\'CHECK_IN\'] != null"\n                  class="font2"><b>{{ absen[\'CHECK_IN\'] }}</b></span>\n              </div>\n            </td>\n            <td width="50%">\n              <span ion-text text-wrap style="font-size:1.2rem; color:gray;">Out :</span>             \n              <div>\n                <span ion-text text-wrap *ngIf="absen[\'CHECK_OUT_TYPE\'] != null" class="font2"\n                  style="color:#FB5252;"><b>{{ absen[\'CHECK_OUT_TYPE\'] }}</b></span>\n                <span ion-text text-wrap *ngIf="absen[\'CHECK_OUT\'] == null" class="font2">-</span>\n                <span ion-text text-wrap *ngIf="absen[\'CHECK_OUT\'] != null"\n                  class="font2"><b>{{ absen[\'CHECK_OUT\'] }}</b></span>\n              </div>\n            </td>\n          </tr>\n        </table>        \n      </ion-item>\n    </ion-card>\n  </ion-list>\n\n  <ion-list *ngIf=\'absenList.length == 0 && isLoading == true\'>\n    <ion-card *ngFor=\'let fake of fakeUsers\'>\n      <ion-item>\n        <div class="animate-skeleton-background load-2"></div>\n        <div class="animate-skeleton-background load-3"></div>\n        <div class="animate-skeleton-background load-1"> </div>\n      </ion-item>\n    </ion-card>\n  </ion-list>\n\n  <!-- <ion-refresher (ionRefresh)="doRefresh($event)">\n    <ion-refresher-content pullingIcon="arrow-dropdown" pullingText="Pull to refresh" refreshingSpinner="circles"\n      refreshingText="Refreshing...">\n    </ion-refresher-content>\n  </ion-refresher> -->\n\n</ion-content>'/*ion-inline-end:"/Users/itadmin/Downloads/ERDA/POS_PPI/src/pages/absen-team-hadirkoe/absen-team-hadirkoe.html"*/,
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavController */],
             __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* NavParams */],
-            __WEBPACK_IMPORTED_MODULE_2__angular_forms__["a" /* FormBuilder */],
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["q" /* ViewController */],
             __WEBPACK_IMPORTED_MODULE_3__soap_service__["a" /* SoapService */],
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* LoadingController */],
             __WEBPACK_IMPORTED_MODULE_4__ionic_storage__["b" /* Storage */],
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["b" /* AlertController */],
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* ModalController */],
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["p" /* ToastController */]])
-    ], AddKategoriPengajuanPage);
-    return AddKategoriPengajuanPage;
+            __WEBPACK_IMPORTED_MODULE_5__angular_common__["e" /* DatePipe */],
+            __WEBPACK_IMPORTED_MODULE_6__angular_common_http__["a" /* HttpClient */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["b" /* AlertController */]])
+    ], AbsenTeamHadirkoePage);
+    return AbsenTeamHadirkoePage;
 }());
 
-//# sourceMappingURL=add-kategori-pengajuan.js.map
+//# sourceMappingURL=absen-team-hadirkoe.js.map
 
 /***/ })
 

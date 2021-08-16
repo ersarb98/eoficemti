@@ -1,14 +1,14 @@
 webpackJsonp([24],{
 
-/***/ 309:
+/***/ 305:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "FingerprintModalPageModule", function() { return FingerprintModalPageModule; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CutiListPageModule", function() { return CutiListPageModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(100);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__fingerprint_modal__ = __webpack_require__(366);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__cuti_list__ = __webpack_require__(360);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -18,33 +18,33 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 
-var FingerprintModalPageModule = /** @class */ (function () {
-    function FingerprintModalPageModule() {
+var CutiListPageModule = /** @class */ (function () {
+    function CutiListPageModule() {
     }
-    FingerprintModalPageModule = __decorate([
+    CutiListPageModule = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["J" /* NgModule */])({
             declarations: [
-                __WEBPACK_IMPORTED_MODULE_2__fingerprint_modal__["a" /* FingerprintModalPage */],
+                __WEBPACK_IMPORTED_MODULE_2__cuti_list__["a" /* CutiListPage */],
             ],
             imports: [
-                __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__fingerprint_modal__["a" /* FingerprintModalPage */]),
+                __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__cuti_list__["a" /* CutiListPage */]),
             ],
         })
-    ], FingerprintModalPageModule);
-    return FingerprintModalPageModule;
+    ], CutiListPageModule);
+    return CutiListPageModule;
 }());
 
-//# sourceMappingURL=fingerprint-modal.module.js.map
+//# sourceMappingURL=cuti-list.module.js.map
 
 /***/ }),
 
-/***/ 343:
+/***/ 341:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return SoapService; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__soapclient_js__ = __webpack_require__(344);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__soapclient_js__ = __webpack_require__(342);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__soapclient_js___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__soapclient_js__);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -96,7 +96,7 @@ var SoapService = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 344:
+/***/ 342:
 /***/ (function(module, exports) {
 
 /*****************************************************************************\
@@ -551,18 +551,16 @@ module.exports = {
 
 /***/ }),
 
-/***/ 366:
+/***/ 360:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return FingerprintModalPage; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CutiListPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(100);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__config__ = __webpack_require__(199);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__soap_service__ = __webpack_require__(343);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_storage__ = __webpack_require__(101);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__angular_common__ = __webpack_require__(26);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__angular_common_http__ = __webpack_require__(200);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__soap_service__ = __webpack_require__(341);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_storage__ = __webpack_require__(101);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__config__ = __webpack_require__(199);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -577,326 +575,164 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-
-
 /**
- * Generated class for the FingerprintModalPage page.
+ * Generated class for the CutiListPage page.
  *
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
  */
-var FingerprintModalPage = /** @class */ (function () {
-    function FingerprintModalPage(navCtrl, navParams, soapService, storage, toastCtrl, loadingCtrl, datepipe, alertCtrl, http, appCtrl, viewCtrl) {
-        var _this = this;
+var CutiListPage = /** @class */ (function () {
+    function CutiListPage(navCtrl, navParams, soapService, loadingCtrl, storage, alertCtrl, modalCtrl, toastCtrl) {
         this.navCtrl = navCtrl;
         this.navParams = navParams;
         this.soapService = soapService;
-        this.storage = storage;
-        this.toastCtrl = toastCtrl;
         this.loadingCtrl = loadingCtrl;
-        this.datepipe = datepipe;
+        this.storage = storage;
         this.alertCtrl = alertCtrl;
-        this.http = http;
-        this.appCtrl = appCtrl;
-        this.viewCtrl = viewCtrl;
-        this.isLoading = false;
-        // this.dataValidasi = navParams.get('dataValidasi');
-        console.log(this.dataValidasi);
+        this.modalCtrl = modalCtrl;
+        this.toastCtrl = toastCtrl;
+        this.isLoading = true;
+        this.cutiList = [];
+        this.fakeUsers = new Array(5);
+        this.batasAtas = 1;
+        this.batasBawah = 10;
+    }
+    CutiListPage.prototype.ionViewDidEnter = function () {
+    };
+    CutiListPage.prototype.ionViewDidLoad = function () {
+        var _this = this;
         this.storage.get('userdataTPK').then(function (val) {
             _this.userdataTPK = val;
-            // this.personId = this.userdataTPK['data']['PERSON_ID'];
-            console.log(_this.userdataTPK);
-            _this.isLoading = true;
-            _this.getValidasi();
+            if (_this.userdataTPK['data']['DATA_BAWAHAN'].length == 0 && _this.userdataTPK['data']['DATA_BAWAHAN_TNO'].length == 0) {
+                _this.isAtasan = false;
+            }
+            else {
+                _this.isAtasan = true;
+            }
+            _this.getCutiList('first', '');
         });
-        var date = new Date();
-        var currentYear = date.getFullYear();
-        var currentMonth = date.getMonth();
-        var bulan = (currentMonth < 10) ? "0" + (currentMonth + 1).toString() : (currentMonth + 1).toString();
-        var tgl = date.getDate();
-        this.date = tgl + '-' + bulan + '-' + currentYear;
-        console.log(this.date);
-    }
-    FingerprintModalPage.prototype.ionViewDidLoad = function () {
-        console.log('ionViewDidLoad FingerprintModalPage');
     };
-    FingerprintModalPage.prototype.openActivityPage = function () {
-        if (this.dataValidasi['CHECK_IN'] == false || this.dataValidasi['CHECK_OUT'] == false) {
-            this.viewCtrl.dismiss();
-            this.appCtrl.getRootNav().push('InsertNoteAttendancePage', {
-                "fromPage": "AbsenActivityPage",
-                "shiftDate": this.dataValidasi['SHIFT_DATE']
+    CutiListPage.prototype.goToForm = function () {
+        var modal = this.modalCtrl.create("AddCutiPage", {
+            openFrom: 'CutiListPage'
+        }, {
+            enableBackdropDismiss: true,
+            showBackdrop: true,
+        });
+        modal.present();
+    };
+    CutiListPage.prototype.getCutiList = function (type, functionName) {
+        var _this = this;
+        if (type == 'first' && functionName == '') {
+            this.isLoading = true;
+        }
+        this.soapService
+            .post(__WEBPACK_IMPORTED_MODULE_4__config__["a" /* api_base_url */], 'eoffice_cuti_list', {
+            fStream: JSON.stringify({
+                usernameEDI: __WEBPACK_IMPORTED_MODULE_4__config__["d" /* api_user */],
+                passwordEDI: __WEBPACK_IMPORTED_MODULE_4__config__["b" /* api_pass */],
+                id_user: this.userdataTPK['data']['IDUSER'],
+                search_jenis: "",
+                search_tgl_pengajuan: "",
+                search_tgl_mulai: "",
+                search_tgl_selesai: "",
+                search_alasan: "",
+                atas: this.batasAtas,
+                bawah: this.batasBawah
+            })
+        }).then(function (result) {
+            var responData = JSON.parse(String(result));
+            if (responData['rcmsg'] == "SUCCESS") {
+                if (type == 'refresh' && functionName != '') {
+                    _this.cutiList = [];
+                }
+                if (responData['data']['Cuti Personal'].length > 0) {
+                    for (var i = 0; i < responData['data']['Cuti Personal'].length; i++) {
+                        _this.cutiList.push(responData['data']['Cuti Personal'][i]);
+                    }
+                }
+            }
+            else {
+                var toast = _this.toastCtrl.create({
+                    message: 'Gagal mendapatkan data cuti, silahkan coba kembali.',
+                    duration: 3000,
+                    position: 'bottom'
+                });
+                toast.present();
+            }
+            if (type == 'first' && functionName == '') {
+                _this.isLoading = false;
+            }
+            else if (type == 'infinite' && functionName != '') {
+                functionName.complete();
+            }
+            else if (type == 'refresh' && functionName != '') {
+                functionName.complete();
+            }
+        })
+            .catch(function (error) {
+            var toast = _this.toastCtrl.create({
+                message: 'Gagal mendapatkan data cuti, periksa koneksi internet anda.',
+                duration: 3000,
+                position: 'bottom'
             });
+            toast.present();
+            if (type == 'first' && functionName == '') {
+                _this.isLoading = false;
+            }
+            else if (type == 'infinite' && functionName != '') {
+                functionName.complete();
+            }
+            else if (type == 'refresh' && functionName != '') {
+                functionName.complete();
+            }
+            _this.isLoading = false;
+        });
+    };
+    CutiListPage.prototype.doInfinite = function (infiniteScroll) {
+        if (this.cutiList.length >= 10) {
+            this.batasAtas = this.batasBawah + 1;
+            this.batasBawah = this.batasBawah + 10;
+            this.getCutiList('infinite', infiniteScroll);
         }
         else {
-            var alert_1 = this.alertCtrl.create({
-                title: '',
-                subTitle: 'Belum ada data absensi, silahkan melakukan Check In/Check Out terlebih dahulu.',
-                buttons: ['OK']
-            });
-            alert_1.present();
+            infiniteScroll.complete();
         }
-        // let loading = this.loadingCtrl.create({
-        //   spinner: 'dots',
-        //   content: "Mohon Tunggu...",
-        //   cssClass: 'transparent',
-        //   dismissOnPageChange: true
-        // });
-        // loading.present();
-        // this.soapService.post(api_base_url, 'am6_detail_absen', {
-        //   fStream: JSON.stringify(
-        //     {
-        //       usernameEDI: api_user,
-        //       passwordEDI: api_pass,
-        //       person_id: this.personId,
-        //       tgl: this.date
-        //     }
-        //   )
-        // }).then(result => {
-        //   var responData = JSON.parse(String(result));
-        //   if (responData['rcmsg'] == "SUCCESS") {
-        //     this.activityList = responData['data'];
-        //     if (this.activityList.length != 0) {
-        //       // if (this.activityList['CHECK_IN_PHOTO'] != null) {
-        //       //   this.activityList['CHECK_IN_PHOTO'] = url_image + '/' + this.activityList['CHECK_IN_PHOTO'];
-        //       // } 
-        //       // if (this.activityList['CHECK_OUT_PHOTO'] != null) {
-        //       //   this.activityList['CHECK_OUT_PHOTO'] = url_image + '/' + this.activityList['CHECK_OUT_PHOTO'];
-        //       // }
-        //       console.log(this.activityList);
-        //       if (this.activityList['CHECK_IN'] == '' && this.activityList['CHECK_OUT'] == '') {
-        //         let alert = this.alertCtrl.create({
-        //           title: '',
-        //           subTitle: 'Belum ada data absensi, silahkan melakukan Check In/Check Out terlebih dahulu.',
-        //           buttons: ['OK']
-        //         });
-        //         alert.present();
-        //       } else if (this.activityList['CHECK_IN'] != '' && this.activityList['CHECK_OUT'] == '') {
-        //         this.navCtrl.push('InsertNoteAttendancePage', {
-        //           "transactionId": '',
-        //           "checkType": 'CHECK_IN',
-        //           "attendanceType": this.activityList['CHECK_IN_TYPE'],
-        //           "long": this.activityList['CHECK_IN_LONGITUDE'],
-        //           "lat": this.activityList['CHECK_IN_LATITUDE'],
-        //           "photo": this.activityList['CHECK_IN_PHOTO'],
-        //           "checkTime": this.activityList['CHECK_IN'],
-        //           'date': this.activityList['DATE'],
-        //           "activity": this.activityList['CHECK_IN_ACTIVITY'],
-        //           "fromPage": "AbsenActivityPage"
-        //         });
-        //       } else if (this.activityList['CHECK_IN'] == '' && this.activityList['CHECK_OUT'] != '') {
-        //         this.navCtrl.push('InsertNoteAttendancePage', {
-        //           "transactionId": '',
-        //           "checkType": 'CHECK_OUT',
-        //           "attendanceType": this.activityList['CHECK_OUT_TYPE'],
-        //           "long": this.activityList['CHECK_OUT_LONGITUDE'],
-        //           "lat": this.activityList['CHECK_OUT_LATITUDE'],
-        //           "photo": this.activityList['CHECK_OUT_PHOTO'],
-        //           "checkTime": this.activityList['CHECK_OUT'],
-        //           'date': this.activityList['DATE'],
-        //           "activity": this.activityList['CHECK_OUT_ACTIVITY'],
-        //           "fromPage": "AbsenActivityPage"
-        //         });
-        //       } else if (this.activityList['CHECK_IN'] != '' && this.activityList['CHECK_OUT'] != '') {
-        //         this.navCtrl.push('InsertNoteAttendancePage', {
-        //           "transactionId": '',
-        //           "checkType": 'CHECK_OUT',
-        //           "attendanceType": this.activityList['CHECK_OUT_TYPE'],
-        //           "long": this.activityList['CHECK_OUT_LONGITUDE'],
-        //           "lat": this.activityList['CHECK_OUT_LATITUDE'],
-        //           "photo": this.activityList['CHECK_OUT_PHOTO'],
-        //           "checkTime": this.activityList['CHECK_OUT'],
-        //           'date': this.activityList['DATE'],
-        //           "activity": this.activityList['CHECK_OUT_ACTIVITY'],
-        //           "fromPage": "AbsenActivityPage"
-        //         });
-        //       }
-        //     }
-        //     loading.dismiss();
-        //   } else {
-        //     console.log(responData);
-        //     let toast = this.toastCtrl.create({
-        //       message: 'Mohon Maaf Sedang Terjadi Kesalahan, Coba Beberapa Saat Lagi.',
-        //       duration: 3000,
-        //       position: 'bottom'
-        //     });
-        //     toast.present();
-        //     loading.dismiss();
-        //   }
-        // }).catch(error => {
-        //   console.log(error);
-        //   let toast = this.toastCtrl.create({
-        //     message: 'Terjadi Masalah Koneksi, Silahkan Coba Kembali.',
-        //     duration: 3000,
-        //     position: 'bottom'
-        //   });
-        //   toast.present();
-        //   loading.dismiss();
-        // });
-        // this.http.get(api_base_url_apim_absensi + 'preview?' + 'person=' + this.personId + '&tgl=' + this.date, {
-        //   headers
-        // }).subscribe(data => {
-        //   console.log(data);
-        //   this.activityList = data;     
-        //   console.log(this.activityList);
-        //   if (this.activityList['CHECK_IN'] == '' && this.activityList['CHECK_OUT'] == '') {
-        //     let alert = this.alertCtrl.create({
-        //       title: '',
-        //       subTitle: 'Belum ada data absensi, silahkan melakukan Check In/Check Out terlebih dahulu.',
-        //       buttons: ['OK']
-        //     });
-        //     alert.present();
-        //   } else if (this.activityList['CHECK_IN'] != '' && this.activityList['CHECK_OUT'] == '') {
-        //     this.navCtrl.push('InsertNoteAttendancePage', {
-        //       "transactionId": '',
-        //       "checkType": 'CHECK_IN',
-        //       "attendanceType": this.activityList['CHECK_IN_TYPE'],
-        //       "long": this.activityList['CHECK_IN_LONGITUDE'],
-        //       "lat": this.activityList['CHECK_IN_LATITUDE'],
-        //       "photo": this.activityList['CHECK_IN_PHOTO'],
-        //       "checkTime": this.activityList['CHECK_IN'],
-        //       'date': this.activityList['DATE'],
-        //       "activity": this.activityList['CHECK_IN_ACTIVITY'],
-        //       "fromPage": "AbsenActivityPage"
-        //     });
-        //   } else if (this.activityList['CHECK_IN'] == '' && this.activityList['CHECK_OUT'] != '') {
-        //     this.navCtrl.push('InsertNoteAttendancePage', {
-        //       "transactionId": '',
-        //       "checkType": 'CHECK_OUT',
-        //       "attendanceType": this.activityList['CHECK_OUT_TYPE'],
-        //       "long": this.activityList['CHECK_OUT_LONGITUDE'],
-        //       "lat": this.activityList['CHECK_OUT_LATITUDE'],
-        //       "photo": this.activityList['CHECK_OUT_PHOTO'],
-        //       "checkTime": this.activityList['CHECK_OUT'],
-        //       'date': this.activityList['DATE'],
-        //       "activity": this.activityList['CHECK_OUT_ACTIVITY'],
-        //       "fromPage": "AbsenActivityPage"
-        //     });
-        //   } else if (this.activityList['CHECK_IN'] != '' && this.activityList['CHECK_OUT'] != '') {
-        //     this.navCtrl.push('InsertNoteAttendancePage', {
-        //       "transactionId": '',
-        //       "checkType": 'CHECK_OUT',
-        //       "attendanceType": this.activityList['CHECK_OUT_TYPE'],
-        //       "long": this.activityList['CHECK_OUT_LONGITUDE'],
-        //       "lat": this.activityList['CHECK_OUT_LATITUDE'],
-        //       "photo": this.activityList['CHECK_OUT_PHOTO'],
-        //       "checkTime": this.activityList['CHECK_OUT'],
-        //       'date': this.activityList['DATE'],
-        //       "activity": this.activityList['CHECK_OUT_ACTIVITY'],
-        //       "fromPage": "AbsenActivityPage"
-        //     });
-        //   }
-        //   loading.dismiss();
-        // }, err => {
-        //   console.log(err);
-        //   let toast = this.toastCtrl.create({
-        //     message: 'Terjadi Masalah Koneksi, Silahkan Coba Kembali.',
-        //     duration: 3000,
-        //     position: 'bottom'
-        //   });
-        //   toast.present();
-        //   loading.dismiss();
-        // });
     };
-    FingerprintModalPage.prototype.openTeamPage = function () {
-        this.viewCtrl.dismiss();
-        this.appCtrl.getRootNav().push('AbsenTeamHadirkoePage', {
-            "idUser": this.userdataTPK['data']['IDUSER'],
-            "date": this.datepipe.transform(new Date(), 'dd-MM-yyyy'),
-            "fromPage": "AbsenActivityPage"
+    CutiListPage.prototype.doRefresh = function (refresher) {
+        this.batasAtas = 1;
+        this.batasBawah = 10;
+        this.getCutiList('refresh', refresher);
+    };
+    CutiListPage.prototype.searchCuti = function () {
+        var modal = this.modalCtrl.create('SearchCutiPage');
+        modal.present();
+    };
+    CutiListPage.prototype.goToDetail = function (data) {
+        this.navCtrl.push("CutiDetailPage", {
+            "data": data,
+            "nipp": this.userdataTPK['data']['NIPP'],
+            "userdataTPK": this.userdataTPK
         });
     };
-    FingerprintModalPage.prototype.openPage = function (page, type) {
-        this.viewCtrl.dismiss();
-        this.appCtrl.getRootNav().push(page, {
-            "type": type,
-            "long": "",
-            "lat": "",
-            "fromPage": "FingerprintModalPage",
-            "dataValidasi": this.dataValidasi
-        });
-        // this.navCtrl.push(page, {
-        //   "type": type,
-        //   "long": "",
-        //   "lat": "",
-        //   "fromPage": "FingerprintModalPage"
-        // }).then(() => {
-        // });
-    };
-    FingerprintModalPage.prototype.getValidasi = function () {
-        // this.soapService.post(api_res, 'am3_check_shift', {
-        //   fStream: JSON.stringify(
-        //     {
-        //       usernameEDI: api_user,
-        //       passwordEDI: api_pass,
-        //       person_id: this.userdataTPK['data']['PERSON_ID'],
-        //       nipp: this.userdataTPK['data']['NIPP'],
-        //       id_user: this.userdataTPK['data']['IDUSER']
-        //     }
-        //   )
-        // })
-        //   .then(result => {
-        //     console.log(result);
-        //     var responData = JSON.parse(String(result));
-        //     this.dataValidasi = responData;        
-        //     this.isLoading = false;
-        //   })
-        //   .catch(error => {
-        //     console.log(error);
-        //     this.isLoading = false;
-        //   });
-        var _this = this;
-        // var date = new Date();
-        // var formattedDate = this.datepipe.transform(date, 'yyyy-MM-dd HH:mm:ss');
-        // var rand = Math.floor((Math.random() * 100000000) + 1);
-        // var headers = new HttpHeaders({
-        //   'Accept': "*/*",
-        //   // 'Access-Control-Allow-Origin': 'http://localhost:8100',
-        //   'x-ibm-client-id': client_id,
-        //   'x-ibm-client-secret': client_secret,
-        //   'username': api_user,
-        //   'password': api_pass,
-        //   'externalId': rand.toString(),
-        //   'timestamp': formattedDate,
-        //   'Content-Type': 'application/json'
-        // });
-        this.http.post(__WEBPACK_IMPORTED_MODULE_2__config__["d" /* api_res */] + 'am3_check_shift.php', {
-            usernameEDI: __WEBPACK_IMPORTED_MODULE_2__config__["e" /* api_user */],
-            passwordEDI: __WEBPACK_IMPORTED_MODULE_2__config__["c" /* api_pass */],
-            person_id: this.userdataTPK['data']['PERSON_ID'],
-            nipp: this.userdataTPK['data']['NIPP'],
-            id_user: this.userdataTPK['data']['IDUSER']
-        }).subscribe(function (data) {
-            console.log(data);
-            //var responData = JSON.parse(data);
-            _this.dataValidasi = data['data'];
-            _this.isLoading = false;
-        }, function (err) {
-            console.log(err);
-            _this.isLoading = false;
-        });
-    };
-    FingerprintModalPage = __decorate([
+    CutiListPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
-            selector: 'page-fingerprint-modal',
-            providers: [__WEBPACK_IMPORTED_MODULE_3__soap_service__["a" /* SoapService */]],template:/*ion-inline-start:"/Users/itadmin/Downloads/ERDA/POS_PPI/src/pages/fingerprint-modal/fingerprint-modal.html"*/'<!--\n  Generated template for the FingerprintModalPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n\n<ion-content padding-top style="background-color:#FFF" scrollY="false" >\n  <p><b>Hadirkoe</b></p>\n  <hr>\n  <ion-grid class="my-grid" *ngIf="!isLoading && dataValidasi != null">\n  <!-- <ion-grid class="my-grid"> -->\n    <ion-row >\n      <ion-col col-3 >\n        <div *ngIf="dataValidasi[\'CHECK_IN\'] == true" (click)="openPage(\'MapPage\',\'checkin\')">\n          <img style="width: 45%;\n          height: auto;          \n          max-width: 35vw;" src="assets/flat-icon/checkin.png" /> \n          <span class="title">Check In</span>          \n        </div>                  \n        \n        <div *ngIf="dataValidasi[\'CHECK_IN\'] == false" style="opacity: 0.4;">\n          <img style="width: 45%;\n          height: auto;          \n          max-width: 35vw;" src="assets/flat-icon/checkin.png" /> \n          <span class="title">Check In</span>          \n        </div>  \n      </ion-col>\n      <ion-col col-3>\n        <div *ngIf="dataValidasi[\'CHECK_OUT\'] == true" (click)="openPage(\'MapPage\',\'checkout\')">\n          <img style="width: 45%;\n          height: auto;          \n          max-width: 35vw;" src="assets/flat-icon/checkout.png" />\n          <span class="title">Check Out</span>\n        </div>\n\n        <div *ngIf="dataValidasi[\'CHECK_OUT\'] == false" style="opacity: 0.4;">\n          <img style="width: 45%;\n          height: auto;          \n          max-width: 35vw;" src="assets/flat-icon/checkout.png" />\n          <span class="title">Check Out</span>\n        </div>\n\n      </ion-col> \n      <ion-col col-3>\n        <div (click)="openActivityPage()">\n          <img style="width: 45%;\n          height: auto;          \n          max-width: 35vw;" src="assets/flat-icon/activity.png" />\n          <span class="title">Activity</span>\n        </div>\n      </ion-col>     \n      <ion-col col-3>\n        <div (click)="openTeamPage()">\n          <img style="width: 45%;\n          height: auto;          \n          max-width: 35vw;" src="assets/flat-icon/team.png" />\n          <span class="title">Team</span> \n        </div>\n      </ion-col>     \n    </ion-row>   \n  </ion-grid>\n\n  <ion-grid class="my-grid" *ngIf="isLoading && dataValidasi == null" >\n    <ion-row >\n      <ion-col col-3 >\n        <div class="animate-skeleton-background load-icon">\n        </div>         \n      </ion-col>\n      <ion-col col-3 >\n        <div class="animate-skeleton-background load-icon">\n        </div>         \n      </ion-col>\n      <ion-col col-3>\n        <div class="animate-skeleton-background load-icon">                    \n        </div> \n      </ion-col> \n      <ion-col col-3>\n        <div class="animate-skeleton-background load-icon">                    \n        </div> \n      </ion-col>     \n    </ion-row>   \n  </ion-grid>\n</ion-content>\n'/*ion-inline-end:"/Users/itadmin/Downloads/ERDA/POS_PPI/src/pages/fingerprint-modal/fingerprint-modal.html"*/,
+            selector: 'page-cuti-list',
+            providers: [__WEBPACK_IMPORTED_MODULE_2__soap_service__["a" /* SoapService */]],template:/*ion-inline-start:"/Users/itadmin/Downloads/ERDA/POS_PPI/src/pages/cuti-list/cuti-list.html"*/'<!--\n  Generated template for the CutiListPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n  <ion-navbar>\n    <ion-title>\n      <span ion-text color="light" class="fw500">Izin/Cuti</span>\n    </ion-title>\n\n    <ion-buttons end>\n      <button ion-button (click)="searchCuti()">\n        <ion-icon style="font-size:2.4rem;" name="md-search" color="light"></ion-icon>\n      </button>\n\n      <!-- <button ion-button *ngIf="isAtasan" (click)="presentPopover($event)">\n            <ion-icon style="font-size:2.4rem;" name="more" color="danger"></ion-icon>\n          </button>  -->\n    </ion-buttons>\n  </ion-navbar>\n</ion-header>\n\n<ion-content>\n\n  <ion-list class="dining_List" *ngIf="cutiList.length == 0  && isLoading == false">\n    <ion-card class="primary-bg">\n      <ion-card-content>\n        <span style="font-size:1.3rem">Tidak ada data izin/cuti.</span>\n      </ion-card-content>\n    </ion-card>\n  </ion-list>\n\n  <ion-list class="dining_List" *ngIf="cutiList.length != 0 && isLoading == false">   \n    <ion-card *ngFor="let cuti of cutiList" class="my-card" (click)="goToDetail(cuti)">\n      <ion-item>\n        <span item-start>\n          <img src="assets/imgs/menu-icon/cuti.png" class="icons">\n        </span>\n        <span ion-text text-wrap class="font3" color="danger"><b>{{ cuti[\'Jumlah\'] }} hari</b></span><br />\n        <span ion-text text-wrap class="font2"><b>{{ cuti[\'Jenis\'] }}</b></span><br>\n        <span ion-text text-wrap class="font">\n          {{ cuti[\'Tanggal Mulai\'] }} <span ion-text text-wrap color="primary"><b>s/d</b></span> {{ cuti[\'Tanggal Selesai\'] }}\n        </span>\n        <span ion-text text-wrap style="font-size: 1.2rem;" color="primary"  item-end><b>{{ cuti[\'Status\'] }}</b></span>\n      </ion-item>\n    </ion-card>\n  </ion-list>\n\n  <ion-list *ngIf=\'cutiList.length == 0 && isLoading == true\'>\n    <ion-card *ngFor=\'let fake of fakeUsers\'>\n      <ion-item>\n        <div class="animate-skeleton-background load-2"></div>\n        <div class="animate-skeleton-background load-3"></div>\n        <div class="animate-skeleton-background load-1"> </div>\n      </ion-item>\n    </ion-card>\n  </ion-list>\n\n  <ion-infinite-scroll (ionInfinite)="doInfinite($event)">\n    <ion-infinite-scroll-content>\n\n    </ion-infinite-scroll-content>\n  </ion-infinite-scroll>\n\n  <ion-refresher (ionRefresh)="doRefresh($event)">\n    <ion-refresher-content pullingIcon="arrow-dropdown" pullingText="Pull to refresh" refreshingSpinner="circles"\n      refreshingText="Refreshing...">\n    </ion-refresher-content>\n  </ion-refresher>\n</ion-content>\n\n<ion-footer>\n  <ion-fab right bottom style="margin-right:10px; margin-bottom: 10px;">\n    <button ion-fab color="red" (click)="goToForm()">\n      <ion-icon name="md-add" color="light"></ion-icon>\n    </button>\n  </ion-fab>\n</ion-footer>'/*ion-inline-end:"/Users/itadmin/Downloads/ERDA/POS_PPI/src/pages/cuti-list/cuti-list.html"*/,
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavController */],
             __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* NavParams */],
-            __WEBPACK_IMPORTED_MODULE_3__soap_service__["a" /* SoapService */],
-            __WEBPACK_IMPORTED_MODULE_4__ionic_storage__["b" /* Storage */],
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["p" /* ToastController */],
+            __WEBPACK_IMPORTED_MODULE_2__soap_service__["a" /* SoapService */],
             __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* LoadingController */],
-            __WEBPACK_IMPORTED_MODULE_5__angular_common__["e" /* DatePipe */],
+            __WEBPACK_IMPORTED_MODULE_3__ionic_storage__["b" /* Storage */],
             __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["b" /* AlertController */],
-            __WEBPACK_IMPORTED_MODULE_6__angular_common_http__["a" /* HttpClient */],
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["c" /* App */],
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["q" /* ViewController */]])
-    ], FingerprintModalPage);
-    return FingerprintModalPage;
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* ModalController */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["p" /* ToastController */]])
+    ], CutiListPage);
+    return CutiListPage;
 }());
 
-//# sourceMappingURL=fingerprint-modal.js.map
+//# sourceMappingURL=cuti-list.js.map
 
 /***/ })
 

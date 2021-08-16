@@ -1,14 +1,14 @@
 webpackJsonp([44],{
 
-/***/ 338:
+/***/ 325:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MenuP2bPageModule", function() { return MenuP2bPageModule; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "PhotoViewerPageModule", function() { return PhotoViewerPageModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(50);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__menu_p2b__ = __webpack_require__(425);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(100);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__photo_viewer__ = __webpack_require__(381);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -18,35 +18,33 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 
-var MenuP2bPageModule = /** @class */ (function () {
-    function MenuP2bPageModule() {
+var PhotoViewerPageModule = /** @class */ (function () {
+    function PhotoViewerPageModule() {
     }
-    MenuP2bPageModule = __decorate([
+    PhotoViewerPageModule = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["J" /* NgModule */])({
             declarations: [
-                __WEBPACK_IMPORTED_MODULE_2__menu_p2b__["a" /* MenuP2bPage */],
+                __WEBPACK_IMPORTED_MODULE_2__photo_viewer__["a" /* PhotoViewerPage */],
             ],
             imports: [
-                __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__menu_p2b__["a" /* MenuP2bPage */]),
+                __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__photo_viewer__["a" /* PhotoViewerPage */]),
             ],
         })
-    ], MenuP2bPageModule);
-    return MenuP2bPageModule;
+    ], PhotoViewerPageModule);
+    return PhotoViewerPageModule;
 }());
 
-//# sourceMappingURL=menu-p2b.module.js.map
+//# sourceMappingURL=photo-viewer.module.js.map
 
 /***/ }),
 
-/***/ 425:
+/***/ 381:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MenuP2bPage; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return PhotoViewerPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(50);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_storage__ = __webpack_require__(51);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__soap_service__ = __webpack_require__(200);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(100);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -58,77 +56,33 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 
 
-
-
 /**
- * Generated class for the MenuP2bPage page.
+ * Generated class for the PhotoViewerPage page.
  *
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
  */
-var MenuP2bPage = /** @class */ (function () {
-    function MenuP2bPage(navCtrl, navParams, viewCtrl, app, storage, soapService, alertCtrl) {
+var PhotoViewerPage = /** @class */ (function () {
+    function PhotoViewerPage(navCtrl, navParams) {
         this.navCtrl = navCtrl;
         this.navParams = navParams;
-        this.viewCtrl = viewCtrl;
-        this.app = app;
-        this.storage = storage;
-        this.soapService = soapService;
-        this.alertCtrl = alertCtrl;
-        this.p2buser = navParams.get('p2buser');
-        this.badges = navParams.get('badges');
+        this.photo = navParams.get('photo');
+        console.log(this.photo);
     }
-    MenuP2bPage.prototype.ionViewDidEnter = function () {
-        var _this = this;
-        this.storage.get('userdata').then(function (val) {
-            _this.userdata = val;
-        });
+    PhotoViewerPage.prototype.ionViewDidLoad = function () {
+        console.log('ionViewDidLoad PhotoViewerPage');
     };
-    MenuP2bPage.prototype.ionViewDidLoad = function () {
-        console.log('ionViewDidLoad MenuP2bPage');
-    };
-    MenuP2bPage.prototype.goToPage = function (page) {
-        var _this = this;
-        this.viewCtrl.dismiss().then(function () {
-            _this.app.getRootNav().push(page, {
-                p2buser: _this.p2buser,
-            });
-        });
-    };
-    MenuP2bPage.prototype.isEmptyObject = function (obj) {
-        for (var prop in obj) {
-            if (obj.hasOwnProperty(prop)) {
-                return false;
-            }
-        }
-        return true;
-    };
-    MenuP2bPage.prototype.parse = function (val) {
-        var intValue = parseInt(val);
-        if (intValue > 0) {
-            return true;
-        }
-        else {
-            return false;
-        }
-    };
-    MenuP2bPage = __decorate([
+    PhotoViewerPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
-            selector: 'page-menu-p2b',
-            providers: [__WEBPACK_IMPORTED_MODULE_3__soap_service__["a" /* SoapService */]],template:/*ion-inline-start:"/Users/itadmin/Downloads/ERDA/POS_PPI/src/pages/menu-p2b/menu-p2b.html"*/'\n  <ion-list padding-left padding-right padding-bottom no-margin>\n    <ion-list-header class="header" no-padding no-margin >\n      <b>Menu</b>\n    </ion-list-header>       \n    <button ion-item no-padding no-margin no-lines (click)="goToPage(\'EvalBawahanListPage\')">List Evaluasi Bawahan</button>  \n    <button ion-item no-padding no-margin no-lines (click)="goToPage(\'RencanaKerjaBawahanListPage\')">\n      Penilaian P2B      \n      <ion-badge style="position:absolute; right:25px;" *ngIf="parse(badges)" color="danger">{{ badges }}</ion-badge>      \n    </button>  \n      \n  </ion-list>\n'/*ion-inline-end:"/Users/itadmin/Downloads/ERDA/POS_PPI/src/pages/menu-p2b/menu-p2b.html"*/,
+            selector: 'page-photo-viewer',template:/*ion-inline-start:"/Users/itadmin/Downloads/ERDA/POS_PPI/src/pages/photo-viewer/photo-viewer.html"*/'<!--\n  Generated template for the PhotoViewerPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n  <ion-navbar>\n    <ion-title>\n      <span ion-text color="light" class="fw500">Photo</span>\n    </ion-title>\n  </ion-navbar>\n</ion-header>\n\n<ion-content padding>\n<div style="width: 100%;height: 100%;" >\n  <img [src]="photo">\n</div>\n</ion-content>\n'/*ion-inline-end:"/Users/itadmin/Downloads/ERDA/POS_PPI/src/pages/photo-viewer/photo-viewer.html"*/,
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavController */],
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* NavParams */],
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["q" /* ViewController */],
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["c" /* App */],
-            __WEBPACK_IMPORTED_MODULE_2__ionic_storage__["b" /* Storage */],
-            __WEBPACK_IMPORTED_MODULE_3__soap_service__["a" /* SoapService */],
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["b" /* AlertController */]])
-    ], MenuP2bPage);
-    return MenuP2bPage;
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* NavParams */]])
+    ], PhotoViewerPage);
+    return PhotoViewerPage;
 }());
 
-//# sourceMappingURL=menu-p2b.js.map
+//# sourceMappingURL=photo-viewer.js.map
 
 /***/ })
 

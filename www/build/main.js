@@ -1,4 +1,4 @@
-webpackJsonp([52],{
+webpackJsonp([50],{
 
 /***/ 113:
 /***/ (function(module, exports) {
@@ -23,170 +23,162 @@ webpackEmptyAsyncContext.id = 113;
 var map = {
 	"../pages/absen-bawahan/absen-bawahan.module": [
 		291,
-		39
+		37
 	],
 	"../pages/absen-list/absen-list.module": [
 		292,
-		38
+		36
 	],
 	"../pages/absen-mobile-detail/absen-mobile-detail.module": [
 		293,
-		37
-	],
-	"../pages/absen-team-hadirkoe/absen-team-hadirkoe.module": [
-		295,
-		36
-	],
-	"../pages/add-cuti/add-cuti.module": [
-		296,
 		35
 	],
-	"../pages/add-kategori-pengajuan/add-kategori-pengajuan.module": [
+	"../pages/absen-team-hadirkoe/absen-team-hadirkoe.module": [
 		294,
 		34
 	],
-	"../pages/add-nota-restitusi/add-nota-restitusi.module": [
+	"../pages/add-cuti/add-cuti.module": [
 		297,
 		33
 	],
-	"../pages/add-restitusi/add-restitusi.module": [
-		298,
+	"../pages/add-kategori-pengajuan/add-kategori-pengajuan.module": [
+		296,
 		32
 	],
-	"../pages/add-sppd/add-sppd.module": [
-		299,
+	"../pages/add-nota-restitusi/add-nota-restitusi.module": [
+		295,
 		31
 	],
-	"../pages/address-bawahan/address-bawahan.module": [
-		300,
+	"../pages/add-restitusi/add-restitusi.module": [
+		299,
 		30
 	],
-	"../pages/approve-koreksi-absen/approve-koreksi-absen.module": [
-		301,
+	"../pages/add-sppd/add-sppd.module": [
+		298,
 		29
 	],
-	"../pages/cari-pegawai/cari-pegawai.module": [
-		302,
+	"../pages/address-bawahan/address-bawahan.module": [
+		301,
 		28
+	],
+	"../pages/approve-koreksi-absen/approve-koreksi-absen.module": [
+		302,
+		27
+	],
+	"../pages/cari-pegawai/cari-pegawai.module": [
+		300,
+		26
 	],
 	"../pages/check-in/check-in.module": [
 		304,
 		1
 	],
 	"../pages/coba-list/coba-list.module": [
-		303,
-		51
+		306,
+		49
 	],
 	"../pages/cuti-detail/cuti-detail.module": [
-		305,
-		27
+		303,
+		25
 	],
 	"../pages/cuti-list/cuti-list.module": [
-		306,
-		26
+		305,
+		24
 	],
 	"../pages/disposisi/disposisi.module": [
 		307,
-		50
-	],
-	"../pages/eval-bawahan-list/eval-bawahan-list.module": [
-		308,
-		25
+		48
 	],
 	"../pages/fingerprint-modal/fingerprint-modal.module": [
-		309,
-		24
+		308,
+		23
 	],
 	"../pages/home/home.module": [
 		310,
-		49
+		47
 	],
 	"../pages/home2/home2.module": [
-		311,
-		48
+		309,
+		46
 	],
 	"../pages/home3/home3.module": [
-		313,
-		23
+		311,
+		22
 	],
 	"../pages/inbox-detail/inbox-detail.module": [
 		312,
-		22
-	],
-	"../pages/inbox/inbox.module": [
-		314,
 		21
 	],
-	"../pages/insert-note-attendance/insert-note-attendance.module": [
-		316,
+	"../pages/inbox/inbox.module": [
+		313,
 		20
 	],
-	"../pages/kategori-pengajuan-list/kategori-pengajuan-list.module": [
+	"../pages/insert-note-attendance/insert-note-attendance.module": [
 		315,
 		19
 	],
-	"../pages/koreksi-absen-bawahan/koreksi-absen-bawahan.module": [
-		317,
+	"../pages/kategori-pengajuan-list/kategori-pengajuan-list.module": [
+		314,
 		18
 	],
-	"../pages/koreksi-absen-personal/koreksi-absen-personal.module": [
-		318,
+	"../pages/koreksi-absen-bawahan/koreksi-absen-bawahan.module": [
+		316,
 		17
 	],
-	"../pages/log-surat/log-surat.module": [
-		319,
+	"../pages/koreksi-absen-personal/koreksi-absen-personal.module": [
+		317,
 		16
 	],
-	"../pages/login/login.module": [
-		320,
+	"../pages/log-surat/log-surat.module": [
+		318,
 		15
 	],
+	"../pages/login/login.module": [
+		319,
+		14
+	],
 	"../pages/map/map.module": [
-		321,
-		40
+		320,
+		38
 	],
 	"../pages/menu-absen/menu-absen.module": [
-		322,
-		14
+		321,
+		13
 	],
 	"../pages/outbox-detail/outbox-detail.module": [
 		323,
-		13
-	],
-	"../pages/outbox/outbox.module": [
-		324,
 		12
 	],
-	"../pages/pertanggungjawaban-sppd/pertanggungjawaban-sppd.module": [
-		325,
-		47
-	],
-	"../pages/photo-viewer/photo-viewer.module": [
-		326,
-		46
-	],
-	"../pages/rate-absensi/rate-absensi.module": [
-		328,
-		0
-	],
-	"../pages/rencana-kerja-bawahan-list/rencana-kerja-bawahan-list.module": [
-		327,
+	"../pages/outbox/outbox.module": [
+		322,
 		11
 	],
-	"../pages/restitusi-detail/restitusi-detail.module": [
-		329,
+	"../pages/pertanggungjawaban-sppd/pertanggungjawaban-sppd.module": [
+		324,
 		45
 	],
+	"../pages/photo-viewer/photo-viewer.module": [
+		325,
+		44
+	],
+	"../pages/rate-absensi/rate-absensi.module": [
+		327,
+		0
+	],
+	"../pages/restitusi-detail/restitusi-detail.module": [
+		328,
+		43
+	],
 	"../pages/restitusi-list/restitusi-list.module": [
-		330,
+		326,
 		10
 	],
 	"../pages/search-cuti/search-cuti.module": [
-		331,
+		330,
 		9
 	],
 	"../pages/search-inbox/search-inbox.module": [
-		333,
+		329,
 		8
 	],
 	"../pages/search-outbox/search-outbox.module": [
@@ -194,39 +186,39 @@ var map = {
 		7
 	],
 	"../pages/search-restitusi/search-restitusi.module": [
-		334,
+		340,
 		6
 	],
 	"../pages/search-sppd/search-sppd.module": [
-		335,
+		331,
 		5
 	],
 	"../pages/search-team-absen/search-team-absen.module": [
-		336,
-		44
+		333,
+		42
 	],
 	"../pages/select-bawahan-disposisi/select-bawahan-disposisi.module": [
-		337,
-		43
+		335,
+		41
 	],
 	"../pages/setting/setting.module": [
-		338,
+		334,
 		4
 	],
 	"../pages/show-more/show-more.module": [
-		340,
-		42
+		336,
+		40
 	],
 	"../pages/sppd-detail/sppd-detail.module": [
-		339,
-		41
+		337,
+		39
 	],
 	"../pages/sppd-list/sppd-list.module": [
-		341,
+		338,
 		3
 	],
 	"../pages/update-userdata/update-userdata.module": [
-		342,
+		339,
 		2
 	]
 };
@@ -251,15 +243,15 @@ module.exports = webpackAsyncContext;
 
 "use strict";
 /* unused harmony export Config */
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "h", function() { return sender_id; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "f", function() { return oneSignalAppId; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "d", function() { return api_res; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "i", function() { return url_image; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "g", function() { return sender_id; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "e", function() { return oneSignalAppId; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return api_res; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "h", function() { return url_image; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return api_base_url; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return api_p2b_url; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "e", function() { return api_user; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return api_pass; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "g", function() { return sc_code; });
+/* unused harmony export api_p2b_url */
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "d", function() { return api_user; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return api_pass; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "f", function() { return sc_code; });
 /* unused harmony export sc_type */
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -398,26 +390,25 @@ var AppModule = /** @class */ (function () {
                         { loadChildren: '../pages/absen-bawahan/absen-bawahan.module#AbsenBawahanPageModule', name: 'AbsenBawahanPage', segment: 'absen-bawahan', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/absen-list/absen-list.module#AbsenListPageModule', name: 'AbsenListPage', segment: 'absen-list', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/absen-mobile-detail/absen-mobile-detail.module#AbsenMobileDetailPageModule', name: 'AbsenMobileDetailPage', segment: 'absen-mobile-detail', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/add-kategori-pengajuan/add-kategori-pengajuan.module#AddKategoriPengajuanPageModule', name: 'AddKategoriPengajuanPage', segment: 'add-kategori-pengajuan', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/absen-team-hadirkoe/absen-team-hadirkoe.module#AbsenTeamHadirkoePageModule', name: 'AbsenTeamHadirkoePage', segment: 'absen-team-hadirkoe', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/add-cuti/add-cuti.module#AddCutiPageModule', name: 'AddCutiPage', segment: 'add-cuti', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/add-nota-restitusi/add-nota-restitusi.module#AddNotaRestitusiPageModule', name: 'AddNotaRestitusiPage', segment: 'add-nota-restitusi', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/add-restitusi/add-restitusi.module#AddRestitusiPageModule', name: 'AddRestitusiPage', segment: 'add-restitusi', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/add-kategori-pengajuan/add-kategori-pengajuan.module#AddKategoriPengajuanPageModule', name: 'AddKategoriPengajuanPage', segment: 'add-kategori-pengajuan', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/add-cuti/add-cuti.module#AddCutiPageModule', name: 'AddCutiPage', segment: 'add-cuti', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/add-sppd/add-sppd.module#AddSppdPageModule', name: 'AddSppdPage', segment: 'add-sppd', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/add-restitusi/add-restitusi.module#AddRestitusiPageModule', name: 'AddRestitusiPage', segment: 'add-restitusi', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/cari-pegawai/cari-pegawai.module#CariPegawaiPageModule', name: 'CariPegawaiPage', segment: 'cari-pegawai', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/address-bawahan/address-bawahan.module#AddressBawahanPageModule', name: 'AddressBawahanPage', segment: 'address-bawahan', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/approve-koreksi-absen/approve-koreksi-absen.module#ApproveKoreksiAbsenPageModule', name: 'ApproveKoreksiAbsenPage', segment: 'approve-koreksi-absen', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/cari-pegawai/cari-pegawai.module#CariPegawaiPageModule', name: 'CariPegawaiPage', segment: 'cari-pegawai', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/coba-list/coba-list.module#CobaListPageModule', name: 'CobaListPage', segment: 'coba-list', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/check-in/check-in.module#CheckInPageModule', name: 'CheckInPage', segment: 'check-in', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/cuti-detail/cuti-detail.module#CutiDetailPageModule', name: 'CutiDetailPage', segment: 'cuti-detail', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/check-in/check-in.module#CheckInPageModule', name: 'CheckInPage', segment: 'check-in', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/cuti-list/cuti-list.module#CutiListPageModule', name: 'CutiListPage', segment: 'cuti-list', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/coba-list/coba-list.module#CobaListPageModule', name: 'CobaListPage', segment: 'coba-list', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/disposisi/disposisi.module#DisposisiPageModule', name: 'DisposisiPage', segment: 'disposisi', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/eval-bawahan-list/eval-bawahan-list.module#EvalBawahanListPageModule', name: 'EvalBawahanListPage', segment: 'eval-bawahan-list', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/fingerprint-modal/fingerprint-modal.module#FingerprintModalPageModule', name: 'FingerprintModalPage', segment: 'fingerprint-modal', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/home/home.module#HomePageModule', name: 'HomePage', segment: 'home', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/home2/home2.module#Home2PageModule', name: 'Home2Page', segment: 'home2', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/inbox-detail/inbox-detail.module#InboxDetailPageModule', name: 'InboxDetailPage', segment: 'inbox-detail', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/home/home.module#HomePageModule', name: 'HomePage', segment: 'home', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/home3/home3.module#Home3PageModule', name: 'Home3Page', segment: 'home3', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/inbox-detail/inbox-detail.module#InboxDetailPageModule', name: 'InboxDetailPage', segment: 'inbox-detail', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/inbox/inbox.module#InboxPageModule', name: 'InboxPage', segment: 'inbox', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/kategori-pengajuan-list/kategori-pengajuan-list.module#KategoriPengajuanListPageModule', name: 'KategoriPengajuanListPage', segment: 'kategori-pengajuan-list', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/insert-note-attendance/insert-note-attendance.module#InsertNoteAttendancePageModule', name: 'InsertNoteAttendancePage', segment: 'insert-note-attendance', priority: 'low', defaultHistory: [] },
@@ -427,26 +418,25 @@ var AppModule = /** @class */ (function () {
                         { loadChildren: '../pages/login/login.module#LoginPageModule', name: 'LoginPage', segment: 'login', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/map/map.module#MapPageModule', name: 'MapPage', segment: 'map', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/menu-absen/menu-absen.module#MenuAbsenPageModule', name: 'MenuAbsenPage', segment: 'menu-absen', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/outbox-detail/outbox-detail.module#OutboxDetailPageModule', name: 'OutboxDetailPage', segment: 'outbox-detail', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/outbox/outbox.module#InboxPageModule', name: 'OutboxPage', segment: 'outbox', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/outbox-detail/outbox-detail.module#OutboxDetailPageModule', name: 'OutboxDetailPage', segment: 'outbox-detail', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/pertanggungjawaban-sppd/pertanggungjawaban-sppd.module#PertanggungjawabanSppdPageModule', name: 'PertanggungjawabanSppdPage', segment: 'pertanggungjawaban-sppd', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/photo-viewer/photo-viewer.module#PhotoViewerPageModule', name: 'PhotoViewerPage', segment: 'photo-viewer', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/rencana-kerja-bawahan-list/rencana-kerja-bawahan-list.module#RencanaKerjaBawahanListPageModule', name: 'RencanaKerjaBawahanListPage', segment: 'rencana-kerja-bawahan-list', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/restitusi-list/restitusi-list.module#RestitusiListPageModule', name: 'RestitusiListPage', segment: 'restitusi-list', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/rate-absensi/rate-absensi.module#RateAbsensiPageModule', name: 'RateAbsensiPage', segment: 'rate-absensi', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/restitusi-detail/restitusi-detail.module#RestitusiDetailPageModule', name: 'RestitusiDetailPage', segment: 'restitusi-detail', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/restitusi-list/restitusi-list.module#RestitusiListPageModule', name: 'RestitusiListPage', segment: 'restitusi-list', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/search-cuti/search-cuti.module#SearchCutiPageModule', name: 'SearchCutiPage', segment: 'search-cuti', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/search-outbox/search-outbox.module#SearchOutboxPageModule', name: 'SearchOutboxPage', segment: 'search-outbox', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/search-inbox/search-inbox.module#SearchInboxPageModule', name: 'SearchInboxPage', segment: 'search-inbox', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/search-restitusi/search-restitusi.module#SearchRestitusiPageModule', name: 'SearchRestitusiPage', segment: 'search-restitusi', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/search-cuti/search-cuti.module#SearchCutiPageModule', name: 'SearchCutiPage', segment: 'search-cuti', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/search-sppd/search-sppd.module#SearchSppdPageModule', name: 'SearchSppdPage', segment: 'search-sppd', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/search-outbox/search-outbox.module#SearchOutboxPageModule', name: 'SearchOutboxPage', segment: 'search-outbox', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/search-team-absen/search-team-absen.module#SearchTeamAbsenPageModule', name: 'SearchTeamAbsenPage', segment: 'search-team-absen', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/select-bawahan-disposisi/select-bawahan-disposisi.module#SelectBawahanDisposisiPageModule', name: 'SelectBawahanDisposisiPage', segment: 'select-bawahan-disposisi', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/setting/setting.module#SettingPageModule', name: 'SettingPage', segment: 'setting', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/sppd-detail/sppd-detail.module#SppdDetailPageModule', name: 'SppdDetailPage', segment: 'sppd-detail', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/select-bawahan-disposisi/select-bawahan-disposisi.module#SelectBawahanDisposisiPageModule', name: 'SelectBawahanDisposisiPage', segment: 'select-bawahan-disposisi', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/show-more/show-more.module#ShowMorePageModule', name: 'ShowMorePage', segment: 'show-more', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/sppd-detail/sppd-detail.module#SppdDetailPageModule', name: 'SppdDetailPage', segment: 'sppd-detail', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/sppd-list/sppd-list.module#SppdListPageModule', name: 'SppdListPage', segment: 'sppd-list', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/update-userdata/update-userdata.module#UpdateUserdataPageModule', name: 'UpdateUserdataPage', segment: 'update-userdata', priority: 'low', defaultHistory: [] }
+                        { loadChildren: '../pages/update-userdata/update-userdata.module#UpdateUserdataPageModule', name: 'UpdateUserdataPage', segment: 'update-userdata', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/search-restitusi/search-restitusi.module#SearchRestitusiPageModule', name: 'SearchRestitusiPage', segment: 'search-restitusi', priority: 'low', defaultHistory: [] }
                     ]
                 }),
                 __WEBPACK_IMPORTED_MODULE_5__ionic_storage__["a" /* IonicStorageModule */].forRoot()
@@ -532,7 +522,7 @@ var MyApp = /** @class */ (function () {
                 if (val != null) {
                     _this.rootPage = 'Home3Page';
                     if (platform.is('cordova')) {
-                        _this.oneSignal.startInit(__WEBPACK_IMPORTED_MODULE_6__config__["f" /* oneSignalAppId */], __WEBPACK_IMPORTED_MODULE_6__config__["h" /* sender_id */]);
+                        _this.oneSignal.startInit(__WEBPACK_IMPORTED_MODULE_6__config__["e" /* oneSignalAppId */], __WEBPACK_IMPORTED_MODULE_6__config__["g" /* sender_id */]);
                         _this.oneSignal.inFocusDisplaying(_this.oneSignal.OSInFocusDisplayOption.Notification);
                         _this.oneSignal.handleNotificationReceived().subscribe(function (data) { return _this.onPushReceived(data); });
                         _this.oneSignal.handleNotificationOpened().subscribe(function (data) {

@@ -1,14 +1,14 @@
 webpackJsonp([23],{
 
-/***/ 313:
+/***/ 308:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Home3PageModule", function() { return Home3PageModule; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "FingerprintModalPageModule", function() { return FingerprintModalPageModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(100);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__home3__ = __webpack_require__(370);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__fingerprint_modal__ = __webpack_require__(363);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -18,33 +18,33 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 
-var Home3PageModule = /** @class */ (function () {
-    function Home3PageModule() {
+var FingerprintModalPageModule = /** @class */ (function () {
+    function FingerprintModalPageModule() {
     }
-    Home3PageModule = __decorate([
+    FingerprintModalPageModule = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["J" /* NgModule */])({
             declarations: [
-                __WEBPACK_IMPORTED_MODULE_2__home3__["a" /* Home3Page */],
+                __WEBPACK_IMPORTED_MODULE_2__fingerprint_modal__["a" /* FingerprintModalPage */],
             ],
             imports: [
-                __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__home3__["a" /* Home3Page */]),
+                __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__fingerprint_modal__["a" /* FingerprintModalPage */]),
             ],
         })
-    ], Home3PageModule);
-    return Home3PageModule;
+    ], FingerprintModalPageModule);
+    return FingerprintModalPageModule;
 }());
 
-//# sourceMappingURL=home3.module.js.map
+//# sourceMappingURL=fingerprint-modal.module.js.map
 
 /***/ }),
 
-/***/ 343:
+/***/ 341:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return SoapService; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__soapclient_js__ = __webpack_require__(344);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__soapclient_js__ = __webpack_require__(342);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__soapclient_js___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__soapclient_js__);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -96,7 +96,7 @@ var SoapService = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 344:
+/***/ 342:
 /***/ (function(module, exports) {
 
 /*****************************************************************************\
@@ -551,20 +551,18 @@ module.exports = {
 
 /***/ }),
 
-/***/ 370:
+/***/ 363:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return Home3Page; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return FingerprintModalPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(100);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_storage__ = __webpack_require__(101);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__config__ = __webpack_require__(199);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__soap_service__ = __webpack_require__(343);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ionic_native_device__ = __webpack_require__(208);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ionic_native_onesignal__ = __webpack_require__(102);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__ionic_native_in_app_browser__ = __webpack_require__(206);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__angular_common_http__ = __webpack_require__(200);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__config__ = __webpack_require__(199);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__soap_service__ = __webpack_require__(341);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_storage__ = __webpack_require__(101);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__angular_common__ = __webpack_require__(26);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__angular_common_http__ = __webpack_require__(200);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -581,426 +579,290 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-
-
 /**
- * Generated class for the Home3Page page.
+ * Generated class for the FingerprintModalPage page.
  *
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
  */
-var Home3Page = /** @class */ (function () {
-    function Home3Page(navCtrl, navParams, alertCtrl, app, storage, loadingCtrl, soapService, toastCtrl, device, inAppBrowser, oneSignal, modalCtrl, http, platform) {
+var FingerprintModalPage = /** @class */ (function () {
+    function FingerprintModalPage(navCtrl, navParams, soapService, storage, toastCtrl, loadingCtrl, datepipe, alertCtrl, http, appCtrl, viewCtrl) {
+        var _this = this;
         this.navCtrl = navCtrl;
         this.navParams = navParams;
-        this.alertCtrl = alertCtrl;
-        this.app = app;
-        this.storage = storage;
-        this.loadingCtrl = loadingCtrl;
         this.soapService = soapService;
+        this.storage = storage;
         this.toastCtrl = toastCtrl;
-        this.device = device;
-        this.inAppBrowser = inAppBrowser;
-        this.oneSignal = oneSignal;
-        this.modalCtrl = modalCtrl;
+        this.loadingCtrl = loadingCtrl;
+        this.datepipe = datepipe;
+        this.alertCtrl = alertCtrl;
         this.http = http;
-        this.platform = platform;
-        this.isLoading = true;
-        this.agendaList = [];
-        this.isSkipUpdate = false;
-        this.isLoadingHadirkoe = true;
-    }
-    Home3Page.prototype.ionViewDidLoad = function () {
-        console.log('ionViewDidLoad Home3Page');
-    };
-    Home3Page.prototype.ionViewWillEnter = function () {
-        var _this = this;
+        this.appCtrl = appCtrl;
+        this.viewCtrl = viewCtrl;
+        this.isLoading = false;
+        // this.dataValidasi = navParams.get('dataValidasi');
+        console.log(this.dataValidasi);
         this.storage.get('userdataTPK').then(function (val) {
-            // console.log(val);
             _this.userdataTPK = val;
-            _this.getBadges();
-            _this.getBadgesP2b();
-            _this.getBadgesPrpo();
+            // this.personId = this.userdataTPK['data']['PERSON_ID'];
+            console.log(_this.userdataTPK);
+            _this.isLoading = true;
             _this.getValidasi();
-            _this.newSession('first', '');
-            _this.getData('first', '');
-            _this.cekVersi();
         });
+        var date = new Date();
+        var currentYear = date.getFullYear();
+        var currentMonth = date.getMonth();
+        var bulan = (currentMonth < 10) ? "0" + (currentMonth + 1).toString() : (currentMonth + 1).toString();
+        var tgl = date.getDate();
+        this.date = tgl + '-' + bulan + '-' + currentYear;
+        console.log(this.date);
+    }
+    FingerprintModalPage.prototype.ionViewDidLoad = function () {
+        console.log('ionViewDidLoad FingerprintModalPage');
     };
-    Home3Page.prototype.newSession = function (type, functionName) {
+    FingerprintModalPage.prototype.openActivityPage = function () {
+        if (this.dataValidasi['CHECK_IN'] == false || this.dataValidasi['CHECK_OUT'] == false) {
+            this.viewCtrl.dismiss();
+            this.appCtrl.getRootNav().push('InsertNoteAttendancePage', {
+                "fromPage": "AbsenActivityPage",
+                "shiftDate": this.dataValidasi['SHIFT_DATE']
+            });
+        }
+        else {
+            var alert_1 = this.alertCtrl.create({
+                title: '',
+                subTitle: 'Belum ada data absensi, silahkan melakukan Check In/Check Out terlebih dahulu.',
+                buttons: ['OK']
+            });
+            alert_1.present();
+        }
         // let loading = this.loadingCtrl.create({
         //   spinner: 'dots',
         //   content: "Mohon Tunggu...",
         //   cssClass: 'transparent',
         //   dismissOnPageChange: true
         // });
-        var _this = this;
-        // if (type == 'refresh') {
-        //   loading.present();
-        // }
-        // this.isLoading = true;
-        this.soapService
-            .post(__WEBPACK_IMPORTED_MODULE_3__config__["a" /* api_base_url */], 'eoffice_get_user_data', {
-            fStream: JSON.stringify({
-                usernameEDI: __WEBPACK_IMPORTED_MODULE_3__config__["e" /* api_user */],
-                passwordEDI: __WEBPACK_IMPORTED_MODULE_3__config__["c" /* api_pass */],
-                username: this.userdataTPK['data']['NIPP'],
-            })
-        }).then(function (result) {
-            var responData = JSON.parse(String(result));
-            if (responData['rcmsg'] == "SUCCESS") {
-                if (responData['data']['login_status'] == '404 Not Found') {
-                    // console.log(responData['data']['login_status']);
-                }
-                else if (responData['data'] == undefined) {
-                    // console.log(responData['data']);
-                }
-                else if (responData['data']['login_status'] == 'AP NOT ALLOWED') {
-                    // console.log(responData['data']['login_status']);
-                }
-                else {
-                    _this.userdataTPK = responData;
-                    _this.storage.set('userdataTPK', responData).then(function () {
-                        //this.getData(type, functionName, loading);
-                    });
-                }
-            }
-            else {
-                // console.log("error here");
-                //loading.dismiss();
-                // this.isLoading = false;
-            }
-        })
-            .catch(function (error) {
-            var toast = _this.toastCtrl.create({
-                message: 'Terjadi Masalah Koneksi, Silahkan Coba Kembali.',
-                duration: 3000,
-                position: 'bottom'
-            });
-            toast.present();
-            if (type == 'refresh') {
-                functionName.complete();
-                // loading.dismiss();
-            }
-            // this.isLoading = false;
-        });
-    };
-    Home3Page.prototype.getData = function (type, functionName) {
-        var _this = this;
-        this.isLoading = true;
-        this.soapService
-            .post(__WEBPACK_IMPORTED_MODULE_3__config__["a" /* api_base_url */], 'eoffice_home', {
-            fStream: JSON.stringify({
-                usernameEDI: __WEBPACK_IMPORTED_MODULE_3__config__["e" /* api_user */],
-                passwordEDI: __WEBPACK_IMPORTED_MODULE_3__config__["c" /* api_pass */],
-                iduser: this.userdataTPK.data.IDUSER,
-                idjabatan: this.userdataTPK.data.IDJABATAN,
-                nipp: this.userdataTPK.data.NIPP,
-            })
-        }).then(function (result) {
-            var responData = JSON.parse(String(result));
-            // console.log(responData);
-            if (responData['rcmsg'] == "SUCCESS") {
-                _this.agendaList = [];
-                for (var i = 0; i < responData['data']['AGENDA_HARI_INI'].length; i++) {
-                    _this.agendaList.push(responData['data']['AGENDA_HARI_INI'][i]);
-                }
-                if (type == 'refresh') {
-                    functionName.complete();
-                    // loading.dismiss();
-                }
-                _this.isLoading = false;
-            }
-            else {
-                var toast = _this.toastCtrl.create({
-                    message: 'Mohon Maaf Sedang Terjadi Kesalahan, Coba Beberapa Saat Lagi.',
-                    duration: 3000,
-                    position: 'bottom'
-                });
-                toast.present();
-                if (type == 'refresh') {
-                    functionName.complete();
-                }
-                _this.isLoading = false;
-            }
-        })
-            .catch(function (error) {
-            var toast = _this.toastCtrl.create({
-                message: 'Terjadi Masalah Koneksi, Silahkan Coba Kembali.',
-                duration: 3000,
-                position: 'bottom'
-            });
-            toast.present();
-            if (type == 'refresh') {
-                functionName.complete();
-                // loading.dismiss();
-            }
-            _this.isLoading = false;
-        });
-    };
-    Home3Page.prototype.getBadges = function () {
-        var _this = this;
-        this.soapService
-            .post(__WEBPACK_IMPORTED_MODULE_3__config__["a" /* api_base_url */], 'eoffice_countbadges', {
-            fStream: JSON.stringify({
-                usernameEDI: __WEBPACK_IMPORTED_MODULE_3__config__["e" /* api_user */],
-                passwordEDI: __WEBPACK_IMPORTED_MODULE_3__config__["c" /* api_pass */],
-                iduser: this.userdataTPK['data']['IDUSER'],
-                idjabatan: this.userdataTPK['data']['IDJABATAN'],
-                nipp: this.userdataTPK['data']['NIPP']
-            })
-        }).then(function (result) {
-            var responData = JSON.parse(String(result));
-            console.log(responData);
-            if (responData['rcmsg'] == "SUCCESS") {
-                _this.badgesList = responData['data'];
-                console.log(_this.badgesList);
-            }
-            else {
-                var toast = _this.toastCtrl.create({
-                    message: 'Gagal Mendapatkan Notifikasi, Coba Beberapa Saat Lagi.',
-                    duration: 3000,
-                    position: 'bottom'
-                });
-                toast.present();
-            }
-        })
-            .catch(function (error) {
-            var toast = _this.toastCtrl.create({
-                message: 'Gagal Mendapatkan Notifikasi, Periksa Koneksi Internet Anda.',
-                duration: 3000,
-                position: 'bottom'
-            });
-            toast.present();
-        });
-    };
-    Home3Page.prototype.getBadgesP2b = function () {
-        // this.soapService
-        //   .post(api_p2b_url, 'eoffice_countbadges', {
-        //     fStream: JSON.stringify(
-        //       {
-        //         usernameEDI: api_user,
-        //         passwordEDI: api_pass,
-        //         iduser: this.userdataTPK['data']['IDUSER'],
-        //         idjabatan: this.userdataTPK['data']['IDJABATAN'],
-        //         nipp: this.userdataTPK['data']['NIPP']
-        //       }
-        //     )
-        //   }).then(result => {
-        //     var responData = JSON.parse(String(result));
-        //     console.log(responData);
-        //     if (responData['rcmsg'] == "SUCCESS") {
-        //       this.badgesP2b = responData['data'];
-        //       // console.log(this.badgesList);
-        //     } else {
-        //       let toast = this.toastCtrl.create({
-        //         message: 'Gagal Mendapatkan Notifikasi, Coba Beberapa Saat Lagi.',
-        //         duration: 3000,
-        //         position: 'bottom'
-        //       });
-        //       toast.present();
+        // loading.present();
+        // this.soapService.post(api_base_url, 'am6_detail_absen', {
+        //   fStream: JSON.stringify(
+        //     {
+        //       usernameEDI: api_user,
+        //       passwordEDI: api_pass,
+        //       person_id: this.personId,
+        //       tgl: this.date
         //     }
-        //   })
-        //   .catch(error => {
+        //   )
+        // }).then(result => {
+        //   var responData = JSON.parse(String(result));
+        //   if (responData['rcmsg'] == "SUCCESS") {
+        //     this.activityList = responData['data'];
+        //     if (this.activityList.length != 0) {
+        //       // if (this.activityList['CHECK_IN_PHOTO'] != null) {
+        //       //   this.activityList['CHECK_IN_PHOTO'] = url_image + '/' + this.activityList['CHECK_IN_PHOTO'];
+        //       // } 
+        //       // if (this.activityList['CHECK_OUT_PHOTO'] != null) {
+        //       //   this.activityList['CHECK_OUT_PHOTO'] = url_image + '/' + this.activityList['CHECK_OUT_PHOTO'];
+        //       // }
+        //       console.log(this.activityList);
+        //       if (this.activityList['CHECK_IN'] == '' && this.activityList['CHECK_OUT'] == '') {
+        //         let alert = this.alertCtrl.create({
+        //           title: '',
+        //           subTitle: 'Belum ada data absensi, silahkan melakukan Check In/Check Out terlebih dahulu.',
+        //           buttons: ['OK']
+        //         });
+        //         alert.present();
+        //       } else if (this.activityList['CHECK_IN'] != '' && this.activityList['CHECK_OUT'] == '') {
+        //         this.navCtrl.push('InsertNoteAttendancePage', {
+        //           "transactionId": '',
+        //           "checkType": 'CHECK_IN',
+        //           "attendanceType": this.activityList['CHECK_IN_TYPE'],
+        //           "long": this.activityList['CHECK_IN_LONGITUDE'],
+        //           "lat": this.activityList['CHECK_IN_LATITUDE'],
+        //           "photo": this.activityList['CHECK_IN_PHOTO'],
+        //           "checkTime": this.activityList['CHECK_IN'],
+        //           'date': this.activityList['DATE'],
+        //           "activity": this.activityList['CHECK_IN_ACTIVITY'],
+        //           "fromPage": "AbsenActivityPage"
+        //         });
+        //       } else if (this.activityList['CHECK_IN'] == '' && this.activityList['CHECK_OUT'] != '') {
+        //         this.navCtrl.push('InsertNoteAttendancePage', {
+        //           "transactionId": '',
+        //           "checkType": 'CHECK_OUT',
+        //           "attendanceType": this.activityList['CHECK_OUT_TYPE'],
+        //           "long": this.activityList['CHECK_OUT_LONGITUDE'],
+        //           "lat": this.activityList['CHECK_OUT_LATITUDE'],
+        //           "photo": this.activityList['CHECK_OUT_PHOTO'],
+        //           "checkTime": this.activityList['CHECK_OUT'],
+        //           'date': this.activityList['DATE'],
+        //           "activity": this.activityList['CHECK_OUT_ACTIVITY'],
+        //           "fromPage": "AbsenActivityPage"
+        //         });
+        //       } else if (this.activityList['CHECK_IN'] != '' && this.activityList['CHECK_OUT'] != '') {
+        //         this.navCtrl.push('InsertNoteAttendancePage', {
+        //           "transactionId": '',
+        //           "checkType": 'CHECK_OUT',
+        //           "attendanceType": this.activityList['CHECK_OUT_TYPE'],
+        //           "long": this.activityList['CHECK_OUT_LONGITUDE'],
+        //           "lat": this.activityList['CHECK_OUT_LATITUDE'],
+        //           "photo": this.activityList['CHECK_OUT_PHOTO'],
+        //           "checkTime": this.activityList['CHECK_OUT'],
+        //           'date': this.activityList['DATE'],
+        //           "activity": this.activityList['CHECK_OUT_ACTIVITY'],
+        //           "fromPage": "AbsenActivityPage"
+        //         });
+        //       }
+        //     }
+        //     loading.dismiss();
+        //   } else {
+        //     console.log(responData);
         //     let toast = this.toastCtrl.create({
-        //       message: 'Gagal Mendapatkan Notifikasi, Periksa Koneksi Internet Anda.',
+        //       message: 'Mohon Maaf Sedang Terjadi Kesalahan, Coba Beberapa Saat Lagi.',
         //       duration: 3000,
         //       position: 'bottom'
         //     });
         //     toast.present();
+        //     loading.dismiss();
+        //   }
+        // }).catch(error => {
+        //   console.log(error);
+        //   let toast = this.toastCtrl.create({
+        //     message: 'Terjadi Masalah Koneksi, Silahkan Coba Kembali.',
+        //     duration: 3000,
+        //     position: 'bottom'
         //   });
+        //   toast.present();
+        //   loading.dismiss();
+        // });
+        // this.http.get(api_base_url_apim_absensi + 'preview?' + 'person=' + this.personId + '&tgl=' + this.date, {
+        //   headers
+        // }).subscribe(data => {
+        //   console.log(data);
+        //   this.activityList = data;     
+        //   console.log(this.activityList);
+        //   if (this.activityList['CHECK_IN'] == '' && this.activityList['CHECK_OUT'] == '') {
+        //     let alert = this.alertCtrl.create({
+        //       title: '',
+        //       subTitle: 'Belum ada data absensi, silahkan melakukan Check In/Check Out terlebih dahulu.',
+        //       buttons: ['OK']
+        //     });
+        //     alert.present();
+        //   } else if (this.activityList['CHECK_IN'] != '' && this.activityList['CHECK_OUT'] == '') {
+        //     this.navCtrl.push('InsertNoteAttendancePage', {
+        //       "transactionId": '',
+        //       "checkType": 'CHECK_IN',
+        //       "attendanceType": this.activityList['CHECK_IN_TYPE'],
+        //       "long": this.activityList['CHECK_IN_LONGITUDE'],
+        //       "lat": this.activityList['CHECK_IN_LATITUDE'],
+        //       "photo": this.activityList['CHECK_IN_PHOTO'],
+        //       "checkTime": this.activityList['CHECK_IN'],
+        //       'date': this.activityList['DATE'],
+        //       "activity": this.activityList['CHECK_IN_ACTIVITY'],
+        //       "fromPage": "AbsenActivityPage"
+        //     });
+        //   } else if (this.activityList['CHECK_IN'] == '' && this.activityList['CHECK_OUT'] != '') {
+        //     this.navCtrl.push('InsertNoteAttendancePage', {
+        //       "transactionId": '',
+        //       "checkType": 'CHECK_OUT',
+        //       "attendanceType": this.activityList['CHECK_OUT_TYPE'],
+        //       "long": this.activityList['CHECK_OUT_LONGITUDE'],
+        //       "lat": this.activityList['CHECK_OUT_LATITUDE'],
+        //       "photo": this.activityList['CHECK_OUT_PHOTO'],
+        //       "checkTime": this.activityList['CHECK_OUT'],
+        //       'date': this.activityList['DATE'],
+        //       "activity": this.activityList['CHECK_OUT_ACTIVITY'],
+        //       "fromPage": "AbsenActivityPage"
+        //     });
+        //   } else if (this.activityList['CHECK_IN'] != '' && this.activityList['CHECK_OUT'] != '') {
+        //     this.navCtrl.push('InsertNoteAttendancePage', {
+        //       "transactionId": '',
+        //       "checkType": 'CHECK_OUT',
+        //       "attendanceType": this.activityList['CHECK_OUT_TYPE'],
+        //       "long": this.activityList['CHECK_OUT_LONGITUDE'],
+        //       "lat": this.activityList['CHECK_OUT_LATITUDE'],
+        //       "photo": this.activityList['CHECK_OUT_PHOTO'],
+        //       "checkTime": this.activityList['CHECK_OUT'],
+        //       'date': this.activityList['DATE'],
+        //       "activity": this.activityList['CHECK_OUT_ACTIVITY'],
+        //       "fromPage": "AbsenActivityPage"
+        //     });
+        //   }
+        //   loading.dismiss();
+        // }, err => {
+        //   console.log(err);
+        //   let toast = this.toastCtrl.create({
+        //     message: 'Terjadi Masalah Koneksi, Silahkan Coba Kembali.',
+        //     duration: 3000,
+        //     position: 'bottom'
+        //   });
+        //   toast.present();
+        //   loading.dismiss();
+        // });
     };
-    Home3Page.prototype.getBadgesPrpo = function () {
-        // this.soapService
-        //   .post(api_p2b_url, 'eoffice_countbadgestpk', {
-        //     fStream: JSON.stringify(
-        //       {
-        //         usernameEDI: api_user,
-        //         passwordEDI: api_pass,
-        //         nipp: this.userdataTPK['data']['NIPP']
-        //       }
-        //     )
-        //   }).then(result => {
-        //     var responData = JSON.parse(String(result));
-        //     if (responData['rcmsg'] == "SUCCESS") {
-        //       this.badgesPrpoList = responData['data'];
-        //       console.log(this.badgesPrpoList);
-        //     } else {
+    FingerprintModalPage.prototype.openTeamPage = function () {
+        this.viewCtrl.dismiss();
+        this.appCtrl.getRootNav().push('AbsenTeamHadirkoePage', {
+            "idUser": this.userdataTPK['data']['IDUSER'],
+            "date": this.datepipe.transform(new Date(), 'dd-MM-yyyy'),
+            "fromPage": "AbsenActivityPage"
+        });
+    };
+    FingerprintModalPage.prototype.openPage = function (page, type) {
+        this.viewCtrl.dismiss();
+        this.appCtrl.getRootNav().push(page, {
+            "type": type,
+            "long": "",
+            "lat": "",
+            "fromPage": "FingerprintModalPage",
+            "dataValidasi": this.dataValidasi
+        });
+        // this.navCtrl.push(page, {
+        //   "type": type,
+        //   "long": "",
+        //   "lat": "",
+        //   "fromPage": "FingerprintModalPage"
+        // }).then(() => {
+        // });
+    };
+    FingerprintModalPage.prototype.getValidasi = function () {
+        // this.soapService.post(api_res, 'am3_check_shift', {
+        //   fStream: JSON.stringify(
+        //     {
+        //       usernameEDI: api_user,
+        //       passwordEDI: api_pass,
+        //       person_id: this.userdataTPK['data']['PERSON_ID'],
+        //       nipp: this.userdataTPK['data']['NIPP'],
+        //       id_user: this.userdataTPK['data']['IDUSER']
         //     }
+        //   )
+        // })
+        //   .then(result => {
+        //     console.log(result);
+        //     var responData = JSON.parse(String(result));
+        //     this.dataValidasi = responData;        
+        //     this.isLoading = false;
         //   })
         //   .catch(error => {
+        //     console.log(error);
+        //     this.isLoading = false;
         //   });
-    };
-    Home3Page.prototype.doRefresh = function (refresher) {
-        this.getBadges();
-        this.getBadgesP2b();
-        this.getBadgesPrpo();
-        this.getValidasi();
-        this.getData('refresh', refresher);
-        this.newSession('refresh', refresher);
-        this.cekVersi();
-    };
-    Home3Page.prototype.logout = function () {
         var _this = this;
-        var alert = this.alertCtrl.create({
-            subTitle: 'Apakah anda yakin ingin log out ?',
-            cssClass: 'alert',
-            buttons: [
-                {
-                    text: 'TIDAK',
-                    role: 'cancel',
-                    handler: function () {
-                        // console.log('Cancel clicked');
-                    }
-                },
-                {
-                    text: 'YA',
-                    handler: function () {
-                        _this.app.getRootNav().setRoot('LoginPage').then(function () {
-                            //this.events.unsubscribe('user:data',() => {});
-                            _this.storage.clear();
-                        });
-                    }
-                }
-            ]
-        });
-        alert.present();
-    };
-    Home3Page.prototype.openPage = function (page) {
-        this.navCtrl.push(page);
-    };
-    Home3Page.prototype.openPage2 = function (page, param) {
-        this.navCtrl.push(page, {
-            modul: param
-        });
-    };
-    Home3Page.prototype.notEmpty = function (val) {
-        if (typeof val != "undefined") {
-            return true;
-        }
-        else {
-            return false;
-        }
-    };
-    Home3Page.prototype.parse = function (val) {
-        var intValue = parseInt(val);
-        if (intValue > 0) {
-            return true;
-        }
-        else {
-            return false;
-        }
-    };
-    Home3Page.prototype.cekVersi = function () {
-        var _this = this;
-        if (this.platform.is('cordova')) {
-            this.oneSignal.getIds().then(function (id) {
-                console.log(id);
-                _this.soapService.post(__WEBPACK_IMPORTED_MODULE_3__config__["a" /* api_base_url */], 'eoffice_bypass_wso', {
-                    fStream: JSON.stringify({
-                        sc_type: 'check_version',
-                        sc_code: "",
-                        data: {
-                            "platform": "ios",
-                            "version": "1.4.3",
-                            "player_id": id.userId,
-                            "nipp": _this.userdataTPK.data.NIPP,
-                            "model": _this.device.model,
-                            "uuid": _this.device.uuid
-                        }
-                    })
-                }).then(function (result) {
-                    var responData = JSON.parse(String(result));
-                    console.log(responData);
-                    if (responData['rcmsg'] == "SUCCESS") {
-                        if ((responData['data']['POPUP'] == "1" || responData['data']['POPUP'] == "2" || responData['data']['POPUP'] == "3")) {
-                            _this.showVersiPopup(responData['data']['POPUP'], responData['data']['POPUP_MESSAGE'], responData['data']['URL']);
-                        }
-                        else {
-                        }
-                    }
-                    else {
-                    }
-                })
-                    .catch(function (error) {
-                    console.log(error);
-                });
-            });
-        }
-    };
-    Home3Page.prototype.showVersiPopup = function (popupCode, popupMessage, url) {
-        var _this = this;
-        var myButton = [];
-        if (popupCode == "1") {
-            myButton = [
-                {
-                    text: 'LEWATI',
-                    role: 'cancel',
-                    handler: function () {
-                        console.log('Cancel clicked');
-                        _this.isSkipUpdate = true;
-                        // return false;
-                    }
-                },
-                {
-                    text: 'UPDATE',
-                    handler: function () {
-                        var options = {
-                            zoom: 'no'
-                        };
-                        var browser = _this.inAppBrowser.create(url, '_system', options);
-                        return false;
-                    }
-                }
-            ];
-        }
-        else if (popupCode == "2") {
-            myButton = [
-                {
-                    text: 'UPDATE',
-                    handler: function () {
-                        // this.market.open('ipc.imove');
-                        var options = {
-                            zoom: 'no'
-                        };
-                        var browser = _this.inAppBrowser.create(url, '_system', options);
-                        return false;
-                    }
-                }
-            ];
-        }
-        else if (popupCode == "3") {
-            myButton = [
-                {
-                    text: 'OK',
-                    role: 'cancel',
-                    handler: function () {
-                        console.log('Cancel clicked');
-                    }
-                }
-            ];
-        }
-        var alert = this.alertCtrl.create({
-            subTitle: popupMessage,
-            enableBackdropDismiss: false,
-            cssClass: 'alert',
-            buttons: myButton
-        });
-        alert.present();
-    };
-    Home3Page.prototype.showModal = function (myModal) {
-        var modal = this.modalCtrl.create(myModal, {}, {
-            enableBackdropDismiss: true,
-            showBackdrop: true,
-            cssClass: 'my-modal10'
-        });
-        modal.present();
-    };
-    Home3Page.prototype.getValidasi = function () {
-        var _this = this;
-        this.http.post(__WEBPACK_IMPORTED_MODULE_3__config__["d" /* api_res */] + 'am3_check_shift.php', {
-            usernameEDI: __WEBPACK_IMPORTED_MODULE_3__config__["e" /* api_user */],
-            passwordEDI: __WEBPACK_IMPORTED_MODULE_3__config__["c" /* api_pass */],
+        // var date = new Date();
+        // var formattedDate = this.datepipe.transform(date, 'yyyy-MM-dd HH:mm:ss');
+        // var rand = Math.floor((Math.random() * 100000000) + 1);
+        // var headers = new HttpHeaders({
+        //   'Accept': "*/*",
+        //   // 'Access-Control-Allow-Origin': 'http://localhost:8100',
+        //   'x-ibm-client-id': client_id,
+        //   'x-ibm-client-secret': client_secret,
+        //   'username': api_user,
+        //   'password': api_pass,
+        //   'externalId': rand.toString(),
+        //   'timestamp': formattedDate,
+        //   'Content-Type': 'application/json'
+        // });
+        this.http.post(__WEBPACK_IMPORTED_MODULE_2__config__["c" /* api_res */] + 'am3_check_shift.php', {
+            usernameEDI: __WEBPACK_IMPORTED_MODULE_2__config__["d" /* api_user */],
+            passwordEDI: __WEBPACK_IMPORTED_MODULE_2__config__["b" /* api_pass */],
             person_id: this.userdataTPK['data']['PERSON_ID'],
             nipp: this.userdataTPK['data']['NIPP'],
             id_user: this.userdataTPK['data']['IDUSER']
@@ -1008,36 +870,33 @@ var Home3Page = /** @class */ (function () {
             console.log(data);
             //var responData = JSON.parse(data);
             _this.dataValidasi = data['data'];
-            _this.isLoadingHadirkoe = false;
+            _this.isLoading = false;
         }, function (err) {
             console.log(err);
-            _this.isLoadingHadirkoe = false;
+            _this.isLoading = false;
         });
     };
-    Home3Page = __decorate([
+    FingerprintModalPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
-            selector: 'page-home3',
-            providers: [__WEBPACK_IMPORTED_MODULE_4__soap_service__["a" /* SoapService */]],template:/*ion-inline-start:"/Users/itadmin/Downloads/ERDA/POS_PPI/src/pages/home3/home3.html"*/'<!--\n  Generated template for the Home3Page page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n  <ion-navbar>\n    <img src="assets/imgs/ipc-tpk-logo.png" style="width:65px;height:auto; margin-left:10px; display:inline-block"\n      height="40px" />\n    <ion-title class="titleicon" style="display:inline-block">\n      <span ion-text><b>PPI Office System</b></span>\n    </ion-title>\n    <ion-buttons end>\n      <button ion-button (click)="openPage(\'SettingPage\')">\n        <ion-icon style="font-size:2.5rem;" name="md-settings" color="color6"></ion-icon>\n      </button>\n      <button ion-button (click)="logout()">\n        <ion-icon style="font-size:2.5rem;" name="md-log-out" color="color6"></ion-icon>\n      </button>\n    </ion-buttons>\n  </ion-navbar>\n</ion-header>\n\n<ion-content>\n  <div class="header-container" *ngIf="userdataTPK != null">\n    <div class="welcome-class">\n      <span ion-text text-wrap>Welcome,</span> <br>\n      <span *ngIf="userdataTPK != null" ion-text text-wrap> <b>{{ userdataTPK[\'data\'][\'NAMA\'] }}</b></span>\n    </div>\n    <!-- <div class="header-img"></div> -->\n\n    <ion-slides style="margin-top: 50px;" autoplay="5000" loop="true" speed="500">\n      <ion-slide class="my-slide">\n        <img src="assets/imgs/slide-1.png" class="my-slider-img">\n      </ion-slide>\n      <ion-slide class="my-slide">\n        <img src="assets/imgs/slide-2.png" class="my-slider-img">\n      </ion-slide>\n      <ion-slide class="my-slide">\n        <img src="assets/imgs/slide-3.png" class="my-slider-img">\n      </ion-slide>\n    </ion-slides>\n\n    <ion-card class="header-card" *ngIf="isLoadingHadirkoe == false && dataValidasi != null">\n      <div class="menu-container">\n        <div class="menu-content" (click)="openPage(\'InboxPage\')">\n          <div class="img-container color-1"><img src="assets/imgs/menu-icon/inbox-white.png"></div>\n          <span ion-text text-wrap>Surat Masuk</span>\n          <ion-badge class="my-badge" *ngIf="badgesList != null && parse(badgesList[\'JUMLAH_SURAT_ALL_BADGES\'])"\n            color="danger">{{badgesList[\'JUMLAH_SURAT_ALL_BADGES\']}}</ion-badge>\n        </div>\n\n        <div class="menu-content" (click)="openPage(\'OutboxPage\')">\n          <div class="img-container color-2"><img src="assets/imgs/menu-icon/outbox-white.png"></div>\n          <span ion-text text-wrap>Surat Keluar</span>\n        </div>\n\n        <!-- <div class="menu-content" *ngIf="userdataTPK[\'data\'][\'TNO\'] == true || dataValidasi[\'HADIRKOE\'] == false"\n          (click)="openPage(\'SppdListPage\')">\n          <div class="img-container color-3"><img src="assets/imgs/menu-icon/sppd-white.png"></div>\n          <span ion-text text-wrap>SPPD</span>\n        </div> -->\n        <div class="menu-content"\n          (click)="showModal(\'FingerprintModalPage\')">\n          <div class="img-container color-8"><img src="assets/flat-icon/hadirkoe.png"></div>\n          <span ion-text text-wrap>HadirKoe</span>\n        </div>\n      </div>\n    </ion-card>\n\n    <ion-card class="header-card" *ngIf="isLoadingHadirkoe == true && dataValidasi == null">\n      <div class="menu-container">\n        <div class="menu-content">\n          <div class="animate-skeleton-background load-3"></div>\n        </div>\n\n        <div class="menu-content">\n          <div class="animate-skeleton-background load-3"></div>\n        </div>\n\n        <div class="menu-content">\n          <div class="animate-skeleton-background load-3"></div>\n        </div>\n      </div>\n    </ion-card>\n  </div>\n\n  <!-- <div class="my-card-3">\n    <div class="my-card-3-content" style="border-right: 1px solid #e6e6e6;">\n      <span ion-text text-wrap color="danger"\n        *ngIf="badgesList != null"><b>{{ badgesList[\'JUMLAH_SURAT_BELUM_APPROVE\'] }} surat</b></span>\n      <span ion-text text-wrap color="danger" *ngIf="badgesList == null"><b>0 surat</b></span>\n      <br>\n      <span ion-text text-wrap class="font-mini" color="gray">Butuh Approval</span>\n    </div>\n    <div class="my-card-3-content">\n      <span ion-text text-wrap color="danger"><b>5 surat</b></span> <br>\n      <span ion-text text-wrap class="font-mini" color="gray">Belum Didisposisi</span>\n    </div>\n  </div> -->\n  <br>\n  <div *ngIf="userdataTPK != null">\n    <div *ngIf="userdataTPK[\'data\'][\'TNO\'] == false">\n      <div style="margin-top: 175px;" class="menu-container">\n        <div class="menu-content-2" (click)="openPage(\'AbsenListPage\')">\n          <div class="img-container-2"><img src="assets/imgs/menu-icon/absensi.png"></div>\n          <span ion-text text-wrap>Absensi</span>\n          <ion-badge class="my-badge" *ngIf="badgesList != null && parse(badgesList[\'JUMLAH_ABSEN_BELUM_KOREKSI\'])"\n            color="danger">{{ badgesList[\'JUMLAH_ABSEN_BELUM_KOREKSI\'] }}\n          </ion-badge>\n        </div>\n\n        <div class="menu-content-2" (click)="openPage(\'CutiListPage\')">\n          <div class="img-container-2"><img src="assets/imgs/menu-icon/cuti.png"></div>\n          <span ion-text text-wrap>Cuti/Izin</span>\n        </div>\n\n        <div class="menu-content-2" (click)="openPage(\'SppdListPage\')">\n          <div class="img-container-2"><img src="assets/imgs/menu-icon/sppd-2.png"></div>\n          <span ion-text text-wrap>SPPD</span>\n        </div>\n\n        <div class="menu-content-2" (click)="openPage(\'\')">\n          <div class="img-container-2"><img src="assets/imgs/menu-icon/survey.png"></div>\n          <span ion-text text-wrap>Arsip Personal</span>\n        </div>\n      </div>\n\n      <div *ngIf="dataValidasi != null">\n        <div style="margin-top: 20px;" class="menu-container">\n          <div class="menu-content-2" (click)="openPage(\'SppdListPage\')">\n            <div class="img-container-2"><img src="assets/imgs/menu-icon/sppd-2.png"></div>\n            <span ion-text text-wrap>E-CV</span>\n          </div>\n\n          <div class="menu-content-2">\n          </div>\n\n          <div class="menu-content-2">\n          </div>\n\n          <div class="menu-content-2">\n          </div>\n        </div>\n      </div>\n\n    </div>\n  </div>\n\n\n  <br>\n\n  <div class="divider"></div>\n\n\n\n  <div class="agenda-title-container">\n    <span ion-text text-wrap style="font-size:1.5rem;">\n      <b>AGENDA</b>\n    </span> <br>\n    <span ion-text text-wrap class="font-mini" color="gray">\n      Daftar agenda anda saat ini\n    </span>\n  </div>\n\n  <ion-card *ngIf=\'isLoading == true && agendaList.length == 0\' class="my-card">\n    <ion-item>\n      <div class="animate-skeleton-background load-2"></div>\n      <div class="animate-skeleton-background load-1"></div>\n      <div style="\n              width:100%;\n              border-bottom: 1px solid lightgray;\n              padding: 5px;\n              margin-bottom:5px;">\n      </div>\n      <div class="animate-skeleton-background load-2"> </div>\n    </ion-item>\n  </ion-card>\n\n  <ion-card class="my-card" *ngIf="isLoading == false && agendaList.length == 0">\n    <ion-item>\n      <span ion-text text-wrap class="font-small" style="text-align:center;">\n        Tidak ada agenda hari ini.\n      </span>\n    </ion-item>\n  </ion-card>\n\n  <ion-slides pager="true" paginationType="bullets" *ngIf=\'agendaList.length > 0\'>\n    <ion-slide *ngFor="let agenda of agendaList">\n      <ion-card class="my-card">\n        <ion-item>\n          <span ion-text text-wrap class="font-mini">\n            {{ agenda[\'Tanggal_Mulai\'] }} {{ agenda[\'Start_Time\'] }} - {{ agenda[\'End_Time\'] }}\n          </span> <br>\n          <span ion-text text-wrap class="font-mini">\n            {{ agenda[\'Nama_Tempat\'] }}\n          </span>\n          <div style="\n                      width:100%;\n                      border-bottom: 1px solid white;\n                      padding: 5px;\n                      margin-bottom:5px;">\n          </div>\n          <span ion-text text-wrap class="font-small">\n            <b>{{ agenda[\'Acara\'] }}</b>\n          </span>\n        </ion-item>\n      </ion-card>\n    </ion-slide>\n  </ion-slides>\n  <br>\n  <br>\n\n  <ion-refresher (ionRefresh)="doRefresh($event)">\n    <ion-refresher-content pullingIcon="arrow-dropdown" pullingText="Pull to refresh" refreshingSpinner="circles"\n      refreshingText="Refreshing...">\n    </ion-refresher-content>\n  </ion-refresher>\n\n</ion-content>'/*ion-inline-end:"/Users/itadmin/Downloads/ERDA/POS_PPI/src/pages/home3/home3.html"*/,
+            selector: 'page-fingerprint-modal',
+            providers: [__WEBPACK_IMPORTED_MODULE_3__soap_service__["a" /* SoapService */]],template:/*ion-inline-start:"/Users/itadmin/Downloads/ERDA/POS_PPI/src/pages/fingerprint-modal/fingerprint-modal.html"*/'<!--\n  Generated template for the FingerprintModalPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n\n<ion-content padding-top style="background-color:#FFF" scrollY="false" >\n  <p><b>Hadirkoe</b></p>\n  <hr>\n  <ion-grid class="my-grid" *ngIf="!isLoading && dataValidasi != null">\n  <!-- <ion-grid class="my-grid"> -->\n    <ion-row >\n      <ion-col col-3 >\n        <div *ngIf="dataValidasi[\'CHECK_IN\'] == true" (click)="openPage(\'MapPage\',\'checkin\')">\n          <img style="width: 45%;\n          height: auto;          \n          max-width: 35vw;" src="assets/flat-icon/checkin.png" /> \n          <span class="title">Check In</span>          \n        </div>                  \n        \n        <div *ngIf="dataValidasi[\'CHECK_IN\'] == false" style="opacity: 0.4;">\n          <img style="width: 45%;\n          height: auto;          \n          max-width: 35vw;" src="assets/flat-icon/checkin.png" /> \n          <span class="title">Check In</span>          \n        </div>  \n      </ion-col>\n      <ion-col col-3>\n        <div *ngIf="dataValidasi[\'CHECK_OUT\'] == true" (click)="openPage(\'MapPage\',\'checkout\')">\n          <img style="width: 45%;\n          height: auto;          \n          max-width: 35vw;" src="assets/flat-icon/checkout.png" />\n          <span class="title">Check Out</span>\n        </div>\n\n        <div *ngIf="dataValidasi[\'CHECK_OUT\'] == false" style="opacity: 0.4;">\n          <img style="width: 45%;\n          height: auto;          \n          max-width: 35vw;" src="assets/flat-icon/checkout.png" />\n          <span class="title">Check Out</span>\n        </div>\n\n      </ion-col> \n      <ion-col col-3>\n        <div (click)="openActivityPage()">\n          <img style="width: 45%;\n          height: auto;          \n          max-width: 35vw;" src="assets/flat-icon/activity.png" />\n          <span class="title">Activity</span>\n        </div>\n      </ion-col>     \n      <ion-col col-3>\n        <div (click)="openTeamPage()">\n          <img style="width: 45%;\n          height: auto;          \n          max-width: 35vw;" src="assets/flat-icon/team.png" />\n          <span class="title">Team</span> \n        </div>\n      </ion-col>     \n    </ion-row>   \n  </ion-grid>\n\n  <ion-grid class="my-grid" *ngIf="isLoading && dataValidasi == null" >\n    <ion-row >\n      <ion-col col-3 >\n        <div class="animate-skeleton-background load-icon">\n        </div>         \n      </ion-col>\n      <ion-col col-3 >\n        <div class="animate-skeleton-background load-icon">\n        </div>         \n      </ion-col>\n      <ion-col col-3>\n        <div class="animate-skeleton-background load-icon">                    \n        </div> \n      </ion-col> \n      <ion-col col-3>\n        <div class="animate-skeleton-background load-icon">                    \n        </div> \n      </ion-col>     \n    </ion-row>   \n  </ion-grid>\n</ion-content>\n'/*ion-inline-end:"/Users/itadmin/Downloads/ERDA/POS_PPI/src/pages/fingerprint-modal/fingerprint-modal.html"*/,
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavController */],
             __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* NavParams */],
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["b" /* AlertController */],
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["c" /* App */],
-            __WEBPACK_IMPORTED_MODULE_2__ionic_storage__["b" /* Storage */],
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* LoadingController */],
-            __WEBPACK_IMPORTED_MODULE_4__soap_service__["a" /* SoapService */],
+            __WEBPACK_IMPORTED_MODULE_3__soap_service__["a" /* SoapService */],
+            __WEBPACK_IMPORTED_MODULE_4__ionic_storage__["b" /* Storage */],
             __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["p" /* ToastController */],
-            __WEBPACK_IMPORTED_MODULE_5__ionic_native_device__["a" /* Device */],
-            __WEBPACK_IMPORTED_MODULE_7__ionic_native_in_app_browser__["a" /* InAppBrowser */],
-            __WEBPACK_IMPORTED_MODULE_6__ionic_native_onesignal__["a" /* OneSignal */],
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* ModalController */],
-            __WEBPACK_IMPORTED_MODULE_8__angular_common_http__["a" /* HttpClient */],
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["n" /* Platform */]])
-    ], Home3Page);
-    return Home3Page;
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* LoadingController */],
+            __WEBPACK_IMPORTED_MODULE_5__angular_common__["e" /* DatePipe */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["b" /* AlertController */],
+            __WEBPACK_IMPORTED_MODULE_6__angular_common_http__["a" /* HttpClient */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["c" /* App */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["q" /* ViewController */]])
+    ], FingerprintModalPage);
+    return FingerprintModalPage;
 }());
 
-//# sourceMappingURL=home3.js.map
+//# sourceMappingURL=fingerprint-modal.js.map
 
 /***/ })
 

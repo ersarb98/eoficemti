@@ -1,14 +1,14 @@
 webpackJsonp([17],{
 
-/***/ 318:
+/***/ 316:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "KoreksiAbsenPersonalPageModule", function() { return KoreksiAbsenPersonalPageModule; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "KoreksiAbsenBawahanPageModule", function() { return KoreksiAbsenBawahanPageModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(100);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__koreksi_absen_personal__ = __webpack_require__(375);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__koreksi_absen_bawahan__ = __webpack_require__(371);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -18,33 +18,33 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 
-var KoreksiAbsenPersonalPageModule = /** @class */ (function () {
-    function KoreksiAbsenPersonalPageModule() {
+var KoreksiAbsenBawahanPageModule = /** @class */ (function () {
+    function KoreksiAbsenBawahanPageModule() {
     }
-    KoreksiAbsenPersonalPageModule = __decorate([
+    KoreksiAbsenBawahanPageModule = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["J" /* NgModule */])({
             declarations: [
-                __WEBPACK_IMPORTED_MODULE_2__koreksi_absen_personal__["a" /* KoreksiAbsenPersonalPage */],
+                __WEBPACK_IMPORTED_MODULE_2__koreksi_absen_bawahan__["a" /* KoreksiAbsenBawahanPage */],
             ],
             imports: [
-                __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__koreksi_absen_personal__["a" /* KoreksiAbsenPersonalPage */]),
+                __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__koreksi_absen_bawahan__["a" /* KoreksiAbsenBawahanPage */]),
             ],
         })
-    ], KoreksiAbsenPersonalPageModule);
-    return KoreksiAbsenPersonalPageModule;
+    ], KoreksiAbsenBawahanPageModule);
+    return KoreksiAbsenBawahanPageModule;
 }());
 
-//# sourceMappingURL=koreksi-absen-personal.module.js.map
+//# sourceMappingURL=koreksi-absen-bawahan.module.js.map
 
 /***/ }),
 
-/***/ 343:
+/***/ 341:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return SoapService; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__soapclient_js__ = __webpack_require__(344);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__soapclient_js__ = __webpack_require__(342);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__soapclient_js___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__soapclient_js__);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -96,7 +96,7 @@ var SoapService = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 344:
+/***/ 342:
 /***/ (function(module, exports) {
 
 /*****************************************************************************\
@@ -551,17 +551,17 @@ module.exports = {
 
 /***/ }),
 
-/***/ 375:
+/***/ 371:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return KoreksiAbsenPersonalPage; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return KoreksiAbsenBawahanPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(100);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_forms__ = __webpack_require__(16);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__soap_service__ = __webpack_require__(343);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_storage__ = __webpack_require__(101);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__config__ = __webpack_require__(199);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__soap_service__ = __webpack_require__(341);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_storage__ = __webpack_require__(101);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__config__ = __webpack_require__(199);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__angular_common__ = __webpack_require__(26);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -578,43 +578,45 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 /**
- * Generated class for the KoreksiAbsenPersonalPage page.
+ * Generated class for the KoreksiAbsenBawahanPage page.
  *
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
  */
-var KoreksiAbsenPersonalPage = /** @class */ (function () {
-    function KoreksiAbsenPersonalPage(navCtrl, navParams, _fb, viewCtrl, soapService, storage, loadingCtrl, alertCtrl, toastCtrl) {
+var KoreksiAbsenBawahanPage = /** @class */ (function () {
+    function KoreksiAbsenBawahanPage(navCtrl, navParams, loadingCtrl, alertCtrl, soapService, storage, datepipe, actionSheetCtrl, modalCtrl, toastCtrl) {
+        var _this = this;
         this.navCtrl = navCtrl;
         this.navParams = navParams;
-        this._fb = _fb;
-        this.viewCtrl = viewCtrl;
-        this.soapService = soapService;
-        this.storage = storage;
         this.loadingCtrl = loadingCtrl;
         this.alertCtrl = alertCtrl;
+        this.soapService = soapService;
+        this.storage = storage;
+        this.datepipe = datepipe;
+        this.actionSheetCtrl = actionSheetCtrl;
+        this.modalCtrl = modalCtrl;
         this.toastCtrl = toastCtrl;
-        this.alasanList = [];
-        this.userdataTPK = navParams.get('userdataTPK');
-        this.dataAbsen = navParams.get('dataAbsen');
-        this.jenisAbsen = navParams.get('jenisAbsen');
-        this.ApprovalForm = this._fb.group({
-            fcAlasan: ['', __WEBPACK_IMPORTED_MODULE_2__angular_forms__["f" /* Validators */].compose([
-                    __WEBPACK_IMPORTED_MODULE_2__angular_forms__["f" /* Validators */].required
-                ])],
-            fcJmlHari: [1, __WEBPACK_IMPORTED_MODULE_2__angular_forms__["f" /* Validators */].compose([
-                    __WEBPACK_IMPORTED_MODULE_2__angular_forms__["f" /* Validators */].required
-                ])],
-            fcKeterangan: ['', __WEBPACK_IMPORTED_MODULE_2__angular_forms__["f" /* Validators */].compose([
-                    __WEBPACK_IMPORTED_MODULE_2__angular_forms__["f" /* Validators */].required
-                ])]
+        this.isLoading = true;
+        this.dataBawahanList = [];
+        this.dataKoreksiList = [];
+        this.tahunList = [];
+        var date = new Date();
+        this.currentYear = date.getFullYear();
+        this.currentMonth = date.getMonth();
+        this.tahun = this.currentYear;
+        this.bulan = this.currentMonth + 1;
+        for (var i = 0; i < 10; i++) {
+            this.tahunList.push(this.currentYear - i);
+        }
+        this.storage.get('userdataTPK').then(function (val) {
+            _this.userdataTPK = val;
+            _this.getDataBawahan((_this.currentMonth + 1), _this.tahun);
         });
-        this.getAlasan();
     }
-    KoreksiAbsenPersonalPage.prototype.ionViewDidLoad = function () {
-        console.log('ionViewDidLoad KoreksiAbsenPersonalPage');
+    KoreksiAbsenBawahanPage.prototype.ionViewDidLoad = function () {
+        console.log('ionViewDidLoad KoreksiAbsenBawahanPage');
     };
-    KoreksiAbsenPersonalPage.prototype.getAlasan = function () {
+    KoreksiAbsenBawahanPage.prototype.getDataBawahan = function (bln, thn) {
         var _this = this;
         var loading = this.loadingCtrl.create({
             spinner: 'dots',
@@ -623,17 +625,19 @@ var KoreksiAbsenPersonalPage = /** @class */ (function () {
             dismissOnPageChange: true
         });
         loading.present();
-        this.soapService.post(__WEBPACK_IMPORTED_MODULE_5__config__["a" /* api_base_url */], 'eoffice_absen_alasan', { fStream: JSON.stringify({
-                usernameEDI: __WEBPACK_IMPORTED_MODULE_5__config__["e" /* api_user */],
-                passwordEDI: __WEBPACK_IMPORTED_MODULE_5__config__["c" /* api_pass */],
+        var m = bln;
+        this.soapService.post(__WEBPACK_IMPORTED_MODULE_4__config__["a" /* api_base_url */], 'eoffice_absen_bawahan', { fStream: JSON.stringify({
+                usernameEDI: __WEBPACK_IMPORTED_MODULE_4__config__["d" /* api_user */],
+                passwordEDI: __WEBPACK_IMPORTED_MODULE_4__config__["b" /* api_pass */],
                 nipp: this.userdataTPK['data']['NIPP'],
-                id_user: this.userdataTPK['data']['IDUSER'],
-                tno: this.userdataTPK['data']['TNO']
+                idjabatan: this.userdataTPK['data']['IDJABATAN'],
+                bulan: m < 10 ? '0' + m : m,
+                tahun: thn
             }) }).then(function (result) {
             var responData = JSON.parse(String(result));
             if (responData['rcmsg'] == "SUCCESS") {
-                _this.alasanList = [];
-                _this.alasanList = responData['data'];
+                _this.dataKoreksiList = [];
+                _this.dataKoreksiList = responData['data']['LIST_OFFICER'];
             }
             else {
                 var toast = _this.toastCtrl.create({
@@ -644,6 +648,7 @@ var KoreksiAbsenPersonalPage = /** @class */ (function () {
                 toast.present();
             }
             loading.dismiss();
+            _this.isLoading = false;
         })
             .catch(function (error) {
             var toast = _this.toastCtrl.create({
@@ -653,113 +658,122 @@ var KoreksiAbsenPersonalPage = /** @class */ (function () {
             });
             toast.present();
             loading.dismiss();
+            _this.isLoading = false;
         });
     };
-    KoreksiAbsenPersonalPage.prototype.submit = function () {
-        var _this = this;
-        if (this.ApprovalForm.controls.fcJmlHari.value < 1) {
-            this.errorMsg = "*Jumlah hari tidak boleh 0";
-        }
-        else {
-            var loading_1 = this.loadingCtrl.create({
-                spinner: 'dots',
-                content: "Mohon Tunggu...",
-                cssClass: 'transparent',
-                dismissOnPageChange: true
-            });
-            loading_1.present();
-            this.soapService.post(__WEBPACK_IMPORTED_MODULE_5__config__["a" /* api_base_url */], 'eoffice_absen_koreksi', { fStream: JSON.stringify({
-                    usernameEDI: __WEBPACK_IMPORTED_MODULE_5__config__["e" /* api_user */],
-                    passwordEDI: __WEBPACK_IMPORTED_MODULE_5__config__["c" /* api_pass */],
-                    nipp: this.userdataTPK['data']['NIPP'],
-                    id_absen: this.dataAbsen['ID'],
-                    jenis_absen: this.jenisAbsen,
-                    absen_hari: this.ApprovalForm.controls.fcJmlHari.value,
-                    keterangan: this.ApprovalForm.controls.fcKeterangan.value,
-                    alasan: this.ApprovalForm.controls.fcAlasan.value
-                }) }).then(function (result) {
-                var responData = JSON.parse(String(result));
-                // console.log(responData)           ;
-                if (responData['rcmsg'] == "SUCCESS") {
-                    var toast = _this.toastCtrl.create({
-                        message: 'Koreksi Absen Berhasil',
-                        duration: 3000,
-                        position: 'bottom'
-                    });
-                    toast.present();
-                    _this.viewCtrl.dismiss({ isCancel: false }).then(function () {
-                        _this.sendNotif();
-                    });
-                }
-                else {
-                    var toast = _this.toastCtrl.create({
-                        message: 'Mohon Maaf Sedang Terjadi Kesalahan, Coba Beberapa Saat Lagi.',
-                        duration: 3000,
-                        position: 'bottom'
-                    });
-                    toast.present();
-                }
-                loading_1.dismiss();
-            })
-                .catch(function (error) {
-                var toast = _this.toastCtrl.create({
-                    message: 'Terjadi Masalah Koneksi, Silahkan Coba Kembali.',
-                    duration: 3000,
-                    position: 'bottom'
-                });
-                toast.present();
-                loading_1.dismiss();
-            });
+    KoreksiAbsenBawahanPage.prototype.convertMonths = function () {
+        switch (this.bulan) {
+            case '1':
+                return "Januari";
+            case '2':
+                return "Februari";
+            case '3':
+                return "Maret";
+            case '4':
+                return "April";
+            case '5':
+                return "Mei";
+            case '6':
+                return "Juni";
+            case '7':
+                return "Juli";
+            case '8':
+                return "Agustus";
+            case '9':
+                return "September";
+            case '10':
+                return "Oktober";
+            case '11':
+                return "November";
+            case '12':
+                return "Desember";
+            default:
+                return "false";
         }
     };
-    KoreksiAbsenPersonalPage.prototype.sendNotif = function () {
+    KoreksiAbsenBawahanPage.prototype.selectVal = function () {
+        this.dataKoreksiList = [];
+        if (this.dataBawahanList[this.index]['DATA KOREKSI'].length > 0) {
+            for (var i = 0; i < this.dataBawahanList[this.index]['DATA KOREKSI'].length; i++) {
+                this.dataKoreksiList.push(this.dataBawahanList[this.index]['DATA KOREKSI'][i]);
+            }
+        }
+    };
+    KoreksiAbsenBawahanPage.prototype.showOption = function (data) {
         var _this = this;
-        this.soapService
-            .post(__WEBPACK_IMPORTED_MODULE_5__config__["a" /* api_base_url */], 'eoffice_notif_imove_nipp', { fStream: JSON.stringify({
-                usernameEDI: __WEBPACK_IMPORTED_MODULE_5__config__["e" /* api_user */],
-                passwordEDI: __WEBPACK_IMPORTED_MODULE_5__config__["c" /* api_pass */],
-                nipp: [],
-                data: {
-                    "res": "KoreksiAbsenBawahanPage"
+        var actionSheet = this.actionSheetCtrl.create({
+            title: 'Pilih Proses',
+            buttons: [
+                {
+                    text: 'Approve',
+                    role: 'koreksiDatang',
+                    handler: function () {
+                        var modal = _this.modalCtrl.create("ApproveKoreksiAbsenPage", {
+                            dataKoreksi: data,
+                            status: '1',
+                            is_tno: data['IS_TNO']
+                        }, {
+                            enableBackdropDismiss: true,
+                            showBackdrop: true,
+                            cssClass: 'my-modal2'
+                        });
+                        modal.present();
+                        modal.onDidDismiss(function (data) {
+                            _this.getDataBawahan(_this.bulan, _this.tahun);
+                        });
+                    }
                 },
-                content: {
-                    "en": "Pengajuan Koreksi Absen dari " + this.userdataTPK['data']['NAMA'] + " membutuhkan tindak lanjut."
+                {
+                    text: 'Decline',
+                    handler: function () {
+                        var modal = _this.modalCtrl.create("ApproveKoreksiAbsenPage", {
+                            dataKoreksi: data,
+                            status: '0',
+                            is_tno: data['IS_TNO']
+                        }, {
+                            enableBackdropDismiss: true,
+                            showBackdrop: true,
+                            cssClass: 'my-modal2'
+                        });
+                        modal.present();
+                        modal.onDidDismiss(function (data) {
+                            _this.getDataBawahan(_this.bulan, _this.tahun);
+                        });
+                    }
                 },
-                heading: {
-                    "en": "Pengajuan Koreksi Absen"
-                },
-                id_kategori: '',
-                id_user: this.userdataTPK['data']['IDUSER'],
-                id_jabatan: this.userdataTPK['data']['IDJABATAN']
-            }) }).then(function (result) {
-            var hasil = JSON.parse(String(result));
-            _this.navCtrl.pop();
-        }).catch(function (error) {
-            _this.navCtrl.pop();
+                {
+                    text: 'Tutup',
+                    role: 'cancel',
+                    handler: function () {
+                    }
+                }
+            ]
         });
+        actionSheet.present();
     };
-    KoreksiAbsenPersonalPage.prototype.cancel = function () {
-        this.viewCtrl.dismiss({ isCancel: true });
+    KoreksiAbsenBawahanPage.prototype.searchDataKoreksi = function () {
+        this.getDataBawahan(this.bulan, this.tahun);
     };
-    KoreksiAbsenPersonalPage = __decorate([
+    KoreksiAbsenBawahanPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
-            selector: 'page-koreksi-absen-personal',
-            providers: [__WEBPACK_IMPORTED_MODULE_3__soap_service__["a" /* SoapService */]],template:/*ion-inline-start:"/Users/itadmin/Downloads/ERDA/POS_PPI/src/pages/koreksi-absen-personal/koreksi-absen-personal.html"*/'<ion-header>\n  <ion-navbar>\n    <ion-title><span style="color:#FFF">Koreksi Absen</span></ion-title>\n    <ion-buttons end>\n      <button ion-button icon-only (click)="cancel()">\n        <ion-icon name="ios-close-outline" style="color:#FFF"></ion-icon>\n      </button>\n    </ion-buttons>\n  </ion-navbar>\n</ion-header>\n\n\n<ion-content padding>\n  <form [formGroup]="ApprovalForm" class="list-form">\n    <ion-item no-padding>\n      <span item-left>\n        <img src="assets/imgs/logo/alasan.png" class="icons">\n      </span>\n      <ion-label stacked>Alasan</ion-label>\n      <ion-select formControlName="fcAlasan" placeholder="">\n        <div *ngIf="alasanList.length != 0" >\n            <ion-option  *ngFor="let alasan of alasanList"  value="{{alasan[\'JENIS_ALASAN\']}}">{{ alasan[\'JENIS_ALASAN\'] }}</ion-option>\n        </div>                \n      </ion-select>\n    </ion-item>\n\n    <ion-item no-padding>\n      <span item-left>\n        <img src="assets/imgs/logo/start_date.png" class="icons">\n      </span>\n      <ion-label stacked>Jumlah hari</ion-label>\n      <ion-input type="number" min=\'1\' max=\'5\' formControlName="fcJmlHari" placeholder=""></ion-input>\n    </ion-item>\n\n    <ion-item no-padding>\n      <span item-left>\n        <img src="assets/imgs/logo/perihal.png" class="icons">\n      </span>\n      <ion-label stacked>Keterangan</ion-label>\n      <ion-input type="text" formControlName="fcKeterangan" placeholder=""></ion-input>\n    </ion-item>\n\n    <p ion-text align="start" color="danger">{{errorMsg}}</p>\n\n    <div class="row">\n      <div class="col">\n        <button ion-button icon-start full color="danger" style="border-radius: 5px;" (click)="cancel()" margin-top>\n          <ion-icon name="md-close"></ion-icon>\n          Batal\n        </button>\n      </div>\n      <div class="col">\n        <button ion-button icon-start full color="primary" style="border-radius: 5px;" margin-top (click)="submit()"\n          [disabled]="!ApprovalForm.valid">\n          <ion-icon name="md-checkmark"></ion-icon>\n          Submit\n        </button>\n      </div>\n    </div>\n  </form>\n</ion-content>'/*ion-inline-end:"/Users/itadmin/Downloads/ERDA/POS_PPI/src/pages/koreksi-absen-personal/koreksi-absen-personal.html"*/,
+            selector: 'page-koreksi-absen-bawahan',
+            providers: [__WEBPACK_IMPORTED_MODULE_2__soap_service__["a" /* SoapService */]],template:/*ion-inline-start:"/Users/itadmin/Downloads/ERDA/POS_PPI/src/pages/koreksi-absen-bawahan/koreksi-absen-bawahan.html"*/'<!--\n  Generated template for the CutiListPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n\n    <ion-navbar>\n        <ion-title>\n            <span ion-text color="light" class="fw500">Koreksi Absen Bawahan</span>\n        </ion-title>\n    </ion-navbar>\n</ion-header>\n\n\n<ion-content>\n    <div class="divs">\n        <ion-item no-lines style="padding-left:8px !important">\n            <ion-select [(ngModel)]="bulan" placeholder="Pilih Bulan">\n                <!-- <ion-option *ngFor="let m of bulanList" value="{{m[\'bulan\']}}_{{m[\'tahun\']}}">{{ convertMonths2(m[\'bulan\']) }} {{m[\'tahun\']}}</ion-option>                    </ion-select> -->\n                <ion-option value="1">Januari</ion-option>\n                <ion-option value="2">Februari</ion-option>\n                <ion-option value="3">Maret</ion-option>\n                <ion-option value="4">April</ion-option>\n                <ion-option value="5">Mei</ion-option>\n                <ion-option value="6">Juni</ion-option>\n                <ion-option value="7">Juli</ion-option>\n                <ion-option value="8">Agustus</ion-option>\n                <ion-option value="9">September</ion-option>\n                <ion-option value="10">Oktober</ion-option>\n                <ion-option value="11">November</ion-option>\n                <ion-option value="12">Desember</ion-option>\n            </ion-select>\n        </ion-item>\n        <ion-item no-lines style="padding-left:8px !important">\n            <ion-select [(ngModel)]="tahun" placeholder="Pilih Tahun">\n                <ion-option *ngFor="let tahun of tahunList" value="{{tahun}}">{{tahun}}</ion-option>\n            </ion-select>\n        </ion-item>\n\n        <button ion-button block icon-start color="primary" class="button" margin-top (click)="searchDataKoreksi()"\n            [disabled]="(bulan == null || tahun == null) ? true : false">\n            <ion-icon name="md-search"></ion-icon>\n            Cari\n        </button>\n    </div>\n\n    <div *ngIf="!isLoading">\n        <ion-grid fixed no-padding *ngIf="dataKoreksiList.length == 0" fixed>\n            <ion-row>\n                <ion-col col-12>\n\n                    <ion-card class="primary-bg">\n                        <ion-card-content>\n                            <p text-center class="text-white">Tidak ada data koreksi</p>\n                        </ion-card-content>\n                    </ion-card>\n\n                </ion-col>\n            </ion-row>\n        </ion-grid>\n\n        <div *ngIf="dataKoreksiList.length > 0">\n            <ion-card *ngFor="let dataKoreksi of dataKoreksiList" (click)="showOption(dataKoreksi)">\n                <ion-item tapplable>\n                    <span ion-text text-wrap class="font2 bold" color="dark">{{ dataKoreksi[\'NAMA\'] }} | </span>\n                    <span ion-text text-wrap class="font2" color="danger">Tanggal {{dataKoreksi[\'TANGGAL\']}}\n                    </span> <br>\n\n                    <div style="display: table;width:100%;">\n                        <div style="display: table-cell;">\n                            <span ion-text text-wrap class="font" style="color:#959595">Datang :</span>\n                            <span ion-text text-wrap class="font2"\n                                *ngIf="dataKoreksi[\'JAM MASUK\'] == \'\' || dataKoreksi[\'JAM MASUK\'] == null"> -\n                            </span>\n                            <span ion-text text-wrap class="font2"\n                                *ngIf="dataKoreksi[\'JAM MASUK\'] != \'\' || dataKoreksi[\'JAM MASUK\'] != null">\n                                {{ dataKoreksi[\'JAM MASUK\'] }} </span>\n                        </div>\n\n                        <div style="display: table-cell;text-align: right;">\n                            <span ion-text text-wrap class="font" color="primary"\n                                *ngIf="dataKoreksi[\'STATUS KOREKSI DATANG\'] == \'POSTED\'">\n                                {{ dataKoreksi[\'STATUS KOREKSI DATANG\'] }}\n                            </span>\n                            <span ion-text text-wrap class="font" color="secondary"\n                                *ngIf="dataKoreksi[\'STATUS KOREKSI DATANG\'] == \'APPROVED\'">\n                                {{ dataKoreksi[\'STATUS KOREKSI DATANG\'] }}</span>\n                        </div>\n                    </div>\n\n                    <span ion-text text-wrap class="font" style="color:#959595">Ket. koreksi datang :</span>\n                    <br>\n                    <span ion-text text-wrap class="font2"\n                        *ngIf="dataKoreksi[\'KETERANGAN KOREKSI DATANG\'] == \'\' || dataKoreksi[\'KETERANGAN KOREKSI DATANG\'] == null">\n                        -\n                    </span>\n                    <span ion-text text-wrap class="font2">{{ dataKoreksi[\'KETERANGAN KOREKSI DATANG\'] }}</span>\n\n                    <br><br>\n\n                    <div style="display: table;width:100%;">\n                        <div style="display: table-cell;">\n                            <span ion-text text-wrap class="font" style="color:#959595">Pulang :</span>\n                            <span ion-text text-wrap class="font2"\n                                *ngIf="dataKoreksi[\'JAM PULANG\'] == \'\' || dataKoreksi[\'JAM PULANG\'] == null"> -\n                            </span>\n                            <span ion-text text-wrap class="font2"\n                                *ngIf="dataKoreksi[\'JAM PULANG\'] != \'\' || dataKoreksi[\'JAM PULANG\'] != null">{{ dataKoreksi[\'JAM PULANG\'] }}</span>\n                        </div>\n\n                        <div style="display: table-cell;text-align: right;">\n                            <span ion-text text-wrap class="font" color="primary"\n                                *ngIf="dataKoreksi[\'STATUS KOREKSI PULANG\'] == \'POSTED\'">\n                                {{ dataKoreksi[\'STATUS KOREKSI PULANG\'] }}\n                            </span>\n                            <span ion-text text-wrap class="font" color="secondary"\n                                *ngIf="dataKoreksi[\'STATUS KOREKSI PULANG\'] == \'APPROVED\'">\n                                {{ dataKoreksi[\'STATUS KOREKSI PULANG\'] }}</span>\n                        </div>\n                    </div>\n\n                    <span ion-text text-wrap class="font" style="color:#959595">Ket. koreksi Pulang :</span>\n                    <br>\n                    <span ion-text text-wrap class="font2"\n                        *ngIf="dataKoreksi[\'KETERANGAN KOREKSI PULANG\'] == \'\' || dataKoreksi[\'KETERANGAN KOREKSI PULANG\'] == null">\n                        -\n                    </span>\n                    <span ion-text text-wrap class="font2">{{ dataKoreksi[\'KETERANGAN KOREKSI PULANG\'] }}</span>\n                </ion-item>\n            </ion-card>\n        </div>\n\n    </div>\n</ion-content>'/*ion-inline-end:"/Users/itadmin/Downloads/ERDA/POS_PPI/src/pages/koreksi-absen-bawahan/koreksi-absen-bawahan.html"*/,
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavController */],
             __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* NavParams */],
-            __WEBPACK_IMPORTED_MODULE_2__angular_forms__["a" /* FormBuilder */],
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["q" /* ViewController */],
-            __WEBPACK_IMPORTED_MODULE_3__soap_service__["a" /* SoapService */],
-            __WEBPACK_IMPORTED_MODULE_4__ionic_storage__["b" /* Storage */],
             __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* LoadingController */],
             __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["b" /* AlertController */],
+            __WEBPACK_IMPORTED_MODULE_2__soap_service__["a" /* SoapService */],
+            __WEBPACK_IMPORTED_MODULE_3__ionic_storage__["b" /* Storage */],
+            __WEBPACK_IMPORTED_MODULE_5__angular_common__["e" /* DatePipe */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* ActionSheetController */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* ModalController */],
             __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["p" /* ToastController */]])
-    ], KoreksiAbsenPersonalPage);
-    return KoreksiAbsenPersonalPage;
+    ], KoreksiAbsenBawahanPage);
+    return KoreksiAbsenBawahanPage;
 }());
 
-//# sourceMappingURL=koreksi-absen-personal.js.map
+//# sourceMappingURL=koreksi-absen-bawahan.js.map
 
 /***/ })
 

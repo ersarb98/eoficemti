@@ -1,14 +1,14 @@
 webpackJsonp([48],{
 
-/***/ 333:
+/***/ 307:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "LogSuratPageModule", function() { return LogSuratPageModule; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DisposisiPageModule", function() { return DisposisiPageModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(50);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__log_surat__ = __webpack_require__(419);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(100);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__disposisi__ = __webpack_require__(362);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -18,36 +18,33 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 
-var LogSuratPageModule = /** @class */ (function () {
-    function LogSuratPageModule() {
+var DisposisiPageModule = /** @class */ (function () {
+    function DisposisiPageModule() {
     }
-    LogSuratPageModule = __decorate([
+    DisposisiPageModule = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["J" /* NgModule */])({
             declarations: [
-                __WEBPACK_IMPORTED_MODULE_2__log_surat__["a" /* LogSuratPage */],
+                __WEBPACK_IMPORTED_MODULE_2__disposisi__["a" /* DisposisiPage */],
             ],
             imports: [
-                __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__log_surat__["a" /* LogSuratPage */]),
+                __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__disposisi__["a" /* DisposisiPage */]),
             ],
         })
-    ], LogSuratPageModule);
-    return LogSuratPageModule;
+    ], DisposisiPageModule);
+    return DisposisiPageModule;
 }());
 
-//# sourceMappingURL=log-surat.module.js.map
+//# sourceMappingURL=disposisi.module.js.map
 
 /***/ }),
 
-/***/ 419:
+/***/ 362:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return LogSuratPage; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return DisposisiPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(50);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_storage__ = __webpack_require__(51);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__config__ = __webpack_require__(103);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__soap_service__ = __webpack_require__(200);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(100);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -59,145 +56,132 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 
 
-
-
-
+// import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 /**
- * Generated class for the LogSuratPage page.
+ * Generated class for the DisposisiPage page.
  *
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
  */
-var LogSuratPage = /** @class */ (function () {
-    function LogSuratPage(navCtrl, navParams, storage, loadingCtrl, alertCtrl, soapService, toastCtrl) {
+var DisposisiPage = /** @class */ (function () {
+    function DisposisiPage(navCtrl, navParams, 
+        // private _fb: FormBuilder,
+        viewCtrl, modalCtrl) {
         this.navCtrl = navCtrl;
         this.navParams = navParams;
-        this.storage = storage;
-        this.loadingCtrl = loadingCtrl;
-        this.alertCtrl = alertCtrl;
-        this.soapService = soapService;
-        this.toastCtrl = toastCtrl;
-        this.isLoading = false;
-        this.logList = [];
-        this.batasAtas = 1;
-        this.batasBawah = 20;
-        this.idSurat = navParams.get('idSurat');
-        this.loadingPresent();
-        this.getLog('first', '');
+        this.viewCtrl = viewCtrl;
+        this.modalCtrl = modalCtrl;
+        // public disposisiForm: FormGroup;
+        this.perintahList = [
+            "Selesaikan",
+            "ACC dan Aksi",
+            "Evaluasi-Tanggapan",
+            "Saran Pendapat",
+            "Laporkan Hasilnya",
+            "Tunda Dulu",
+            "Bicarakan dengan Dirut",
+            "Koordinasi dengan Dirut",
+            "UDK dan Seperlunya",
+            "Arsip"
+        ];
+        this.kepadaList = [];
+        this.disposisiJabatanList = [];
+        this.disposisiPekerjaList = [];
+        this.searchResultList = [];
+        this.showResult = false;
+        this.fcKepada = '';
+        this.kepadaId = '';
+        this.fcPerintah = '';
+        this.fcCacatan = '';
+        // this.disposisiForm = this._fb.group({
+        //   fcKepada: ['', Validators.compose([
+        //     Validators.required
+        //   ])],
+        //   fcPerintah: ['', Validators.compose([
+        //     Validators.required
+        //   ])],
+        //   fcCacatan: ['', Validators.compose([
+        //     Validators.required
+        //   ])]      
+        // });
     }
-    LogSuratPage.prototype.ionViewDidLoad = function () {
-        console.log('ionViewDidLoad LogSuratPage');
+    DisposisiPage.prototype.ionViewWillLoad = function () {
+        this.kepadaList = this.navParams.get("kepadaList");
+        // console.log(this.kepadaList);
+        this.tipeDisposisi = this.navParams.get('tipeDisposisi');
+        this.fcCacatan = this.navParams.get('lastCatatan');
     };
-    LogSuratPage.prototype.getLog = function (type, functionName) {
-        var _this = this;
-        this.isLoading = true;
-        this.soapService
-            .post(__WEBPACK_IMPORTED_MODULE_3__config__["a" /* api_base_url */], 'eoffice_log_surat', { fStream: JSON.stringify({ usernameEDI: __WEBPACK_IMPORTED_MODULE_3__config__["e" /* api_user */],
-                passwordEDI: __WEBPACK_IMPORTED_MODULE_3__config__["c" /* api_pass */],
-                id_surat: atob(this.idSurat),
-                atas: this.batasAtas,
-                bawah: this.batasBawah
-            }) }).then(function (result) {
-            var responData = JSON.parse(String(result));
-            if (responData['rcmsg'] == "SUCCESS") {
-                if (type == 'refresh' && functionName != '') {
-                    _this.logList = [];
-                }
-                if (responData['data']['Log_Surat'].length > 0 && !_this.isEmptyObject(responData['data']['Log_Surat'][0])) {
-                    for (var i = 0; i < responData['data']['Log_Surat'].length; i++) {
-                        _this.logList.push(responData['data']['Log_Surat'][i]);
-                    }
-                }
-            }
-            else {
-                var toast = _this.toastCtrl.create({
-                    message: 'Mohon Maaf Sedang Terjadi Kesalahan, Coba Beberapa Saat Lagi.',
-                    duration: 3000,
-                    position: 'bottom'
-                });
-                toast.present();
-            }
-            if (type == 'first' && functionName == '') {
-                _this.loadingDismiss();
-            }
-            else if (type == 'infinite' && functionName != '') {
-                functionName.complete();
-            }
-            else if (type == 'refresh' && functionName != '') {
-                functionName.complete();
-            }
-        })
-            .catch(function (error) {
-            var toast = _this.toastCtrl.create({
-                message: 'Terjadi Masalah Koneksi, Silahkan Coba Kembali.',
-                duration: 3000,
-                position: 'bottom'
-            });
-            toast.present();
-            if (type == 'first' && functionName == '') {
-                _this.loadingDismiss();
-            }
-            else if (type == 'infinite' && functionName != '') {
-                functionName.complete();
-            }
-            else if (type == 'refresh' && functionName != '') {
-                functionName.complete();
-            }
-        });
+    DisposisiPage.prototype.ionViewDidLoad = function () {
+        console.log('ionViewDidLoad DisposisiPage');
     };
-    LogSuratPage.prototype.doInfinite = function (infiniteScroll) {
-        if (this.logList.length >= 10) {
-            this.batasAtas = this.batasBawah + 1;
-            this.batasBawah = this.batasBawah + 20;
-            this.getLog('infinite', infiniteScroll);
+    DisposisiPage.prototype.getKepada = function () {
+        var input = this.fcKepada.toUpperCase();
+        if (this.fcKepada.length > 1) {
+            this.searchResultList = this.kepadaList.filter(function (x) { return x.NAMA.includes(input) || x['NAMA JABATAN'].includes(input); });
+            this.showResult = true;
         }
         else {
-            infiniteScroll.complete();
+            this.searchResultList = [];
         }
     };
-    LogSuratPage.prototype.doRefresh = function (refresher) {
-        this.batasAtas = 1;
-        this.batasBawah = 20;
-        this.getLog('refresh', refresher);
+    DisposisiPage.prototype.setKepada = function (kepadaResult) {
+        console.log(kepadaResult);
+        if (this.tipeDisposisi == 'jabatan') {
+            this.fcKepada = kepadaResult['NAMA JABATAN'] + " | " + kepadaResult['NAMA'];
+            this.kepadaId = kepadaResult['ID USER'] + "_" + kepadaResult['ID JABATAN'] + "_" + kepadaResult['NIPP'] + "_" + kepadaResult['NAMA'] + "_" + kepadaResult['NAMA JABATAN'];
+        }
+        else if (this.tipeDisposisi == 'pekerja') {
+            this.fcKepada = kepadaResult['NAMA'] + " | " + kepadaResult['NIPP'] + " | " + kepadaResult['NAMA JABATAN'];
+            this.kepadaId = kepadaResult['ID USER'] + "_" + kepadaResult['ID JABATAN'] + "_" + kepadaResult['NIPP'] + "_" + kepadaResult['NAMA'] + "_" + kepadaResult['NAMA JABATAN'];
+        }
+        this.showResult = false;
     };
-    LogSuratPage.prototype.loadingPresent = function () {
-        this.loading = this.loadingCtrl.create({
-            spinner: 'dots',
-            content: "Mohon Tunggu...",
-            cssClass: 'transparent',
-        });
-        this.loading.present();
-    };
-    LogSuratPage.prototype.loadingDismiss = function () {
-        if (this.loading.present()) {
-            this.loading.dismiss();
+    DisposisiPage.prototype.sendData = function () {
+        var id = this.kepadaId;
+        var tindakan = this.fcPerintah;
+        var catatan = this.fcCacatan;
+        for (var index = 0; index < this.kepadaList.length; index++) {
+            this.kepadaList[index].selected = false;
+        }
+        if (this.tipeDisposisi == 'jabatan') {
+            this.disposisiJabatanList.push({ id_user: id.split('_')[0], id_jabatan: id.split('_')[1], tindakan: tindakan, catatan: catatan, nipp: id.split('_')[2], nama: id.split('_')[3], nama_jabatan: id.split('_')[4] });
+            this.viewCtrl.dismiss({ disposisiJabatanList: this.disposisiJabatanList, disposisiPekerjaList: this.disposisiPekerjaList, lastCatatan: catatan });
+        }
+        else if (this.tipeDisposisi == 'pekerja') {
+            this.disposisiPekerjaList.push({ id_user: id.split('_')[0], id_jabatan: id.split('_')[1], tindakan: tindakan, catatan: catatan, nipp: id.split('_')[2], nama: id.split('_')[3], nama_jabatan: id.split('_')[4] });
+            this.viewCtrl.dismiss({ disposisiJabatanList: this.disposisiJabatanList, disposisiPekerjaList: this.disposisiPekerjaList, lastCatatan: catatan });
         }
     };
-    LogSuratPage.prototype.isEmptyObject = function (obj) {
-        for (var prop in obj) {
-            if (obj.hasOwnProperty(prop)) {
-                return false;
+    DisposisiPage.prototype.cancel = function () {
+        for (var index = 0; index < this.kepadaList.length; index++) {
+            this.kepadaList[index].selected = false;
+        }
+        this.viewCtrl.dismiss();
+    };
+    DisposisiPage.prototype.openSelect = function () {
+        var _this = this;
+        var modal = this.modalCtrl.create('SelectBawahanDisposisiPage', { 'kepadaList': this.kepadaList });
+        modal.onDidDismiss(function (data) {
+            console.log(data);
+            if (data != null) {
+                _this.setKepada(data);
             }
-        }
-        return true;
+        });
+        modal.present();
     };
-    LogSuratPage = __decorate([
+    DisposisiPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
-            selector: 'page-log-surat',
-            providers: [__WEBPACK_IMPORTED_MODULE_4__soap_service__["a" /* SoapService */]],template:/*ion-inline-start:"/Users/itadmin/Downloads/ERDA/POS_PPI/src/pages/log-surat/log-surat.html"*/'<!--\n  Generated template for the LogSuratPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n\n  <ion-navbar>\n    <ion-title>\n            <span ion-text color="light" class="fw500">Log Surat</span>\n    </ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content style="background-color:#fff">\n    <ion-list class="dining_List">	\n        <ion-item *ngFor="let log of logList" (click)="goToDetail(log)" tapplable>        	\n            <div style="padding:7px"> \n            	<span ion-text text-wrap style="font-size:1.4rem;" color="danger" ><b>{{ log[\'KETERANGAN\'] }}</b></span><br />\n              <span ion-text text-wrap style="font-size:1.3rem">{{ log[\'KOMENTAR\'] }}</span><br />\n              <span ion-text text-wrap style="font-size:1.3rem">{{ log[\'PEGAWAI\']  }}</span><br />               \n              <div style="font-size:1.2rem;padding-top:6px"><span ion-text text-wrap color="primary">{{ log[\'TGL_LOG\']  }}</span></div>\n            </div>             \n        </ion-item>       \n    </ion-list> \n\n    <ion-infinite-scroll (ionInfinite)="doInfinite($event)">\n        <ion-infinite-scroll-content></ion-infinite-scroll-content>\n    </ion-infinite-scroll>\n        \n    <ion-refresher (ionRefresh)="doRefresh($event)">\n        <ion-refresher-content\n            pullingIcon="arrow-dropdown"\n            pullingText="Pull to refresh"\n            refreshingSpinner="crescent"> \n        </ion-refresher-content>\n    </ion-refresher>\n</ion-content>\n'/*ion-inline-end:"/Users/itadmin/Downloads/ERDA/POS_PPI/src/pages/log-surat/log-surat.html"*/,
+            selector: 'page-disposisi',template:/*ion-inline-start:"/Users/itadmin/Downloads/ERDA/POS_PPI/src/pages/disposisi/disposisi.html"*/'<ion-header>\n    <ion-navbar>\n        <ion-title><span style="color:#FFF">Disposisi</span></ion-title>\n        <ion-buttons end>\n            <button ion-button icon-only (click)="cancel()">\n                <ion-icon name="ios-close-outline" style="color:#FFF"></ion-icon>\n            </button>\n        </ion-buttons>\n    </ion-navbar>\n</ion-header>\n\n<ion-content padding>\n    <ion-item no-padding>\n        <span item-left>\n            <img src="assets/imgs/logo/person.png" class="icons">\n        </span>\n        <ion-label stacked>Kepada</ion-label>\n        <ion-input type="text" placeholder="" (keyup)="getKepada()" [(ngModel)]="fcKepada" (ionFocus)="openSelect()" (click)="openSelect()"></ion-input>\n    </ion-item>\n\n    <!-- <div *ngIf="searchResultList.length > 0 && showResult">\n        <ion-item *ngFor="let SearchResult of searchResultList" no-margin>\n            <p ion-text text-wrap style="font-size:1.3rem !important;" *ngIf="tipeDisposisi == \'jabatan\'"\n                (click)="setKepada(SearchResult)">{{ SearchResult[\'NAMA JABATAN\'] }} |\n                {{ SearchResult[\'NAMA\'] }}</p>\n            <p ion-text text-wrap style="font-size:1.3rem !important;" ion-text text-wrap\n                *ngIf="tipeDisposisi == \'pekerja\'" (click)="setKepada(SearchResult)"> {{ SearchResult[\'NAMA\'] }}\n                | {{ SearchResult[\'NIPP\'] }} | {{ SearchResult[\'NAMA JABATAN\'] }}</p>\n        </ion-item>\n    </div> -->\n\n    <ion-item no-padding>\n        <span item-left>\n            <img src="assets/imgs/logo/jenis_cuti.png" class="icons">\n        </span>\n        <ion-label stacked>Perintah</ion-label>\n        <ion-select [(ngModel)]="fcPerintah" placeholder="">\n            <ion-option *ngFor="let perintah of perintahList" value="{{ perintah }}">{{ perintah }}</ion-option>\n        </ion-select>\n    </ion-item>\n\n    <ion-item no-padding>\n        <span item-left>\n            <img src="assets/imgs/logo/perihal.png" class="icons">\n        </span>\n        <ion-label stacked>Catatan</ion-label>\n        <ion-input type="text" [(ngModel)]="fcCacatan" placeholder="" clearInput></ion-input>\n    </ion-item>\n\n    <div class="row">\n        <div class="col">\n            <button ion-button icon-start full color="danger" style="border-radius: 5px;" (click)="cancel()" margin-top>\n                <ion-icon name="md-close"></ion-icon>\n                Batal\n            </button>\n        </div>\n        <div class="col">\n            <button ion-button icon-start full color="primary" style="border-radius: 5px;" margin-top\n                (click)="sendData()" [disabled]="fcKepada == \'\' || fcPerintah == \'\' || fcCacatan == \'\' ? true : false">\n                <ion-icon name="md-checkmark"></ion-icon>\n                Simpan\n            </button>\n        </div>\n    </div>\n</ion-content>'/*ion-inline-end:"/Users/itadmin/Downloads/ERDA/POS_PPI/src/pages/disposisi/disposisi.html"*/,
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavController */],
             __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* NavParams */],
-            __WEBPACK_IMPORTED_MODULE_2__ionic_storage__["b" /* Storage */],
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* LoadingController */],
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["b" /* AlertController */],
-            __WEBPACK_IMPORTED_MODULE_4__soap_service__["a" /* SoapService */],
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["p" /* ToastController */]])
-    ], LogSuratPage);
-    return LogSuratPage;
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["q" /* ViewController */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* ModalController */]])
+    ], DisposisiPage);
+    return DisposisiPage;
 }());
 
-//# sourceMappingURL=log-surat.js.map
+//# sourceMappingURL=disposisi.js.map
 
 /***/ })
 

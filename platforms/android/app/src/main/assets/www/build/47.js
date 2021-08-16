@@ -1,14 +1,14 @@
 webpackJsonp([47],{
 
-/***/ 334:
+/***/ 310:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "LoginPageModule", function() { return LoginPageModule; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "HomePageModule", function() { return HomePageModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(50);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__login__ = __webpack_require__(420);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(100);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__home__ = __webpack_require__(365);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -18,38 +18,33 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 
-var LoginPageModule = /** @class */ (function () {
-    function LoginPageModule() {
+var HomePageModule = /** @class */ (function () {
+    function HomePageModule() {
     }
-    LoginPageModule = __decorate([
+    HomePageModule = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["J" /* NgModule */])({
             declarations: [
-                __WEBPACK_IMPORTED_MODULE_2__login__["a" /* LoginPage */],
+                __WEBPACK_IMPORTED_MODULE_2__home__["a" /* HomePage */],
             ],
             imports: [
-                __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__login__["a" /* LoginPage */]),
+                __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__home__["a" /* HomePage */]),
             ],
         })
-    ], LoginPageModule);
-    return LoginPageModule;
+    ], HomePageModule);
+    return HomePageModule;
 }());
 
-//# sourceMappingURL=login.module.js.map
+//# sourceMappingURL=home.module.js.map
 
 /***/ }),
 
-/***/ 420:
+/***/ 365:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return LoginPage; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return HomePage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(50);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_forms__ = __webpack_require__(16);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__config__ = __webpack_require__(103);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__soap_service__ = __webpack_require__(200);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ionic_storage__ = __webpack_require__(51);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ionic_native_onesignal__ = __webpack_require__(52);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(100);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -61,169 +56,66 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 
 
-
-
-
-
-
-// import { api_base_url } from '../../config';
-// import { HttpClient } from '@angular/common/http';
 /**
- * Generated class for the LoginPage page.
+ * Generated class for the HomePage page.
  *
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
  */
-var LoginPage = /** @class */ (function () {
-    function LoginPage(navCtrl, navParams, platform, formBuilder, loadingCtrl, alertCtrl, storage, toastCtrl, soapService, oneSignal) {
+var HomePage = /** @class */ (function () {
+    function HomePage(navCtrl, navParams) {
         this.navCtrl = navCtrl;
         this.navParams = navParams;
-        this.platform = platform;
-        this.formBuilder = formBuilder;
-        this.loadingCtrl = loadingCtrl;
-        this.alertCtrl = alertCtrl;
-        this.storage = storage;
-        this.toastCtrl = toastCtrl;
-        this.soapService = soapService;
-        this.oneSignal = oneSignal;
-        this.isValid = true;
-        this.formLogin = formBuilder.group({
-            username: ['', __WEBPACK_IMPORTED_MODULE_2__angular_forms__["f" /* Validators */].required],
-            password: ['', __WEBPACK_IMPORTED_MODULE_2__angular_forms__["f" /* Validators */].required],
-            swipe: [false, __WEBPACK_IMPORTED_MODULE_2__angular_forms__["f" /* Validators */].requiredTrue]
-        });
+        this.suratMenu = [];
+        this.p2bMenu = [];
+        this.budgtMonitoringMenu = [];
+        this.selfServiceMenu = [];
     }
-    LoginPage.prototype.ionViewDidLoad = function () {
-        console.log('ionViewDidLoad LoginPage');
+    HomePage.prototype.ionViewDidLoad = function () {
+        console.log('ionViewDidLoad HomePage');
     };
-    LoginPage.prototype.doLogin = function () {
-        var _this = this;
-        if (!this.formLogin.valid) {
-            this.isValid = false;
-            this.errorMessage = ' *Username dan Password harus diisi';
-        }
-        else {
-            var loading_1 = this.loadingCtrl.create({
-                spinner: 'dots',
-                content: "Mohon Tunggu...",
-                cssClass: 'transparent',
-                dismissOnPageChange: true
-            });
-            loading_1.present();
-            this.soapService
-                .post(__WEBPACK_IMPORTED_MODULE_3__config__["a" /* api_base_url */], 'eoffice_login', {
-                fStream: JSON.stringify({
-                    usernameEDI: __WEBPACK_IMPORTED_MODULE_3__config__["e" /* api_user */],
-                    passwordEDI: __WEBPACK_IMPORTED_MODULE_3__config__["c" /* api_pass */],
-                    username: this.formLogin.controls.username.value,
-                    password: this.formLogin.controls.password.value
-                })
-            })
-                .then(function (result) {
-                _this.responData = JSON.parse(String(result));
-                console.log(_this.responData);
-                if (_this.responData['rcmsg'] == "SUCCESS") {
-                    if (_this.responData['data']['login_status'] == '404 Not Found') {
-                        _this.isValid = false;
-                        _this.errorMessage = ' *Username atau Password Salah';
-                        loading_1.dismiss();
-                    }
-                    else if (_this.responData['data'] == undefined) {
-                        _this.isValid = false;
-                        _this.errorMessage = ' *Username atau Password Salah';
-                        loading_1.dismiss();
-                    }
-                    else if (_this.responData['data']['login_status'] == 'AP NOT ALLOWED') {
-                        _this.isValid = false;
-                        _this.errorMessage = ' *Login Hanya Untuk Pusat dan Cabang';
-                        loading_1.dismiss();
-                    }
-                    else {
-                        _this.isValid = true;
-                        _this.storage.set('userdataTPK', _this.responData);
-                        if (_this.platform.is('cordova')) {
-                            _this.registerOneSignal(loading_1);
-                            loading_1.dismiss();
-                            _this.navCtrl.setRoot('Home3Page');
-                        }
-                        else {
-                            loading_1.dismiss();
-                            _this.navCtrl.setRoot('Home3Page');
-                        }
-                    }
-                }
-                else if (_this.responData['rcmsg'] == "User not found") {
-                    _this.isValid = false;
-                    _this.errorMessage = ' *Username Anda Tidak Terdaftar di IVO';
-                    loading_1.dismiss();
-                }
-                else {
-                    _this.isValid = false;
-                    _this.errorMessage = ' *Username atau Password Salah';
-                    loading_1.dismiss();
-                }
-            })
-                .catch(function (error) {
-                _this.isValid = false;
-                _this.errorMessage = ' *Login Gagal, Periksa Koneksi Internet Anda';
-                loading_1.dismiss();
-            });
-        }
+    HomePage.prototype.ionViewDidEnter = function () {
+        this.suratMenu = [
+            { img: 'assets/imgs/menu-icon/inbox-white.png', title: 'Surat Masuk', component: 'InboxPage' },
+            { img: 'assets/imgs/menu-icon/outbox-white.png', title: 'Surat Keluar', component: 'OutboxPage' },
+            { img: 'assets/imgs/menu-icon/sppd-white.png', title: 'SPPD', component: 'AbsenListPage' }
+        ];
+        this.p2bMenu = [
+            { img: 'assets/imgs/menu-icon/p2b.png', title: 'P2B', component: 'CutiListPage' }
+        ];
+        this.budgtMonitoringMenu = [
+            { img: 'assets/imgs/menu-icon/approval-prpo.png', title: 'Approval PR/PO', component: 'CutiListPage' },
+            { img: 'assets/imgs/menu-icon/uang-muka.png', title: 'Pengajuan Uang Muka', component: 'CutiListPage' }
+        ];
+        this.selfServiceMenu = [
+            { img: 'assets/imgs/menu-icon/absensi_white.png', title: 'Absensi', component: 'InboxPage' },
+            { img: 'assets/imgs/menu-icon/cuti_white.png', title: 'Izin/Cuti', component: 'OutboxPage' },
+            { img: 'assets/imgs/menu-icon/payslip_white.png', title: 'Payslip', component: 'AbsenListPage' },
+            { img: 'assets/imgs/menu-icon/survey_white.png', title: 'Survey', component: 'AbsenListPage' },
+            { img: 'assets/imgs/menu-icon/helpdesk_white.png', title: 'Helpdesk', component: 'AbsenListPage' },
+            { img: 'assets/imgs/menu-icon/hrcontact_white.png', title: 'HR Contact Center', component: 'AbsenListPage' },
+            { img: 'assets/imgs/menu-icon/search_white.png', title: 'Cari Pegawai', component: 'AbsenListPage' }
+        ];
     };
-    LoginPage.prototype.registerOneSignal = function (loading) {
-        var _this = this;
-        this.oneSignal.startInit(__WEBPACK_IMPORTED_MODULE_3__config__["f" /* oneSignalAppId */], __WEBPACK_IMPORTED_MODULE_3__config__["h" /* sender_id */]);
-        var notificationOpenedCallback = function (jsonData) {
-        };
-        this.oneSignal.getIds().then(function (id) {
-            _this.soapService
-                .post(__WEBPACK_IMPORTED_MODULE_3__config__["a" /* api_base_url */], 'eoffice_regis_notif_user', {
-                fStream: JSON.stringify({
-                    id_user: _this.responData['data']['IDUSER'],
-                    nipp: _this.responData['data']['NIPP'],
-                    player_ids: id.userId,
-                    usernameEDI: __WEBPACK_IMPORTED_MODULE_3__config__["e" /* api_user */],
-                    passwordEDI: __WEBPACK_IMPORTED_MODULE_3__config__["c" /* api_pass */]
-                })
-            }).then(function (result) {
-                _this.responData = JSON.parse(String(result));
-                loading.dismiss();
-                _this.navCtrl.setRoot('Home3Page');
-            }).catch(function (error) {
-                _this.errorMessage = ' *Login Gagal, Silahkan Coba Kembali.';
-                loading.dismiss();
-            });
-        });
-        this.oneSignal.endInit();
+    HomePage.prototype.openPage = function (item) {
+        this.navCtrl.push(item);
     };
-    LoginPage.prototype.disableButton = function () {
-        if (this.formLogin.valid == false) {
-            return true;
-        }
-        else {
-            return false;
-        }
+    HomePage.prototype.goToSetting = function () {
+        this.navCtrl.push('SettingPage');
     };
-    LoginPage = __decorate([
+    HomePage.prototype.goToHome2 = function () {
+        this.navCtrl.push('Home2Page');
+    };
+    HomePage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
-            selector: 'page-login',
-            providers: [__WEBPACK_IMPORTED_MODULE_4__soap_service__["a" /* SoapService */]],template:/*ion-inline-start:"/Users/itadmin/Downloads/ERDA/POS_PPI/src/pages/login/login.html"*/'<ion-content padding class="login-bg" scrollX="false" scrollY="false">\n  <div class="grand-parent-contaniner">\n    <div class="parent-container">\n      <div class="bg-color">\n        <img id="logo" src="assets/imgs/ipc-tpk-logo.png" />\n        <br>        \n        <div text-center style="margin-bottom:15px;">\n          <span ion-text color="dark" style="font-size: 2.1rem;font-weight: bold;">E-Office IPCTPK</span>\n          <br>\n          <span ion-text color="color4" style="font-size: 1.4rem;">Masukkan NIPP dan password anda</span>\n        </div>\n        <div id="login-form">\n          <form [formGroup]="formLogin" class="item-login" (ngSubmit)="doLogin()">\n            <div class="input-item">\n              <ion-item no-lines>\n                <!-- <ion-label class="login-label" color="dark" stacked>Username</ion-label> -->\n                <ion-icon name="person" item-left no-margin class="my-icons" color="danger"></ion-icon>\n                <ion-input type="text" formControlName="username" placeholder="Username"></ion-input>\n              </ion-item>\n              <ion-item no-lines>\n                <!-- <ion-label class="login-label" color="dark" stacked>Password</ion-label> -->\n                <ion-icon name="lock" item-left no-margin class="my-icons" color="danger"></ion-icon>\n                <ion-input type="password" formControlName="password" placeholder="Password"></ion-input>\n              </ion-item>\n            </div>            \n            <!-- <div text-center>\n              <span ion-text text-wrap style="font-size: 1.3rem;" color="dark">swipe to right to confirm your are not robot</span> <br><br>\n              <input type="range" type="range" min="1" max="10" value="1" class="my-slider" />\n            </div> -->\n            <div class="swipe-cont" >\n              <ion-item no-lines>\n                <ion-label ion-text text-wrap style="font-size: 1.3rem;">Swipe to right to confirm you are not robot\n                </ion-label>\n                <ion-toggle formControlName="swipe"></ion-toggle>swipe\n              </ion-item>\n            </div>\n\n            <br>\n\n            <span ion-text text-wrap color="color6">{{errorMessage}}</span>\n\n            <button margin-top class="login-button" ion-button icon-start block color="danger" tappable type="submit"  [disabled]="disableButton()" >\n              <ion-icon name="log-in"></ion-icon>\n              Login\n            </button>\n          </form>\n        </div>\n      </div>\n\n    </div>\n  </div>\n</ion-content>'/*ion-inline-end:"/Users/itadmin/Downloads/ERDA/POS_PPI/src/pages/login/login.html"*/,
+            selector: 'page-home',template:/*ion-inline-start:"/Users/itadmin/Downloads/ERDA/POS_PPI/src/pages/home/home.html"*/'<!--\n  Generated template for the HomePage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n\n<ion-header no-border>\n  <ion-navbar color="color1">\n    <ion-title>\n      <img src="assets/imgs/ipc-tpk-logo.png" style="width:80px; padding-top: 4px;" />      \n    </ion-title>\n    <ion-buttons end>\n      <button ion-button (click)="logout()">\n        <ion-icon style="font-size:2.5rem;" name="md-settings" color="light"></ion-icon>\n      </button>\n      <button ion-button (click)="logout()">\n        <ion-icon style="font-size:2.5rem;" name="md-log-out" color="light"></ion-icon>\n      </button>\n    </ion-buttons>\n  </ion-navbar>\n</ion-header>\n\n<ion-content padding-bottom>\n  <!-- <div class="my-header">\n    <div class="my-title" padding>\n      <span ion-text color="light">Mobile IVO TPK</span>\n    </div>\n  </div>\n\n  <div class="img-container" (click)="goToHome2()">\n    <img src="../../assets/imgs/user-img.jpg" class="my-img" />\n  </div>\n\n  <div class="user-info">\n    <span ion-text class="user-info-name">John Van Deer Mor</span><br>\n    <span ion-text text-wrap class="user-info-jab">DVP Operasi dan Hubungan Internasional</span>\n  </div>\n\n  <div class="button-container">\n    <button ion-button round class="setting-button" (click)="goToSetting()">Setting</button>\n    <button ion-button round outline color="danger">Logout</button>\n  </div> -->\n\n  <div class="profile-container" (click)="goToHome2()">\n    <img src="../../assets/imgs/user-img.jpg" class="my-img" />\n\n    <div class="user-info">\n      <span ion-text class="user-info-name">John Van Deer Mor</span><br>\n      <span ion-text text-wrap class="user-info-jab">DVP Operasi dan Hubungan Internasional</span>\n    </div>\n  </div>\n\n  <ion-row>\n    <ion-col class="col-left">\n      <div>\n        <span ion-text text-wrap class="user-info-name" color="orange">25</span> <br>\n        <span ion-text text-wrap style="font-size:1.3rem; color: gray;">Belum dibaca</span>\n      </div>\n    </ion-col>\n    <ion-col class="col-right">\n      <div>\n        <span ion-text text-wrap class="user-info-name" color="orange">7</span> <br>\n        <span ion-text text-wrap style="font-size:1.3rem; color: gray;">Approval</span>\n      </div>\n    </ion-col>\n  </ion-row>\n\n  <div class="agenda-title-container">\n    <span ion-text text-wrap style="font-size:1.5rem;">\n      <b>Agenda anda saat ini</b>\n    </span>\n  </div>\n\n\n\n  <ion-slides pager="true" paginationType="bullets">\n    <ion-slide>\n      <ion-card class="my-card">\n        <ion-item>\n          <span ion-text text-wrap class="font-mini">\n            19 agustus 2019 08.00 - 09.00\n          </span> <br>\n          <span ion-text text-wrap class="font-mini">\n            Wisma SMR Lantai 10\n          </span>\n          <div style="\n                    width:100%;\n                    border-bottom: 1px solid white;\n                    padding: 5px;\n                    margin-bottom:5px;">\n          </div>\n          <span ion-text text-wrap class="font-small">\n            <b>Meeting Kick Off E-Office IPC TPK</b>\n          </span>\n        </ion-item>\n      </ion-card>\n    </ion-slide>\n    <ion-slide>\n      <ion-card class="my-card">\n        <ion-item>\n          <span ion-text text-wrap class="font-mini">\n            19 agustus 2019 08.00 - 09.00\n          </span> <br>\n          <span ion-text text-wrap class="font-mini">\n            Wisma SMR Lantai 10\n          </span>\n          <div style="\n                    width:100%;\n                    border-bottom: 1px solid lightgray;\n                    padding: 5px;\n                    margin-bottom:5px;">\n          </div>\n          <span ion-text text-wrap class="font-small">\n            <b>Meeting Kick Off E-Office IPC TPK</b>\n          </span>\n        </ion-item>\n      </ion-card>\n    </ion-slide>\n  </ion-slides>\n\n  <div class="agenda-title-container">\n    <span ion-text text-wrap style="font-size:1.5rem;">\n      <b>Surat Menyurat</b>\n    </span>\n  </div>\n\n  <div class="menu-parent">\n    <div style="width: 33.3%" *ngFor="let item of suratMenu" tappable (click)="openPage(item.component)">\n      <div class="container-menu-4">\n        <img src="{{item.img}}" style="width: 35%; \n                height: auto;          \n                max-width: 35vw;">\n      </div>\n      <div align="center">\n        <span style="font-size:1.3rem !important"><b>{{item.title}}</b></span>\n      </div>\n    </div>\n  </div>\n\n  <ion-card class="my-card-2">\n    <ion-item>\n      <div style="display: flex;align-items: center;">\n        <img src="assets/imgs/menu-icon/p2b-white.png" style="width: 10%;height: auto;          \n            max-width: 35vw;margin-right: 10px;">\n        <span ion-text text-wrap class="font-small">\n          <b>P2B</b>\n        </span>\n      </div>\n      <br>\n      <span ion-text text-wrap class="font-mini">\n        Karyawan dapat menambah, mengubah, submit serta melakukan approval P2B.\n      </span>\n\n      <button ion-button item-end round outline color="white" style="font-size:1.4rem;">BUKA</button>\n\n    </ion-item>\n  </ion-card>\n\n\n  <div class="agenda-title-container">\n    <span ion-text text-wrap style="font-size:1.5rem;">\n      <b>Self Service</b>\n    </span>\n  </div>\n\n  <div class="menu-parent">\n    <div style="width: 25%" *ngFor="let item of selfServiceMenu.slice(0, 4);let i=index " tappable\n      (click)="openPage(item.component)">\n      <div class="container-menu-selfservice1-{{ i }}">\n        <img src="{{item.img}}" style="width: 40%; \n                height: auto;          \n                max-width: 35vw;">\n      </div>\n      <div align="center">\n        <span style="font-size:1.3rem !important">{{item.title}}</span>\n      </div>\n    </div>\n  </div>\n\n  <div class="menu-parent">\n    <div style="width: 25%" *ngFor="let item of selfServiceMenu.slice(4, 8);let i=index " tappable\n      (click)="openPage(item.component)">\n      <div class="container-menu-selfservice2-{{ i }}">\n        <img src="{{item.img}}" style="width: 40%; \n                height: auto;          \n                max-width: 35vw;">\n      </div>\n      <div align="center">\n        <span style="font-size:1.3rem !important">{{item.title}}</span>\n      </div>\n    </div>\n  </div>\n\n\n  <!-- <div class="agenda-title-container">\n    <span ion-text text-wrap style="font-size:1.4rem;">\n      <b>P2B</b>\n    </span>\n  </div>\n\n\n  <div class="menu-parent">\n    <div style="width: 25%" *ngFor="let item of p2bMenu" tappable (click)="openPage(item.component)">\n      <div class="container-menu">\n        <img src="{{item.img}}" style="width: 50%; \n                  height: auto;          \n                  max-width: 35vw;">\n      </div>\n      <div align="center">\n        <span style="font-size:1.3rem !important">{{item.title}}</span>\n      </div>\n    </div>\n  </div> -->\n\n  <div class="agenda-title-container">\n    <span ion-text text-wrap style="font-size:1.5rem;">\n      <b>Budget Monitoring</b>\n    </span>\n  </div>\n\n  <div class="menu-parent">\n    <div style="width: 25%" *ngFor="let item of budgtMonitoringMenu" tappable (click)="openPage(item.component)">\n      <div class="container-menu">\n        <img src="{{item.img}}" style="width: 40%; \n                height: auto;          \n                max-width: 35vw;">\n      </div>\n      <div align="center">\n        <span style="font-size:1.3rem !important">{{item.title}}</span>\n      </div>\n    </div>\n  </div>\n\n\n\n\n\n</ion-content>'/*ion-inline-end:"/Users/itadmin/Downloads/ERDA/POS_PPI/src/pages/home/home.html"*/,
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavController */],
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* NavParams */],
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["n" /* Platform */],
-            __WEBPACK_IMPORTED_MODULE_2__angular_forms__["a" /* FormBuilder */],
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* LoadingController */],
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["b" /* AlertController */],
-            __WEBPACK_IMPORTED_MODULE_5__ionic_storage__["b" /* Storage */],
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["p" /* ToastController */],
-            __WEBPACK_IMPORTED_MODULE_4__soap_service__["a" /* SoapService */],
-            __WEBPACK_IMPORTED_MODULE_6__ionic_native_onesignal__["a" /* OneSignal */]])
-    ], LoginPage);
-    return LoginPage;
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* NavParams */]])
+    ], HomePage);
+    return HomePage;
 }());
 
-//# sourceMappingURL=login.js.map
+//# sourceMappingURL=home.js.map
 
 /***/ })
 

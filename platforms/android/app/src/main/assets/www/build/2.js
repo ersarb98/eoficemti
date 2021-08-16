@@ -1,15 +1,14 @@
 webpackJsonp([2],{
 
-/***/ 328:
+/***/ 339:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "IpcContactQuestionListPageModule", function() { return IpcContactQuestionListPageModule; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "UpdateUserdataPageModule", function() { return UpdateUserdataPageModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(50);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ipc_contact_question_list__ = __webpack_require__(414);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_ionic2_rating__ = __webpack_require__(378);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(100);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__update_userdata__ = __webpack_require__(395);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -19,277 +18,555 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 
-
-var IpcContactQuestionListPageModule = /** @class */ (function () {
-    function IpcContactQuestionListPageModule() {
+var UpdateUserdataPageModule = /** @class */ (function () {
+    function UpdateUserdataPageModule() {
     }
-    IpcContactQuestionListPageModule = __decorate([
+    UpdateUserdataPageModule = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["J" /* NgModule */])({
             declarations: [
-                __WEBPACK_IMPORTED_MODULE_2__ipc_contact_question_list__["a" /* IpcContactQuestionListPage */],
+                __WEBPACK_IMPORTED_MODULE_2__update_userdata__["a" /* UpdateUserdataPage */],
             ],
             imports: [
-                __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__ipc_contact_question_list__["a" /* IpcContactQuestionListPage */]),
-                __WEBPACK_IMPORTED_MODULE_3_ionic2_rating__["a" /* Ionic2RatingModule */]
+                __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__update_userdata__["a" /* UpdateUserdataPage */]),
             ],
         })
-    ], IpcContactQuestionListPageModule);
-    return IpcContactQuestionListPageModule;
+    ], UpdateUserdataPageModule);
+    return UpdateUserdataPageModule;
 }());
 
-//# sourceMappingURL=ipc-contact-question-list.module.js.map
+//# sourceMappingURL=update-userdata.module.js.map
 
 /***/ }),
 
-/***/ 377:
+/***/ 341:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* unused harmony export RATING_CONTROL_VALUE_ACCESSOR */
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return Ionic2Rating; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return SoapService; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_forms__ = __webpack_require__(16);
-
-
-var noop = function () {
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__soapclient_js__ = __webpack_require__(342);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__soapclient_js___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__soapclient_js__);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
-var RATING_CONTROL_VALUE_ACCESSOR = {
-    provide: __WEBPACK_IMPORTED_MODULE_1__angular_forms__["c" /* NG_VALUE_ACCESSOR */],
-    useExisting: Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_15" /* forwardRef */])(function () { return Ionic2Rating; }),
-    multi: true
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var Ionic2Rating = (function () {
-    function Ionic2Rating() {
-        this._max = 5;
-        this._readOnly = false;
-        this._emptyStarIconName = 'star-outline';
-        this._halfStarIconName = 'star-half';
-        this._starIconName = 'star';
-        this._nullable = false;
-        this.onChangeCallback = noop;
+
+
+var SoapService = /** @class */ (function () {
+    function SoapService() {
     }
-    Object.defineProperty(Ionic2Rating.prototype, "max", {
-        get: function () {
-            return this._max;
-        },
-        set: function (val) {
-            this._max = this.getNumberPropertyValue(val);
-        },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(Ionic2Rating.prototype, "readOnly", {
-        get: function () {
-            return this._readOnly;
-        },
-        set: function (val) {
-            this._readOnly = this.isTrueProperty(val);
-        },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(Ionic2Rating.prototype, "emptyStarIconName", {
-        get: function () {
-            return this._emptyStarIconName;
-        },
-        set: function (val) {
-            this._emptyStarIconName = val;
-        },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(Ionic2Rating.prototype, "halfStarIconName", {
-        get: function () {
-            return this._halfStarIconName;
-        },
-        set: function (val) {
-            this._halfStarIconName = val;
-        },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(Ionic2Rating.prototype, "starIconName", {
-        get: function () {
-            return this._starIconName;
-        },
-        set: function (val) {
-            this._starIconName = val;
-        },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(Ionic2Rating.prototype, "nullable", {
-        get: function () {
-            return this._nullable;
-        },
-        set: function (val) {
-            this._nullable = this.isTrueProperty(val);
-        },
-        enumerable: true,
-        configurable: true
-    });
-    Ionic2Rating.prototype.ngOnInit = function () {
-        // ngFor needs an array
-        this.starIndexes = Array(this.max).fill(1).map(function (x, i) { return i; });
-    };
-    Ionic2Rating.prototype.getStarIconName = function (starIndex) {
-        if (this.value === undefined) {
-            return this.emptyStarIconName;
-        }
-        if (this.value > starIndex) {
-            if (this.value < starIndex + 1) {
-                return this.halfStarIconName;
+    SoapService.prototype.post = function (url, action, params) {
+        var _this = this;
+        this.soapParams = new __WEBPACK_IMPORTED_MODULE_1__soapclient_js___default.a.SOAPClientParameters;
+        this.soapClient = __WEBPACK_IMPORTED_MODULE_1__soapclient_js___default.a.SOAPClient;
+        return new Promise(function (resolve, reject) {
+            //Create SOAPClientParameters
+            for (var param in params) {
+                _this.soapParams.add(param, params[param]);
             }
-            else {
-                return this.starIconName;
-            }
-        }
-        else {
-            return this.emptyStarIconName;
-        }
+            //Create Callback
+            var soapCallback = function (e, status) {
+                if (e == null || e.constructor.toString().indexOf("function Error()") != -1) {
+                    reject("Unable to contat the server: " + status);
+                }
+                else {
+                    resolve(e);
+                }
+            };
+            _this.soapClient.invoke(url, action, _this.soapParams, true, soapCallback);
+        });
     };
-    Object.defineProperty(Ionic2Rating.prototype, "value", {
-        get: function () {
-            return this.innerValue;
-        },
-        set: function (value) {
-            if (value !== this.innerValue) {
-                this.innerValue = value;
-                this.onChangeCallback(value);
-            }
-        },
-        enumerable: true,
-        configurable: true
-    });
-    Ionic2Rating.prototype.writeValue = function (value) {
-        if (value !== this.innerValue) {
-            this.innerValue = value;
-        }
+    SoapService.prototype.setCredentials = function (username, password) {
+        this.soapClient.username = username;
+        this.soapClient.password = password;
     };
-    Ionic2Rating.prototype.registerOnChange = function (fn) {
-        this.onChangeCallback = fn;
-    };
-    Ionic2Rating.prototype.registerOnTouched = function (fn) {
-    };
-    Ionic2Rating.prototype.onKeyDown = function (event) {
-        if (/(37|38|39|40)/.test(event.which)) {
-            event.preventDefault();
-            event.stopPropagation();
-            var newValue = this.value + ((event.which == 38 || event.which == 39) ? 1 : -1);
-            return this.rate(newValue);
-        }
-    };
-    Ionic2Rating.prototype.rate = function (value) {
-        if (this.readOnly || value < 0 || value > this.max) {
-            return;
-        }
-        if (value === this.value && this.nullable) {
-            value = null;
-        }
-        this.value = value;
-    };
-    Ionic2Rating.prototype.isTrueProperty = function (val) {
-        if (typeof val === 'string') {
-            val = val.toLowerCase().trim();
-            return (val === 'true' || val === 'on');
-        }
-        return !!val;
-    };
-    Ionic2Rating.prototype.getNumberPropertyValue = function (val) {
-        if (typeof val === 'string') {
-            return parseInt(val.trim());
-        }
-        return val;
-    };
-    Ionic2Rating.decorators = [
-        { type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */], args: [{
-                    selector: 'rating',
-                    styles: ["\n    ul.rating li {\n      display: inline;\n      border: 0px;\n      background: none;\n      padding: 5px 10px;\n    }\n    ul.rating li i {\n      font-size: 30px;\n    }\n  "],
-                    template: "\n    <ul class=\"rating\" (keydown)=\"onKeyDown($event)\">\n      <li *ngFor=\"let starIndex of starIndexes\" tappable (click)=\"rate(starIndex + 1)\">\n        <ion-icon [name]=\"getStarIconName(starIndex)\">\n        </ion-icon>\n      </li>\n    </ul>",
-                    providers: [RATING_CONTROL_VALUE_ACCESSOR]
-                },] },
-    ];
-    /** @nocollapse */
-    Ionic2Rating.ctorParameters = [];
-    Ionic2Rating.propDecorators = {
-        'max': [{ type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["E" /* Input */] },],
-        'readOnly': [{ type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["E" /* Input */] },],
-        'emptyStarIconName': [{ type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["E" /* Input */] },],
-        'halfStarIconName': [{ type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["E" /* Input */] },],
-        'starIconName': [{ type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["E" /* Input */] },],
-        'nullable': [{ type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["E" /* Input */] },],
-    };
-    return Ionic2Rating;
+    SoapService = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["B" /* Injectable */])(),
+        __metadata("design:paramtypes", [])
+    ], SoapService);
+    return SoapService;
 }());
-//# sourceMappingURL=ionic2-rating.js.map
+
+//# sourceMappingURL=soap.service.js.map
 
 /***/ }),
 
-/***/ 378:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/***/ 342:
+/***/ (function(module, exports) {
 
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ionic2_rating_module__ = __webpack_require__(379);
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return __WEBPACK_IMPORTED_MODULE_0__ionic2_rating_module__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ionic2_rating__ = __webpack_require__(377);
-/* unused harmony reexport Ionic2Rating */
-
-
-//# sourceMappingURL=index.js.map
-
-/***/ }),
-
-/***/ 379:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return Ionic2RatingModule; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_common__ = __webpack_require__(21);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(50);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic2_rating__ = __webpack_require__(377);
+/*****************************************************************************\
+ Javascript "SOAP Client" library
+ 
+ @version: 2.4 - 2007.12.21
+ @author: Matteo Casati - http://www.guru4.net/
+ 
+\*****************************************************************************/
+ 
 
 
+function SOAPClientParameters()
+{
+	var _pl = new Array();
+	this.add = function(name, value) 
+	{
+		_pl[name] = value; 
+		return this; 
+	}
+	this.toXml = function()
+	{
+		var xml = "";
+		for(var p in _pl)
+		{
+			switch(typeof(_pl[p])) 
+			{
+                case "string":
+                case "number":
+                case "boolean":
+                case "object":
+                    xml += "<" + p + ">" + SOAPClientParameters._serialize(_pl[p]) + "</" + p + ">";
+                    break;
+                default:
+                    break;
+            }
+		}
+		return xml;	
+	}
+}
+SOAPClientParameters._serialize = function(o)
+{
+    var s = "";
+    switch(typeof(o))
+    {
+        case "string":
+            s += o.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;"); break;
+        case "number":
+        case "boolean":
+            s += o.toString(); break;
+        case "object":
+            // Date
+            if(o.constructor.toString().indexOf("function Date()") > -1)
+            {
+        
+                var year = o.getFullYear().toString();
+                var month = (o.getMonth() + 1).toString(); month = (month.length == 1) ? "0" + month : month;
+                var date = o.getDate().toString(); date = (date.length == 1) ? "0" + date : date;
+                var hours = o.getHours().toString(); hours = (hours.length == 1) ? "0" + hours : hours;
+                var minutes = o.getMinutes().toString(); minutes = (minutes.length == 1) ? "0" + minutes : minutes;
+                var seconds = o.getSeconds().toString(); seconds = (seconds.length == 1) ? "0" + seconds : seconds;
+                var milliseconds = o.getMilliseconds().toString();
+                var tzminutes = Math.abs(o.getTimezoneOffset());
+                var tzhours = 0;
+                while(tzminutes >= 60)
+                {
+                    tzhours++;
+                    tzminutes -= 60;
+                }
+                tzminutes = (tzminutes.toString().length == 1) ? "0" + tzminutes.toString() : tzminutes.toString();
+                tzhours = (tzhours.toString().length == 1) ? "0" + tzhours.toString() : tzhours.toString();
+                var timezone = ((o.getTimezoneOffset() < 0) ? "+" : "-") + tzhours + ":" + tzminutes;
+                s += year + "-" + month + "-" + date + "T" + hours + ":" + minutes + ":" + seconds + "." + milliseconds + timezone;
+            }
+            // Array
+            else if(o.constructor.toString().indexOf("function Array()") > -1)
+            {
+                for(var p in o)
+                {
+                    if(!isNaN(p))   // linear array
+                    {
+                        (/function\s+(\w*)\s*\(/ig).exec(o[p].constructor.toString());
+                        var type = RegExp.$1;
+                        switch(type)
+                        {
+                            case "":
+                                type = typeof(o[p]);
+                            case "String":
+                                type = "string"; break;
+                            case "Number":
+                                type = "int"; break;
+                            case "Boolean":
+                                type = "bool"; break;
+                            case "Date":
+                                type = "DateTime"; break;
+                        }
+                        s += "<" + type + ">" + SOAPClientParameters._serialize(o[p]) + "</" + type + ">"
+                    }
+                    else    // associative array
+                        s += "<" + p + ">" + SOAPClientParameters._serialize(o[p]) + "</" + p + ">"
+                }
+            }
+            // Object or custom function
+            else
+                for(var p in o){
+					xmlAtrr = ''
+					for (var p2 in o[p]){ 
+							if(p2 == "@"){ // Calculus: Keyword for XML attributes within the objects
+								for (var p3 in o[p][p2]){
+									xmlAtrr+= ' ' + p3 + "=" + '"'+o[p][p2][p3]+'"';
+								}
+							}
+						}
+					if (p == '@'){
 
-
-var Ionic2RatingModule = (function () {
-    function Ionic2RatingModule() {
+					}else{
+						 s += "<" + p + xmlAtrr + ">" + SOAPClientParameters._serialize(o[p]) + "</" + p + ">";
+					}
+				}
+            break;
+        default:
+            break; // throw new Error(500, "SOAPClientParameters: type '" + typeof(o) + "' is not supported");
     }
-    Ionic2RatingModule.decorators = [
-        { type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["J" /* NgModule */], args: [{
-                    declarations: [
-                        __WEBPACK_IMPORTED_MODULE_3__ionic2_rating__["a" /* Ionic2Rating */]
-                    ],
-                    exports: [
-                        __WEBPACK_IMPORTED_MODULE_3__ionic2_rating__["a" /* Ionic2Rating */]
-                    ],
-                    imports: [
-                        __WEBPACK_IMPORTED_MODULE_1__angular_common__["b" /* CommonModule */],
-                        __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["g" /* IonicModule */]
-                    ],
-                    schemas: [
-                        __WEBPACK_IMPORTED_MODULE_0__angular_core__["i" /* CUSTOM_ELEMENTS_SCHEMA */]
-                    ]
-                },] },
-    ];
-    /** @nocollapse */
-    Ionic2RatingModule.ctorParameters = [];
-    return Ionic2RatingModule;
-}());
-//# sourceMappingURL=ionic2-rating.module.js.map
+    return s;
+}
+
+function SOAPClient() {}
+
+SOAPClient.username = null;
+SOAPClient.password = null;
+
+SOAPClient.invoke = function(url, method, parameters, async, callback)
+{
+	if(async)
+		SOAPClient._loadWsdl(url, method, parameters, async, callback);
+	else
+		return SOAPClient._loadWsdl(url, method, parameters, async, callback);
+}
+
+// private: wsdl cache
+SOAPClient_cacheWsdl = new Array();
+
+// private: invoke async
+SOAPClient._loadWsdl = function(url, method, parameters, async, callback)
+{
+	// load from cache?
+	var wsdl = SOAPClient_cacheWsdl[url];
+	if(wsdl + "" != "" && wsdl + "" != "undefined")
+		return SOAPClient._sendSoapRequest(url, method, parameters, async, callback, wsdl);
+	// get wsdl
+	var xmlHttp = SOAPClient._getXmlHttp();
+	//  xmlHttp.open("GET", url + "?wsdl", async);
+	xmlHttp.open("GET", url, async);
+	if(async) 
+	{
+		xmlHttp.onreadystatechange = function() 
+		{
+            
+            if (xmlHttp.readyState === 4) {
+                if (xmlHttp.status === 200) {
+                    SOAPClient._onLoadWsdl(url, method, parameters, async, callback, xmlHttp);
+                } else {
+                    callback(null, xmlHttp.statusText);
+                }
+            }  
+		}
+	}
+     xmlHttp.send(null);
+     
+	if (!async)
+		return SOAPClient._onLoadWsdl(url, method, parameters, async, callback, xmlHttp);
+}
+SOAPClient._onLoadWsdl = function(url, method, parameters, async, callback, req)
+{
+	var wsdl = req.responseXML;
+	SOAPClient_cacheWsdl[url] = wsdl;	// save a copy in cache
+	return SOAPClient._sendSoapRequest(url, method, parameters, async, callback, wsdl);
+}
+SOAPClient._sendSoapRequest = function(url, method, parameters, async, callback, wsdl)
+{
+	// get namespace
+	var ns = (wsdl.documentElement.attributes["targetNamespace"] + "" == "undefined") ? wsdl.documentElement.attributes.getNamedItem("targetNamespace").nodeValue : wsdl.documentElement.attributes["targetNamespace"].value;
+	// build SOAP request
+	var sr = 
+				"<?xml version=\"1.0\" encoding=\"utf-8\"?>" +
+				"<soap:Envelope " +
+				"xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" " +
+				"xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" " +
+				"xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\">" +
+				"<soap:Body>" +
+				"<" + method + " xmlns=\"" + ns + "\">" +
+				parameters.toXml() +
+				"</" + method + "></soap:Body></soap:Envelope>";
+	// send request
+	var xmlHttp = SOAPClient._getXmlHttp();
+	if (SOAPClient.userName && SOAPClient.password){
+		xmlHttp.open("POST", url, async, SOAPClient.userName, SOAPClient.password);
+		// Some WS implementations (i.e. BEA WebLogic Server 10.0 JAX-WS) don't support Challenge/Response HTTP BASIC, so we send authorization headers in the first request
+		xmlHttp.setRequestHeader("Authorization", "Basic " + SOAPClient._toBase64(SOAPClient.userName + ":" + SOAPClient.password));
+	}
+	else
+		xmlHttp.open("POST", url, async);
+       xmlHttp.timeout = 15000;
+	var soapaction = ((ns.lastIndexOf("/") != ns.length - 1) ? ns + "/" : ns) + encodeURIComponent(method);
+	xmlHttp.setRequestHeader("SOAPAction", soapaction); 
+	xmlHttp.setRequestHeader("Content-Type", "text/xml; charset=utf-8");
+	// xmlHttp.setRequestHeader("Access-Control-Allow-Origin", "https://<ORIGINSERVER>");
+	// xmlHttp.setRequestHeader("Access-Control-Allow-Credentials", "true");
+	// xmlHttp.setRequestHeader("Access-Control-Allow-Methods", "GET");
+	if(async) 
+	{
+        xmlHttp.ontimeout = function(e){
+            callback(null, e.type);
+        };
+		xmlHttp.onreadystatechange = function() 
+		{
+             if (xmlHttp.readyState === 4) {
+                if (xmlHttp.status === 200) {
+                     SOAPClient._onSendSoapRequest(method, async, callback, wsdl, xmlHttp);
+                } else {                   
+                    callback(null, xmlHttp.statusText);
+                }
+            }  
+		} 
+	}   	
+    xmlHttp.send(sr);
+	if (!async)
+		return SOAPClient._onSendSoapRequest(method, async, callback, wsdl, xmlHttp);
+}
+
+SOAPClient._onSendSoapRequest = function(method, async, callback, wsdl, req) 
+{
+	var o = null;
+	var nd = SOAPClient._getElementsByTagName(req.responseXML, method + "Result");    
+	if(nd.length == 0)
+		nd = SOAPClient._getElementsByTagName(req.responseXML, "return");	// PHP web Service?
+	if(nd.length == 0)
+	{
+		if(req.responseXML.getElementsByTagName("faultcode").length > 0)
+		{
+		    if(async || callback)
+		        o = new Error(500, req.responseXML.getElementsByTagName("faultstring")[0].childNodes[0].nodeValue);
+			else
+			    throw new Error(500, req.responseXML.getElementsByTagName("faultstring")[0].childNodes[0].nodeValue);			
+		}
+	}
+	else
+		o = SOAPClient._soapresult2object(nd[0], wsdl);        
+	if(callback)
+		callback(o, req.responseXML);
+	if(!async)
+		return o;
+}
+SOAPClient._soapresult2object = function(node, wsdl)
+{
+    var wsdlTypes = SOAPClient._getTypesFromWsdl(wsdl);
+    return SOAPClient._node2object(node, wsdlTypes);
+}
+SOAPClient._node2object = function(node, wsdlTypes)
+{
+	// null node
+	if(node == null)
+		return null;
+	// text node
+	if(node.nodeType == 3 || node.nodeType == 4)
+		return SOAPClient._extractValue(node, wsdlTypes);
+	// leaf node
+	if (node.childNodes.length == 1 && (node.childNodes[0].nodeType == 3 || node.childNodes[0].nodeType == 4))
+		return SOAPClient._node2object(node.childNodes[0], wsdlTypes);
+	var isarray = SOAPClient._getTypeFromWsdl(node.nodeName, wsdlTypes).toLowerCase().indexOf("arrayof") != -1;
+	// object node
+	if(!isarray)
+	{
+		var obj = null;
+		if(node.hasChildNodes())
+			obj = new Object();
+		for(var i = 0; i < node.childNodes.length; i++)
+		{
+			var p = SOAPClient._node2object(node.childNodes[i], wsdlTypes);
+			obj[node.childNodes[i].nodeName] = p;
+		}
+		return obj;
+	}
+	// list node
+	else
+	{
+		// create node ref
+		var l = new Array();
+		for(var i = 0; i < node.childNodes.length; i++)
+			l[l.length] = SOAPClient._node2object(node.childNodes[i], wsdlTypes);
+		return l;
+	}
+	return null;
+}
+SOAPClient._extractValue = function(node, wsdlTypes)
+{
+	var value = node.nodeValue;
+	switch(SOAPClient._getTypeFromWsdl(node.parentNode.nodeName, wsdlTypes).toLowerCase())
+	{
+		default:
+		case "s:string":			
+			return (value != null) ? value + "" : "";
+		case "s:boolean":
+			return value + "" == "true";
+		case "s:int":
+		case "s:long":
+			return (value != null) ? parseInt(value + "", 10) : 0;
+		case "s:double":
+			return (value != null) ? parseFloat(value + "") : 0;
+		case "s:datetime":
+			if(value == null)
+				return null;
+			else
+			{
+				value = value + "";
+				value = value.substring(0, (value.lastIndexOf(".") == -1 ? value.length : value.lastIndexOf(".")));
+				value = value.replace(/T/gi," ");
+				value = value.replace(/-/gi,"/");
+				var d = new Date();
+				d.setTime(Date.parse(value));										
+				return d;				
+			}
+	}
+}
+SOAPClient._getTypesFromWsdl = function(wsdl)
+{
+	var wsdlTypes = new Array();
+	// IE
+	var ell = wsdl.getElementsByTagName("s:element");	
+	var useNamedItem = true;
+	// MOZ
+	if(ell.length == 0)
+	{
+		ell = wsdl.getElementsByTagName("element");	     
+		useNamedItem = false;
+	}
+	for(var i = 0; i < ell.length; i++)
+	{
+		if(useNamedItem)
+		{
+			if(ell[i].attributes.getNamedItem("name") != null && ell[i].attributes.getNamedItem("type") != null) 
+				wsdlTypes[ell[i].attributes.getNamedItem("name").nodeValue] = ell[i].attributes.getNamedItem("type").nodeValue;
+		}	
+		else
+		{
+			if(ell[i].attributes["name"] != null && ell[i].attributes["type"] != null)
+				wsdlTypes[ell[i].attributes["name"].value] = ell[i].attributes["type"].value;
+		}
+	}
+	return wsdlTypes;
+}
+SOAPClient._getTypeFromWsdl = function(elementname, wsdlTypes)
+{
+    var type = wsdlTypes[elementname] + "";
+    return (type == "undefined") ? "" : type;
+}
+// private: utils
+SOAPClient._getElementsByTagName = function(document, tagName)
+{
+	try
+	{
+		// trying to get node omitting any namespaces (latest versions of MSXML.XMLDocument)
+		return document.selectNodes(".//*[local-name()=\""+ tagName +"\"]");
+	}
+	catch (ex) {}
+	// old XML parser support
+	return document.getElementsByTagName(tagName);
+}
+// private: xmlhttp factory
+SOAPClient._getXmlHttp = function() 
+{
+	try
+	{
+		if(window.XMLHttpRequest) 
+		{
+			var req = new XMLHttpRequest();
+			// some versions of Moz do not support the readyState property and the onreadystate event so we patch it!
+			if(req.readyState == null) 
+			{
+				req.readyState = 1;
+				req.addEventListener("load", 
+									function() 
+									{
+										req.readyState = 4;
+										if(typeof req.onreadystatechange == "function")
+											req.onreadystatechange();
+									},
+									false);
+			}
+			return req;
+		}
+		if(window.ActiveXObject) 
+			return new ActiveXObject(SOAPClient._getXmlHttpProgID());
+	}
+	catch (ex) {}
+	throw new Error("Your browser does not support XmlHttp objects");
+}
+SOAPClient._getXmlHttpProgID = function()
+{
+	if(SOAPClient._getXmlHttpProgID.progid)
+		return SOAPClient._getXmlHttpProgID.progid;
+	var progids = ["Msxml2.XMLHTTP.5.0", "Msxml2.XMLHTTP.4.0", "MSXML2.XMLHTTP.3.0", "MSXML2.XMLHTTP", "Microsoft.XMLHTTP"];
+	var o;
+	for(var i = 0; i < progids.length; i++)
+	{
+		try
+		{
+			o = new ActiveXObject(progids[i]);
+			return SOAPClient._getXmlHttpProgID.progid = progids[i];
+		}
+		catch (ex) {};
+	}
+	throw new Error("Could not find an installed XML parser");
+}
+
+SOAPClient._toBase64 = function(input)
+{
+	var keyStr = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=";
+	var output = "";
+	var chr1, chr2, chr3;
+	var enc1, enc2, enc3, enc4;
+	var i = 0;
+
+	do {
+		chr1 = input.charCodeAt(i++);
+		chr2 = input.charCodeAt(i++);
+		chr3 = input.charCodeAt(i++);
+
+		enc1 = chr1 >> 2;
+		enc2 = ((chr1 & 3) << 4) | (chr2 >> 4);
+		enc3 = ((chr2 & 15) << 2) | (chr3 >> 6);
+		enc4 = chr3 & 63;
+
+		if (isNaN(chr2)) {
+			enc3 = enc4 = 64;
+		} else if (isNaN(chr3)) {
+			enc4 = 64;
+		}
+
+		output = output + keyStr.charAt(enc1) + keyStr.charAt(enc2) +
+		keyStr.charAt(enc3) + keyStr.charAt(enc4);
+	} while (i < input.length);
+
+	return output;
+}
+
+module.exports = {
+	SOAPClientParameters:SOAPClientParameters,
+	SOAPClient:SOAPClient
+};
+
 
 /***/ }),
 
-/***/ 414:
+/***/ 395:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return IpcContactQuestionListPage; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return UpdateUserdataPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(50);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__soap_service__ = __webpack_require__(200);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_storage__ = __webpack_require__(51);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__config__ = __webpack_require__(103);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(100);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_forms__ = __webpack_require__(16);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__soap_service__ = __webpack_require__(341);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__config__ = __webpack_require__(199);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ionic_storage__ = __webpack_require__(101);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ionic_native_file_transfer__ = __webpack_require__(204);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__ionic_native_camera__ = __webpack_require__(205);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__ionic_native_file_path__ = __webpack_require__(202);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__ionic_native_file__ = __webpack_require__(203);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__angular_common_http__ = __webpack_require__(200);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -304,191 +581,388 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
+
+
+
+
+
 /**
- * Generated class for the IpcContactQuestionListPage page.
+ * Generated class for the UpdateUserdataPage page.
  *
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
  */
-var IpcContactQuestionListPage = /** @class */ (function () {
-    function IpcContactQuestionListPage(navCtrl, navParams, popoverCtrl, viewCtrl, soapService, loadingCtrl, storage, alertCtrl, modalCtrl, toastCtrl) {
+var UpdateUserdataPage = /** @class */ (function () {
+    function UpdateUserdataPage(navCtrl, navParams, formBuilder, toastCtrl, loadingCtrl, soapService, storage, transfer, camera, filepath, file, http, alertCtrl, platform) {
         this.navCtrl = navCtrl;
         this.navParams = navParams;
-        this.popoverCtrl = popoverCtrl;
-        this.viewCtrl = viewCtrl;
-        this.soapService = soapService;
-        this.loadingCtrl = loadingCtrl;
-        this.storage = storage;
-        this.alertCtrl = alertCtrl;
-        this.modalCtrl = modalCtrl;
+        this.formBuilder = formBuilder;
         this.toastCtrl = toastCtrl;
-        this.ipcContactQuestionList = [];
-        this.batasAtas = 1;
-        this.batasBawah = 20;
+        this.loadingCtrl = loadingCtrl;
+        this.soapService = soapService;
+        this.storage = storage;
+        this.transfer = transfer;
+        this.camera = camera;
+        this.filepath = filepath;
+        this.file = file;
+        this.http = http;
+        this.alertCtrl = alertCtrl;
+        this.platform = platform;
+        this.imageURI = "assets/imgs/logo/rotate.png";
+        this.updateType = "";
+        this.email = "";
+        this.hp = "";
+        this.passBaru = "";
+        this.passLama = "";
+        this.confPass = "";
         this.isLoading = true;
-    }
-    // ionViewWillEnter() {
-    //   this.storage.get('userdata').then((val) => {
-    //     this.userdata = val;
-    //     this.loadingPresent();      
-    //     this.getDataQuestionIpcc('first','');
-    //   });    
-    // }
-    IpcContactQuestionListPage.prototype.ionViewWillEnter = function () {
-        var _this = this;
-        this.ipcContactQuestionList = [];
-        this.storage.get('userdataTPK').then(function (val) {
-            _this.userdataTPK = val;
-        });
-        this.storage.get('userdataIPCContact').then(function (val) {
-            _this.userdataIPCContact = val;
-            // console.log(this.userdataIPCContact);
-            // this.loadingPresent();
-            _this.getDataQuestionIpcc('first', '');
-        });
-    };
-    IpcContactQuestionListPage.prototype.getDataQuestionIpcc = function (type, functionName) {
-        var _this = this;
-        if (type == 'first' && functionName == '') {
-            this.isLoading = true;
+        this.userdataTPK = navParams.get('userdataTPK');
+        this.updateType = navParams.get('updateType');
+        console.log(this.userdataTPK);
+        console.log(this.updateType);
+        if (this.updateType == "email") {
+            this.email = this.userdataTPK['data']['EMAIL'];
         }
-        this.soapService
-            .post(__WEBPACK_IMPORTED_MODULE_4__config__["a" /* api_base_url */], 'eoffice_masalah_list', { fStream: JSON.stringify(
-            //.post(api_base_url,'eoffice_data_masalahdir_ipcc',{fStream:JSON.stringify( 
-            {
-                usernameEDI: __WEBPACK_IMPORTED_MODULE_4__config__["e" /* api_user */],
-                passwordEDI: __WEBPACK_IMPORTED_MODULE_4__config__["c" /* api_pass */],
-                nipp: this.userdataTPK['data']['NIPP'],
-                atas: this.batasAtas,
-                bawah: this.batasBawah
-                //nipp: this.userdata['data']['NIPP']
-                //id_dir: this.userdataIPCContact['ID_DIR']
-            }) }).then(function (result) {
-            result = String(result).replace(/\n/g, " ");
-            var responData = JSON.parse(String(result));
-            // console.log(responData);
-            if (responData['rcmsg'] == "SUCCESS") {
-                if (type == 'refresh' && functionName != '') {
-                    _this.ipcContactQuestionList = [];
-                }
-                if (responData['data'].length > 0) {
-                    for (var i = 0; i < responData['data'].length; i++) {
-                        _this.ipcContactQuestionList.push(responData['data'][i]);
+        if (this.updateType == 'hp') {
+            this.hp = this.userdataTPK['data']['HP'];
+        }
+        // this.formInput = formBuilder.group({
+        //   email: [this.userdataTPK['data']['EMAIL'], Validators.required],
+        //   phone: [this.userdataTPK['data']['HP'], Validators.required],
+        //   passLama: ["", Validators.required],
+        //   passBaru: ["", Validators.required],
+        //   confPass: ["", Validators.required]      
+        // });
+    }
+    UpdateUserdataPage.prototype.ionViewDidLoad = function () {
+        console.log('ionViewDidLoad UpdateUserdataPage');
+    };
+    UpdateUserdataPage.prototype.doUpdate = function () {
+        var _this = this;
+        if (this.updateType == 'ttd') {
+            this.upload();
+        }
+        else if (this.updateType == 'foto') {
+            this.uploadFoto();
+        }
+        else {
+            console.log(this.hp);
+            var loading_1 = this.loadingCtrl.create({
+                spinner: 'dots',
+                content: "Mengubah Data...",
+                cssClass: 'transparent',
+                dismissOnPageChange: true
+            });
+            loading_1.present();
+            this.soapService
+                .post(__WEBPACK_IMPORTED_MODULE_4__config__["a" /* api_base_url */], 'eoffice_update_user', {
+                fStream: JSON.stringify({
+                    usernameEDI: __WEBPACK_IMPORTED_MODULE_4__config__["d" /* api_user */],
+                    passwordEDI: __WEBPACK_IMPORTED_MODULE_4__config__["b" /* api_pass */],
+                    id_user: this.userdataTPK['data']['IDUSER'],
+                    password_lama: this.passLama,
+                    password: this.passBaru,
+                    conf_password: this.confPass,
+                    email: this.email,
+                    no_hp: this.hp
+                })
+            })
+                .then(function (result) {
+                var responData = JSON.parse(String(result));
+                console.log(responData);
+                if (responData['rcmsg'] == "SUCCESS") {
+                    if (_this.updateType == 'pass') {
+                        _this.storage.set('correctPass', _this.passBaru);
                     }
+                    _this.newSession(loading_1);
                 }
-                // console.log(this.ipcContactQuestionList);        
-            }
-            else {
+                else {
+                    var toast = _this.toastCtrl.create({
+                        message: responData['rcmsg'],
+                        duration: 3000,
+                        position: 'bottom'
+                    });
+                    toast.present();
+                    loading_1.dismiss();
+                }
+            })
+                .catch(function (error) {
                 var toast = _this.toastCtrl.create({
-                    message: 'Mohon Maaf Sedang Terjadi Kesalahan, Coba Beberapa Saat Lagi.',
+                    message: 'Input gagal, silahkan periksa koneksi internet anda.',
                     duration: 3000,
                     position: 'bottom'
                 });
                 toast.present();
+                loading_1.dismiss();
+            });
+        }
+    };
+    UpdateUserdataPage.prototype.back = function () {
+        this.navCtrl.pop();
+    };
+    UpdateUserdataPage.prototype.newSession = function (loading) {
+        var _this = this;
+        this.soapService
+            .post(__WEBPACK_IMPORTED_MODULE_4__config__["a" /* api_base_url */], 'eoffice_get_user_data', {
+            fStream: JSON.stringify({
+                usernameEDI: __WEBPACK_IMPORTED_MODULE_4__config__["d" /* api_user */],
+                passwordEDI: __WEBPACK_IMPORTED_MODULE_4__config__["b" /* api_pass */],
+                username: this.userdataTPK['data']['NIPP'],
+            })
+        }).then(function (result) {
+            var responData = JSON.parse(String(result));
+            console.log(responData);
+            if (responData['rcmsg'] == "SUCCESS") {
+                if (responData['data']['login_status'] == '404 Not Found') {
+                    console.log(responData['data']['login_status']);
+                }
+                else if (responData['data'] == undefined) {
+                    console.log(responData['data']);
+                }
+                else if (responData['data']['login_status'] == 'AP NOT ALLOWED') {
+                    console.log(responData['data']['login_status']);
+                }
+                else {
+                    _this.userdataTPK = responData;
+                    _this.storage.set('userdata', responData).then(function () {
+                    });
+                }
             }
-            if (type == 'first' && functionName == '') {
-                // this.loadingDismiss();
+            else {
+                console.log("error here");
             }
-            else if (type == 'infinite' && functionName != '') {
-                functionName.complete();
-            }
-            else if (type == 'refresh' && functionName != '') {
-                functionName.complete();
-            }
-            _this.isLoading = false;
-        })
-            .catch(function (error) {
-            // console.log(error);
             var toast = _this.toastCtrl.create({
-                message: 'Terjadi Masalah Koneksi, Silahkan Coba Kembali.',
+                message: 'Berhasil Mengubah Data.',
                 duration: 3000,
                 position: 'bottom'
             });
-            _this.isLoading = false;
-            if (type == 'first' && functionName == '') {
-                // this.loadingDismiss();
+            toast.present();
+            loading.dismiss();
+            _this.navCtrl.pop();
+        })
+            .catch(function (error) {
+            console.log(error);
+            var toast = _this.toastCtrl.create({
+                message: 'Gagal memperbarui session, silahkan login ulang.',
+                duration: 3000,
+                position: 'bottom'
+            });
+            toast.present();
+            loading.dismiss();
+            _this.navCtrl.pop();
+        });
+    };
+    UpdateUserdataPage.prototype.getImage = function () {
+        var _this = this;
+        var alert = this.alertCtrl.create({
+            title: '',
+            subTitle: 'Pilih gambar dari ?',
+            cssClass: "my-alert",
+            buttons: [
+                {
+                    text: 'Galeri',
+                    handler: function () {
+                        console.log('galeri clicked');
+                        _this.takeImage(0);
+                    }
+                },
+                {
+                    text: 'Kamera',
+                    handler: function () {
+                        console.log('kamera clicked');
+                        _this.takeImage(1);
+                    }
+                }
+            ]
+        });
+        alert.present();
+    };
+    UpdateUserdataPage.prototype.takeImage = function (sourceType) {
+        var _this = this;
+        var options = {
+            quality: 100,
+            sourceType: sourceType,
+            saveToPhotoAlbum: false,
+            correctOrientation: true
+        };
+        this.camera.getPicture(options).then(function (imageData) {
+            _this.imageURI = imageData;
+            if (_this.platform.is('android') && sourceType === _this.camera.PictureSourceType.PHOTOLIBRARY) {
+                _this.filepath.resolveNativePath(_this.imageURI)
+                    .then(function (filePath) {
+                    var correctPath = filePath.substr(0, filePath.lastIndexOf('/') + 1);
+                    var currentName = imageData.substring(imageData.lastIndexOf('/') + 1, imageData.lastIndexOf('?'));
+                    _this.copyFileToLocalDir(correctPath, currentName, _this.createFileName());
+                });
+            }
+            else {
+                var currentName = imageData.substr(imageData.lastIndexOf('/') + 1);
+                var correctPath = imageData.substr(0, imageData.lastIndexOf('/') + 1);
+                _this.copyFileToLocalDir(correctPath, currentName, _this.createFileName());
+            }
+        }, function (err) {
+            console.log(err);
+        });
+    };
+    UpdateUserdataPage.prototype.copyFileToLocalDir = function (namePath, currentName, filename) {
+        var _this = this;
+        this.file.copyFile(namePath, currentName, this.file.dataDirectory, filename).then(function (success) {
+            _this.imageFileName = filename;
+            console.log('filename : ' + _this.imageFileName);
+        }, function (error) {
+            console.log('Error while storing file.');
+        });
+    };
+    UpdateUserdataPage.prototype.createFileName = function () {
+        var d = new Date(), n = d.getTime(), newFileName = n + ".jpg";
+        return newFileName;
+    };
+    UpdateUserdataPage.prototype.upload = function () {
+        var _this = this;
+        console.log(this.imageFileName);
+        var fileTransfer = this.transfer.create();
+        var loader = this.loadingCtrl.create({
+            content: "Uploading image...",
+            dismissOnPageChange: true
+        });
+        loader.present();
+        var options = {
+            fileKey: "ttd",
+            fileName: this.imageFileName,
+            chunkedMode: false,
+            // mimeType: "multipart/form-data",
+            params: { 'id_user': this.userdataTPK['data']['IDUSER'], 'nipp': this.userdataTPK['data']['NIPP'] }
+        };
+        var filePath = 'http://103.19.80.243/cfs_dev/apiptpdev/f55_eoffice_upload_ttd.php';
+        fileTransfer.upload(this.pathForImage(this.imageFileName), filePath, options)
+            .then(function (data) {
+            console.log(data);
+            var responData = JSON.parse(String(data['response']));
+            console.log(responData);
+            // this.imageFileName = "http://192.168.0.7:8080/static/images/ionicfile.jpg"       
+            // this.presentToast("Image uploaded successfully");
+            // loader.dismiss();
+            // let toast = this.toastCtrl.create({
+            //   message: 'Upload Tanda Tangan berhasil',
+            //   duration: 3000,
+            //   position: 'bottom'
+            // });
+            // toast.present();
+            if (responData['rcmsg'] == "SUCCESS") {
+                _this.newSession(loader);
+            }
+            else {
+                var toast = _this.toastCtrl.create({
+                    message: responData['rcmsg'],
+                    duration: 3000,
+                    position: 'bottom'
+                });
                 toast.present();
+                loader.dismiss();
             }
-            else if (type == 'infinite' && functionName != '') {
-                functionName.complete();
+        }, function (err) {
+            console.log("masuk sini");
+            console.log(err);
+            loader.dismiss();
+            var toast = _this.toastCtrl.create({
+                message: 'Upload Tanda Tangan gagal, silahkan coba kembali',
+                duration: 3000,
+                position: 'bottom'
+            });
+            toast.present();
+            // this.presentToast(err);
+        });
+    };
+    UpdateUserdataPage.prototype.uploadFoto = function () {
+        var _this = this;
+        console.log(this.imageFileName);
+        var fileTransfer = this.transfer.create();
+        var loader = this.loadingCtrl.create({
+            content: "Uploading image...",
+            dismissOnPageChange: true
+        });
+        loader.present();
+        var options = {
+            fileKey: "IMG",
+            fileName: this.imageFileName,
+            chunkedMode: false,
+            // mimeType: "multipart/form-data",
+            params: { 'id_user': this.userdataTPK['data']['IDUSER'], 'nipp': this.userdataTPK['data']['NIPP'] }
+        };
+        var filePath = 'http://103.19.80.243/cfs_dev/apiptpdev/f64_eoffice_upload_foto_cv.php';
+        fileTransfer.upload(this.pathForImage(this.imageFileName), filePath, options)
+            .then(function (data) {
+            console.log(data);
+            var responData = JSON.parse(String(data['response']));
+            console.log(responData);
+            // this.imageFileName = "http://192.168.0.7:8080/static/images/ionicfile.jpg"       
+            // this.presentToast("Image uploaded successfully");
+            // loader.dismiss();
+            // let toast = this.toastCtrl.create({
+            //   message: 'Upload Tanda Tangan berhasil',
+            //   duration: 3000,
+            //   position: 'bottom'
+            // });
+            // toast.present();
+            if (responData['rcmsg'] == "SUCCESS") {
+                _this.newSession(loader);
             }
-            else if (type == 'refresh' && functionName != '') {
-                functionName.complete();
+            else {
+                var toast = _this.toastCtrl.create({
+                    message: responData['rcmsg'],
+                    duration: 3000,
+                    position: 'bottom'
+                });
                 toast.present();
+                loader.dismiss();
             }
+        }, function (err) {
+            console.log("masuk sini");
+            console.log(err);
+            loader.dismiss();
+            var toast = _this.toastCtrl.create({
+                message: 'Upload foto CV gagal, silahkan coba kembali',
+                duration: 3000,
+                position: 'bottom'
+            });
+            toast.present();
+            // this.presentToast(err);
         });
     };
-    IpcContactQuestionListPage.prototype.goToDetail = function (data) {
-        this.navCtrl.push('IpcContactDetailPage', {
-            data: data
-        });
-    };
-    IpcContactQuestionListPage.prototype.loadingPresent = function () {
-        this.loading = this.loadingCtrl.create({
-            spinner: 'dots',
-            content: "Mohon Tunggu...",
-            cssClass: 'transparent',
-        });
-        this.loading.present();
-    };
-    IpcContactQuestionListPage.prototype.loadingDismiss = function () {
-        if (this.loading.present()) {
-            this.loading.dismiss();
-        }
-    };
-    IpcContactQuestionListPage.prototype.ionViewDidLoad = function () {
-        console.log('ionViewDidLoad IpcContactQuestionListPage');
-    };
-    IpcContactQuestionListPage.prototype.doInfinite = function (infiniteScroll) {
-        if (this.ipcContactQuestionList.length >= 10) {
-            this.batasAtas = this.batasBawah + 1;
-            this.batasBawah = this.batasBawah + 20;
-            this.getDataQuestionIpcc('infinite', infiniteScroll);
+    UpdateUserdataPage.prototype.pathForImage = function (img) {
+        if (img === null) {
+            return '';
         }
         else {
-            infiniteScroll.complete();
+            console.log("image + path : " + this.file.dataDirectory + img);
+            return this.file.dataDirectory + img;
         }
     };
-    IpcContactQuestionListPage.prototype.openModal = function (page) {
-        var modal = this.modalCtrl.create(page, {}, {
-            enableBackdropDismiss: true,
-            showBackdrop: true,
-        });
-        modal.present();
-    };
-    IpcContactQuestionListPage.prototype.doRefresh = function (refresher) {
-        this.batasAtas = 1;
-        this.batasBawah = 20;
-        this.getDataQuestionIpcc('refresh', refresher);
-    };
-    IpcContactQuestionListPage.prototype.isEmptyObject = function (obj) {
-        for (var prop in obj) {
-            if (obj.hasOwnProperty(prop)) {
-                return false;
-            }
-        }
-        return true;
-    };
-    IpcContactQuestionListPage = __decorate([
+    UpdateUserdataPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
-            selector: 'page-ipc-contact-question-list',
-            providers: [__WEBPACK_IMPORTED_MODULE_2__soap_service__["a" /* SoapService */]],template:/*ion-inline-start:"/Users/itadmin/Downloads/ERDA/POS_PPI/src/pages/ipc-contact-question-list/ipc-contact-question-list.html"*/'<!--\n  Generated template for the EvalBawahanListPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n\n  <ion-navbar>\n    <ion-title *ngIf="!isSearch">\n      <span ion-text color="light" class="fw500">Pertanyaan / Permasalahan</span>\n    </ion-title>\n\n    <ion-buttons end>\n      <button ion-button (click)="openModal(\'SearchPermasalahanPage\')">\n        <ion-icon style="font-size:2.4rem;" name="md-search" color="danger"></ion-icon>\n      </button>\n    </ion-buttons>\n\n  </ion-navbar>\n\n</ion-header>\n\n<ion-content>\n\n  <ion-list class="dining_List" *ngIf="ipcContactQuestionList.length == 0  && isLoading == false">\n    <ion-card class="primary-bg">\n      <ion-card-content>\n        <span style="font-size:1.3rem">Tidak ada data pertanyaan.</span>\n      </ion-card-content>\n    </ion-card>\n  </ion-list>\n\n  <ion-list class="dining_List" *ngIf="ipcContactQuestionList.length != 0 && isLoading == false">\n    <ion-card *ngFor="let question of ipcContactQuestionList;let i = index" class="my-card" (click)="goToDetail(question)">\n      <ion-item>\n        <span item-start>\n          <img src="assets/imgs/menu-icon/hrcontact.png" class="icons">\n        </span>\n        <span ion-text text-wrap class="font" color="danger"><b>{{ question[\'NO_TIKET\'] }}</b></span><br />\n        <span ion-text text-wrap class="font2">{{ question[\'JUDUL\'] }}</span><br />\n        <span ion-text text-wrap class="font">Kategori : <span class="font"\n            style="color:#093">{{ question[\'KATEGORI_PENGAJUAN\'] }}</span></span> <br>\n        <div *ngIf="question[\'RATE\'] != \'0\'">\n          <rating [(ngModel)]="question[\'RATE\']" readOnly="true" max="5" emptyStarIconName="star-outline"\n            halfStarIconName="star-half" starIconName="star" nullable="true" (ngModelChange)="onModelChange()">\n          </rating>\n        </div>\n        <div item-end style="height: 100%;">\n          <ion-badge color="secondary">{{ question[\'STATUS\'] }}</ion-badge>\n        </div>\n\n      </ion-item>\n    </ion-card>\n  </ion-list>\n\n  <ion-list *ngIf=\'ipcContactQuestionList.length == 0 && isLoading == true\'>\n    <ion-card *ngFor=\'let fake of fakeUsers\'>\n      <ion-item>\n        <div class="animate-skeleton-background load-2"></div>\n        <div class="animate-skeleton-background load-3"></div>\n        <div class="animate-skeleton-background load-1"> </div>\n      </ion-item>\n    </ion-card>\n  </ion-list>\n\n\n\n  <ion-infinite-scroll (ionInfinite)="doInfinite($event)">\n    <ion-infinite-scroll-content></ion-infinite-scroll-content>\n  </ion-infinite-scroll>\n\n  <ion-refresher (ionRefresh)="doRefresh($event)">\n    <ion-refresher-content pullingIcon="arrow-dropdown" pullingText="Pull to refresh" refreshingSpinner="crescent">\n    </ion-refresher-content>\n  </ion-refresher>\n\n</ion-content>'/*ion-inline-end:"/Users/itadmin/Downloads/ERDA/POS_PPI/src/pages/ipc-contact-question-list/ipc-contact-question-list.html"*/,
+            selector: 'page-update-userdata',
+            providers: [__WEBPACK_IMPORTED_MODULE_3__soap_service__["a" /* SoapService */]],template:/*ion-inline-start:"/Users/itadmin/Downloads/ERDA/POS_PPI/src/pages/update-userdata/update-userdata.html"*/'<!--\n  Generated template for the UpdateUserdataPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n  <ion-navbar>\n    <ion-title>\n      <span ion-text color="light">Ubah Data Diri</span>\n    </ion-title>\n  </ion-navbar>\n</ion-header>\n\n<ion-content padding>\n  <ion-item *ngIf="updateType == \'email\'">\n    <span item-left>\n      <img src="assets/imgs/setting-icon/email.png" class="icons">\n    </span>\n    <ion-label stacked>Email</ion-label>\n    <ion-input type="text" [(ngModel)]="email"></ion-input>\n  </ion-item>\n\n  <ion-item *ngIf="updateType == \'hp\'">\n    <span item-left>\n      <img src="assets/imgs/setting-icon/phone.png" class="icons">\n    </span>\n    <ion-label stacked>No. Telpon</ion-label>\n    <ion-input type="number" [(ngModel)]="hp"></ion-input>\n  </ion-item>\n\n  <div *ngIf="updateType == \'pass\'">\n    <ion-item>\n      <span item-left>\n        <img src="assets/imgs/setting-icon/pass3.png" class="icons">\n      </span>\n      <ion-label stacked>Password Lama (harus diisi)</ion-label>\n      <ion-input type="password" [(ngModel)]="passLama"></ion-input>\n    </ion-item>\n\n    <ion-item>\n      <span item-left>\n        <img src="assets/imgs/setting-icon/pass1.png" class="icons">\n      </span>\n      <ion-label stacked>Password Baru</ion-label>\n      <ion-input type="password" [(ngModel)]="passBaru"></ion-input>\n    </ion-item>\n\n    <ion-item>\n      <span item-left>\n        <img src="assets/imgs/setting-icon/pass2.png" class="icons">\n      </span>\n      <ion-label stacked>Confirm Password</ion-label>\n      <ion-input type="password" [(ngModel)]="confPass"></ion-input>\n    </ion-item>\n  </div>\n\n  <div *ngIf="updateType == \'ttd\' || updateType == \'foto\' ">\n    <ion-card class="my-card" (click)="getImage()">\n      <ion-item>\n        <img  class="photo" src="{{ imageURI }}" />\n        <div style="text-align: -webkit-center;">\n            <span ion-text text-wrap style="text-align:center;color:gray;" *ngIf="updateType == \'ttd\'" >Upload Tanda Tangan</span>\n            <span ion-text text-wrap style="text-align:center;color:gray;" *ngIf="updateType == \'foto\'">Upload Foto CV (akan ditampilkan di E-CV)</span>\n        </div>\n        \n      </ion-item>\n    </ion-card>\n  </div>\n\n  <br>\n  <div class="row">\n    <div class="col">\n      <button ion-button full icon-start color="danger" style="border-radius: 5px;" (click)="back()">\n        <ion-icon name="close"></ion-icon>\n        Batal\n      </button>\n    </div>\n    <div class="col">\n      <button ion-button full icon-end style="border-radius: 5px;" (click)="doUpdate()">\n        Ubah\n        <ion-icon name="arrow-forward"></ion-icon>\n      </button>\n    </div>\n  </div>\n</ion-content>'/*ion-inline-end:"/Users/itadmin/Downloads/ERDA/POS_PPI/src/pages/update-userdata/update-userdata.html"*/,
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavController */],
             __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* NavParams */],
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["o" /* PopoverController */],
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["q" /* ViewController */],
-            __WEBPACK_IMPORTED_MODULE_2__soap_service__["a" /* SoapService */],
+            __WEBPACK_IMPORTED_MODULE_2__angular_forms__["a" /* FormBuilder */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["p" /* ToastController */],
             __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* LoadingController */],
-            __WEBPACK_IMPORTED_MODULE_3__ionic_storage__["b" /* Storage */],
+            __WEBPACK_IMPORTED_MODULE_3__soap_service__["a" /* SoapService */],
+            __WEBPACK_IMPORTED_MODULE_5__ionic_storage__["b" /* Storage */],
+            __WEBPACK_IMPORTED_MODULE_6__ionic_native_file_transfer__["a" /* FileTransfer */],
+            __WEBPACK_IMPORTED_MODULE_7__ionic_native_camera__["a" /* Camera */],
+            __WEBPACK_IMPORTED_MODULE_8__ionic_native_file_path__["a" /* FilePath */],
+            __WEBPACK_IMPORTED_MODULE_9__ionic_native_file__["a" /* File */],
+            __WEBPACK_IMPORTED_MODULE_10__angular_common_http__["a" /* HttpClient */],
             __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["b" /* AlertController */],
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* ModalController */],
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["p" /* ToastController */]])
-    ], IpcContactQuestionListPage);
-    return IpcContactQuestionListPage;
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["n" /* Platform */]])
+    ], UpdateUserdataPage);
+    return UpdateUserdataPage;
 }());
 
-//# sourceMappingURL=ipc-contact-question-list.js.map
+//# sourceMappingURL=update-userdata.js.map
 
 /***/ })
 

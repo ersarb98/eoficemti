@@ -1,14 +1,14 @@
 webpackJsonp([25],{
 
-/***/ 308:
+/***/ 303:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "EvalBawahanListPageModule", function() { return EvalBawahanListPageModule; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CutiDetailPageModule", function() { return CutiDetailPageModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(100);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__eval_bawahan_list__ = __webpack_require__(365);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__cuti_detail__ = __webpack_require__(358);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -18,33 +18,33 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 
-var EvalBawahanListPageModule = /** @class */ (function () {
-    function EvalBawahanListPageModule() {
+var CutiDetailPageModule = /** @class */ (function () {
+    function CutiDetailPageModule() {
     }
-    EvalBawahanListPageModule = __decorate([
+    CutiDetailPageModule = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["J" /* NgModule */])({
             declarations: [
-                __WEBPACK_IMPORTED_MODULE_2__eval_bawahan_list__["a" /* EvalBawahanListPage */],
+                __WEBPACK_IMPORTED_MODULE_2__cuti_detail__["a" /* CutiDetailPage */],
             ],
             imports: [
-                __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__eval_bawahan_list__["a" /* EvalBawahanListPage */]),
+                __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__cuti_detail__["a" /* CutiDetailPage */]),
             ],
         })
-    ], EvalBawahanListPageModule);
-    return EvalBawahanListPageModule;
+    ], CutiDetailPageModule);
+    return CutiDetailPageModule;
 }());
 
-//# sourceMappingURL=eval-bawahan-list.module.js.map
+//# sourceMappingURL=cuti-detail.module.js.map
 
 /***/ }),
 
-/***/ 343:
+/***/ 341:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return SoapService; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__soapclient_js__ = __webpack_require__(344);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__soapclient_js__ = __webpack_require__(342);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__soapclient_js___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__soapclient_js__);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -96,7 +96,7 @@ var SoapService = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 344:
+/***/ 342:
 /***/ (function(module, exports) {
 
 /*****************************************************************************\
@@ -551,18 +551,17 @@ module.exports = {
 
 /***/ }),
 
-/***/ 365:
+/***/ 358:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return EvalBawahanListPage; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CutiDetailPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(100);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__soap_service__ = __webpack_require__(343);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__soap_service__ = __webpack_require__(341);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_storage__ = __webpack_require__(101);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__config__ = __webpack_require__(199);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__angular_common__ = __webpack_require__(26);
-throw new Error("Cannot find module \"../p2b-detail/p2b-detail\"");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ionic_native_in_app_browser__ = __webpack_require__(206);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -578,61 +577,50 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-
 /**
- * Generated class for the EvalBawahanListPage page.
+ * Generated class for the CutiDetailPage page.
  *
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
  */
-var EvalBawahanListPage = /** @class */ (function () {
-    function EvalBawahanListPage(navCtrl, navParams, soapService, loadingCtrl, storage, alertCtrl, datepipe, platform, toastCtrl) {
+var CutiDetailPage = /** @class */ (function () {
+    function CutiDetailPage(navCtrl, navParams, soapService, loadingCtrl, storage, alertCtrl, modalCtrl, toastCtrl, inAppBrowser) {
         this.navCtrl = navCtrl;
         this.navParams = navParams;
         this.soapService = soapService;
         this.loadingCtrl = loadingCtrl;
         this.storage = storage;
         this.alertCtrl = alertCtrl;
-        this.datepipe = datepipe;
-        this.platform = platform;
+        this.modalCtrl = modalCtrl;
         this.toastCtrl = toastCtrl;
-        this.evalBawahanList = [];
-        this.fakeUsers = new Array(5);
+        this.inAppBrowser = inAppBrowser;
         this.isLoading = true;
-        this.platform.registerBackButtonAction(function () {
-            // console.log('click');
-            navCtrl.pop();
-        });
-        this.p2buser = navParams.get('p2buser');
     }
-    EvalBawahanListPage.prototype.ionViewWillEnter = function () {
-        var _this = this;
-        this.year = this.datepipe.transform(new Date(), 'yyyy');
-        this.storage.get('userdataTPK').then(function (val) {
-            _this.userdataTPK = val;
-            _this.getList();
-        });
+    CutiDetailPage.prototype.ionViewWillLoad = function () {
+        this.messageData = this.navParams.get('data');
+        this.nipp = this.navParams.get('nipp');
+        this.getDetail();
     };
-    EvalBawahanListPage.prototype.getList = function () {
+    CutiDetailPage.prototype.ionViewDidLoad = function () {
+        console.log('ionViewDidLoad CutiDetailPage');
+    };
+    CutiDetailPage.prototype.getDetail = function () {
         var _this = this;
         this.isLoading = true;
         this.soapService
-            .post(__WEBPACK_IMPORTED_MODULE_4__config__["b" /* api_p2b_url */], 'eoffice_p2b_list_eval_bawah', { fStream: JSON.stringify({
-                usernameEDI: __WEBPACK_IMPORTED_MODULE_4__config__["e" /* api_user */],
-                passwordEDI: __WEBPACK_IMPORTED_MODULE_4__config__["c" /* api_pass */],
-                id_jab: this.p2buser['P2B_ID_JAB_USER'],
-                year: this.year
-            }) }).then(function (result) {
+            .post(__WEBPACK_IMPORTED_MODULE_4__config__["a" /* api_base_url */], 'eoffice_viewmail', {
+            fStream: JSON.stringify({
+                usernameEDI: __WEBPACK_IMPORTED_MODULE_4__config__["d" /* api_user */],
+                passwordEDI: __WEBPACK_IMPORTED_MODULE_4__config__["b" /* api_pass */],
+                nipp: this.nipp,
+                linkSurat: this.messageData['Location'],
+                from_modul: 'cuti'
+            })
+        }).then(function (result) {
             var responData = JSON.parse(String(result));
             if (responData['rcmsg'] == "SUCCESS") {
-                // console.log(responData);
-                _this.evalBawahanList = [];
-                if (responData['data'].length > 0) {
-                    for (var i = 0; i < responData['data'].length; i++) {
-                        _this.evalBawahanList.push(responData['data'][i]);
-                    }
-                }
-                // console.log(this.evalBawahanList);
+                _this.messageDetail = responData['data'];
+                _this.linkSurat = _this.messageDetail['Link Surat Asli'];
             }
             else {
                 var toast = _this.toastCtrl.create({
@@ -642,66 +630,82 @@ var EvalBawahanListPage = /** @class */ (function () {
                 });
                 toast.present();
             }
+            // loading.dismiss();
             _this.isLoading = false;
         })
             .catch(function (error) {
-            // console.log(error);
             var toast = _this.toastCtrl.create({
                 message: 'Terjadi Masalah Koneksi, Silahkan Coba Kembali.',
                 duration: 3000,
                 position: 'bottom'
             });
             toast.present();
+            // loading.dismiss();
             _this.isLoading = false;
         });
     };
-    EvalBawahanListPage.prototype.ionViewDidLoad = function () {
-        console.log('ionViewDidLoad EvalBawahanListPage');
+    CutiDetailPage.prototype.isEmptyObject = function (obj) {
+        for (var prop in obj) {
+            if (obj.hasOwnProperty(prop)) {
+                return false;
+            }
+        }
+        return true;
     };
-    EvalBawahanListPage.prototype.goToDetail = function (data) {
-        this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_6__p2b_detail_p2b_detail__["P2bDetailPage"], {
-            userdataTPK: this.userdataTPK,
-            p2bdata: data,
-            p2buser: this.p2buser
+    CutiDetailPage.prototype.goToLogSurat = function () {
+        this.navCtrl.push('LogSuratPage', {
+            idSurat: this.messageDetail['ID Surat']
         });
     };
-    EvalBawahanListPage.prototype.convertMonths = function (month) {
-        switch (month) {
-            case '1':
-                return "Januari";
-            case '2':
-                return "Februari";
-            case '3':
-                return "Maret";
-            case '4':
-                return "April";
-            case '5':
-                return "Mei";
-            case '6':
-                return "Juni";
-            case '7':
-                return "Juli";
-            case '8':
-                return "Agustus";
-            case '9':
-                return "September";
-            case '10':
-                return "Oktober";
-            case '11':
-                return "November";
-            case '12':
-                return "Desember";
-            default:
-                return "false";
-        }
+    CutiDetailPage.prototype.downloadInbox = function (data) {
+        var _this = this;
+        var loading = this.loadingCtrl.create({
+            spinner: 'dots',
+            content: "Mengunduh surat...",
+            cssClass: 'transparent',
+            dismissOnPageChange: true
+        });
+        loading.present();
+        this.soapService
+            .post(__WEBPACK_IMPORTED_MODULE_4__config__["a" /* api_base_url */], 'find_file_cuti', {
+            fStream: JSON.stringify({
+                "usernameEDI": __WEBPACK_IMPORTED_MODULE_4__config__["d" /* api_user */],
+                "passwordEDI": __WEBPACK_IMPORTED_MODULE_4__config__["b" /* api_pass */],
+                "fileName": data,
+                "id_surat": this.messageDetail['ID Surat'],
+                "jenis_surat": this.messageDetail['Kode Jenis Surat'],
+                "no_surat": ''
+            })
+        }).then(function (result) {
+            var responData = JSON.parse(String(result));
+            loading.dismiss();
+            var options = {
+                zoom: 'no'
+            };
+            var browser = _this.inAppBrowser.create(responData['data']['LINK'], '_system', options);
+        })
+            .catch(function (error) {
+            var alert = _this.alertCtrl.create({
+                title: '',
+                subTitle: 'Gagal download surat, silahkan coba lagi',
+                buttons: ['OK']
+            });
+            alert.present();
+            loading.dismiss();
+        });
     };
-    EvalBawahanListPage.prototype.openTestPage = function (page) {
-        this.navCtrl.push(page);
+    CutiDetailPage.prototype.replaceNomorSurat = function (noSurat) {
+        var result = '';
+        console.log(noSurat);
+        //result = noSurat.replace(/[-.\/]/g, "_"); 
+        // result = result.replace(/-/g, '_');    
+        //return result + '.pdf';
+        return '';
     };
-    EvalBawahanListPage = __decorate([
+    CutiDetailPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
-            selector: 'page-eval-bawahan-list',
-            providers: [__WEBPACK_IMPORTED_MODULE_2__soap_service__["a" /* SoapService */]],template:/*ion-inline-start:"/Users/itadmin/Downloads/ERDA/POS_PPI/src/pages/eval-bawahan-list/eval-bawahan-list.html"*/'<!--\n  Generated template for the EvalBawahanListPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n\n  <ion-navbar>\n    <ion-title *ngIf="!isSearch">\n      <span ion-text color="light" class="fw500">List Evaluasi Bawahan</span>\n    </ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n<ion-content class="lightest-bg">\n\n  <ion-list class="dining_List" *ngIf="evalBawahanList.length == 0 && isLoading == false">\n    <ion-card class="my-card">\n      <ion-item tapplable>\n        <span ion-text class="font2">Tidak ada Data P2B</span>\n      </ion-item>\n    </ion-card>\n  </ion-list>\n\n  <ion-list class="dining_List" *ngIf="evalBawahanList.length != 0">\n    <ion-card *ngFor="let evalBawahan of evalBawahanList" (click)="goToDetail(evalBawahan)" class="my-card">\n      <ion-item tapplable>\n        <span ion-text text-wrap class="font bold">{{ evalBawahan[\'Nama\'] }}</span> <br>\n        <span ion-text text-wrap class="font">{{ convertMonths(evalBawahan[\'Bulan\']) }}, {{ evalBawahan[\'Tahun\'] }}</span> <br>\n        <span ion-text text-wrap class="font2" color="orange">{{  evalBawahan[\'Tanggal\'] }}</span> <br>\n        <span ion-text text-wrap class="font2">Skor : </span>\n        <span ion-text text-wrap class="font2">{{ evalBawahan[\'Nilai\'] }}</span>\n        <span ion-text text-wrap class="font2" *ngIf="evalBawahan[\'Nilai\'] == \'\'"> - </span>\n        <ion-badge *ngIf="evalBawahan[\'Status\'] == \'EVALUATED SAVED\'" color="secondary" item-end>Evaluated Saved\n        </ion-badge>\n        <ion-badge *ngIf="evalBawahan[\'Status\'] == \'EVALUATED\'" color="secondary" item-end>Evaluated</ion-badge>\n        <ion-badge *ngIf="evalBawahan[\'Status\'] == \'FINISHED\'" color="secondary" item-end>Finished</ion-badge>\n        <ion-badge *ngIf="evalBawahan[\'Status\'] == \'POSTED\'" color="primary" item-end>Posted</ion-badge>\n        <ion-badge *ngIf="evalBawahan[\'Status\'] == \'SAVED\'" color="primary" item-end>Saved</ion-badge>\n        <ion-badge *ngIf="evalBawahan[\'Status\'] == \'KEBERATAN\'" color="orange" item-end>Keberatan</ion-badge>\n      </ion-item>\n    </ion-card>\n  </ion-list>\n\n  <ion-list *ngIf=\'evalBawahanList.length == 0 && isLoading == true\'>\n    <ion-card *ngFor=\'let fake of fakeUsers\'>\n      <ion-item>\n        <h2 class="animate-skeleton-background"></h2>\n        <h3 class="animate-skeleton-background"></h3>\n        <p class="animate-skeleton-background"> </p>\n      </ion-item>\n    </ion-card>\n  </ion-list>\n</ion-content>'/*ion-inline-end:"/Users/itadmin/Downloads/ERDA/POS_PPI/src/pages/eval-bawahan-list/eval-bawahan-list.html"*/,
+            selector: 'page-cuti-detail',
+            providers: [__WEBPACK_IMPORTED_MODULE_2__soap_service__["a" /* SoapService */]],template:/*ion-inline-start:"/Users/itadmin/Downloads/ERDA/POS_PPI/src/pages/cuti-detail/cuti-detail.html"*/'<!--\n  Generated template for the CutiDetailPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n  <ion-navbar>\n    <ion-title>\n      <span ion-text color="light">Detail Cuti/Izin</span>\n    </ion-title>\n    <ion-buttons end>\n        <button ion-button (click)="goToLogSurat()">\n          <!-- <ion-icon style="font-size:2.4rem;" name="md-analytics" color="light"></ion-icon> -->\n          <img src="assets/imgs/menu-icon/history.png" style="    max-height: 27px;\n          margin-right: 5px;">\n        </button>\n        <button ion-button (click)="downloadInbox(replaceNomorSurat(messageData[\'No_Surat\']))">\n          <ion-icon style="font-size:2.4rem;" name="md-download" color="light"></ion-icon>\n        </button>\n      </ion-buttons>\n  </ion-navbar>\n</ion-header>\n\n<ion-content>\n  <div *ngIf="isLoading == false && !isEmptyObject(messageDetail)">\n    <ion-card class="header-card">\n      <ion-card-content>\n        <span ion-text text-wrap class="font-header" >\n          <b>{{ messageDetail[\'Judul Surat\'] }}</b>\n        </span>\n      </ion-card-content>\n    </ion-card>\n\n    <ion-card class="my-card">\n      <ion-item>\n        <span ion-text text-wrap class="font-mini" color="color4">\n          Tanggal Pengajuan\n        </span><br>\n        <span ion-text text-wrap class="font-small">\n          {{ messageDetail[\'Tanggal Pengajuan\'] }}\n        </span><br>\n\n        <span ion-text text-wrap class="font-mini" color="color4">\n          Jenis Pengajuan\n        </span><br>\n        <span ion-text text-wrap class="font-small">\n          {{ messageDetail[\'Jenis Pengajuan\'] }}\n        </span>\n        <br>\n\n        <span ion-text text-wrap class="font-mini" color="color4">\n          tanggal Cuti/Izin\n        </span><br>\n        <span ion-text text-wrap class="font-small">\n          {{ messageDetail[\'Tanggal Mulai Cuti\'] }}\n        </span> <span ion-text text-wrap class="font-small" color="primary"> s/d </span>\n        <span ion-text text-wrap class="font-small">\n          {{ messageDetail[\'Tanggal Selesai Cuti\'] }}\n        </span>        \n        <br>\n\n        <span ion-text text-wrap class="font-mini" color="color4">\n          Alamat Selama Cuti/Izin\n        </span><br>\n        <span ion-text text-wrap class="font-small">\n          {{ messageDetail[\'Alamat Cuti\'] }}\n        </span>\n        <br>\n\n        <span ion-text text-wrap class="font-mini" color="color4">\n          Alasan\n        </span><br>\n        <span ion-text text-wrap class="font-small">\n          {{ messageDetail[\'Alasan\'] }}\n        </span>\n        <br>\n      </ion-item>\n    </ion-card>\n\n    <ion-card class="my-card">\n      <ion-item>\n        <div class="header-text">\n          <span ion-text text-wrap>\n            <img src="assets/imgs/setting-icon/nipp.png" class="icons">\n          </span>\n          <span ion-text text-wrap class="font-small">\n            <b>Biodata Pemohon</b>\n          </span>\n        </div>\n        <div class="garis"></div>\n        <span ion-text text-wrap class="font-mini" color="color4">\n          NIPP\n        </span><br>\n        <span ion-text text-wrap class="font-small">\n          {{ messageDetail[\'NIPP Pemohon\'] }}\n        </span><br>\n\n        <span ion-text text-wrap class="font-mini" color="color4">\n          Nama\n        </span><br>\n        <span ion-text text-wrap class="font-small">\n          {{ messageDetail[\'Nama Pemohon\'] }}\n        </span>\n        <br>\n\n        <span ion-text text-wrap class="font-mini" color="color4">\n          Menyetujui\n        </span><br>\n        <span ion-text text-wrap class="font-small" color="primary">\n          <b>{{ messageDetail[\'NIPP Menyetujui\'] }}</b>\n        </span> <br>\n        <span ion-text text-wrap class="font-small">\n          {{ messageDetail[\'Nama Menyetujui\'] }} |\n          {{ messageDetail[\'Jabatan Menyetujui\'] }}\n        </span>\n        <br>\n\n        <span ion-text text-wrap class="font-mini" color="color4">\n          Mengetahui\n        </span><br>\n        <span *ngIf="messageDetail[\'NIPP Mengetahui\'] == \'\' || messageDetail[\'NIPP Mengetahui\'] == null" ion-text\n          text-wrap class="font-small" color="primary">\n          -\n        </span>\n        <span *ngIf="messageDetail[\'NIPP Mengetahui\'] != \'\' || messageDetail[\'NIPP Mengetahui\'] != null" ion-text\n          text-wrap class="font-small" color="primary">\n          <b>{{ messageDetail[\'NIPP Mengetahui\'] }}</b>\n        </span> <br>\n        <span *ngIf="messageDetail[\'Nama Mengetahui\'] != \'\' || messageDetail[\'Nama Mengetahui\'] != null" ion-text\n          text-wrap class="font-small">\n          {{ messageDetail[\'Nama Mengetahui\'] }} |\n          {{ messageDetail[\'Jabatan Mengetahui\'] }}\n        </span>\n      </ion-item>\n    </ion-card>\n  </div>\n\n  <div *ngIf="isLoading == true && isEmptyObject(messageDetail)">\n    <ion-item no-lines>\n      <div class="animate-skeleton-background load-2"></div>\n      <div class="animate-skeleton-background load-3"></div>\n      <div class="garis"></div>\n      <div class="animate-skeleton-background load-1"> </div>\n      <div class="animate-skeleton-background load-3"></div>\n      <div class="animate-skeleton-background load-1"> </div>\n      <div class="animate-skeleton-background load-3"></div>\n    </ion-item>\n  </div>\n\n</ion-content>'/*ion-inline-end:"/Users/itadmin/Downloads/ERDA/POS_PPI/src/pages/cuti-detail/cuti-detail.html"*/,
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavController */],
             __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* NavParams */],
@@ -709,14 +713,14 @@ var EvalBawahanListPage = /** @class */ (function () {
             __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* LoadingController */],
             __WEBPACK_IMPORTED_MODULE_3__ionic_storage__["b" /* Storage */],
             __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["b" /* AlertController */],
-            __WEBPACK_IMPORTED_MODULE_5__angular_common__["e" /* DatePipe */],
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["n" /* Platform */],
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["p" /* ToastController */]])
-    ], EvalBawahanListPage);
-    return EvalBawahanListPage;
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* ModalController */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["p" /* ToastController */],
+            __WEBPACK_IMPORTED_MODULE_5__ionic_native_in_app_browser__["a" /* InAppBrowser */]])
+    ], CutiDetailPage);
+    return CutiDetailPage;
 }());
 
-//# sourceMappingURL=eval-bawahan-list.js.map
+//# sourceMappingURL=cuti-detail.js.map
 
 /***/ })
 

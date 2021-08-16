@@ -16,9 +16,9 @@ import { FileTransfer, FileTransferObject } from '@ionic-native/file-transfer';
 import { HttpClientModule } from '@angular/common/http';
 import { FileChooser } from '@ionic-native/file-chooser';
 import { InAppBrowser } from '@ionic-native/in-app-browser'; 
-
+  
 import { Device } from '@ionic-native/device';
-
+ 
 
 import { MyApp } from './app.component';
 

@@ -1,14 +1,14 @@
 webpackJsonp([22],{
 
-/***/ 312:
+/***/ 311:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "InboxDetailPageModule", function() { return InboxDetailPageModule; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Home3PageModule", function() { return Home3PageModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(100);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__inbox_detail__ = __webpack_require__(369);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__home3__ = __webpack_require__(366);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -18,33 +18,33 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 
-var InboxDetailPageModule = /** @class */ (function () {
-    function InboxDetailPageModule() {
+var Home3PageModule = /** @class */ (function () {
+    function Home3PageModule() {
     }
-    InboxDetailPageModule = __decorate([
+    Home3PageModule = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["J" /* NgModule */])({
             declarations: [
-                __WEBPACK_IMPORTED_MODULE_2__inbox_detail__["a" /* InboxDetailPage */],
+                __WEBPACK_IMPORTED_MODULE_2__home3__["a" /* Home3Page */],
             ],
             imports: [
-                __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__inbox_detail__["a" /* InboxDetailPage */]),
+                __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__home3__["a" /* Home3Page */]),
             ],
         })
-    ], InboxDetailPageModule);
-    return InboxDetailPageModule;
+    ], Home3PageModule);
+    return Home3PageModule;
 }());
 
-//# sourceMappingURL=inbox-detail.module.js.map
+//# sourceMappingURL=home3.module.js.map
 
 /***/ }),
 
-/***/ 343:
+/***/ 341:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return SoapService; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__soapclient_js__ = __webpack_require__(344);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__soapclient_js__ = __webpack_require__(342);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__soapclient_js___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__soapclient_js__);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -96,7 +96,7 @@ var SoapService = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 344:
+/***/ 342:
 /***/ (function(module, exports) {
 
 /*****************************************************************************\
@@ -551,18 +551,20 @@ module.exports = {
 
 /***/ }),
 
-/***/ 369:
+/***/ 366:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return InboxDetailPage; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return Home3Page; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(100);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__soap_service__ = __webpack_require__(343);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_storage__ = __webpack_require__(101);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__config__ = __webpack_require__(199);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ionic_native_in_app_browser__ = __webpack_require__(206);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_storage__ = __webpack_require__(101);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__config__ = __webpack_require__(199);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__soap_service__ = __webpack_require__(341);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ionic_native_device__ = __webpack_require__(208);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ionic_native_onesignal__ = __webpack_require__(102);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__ionic_native_in_app_browser__ = __webpack_require__(206);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__angular_common_http__ = __webpack_require__(200);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -579,419 +581,284 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
+
 /**
- * Generated class for the InboxDetailPage page.
+ * Generated class for the Home3Page page.
  *
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
  */
-var InboxDetailPage = /** @class */ (function () {
-    function InboxDetailPage(navCtrl, navParams, soapService, loadingCtrl, storage, alertCtrl, modalCtrl, inAppBrowser, oneSignal, toastCtrl) {
+var Home3Page = /** @class */ (function () {
+    function Home3Page(navCtrl, navParams, alertCtrl, app, storage, loadingCtrl, soapService, toastCtrl, device, inAppBrowser, oneSignal, modalCtrl, http, platform) {
         this.navCtrl = navCtrl;
         this.navParams = navParams;
-        this.soapService = soapService;
-        this.loadingCtrl = loadingCtrl;
-        this.storage = storage;
         this.alertCtrl = alertCtrl;
-        this.modalCtrl = modalCtrl;
+        this.app = app;
+        this.storage = storage;
+        this.loadingCtrl = loadingCtrl;
+        this.soapService = soapService;
+        this.toastCtrl = toastCtrl;
+        this.device = device;
         this.inAppBrowser = inAppBrowser;
         this.oneSignal = oneSignal;
-        this.toastCtrl = toastCtrl;
+        this.modalCtrl = modalCtrl;
+        this.http = http;
+        this.platform = platform;
         this.isLoading = true;
-        this.showAllPenerima = false;
-        this.showAllPenerimaJabatan = false;
-        this.showAllTembusanJabatan = false;
-        this.showAllPenerimaPekerja = false;
-        this.showAllTembusanPekerja = false;
-        this.showAllPenerimaNonPekerja = false;
-        this.showAllTembusanNonPekerja = false;
-        this.showDetailPesan = false;
-        this.attachmentList = [];
-        this.penerima = [];
-        this.databawahan = [];
-        this.disposisiJabatanList = [];
-        this.disposisiPekerjaList = [];
-        this.lastCatatan = "";
-        this.keterangan = "";
-        this.from_modul = '';
-        this.pesertaSppdList = [];
-        this.attrScanSppd = [];
-        oneSignal.startInit(__WEBPACK_IMPORTED_MODULE_4__config__["f" /* oneSignalAppId */], __WEBPACK_IMPORTED_MODULE_4__config__["h" /* sender_id */]);
-        oneSignal.endInit();
+        this.agendaList = [];
+        this.isSkipUpdate = false;
+        this.isLoadingHadirkoe = true;
     }
-    InboxDetailPage.prototype.show = function () {
-        this.showDetailPesan = !this.showDetailPesan;
+    Home3Page.prototype.ionViewDidLoad = function () {
+        console.log('ionViewDidLoad Home3Page');
     };
-    InboxDetailPage.prototype.ionViewWillLoad = function () {
-    };
-    InboxDetailPage.prototype.ionViewDidLoad = function () {
+    Home3Page.prototype.ionViewWillEnter = function () {
         var _this = this;
-        this.isLoading = true;
-        this.messageData = this.navParams.get('messageData');
-        // console.log(this.messageData);
-        this.from_modul = this.navParams.get('from_modul');
         this.storage.get('userdataTPK').then(function (val) {
+            // console.log(val);
             _this.userdataTPK = val;
-            _this.nipp = _this.userdataTPK['data']['NIPP'];
-            _this.getDetail();
+            _this.getBadges();
+            _this.getBadgesP2b();
+            _this.getBadgesPrpo();
+            _this.getValidasi();
+            _this.newSession('first', '');
+            _this.getData('first', '');
+            _this.cekVersi();
         });
     };
-    InboxDetailPage.prototype.getDetail = function () {
+    Home3Page.prototype.newSession = function (type, functionName) {
         // let loading = this.loadingCtrl.create({
         //   spinner: 'dots',
         //   content: "Mohon Tunggu...",
         //   cssClass: 'transparent',
-        //   dismissOnPageChange:true
+        //   dismissOnPageChange: true
         // });
-        // loading.present();
         var _this = this;
+        // if (type == 'refresh') {
+        //   loading.present();
+        // }
+        // this.isLoading = true;
         this.soapService
-            .post(__WEBPACK_IMPORTED_MODULE_4__config__["a" /* api_base_url */], 'eoffice_viewmail', {
+            .post(__WEBPACK_IMPORTED_MODULE_3__config__["a" /* api_base_url */], 'eoffice_get_user_data', {
             fStream: JSON.stringify({
-                usernameEDI: __WEBPACK_IMPORTED_MODULE_4__config__["e" /* api_user */],
-                passwordEDI: __WEBPACK_IMPORTED_MODULE_4__config__["c" /* api_pass */],
-                nipp: this.nipp,
-                linkSurat: this.messageData['Location'],
-                from_modul: (this.from_modul != null || this.from_modul != '') ? this.from_modul : 'inbox'
-            })
-        }).then(function (result) {
-            var responData = JSON.parse(String(result));
-            console.log(responData);
-            if (responData['rcmsg'] == "SUCCESS") {
-                _this.messageDetail = responData['data'];
-                if (_this.messageDetail['Jenis Surat'] == 'Surat Perintah') {
-                    _this.dasarSuratPerintah = _this.messageDetail['Isi Surat'].split('xxdasaxx_').pop().split('_xxperintxx_')[0] + '<br>';
-                    _this.dasarSuratPerintah = _this.dasarSuratPerintah.replace(/_/gi, "<br><br>");
-                    _this.isiPerintah = _this.messageDetail['Isi Surat'].split('_xxperintxx_')[1];
-                    _this.isiPerintah = _this.isiPerintah.replace(/_/gi, "<br><br>");
-                }
-                if (_this.messageDetail['Kode Jenis Surat'] == 'nd_sppd') {
-                    _this.getPesertaSPPD(_this.messageDetail['ID Surat']);
-                }
-                else {
-                    _this.newSession();
-                }
-                _this.linkSurat = _this.messageDetail['Link Surat Asli'];
-                _this.attachmentList = _this.messageDetail['Attachment'];
-            }
-            else {
-                var toast = _this.toastCtrl.create({
-                    message: 'Mohon Maaf Sedang Terjadi Kesalahan, Coba Beberapa Saat Lagi.',
-                    duration: 3000,
-                    position: 'bottom'
-                });
-                toast.present();
-                _this.isLoading = false;
-            }
-        })
-            .catch(function (error) {
-            var toast = _this.toastCtrl.create({
-                message: 'Terjadi Masalah Koneksi, Silahkan Coba Kembali.',
-                duration: 3000,
-                position: 'bottom'
-            });
-            toast.present();
-            _this.isLoading = false;
-        });
-    };
-    InboxDetailPage.prototype.getPesertaSPPD = function (idSurat) {
-        var _this = this;
-        this.soapService
-            .post(__WEBPACK_IMPORTED_MODULE_4__config__["a" /* api_base_url */], 'eoffice_sppd_peserta', {
-            fStream: JSON.stringify({
-                usernameEDI: __WEBPACK_IMPORTED_MODULE_4__config__["e" /* api_user */],
-                passwordEDI: __WEBPACK_IMPORTED_MODULE_4__config__["c" /* api_pass */],
-                id_surat: atob(idSurat),
-            })
-        }).then(function (result) {
-            var responData = JSON.parse(String(result));
-            // console.log(responData);
-            if (responData['rcmsg'] == "SUCCESS") {
-                if (responData['data']['PESERTA_JABATAN'].length > 0) {
-                    for (var i = 0; i < responData['data']['PESERTA_JABATAN'].length; i++) {
-                        _this.pesertaSppdList.push(responData['data']['PESERTA_JABATAN'][i]);
-                    }
-                }
-                if (responData['data']['PESERTA_PEGAWAI'].length > 0) {
-                    for (var i = 0; i < responData['data']['PESERTA_PEGAWAI'].length; i++) {
-                        _this.pesertaSppdList.push(responData['data']['PESERTA_PEGAWAI'][i]);
-                    }
-                }
-                if (responData['data']['PESERTA_NON_PEGAWAI'].length > 0) {
-                    for (var i = 0; i < responData['data']['PESERTA_NON_PEGAWAI'].length; i++) {
-                        _this.pesertaSppdList.push(responData['data']['PESERTA_NON_PEGAWAI'][i]);
-                    }
-                }
-                // if (responData['data']['SCAN_SPPD'].length > 0) {
-                //   for (var i = 0; i < responData['data']['SCAN_SPPD'].length; i++) {
-                //     this.attrScanSppd.push( responData['data']['SCAN_SPPD'][i]);
-                //   }
-                // }
-                _this.newSession();
-            }
-            else {
-                var toast = _this.toastCtrl.create({
-                    message: 'Mohon Maaf Sedang Terjadi Kesalahan, Coba Beberapa Saat Lagi.',
-                    duration: 3000,
-                    position: 'bottom'
-                });
-                toast.present();
-                _this.isLoading = false;
-            }
-        })
-            .catch(function (error) {
-            // console.log(error);
-            var toast = _this.toastCtrl.create({
-                message: 'Terjadi Masalah Koneksi, Silahkan Coba Kembali.',
-                duration: 3000,
-                position: 'bottom'
-            });
-            toast.present();
-            _this.isLoading = false;
-        });
-    };
-    InboxDetailPage.prototype.newSession = function () {
-        var _this = this;
-        this.soapService
-            .post(__WEBPACK_IMPORTED_MODULE_4__config__["a" /* api_base_url */], 'eoffice_get_user_data', {
-            fStream: JSON.stringify({
-                usernameEDI: __WEBPACK_IMPORTED_MODULE_4__config__["e" /* api_user */],
-                passwordEDI: __WEBPACK_IMPORTED_MODULE_4__config__["c" /* api_pass */],
-                username: this.nipp,
+                usernameEDI: __WEBPACK_IMPORTED_MODULE_3__config__["d" /* api_user */],
+                passwordEDI: __WEBPACK_IMPORTED_MODULE_3__config__["b" /* api_pass */],
+                username: this.userdataTPK['data']['NIPP'],
             })
         }).then(function (result) {
             var responData = JSON.parse(String(result));
             if (responData['rcmsg'] == "SUCCESS") {
                 if (responData['data']['login_status'] == '404 Not Found') {
+                    // console.log(responData['data']['login_status']);
                 }
                 else if (responData['data'] == undefined) {
+                    // console.log(responData['data']);
                 }
                 else if (responData['data']['login_status'] == 'AP NOT ALLOWED') {
+                    // console.log(responData['data']['login_status']);
                 }
                 else {
-                    responData['data']['FL_FIRST_IMOVE'] = false;
                     _this.userdataTPK = responData;
-                    if (_this.isEmptyObject(_this.userdataTPK['data']['LISTOFFICER'][0]) && _this.isEmptyObject(_this.userdataTPK['data']['DATA_BAWAHAN'][0]) && _this.isEmptyObject(_this.userdataTPK['data']['DATA_BAWAHAN_TNO'][0])) {
-                        _this.isAtasan = false;
-                    }
-                    else {
-                        _this.isAtasan = true;
-                    }
-                    _this.getDataBawahan();
-                    _this.getPenerima();
                     _this.storage.set('userdataTPK', responData).then(function () {
+                        //this.getData(type, functionName, loading);
                     });
                 }
             }
             else {
+                // console.log("error here");
+                //loading.dismiss();
+                // this.isLoading = false;
             }
-            _this.isLoading = false;
         })
             .catch(function (error) {
+            var toast = _this.toastCtrl.create({
+                message: 'Terjadi Masalah Koneksi, Silahkan Coba Kembali.',
+                duration: 3000,
+                position: 'bottom'
+            });
+            toast.present();
+            if (type == 'refresh') {
+                functionName.complete();
+                // loading.dismiss();
+            }
+            // this.isLoading = false;
+        });
+    };
+    Home3Page.prototype.getData = function (type, functionName) {
+        var _this = this;
+        this.isLoading = true;
+        this.soapService
+            .post(__WEBPACK_IMPORTED_MODULE_3__config__["a" /* api_base_url */], 'eoffice_home', {
+            fStream: JSON.stringify({
+                usernameEDI: __WEBPACK_IMPORTED_MODULE_3__config__["d" /* api_user */],
+                passwordEDI: __WEBPACK_IMPORTED_MODULE_3__config__["b" /* api_pass */],
+                iduser: this.userdataTPK.data.IDUSER,
+                idjabatan: this.userdataTPK.data.IDJABATAN,
+                nipp: this.userdataTPK.data.NIPP,
+            })
+        }).then(function (result) {
+            var responData = JSON.parse(String(result));
+            // console.log(responData);
+            if (responData['rcmsg'] == "SUCCESS") {
+                _this.agendaList = [];
+                for (var i = 0; i < responData['data']['AGENDA_HARI_INI'].length; i++) {
+                    _this.agendaList.push(responData['data']['AGENDA_HARI_INI'][i]);
+                }
+                if (type == 'refresh') {
+                    functionName.complete();
+                    // loading.dismiss();
+                }
+                _this.isLoading = false;
+            }
+            else {
+                var toast = _this.toastCtrl.create({
+                    message: 'Mohon Maaf Sedang Terjadi Kesalahan, Coba Beberapa Saat Lagi.',
+                    duration: 3000,
+                    position: 'bottom'
+                });
+                toast.present();
+                if (type == 'refresh') {
+                    functionName.complete();
+                }
+                _this.isLoading = false;
+            }
+        })
+            .catch(function (error) {
+            var toast = _this.toastCtrl.create({
+                message: 'Terjadi Masalah Koneksi, Silahkan Coba Kembali.',
+                duration: 3000,
+                position: 'bottom'
+            });
+            toast.present();
+            if (type == 'refresh') {
+                functionName.complete();
+                // loading.dismiss();
+            }
             _this.isLoading = false;
         });
     };
-    InboxDetailPage.prototype.showMore = function (type) {
-        //this.showAllPenerima = !this.showAllPenerima;
-        if (type == 1) {
-            this.showAllPenerimaJabatan = !this.showAllPenerimaJabatan;
-        }
-        else if (type == 2) {
-            this.showAllTembusanJabatan = !this.showAllTembusanJabatan;
-        }
-        else if (type == 3) {
-            this.showAllPenerimaPekerja = !this.showAllPenerimaPekerja;
-        }
-        else if (type == 4) {
-            this.showAllTembusanPekerja = !this.showAllTembusanPekerja;
-        }
-        else if (type == 5) {
-            this.showAllPenerimaNonPekerja = !this.showAllPenerimaNonPekerja;
-        }
-        else if (type == 6) {
-            this.showAllTembusanNonPekerja = !this.showAllTembusanNonPekerja;
-        }
-        else {
-        }
-    };
-    InboxDetailPage.prototype.getDataBawahan = function () {
-        // if (!this.isEmptyObject(this.userdataTPK['data']['LISTOFFICER'][0])) {
-        //   for (var i = 0; i < this.userdataTPK['data']['LISTOFFICER'][0].length; i++) {
-        //     this.databawahan.push(this.userdataTPK['data']['LISTOFFICER'][0][i]);
-        //   }
-        // }
-        if (!this.isEmptyObject(this.userdataTPK['data']['DATA_BAWAHAN'][0])) {
-            for (var i = 0; i < this.userdataTPK['data']['DATA_BAWAHAN'].length; i++) {
-                this.databawahan.push(this.userdataTPK['data']['DATA_BAWAHAN'][i]);
-            }
-        }
-        if (!this.isEmptyObject(this.userdataTPK['data']['DATA_BAWAHAN_TNO'][0])) {
-            for (var i = 0; i < this.userdataTPK['data']['DATA_BAWAHAN'].length; i++) {
-                this.databawahan.push(this.userdataTPK['data']['DATA_BAWAHAN'][i]);
-            }
-        }
-    };
-    InboxDetailPage.prototype.getPenerima = function () {
-        if (this.messageDetail['Penerima Pekerja'] != null) {
-            for (var i = 0; i < this.messageDetail['Penerima Pekerja'].length; i++) {
-                this.penerima.push(this.messageDetail['Penerima Pekerja'][i]);
-            }
-        }
-        if (this.messageDetail['Penerima Jabatan'] != null) {
-            for (var i = 0; i < this.messageDetail['Penerima Jabatan'].length; i++) {
-                this.penerima.push(this.messageDetail['Penerima Jabatan'][i]);
-            }
-        }
-        if (this.messageDetail['Penerima Non Pekerja'] != null) {
-            for (var i = 0; i < this.messageDetail['Penerima Non Pekerja'].length; i++) {
-                this.penerima.push(this.messageDetail['Penerima Non Pekerja'][i]);
-            }
-        }
-        if (this.messageDetail['Tembusan Pekerja'] != null) {
-            for (var i = 0; i < this.messageDetail['Tembusan Pekerja'].length; i++) {
-                this.penerima.push(this.messageDetail['Tembusan Pekerja'][i]);
-            }
-        }
-        if (this.messageDetail['Tembusan Jabatan'] != null) {
-            for (var i = 0; i < this.messageDetail['Penerima Jabatan'].length; i++) {
-                this.penerima.push(this.messageDetail['Penerima Jabatan'][i]);
-            }
-        }
-        if (this.messageDetail['Tembusan Non Pekerja'] != null) {
-            for (var i = 0; i < this.messageDetail['Tembusan Non Pekerja'].length; i++) {
-                this.penerima.push(this.messageDetail['Tembusan Non Pekerja'][i]);
-            }
-        }
-    };
-    InboxDetailPage.prototype.showDisposisi = function (tipeDisposisi) {
+    Home3Page.prototype.getBadges = function () {
         var _this = this;
-        var data;
-        if (tipeDisposisi == 'jabatan') {
-            var modal = this.modalCtrl.create("DisposisiPage", {
-                kepadaList: this.databawahan,
-                lastCatatan: this.lastCatatan,
-                tipeDisposisi: tipeDisposisi
-            }, {
-                enableBackdropDismiss: true,
-                showBackdrop: true,
-            });
-            modal.present();
-            modal.onDidDismiss(function (data) {
-                if (data != null) {
-                    if (data['disposisiJabatanList'].length > 0) {
-                        for (var i = 0; i < data['disposisiJabatanList'].length; i++) {
-                            _this.disposisiJabatanList.push(data['disposisiJabatanList'][i]);
-                        }
-                    }
-                    _this.lastCatatan = data['lastCatatan'];
-                }
-            });
-        }
-        else if (tipeDisposisi == 'pekerja') {
-            var modal = this.modalCtrl.create("DisposisiPage", {
-                kepadaList: this.userdataTPK['data']['DATA_BAWAHAN'],
-                lastCatatan: this.lastCatatan,
-                tipeDisposisi: tipeDisposisi
-            }, {
-                enableBackdropDismiss: true,
-                showBackdrop: true,
-            });
-            modal.present();
-            modal.onDidDismiss(function (data) {
-                if (data != null) {
-                    if (data['disposisiPekerjaList'].length > 0) {
-                        for (var i = 0; i < data['disposisiPekerjaList'].length; i++) {
-                            _this.disposisiPekerjaList.push(data['disposisiPekerjaList'][i]);
-                        }
-                    }
-                    _this.lastCatatan = data['lastCatatan'];
-                }
-            });
-        }
-        else {
-        }
-    };
-    InboxDetailPage.prototype.delete = function (disposisidata, tipeDisposisi) {
-        if (tipeDisposisi == 'jabatan') {
-            var index = this.disposisiJabatanList.indexOf(disposisidata);
-            if (index !== -1) {
-                this.disposisiJabatanList.splice(index, 1);
+        this.soapService
+            .post(__WEBPACK_IMPORTED_MODULE_3__config__["a" /* api_base_url */], 'eoffice_countbadges', {
+            fStream: JSON.stringify({
+                usernameEDI: __WEBPACK_IMPORTED_MODULE_3__config__["d" /* api_user */],
+                passwordEDI: __WEBPACK_IMPORTED_MODULE_3__config__["b" /* api_pass */],
+                iduser: this.userdataTPK['data']['IDUSER'],
+                idjabatan: this.userdataTPK['data']['IDJABATAN'],
+                nipp: this.userdataTPK['data']['NIPP']
+            })
+        }).then(function (result) {
+            var responData = JSON.parse(String(result));
+            console.log(responData);
+            if (responData['rcmsg'] == "SUCCESS") {
+                _this.badgesList = responData['data'];
+                console.log(_this.badgesList);
             }
-        }
-        else if (tipeDisposisi == 'pekerja') {
-            var index = this.disposisiPekerjaList.indexOf(disposisidata);
-            if (index !== -1) {
-                this.disposisiPekerjaList.splice(index, 1);
+            else {
+                var toast = _this.toastCtrl.create({
+                    message: 'Gagal Mendapatkan Notifikasi, Coba Beberapa Saat Lagi.',
+                    duration: 3000,
+                    position: 'bottom'
+                });
+                toast.present();
             }
-        }
+        })
+            .catch(function (error) {
+            var toast = _this.toastCtrl.create({
+                message: 'Gagal Mendapatkan Notifikasi, Periksa Koneksi Internet Anda.',
+                duration: 3000,
+                position: 'bottom'
+            });
+            toast.present();
+        });
     };
-    InboxDetailPage.prototype.sendDisposisi = function () {
+    Home3Page.prototype.getBadgesP2b = function () {
+        // this.soapService
+        //   .post(api_p2b_url, 'eoffice_countbadges', {
+        //     fStream: JSON.stringify(
+        //       {
+        //         usernameEDI: api_user,
+        //         passwordEDI: api_pass,
+        //         iduser: this.userdataTPK['data']['IDUSER'],
+        //         idjabatan: this.userdataTPK['data']['IDJABATAN'],
+        //         nipp: this.userdataTPK['data']['NIPP']
+        //       }
+        //     )
+        //   }).then(result => {
+        //     var responData = JSON.parse(String(result));
+        //     console.log(responData);
+        //     if (responData['rcmsg'] == "SUCCESS") {
+        //       this.badgesP2b = responData['data'];
+        //       // console.log(this.badgesList);
+        //     } else {
+        //       let toast = this.toastCtrl.create({
+        //         message: 'Gagal Mendapatkan Notifikasi, Coba Beberapa Saat Lagi.',
+        //         duration: 3000,
+        //         position: 'bottom'
+        //       });
+        //       toast.present();
+        //     }
+        //   })
+        //   .catch(error => {
+        //     let toast = this.toastCtrl.create({
+        //       message: 'Gagal Mendapatkan Notifikasi, Periksa Koneksi Internet Anda.',
+        //       duration: 3000,
+        //       position: 'bottom'
+        //     });
+        //     toast.present();
+        //   });
+    };
+    Home3Page.prototype.getBadgesPrpo = function () {
+        // this.soapService
+        //   .post(api_p2b_url, 'eoffice_countbadgestpk', {
+        //     fStream: JSON.stringify(
+        //       {
+        //         usernameEDI: api_user,
+        //         passwordEDI: api_pass,
+        //         nipp: this.userdataTPK['data']['NIPP']
+        //       }
+        //     )
+        //   }).then(result => {
+        //     var responData = JSON.parse(String(result));
+        //     if (responData['rcmsg'] == "SUCCESS") {
+        //       this.badgesPrpoList = responData['data'];
+        //       console.log(this.badgesPrpoList);
+        //     } else {
+        //     }
+        //   })
+        //   .catch(error => {
+        //   });
+    };
+    Home3Page.prototype.doRefresh = function (refresher) {
+        this.getBadges();
+        this.getBadgesP2b();
+        this.getBadgesPrpo();
+        this.getValidasi();
+        this.getData('refresh', refresher);
+        this.newSession('refresh', refresher);
+        this.cekVersi();
+    };
+    Home3Page.prototype.logout = function () {
         var _this = this;
         var alert = this.alertCtrl.create({
-            subTitle: 'Anda yakin ingin disposisi surat ?',
+            subTitle: 'Apakah anda yakin ingin log out ?',
             cssClass: 'alert',
             buttons: [
                 {
                     text: 'TIDAK',
                     role: 'cancel',
                     handler: function () {
+                        // console.log('Cancel clicked');
                     }
                 },
                 {
                     text: 'YA',
                     handler: function () {
-                        var loading = _this.loadingCtrl.create({
-                            spinner: 'dots',
-                            content: "Mohon Tunggu...",
-                            cssClass: 'transparent',
-                            dismissOnPageChange: true
-                        });
-                        loading.present();
-                        _this.isLoading = true;
-                        _this.soapService
-                            .post(__WEBPACK_IMPORTED_MODULE_4__config__["a" /* api_base_url */], 'eoffice_disposisi', {
-                            fStream: JSON.stringify({
-                                usernameEDI: __WEBPACK_IMPORTED_MODULE_4__config__["e" /* api_user */],
-                                passwordEDI: __WEBPACK_IMPORTED_MODULE_4__config__["c" /* api_pass */],
-                                nipp: _this.nipp,
-                                linkSurat: _this.messageData['Location'],
-                                disposisi_jabatan: _this.disposisiJabatanList,
-                                disposisi_pekerja: _this.disposisiPekerjaList
-                            })
-                        }).then(function (result) {
-                            var responData = JSON.parse(String(result));
-                            // console.log(responData);
-                            if (responData['rcmsg'] == "SUCCESS") {
-                                var toast = _this.toastCtrl.create({
-                                    message: 'Disposisi Berhasil',
-                                    duration: 3000,
-                                    position: 'bottom'
-                                });
-                                toast.present().then(function () {
-                                    _this.pushNotif();
-                                    _this.navCtrl.pop();
-                                });
-                            }
-                            else {
-                                var alert_1 = _this.alertCtrl.create({
-                                    title: '',
-                                    subTitle: 'Gagal Melakukan Disposisi, Silahkan Coba Beberapa Saat Lagi.',
-                                    buttons: ['OK']
-                                });
-                                alert_1.present();
-                            }
-                            loading.dismiss();
-                            _this.isLoading = false;
-                        })
-                            .catch(function (error) {
-                            var alert = _this.alertCtrl.create({
-                                title: '',
-                                subTitle: 'Gagal Melakukan Disposisi, Periksa Koneksi Internet Anda.',
-                                buttons: ['OK']
-                            });
-                            alert.present();
-                            loading.dismiss();
-                            _this.isLoading = false;
+                        _this.app.getRootNav().setRoot('LoginPage').then(function () {
+                            //this.events.unsubscribe('user:data',() => {});
+                            _this.storage.clear();
                         });
                     }
                 }
@@ -999,543 +866,178 @@ var InboxDetailPage = /** @class */ (function () {
         });
         alert.present();
     };
-    InboxDetailPage.prototype.pushNotif = function () {
-        var _this = this;
-        this.oneSignal.getIds().then(function (id) {
-            var userList = [];
-            if (_this.disposisiJabatanList.length > 0) {
-                for (var i = 0; i < _this.disposisiJabatanList.length; i++) {
-                    userList.push(_this.disposisiJabatanList[i]['id_user']);
-                }
-            }
-            if (_this.disposisiPekerjaList.length > 0) {
-                for (var i = 0; i < _this.disposisiPekerjaList.length; i++) {
-                    userList.push(_this.disposisiPekerjaList[i]['id_user']);
-                }
-            }
-            _this.soapService
-                .post(__WEBPACK_IMPORTED_MODULE_4__config__["a" /* api_base_url */], 'eoffice_notif_imove', {
-                fStream: JSON.stringify({
-                    usernameEDI: __WEBPACK_IMPORTED_MODULE_4__config__["e" /* api_user */],
-                    passwordEDI: __WEBPACK_IMPORTED_MODULE_4__config__["c" /* api_pass */],
-                    id_user: userList,
-                    data: {
-                        // "res": "InboxPage"
-                        res: "InboxDetailPage",
-                        nipp: _this.nipp,
-                        //userdataTPK : this.userdataTPK,
-                        messageData: _this.messageData
-                    },
-                    heading: {
-                        "en": "Surat Masuk"
-                    },
-                    content: {
-                        "en": "Anda memiliki disposisi baru dari " + _this.userdataTPK['data']['NAMA'] + ". \nPerihal : " + _this.messageDetail['Perihal']
-                    },
-                })
-            }).then(function (result) {
-                var hasil = JSON.parse(String(result));
-            }).catch(function (error) {
-                _this.navCtrl.pop();
-            });
+    Home3Page.prototype.openPage = function (page) {
+        this.navCtrl.push(page);
+    };
+    Home3Page.prototype.openPage2 = function (page, param) {
+        this.navCtrl.push(page, {
+            modul: param
         });
     };
-    InboxDetailPage.prototype.cancel = function () {
-        this.navCtrl.pop();
-    };
-    InboxDetailPage.prototype.downloadInbox = function (data) {
-        var _this = this;
-        var loading = this.loadingCtrl.create({
-            spinner: 'dots',
-            content: "Mengunduh surat...",
-            cssClass: 'transparent',
-            dismissOnPageChange: true
-        });
-        loading.present();
-        this.soapService
-            .post(__WEBPACK_IMPORTED_MODULE_4__config__["a" /* api_base_url */], 'find_file', {
-            fStream: JSON.stringify({
-                "usernameEDI": __WEBPACK_IMPORTED_MODULE_4__config__["e" /* api_user */],
-                "passwordEDI": __WEBPACK_IMPORTED_MODULE_4__config__["c" /* api_pass */],
-                "fileName": data,
-                "id_surat": this.messageDetail['ID Surat'],
-                "jenis_surat": this.messageDetail['Kode Jenis Surat'],
-                "no_surat": this.messageData['No_Surat']
-            })
-        }).then(function (result) {
-            var responData = JSON.parse(String(result));
-            loading.dismiss();
-            var options = {
-                zoom: 'no'
-            };
-            var browser = _this.inAppBrowser.create(responData['data']['LINK'], '_system', options);
-        })
-            .catch(function (error) {
-            var alert = _this.alertCtrl.create({
-                title: '',
-                subTitle: 'Gagal download surat, silahkan coba lagi',
-                buttons: ['OK']
-            });
-            alert.present();
-            loading.dismiss();
-        });
-    };
-    InboxDetailPage.prototype.downloadAttach = function (data) {
-        var options = {
-            zoom: 'no'
-        };
-        var browser = this.inAppBrowser.create(data, '_system', options);
-    };
-    InboxDetailPage.prototype.subStrAttachment = function (data) {
-        var str = data;
-        var n = str.lastIndexOf('/');
-        return str.substring(n + 1);
-    };
-    InboxDetailPage.prototype.doPeriksa = function (type) {
-        var _this = this;
-        if (this.keterangan == '') {
-            var toast = this.toastCtrl.create({
-                message: 'Komentar harus diisi.',
-                duration: 3000,
-                position: 'bottom'
-            });
-            toast.present();
+    Home3Page.prototype.notEmpty = function (val) {
+        if (typeof val != "undefined") {
+            return true;
         }
         else {
-            if (type == 'approve') {
-                var alert_2 = this.alertCtrl.create({
-                    subTitle: 'Anda yakin ingin approve surat ?',
-                    cssClass: 'alert',
-                    buttons: [
-                        {
-                            text: 'TIDAK',
-                            role: 'cancel',
-                            handler: function () {
-                            }
-                        },
-                        {
-                            text: 'YA',
-                            handler: function () {
-                                var loading = _this.loadingCtrl.create({
-                                    spinner: 'dots',
-                                    content: "Approve surat...",
-                                    cssClass: 'transparent',
-                                    dismissOnPageChange: true
-                                });
-                                loading.present();
-                                _this.soapService
-                                    .post(__WEBPACK_IMPORTED_MODULE_4__config__["a" /* api_base_url */], 'eoffice_approve', {
-                                    fStream: JSON.stringify({
-                                        usernameEDI: __WEBPACK_IMPORTED_MODULE_4__config__["e" /* api_user */],
-                                        passwordEDI: __WEBPACK_IMPORTED_MODULE_4__config__["c" /* api_pass */],
-                                        nipp: _this.nipp,
-                                        iduser: _this.userdataTPK['data']['IDUSER'],
-                                        nama: _this.userdataTPK['data']['NAMA'],
-                                        id_surat: _this.messageDetail['ID Surat'],
-                                        kode_jenis_surat: _this.messageDetail['Kode Jenis Surat'] != 'permohonan' && _this.messageDetail['Jenis Surat'] != null ? _this.messageDetail['Jenis Surat'].toLowerCase() : _this.messageDetail['Kode Jenis Surat'].toLowerCase(),
-                                        komentar: _this.keterangan
-                                    })
-                                }).then(function (result) {
-                                    var responData = JSON.parse(String(result));
-                                    if (responData['rcmsg'] == "SUCCESS") {
-                                        var toast = _this.toastCtrl.create({
-                                            message: 'Approve berhasil !',
-                                            duration: 3000,
-                                            position: 'bottom'
-                                        });
-                                        toast.present().then(function () {
-                                            _this.sendApprovalNotif('approve');
-                                            _this.navCtrl.pop();
-                                        });
-                                    }
-                                    else {
-                                        var alert_3 = _this.alertCtrl.create({
-                                            title: '',
-                                            subTitle: 'Gagal Approve Surat, Silahkan Coba Beberapa Saat Lagi.',
-                                            buttons: ['OK']
-                                        });
-                                        alert_3.present();
-                                    }
-                                    loading.dismiss();
-                                })
-                                    .catch(function (error) {
-                                    var alert = _this.alertCtrl.create({
-                                        title: '',
-                                        subTitle: 'Gagal Approve Surat, Periksa Koneksi Internet Anda.',
-                                        buttons: ['OK']
-                                    });
-                                    alert.present();
-                                    loading.dismiss();
-                                });
-                            }
-                        }
-                    ]
-                });
-                alert_2.present();
-            }
-            else if (type == 'decline') {
-                var alert_4 = this.alertCtrl.create({
-                    subTitle: 'Anda yakin ingin decline surat ?',
-                    cssClass: 'alert',
-                    buttons: [
-                        {
-                            text: 'TIDAK',
-                            role: 'cancel',
-                            handler: function () {
-                            }
-                        },
-                        {
-                            text: 'YA',
-                            handler: function () {
-                                var loading = _this.loadingCtrl.create({
-                                    spinner: 'dots',
-                                    content: "Decline surat...",
-                                    cssClass: 'transparent',
-                                    dismissOnPageChange: true
-                                });
-                                loading.present();
-                                _this.soapService
-                                    .post(__WEBPACK_IMPORTED_MODULE_4__config__["a" /* api_base_url */], 'eoffice_decline', {
-                                    fStream: JSON.stringify({
-                                        usernameEDI: __WEBPACK_IMPORTED_MODULE_4__config__["e" /* api_user */],
-                                        passwordEDI: __WEBPACK_IMPORTED_MODULE_4__config__["c" /* api_pass */],
-                                        nipp: _this.nipp,
-                                        iduser: _this.userdataTPK['data']['IDUSER'],
-                                        nama: _this.userdataTPK['data']['NAMA'],
-                                        id_surat: _this.messageDetail['ID Surat'],
-                                        kode_jenis_surat: _this.messageDetail['Kode Jenis Surat'] != 'permohonan' ? _this.messageDetail['Jenis Surat'].toLowerCase() : _this.messageDetail['Kode Jenis Surat'].toLowerCase(),
-                                        komentar: _this.keterangan
-                                    })
-                                }).then(function (result) {
-                                    var responData = JSON.parse(String(result));
-                                    if (responData['rcmsg'] == "SUCCESS") {
-                                        var toast = _this.toastCtrl.create({
-                                            message: 'Decline berhasil !',
-                                            duration: 3000,
-                                            position: 'bottom'
-                                        });
-                                        toast.present().then(function () {
-                                            _this.sendApprovalNotif('decline');
-                                            _this.navCtrl.pop();
-                                        });
-                                    }
-                                    else {
-                                        var alert_5 = _this.alertCtrl.create({
-                                            title: '',
-                                            subTitle: 'Gagal Decline Surat, Silahkan Coba Beberapa Saat Lagi.',
-                                            buttons: ['OK']
-                                        });
-                                        alert_5.present();
-                                    }
-                                    loading.dismiss();
-                                })
-                                    .catch(function (error) {
-                                    var alert = _this.alertCtrl.create({
-                                        title: '',
-                                        subTitle: 'Gagal Decline Surat, Periksa Koneksi Internet Anda.',
-                                        buttons: ['OK']
-                                    });
-                                    alert.present();
-                                    loading.dismiss();
-                                });
-                            }
-                        }
-                    ]
-                });
-                alert_4.present();
-            }
-            else if (type == 'kembalikan') {
-                var alert_6 = this.alertCtrl.create({
-                    subTitle: 'Anda yakin ingin kembalikan surat ?',
-                    cssClass: 'alert',
-                    buttons: [
-                        {
-                            text: 'TIDAK',
-                            role: 'cancel',
-                            handler: function () {
-                            }
-                        },
-                        {
-                            text: 'YA',
-                            handler: function () {
-                                var loading = _this.loadingCtrl.create({
-                                    spinner: 'dots',
-                                    content: "Kembalikan surat...",
-                                    cssClass: 'transparent',
-                                    dismissOnPageChange: true
-                                });
-                                loading.present();
-                                _this.soapService
-                                    .post(__WEBPACK_IMPORTED_MODULE_4__config__["a" /* api_base_url */], 'eoffice_kembalikan', {
-                                    fStream: JSON.stringify({
-                                        usernameEDI: __WEBPACK_IMPORTED_MODULE_4__config__["e" /* api_user */],
-                                        passwordEDI: __WEBPACK_IMPORTED_MODULE_4__config__["c" /* api_pass */],
-                                        id_surat: atob(_this.messageDetail['ID Surat']),
-                                        keterangan: _this.keterangan
-                                    })
-                                }).then(function (result) {
-                                    var responData = JSON.parse(String(result));
-                                    if (responData['rcmsg'] == "SUCCESS") {
-                                        var toast = _this.toastCtrl.create({
-                                            message: 'Kembalikan berhasil !',
-                                            duration: 3000,
-                                            position: 'bottom'
-                                        });
-                                        toast.present().then(function () {
-                                            _this.sendApprovalNotif('kembalikan');
-                                            _this.navCtrl.pop();
-                                        });
-                                    }
-                                    else {
-                                        var alert_7 = _this.alertCtrl.create({
-                                            title: '',
-                                            subTitle: 'Gagal Kembalikan Surat, Silahkan Coba Beberapa Saat Lagi.',
-                                            buttons: ['OK']
-                                        });
-                                        alert_7.present();
-                                    }
-                                    loading.dismiss();
-                                })
-                                    .catch(function (error) {
-                                    var alert = _this.alertCtrl.create({
-                                        title: '',
-                                        subTitle: 'Gagal Decline Surat, Periksa Koneksi Internet Anda.',
-                                        buttons: ['OK']
-                                    });
-                                    alert.present();
-                                    loading.dismiss();
-                                });
-                            }
-                        }
-                    ]
-                });
-                alert_6.present();
-            }
+            return false;
         }
     };
-    InboxDetailPage.prototype.sendApprovalNotif = function (type) {
+    Home3Page.prototype.parse = function (val) {
+        var intValue = parseInt(val);
+        if (intValue > 0) {
+            return true;
+        }
+        else {
+            return false;
+        }
+    };
+    Home3Page.prototype.cekVersi = function () {
         var _this = this;
-        var nippList = [];
-        var pesan = "";
-        var res = '';
-        if (type == "approve") {
-            if (this.messageDetail['Kode Jenis Surat'] == 'permohonan') {
-                if (this.nipp == this.messageDetail['NIPP Menyetujui']) {
-                    if (this.messageDetail['NIPP Mengetahui'] != null) {
-                        nippList.push(this.messageDetail['NIPP Mengetahui']);
-                        pesan = 'Pengajuan cuti/izin dari ' + this.messageDetail['Nama Pemohon'] + ' membutuhkan persetujuan.';
-                        res = 'InboxDetailPage';
-                    }
-                    else {
-                        nippList.push(this.messageDetail['NIPP Pemohon']);
-                        pesan = 'Pengajuan cuti/izin anda telah disetujui.';
-                        res = 'CutiListPage';
-                    }
-                }
-                else if (this.nipp == this.messageDetail['NIPP Mengetahui']) {
-                    nippList.push(this.messageDetail['NIPP Pemohon']);
-                    pesan = 'Pengajuan cuti/izin anda telah disetujui.';
-                    res = 'CutiListPage';
-                }
-            }
-            else {
-                var pemeriksa = [];
-                pemeriksa = this.messageDetail['Pemeriksa'].filter(function (x) { return x['nipp_pemeriksa'].includes(_this.userdataTPK['data']['NIPP']); });
-                this.pushNotifKeDrafter(this.messageDetail['Drafter'][0]['nipp_drafter'], this.userdataTPK['data']['NAMA']);
-                this.pushNotifKePemeriksa(this.messageDetail['Pemeriksa'], this.userdataTPK['data']['NAMA']);
-                if (this.messageDetail['Pemeriksa'].indexOf(pemeriksa[0]) != -1) {
-                    if (this.messageDetail['Pemeriksa'].indexOf(pemeriksa[0]) != this.messageDetail['Pemeriksa'].length - 1) {
-                        nippList.push(this.messageDetail['Pemeriksa'][this.messageDetail['Pemeriksa'].indexOf(pemeriksa[0]) + 1]['nipp_pemeriksa']);
-                    }
-                    else if (this.messageDetail['Pemeriksa'].indexOf(pemeriksa[0]) == this.messageDetail['Pemeriksa'].length - 1) {
-                        nippList.push(this.messageDetail['Pengirim']['NIPP']);
+        if (this.platform.is('cordova')) {
+            this.oneSignal.getIds().then(function (id) {
+                console.log(id);
+                _this.soapService.post(__WEBPACK_IMPORTED_MODULE_3__config__["a" /* api_base_url */], 'eoffice_bypass_wso', {
+                    fStream: JSON.stringify({
+                        sc_type: 'check_version',
+                        sc_code: "",
+                        data: {
+                            "platform": "ios",
+                            "version": "1.4.3",
+                            "player_id": id.userId,
+                            "nipp": _this.userdataTPK.data.NIPP,
+                            "model": _this.device.model,
+                            "uuid": _this.device.uuid
+                        }
+                    })
+                }).then(function (result) {
+                    var responData = JSON.parse(String(result));
+                    console.log(responData);
+                    if (responData['rcmsg'] == "SUCCESS") {
+                        if ((responData['data']['POPUP'] == "1" || responData['data']['POPUP'] == "2" || responData['data']['POPUP'] == "3")) {
+                            _this.showVersiPopup(responData['data']['POPUP'], responData['data']['POPUP_MESSAGE'], responData['data']['URL']);
+                        }
+                        else {
+                        }
                     }
                     else {
                     }
+                })
+                    .catch(function (error) {
+                    console.log(error);
+                });
+            });
+        }
+    };
+    Home3Page.prototype.showVersiPopup = function (popupCode, popupMessage, url) {
+        var _this = this;
+        var myButton = [];
+        if (popupCode == "1") {
+            myButton = [
+                {
+                    text: 'LEWATI',
+                    role: 'cancel',
+                    handler: function () {
+                        console.log('Cancel clicked');
+                        _this.isSkipUpdate = true;
+                        // return false;
+                    }
+                },
+                {
+                    text: 'UPDATE',
+                    handler: function () {
+                        var options = {
+                            zoom: 'no'
+                        };
+                        var browser = _this.inAppBrowser.create(url, '_system', options);
+                        return false;
+                    }
                 }
-                pesan = "Surat Dari " + this.messageDetail['Drafter'][0]['nama_drafter'] + " Membutuhkan Approval. \nPerihal : " + this.messageDetail['Perihal'];
-                res = 'InboxDetailPage';
-            }
+            ];
         }
-        else if (type == "decline") {
-            if (this.messageDetail['Kode Jenis Surat'] == 'permohonan') {
-                nippList.push(this.messageDetail['NIPP Pemohon']);
-                pesan = "Permohonan cuti/izin Anda Telah Ditangguhkan oleh " + this.userdataTPK['data']['NAMA'];
-                res = 'CutiListPage';
-            }
-            else {
-                nippList.push(this.messageDetail['Drafter'][0]['nipp_drafter']);
-                pesan = "Surat Anda Telah Dibatalkan oleh " + this.userdataTPK['data']['NAMA'] + ". \nPerihal : " + this.messageDetail['Perihal'];
-                res = 'InboxDetailPage';
-            }
-        }
-        else if (type == "kembalikan") {
-            if (this.messageDetail['Kode Jenis Surat'] == 'permohonan') {
-                nippList.push(this.messageDetail['NIPP Pemohon']);
-                pesan = "Permohonan cuti/izin Anda Telah Ditangguhkan oleh " + this.userdataTPK['data']['NAMA'];
-                res = 'CutiListPage';
-            }
-            else {
-                nippList.push(this.messageDetail['Drafter'][0]['nipp_drafter']);
-                pesan = "Surat Anda Dikembalikan oleh " + this.userdataTPK['data']['NAMA'] + ". \nPerihal : " + this.messageDetail['Perihal'];
-                res = 'InboxDetailPage';
-            }
-        }
-        this.soapService
-            .post(__WEBPACK_IMPORTED_MODULE_4__config__["a" /* api_base_url */], 'eoffice_notif_imove_nipp', {
-            fStream: JSON.stringify({
-                usernameEDI: __WEBPACK_IMPORTED_MODULE_4__config__["e" /* api_user */],
-                passwordEDI: __WEBPACK_IMPORTED_MODULE_4__config__["c" /* api_pass */],
-                nipp: nippList,
-                data: {
-                    "res": res,
-                    "nipp": this.nipp,
-                    "messageData": this.messageData
-                },
-                content: {
-                    "en": pesan
-                },
-                heading: {
-                    "en": "Surat Masuk"
-                },
-                id_kategori: ""
-            })
-        }).then(function (result) {
-            var hasil = JSON.stringify(result);
-            _this.navCtrl.pop();
-        }).catch(function (error) {
-            _this.navCtrl.pop();
-        });
-    };
-    InboxDetailPage.prototype.pushNotifKeDrafter = function (nippTujuan, namaSession) {
-        var _this = this;
-        var nippList = [];
-        var pesan = 'surat anda telah diapprove oleh ' + namaSession + ". \nPerihal : " + this.messageDetail['Perihal'];
-        var res = 'OutboxPage';
-        nippList.push(nippTujuan);
-        this.soapService
-            .post(__WEBPACK_IMPORTED_MODULE_4__config__["a" /* api_base_url */], 'eoffice_notif_imove_nipp', {
-            fStream: JSON.stringify({
-                usernameEDI: __WEBPACK_IMPORTED_MODULE_4__config__["e" /* api_user */],
-                passwordEDI: __WEBPACK_IMPORTED_MODULE_4__config__["c" /* api_pass */],
-                nipp: nippList,
-                data: {
-                    "res": res,
-                    "nipp": this.nipp,
-                    "messageData": this.messageData
-                },
-                heading: {
-                    "en": "Surat Masuk"
-                },
-                content: {
-                    "en": pesan
-                },
-                id_kategori: ""
-            })
-        }).then(function (result) {
-            var hasil = JSON.stringify(result);
-            _this.navCtrl.pop();
-        }).catch(function (error) {
-            _this.navCtrl.pop();
-        });
-    };
-    InboxDetailPage.prototype.pushNotifKePemeriksa = function (nippPemeriksaList, namaSession) {
-        var _this = this;
-        var pemeriksa = [];
-        pemeriksa = this.messageDetail['Pemeriksa'].filter(function (x) { return x['nipp_pemeriksa'].includes(_this.userdataTPK['data']['NIPP']); });
-        var indexSessionPemeriksa = nippPemeriksaList.indexOf(pemeriksa[0]);
-        var nippList = [];
-        var pesan = 'surat anda telah diapprove oleh ' + namaSession + ". \nPerihal : " + this.messageDetail['Perihal'];
-        var res = 'OutboxPage';
-        for (var i = 0; i < nippPemeriksaList.length; i++) {
-            if (indexSessionPemeriksa != -1) {
-                if (i < indexSessionPemeriksa) {
-                    nippList.push(nippPemeriksaList[i]['nipp_pemeriksa']);
+        else if (popupCode == "2") {
+            myButton = [
+                {
+                    text: 'UPDATE',
+                    handler: function () {
+                        // this.market.open('ipc.imove');
+                        var options = {
+                            zoom: 'no'
+                        };
+                        var browser = _this.inAppBrowser.create(url, '_system', options);
+                        return false;
+                    }
                 }
-            }
-            else {
-                nippList.push(nippPemeriksaList[i]['nipp_pemeriksa']);
-            }
+            ];
         }
-        this.soapService
-            .post(__WEBPACK_IMPORTED_MODULE_4__config__["a" /* api_base_url */], 'eoffice_notif_imove_nipp', {
-            fStream: JSON.stringify({
-                usernameEDI: __WEBPACK_IMPORTED_MODULE_4__config__["e" /* api_user */],
-                passwordEDI: __WEBPACK_IMPORTED_MODULE_4__config__["c" /* api_pass */],
-                nipp: nippList,
-                data: {
-                    "res": res,
-                    "nipp": this.nipp,
-                    "messageData": this.messageData
-                },
-                content: {
-                    "en": pesan
-                },
-                heading: {
-                    "en": "Surat Masuk"
-                },
-                id_kategori: ""
-            })
-        }).then(function (result) {
-            var hasil = JSON.stringify(result);
-            _this.navCtrl.pop();
-        }).catch(function (error) {
-            _this.navCtrl.pop();
-        });
-    };
-    InboxDetailPage.prototype.goToLogSurat = function () {
-        this.navCtrl.push('LogSuratPage', {
-            idSurat: this.messageDetail['ID Surat']
-        });
-    };
-    InboxDetailPage.prototype.isEmptyObject = function (obj) {
-        for (var prop in obj) {
-            if (obj.hasOwnProperty(prop)) {
-                return false;
-            }
+        else if (popupCode == "3") {
+            myButton = [
+                {
+                    text: 'OK',
+                    role: 'cancel',
+                    handler: function () {
+                        console.log('Cancel clicked');
+                    }
+                }
+            ];
         }
-        return true;
+        var alert = this.alertCtrl.create({
+            subTitle: popupMessage,
+            enableBackdropDismiss: false,
+            cssClass: 'alert',
+            buttons: myButton
+        });
+        alert.present();
     };
-    InboxDetailPage.prototype.replaceNomorSurat = function (noSurat) {
-        var result = '';
-        result = noSurat.replace(/[-.\/]/g, "_");
-        return result + '.pdf';
-    };
-    InboxDetailPage.prototype.goToPertanggungjawaban = function () {
-        var _this = this;
-        var modal = this.modalCtrl.create("PertanggungjawabanSppdPage", {
-            messageData: this.messageData
-        }, {
+    Home3Page.prototype.showModal = function (myModal) {
+        var modal = this.modalCtrl.create(myModal, {}, {
             enableBackdropDismiss: true,
             showBackdrop: true,
+            cssClass: 'my-modal10'
         });
         modal.present();
-        modal.onDidDismiss(function (data) {
-            if (data != null) {
-                _this.navCtrl.pop();
-            }
+    };
+    Home3Page.prototype.getValidasi = function () {
+        var _this = this;
+        this.http.post(__WEBPACK_IMPORTED_MODULE_3__config__["c" /* api_res */] + 'am3_check_shift.php', {
+            usernameEDI: __WEBPACK_IMPORTED_MODULE_3__config__["d" /* api_user */],
+            passwordEDI: __WEBPACK_IMPORTED_MODULE_3__config__["b" /* api_pass */],
+            person_id: this.userdataTPK['data']['PERSON_ID'],
+            nipp: this.userdataTPK['data']['NIPP'],
+            id_user: this.userdataTPK['data']['IDUSER']
+        }).subscribe(function (data) {
+            console.log(data);
+            //var responData = JSON.parse(data);
+            _this.dataValidasi = data['data'];
+            _this.isLoadingHadirkoe = false;
+        }, function (err) {
+            console.log(err);
+            _this.isLoadingHadirkoe = false;
         });
     };
-    InboxDetailPage = __decorate([
+    Home3Page = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
-            selector: 'page-inbox-detail',
-            providers: [__WEBPACK_IMPORTED_MODULE_2__soap_service__["a" /* SoapService */]],template:/*ion-inline-start:"/Users/itadmin/Downloads/ERDA/POS_PPI/src/pages/inbox-detail/inbox-detail.html"*/'<ion-header>\n	<ion-navbar>\n		<ion-title>\n			<!-- <span ion-text color="light">Detail Surat</span> -->\n		</ion-title>\n\n		<ion-buttons end>\n			<button ion-button (click)="goToLogSurat()">\n				<!-- <ion-icon style="font-size:2.4rem;" name="md-analytics" color="light"></ion-icon> -->\n				<img src="assets/imgs/menu-icon/history.png" style="    max-height: 27px;\n				margin-right: 5px;">\n			</button>\n			<button ion-button (click)="downloadInbox(replaceNomorSurat(messageData[\'No_Surat\']))">\n				<ion-icon style="font-size:2.4rem;" name="md-download" color="light"></ion-icon>\n			</button>\n		</ion-buttons>\n	</ion-navbar>\n</ion-header>\n\n\n<ion-content margin-bottom>\n	<div *ngIf="isLoading == true">\n		<ion-item no-lines>\n			<div class="animate-skeleton-background load-2"></div>\n			<div class="animate-skeleton-background load-3"></div>\n			<div class="garis"></div>\n			<div class="animate-skeleton-background load-1"> </div>\n			<div class="animate-skeleton-background load-3"></div>\n			<div class="animate-skeleton-background load-1"> </div>\n			<div class="animate-skeleton-background load-3"></div>\n		</ion-item>\n	</div>\n\n	<div *ngIf="isLoading == false">\n		<div *ngIf="messageDetail[\'Kode Jenis Surat\'] != \'permohonan\'">\n			<ion-card class="header-menu">\n				<ion-item no-padding margin-left>\n					<span ion-text text-wrap style="font-size:1.5rem;">\n						<b>{{ messageDetail[\'Perihal\'] }}</b>\n					</span> <br>\n					<span ion-text text-wrap style="font-size:1.2rem; color:gray;">\n						{{ messageDetail[\'No Surat\'] }}\n					</span>\n					<div style="padding: 10px;" item-end>\n						<button ion-button icon-only clear (click)="show()"> \n							<ion-icon name="ios-arrow-down-outline" *ngIf="!showDetailPesan"></ion-icon>\n							<ion-icon name="ios-arrow-up-outline" *ngIf="showDetailPesan"></ion-icon>\n						</button>\n					</div>\n\n				</ion-item>\n			</ion-card>\n\n			<ion-card class="my-card" style="margin-top:10px !important;" *ngIf="showDetailPesan">\n				<ion-item>\n					<span ion-text text-wrap class="font" color="color4">Tanggal :\n					</span><br />\n					<span ion-text text-wrap color=\'dark\' class="font2">\n						{{ messageDetail[\'Tanggal Surat\'] }}\n					</span> <br>\n\n					<span ion-text text-wrap class="font" color="color4">Pengirim :\n					</span><br />\n					<span ion-text text-wrap color=\'dark\' class="font2">\n						{{ messageDetail[\'Pengirim\'][\'Nama Jabatan\'] }}\n					</span> <br>\n\n					<div *ngIf="messageDetail[\'Kode Jenis Surat\'] == \'surat_perintah\' || messageDetail[\'Kode Jenis Surat\'] == \'undangan\' || messageDetail[\'Kode Jenis Surat\'] == \'surat_dinas\' || messageDetail[\'Kode Jenis Surat\'] == \'nd_undangan\' || messageDetail[\'Kode Jenis Surat\'] == \'nd_sppd\'" >\n						<span ion-text text-wrap class="font" color="color4">Tanggal Mulai :\n						</span><br />\n						<span ion-text text-wrap color=\'dark\' class="font2">\n							{{ messageDetail[\'Agenda\'][\'Tanggal Mulai\'] }}\n						</span> \n						<span ion-text text-wrap *ngIf="messageDetail[\'Agenda\'][\'Tanggal Mulai\'] == null"  color=\'dark\' class="font2">\n							-\n						</span>\n						<br>\n\n						<span ion-text text-wrap class="font" color="color4">Tanggal Akhir :\n						</span><br />\n						<span ion-text text-wrap color=\'dark\' class="font2">\n							{{ messageDetail[\'Agenda\'][\'Tanggal Akhir\'] }}\n						</span> \n						<span ion-text text-wrap *ngIf="messageDetail[\'Agenda\'][\'Tanggal Akhir\'] == null"  color=\'dark\' class="font2">\n							-\n						</span>\n						<br>\n\n						<span ion-text text-wrap class="font" color="color4">Lokasi :\n						</span><br />\n						<span ion-text text-wrap color=\'dark\' class="font2">\n							{{ messageDetail[\'Agenda\'][\'Lokasi\'] }}\n						</span> \n						<span ion-text text-wrap *ngIf="messageDetail[\'Agenda\'][\'Lokasi\'] == null"  color=\'dark\' class="font2">\n							-\n						</span>\n						<br>\n					</div>\n					\n\n					<div *ngIf="messageDetail[\'Penerima Jabatan\'].length > 0">\n						<span ion-text text-wrap class="font" color="color4">Penerima Jabatan :\n						</span>\n						<span ion-text text-wrap class="font" color="primary"\n							*ngIf="messageDetail[\'Penerima Jabatan\'].length > 1" (click)="showMore(1)"\n							style="float:right;">\n							View more\n						</span> <br>\n						<div *ngIf="!showAllPenerimaJabatan">\n							<span ion-text text-wrap color=\'dark\' class="font2">\n								1. {{ messageDetail[\'Penerima Jabatan\'][0] }}\n							</span>\n						</div>\n						<div *ngIf="showAllPenerimaJabatan">\n							<span *ngFor="let p of messageDetail[\'Penerima Jabatan\']; let i = index" ion-text text-wrap\n								color=\'dark\' class="font2">\n								{{ i + 1 }}. {{ p }} <br />\n							</span>\n						</div>\n					</div>\n					<div *ngIf="messageDetail[\'Tembusan Jabatan\'].length > 0">\n						<span ion-text text-wrap class="font" color="color4">Tembusan Jabatan :\n						</span>\n						<span ion-text text-wrap class="font" color="primary"\n							*ngIf="messageDetail[\'Tembusan Jabatan\'].length > 1" (click)="showMore(2)"\n							style="float:right;">\n							View more\n						</span> <br>\n						<div *ngIf="!showAllTembusanJabatan">\n							<span ion-text text-wrap color=\'dark\' class="font2">\n								1. {{ messageDetail[\'Tembusan Jabatan\'][0] }}\n							</span>\n						</div>\n						<div *ngIf="showAllTembusanJabatan">\n							<span *ngFor="let p of messageDetail[\'Tembusan Jabatan\']; let i = index" ion-text text-wrap\n								color=\'dark\' class="font2">\n								{{ i + 1 }}. {{ p }} <br />\n							</span>\n						</div>\n					</div>\n\n					<div *ngIf="messageDetail[\'Penerima Pekerja\'].length > 0">\n						<span ion-text text-wrap class="font" color="color4">Penerima Pekerja :\n						</span>\n						<span ion-text text-wrap class="font" color="primary"\n							*ngIf="messageDetail[\'Penerima Pekerja\'].length > 1" (click)="showMore(3)"\n							style="float:right;">\n							View more\n						</span> <br>\n						<div *ngIf="!showAllPenerimaPekerja">\n							<span ion-text text-wrap color=\'dark\' class="font2">\n								1. {{ messageDetail[\'Penerima Pekerja\'][0] }}\n							</span>\n						</div>\n						<div *ngIf="showAllPenerimaPekerja">\n							<span *ngFor="let p of messageDetail[\'Penerima Pekerja\']; let i = index" ion-text text-wrap\n								color=\'dark\' class="font2">\n								{{ i + 1 }}. {{ p }} <br />\n							</span>\n						</div>\n					</div>\n\n					<div *ngIf="messageDetail[\'Tembusan Pekerja\'].length > 0">\n						<span ion-text text-wrap class="font" color="color4">Tembusan Pekerja :\n						</span>\n						<span ion-text text-wrap class="font" color="primary"\n							*ngIf="messageDetail[\'Tembusan Pekerja\'].length > 1" (click)="showMore(4)"\n							style="float:right;">\n							View more\n						</span> <br>\n						<div *ngIf="!showAllTembusanPekerja">\n							<span ion-text text-wrap color=\'dark\' class="font2">\n								1. {{ messageDetail[\'Tembusan Pekerja\'][0] }}\n							</span>\n						</div>\n						<div *ngIf="showAllTembusanPekerja">\n							<span *ngFor="let p of messageDetail[\'Tembusan Pekerja\']; let i = index" ion-text text-wrap\n								color=\'dark\' class="font2">\n								{{ i + 1 }}. {{ p }} <br />\n							</span>\n						</div>\n					</div>\n\n					<div *ngIf="messageDetail[\'Penerima Non Pekerja\'].length > 0">\n						<span ion-text text-wrap class="font" color="color4">Penerima Non Pekerja\n							: </span>\n						<span ion-text text-wrap class="font" color="primary"\n							*ngIf="messageDetail[\'Penerima Non Pekerja\'].length > 1" (click)="showMore(5)"\n							style="float:right;">\n							View more\n						</span> <br>\n						<div *ngIf="!showAllPenerimaNonPekerja">\n							<span ion-text text-wrap color=\'dark\' class="font2">\n								1. {{ messageDetail[\'Penerima Non Pekerja\'][0] }}\n							</span>\n						</div>\n						<div *ngIf="showAllPenerimaNonPekerja">\n							<span *ngFor="let p of messageDetail[\'Penerima Non Pekerja\']; let i = index" ion-text\n								text-wrap color=\'dark\' class="font2">\n								{{ i + 1 }}. {{ p }} <br />\n							</span>\n						</div>\n					</div>\n\n					<div *ngIf="messageDetail[\'Tembusan Non Pekerja\'].length > 0">\n						<span ion-text text-wrap class="font" color="color4">Tembusan Non Pekerja\n							: </span>\n						<span ion-text text-wrap class="font" color="primary"\n							*ngIf="messageDetail[\'Tembusan Non Pekerja\'].length > 1" (click)="showMore(6)"\n							style="float:right;">\n							View more\n						</span> <br>\n						<div *ngIf="!showAllTembusanNonPekerja">\n							<span ion-text text-wrap color=\'dark\' class="font2">\n								1. {{ messageDetail[\'Tembusan Non Pekerja\'][0] }}\n							</span>\n						</div>\n						<div *ngIf="showAllTembusanNonPekerja">\n							<span *ngFor="let p of messageDetail[\'Tembusan Non Pekerja\']; let i = index" ion-text\n								text-wrap color=\'dark\' class="font2">\n								{{ i + 1 }}. {{ p }} <br />\n							</span>\n						</div>\n					</div>\n\n					<span ion-text text-wrap class="font" style="color:#959595">Attachment :\n					</span><br />\n					<div *ngIf="attachmentList.length > 0">\n						<div *ngFor="let attachment of attachmentList" (click)="downloadAttach(attachment)">\n							<span ion-text text-wrap color=\'dark\' class="font2"\n								color="primary">{{ subStrAttachment(attachment) }}</span> <br>\n						</div>\n					</div>\n					<div *ngIf="attachmentList.length == 0">\n						<span ion-text text-wrap color=\'dark\' class="font2" color="primary">\n							-\n						</span>\n					</div>\n				</ion-item>\n\n			</ion-card>\n\n			<ion-grid no-padding fixed>\n\n				<ion-row>\n					<ion-col col-12>\n						<ion-list>\n							<ion-item *ngIf="messageDetail[\'Jenis Surat\'] == \'Surat Perintah\'" padding-left\n								padding-right text-wrap>\n								<span ion-text text-wrap class="font2" style="color:black;"><b>Dasar</b></span>\n							</ion-item>\n\n							<ion-item *ngIf="messageDetail[\'Jenis Surat\'] == \'Surat Perintah\'" padding-left\n								padding-right text-wrap>\n								<div [innerHTML]="dasarSuratPerintah"></div>\n							</ion-item>\n\n							<ion-item *ngIf="messageDetail[\'Jenis Surat\'] == \'Surat Perintah\'" padding-left\n								padding-right text-wrap>\n								<span ion-text text-wrap class="font2" style="color:black;"><b>Perintah</b></span>\n							</ion-item>\n\n							<ion-item *ngIf="messageDetail[\'Jenis Surat\'] == \'Surat Perintah\'" padding-left\n								padding-right text-wrap>\n								<div [innerHTML]="isiPerintah"></div>\n\n							</ion-item>\n\n							<ion-item *ngIf="messageDetail[\'Jenis Surat\'] != \'Surat Perintah\'" padding-left\n								padding-right margin-bottom text-wrap>\n								<div [innerHTML]="messageDetail[\'Isi Surat\']"></div>\n							</ion-item>\n						</ion-list>\n					</ion-col>\n				</ion-row>\n\n				<ion-row\n					*ngIf="!isLoading && isAtasan && messageDetail[\'Status Surat\'] == \'LIHAT SURAT\' && from_modul != \'sppd\'">\n					<ion-col col-12>\n						<ion-list>\n							<ion-item no-lines padding-left padding-right no-margin>\n								<ion-row class="my-col">\n									<ion-col col-6 align-self-start><b ion-text color="dark" class="font2">Disposisi\n											Jabatan</b> </ion-col>\n									<ion-col col-6 align-self-center padding-right (click)="showDisposisi(\'jabatan\')">\n										<ion-icon name="add" color="primary" class="plus" float-right></ion-icon>\n									</ion-col>\n								</ion-row>\n								<div *ngIf="disposisiJabatanList != null">\n									<ion-row class="my-col" *ngFor="let disposisiJabatan of disposisiJabatanList">\n										<ion-col align-self-start text-wrap>\n											<p ion-text color="primary">{{ disposisiJabatan[\'nama_jabatan\'] }} |\n												{{ disposisiJabatan[\'nama\'] }}</p>\n										</ion-col>\n										<ion-col col-6 align-self-center padding-right>\n											<ion-icon name="md-close" color="danger" class="del-disposisi"\n												(click)="delete(disposisiJabatan,\'jabatan\')" float-right></ion-icon>\n										</ion-col>\n									</ion-row>\n								</div>\n							</ion-item>\n							<ion-item no-lines padding-left padding-right no-margin>\n								<ion-row class="my-col">\n									<ion-col col-6 align-self-start><b ion-text color="dark" class="font2">Disposisi\n											Pekerja</b> </ion-col>\n									<ion-col col-6 align-self-center padding-right (click)="showDisposisi(\'pekerja\')">\n										<ion-icon name="add" color="danger" class="plus" float-right></ion-icon>\n									</ion-col>\n								</ion-row>\n								<div *ngIf="disposisiPekerjaList != null">\n									<ion-row class="my-col" *ngFor="let disposisiPekerja of disposisiPekerjaList">\n										<ion-col align-self-start text-wrap>\n											<p ion-text color="primary">{{ disposisiPekerja[\'nama\'] }} |\n												{{ disposisiPekerja[\'nipp\'] }} | {{\n														disposisiPekerja[\'nama_jabatan\'] }}</p>\n										</ion-col>\n										<ion-col col-6 align-self-center padding-right>\n											<ion-icon name="md-close" color="danger" class="del-disposisi"\n												(click)="delete(disposisiPekerja,\'pekerja\')" float-right></ion-icon>\n										</ion-col>\n									</ion-row>\n								</div>\n							</ion-item>\n						</ion-list>\n					</ion-col>\n				</ion-row>\n			</ion-grid>\n\n			<ion-grid\n				*ngIf="isAtasan && messageDetail[\'Status Surat\'].includes(\'LIHAT SURAT\')  && from_modul != \'sppd\' ">\n				<ion-row>\n					<ion-col col-6>\n						<button style="border-radius:5px;" icon-start ion-button block color="danger"\n							(click)="cancel()">\n							<ion-icon name="md-close"></ion-icon>\n							Batal\n						</button>\n					</ion-col>\n					<ion-col col-6>\n						<button style="border-radius:5px;" icon-start ion-button block (click)="sendDisposisi()"\n							color="primary"\n							[disabled]="(disposisiJabatanList.length == 0 && disposisiPekerjaList.length == 0) ? true : false">\n							<ion-icon name="md-checkmark"></ion-icon>\n							Disposisi\n						</button>\n					</ion-col>\n				</ion-row>\n			</ion-grid>\n\n			<!-- -------------------------------------- PESERTA SPPD -------------------------------------------------------------- -->\n\n			<div *ngIf="messageDetail[\'Kode Jenis Surat\'] == \'nd_sppd\'">\n\n\n				<ion-item no-padding margin-left margin-right no-lines>\n					<span ion-text text-wrap class="font2">\n						<b>Peserta SPPD</b>\n					</span> <br>\n\n					<div *ngIf=\'pesertaSppdList.length > 0\'>\n						<table width="95%">\n							<tr *ngFor="let peserta of pesertaSppdList;let i = index">\n								<td valign="top" width="10%">{{i+1}}. </td>\n								<td valign="top">\n									<span ion-text text-wrap color=\'dark\' class="font2">\n										{{ peserta[\'NAMA\'] }}\n									</span>\n								</td>\n							</tr>\n						</table>\n					</div>\n\n					<div *ngIf="pesertaSppdList.length == 0">\n						<span ion-text text-wrap color=\'color4\' class="font2">\n							tidak ada peserta SPPD\n						</span>\n					</div>\n\n					<!-- <div *ngIf="attrScanSppd.length > 0 && from_modul == \'sppd\'">						 -->\n					<div *ngIf="messageData[\'KD_STATUS\'] == \'7\' && from_modul == \'sppd\'">\n						<ion-grid>\n							<ion-row>\n								<ion-col col-12>\n									<button style="border-radius:5px;" icon-start ion-button block\n										(click)="goToPertanggungjawaban()" color="primary">\n										<ion-icon name="md-checkmark"></ion-icon>\n										Pertanggungjawabkan\n									</button>\n								</ion-col>\n							</ion-row>\n						</ion-grid>\n					</div>\n\n					<div *ngIf="messageData[\'KD_STATUS\'] == \'9\' && from_modul == \'sppd\'">\n						<ion-grid>\n							<ion-row>\n								<ion-col col-12>\n									<button style="border-radius:5px;" icon-start ion-button block\n										(click)="goToPertanggungjawaban()" color="primary">\n										<ion-icon name="md-checkmark"></ion-icon>\n										Upload Ulang Pertanggungjawabkan\n									</button>\n								</ion-col>\n							</ion-row>\n						</ion-grid>\n					</div>\n\n\n\n				</ion-item>\n\n\n\n\n\n\n			</div>\n\n			<!-- -------------------------------------- PESERTA SPPD -------------------------------------------------------------- -->\n\n			<ion-grid *ngIf="messageDetail[\'Status Surat\'].includes(\'PERIKSA\')  && from_modul != \'sppd\' ">\n				<ion-row>\n					<ion-col col-12>\n						<div class="appForm">\n							<ion-list>\n								<ion-item>\n									<span item-left>\n										<img src="assets/imgs/logo/alasan.png" class="icons">\n									</span>\n									<ion-label stacked>Komentar</ion-label>\n									<ion-input type="text" [(ngModel)]="keterangan" placeholder="" clearInput>\n									</ion-input>\n								</ion-item>\n							</ion-list>\n						</div>\n					</ion-col>\n				</ion-row>\n				<ion-row>\n					<ion-col col-6>\n						<button style="border-radius:5px;" icon-start ion-button block color="danger"\n							(click)="doPeriksa(\'decline\')">\n							<ion-icon name="md-close"></ion-icon>\n							Decline\n						</button>\n					</ion-col>\n					<ion-col col-6>\n						<button style="border-radius:5px;" icon-start ion-button block (click)="doPeriksa(\'approve\')"\n							color="primary">\n							<ion-icon name="md-checkmark"></ion-icon>\n							Approve\n						</button>\n					</ion-col>\n				</ion-row>\n				<ion-row>\n					<ion-col col-12>\n						<button style="border-radius:5px;" icon-start ion-button block (click)="doPeriksa(\'kembalikan\')"\n							color="primary">\n							<ion-icon name="md-refresh"></ion-icon>\n							Kembalikan\n						</button>\n					</ion-col>\n				</ion-row>\n			</ion-grid>\n		</div>\n\n		<div *ngIf="messageDetail[\'Kode Jenis Surat\'] == \'permohonan\'">\n			<ion-card class="header-card">\n				<ion-card-content>\n					<span ion-text text-wrap class="font-header">\n						<b>{{ messageDetail[\'Judul Surat\'] }}</b>\n					</span>\n				</ion-card-content>\n			</ion-card>\n\n			<ion-card class="my-card">\n				<ion-item>\n					<span ion-text text-wrap class="font-mini" color="color4">\n						Tanggal Pengajuan\n					</span><br>\n					<span ion-text text-wrap class="font-small">\n						{{ messageDetail[\'Tanggal Pengajuan\'] }}\n					</span><br>\n\n					<span ion-text text-wrap class="font-mini" color="color4">\n						Jenis Pengajuan\n					</span><br>\n					<span ion-text text-wrap class="font-small">\n						{{ messageDetail[\'Jenis Pengajuan\'] }}\n					</span>\n					<br>\n\n					<span ion-text text-wrap class="font-mini" color="color4">\n						tanggal Cuti/Izin\n					</span><br>\n					<span ion-text text-wrap class="font-small">\n						{{ messageDetail[\'Tanggal Mulai Cuti\'] }}\n					</span> <span ion-text text-wrap class="font-small" color="primary"> s/d </span>\n					<span ion-text text-wrap class="font-small">\n						{{ messageDetail[\'Tanggal Selesai Cuti\'] }}\n					</span>\n					<br>\n\n					<span ion-text text-wrap class="font-mini" color="color4">\n						Alamat Selama Cuti/Izin\n					</span><br>\n					<span ion-text text-wrap class="font-small">\n						{{ messageDetail[\'Alamat Cuti\'] }}\n					</span>\n					<br>\n\n					<span ion-text text-wrap class="font-mini" color="color4">\n						Alasan\n					</span><br>\n					<span ion-text text-wrap class="font-small">\n						{{ messageDetail[\'Alasan\'] }}\n					</span>\n					<br>\n				</ion-item>\n			</ion-card>\n\n			<ion-card class="my-card">\n				<ion-item>\n					<div class="header-text">\n						<span ion-text text-wrap>\n							<img src="assets/imgs/logo/nipp.png" class="icons">\n						</span>\n						<span ion-text text-wrap class="font-small">\n							<b>Biodata Pemohon</b>\n						</span>\n					</div>\n					<div class="garis"></div>\n					<span ion-text text-wrap class="font-mini" color="color4">\n						NIPP\n					</span><br>\n					<span ion-text text-wrap class="font-small">\n						{{ messageDetail[\'NIPP Pemohon\'] }}\n					</span><br>\n\n					<span ion-text text-wrap class="font-mini" color="color4">\n						Nama\n					</span><br>\n					<span ion-text text-wrap class="font-small">\n						{{ messageDetail[\'Nama Pemohon\'] }}\n					</span>\n					<br>\n\n					<span ion-text text-wrap class="font-mini" color="color4">\n						Menyetujui\n					</span><br>\n					<span ion-text text-wrap class="font-small" color="primary">\n						<b>{{ messageDetail[\'NIPP Menyetujui\'] }}</b>\n					</span> <br>\n					<span ion-text text-wrap class="font-small">\n						{{ messageDetail[\'Nama Menyetujui\'] }} |\n						{{ messageDetail[\'Jabatan Menyetujui\'] }}\n					</span>\n					<br>\n\n					<span ion-text text-wrap class="font-mini" color="color4">\n						Mengetahui\n					</span><br>\n					<span *ngIf="messageDetail[\'NIPP Mengetahui\'] == \'\' || messageDetail[\'NIPP Mengetahui\'] == null"\n						ion-text text-wrap class="font-small" color="primary">\n						-\n					</span>\n					<span *ngIf="messageDetail[\'NIPP Mengetahui\'] != \'\' || messageDetail[\'NIPP Mengetahui\'] != null"\n						ion-text text-wrap class="font-small" color="primary">\n						<b>{{ messageDetail[\'NIPP Mengetahui\'] }}</b>\n					</span> <br>\n					<span *ngIf="messageDetail[\'Nama Mengetahui\'] != \'\' || messageDetail[\'Nama Mengetahui\'] != null"\n						ion-text text-wrap class="font-small">\n						{{ messageDetail[\'Nama Mengetahui\'] }} |\n						{{ messageDetail[\'Jabatan Mengetahui\'] }}\n					</span>\n				</ion-item>\n			</ion-card>\n\n			<ion-list\n				*ngIf="!isLoading && isAtasan && messageDetail[\'Kode Status Surat\'] == \'4\' && from_modul != \'sppd\'">\n				<ion-item no-lines padding-left padding-right no-margin>\n					<ion-row class="my-col">\n						<ion-col col-6 align-self-start><b ion-text color="dark" class="font2">Disposisi\n								Jabatan</b> </ion-col>\n						<ion-col col-6 align-self-center padding-right (click)="showDisposisi(\'jabatan\')">\n							<ion-icon name="add" color="primary" class="plus" float-right></ion-icon>\n						</ion-col>\n					</ion-row>\n					<div *ngIf="disposisiJabatanList != null">\n						<ion-row class="my-col" *ngFor="let disposisiJabatan of disposisiJabatanList">\n							<ion-col align-self-start text-wrap>\n								<p ion-text color="primary">{{ disposisiJabatan[\'nama_jabatan\'] }} |\n									{{ disposisiJabatan[\'nama\'] }}</p>\n							</ion-col>\n							<ion-col col-6 align-self-center padding-right>\n								<ion-icon name="md-close" color="danger" class="del-disposisi"\n									(click)="delete(disposisiJabatan,\'jabatan\')" float-right></ion-icon>\n							</ion-col>\n						</ion-row>\n					</div>\n				</ion-item>\n				<ion-item no-lines padding-left padding-right no-margin>\n					<ion-row class="my-col">\n						<ion-col col-6 align-self-start><b ion-text color="dark" class="font2">Disposisi\n								Pekerja</b> </ion-col>\n						<ion-col col-6 align-self-center padding-right (click)="showDisposisi(\'pekerja\')">\n							<ion-icon name="add" color="danger" class="plus" float-right></ion-icon>\n						</ion-col>\n					</ion-row>\n					<div *ngIf="disposisiPekerjaList != null">\n						<ion-row class="my-col" *ngFor="let disposisiPekerja of disposisiPekerjaList">\n							<ion-col align-self-start text-wrap>\n								<p ion-text color="primary">{{ disposisiPekerja[\'nama\'] }} |\n									{{ disposisiPekerja[\'nipp\'] }} | {{\n											disposisiPekerja[\'nama_jabatan\'] }}</p>\n							</ion-col>\n							<ion-col col-6 align-self-center padding-right>\n								<ion-icon name="md-close" color="danger" class="del-disposisi"\n									(click)="delete(disposisiPekerja,\'pekerja\')" float-right></ion-icon>\n							</ion-col>\n						</ion-row>\n					</div>\n				</ion-item>\n			</ion-list>\n\n			<ion-grid\n				*ngIf="isAtasan && messageDetail[\'Kode Status Surat\'] == \'4\'  && from_modul != \'sppd\' ">\n				<ion-row>\n					<ion-col col-6>\n						<button style="border-radius:5px;" icon-start ion-button block color="danger"\n							(click)="cancel()">\n							<ion-icon name="md-close"></ion-icon>\n							Batal\n						</button>\n					</ion-col>\n					<ion-col col-6>\n						<button style="border-radius:5px;" icon-start ion-button block (click)="sendDisposisi()"\n							color="primary"\n							[disabled]="(disposisiJabatanList.length == 0 && disposisiPekerjaList.length == 0) ? true : false">\n							<ion-icon name="md-checkmark"></ion-icon>\n							Disposisi\n						</button>\n					</ion-col>\n				</ion-row>\n			</ion-grid>\n\n			<ion-grid *ngIf="isAtasan && messageDetail[\'Kode Status Surat\'] == \'2\'">\n				<ion-row>\n					<ion-col col-12>\n						<div class="appForm">\n							<ion-list>\n								<ion-item>\n									<span item-left>\n										<img src="assets/imgs/logo/alasan.png" class="icons">\n									</span>\n									<ion-label stacked>Komentar</ion-label>\n									<ion-input type="text" [(ngModel)]="keterangan" placeholder="" clearInput>\n									</ion-input>\n								</ion-item>\n							</ion-list>\n						</div>\n					</ion-col>\n				</ion-row>\n				<ion-row>\n					<ion-col col-6>\n						<button style="border-radius:5px;" icon-start ion-button block color="danger"\n							(click)="doPeriksa(\'decline\')">\n							<ion-icon name="md-close"></ion-icon>\n							Ditangguhkan\n						</button>\n					</ion-col>\n					<ion-col col-6>\n						<button style="border-radius:5px;" icon-start ion-button block (click)="doPeriksa(\'approve\')"\n							color="primary">\n							<ion-icon name="md-checkmark"></ion-icon>\n							Setujui\n						</button>\n					</ion-col>\n				</ion-row>\n			</ion-grid>\n		</div>\n\n\n\n	</div>\n\n</ion-content>'/*ion-inline-end:"/Users/itadmin/Downloads/ERDA/POS_PPI/src/pages/inbox-detail/inbox-detail.html"*/,
+            selector: 'page-home3',
+            providers: [__WEBPACK_IMPORTED_MODULE_4__soap_service__["a" /* SoapService */]],template:/*ion-inline-start:"/Users/itadmin/Downloads/ERDA/POS_PPI/src/pages/home3/home3.html"*/'<!--\n  Generated template for the Home3Page page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<!-- <ion-header>\n  <ion-navbar>\n    <img src="assets/imgs/ipc-tpk-logo.png" style="width:65px;height:auto; margin-left:10px; display:inline-block"\n      height="40px" />\n    <ion-title class="titleicon" style="display:inline-block">\n      <span ion-text><b>PPI Office System</b></span>\n    </ion-title>\n    <ion-buttons end>\n      <button ion-button (click)="openPage(\'SettingPage\')">\n        <ion-icon style="font-size:2.5rem;" name="md-settings" color="color6"></ion-icon>\n      </button>\n      <button ion-button (click)="logout()">\n        <ion-icon style="font-size:2.5rem;" name="md-log-out" color="color6"></ion-icon>\n      </button>\n    </ion-buttons>\n  </ion-navbar>\n</ion-header> -->\n\n<ion-content>\n  <ion-navbar>\n    <img src="assets/imgs/ipc-tpk-logo.png" style="width:65px;height:auto; margin-left:10px; display:inline-block"\n      height="40px" />\n    <ion-title class="titleicon" style="display:inline-block">\n      <span ion-text><b>PPI Office System</b></span>\n    </ion-title>\n    <ion-buttons end>\n      <button ion-button (click)="openPage(\'SettingPage\')">\n        <ion-icon style="font-size:2.5rem;" name="md-settings" color="color6"></ion-icon>\n      </button>\n      <button ion-button (click)="logout()">\n        <ion-icon style="font-size:2.5rem;" name="md-log-out" color="color6"></ion-icon>\n      </button>\n    </ion-buttons>\n  </ion-navbar>\n  <div class="header-container" *ngIf="userdataTPK != null">\n    <div class="welcome-class">\n      <span ion-text text-wrap>Welcome,</span> <br>\n      <span *ngIf="userdataTPK != null" ion-text text-wrap> <b>{{ userdataTPK[\'data\'][\'NAMA\'] }}</b></span>\n    </div>\n    <!-- <div class="header-img"></div> -->\n\n    <ion-slides style="margin-top: 50px;" autoplay="5000" loop="true" speed="500">\n      <ion-slide class="my-slide">\n        <img src="assets/imgs/slide-1.png" class="my-slider-img">\n      </ion-slide>\n      <ion-slide class="my-slide">\n        <img src="assets/imgs/slide-2.png" class="my-slider-img">\n      </ion-slide>\n      <ion-slide class="my-slide">\n        <img src="assets/imgs/slide-3.png" class="my-slider-img">\n      </ion-slide>\n    </ion-slides>\n\n    <ion-card class="header-card" *ngIf="isLoadingHadirkoe == false && dataValidasi != null">\n      <div class="menu-container">\n        <div class="menu-content" (click)="openPage(\'InboxPage\')">\n          <div class="img-container color-1"><img src="assets/imgs/menu-icon/inbox-white.png"></div>\n          <span ion-text text-wrap>Surat Masuk</span>\n          <ion-badge class="my-badge" *ngIf="badgesList != null && parse(badgesList[\'JUMLAH_SURAT_ALL_BADGES\'])"\n            color="danger">{{badgesList[\'JUMLAH_SURAT_ALL_BADGES\']}}</ion-badge>\n        </div>\n\n        <div class="menu-content" (click)="openPage(\'OutboxPage\')">\n          <div class="img-container color-2"><img src="assets/imgs/menu-icon/outbox-white.png"></div>\n          <span ion-text text-wrap>Surat Keluar</span>\n        </div>\n\n        <!-- <div class="menu-content" *ngIf="userdataTPK[\'data\'][\'TNO\'] == true || dataValidasi[\'HADIRKOE\'] == false"\n          (click)="openPage(\'SppdListPage\')">\n          <div class="img-container color-3"><img src="assets/imgs/menu-icon/sppd-white.png"></div>\n          <span ion-text text-wrap>SPPD</span>\n        </div> -->\n        <div class="menu-content"\n          (click)="showModal(\'FingerprintModalPage\')">\n          <div class="img-container color-8"><img src="assets/flat-icon/hadirkoe.png"></div>\n          <span ion-text text-wrap>HadirKoe</span>\n        </div>\n      </div>\n    </ion-card>\n\n    <ion-card class="header-card" *ngIf="isLoadingHadirkoe == true && dataValidasi == null">\n      <div class="menu-container">\n        <div class="menu-content">\n          <div class="animate-skeleton-background load-3"></div>\n        </div>\n\n        <div class="menu-content">\n          <div class="animate-skeleton-background load-3"></div>\n        </div>\n\n        <div class="menu-content">\n          <div class="animate-skeleton-background load-3"></div>\n        </div>\n      </div>\n    </ion-card>\n  </div>\n\n  <!-- <div class="my-card-3">\n    <div class="my-card-3-content" style="border-right: 1px solid #e6e6e6;">\n      <span ion-text text-wrap color="danger"\n        *ngIf="badgesList != null"><b>{{ badgesList[\'JUMLAH_SURAT_BELUM_APPROVE\'] }} surat</b></span>\n      <span ion-text text-wrap color="danger" *ngIf="badgesList == null"><b>0 surat</b></span>\n      <br>\n      <span ion-text text-wrap class="font-mini" color="gray">Butuh Approval</span>\n    </div>\n    <div class="my-card-3-content">\n      <span ion-text text-wrap color="danger"><b>5 surat</b></span> <br>\n      <span ion-text text-wrap class="font-mini" color="gray">Belum Didisposisi</span>\n    </div>\n  </div> -->\n  <br>\n  <div *ngIf="userdataTPK != null">\n    <div *ngIf="userdataTPK[\'data\'][\'TNO\'] == false">\n      <div style="margin-top: 175px;" class="menu-container">\n        <div class="menu-content-2" (click)="openPage(\'AbsenListPage\')">\n          <div class="img-container-2"><img src="assets/imgs/menu-icon/absensi.png"></div>\n          <span ion-text text-wrap>Absensi</span>\n          <ion-badge class="my-badge" *ngIf="badgesList != null && parse(badgesList[\'JUMLAH_ABSEN_BELUM_KOREKSI\'])"\n            color="danger">{{ badgesList[\'JUMLAH_ABSEN_BELUM_KOREKSI\'] }}\n          </ion-badge>\n        </div>\n\n        <div class="menu-content-2" (click)="openPage(\'CutiListPage\')">\n          <div class="img-container-2"><img src="assets/imgs/menu-icon/cuti.png"></div>\n          <span ion-text text-wrap>Cuti/Izin</span>\n        </div>\n\n        <div class="menu-content-2" (click)="openPage(\'SppdListPage\')">\n          <div class="img-container-2"><img src="assets/imgs/menu-icon/sppd-2.png"></div>\n          <span ion-text text-wrap>SPPD</span>\n        </div>\n\n        <div class="menu-content-2" (click)="openPage(\'\')">\n          <div class="img-container-2"><img src="assets/imgs/menu-icon/survey.png"></div>\n          <span ion-text text-wrap>Arsip Personal</span>\n        </div>\n      </div>\n\n      <div *ngIf="dataValidasi != null">\n        <div style="margin-top: 20px;" class="menu-container">\n          <div class="menu-content-2" (click)="openPage(\'SppdListPage\')">\n            <div class="img-container-2"><img src="assets/imgs/menu-icon/sppd-2.png"></div>\n            <span ion-text text-wrap>E-CV</span>\n          </div>\n\n          <div class="menu-content-2">\n          </div>\n\n          <div class="menu-content-2">\n          </div>\n\n          <div class="menu-content-2">\n          </div>\n        </div>\n      </div>\n\n    </div>\n  </div>\n\n\n  <br>\n\n  <div class="divider"></div>\n\n\n\n  <div class="agenda-title-container">\n    <span ion-text text-wrap style="font-size:1.5rem;">\n      <b>AGENDA</b>\n    </span> <br>\n    <span ion-text text-wrap class="font-mini" color="gray">\n      Daftar agenda anda saat ini\n    </span>\n  </div>\n\n  <ion-card *ngIf=\'isLoading == true && agendaList.length == 0\' class="my-card">\n    <ion-item>\n      <div class="animate-skeleton-background load-2"></div>\n      <div class="animate-skeleton-background load-1"></div>\n      <div style="\n              width:100%;\n              border-bottom: 1px solid lightgray;\n              padding: 5px;\n              margin-bottom:5px;">\n      </div>\n      <div class="animate-skeleton-background load-2"> </div>\n    </ion-item>\n  </ion-card>\n\n  <ion-card class="my-card" *ngIf="isLoading == false && agendaList.length == 0">\n    <ion-item>\n      <span ion-text text-wrap class="font-small" style="text-align:center;">\n        Tidak ada agenda hari ini.\n      </span>\n    </ion-item>\n  </ion-card>\n\n  <ion-slides pager="true" paginationType="bullets" *ngIf=\'agendaList.length > 0\'>\n    <ion-slide *ngFor="let agenda of agendaList">\n      <ion-card class="my-card">\n        <ion-item>\n          <span ion-text text-wrap class="font-mini">\n            {{ agenda[\'Tanggal_Mulai\'] }} {{ agenda[\'Start_Time\'] }} - {{ agenda[\'End_Time\'] }}\n          </span> <br>\n          <span ion-text text-wrap class="font-mini">\n            {{ agenda[\'Nama_Tempat\'] }}\n          </span>\n          <div style="\n                      width:100%;\n                      border-bottom: 1px solid white;\n                      padding: 5px;\n                      margin-bottom:5px;">\n          </div>\n          <span ion-text text-wrap class="font-small">\n            <b>{{ agenda[\'Acara\'] }}</b>\n          </span>\n        </ion-item>\n      </ion-card>\n    </ion-slide>\n  </ion-slides>\n  <br>\n  <br>\n\n  <ion-refresher (ionRefresh)="doRefresh($event)">\n    <ion-refresher-content pullingIcon="arrow-dropdown" pullingText="Pull to refresh" refreshingSpinner="circles"\n      refreshingText="Refreshing...">\n    </ion-refresher-content>\n  </ion-refresher>\n\n</ion-content>'/*ion-inline-end:"/Users/itadmin/Downloads/ERDA/POS_PPI/src/pages/home3/home3.html"*/,
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavController */],
             __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* NavParams */],
-            __WEBPACK_IMPORTED_MODULE_2__soap_service__["a" /* SoapService */],
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* LoadingController */],
-            __WEBPACK_IMPORTED_MODULE_3__ionic_storage__["b" /* Storage */],
             __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["b" /* AlertController */],
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* ModalController */],
-            __WEBPACK_IMPORTED_MODULE_5__ionic_native_in_app_browser__["a" /* InAppBrowser */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["c" /* App */],
+            __WEBPACK_IMPORTED_MODULE_2__ionic_storage__["b" /* Storage */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* LoadingController */],
+            __WEBPACK_IMPORTED_MODULE_4__soap_service__["a" /* SoapService */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["p" /* ToastController */],
+            __WEBPACK_IMPORTED_MODULE_5__ionic_native_device__["a" /* Device */],
+            __WEBPACK_IMPORTED_MODULE_7__ionic_native_in_app_browser__["a" /* InAppBrowser */],
             __WEBPACK_IMPORTED_MODULE_6__ionic_native_onesignal__["a" /* OneSignal */],
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["p" /* ToastController */]])
-    ], InboxDetailPage);
-    return InboxDetailPage;
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* ModalController */],
+            __WEBPACK_IMPORTED_MODULE_8__angular_common_http__["a" /* HttpClient */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["n" /* Platform */]])
+    ], Home3Page);
+    return Home3Page;
 }());
 
-//# sourceMappingURL=inbox-detail.js.map
+//# sourceMappingURL=home3.js.map
 
 /***/ })
 

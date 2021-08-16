@@ -1,14 +1,14 @@
 webpackJsonp([18],{
 
-/***/ 317:
+/***/ 314:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "KoreksiAbsenBawahanPageModule", function() { return KoreksiAbsenBawahanPageModule; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "KategoriPengajuanListPageModule", function() { return KategoriPengajuanListPageModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(100);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__koreksi_absen_bawahan__ = __webpack_require__(374);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__kategori_pengajuan_list__ = __webpack_require__(369);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -18,33 +18,33 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 
-var KoreksiAbsenBawahanPageModule = /** @class */ (function () {
-    function KoreksiAbsenBawahanPageModule() {
+var KategoriPengajuanListPageModule = /** @class */ (function () {
+    function KategoriPengajuanListPageModule() {
     }
-    KoreksiAbsenBawahanPageModule = __decorate([
+    KategoriPengajuanListPageModule = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["J" /* NgModule */])({
             declarations: [
-                __WEBPACK_IMPORTED_MODULE_2__koreksi_absen_bawahan__["a" /* KoreksiAbsenBawahanPage */],
+                __WEBPACK_IMPORTED_MODULE_2__kategori_pengajuan_list__["a" /* KategoriPengajuanListPage */],
             ],
             imports: [
-                __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__koreksi_absen_bawahan__["a" /* KoreksiAbsenBawahanPage */]),
+                __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__kategori_pengajuan_list__["a" /* KategoriPengajuanListPage */]),
             ],
         })
-    ], KoreksiAbsenBawahanPageModule);
-    return KoreksiAbsenBawahanPageModule;
+    ], KategoriPengajuanListPageModule);
+    return KategoriPengajuanListPageModule;
 }());
 
-//# sourceMappingURL=koreksi-absen-bawahan.module.js.map
+//# sourceMappingURL=kategori-pengajuan-list.module.js.map
 
 /***/ }),
 
-/***/ 343:
+/***/ 341:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return SoapService; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__soapclient_js__ = __webpack_require__(344);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__soapclient_js__ = __webpack_require__(342);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__soapclient_js___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__soapclient_js__);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -96,7 +96,7 @@ var SoapService = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 344:
+/***/ 342:
 /***/ (function(module, exports) {
 
 /*****************************************************************************\
@@ -551,17 +551,16 @@ module.exports = {
 
 /***/ }),
 
-/***/ 374:
+/***/ 369:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return KoreksiAbsenBawahanPage; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return KategoriPengajuanListPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(100);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__soap_service__ = __webpack_require__(343);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__soap_service__ = __webpack_require__(341);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_storage__ = __webpack_require__(101);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__config__ = __webpack_require__(199);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__angular_common__ = __webpack_require__(26);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -576,68 +575,56 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-
 /**
- * Generated class for the KoreksiAbsenBawahanPage page.
+ * Generated class for the KategoriPengajuanListPage page.
  *
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
  */
-var KoreksiAbsenBawahanPage = /** @class */ (function () {
-    function KoreksiAbsenBawahanPage(navCtrl, navParams, loadingCtrl, alertCtrl, soapService, storage, datepipe, actionSheetCtrl, modalCtrl, toastCtrl) {
-        var _this = this;
+var KategoriPengajuanListPage = /** @class */ (function () {
+    function KategoriPengajuanListPage(navCtrl, navParams, viewCtrl, soapService, loadingCtrl, storage, alertCtrl, modalCtrl, toastCtrl) {
         this.navCtrl = navCtrl;
         this.navParams = navParams;
-        this.loadingCtrl = loadingCtrl;
-        this.alertCtrl = alertCtrl;
+        this.viewCtrl = viewCtrl;
         this.soapService = soapService;
+        this.loadingCtrl = loadingCtrl;
         this.storage = storage;
-        this.datepipe = datepipe;
-        this.actionSheetCtrl = actionSheetCtrl;
+        this.alertCtrl = alertCtrl;
         this.modalCtrl = modalCtrl;
         this.toastCtrl = toastCtrl;
         this.isLoading = true;
-        this.dataBawahanList = [];
-        this.dataKoreksiList = [];
-        this.tahunList = [];
-        var date = new Date();
-        this.currentYear = date.getFullYear();
-        this.currentMonth = date.getMonth();
-        this.tahun = this.currentYear;
-        this.bulan = this.currentMonth + 1;
-        for (var i = 0; i < 10; i++) {
-            this.tahunList.push(this.currentYear - i);
-        }
+        this.kategoriList = [];
+        this.fakeUsers = new Array(5);
+    }
+    KategoriPengajuanListPage.prototype.ionViewDidEnter = function () {
+        var _this = this;
         this.storage.get('userdataTPK').then(function (val) {
             _this.userdataTPK = val;
-            _this.getDataBawahan((_this.currentMonth + 1), _this.tahun);
+            _this.storage.get('userdataIPCContact').then(function (val2) {
+                _this.userdataIPCContact = val2;
+                _this.getKategoriList('');
+            });
         });
-    }
-    KoreksiAbsenBawahanPage.prototype.ionViewDidLoad = function () {
-        console.log('ionViewDidLoad KoreksiAbsenBawahanPage');
     };
-    KoreksiAbsenBawahanPage.prototype.getDataBawahan = function (bln, thn) {
+    KategoriPengajuanListPage.prototype.getKategoriList = function (type) {
         var _this = this;
-        var loading = this.loadingCtrl.create({
-            spinner: 'dots',
-            content: "Mohon Tunggu...",
-            cssClass: 'transparent',
-            dismissOnPageChange: true
-        });
-        loading.present();
-        var m = bln;
-        this.soapService.post(__WEBPACK_IMPORTED_MODULE_4__config__["a" /* api_base_url */], 'eoffice_absen_bawahan', { fStream: JSON.stringify({
-                usernameEDI: __WEBPACK_IMPORTED_MODULE_4__config__["e" /* api_user */],
-                passwordEDI: __WEBPACK_IMPORTED_MODULE_4__config__["c" /* api_pass */],
-                nipp: this.userdataTPK['data']['NIPP'],
-                idjabatan: this.userdataTPK['data']['IDJABATAN'],
-                bulan: m < 10 ? '0' + m : m,
-                tahun: thn
+        this.isLoading = true;
+        this.soapService
+            .post(__WEBPACK_IMPORTED_MODULE_4__config__["a" /* api_base_url */], 'eoffice_data_kategori_ipcc', { fStream: JSON.stringify({
+                usernameEDI: __WEBPACK_IMPORTED_MODULE_4__config__["d" /* api_user */],
+                passwordEDI: __WEBPACK_IMPORTED_MODULE_4__config__["b" /* api_pass */],
+                id_dir: this.userdataIPCContact['ID_DIR']
             }) }).then(function (result) {
             var responData = JSON.parse(String(result));
+            // console.log(responData);
             if (responData['rcmsg'] == "SUCCESS") {
-                _this.dataKoreksiList = [];
-                _this.dataKoreksiList = responData['data']['LIST_OFFICER'];
+                _this.kategoriList = [];
+                if (responData['data'].length > 0 && !_this.isEmptyObject(responData['data'][0])) {
+                    for (var i = 0; i < responData['data'].length; i++) {
+                        _this.kategoriList.push(responData['data'][i]);
+                    }
+                }
+                // console.log(this.kategoriList);
             }
             else {
                 var toast = _this.toastCtrl.create({
@@ -647,133 +634,74 @@ var KoreksiAbsenBawahanPage = /** @class */ (function () {
                 });
                 toast.present();
             }
-            loading.dismiss();
+            if (type == '') {
+            }
+            else {
+                type.complete();
+            }
             _this.isLoading = false;
         })
             .catch(function (error) {
+            // console.log(error);
             var toast = _this.toastCtrl.create({
                 message: 'Terjadi Masalah Koneksi, Silahkan Coba Kembali.',
                 duration: 3000,
                 position: 'bottom'
             });
             toast.present();
-            loading.dismiss();
+            if (type == '') {
+            }
+            else {
+                type.complete();
+            }
             _this.isLoading = false;
         });
     };
-    KoreksiAbsenBawahanPage.prototype.convertMonths = function () {
-        switch (this.bulan) {
-            case '1':
-                return "Januari";
-            case '2':
-                return "Februari";
-            case '3':
-                return "Maret";
-            case '4':
-                return "April";
-            case '5':
-                return "Mei";
-            case '6':
-                return "Juni";
-            case '7':
-                return "Juli";
-            case '8':
-                return "Agustus";
-            case '9':
-                return "September";
-            case '10':
-                return "Oktober";
-            case '11':
-                return "November";
-            case '12':
-                return "Desember";
-            default:
-                return "false";
-        }
+    KategoriPengajuanListPage.prototype.doRefresh = function (refresher) {
+        this.getKategoriList(refresher);
     };
-    KoreksiAbsenBawahanPage.prototype.selectVal = function () {
-        this.dataKoreksiList = [];
-        if (this.dataBawahanList[this.index]['DATA KOREKSI'].length > 0) {
-            for (var i = 0; i < this.dataBawahanList[this.index]['DATA KOREKSI'].length; i++) {
-                this.dataKoreksiList.push(this.dataBawahanList[this.index]['DATA KOREKSI'][i]);
+    KategoriPengajuanListPage.prototype.ionViewDidLoad = function () {
+        console.log('ionViewDidLoad KategoriPengajuanListPage');
+    };
+    KategoriPengajuanListPage.prototype.openModal = function (modalPage) {
+        var _this = this;
+        var modal = this.modalCtrl.create(modalPage, {}, {
+            enableBackdropDismiss: true,
+            showBackdrop: true
+            // cssClass:'my-modal'
+        });
+        modal.present();
+        modal.onDidDismiss(function (data) {
+            _this.getKategoriList('');
+        });
+    };
+    KategoriPengajuanListPage.prototype.isEmptyObject = function (obj) {
+        for (var prop in obj) {
+            if (obj.hasOwnProperty(prop)) {
+                return false;
             }
         }
+        return true;
     };
-    KoreksiAbsenBawahanPage.prototype.showOption = function (data) {
-        var _this = this;
-        var actionSheet = this.actionSheetCtrl.create({
-            title: 'Pilih Proses',
-            buttons: [
-                {
-                    text: 'Approve',
-                    role: 'koreksiDatang',
-                    handler: function () {
-                        var modal = _this.modalCtrl.create("ApproveKoreksiAbsenPage", {
-                            dataKoreksi: data,
-                            status: '1',
-                            is_tno: data['IS_TNO']
-                        }, {
-                            enableBackdropDismiss: true,
-                            showBackdrop: true,
-                            cssClass: 'my-modal2'
-                        });
-                        modal.present();
-                        modal.onDidDismiss(function (data) {
-                            _this.getDataBawahan(_this.bulan, _this.tahun);
-                        });
-                    }
-                },
-                {
-                    text: 'Decline',
-                    handler: function () {
-                        var modal = _this.modalCtrl.create("ApproveKoreksiAbsenPage", {
-                            dataKoreksi: data,
-                            status: '0',
-                            is_tno: data['IS_TNO']
-                        }, {
-                            enableBackdropDismiss: true,
-                            showBackdrop: true,
-                            cssClass: 'my-modal2'
-                        });
-                        modal.present();
-                        modal.onDidDismiss(function (data) {
-                            _this.getDataBawahan(_this.bulan, _this.tahun);
-                        });
-                    }
-                },
-                {
-                    text: 'Tutup',
-                    role: 'cancel',
-                    handler: function () {
-                    }
-                }
-            ]
-        });
-        actionSheet.present();
-    };
-    KoreksiAbsenBawahanPage.prototype.searchDataKoreksi = function () {
-        this.getDataBawahan(this.bulan, this.tahun);
-    };
-    KoreksiAbsenBawahanPage = __decorate([
+    KategoriPengajuanListPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
-            selector: 'page-koreksi-absen-bawahan',
-            providers: [__WEBPACK_IMPORTED_MODULE_2__soap_service__["a" /* SoapService */]],template:/*ion-inline-start:"/Users/itadmin/Downloads/ERDA/POS_PPI/src/pages/koreksi-absen-bawahan/koreksi-absen-bawahan.html"*/'<!--\n  Generated template for the CutiListPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n\n    <ion-navbar>\n        <ion-title>\n            <span ion-text color="light" class="fw500">Koreksi Absen Bawahan</span>\n        </ion-title>\n    </ion-navbar>\n</ion-header>\n\n\n<ion-content>\n    <div class="divs">\n        <ion-item no-lines style="padding-left:8px !important">\n            <ion-select [(ngModel)]="bulan" placeholder="Pilih Bulan">\n                <!-- <ion-option *ngFor="let m of bulanList" value="{{m[\'bulan\']}}_{{m[\'tahun\']}}">{{ convertMonths2(m[\'bulan\']) }} {{m[\'tahun\']}}</ion-option>                    </ion-select> -->\n                <ion-option value="1">Januari</ion-option>\n                <ion-option value="2">Februari</ion-option>\n                <ion-option value="3">Maret</ion-option>\n                <ion-option value="4">April</ion-option>\n                <ion-option value="5">Mei</ion-option>\n                <ion-option value="6">Juni</ion-option>\n                <ion-option value="7">Juli</ion-option>\n                <ion-option value="8">Agustus</ion-option>\n                <ion-option value="9">September</ion-option>\n                <ion-option value="10">Oktober</ion-option>\n                <ion-option value="11">November</ion-option>\n                <ion-option value="12">Desember</ion-option>\n            </ion-select>\n        </ion-item>\n        <ion-item no-lines style="padding-left:8px !important">\n            <ion-select [(ngModel)]="tahun" placeholder="Pilih Tahun">\n                <ion-option *ngFor="let tahun of tahunList" value="{{tahun}}">{{tahun}}</ion-option>\n            </ion-select>\n        </ion-item>\n\n        <button ion-button block icon-start color="primary" class="button" margin-top (click)="searchDataKoreksi()"\n            [disabled]="(bulan == null || tahun == null) ? true : false">\n            <ion-icon name="md-search"></ion-icon>\n            Cari\n        </button>\n    </div>\n\n    <div *ngIf="!isLoading">\n        <ion-grid fixed no-padding *ngIf="dataKoreksiList.length == 0" fixed>\n            <ion-row>\n                <ion-col col-12>\n\n                    <ion-card class="primary-bg">\n                        <ion-card-content>\n                            <p text-center class="text-white">Tidak ada data koreksi</p>\n                        </ion-card-content>\n                    </ion-card>\n\n                </ion-col>\n            </ion-row>\n        </ion-grid>\n\n        <div *ngIf="dataKoreksiList.length > 0">\n            <ion-card *ngFor="let dataKoreksi of dataKoreksiList" (click)="showOption(dataKoreksi)">\n                <ion-item tapplable>\n                    <span ion-text text-wrap class="font2 bold" color="dark">{{ dataKoreksi[\'NAMA\'] }} | </span>\n                    <span ion-text text-wrap class="font2" color="danger">Tanggal {{dataKoreksi[\'TANGGAL\']}}\n                    </span> <br>\n\n                    <div style="display: table;width:100%;">\n                        <div style="display: table-cell;">\n                            <span ion-text text-wrap class="font" style="color:#959595">Datang :</span>\n                            <span ion-text text-wrap class="font2"\n                                *ngIf="dataKoreksi[\'JAM MASUK\'] == \'\' || dataKoreksi[\'JAM MASUK\'] == null"> -\n                            </span>\n                            <span ion-text text-wrap class="font2"\n                                *ngIf="dataKoreksi[\'JAM MASUK\'] != \'\' || dataKoreksi[\'JAM MASUK\'] != null">\n                                {{ dataKoreksi[\'JAM MASUK\'] }} </span>\n                        </div>\n\n                        <div style="display: table-cell;text-align: right;">\n                            <span ion-text text-wrap class="font" color="primary"\n                                *ngIf="dataKoreksi[\'STATUS KOREKSI DATANG\'] == \'POSTED\'">\n                                {{ dataKoreksi[\'STATUS KOREKSI DATANG\'] }}\n                            </span>\n                            <span ion-text text-wrap class="font" color="secondary"\n                                *ngIf="dataKoreksi[\'STATUS KOREKSI DATANG\'] == \'APPROVED\'">\n                                {{ dataKoreksi[\'STATUS KOREKSI DATANG\'] }}</span>\n                        </div>\n                    </div>\n\n                    <span ion-text text-wrap class="font" style="color:#959595">Ket. koreksi datang :</span>\n                    <br>\n                    <span ion-text text-wrap class="font2"\n                        *ngIf="dataKoreksi[\'KETERANGAN KOREKSI DATANG\'] == \'\' || dataKoreksi[\'KETERANGAN KOREKSI DATANG\'] == null">\n                        -\n                    </span>\n                    <span ion-text text-wrap class="font2">{{ dataKoreksi[\'KETERANGAN KOREKSI DATANG\'] }}</span>\n\n                    <br><br>\n\n                    <div style="display: table;width:100%;">\n                        <div style="display: table-cell;">\n                            <span ion-text text-wrap class="font" style="color:#959595">Pulang :</span>\n                            <span ion-text text-wrap class="font2"\n                                *ngIf="dataKoreksi[\'JAM PULANG\'] == \'\' || dataKoreksi[\'JAM PULANG\'] == null"> -\n                            </span>\n                            <span ion-text text-wrap class="font2"\n                                *ngIf="dataKoreksi[\'JAM PULANG\'] != \'\' || dataKoreksi[\'JAM PULANG\'] != null">{{ dataKoreksi[\'JAM PULANG\'] }}</span>\n                        </div>\n\n                        <div style="display: table-cell;text-align: right;">\n                            <span ion-text text-wrap class="font" color="primary"\n                                *ngIf="dataKoreksi[\'STATUS KOREKSI PULANG\'] == \'POSTED\'">\n                                {{ dataKoreksi[\'STATUS KOREKSI PULANG\'] }}\n                            </span>\n                            <span ion-text text-wrap class="font" color="secondary"\n                                *ngIf="dataKoreksi[\'STATUS KOREKSI PULANG\'] == \'APPROVED\'">\n                                {{ dataKoreksi[\'STATUS KOREKSI PULANG\'] }}</span>\n                        </div>\n                    </div>\n\n                    <span ion-text text-wrap class="font" style="color:#959595">Ket. koreksi Pulang :</span>\n                    <br>\n                    <span ion-text text-wrap class="font2"\n                        *ngIf="dataKoreksi[\'KETERANGAN KOREKSI PULANG\'] == \'\' || dataKoreksi[\'KETERANGAN KOREKSI PULANG\'] == null">\n                        -\n                    </span>\n                    <span ion-text text-wrap class="font2">{{ dataKoreksi[\'KETERANGAN KOREKSI PULANG\'] }}</span>\n                </ion-item>\n            </ion-card>\n        </div>\n\n    </div>\n</ion-content>'/*ion-inline-end:"/Users/itadmin/Downloads/ERDA/POS_PPI/src/pages/koreksi-absen-bawahan/koreksi-absen-bawahan.html"*/,
+            selector: 'page-kategori-pengajuan-list',
+            providers: [__WEBPACK_IMPORTED_MODULE_2__soap_service__["a" /* SoapService */]],template:/*ion-inline-start:"/Users/itadmin/Downloads/ERDA/POS_PPI/src/pages/kategori-pengajuan-list/kategori-pengajuan-list.html"*/'<ion-header>\n  <ion-navbar>\n    <ion-title>\n      <span ion-text color="light" class="fw500">Kategori Pengajuan</span>\n    </ion-title>\n  </ion-navbar>\n</ion-header>\n\n<ion-content>\n\n  <ion-list class="dining_List" *ngIf="kategoriList.length == 0 && isLoading == false">\n    <ion-item tapplable>\n      <div style="padding:7px">\n        <span text-wrap ion-text class="font">Tidak ada Kategori</span><br />\n      </div>\n    </ion-item>\n  </ion-list>\n\n  <ion-list class="dining_List" *ngIf="kategoriList.length > 0 && isLoading == false">\n    <ion-card class="my-card" *ngFor="let kategori of kategoriList">\n      <ion-item>\n        <span item-start>\n          <img src="assets/imgs/logo/category-icon.png" class="icons">\n        </span>\n        <div style="padding:8px">\n          <span ion-text text-wrap class="font bold">{{ kategori[\'KATEGORI\'] }}</span><br />\n          <span ion-text text-wrap color="primary" class="font">{{ userdataIPCContact[\'DIREKTORAT\'] }}</span>\n        </div>\n      </ion-item>\n    </ion-card>\n  </ion-list>   \n\n  <ion-list *ngIf=\'kategoriList.length == 0 && isLoading == true\'>\n    <ion-card *ngFor=\'let fake of fakeUsers\'>\n      <ion-item>\n        <div class="animate-skeleton-background load-2"></div>\n        <div class="animate-skeleton-background load-3"></div>\n        <div class="animate-skeleton-background load-1"> </div>\n      </ion-item>\n    </ion-card>\n  </ion-list>\n\n  <ion-refresher (ionRefresh)="doRefresh($event)">\n    <ion-refresher-content pullingIcon="arrow-dropdown" pullingText="Pull to refresh" refreshingSpinner="crescent">\n    </ion-refresher-content>\n  </ion-refresher>\n\n</ion-content>\n\n<ion-footer>\n  <ion-fab right bottom style="right:20px;bottom:20px;">\n    <button ion-fab color="primary" (click)="openModal(\'AddKategoriPengajuanPage\')">\n      <ion-icon name="add"></ion-icon>\n    </button>\n  </ion-fab>\n</ion-footer>'/*ion-inline-end:"/Users/itadmin/Downloads/ERDA/POS_PPI/src/pages/kategori-pengajuan-list/kategori-pengajuan-list.html"*/,
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavController */],
             __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* NavParams */],
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* LoadingController */],
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["b" /* AlertController */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["q" /* ViewController */],
             __WEBPACK_IMPORTED_MODULE_2__soap_service__["a" /* SoapService */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* LoadingController */],
             __WEBPACK_IMPORTED_MODULE_3__ionic_storage__["b" /* Storage */],
-            __WEBPACK_IMPORTED_MODULE_5__angular_common__["e" /* DatePipe */],
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* ActionSheetController */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["b" /* AlertController */],
             __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* ModalController */],
             __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["p" /* ToastController */]])
-    ], KoreksiAbsenBawahanPage);
-    return KoreksiAbsenBawahanPage;
+    ], KategoriPengajuanListPage);
+    return KategoriPengajuanListPage;
 }());
 
-//# sourceMappingURL=koreksi-absen-bawahan.js.map
+//# sourceMappingURL=kategori-pengajuan-list.js.map
 
 /***/ })
 

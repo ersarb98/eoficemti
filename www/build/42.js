@@ -1,14 +1,14 @@
 webpackJsonp([42],{
 
-/***/ 340:
+/***/ 333:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ShowMorePageModule", function() { return ShowMorePageModule; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SearchTeamAbsenPageModule", function() { return SearchTeamAbsenPageModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(100);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__show_more__ = __webpack_require__(398);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__search_team_absen__ = __webpack_require__(389);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -18,33 +18,36 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 
-var ShowMorePageModule = /** @class */ (function () {
-    function ShowMorePageModule() {
+var SearchTeamAbsenPageModule = /** @class */ (function () {
+    function SearchTeamAbsenPageModule() {
     }
-    ShowMorePageModule = __decorate([
+    SearchTeamAbsenPageModule = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["J" /* NgModule */])({
             declarations: [
-                __WEBPACK_IMPORTED_MODULE_2__show_more__["a" /* ShowMorePage */],
+                __WEBPACK_IMPORTED_MODULE_2__search_team_absen__["a" /* SearchTeamAbsenPage */],
             ],
             imports: [
-                __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__show_more__["a" /* ShowMorePage */]),
+                __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__search_team_absen__["a" /* SearchTeamAbsenPage */]),
             ],
         })
-    ], ShowMorePageModule);
-    return ShowMorePageModule;
+    ], SearchTeamAbsenPageModule);
+    return SearchTeamAbsenPageModule;
 }());
 
-//# sourceMappingURL=show-more.module.js.map
+//# sourceMappingURL=search-team-absen.module.js.map
 
 /***/ }),
 
-/***/ 398:
+/***/ 389:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ShowMorePage; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return SearchTeamAbsenPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(100);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_date_picker__ = __webpack_require__(201);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_storage__ = __webpack_require__(101);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_common__ = __webpack_require__(26);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -56,54 +59,66 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 
 
+
+
+
 /**
- * Generated class for the ShowMorePage page.
+ * Generated class for the SearchTeamAbsenPage page.
  *
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
  */
-var ShowMorePage = /** @class */ (function () {
-    function ShowMorePage(navCtrl, navParams) {
+var SearchTeamAbsenPage = /** @class */ (function () {
+    function SearchTeamAbsenPage(navCtrl, navParams, storage, datepipe, datePicker) {
+        var _this = this;
         this.navCtrl = navCtrl;
         this.navParams = navParams;
-        this.suratMenu = [];
-        this.p2bMenu = [];
-        this.budgtMonitoringMenu = [];
-        this.selfServiceMenu = [];
-        this.suratMenu = [
-            { img: 'assets/imgs/menu-icon/inbox.png', title: 'Surat Masuk', component: 'InboxPage' },
-            { img: 'assets/imgs/menu-icon/outbox.png', title: 'Surat Keluar', component: 'OutboxPage' },
-            { img: 'assets/imgs/menu-icon/sppd.png', title: 'SPPD', component: 'AbsenListPage' }
-        ];
-        this.p2bMenu = [
-            { img: 'assets/imgs/menu-icon/p2b.png', title: 'P2B', component: 'CutiListPage' }
-        ];
-        this.budgtMonitoringMenu = [
-            { img: 'assets/imgs/menu-icon/approval-prpo.png', title: 'Approval PR/PO', component: 'CutiListPage' },
-            { img: 'assets/imgs/menu-icon/uang-muka.png', title: 'Pengajuan Uang Muka', component: 'CutiListPage' }
-        ];
-        this.selfServiceMenu = [
-            { img: 'assets/imgs/menu-icon/absensi_white.png', title: 'Absensi', component: 'InboxPage' },
-            { img: 'assets/imgs/menu-icon/cuti_white.png', title: 'Izin/Cuti', component: 'OutboxPage' },
-            { img: 'assets/imgs/menu-icon/payslip_white.png', title: 'Payslip', component: 'AbsenListPage' },
-            { img: 'assets/imgs/menu-icon/survey_white.png', title: 'Survey', component: 'showMore' },
-            { img: 'assets/imgs/menu-icon/helpdesk_white.png', title: 'Helpdesk', component: 'AbsenListPage' },
-            { img: 'assets/imgs/menu-icon/hrcontact_white.png', title: 'HR Contact Center', component: 'AbsenListPage' },
-            { img: 'assets/imgs/menu-icon/search_white.png', title: 'Cari Pegawai', component: 'AbsenListPage' }
-        ];
+        this.storage = storage;
+        this.datepipe = datepipe;
+        this.datePicker = datePicker;
+        this.storage.get('userdataTPK').then(function (val) {
+            _this.userdataTPK = val;
+            console.log(_this.userdataTPK);
+        });
     }
-    ShowMorePage.prototype.ionViewDidEnter = function () {
+    SearchTeamAbsenPage.prototype.ionViewDidLoad = function () {
+        console.log('ionViewDidLoad SearchTeamAbsenPage');
     };
-    ShowMorePage = __decorate([
+    SearchTeamAbsenPage.prototype.doSearch = function () {
+        var _this = this;
+        this.navCtrl.push('AbsenTeamHadirkoePage', {
+            "idUser": this.userdataTPK['data']['IDUSER'],
+            "date": this.tanggal,
+            "fromPage": "AbsenActivityPage"
+        }).then(function () {
+            _this.navCtrl.remove(1, 2);
+        });
+    };
+    SearchTeamAbsenPage.prototype.showDatePicker = function (type) {
+        var _this = this;
+        this.datePicker.show({
+            date: new Date(),
+            mode: 'date',
+            maxDate: new Date().valueOf(),
+            androidTheme: this.datePicker.ANDROID_THEMES.THEME_HOLO_LIGHT
+        }).then(function (date) {
+            _this.tanggal = _this.datepipe.transform(date, 'dd-MM-yyyy');
+        }, function (err) { return console.log('Error occurred while getting date: ', err); });
+    };
+    SearchTeamAbsenPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
-            selector: 'page-show-more',template:/*ion-inline-start:"/Users/itadmin/Downloads/ERDA/POS_PPI/src/pages/show-more/show-more.html"*/'<!--\n  Generated template for the ShowMorePage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n\n<ion-content>\n  <!-- <div class="agenda-title-container">\n    <span ion-text text-wrap style="font-size:1.5rem;">\n      <b>Surat Menyurat</b>\n    </span>\n  </div>\n\n  <div class="menu-parent">\n    <div style="width: 25%" *ngFor="let item of suratMenu" tappable (click)="openPage(item.component)">\n      <div class="container-menu">\n        <img src="{{item.img}}" style="width: 45%; \n                    height: auto;          \n                    max-width: 35vw;">\n      </div>\n      <div align="center">\n        <span style="font-size:1.3rem !important">{{item.title}}</span>\n      </div>\n    </div>\n  </div> -->\n\n  <div class="agenda-title-container">\n    <span ion-text text-wrap style="font-size:1.5rem;">\n      <b>Self Service</b>\n    </span>\n  </div>\n\n  <div class="menu-parent">\n    <div style="width: 25%" *ngFor="let item of selfServiceMenu.slice(0, 4);let i=index " tappable\n      (click)="openPage(item.component)">\n      <div class="container-menu1-{{i}}">\n        <img src="{{item.img}}" style="width: 40%; \n                height: auto;          \n                max-width: 35vw;">\n      </div>\n      <div align="center">\n        <span style="font-size:1.3rem !important">{{item.title}}</span>\n      </div>\n    </div>\n  </div>\n\n  <div class="menu-parent">\n    <div style="width: 25%" *ngFor="let item of selfServiceMenu.slice(4, 8);let i=index " tappable\n      (click)="openPage(item.component)">\n      <div class="container-menu2-{{i}}">\n        <img src="{{item.img}}" style="width: 40%; \n                height: auto;          \n                max-width: 35vw;">\n      </div>\n      <div align="center">\n        <span style="font-size:1.3rem !important">{{item.title}}</span>\n      </div>\n    </div>\n  </div>\n\n  <div class="agenda-title-container">\n    <span ion-text text-wrap style="font-size:1.5rem;">\n      <b>Budget Monitoring</b>\n    </span>\n  </div>\n\n  <div class="menu-parent">\n    <div style="width: 25%" *ngFor="let item of budgtMonitoringMenu; let i=index" tappable (click)="openPage(item.component)">\n      <div class="container-menu3-{{i}}">\n        <img src="{{item.img}}" style="width: 40%; \n                height: auto;          \n                max-width: 35vw;">\n      </div>\n      <div align="center">\n        <span style="font-size:1.3rem !important">{{item.title}}</span>\n      </div>\n    </div>\n  </div>\n</ion-content>'/*ion-inline-end:"/Users/itadmin/Downloads/ERDA/POS_PPI/src/pages/show-more/show-more.html"*/,
+            selector: 'page-search-team-absen',template:/*ion-inline-start:"/Users/itadmin/Downloads/ERDA/POS_PPI/src/pages/search-team-absen/search-team-absen.html"*/'<!--\n  Generated template for the UpdateUserdataPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n  <ion-navbar>\n    <ion-title>\n      <span ion-text color="light">Pilih Tanggal</span>\n    </ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n<ion-content padding>\n\n  <ion-item>\n    <span item-left>\n      <img src="assets/imgs/menu-icon/start_date.png" class="icons">\n    </span>\n    <ion-label stacked>Tanggal</ion-label>\n    <ion-input type="text" [readonly]="true" (ionFocus)="showDatePicker(1)" (click)="showDatePicker(1)"\n      [(ngModel)]="tanggal"></ion-input>\n  </ion-item>\n\n  <br>\n  <div class="row">   \n    <div class="col">\n      <button ion-button full icon-end style="border-radius: 5px;" [disabled]="tanggal == null || tanggal ==\'\'" (click)="doSearch()">\n        Cari\n        <ion-icon name="md-search"></ion-icon>\n      </button>\n    </div>\n  </div>\n</ion-content>'/*ion-inline-end:"/Users/itadmin/Downloads/ERDA/POS_PPI/src/pages/search-team-absen/search-team-absen.html"*/,
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* NavParams */]])
-    ], ShowMorePage);
-    return ShowMorePage;
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavController */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* NavParams */],
+            __WEBPACK_IMPORTED_MODULE_3__ionic_storage__["b" /* Storage */],
+            __WEBPACK_IMPORTED_MODULE_4__angular_common__["e" /* DatePipe */],
+            __WEBPACK_IMPORTED_MODULE_2__ionic_native_date_picker__["a" /* DatePicker */]])
+    ], SearchTeamAbsenPage);
+    return SearchTeamAbsenPage;
 }());
 
-//# sourceMappingURL=show-more.js.map
+//# sourceMappingURL=search-team-absen.js.map
 
 /***/ })
 

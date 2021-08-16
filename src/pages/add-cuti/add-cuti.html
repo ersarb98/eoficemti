@@ -24,8 +24,8 @@
             <img src="assets/imgs/menu-icon/jenis_cuti.png" class="icons">
         </span>
         <ion-label stacked>Jenis Pengajuan</ion-label>
-        <ion-select [(ngModel)]="jenisPengajuan" placeholder="">
-            <ion-option value="Izin">Izin</ion-option>            
+        <ion-select [(ngModel)]="selectValue" placeholder="">
+            <!-- <ion-option value="Izin">Izin</ion-option>            
             <ion-option value="Izin Tidak Memotong Cuti">Izin Tidak Memotong Cuti</ion-option>            
             <ion-option value="Cuti Tahunan">Cuti Tahunan</ion-option>
             <ion-option value="Cuti Besar">Cuti Besar</ion-option>
@@ -34,7 +34,10 @@
             <ion-option value="Cuti Penting">Cuti Karena Alasan Penting</ion-option>
             <ion-option value="Cuti Diluar">Cuti Diluar Tanggungan Perusahaan</ion-option>        
             <ion-option value="Cuti Massal">Cuti Massal / Cuti Bersama</ion-option>        
-            <ion-option value="Masa Haid">Cuti Haid</ion-option>
+            <ion-option value="Masa Haid">Cuti Haid</ion-option> -->
+            <div *ngIf="jenisPengajuanList.length > 0">
+                <ion-option *ngFor="let jn_cuti of jenisPengajuanList; let i = index" value="{{ jn_cuti['ID'] }}">{{ jn_cuti['JN_PENGAJUAN'] }}</ion-option> 
+            </div>
         </ion-select>
     </ion-item>
 
@@ -124,7 +127,7 @@
         </ion-item>
     </div>
 
-    <div *ngIf="jenisPengajuan == 'Cuti Tahunan' && tanggalSelesai != ''" >
+    <div *ngIf="tanggalSelesai != ''" >
         <ion-item>
             <span item-left>
                 <img src="assets/imgs/menu-icon/jumHari.png" class="icons">
@@ -145,7 +148,7 @@
         <ion-textarea rows="3" [(ngModel)]="alamat"></ion-textarea>
     </ion-item>
 
-    <ion-item *ngIf="jenisPengajuan != 'Cuti Penting' && jenisPengajuan != 'Izin Tidak Memotong Cuti' && jenisPengajuan != 'Cuti Bersalin'">
+    <ion-item>
         <span item-left>
             <img src="assets/imgs/menu-icon/alasan.png" class="icons">
         </span>
@@ -153,7 +156,7 @@
         <ion-input type="text" [(ngModel)]="alasan"></ion-input>
     </ion-item>
 
-    <ion-item *ngIf="jenisPengajuan == 'Cuti Penting'">
+    <!-- <ion-item *ngIf="jenisPengajuan == 'Cuti Penting'">
         <span item-left>
             <img src="assets/imgs/menu-icon/alasan.png" class="icons">
         </span>
@@ -190,7 +193,7 @@
             <ion-option value="Cuti bersalin">Cuti bersalin</ion-option>
             <ion-option value="Cuti gugur kandungan">Cuti gugur kandungan</ion-option>            
         </ion-select>
-    </ion-item>
+    </ion-item> -->
     <p ion-text text-wrap color="danger" style="padding-left:8px !important;">{{errorMsg}}</p>
     <br>
     <div class="row">
