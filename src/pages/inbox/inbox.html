@@ -55,9 +55,9 @@
 			<!-- <ion-item-sliding> -->
 				<ion-item (click)="goToDetail(message)" [ngClass]="{'item-belum-baca' : !message['IsBaca']}">
 					<span [ngClass]="{'fw700': !message['IsBaca']}" style="text-align: center;" item-start>
-						<ion-icon name="mail" color="danger" class="msg-icon" *ngIf="message['IsBaca'] == '0'">
+						<ion-icon name="mail" color="color6" class="msg-icon" *ngIf="message['IsBaca'] == '0'">
 						</ion-icon>
-						<ion-icon name="mail-open" class="msg-icon" color="danger" *ngIf="message['IsBaca'] == '1'">
+						<ion-icon name="mail-open" class="msg-icon" color="color6" *ngIf="message['IsBaca'] == '1'">
 						</ion-icon> <br>
 						<!-- <span ion-text text-wrap *ngIf="!message['Disposisi']" color="color3" >D</span>
 						<span ion-text text-wrap *ngIf="message['Disposisi']" color="ptpBlue" >D</span> -->

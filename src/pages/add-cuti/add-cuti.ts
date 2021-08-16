@@ -151,7 +151,7 @@ export class AddCutiPage {
       
       this.datePicker.show(datePickerOption).then(date => {
         this.firstDate = date;
-        this.tanggalMulai = this.datePipe.transform(date, 'dd/MM/yyyy');
+        this.tanggalMulai = this.datePipe.transform(date, 'MM/dd/yyyy');
         this.startTglSelesai = date;
       },
         err => console.log('Error occurred while getting date: ', err)
@@ -173,7 +173,7 @@ export class AddCutiPage {
           androidTheme: this.datePicker.ANDROID_THEMES.THEME_HOLO_LIGHT
         }).then(date => {
           this.secondDate = date;
-          this.tanggalSelesai = this.datePipe.transform(date, 'dd/MM/yyyy');
+          this.tanggalSelesai = this.datePipe.transform(date, 'MM/dd/yyyy');
           this.getJumHari();
         },
           err => console.log('Error occurred while getting date: ', err)

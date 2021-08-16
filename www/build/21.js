@@ -1,6 +1,6 @@
 webpackJsonp([21],{
 
-/***/ 312:
+/***/ 311:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -8,7 +8,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "InboxDetailPageModule", function() { return InboxDetailPageModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(100);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__inbox_detail__ = __webpack_require__(367);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__inbox_detail__ = __webpack_require__(366);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -551,7 +551,7 @@ module.exports = {
 
 /***/ }),
 
-/***/ 367:
+/***/ 366:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -563,6 +563,8 @@ module.exports = {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__config__ = __webpack_require__(199);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ionic_native_in_app_browser__ = __webpack_require__(206);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ionic_native_onesignal__ = __webpack_require__(102);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__ionic_native_date_picker__ = __webpack_require__(200);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__angular_common__ = __webpack_require__(26);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -579,6 +581,9 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
+
+
 /**
  * Generated class for the InboxDetailPage page.
  *
@@ -586,7 +591,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
  * Ionic pages and navigation.
  */
 var InboxDetailPage = /** @class */ (function () {
-    function InboxDetailPage(navCtrl, navParams, soapService, loadingCtrl, storage, alertCtrl, modalCtrl, inAppBrowser, oneSignal, toastCtrl) {
+    function InboxDetailPage(navCtrl, navParams, soapService, loadingCtrl, storage, alertCtrl, modalCtrl, inAppBrowser, oneSignal, toastCtrl, datePicker, datePipe, platform) {
         this.navCtrl = navCtrl;
         this.navParams = navParams;
         this.soapService = soapService;
@@ -597,6 +602,9 @@ var InboxDetailPage = /** @class */ (function () {
         this.inAppBrowser = inAppBrowser;
         this.oneSignal = oneSignal;
         this.toastCtrl = toastCtrl;
+        this.datePicker = datePicker;
+        this.datePipe = datePipe;
+        this.platform = platform;
         this.isLoading = true;
         this.showAllPenerima = false;
         this.showAllPenerimaJabatan = false;
@@ -616,6 +624,13 @@ var InboxDetailPage = /** @class */ (function () {
         this.from_modul = '';
         this.pesertaSppdList = [];
         this.attrScanSppd = [];
+        this.formDitangguhkan = false;
+        this.tanggalMulai = '';
+        this.jamMulai = '23';
+        this.jamSelesai = '23';
+        this.tanggalSelesai = '';
+        this.jumHari = 0;
+        this.errorMsg = '';
         oneSignal.startInit(__WEBPACK_IMPORTED_MODULE_4__config__["e" /* oneSignalAppId */], __WEBPACK_IMPORTED_MODULE_4__config__["g" /* sender_id */]);
         oneSignal.endInit();
     }
@@ -667,6 +682,9 @@ var InboxDetailPage = /** @class */ (function () {
                 }
                 if (_this.messageDetail['Kode Jenis Surat'] == 'nd_sppd') {
                     _this.getPesertaSPPD(_this.messageDetail['ID Surat']);
+                }
+                else if (_this.messageDetail['Kode Jenis Surat'] == "permohonan") {
+                    _this.getSisaCuti(_this.messageDetail['NIPP Pemohon']);
                 }
                 else {
                     _this.newSession();
@@ -1093,6 +1111,7 @@ var InboxDetailPage = /** @class */ (function () {
     };
     InboxDetailPage.prototype.doPeriksa = function (type) {
         var _this = this;
+        this.formDitangguhkan = true;
         if (this.keterangan == '') {
             var toast = this.toastCtrl.create({
                 message: 'Komentar harus diisi.',
@@ -1360,7 +1379,7 @@ var InboxDetailPage = /** @class */ (function () {
         else if (type == "decline") {
             if (this.messageDetail['Kode Jenis Surat'] == 'permohonan') {
                 nippList.push(this.messageDetail['NIPP Pemohon']);
-                pesan = "Permohonan cuti/izin Anda Telah Ditangguhkan oleh " + this.userdataTPK['data']['NAMA'];
+                pesan = "Permohonan cuti/izin Anda Telah dibatalkan oleh " + this.userdataTPK['data']['NAMA'];
                 res = 'CutiListPage';
             }
             else {
@@ -1372,12 +1391,24 @@ var InboxDetailPage = /** @class */ (function () {
         else if (type == "kembalikan") {
             if (this.messageDetail['Kode Jenis Surat'] == 'permohonan') {
                 nippList.push(this.messageDetail['NIPP Pemohon']);
-                pesan = "Permohonan cuti/izin Anda Telah Ditangguhkan oleh " + this.userdataTPK['data']['NAMA'];
+                pesan = "Permohonan cuti/izin Anda Telah dikembalikan oleh " + this.userdataTPK['data']['NAMA'];
                 res = 'CutiListPage';
             }
             else {
                 nippList.push(this.messageDetail['Drafter'][0]['nipp_drafter']);
                 pesan = "Surat Anda Dikembalikan oleh " + this.userdataTPK['data']['NAMA'] + ". \nPerihal : " + this.messageDetail['Perihal'];
+                res = 'InboxDetailPage';
+            }
+        }
+        else if (type = 'tangguhkan') {
+            if (this.messageDetail['Kode Jenis Surat'] == 'permohonan') {
+                nippList.push(this.messageDetail['NIPP Pemohon']);
+                pesan = "Permohonan cuti/izin Anda Telah ditangguhkan oleh " + this.userdataTPK['data']['NAMA'];
+                res = 'CutiListPage';
+            }
+            else {
+                nippList.push(this.messageDetail['Drafter'][0]['nipp_drafter']);
+                pesan = "Surat Anda Telah ditangguhkan oleh " + this.userdataTPK['data']['NAMA'] + ". \nPerihal : " + this.messageDetail['Perihal'];
                 res = 'InboxDetailPage';
             }
         }
@@ -1516,10 +1547,297 @@ var InboxDetailPage = /** @class */ (function () {
             }
         });
     };
+    InboxDetailPage.prototype.getSisaCuti = function (nipp) {
+        var _this = this;
+        this.soapService
+            .post(__WEBPACK_IMPORTED_MODULE_4__config__["a" /* api_base_url */], 'eoffice_sisa_cuti', {
+            fStream: JSON.stringify({
+                usernameEDI: __WEBPACK_IMPORTED_MODULE_4__config__["d" /* api_user */],
+                passwordEDI: __WEBPACK_IMPORTED_MODULE_4__config__["b" /* api_pass */],
+                nipp: nipp
+            })
+        })
+            .then(function (result) {
+            var responData = JSON.parse(String(result));
+            //console.log(responData);
+            if (responData['rcmsg'] == "SUCCESS") {
+                _this.sisaCuti = responData['data']['SISA_CUTI'];
+                console.log("sisa cuti : " + _this.sisaCuti);
+                _this.getJenisCuti();
+            }
+            else {
+                var toast = _this.toastCtrl.create({
+                    message: responData['rcmsg'],
+                    duration: 3000,
+                    position: 'bottom'
+                });
+                toast.present();
+                _this.isLoading = false;
+            }
+        })
+            .catch(function (error) {
+            var toast = _this.toastCtrl.create({
+                message: 'Gagal mendapatkan sisa cuti, silahkan periksa koneksi internet anda.',
+                duration: 3000,
+                position: 'bottom'
+            });
+            toast.present();
+            _this.isLoading = false;
+        });
+    };
+    InboxDetailPage.prototype.getJenisCuti = function () {
+        var _this = this;
+        this.soapService
+            .post(__WEBPACK_IMPORTED_MODULE_4__config__["a" /* api_base_url */], 'eoffice_jenis_cuti', {
+            fStream: JSON.stringify({
+                usernameEDI: __WEBPACK_IMPORTED_MODULE_4__config__["d" /* api_user */],
+                passwordEDI: __WEBPACK_IMPORTED_MODULE_4__config__["b" /* api_pass */],
+            })
+        })
+            .then(function (result) {
+            var responData = JSON.parse(String(result));
+            console.log(responData);
+            if (responData['rcmsg'] == "SUCCESS") {
+                var jenisPengajuanList = responData['data'];
+                _this.dataJenisCuti = jenisPengajuanList.filter(function (x) { return x.JN_PENGAJUAN.includes(_this.messageDetail['Jenis Pengajuan']); });
+                console.log(_this.dataJenisCuti);
+                _this.newSession();
+            }
+            else {
+                var toast = _this.toastCtrl.create({
+                    message: responData['rcmsg'],
+                    duration: 3000,
+                    position: 'bottom'
+                });
+                toast.present();
+                _this.isLoading = false;
+            }
+        })
+            .catch(function (error) {
+            var toast = _this.toastCtrl.create({
+                message: 'Gagal mendapatkan jenis cuti, silahkan periksa koneksi internet anda.',
+                duration: 3000,
+                position: 'bottom'
+            });
+            toast.present();
+            _this.isLoading = false;
+        });
+    };
+    InboxDetailPage.prototype.ditangguhkan = function () {
+        var _this = this;
+        if (this.formDitangguhkan == false) {
+            this.formDitangguhkan = true;
+        }
+        else {
+            var validationForm = void 0;
+            validationForm = this.tanggalMulai == '' || this.tanggalSelesai == '' || this.jamMulai == '' || this.jamSelesai == '' || this.jumHari == '';
+            if (validationForm) {
+                this.errorMsg = '*mohon melengkapi seluruh input.';
+            }
+            else if (this.dataJenisCuti[0]['IS_POTONG'] == '1' && parseInt(this.jumHari) > parseInt(this.sisaCuti)) {
+                this.errorMsg = '*Jumlah hari cuti melebihi sisa cuti.';
+            }
+            else {
+                var alert_8 = this.alertCtrl.create({
+                    subTitle: 'Anda yakin ingin menangguhkan cuti ?',
+                    cssClass: 'alert',
+                    buttons: [
+                        {
+                            text: 'TIDAK',
+                            role: 'cancel',
+                            handler: function () {
+                                //console.log('Cancel clicked');
+                            }
+                        },
+                        {
+                            text: 'YA',
+                            handler: function () {
+                                var loading = _this.loadingCtrl.create({
+                                    spinner: 'dots',
+                                    content: "Tangguhkan cuti...",
+                                    cssClass: 'transparent',
+                                    dismissOnPageChange: true
+                                });
+                                loading.present();
+                                _this.soapService
+                                    .post(__WEBPACK_IMPORTED_MODULE_4__config__["a" /* api_base_url */], 'eoffice_tangguhkan', {
+                                    fStream: JSON.stringify({
+                                        usernameEDI: __WEBPACK_IMPORTED_MODULE_4__config__["d" /* api_user */],
+                                        passwordEDI: __WEBPACK_IMPORTED_MODULE_4__config__["b" /* api_pass */],
+                                        nipp: _this.nipp,
+                                        iduser: _this.userdataTPK['data']['IDUSER'],
+                                        nama: _this.userdataTPK['data']['NAMA'],
+                                        id_surat: _this.messageDetail['ID Surat'],
+                                        kode_jenis_surat: _this.messageDetail['Kode Jenis Surat'] != 'permohonan' ? _this.messageDetail['Jenis Surat'].toLowerCase() : _this.messageDetail['Kode Jenis Surat'].toLowerCase(),
+                                        komentar: _this.keterangan,
+                                        tgl_mulai: _this.tanggalMulai,
+                                        tgl_selesai: _this.tanggalSelesai,
+                                        jam_mulai: _this.jamMulai,
+                                        jam_selesai: _this.jamSelesai,
+                                        jumlah: _this.jumHari
+                                    })
+                                }).then(function (result) {
+                                    var responData = JSON.parse(String(result));
+                                    if (responData['rcmsg'] == "SUCCESS") {
+                                        var toast = _this.toastCtrl.create({
+                                            message: 'Tangguhkan berhasil !',
+                                            duration: 3000,
+                                            position: 'bottom'
+                                        });
+                                        toast.present().then(function () {
+                                            _this.sendApprovalNotif('tangguhkan');
+                                            _this.navCtrl.pop();
+                                        });
+                                    }
+                                    else {
+                                        var alert_9 = _this.alertCtrl.create({
+                                            title: '',
+                                            subTitle: 'Gagal Decline Surat, Silahkan Coba Beberapa Saat Lagi.',
+                                            buttons: ['OK']
+                                        });
+                                        alert_9.present();
+                                    }
+                                    loading.dismiss();
+                                })
+                                    .catch(function (error) {
+                                    var alert = _this.alertCtrl.create({
+                                        title: '',
+                                        subTitle: 'Gagal Decline Surat, Periksa Koneksi Internet Anda.',
+                                        buttons: ['OK']
+                                    });
+                                    alert.present();
+                                    loading.dismiss();
+                                });
+                            }
+                        }
+                    ]
+                });
+                if (parseInt(this.dataJenisCuti[0]['MAX_JUM_CUTI']) == 0) {
+                    if (this.jumHari >= parseInt(this.dataJenisCuti[0]['MIN_JUM_CUTI'])) {
+                        alert_8.present();
+                    }
+                    else {
+                        this.errorMsg = '*' + this.dataJenisCuti[0]['JN_PENGAJUAN'] + " minimal " + this.dataJenisCuti[0]['MIN_JUM_CUTI'] + " hari.";
+                    }
+                }
+                else {
+                    if (this.jumHari >= parseInt(this.dataJenisCuti[0]['MIN_JUM_CUTI']) && this.jumHari <= parseInt(this.dataJenisCuti[0]['MAX_JUM_CUTI'])) {
+                        alert_8.present();
+                    }
+                    else {
+                        this.errorMsg = '*' + this.dataJenisCuti[0]['JN_PENGAJUAN'] + " minimal " + this.dataJenisCuti[0]['MIN_JUM_CUTI'] + " hari dan maksimal " + this.dataJenisCuti[0]['MIN_JUM_CUTI'] + " hari.";
+                    }
+                }
+            }
+        }
+    };
+    InboxDetailPage.prototype.getJumHari = function () {
+        var _this = this;
+        var loading = this.loadingCtrl.create({
+            spinner: 'dots',
+            content: "Mengambil Data Cuti...",
+            cssClass: 'transparent',
+            dismissOnPageChange: true
+        });
+        loading.present();
+        this.soapService
+            .post(__WEBPACK_IMPORTED_MODULE_4__config__["a" /* api_base_url */], 'eoffice_cuti_jumlah', {
+            fStream: JSON.stringify({
+                usernameEDI: __WEBPACK_IMPORTED_MODULE_4__config__["d" /* api_user */],
+                passwordEDI: __WEBPACK_IMPORTED_MODULE_4__config__["b" /* api_pass */],
+                id_user: this.userdataTPK['data']['IDUSER'],
+                tgl_mulai: this.tanggalMulai,
+                tgl_selesai: this.tanggalSelesai,
+            })
+        })
+            .then(function (result) {
+            var responData = JSON.parse(String(result));
+            //console.log(responData);
+            if (responData['rcmsg'] == "SUCCESS") {
+                _this.jumHari = responData['data']['JUMLAH_HARI'];
+                loading.dismiss();
+            }
+            else {
+                var toast = _this.toastCtrl.create({
+                    message: responData['rcmsg'],
+                    duration: 3000,
+                    position: 'bottom'
+                });
+                toast.present();
+                loading.dismiss();
+            }
+        })
+            .catch(function (error) {
+            var toast = _this.toastCtrl.create({
+                message: 'Gagal mendapatkan hari, silahkan periksa koneksi internet anda.',
+                duration: 3000,
+                position: 'bottom'
+            });
+            toast.present();
+            loading.dismiss();
+        });
+    };
+    InboxDetailPage.prototype.checkFocus = function (data) {
+        this.showDatePicker(data);
+    };
+    InboxDetailPage.prototype.showDatePicker = function (type) {
+        var _this = this;
+        var myDate = new Date();
+        var datePickerOption;
+        datePickerOption = {
+            date: myDate,
+            mode: 'date',
+            androidTheme: this.datePicker.ANDROID_THEMES.THEME_HOLO_LIGHT
+        };
+        // if (this.jenisPengajuan == 'Cuti Sakit') {
+        //   datePickerOption = {
+        //     date: myDate,
+        //     mode: 'date',        
+        //     androidTheme: this.datePicker.ANDROID_THEMES.THEME_HOLO_LIGHT
+        //   };
+        // } else {
+        //   datePickerOption = {
+        //     date: myDate,
+        //     mode: 'date',
+        //     minDate: this.platform.is('ios') ? new Date() : (new Date()).valueOf(),
+        //     androidTheme: this.datePicker.ANDROID_THEMES.THEME_HOLO_LIGHT
+        //   };
+        // }
+        if (type == 1) {
+            this.datePicker.show(datePickerOption).then(function (date) {
+                _this.firstDate = date;
+                _this.tanggalMulai = _this.datePipe.transform(date, 'MM/dd/yyyy');
+                _this.startTglSelesai = date;
+            }, function (err) { return console.log('Error occurred while getting date: ', err); });
+        }
+        else if (type == 2) {
+            if (this.tanggalMulai == '') {
+                var toast = this.toastCtrl.create({
+                    message: 'tanggal mulai harus diisi dahulu.',
+                    duration: 3000,
+                    position: 'bottom'
+                });
+                toast.present();
+            }
+            else {
+                myDate = new Date(this.startTglSelesai);
+                this.datePicker.show({
+                    date: myDate,
+                    mode: 'date',
+                    minDate: this.platform.is('ios') ? myDate : (myDate).valueOf(),
+                    androidTheme: this.datePicker.ANDROID_THEMES.THEME_HOLO_LIGHT
+                }).then(function (date) {
+                    _this.secondDate = date;
+                    _this.tanggalSelesai = _this.datePipe.transform(date, 'MM/dd/yyyy');
+                    _this.getJumHari();
+                }, function (err) { return console.log('Error occurred while getting date: ', err); });
+            }
+        }
+    };
     InboxDetailPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
             selector: 'page-inbox-detail',
-            providers: [__WEBPACK_IMPORTED_MODULE_2__soap_service__["a" /* SoapService */]],template:/*ion-inline-start:"/Users/itadmin/Downloads/ERDA/POS_PPI/src/pages/inbox-detail/inbox-detail.html"*/'<ion-header>\n	<ion-navbar>\n		<ion-title>\n			<!-- <span ion-text color="light">Detail Surat</span> -->\n		</ion-title>\n\n		<ion-buttons end>\n			<button ion-button (click)="goToLogSurat()">\n				<!-- <ion-icon style="font-size:2.4rem;" name="md-analytics" color="light"></ion-icon> -->\n				<img src="assets/imgs/menu-icon/history.png" style="    max-height: 27px;\n				margin-right: 5px;">\n			</button>\n			<button ion-button (click)="downloadInbox(replaceNomorSurat(messageData[\'No_Surat\']))">\n				<ion-icon style="font-size:2.4rem;" name="md-download" color="light"></ion-icon>\n			</button>\n		</ion-buttons>\n	</ion-navbar>\n</ion-header>\n\n\n<ion-content margin-bottom>\n	<div *ngIf="isLoading == true">\n		<ion-item no-lines>\n			<div class="animate-skeleton-background load-2"></div>\n			<div class="animate-skeleton-background load-3"></div>\n			<div class="garis"></div>\n			<div class="animate-skeleton-background load-1"> </div>\n			<div class="animate-skeleton-background load-3"></div>\n			<div class="animate-skeleton-background load-1"> </div>\n			<div class="animate-skeleton-background load-3"></div>\n		</ion-item>\n	</div>\n\n	<div *ngIf="isLoading == false">\n		<div *ngIf="messageDetail[\'Kode Jenis Surat\'] != \'permohonan\'">\n			<ion-card class="header-menu">\n				<ion-item no-padding margin-left>\n					<span ion-text text-wrap style="font-size:1.5rem;">\n						<b>{{ messageDetail[\'Perihal\'] }}</b>\n					</span> <br>\n					<span ion-text text-wrap style="font-size:1.2rem; color:gray;">\n						{{ messageDetail[\'No Surat\'] }}\n					</span>\n					<div style="padding: 10px;" item-end>\n						<button ion-button icon-only clear (click)="show()"> \n							<ion-icon name="ios-arrow-down-outline" *ngIf="!showDetailPesan"></ion-icon>\n							<ion-icon name="ios-arrow-up-outline" *ngIf="showDetailPesan"></ion-icon>\n						</button>\n					</div>\n\n				</ion-item>\n			</ion-card>\n\n			<ion-card class="my-card" style="margin-top:10px !important;" *ngIf="showDetailPesan">\n				<ion-item>\n					<span ion-text text-wrap class="font" color="color4">Tanggal :\n					</span><br />\n					<span ion-text text-wrap color=\'dark\' class="font2">\n						{{ messageDetail[\'Tanggal Surat\'] }}\n					</span> <br>\n\n					<span ion-text text-wrap class="font" color="color4">Pengirim :\n					</span><br />\n					<span ion-text text-wrap color=\'dark\' class="font2">\n						{{ messageDetail[\'Pengirim\'][\'Nama Jabatan\'] }}\n					</span> <br>\n\n					<div *ngIf="messageDetail[\'Kode Jenis Surat\'] == \'surat_perintah\' || messageDetail[\'Kode Jenis Surat\'] == \'undangan\' || messageDetail[\'Kode Jenis Surat\'] == \'surat_dinas\' || messageDetail[\'Kode Jenis Surat\'] == \'nd_undangan\' || messageDetail[\'Kode Jenis Surat\'] == \'nd_sppd\'" >\n						<span ion-text text-wrap class="font" color="color4">Tanggal Mulai :\n						</span><br />\n						<span ion-text text-wrap color=\'dark\' class="font2">\n							{{ messageDetail[\'Agenda\'][\'Tanggal Mulai\'] }}\n						</span> \n						<span ion-text text-wrap *ngIf="messageDetail[\'Agenda\'][\'Tanggal Mulai\'] == null"  color=\'dark\' class="font2">\n							-\n						</span>\n						<br>\n\n						<span ion-text text-wrap class="font" color="color4">Tanggal Akhir :\n						</span><br />\n						<span ion-text text-wrap color=\'dark\' class="font2">\n							{{ messageDetail[\'Agenda\'][\'Tanggal Akhir\'] }}\n						</span> \n						<span ion-text text-wrap *ngIf="messageDetail[\'Agenda\'][\'Tanggal Akhir\'] == null"  color=\'dark\' class="font2">\n							-\n						</span>\n						<br>\n\n						<span ion-text text-wrap class="font" color="color4">Lokasi :\n						</span><br />\n						<span ion-text text-wrap color=\'dark\' class="font2">\n							{{ messageDetail[\'Agenda\'][\'Lokasi\'] }}\n						</span> \n						<span ion-text text-wrap *ngIf="messageDetail[\'Agenda\'][\'Lokasi\'] == null"  color=\'dark\' class="font2">\n							-\n						</span>\n						<br>\n					</div>\n					\n\n					<div *ngIf="messageDetail[\'Penerima Jabatan\'].length > 0">\n						<span ion-text text-wrap class="font" color="color4">Penerima Jabatan :\n						</span>\n						<span ion-text text-wrap class="font" color="primary"\n							*ngIf="messageDetail[\'Penerima Jabatan\'].length > 1" (click)="showMore(1)"\n							style="float:right;">\n							View more\n						</span> <br>\n						<div *ngIf="!showAllPenerimaJabatan">\n							<span ion-text text-wrap color=\'dark\' class="font2">\n								1. {{ messageDetail[\'Penerima Jabatan\'][0] }}\n							</span>\n						</div>\n						<div *ngIf="showAllPenerimaJabatan">\n							<span *ngFor="let p of messageDetail[\'Penerima Jabatan\']; let i = index" ion-text text-wrap\n								color=\'dark\' class="font2">\n								{{ i + 1 }}. {{ p }} <br />\n							</span>\n						</div>\n					</div>\n					<div *ngIf="messageDetail[\'Tembusan Jabatan\'].length > 0">\n						<span ion-text text-wrap class="font" color="color4">Tembusan Jabatan :\n						</span>\n						<span ion-text text-wrap class="font" color="primary"\n							*ngIf="messageDetail[\'Tembusan Jabatan\'].length > 1" (click)="showMore(2)"\n							style="float:right;">\n							View more\n						</span> <br>\n						<div *ngIf="!showAllTembusanJabatan">\n							<span ion-text text-wrap color=\'dark\' class="font2">\n								1. {{ messageDetail[\'Tembusan Jabatan\'][0] }}\n							</span>\n						</div>\n						<div *ngIf="showAllTembusanJabatan">\n							<span *ngFor="let p of messageDetail[\'Tembusan Jabatan\']; let i = index" ion-text text-wrap\n								color=\'dark\' class="font2">\n								{{ i + 1 }}. {{ p }} <br />\n							</span>\n						</div>\n					</div>\n\n					<div *ngIf="messageDetail[\'Penerima Pekerja\'].length > 0">\n						<span ion-text text-wrap class="font" color="color4">Penerima Pekerja :\n						</span>\n						<span ion-text text-wrap class="font" color="primary"\n							*ngIf="messageDetail[\'Penerima Pekerja\'].length > 1" (click)="showMore(3)"\n							style="float:right;">\n							View more\n						</span> <br>\n						<div *ngIf="!showAllPenerimaPekerja">\n							<span ion-text text-wrap color=\'dark\' class="font2">\n								1. {{ messageDetail[\'Penerima Pekerja\'][0] }}\n							</span>\n						</div>\n						<div *ngIf="showAllPenerimaPekerja">\n							<span *ngFor="let p of messageDetail[\'Penerima Pekerja\']; let i = index" ion-text text-wrap\n								color=\'dark\' class="font2">\n								{{ i + 1 }}. {{ p }} <br />\n							</span>\n						</div>\n					</div>\n\n					<div *ngIf="messageDetail[\'Tembusan Pekerja\'].length > 0">\n						<span ion-text text-wrap class="font" color="color4">Tembusan Pekerja :\n						</span>\n						<span ion-text text-wrap class="font" color="primary"\n							*ngIf="messageDetail[\'Tembusan Pekerja\'].length > 1" (click)="showMore(4)"\n							style="float:right;">\n							View more\n						</span> <br>\n						<div *ngIf="!showAllTembusanPekerja">\n							<span ion-text text-wrap color=\'dark\' class="font2">\n								1. {{ messageDetail[\'Tembusan Pekerja\'][0] }}\n							</span>\n						</div>\n						<div *ngIf="showAllTembusanPekerja">\n							<span *ngFor="let p of messageDetail[\'Tembusan Pekerja\']; let i = index" ion-text text-wrap\n								color=\'dark\' class="font2">\n								{{ i + 1 }}. {{ p }} <br />\n							</span>\n						</div>\n					</div>\n\n					<div *ngIf="messageDetail[\'Penerima Non Pekerja\'].length > 0">\n						<span ion-text text-wrap class="font" color="color4">Penerima Non Pekerja\n							: </span>\n						<span ion-text text-wrap class="font" color="primary"\n							*ngIf="messageDetail[\'Penerima Non Pekerja\'].length > 1" (click)="showMore(5)"\n							style="float:right;">\n							View more\n						</span> <br>\n						<div *ngIf="!showAllPenerimaNonPekerja">\n							<span ion-text text-wrap color=\'dark\' class="font2">\n								1. {{ messageDetail[\'Penerima Non Pekerja\'][0] }}\n							</span>\n						</div>\n						<div *ngIf="showAllPenerimaNonPekerja">\n							<span *ngFor="let p of messageDetail[\'Penerima Non Pekerja\']; let i = index" ion-text\n								text-wrap color=\'dark\' class="font2">\n								{{ i + 1 }}. {{ p }} <br />\n							</span>\n						</div>\n					</div>\n\n					<div *ngIf="messageDetail[\'Tembusan Non Pekerja\'].length > 0">\n						<span ion-text text-wrap class="font" color="color4">Tembusan Non Pekerja\n							: </span>\n						<span ion-text text-wrap class="font" color="primary"\n							*ngIf="messageDetail[\'Tembusan Non Pekerja\'].length > 1" (click)="showMore(6)"\n							style="float:right;">\n							View more\n						</span> <br>\n						<div *ngIf="!showAllTembusanNonPekerja">\n							<span ion-text text-wrap color=\'dark\' class="font2">\n								1. {{ messageDetail[\'Tembusan Non Pekerja\'][0] }}\n							</span>\n						</div>\n						<div *ngIf="showAllTembusanNonPekerja">\n							<span *ngFor="let p of messageDetail[\'Tembusan Non Pekerja\']; let i = index" ion-text\n								text-wrap color=\'dark\' class="font2">\n								{{ i + 1 }}. {{ p }} <br />\n							</span>\n						</div>\n					</div>\n\n					<span ion-text text-wrap class="font" style="color:#959595">Attachment :\n					</span><br />\n					<div *ngIf="attachmentList.length > 0">\n						<div *ngFor="let attachment of attachmentList" (click)="downloadAttach(attachment)">\n							<span ion-text text-wrap color=\'dark\' class="font2"\n								color="primary">{{ subStrAttachment(attachment) }}</span> <br>\n						</div>\n					</div>\n					<div *ngIf="attachmentList.length == 0">\n						<span ion-text text-wrap color=\'dark\' class="font2" color="primary">\n							-\n						</span>\n					</div>\n				</ion-item>\n\n			</ion-card>\n\n			<ion-grid no-padding fixed>\n\n				<ion-row>\n					<ion-col col-12>\n						<ion-list>\n							<ion-item *ngIf="messageDetail[\'Jenis Surat\'] == \'Surat Perintah\'" padding-left\n								padding-right text-wrap>\n								<span ion-text text-wrap class="font2" style="color:black;"><b>Dasar</b></span>\n							</ion-item>\n\n							<ion-item *ngIf="messageDetail[\'Jenis Surat\'] == \'Surat Perintah\'" padding-left\n								padding-right text-wrap>\n								<div [innerHTML]="dasarSuratPerintah"></div>\n							</ion-item>\n\n							<ion-item *ngIf="messageDetail[\'Jenis Surat\'] == \'Surat Perintah\'" padding-left\n								padding-right text-wrap>\n								<span ion-text text-wrap class="font2" style="color:black;"><b>Perintah</b></span>\n							</ion-item>\n\n							<ion-item *ngIf="messageDetail[\'Jenis Surat\'] == \'Surat Perintah\'" padding-left\n								padding-right text-wrap>\n								<div [innerHTML]="isiPerintah"></div>\n\n							</ion-item>\n\n							<ion-item *ngIf="messageDetail[\'Jenis Surat\'] != \'Surat Perintah\'" padding-left\n								padding-right margin-bottom text-wrap>\n								<div [innerHTML]="messageDetail[\'Isi Surat\']"></div>\n							</ion-item>\n						</ion-list>\n					</ion-col>\n				</ion-row>\n\n				<ion-row\n					*ngIf="!isLoading && isAtasan && messageDetail[\'Status Surat\'] == \'LIHAT SURAT\' && from_modul != \'sppd\'">\n					<ion-col col-12>\n						<ion-list>\n							<ion-item no-lines padding-left padding-right no-margin>\n								<ion-row class="my-col">\n									<ion-col col-6 align-self-start><b ion-text color="dark" class="font2">Disposisi\n											Jabatan</b> </ion-col>\n									<ion-col col-6 align-self-center padding-right (click)="showDisposisi(\'jabatan\')">\n										<ion-icon name="add" color="primary" class="plus" float-right></ion-icon>\n									</ion-col>\n								</ion-row>\n								<div *ngIf="disposisiJabatanList != null">\n									<ion-row class="my-col" *ngFor="let disposisiJabatan of disposisiJabatanList">\n										<ion-col align-self-start text-wrap>\n											<p ion-text color="primary">{{ disposisiJabatan[\'nama_jabatan\'] }} |\n												{{ disposisiJabatan[\'nama\'] }}</p>\n										</ion-col>\n										<ion-col col-6 align-self-center padding-right>\n											<ion-icon name="md-close" color="danger" class="del-disposisi"\n												(click)="delete(disposisiJabatan,\'jabatan\')" float-right></ion-icon>\n										</ion-col>\n									</ion-row>\n								</div>\n							</ion-item>\n							<ion-item no-lines padding-left padding-right no-margin>\n								<ion-row class="my-col">\n									<ion-col col-6 align-self-start><b ion-text color="dark" class="font2">Disposisi\n											Pekerja</b> </ion-col>\n									<ion-col col-6 align-self-center padding-right (click)="showDisposisi(\'pekerja\')">\n										<ion-icon name="add" color="danger" class="plus" float-right></ion-icon>\n									</ion-col>\n								</ion-row>\n								<div *ngIf="disposisiPekerjaList != null">\n									<ion-row class="my-col" *ngFor="let disposisiPekerja of disposisiPekerjaList">\n										<ion-col align-self-start text-wrap>\n											<p ion-text color="primary">{{ disposisiPekerja[\'nama\'] }} |\n												{{ disposisiPekerja[\'nipp\'] }} | {{\n														disposisiPekerja[\'nama_jabatan\'] }}</p>\n										</ion-col>\n										<ion-col col-6 align-self-center padding-right>\n											<ion-icon name="md-close" color="danger" class="del-disposisi"\n												(click)="delete(disposisiPekerja,\'pekerja\')" float-right></ion-icon>\n										</ion-col>\n									</ion-row>\n								</div>\n							</ion-item>\n						</ion-list>\n					</ion-col>\n				</ion-row>\n			</ion-grid>\n\n			<ion-grid\n				*ngIf="isAtasan && messageDetail[\'Status Surat\'].includes(\'LIHAT SURAT\')  && from_modul != \'sppd\' ">\n				<ion-row>\n					<ion-col col-6>\n						<button style="border-radius:5px;" icon-start ion-button block color="danger"\n							(click)="cancel()">\n							<ion-icon name="md-close"></ion-icon>\n							Batal\n						</button>\n					</ion-col>\n					<ion-col col-6>\n						<button style="border-radius:5px;" icon-start ion-button block (click)="sendDisposisi()"\n							color="primary"\n							[disabled]="(disposisiJabatanList.length == 0 && disposisiPekerjaList.length == 0) ? true : false">\n							<ion-icon name="md-checkmark"></ion-icon>\n							Disposisi\n						</button>\n					</ion-col>\n				</ion-row>\n			</ion-grid>\n\n			<!-- -------------------------------------- PESERTA SPPD -------------------------------------------------------------- -->\n\n			<div *ngIf="messageDetail[\'Kode Jenis Surat\'] == \'nd_sppd\'">\n\n\n				<ion-item no-padding margin-left margin-right no-lines>\n					<span ion-text text-wrap class="font2">\n						<b>Peserta SPPD</b>\n					</span> <br>\n\n					<div *ngIf=\'pesertaSppdList.length > 0\'>\n						<table width="95%">\n							<tr *ngFor="let peserta of pesertaSppdList;let i = index">\n								<td valign="top" width="10%">{{i+1}}. </td>\n								<td valign="top">\n									<span ion-text text-wrap color=\'dark\' class="font2">\n										{{ peserta[\'NAMA\'] }}\n									</span>\n								</td>\n							</tr>\n						</table>\n					</div>\n\n					<div *ngIf="pesertaSppdList.length == 0">\n						<span ion-text text-wrap color=\'color4\' class="font2">\n							tidak ada peserta SPPD\n						</span>\n					</div>\n\n					<!-- <div *ngIf="attrScanSppd.length > 0 && from_modul == \'sppd\'">						 -->\n					<div *ngIf="messageData[\'KD_STATUS\'] == \'7\' && from_modul == \'sppd\'">\n						<ion-grid>\n							<ion-row>\n								<ion-col col-12>\n									<button style="border-radius:5px;" icon-start ion-button block\n										(click)="goToPertanggungjawaban()" color="primary">\n										<ion-icon name="md-checkmark"></ion-icon>\n										Pertanggungjawabkan\n									</button>\n								</ion-col>\n							</ion-row>\n						</ion-grid>\n					</div>\n\n					<div *ngIf="messageData[\'KD_STATUS\'] == \'9\' && from_modul == \'sppd\'">\n						<ion-grid>\n							<ion-row>\n								<ion-col col-12>\n									<button style="border-radius:5px;" icon-start ion-button block\n										(click)="goToPertanggungjawaban()" color="primary">\n										<ion-icon name="md-checkmark"></ion-icon>\n										Upload Ulang Pertanggungjawabkan\n									</button>\n								</ion-col>\n							</ion-row>\n						</ion-grid>\n					</div>\n\n\n\n				</ion-item>\n\n\n\n\n\n\n			</div>\n\n			<!-- -------------------------------------- PESERTA SPPD -------------------------------------------------------------- -->\n\n			<ion-grid *ngIf="messageDetail[\'Status Surat\'].includes(\'PERIKSA\')  && from_modul != \'sppd\' ">\n				<ion-row>\n					<ion-col col-12>\n						<div class="appForm">\n							<ion-list>\n								<ion-item>\n									<span item-left>\n										<img src="assets/imgs/logo/alasan.png" class="icons">\n									</span>\n									<ion-label stacked>Komentar</ion-label>\n									<ion-input type="text" [(ngModel)]="keterangan" placeholder="" clearInput>\n									</ion-input>\n								</ion-item>\n							</ion-list>\n						</div>\n					</ion-col>\n				</ion-row>\n				<ion-row>\n					<ion-col col-6>\n						<button style="border-radius:5px;" icon-start ion-button block color="danger"\n							(click)="doPeriksa(\'decline\')">\n							<ion-icon name="md-close"></ion-icon>\n							Decline\n						</button>\n					</ion-col>\n					<ion-col col-6>\n						<button style="border-radius:5px;" icon-start ion-button block (click)="doPeriksa(\'approve\')"\n							color="primary">\n							<ion-icon name="md-checkmark"></ion-icon>\n							Approve\n						</button>\n					</ion-col>\n				</ion-row>\n				<ion-row>\n					<ion-col col-12>\n						<button style="border-radius:5px;" icon-start ion-button block (click)="doPeriksa(\'kembalikan\')"\n							color="primary">\n							<ion-icon name="md-refresh"></ion-icon>\n							Kembalikan\n						</button>\n					</ion-col>\n				</ion-row>\n			</ion-grid>\n		</div>\n\n		<div *ngIf="messageDetail[\'Kode Jenis Surat\'] == \'permohonan\'">\n			<ion-card class="header-card">\n				<ion-card-content>\n					<span ion-text text-wrap class="font-header">\n						<b>{{ messageDetail[\'Judul Surat\'] }}</b>\n					</span>\n				</ion-card-content>\n			</ion-card>\n\n			<ion-card class="my-card">\n				<ion-item>\n					<span ion-text text-wrap class="font-mini" color="color4">\n						Tanggal Pengajuan\n					</span><br>\n					<span ion-text text-wrap class="font-small">\n						{{ messageDetail[\'Tanggal Pengajuan\'] }}\n					</span><br>\n\n					<span ion-text text-wrap class="font-mini" color="color4">\n						Jenis Pengajuan\n					</span><br>\n					<span ion-text text-wrap class="font-small">\n						{{ messageDetail[\'Jenis Pengajuan\'] }}\n					</span>\n					<br>\n\n					<span ion-text text-wrap class="font-mini" color="color4">\n						tanggal Cuti/Izin\n					</span><br>\n					<span ion-text text-wrap class="font-small">\n						{{ messageDetail[\'Tanggal Mulai Cuti\'] }}\n					</span> <span ion-text text-wrap class="font-small" color="primary"> s/d </span>\n					<span ion-text text-wrap class="font-small">\n						{{ messageDetail[\'Tanggal Selesai Cuti\'] }}\n					</span>\n					<br>\n\n					<span ion-text text-wrap class="font-mini" color="color4">\n						Alamat Selama Cuti/Izin\n					</span><br>\n					<span ion-text text-wrap class="font-small">\n						{{ messageDetail[\'Alamat Cuti\'] }}\n					</span>\n					<br>\n\n					<span ion-text text-wrap class="font-mini" color="color4">\n						Alasan\n					</span><br>\n					<span ion-text text-wrap class="font-small">\n						{{ messageDetail[\'Alasan\'] }}\n					</span>\n					<br>\n				</ion-item>\n			</ion-card>\n\n			<ion-card class="my-card">\n				<ion-item>\n					<div class="header-text">\n						<span ion-text text-wrap>\n							<img src="assets/imgs/logo/nipp.png" class="icons">\n						</span>\n						<span ion-text text-wrap class="font-small">\n							<b>Biodata Pemohon</b>\n						</span>\n					</div>\n					<div class="garis"></div>\n					<span ion-text text-wrap class="font-mini" color="color4">\n						NIPP\n					</span><br>\n					<span ion-text text-wrap class="font-small">\n						{{ messageDetail[\'NIPP Pemohon\'] }}\n					</span><br>\n\n					<span ion-text text-wrap class="font-mini" color="color4">\n						Nama\n					</span><br>\n					<span ion-text text-wrap class="font-small">\n						{{ messageDetail[\'Nama Pemohon\'] }}\n					</span>\n					<br>\n\n					<span ion-text text-wrap class="font-mini" color="color4">\n						Menyetujui\n					</span><br>\n					<span ion-text text-wrap class="font-small" color="primary">\n						<b>{{ messageDetail[\'NIPP Menyetujui\'] }}</b>\n					</span> <br>\n					<span ion-text text-wrap class="font-small">\n						{{ messageDetail[\'Nama Menyetujui\'] }} |\n						{{ messageDetail[\'Jabatan Menyetujui\'] }}\n					</span>\n					<br>\n\n					<span ion-text text-wrap class="font-mini" color="color4">\n						Mengetahui\n					</span><br>\n					<span *ngIf="messageDetail[\'NIPP Mengetahui\'] == \'\' || messageDetail[\'NIPP Mengetahui\'] == null"\n						ion-text text-wrap class="font-small" color="primary">\n						-\n					</span>\n					<span *ngIf="messageDetail[\'NIPP Mengetahui\'] != \'\' || messageDetail[\'NIPP Mengetahui\'] != null"\n						ion-text text-wrap class="font-small" color="primary">\n						<b>{{ messageDetail[\'NIPP Mengetahui\'] }}</b>\n					</span> <br>\n					<span *ngIf="messageDetail[\'Nama Mengetahui\'] != \'\' || messageDetail[\'Nama Mengetahui\'] != null"\n						ion-text text-wrap class="font-small">\n						{{ messageDetail[\'Nama Mengetahui\'] }} |\n						{{ messageDetail[\'Jabatan Mengetahui\'] }}\n					</span>\n				</ion-item>\n			</ion-card>\n\n			<ion-list\n				*ngIf="!isLoading && isAtasan && messageDetail[\'Kode Status Surat\'] == \'4\' && from_modul != \'sppd\'">\n				<ion-item no-lines padding-left padding-right no-margin>\n					<ion-row class="my-col">\n						<ion-col col-6 align-self-start><b ion-text color="dark" class="font2">Disposisi\n								Jabatan</b> </ion-col>\n						<ion-col col-6 align-self-center padding-right (click)="showDisposisi(\'jabatan\')">\n							<ion-icon name="add" color="primary" class="plus" float-right></ion-icon>\n						</ion-col>\n					</ion-row>\n					<div *ngIf="disposisiJabatanList != null">\n						<ion-row class="my-col" *ngFor="let disposisiJabatan of disposisiJabatanList">\n							<ion-col align-self-start text-wrap>\n								<p ion-text color="primary">{{ disposisiJabatan[\'nama_jabatan\'] }} |\n									{{ disposisiJabatan[\'nama\'] }}</p>\n							</ion-col>\n							<ion-col col-6 align-self-center padding-right>\n								<ion-icon name="md-close" color="danger" class="del-disposisi"\n									(click)="delete(disposisiJabatan,\'jabatan\')" float-right></ion-icon>\n							</ion-col>\n						</ion-row>\n					</div>\n				</ion-item>\n				<ion-item no-lines padding-left padding-right no-margin>\n					<ion-row class="my-col">\n						<ion-col col-6 align-self-start><b ion-text color="dark" class="font2">Disposisi\n								Pekerja</b> </ion-col>\n						<ion-col col-6 align-self-center padding-right (click)="showDisposisi(\'pekerja\')">\n							<ion-icon name="add" color="danger" class="plus" float-right></ion-icon>\n						</ion-col>\n					</ion-row>\n					<div *ngIf="disposisiPekerjaList != null">\n						<ion-row class="my-col" *ngFor="let disposisiPekerja of disposisiPekerjaList">\n							<ion-col align-self-start text-wrap>\n								<p ion-text color="primary">{{ disposisiPekerja[\'nama\'] }} |\n									{{ disposisiPekerja[\'nipp\'] }} | {{\n											disposisiPekerja[\'nama_jabatan\'] }}</p>\n							</ion-col>\n							<ion-col col-6 align-self-center padding-right>\n								<ion-icon name="md-close" color="danger" class="del-disposisi"\n									(click)="delete(disposisiPekerja,\'pekerja\')" float-right></ion-icon>\n							</ion-col>\n						</ion-row>\n					</div>\n				</ion-item>\n			</ion-list>\n\n			<ion-grid\n				*ngIf="isAtasan && messageDetail[\'Kode Status Surat\'] == \'4\'  && from_modul != \'sppd\' ">\n				<ion-row>\n					<ion-col col-6>\n						<button style="border-radius:5px;" icon-start ion-button block color="danger"\n							(click)="cancel()">\n							<ion-icon name="md-close"></ion-icon>\n							Batal\n						</button>\n					</ion-col>\n					<ion-col col-6>\n						<button style="border-radius:5px;" icon-start ion-button block (click)="sendDisposisi()"\n							color="primary"\n							[disabled]="(disposisiJabatanList.length == 0 && disposisiPekerjaList.length == 0) ? true : false">\n							<ion-icon name="md-checkmark"></ion-icon>\n							Disposisi\n						</button>\n					</ion-col>\n				</ion-row>\n			</ion-grid>\n\n			<ion-grid *ngIf="isAtasan && messageDetail[\'Kode Status Surat\'] == \'2\'">\n				<ion-row>\n					<ion-col col-12>\n						<div class="appForm">\n							<ion-list>\n								<ion-item>\n									<span item-left>\n										<img src="assets/imgs/logo/alasan.png" class="icons">\n									</span>\n									<ion-label stacked>Komentar</ion-label>\n									<ion-input type="text" [(ngModel)]="keterangan" placeholder="" clearInput>\n									</ion-input>\n								</ion-item>\n							</ion-list>\n						</div>\n					</ion-col>\n				</ion-row>\n				<ion-row>\n					<ion-col col-6>\n						<button style="border-radius:5px;" icon-start ion-button block color="danger"\n							(click)="doPeriksa(\'decline\')">\n							<ion-icon name="md-close"></ion-icon>\n							Ditangguhkan\n						</button>\n					</ion-col>\n					<ion-col col-6>\n						<button style="border-radius:5px;" icon-start ion-button block (click)="doPeriksa(\'approve\')"\n							color="primary">\n							<ion-icon name="md-checkmark"></ion-icon>\n							Setujui\n						</button>\n					</ion-col>\n				</ion-row>\n			</ion-grid>\n		</div>\n\n\n\n	</div>\n\n</ion-content>'/*ion-inline-end:"/Users/itadmin/Downloads/ERDA/POS_PPI/src/pages/inbox-detail/inbox-detail.html"*/,
+            providers: [__WEBPACK_IMPORTED_MODULE_2__soap_service__["a" /* SoapService */]],template:/*ion-inline-start:"/Users/itadmin/Downloads/ERDA/POS_PPI/src/pages/inbox-detail/inbox-detail.html"*/'<ion-header>\n	<ion-navbar>\n		<ion-title>\n			<!-- <span ion-text color="light">Detail Surat</span> -->\n		</ion-title>\n\n		<ion-buttons end>\n			<button ion-button (click)="goToLogSurat()">\n				<!-- <ion-icon style="font-size:2.4rem;" name="md-analytics" color="light"></ion-icon> -->\n				<img src="assets/imgs/menu-icon/history.png" style="    max-height: 27px;\n				margin-right: 5px;">\n			</button>\n			<button ion-button (click)="downloadInbox(replaceNomorSurat(messageData[\'No_Surat\']))">\n				<ion-icon style="font-size:2.4rem;" name="md-download" color="light"></ion-icon>\n			</button>\n		</ion-buttons>\n	</ion-navbar>\n</ion-header>\n\n\n<ion-content margin-bottom>\n	<div *ngIf="isLoading == true">\n		<ion-item no-lines>\n			<div class="animate-skeleton-background load-2"></div>\n			<div class="animate-skeleton-background load-3"></div>\n			<div class="garis"></div>\n			<div class="animate-skeleton-background load-1"> </div>\n			<div class="animate-skeleton-background load-3"></div>\n			<div class="animate-skeleton-background load-1"> </div>\n			<div class="animate-skeleton-background load-3"></div>\n		</ion-item>\n	</div>\n\n	<div *ngIf="isLoading == false">\n		<div *ngIf="messageDetail[\'Kode Jenis Surat\'] != \'permohonan\'">\n			<ion-card class="header-menu">\n				<ion-item no-padding margin-left>\n					<span ion-text text-wrap style="font-size:1.5rem;">\n						<b>{{ messageDetail[\'Perihal\'] }}</b>\n					</span> <br>\n					<span ion-text text-wrap style="font-size:1.2rem; color:gray;">\n						{{ messageDetail[\'No Surat\'] }}\n					</span>\n					<div style="padding: 10px;" item-end>\n						<button ion-button icon-only clear (click)="show()"> \n							<ion-icon name="ios-arrow-down-outline" *ngIf="!showDetailPesan"></ion-icon>\n							<ion-icon name="ios-arrow-up-outline" *ngIf="showDetailPesan"></ion-icon>\n						</button>\n					</div>\n\n				</ion-item>\n			</ion-card>\n\n			<ion-card class="my-card" style="margin-top:10px !important;" *ngIf="showDetailPesan">\n				<ion-item>\n					<span ion-text text-wrap class="font" color="color4">Tanggal :\n					</span><br />\n					<span ion-text text-wrap color=\'dark\' class="font2">\n						{{ messageDetail[\'Tanggal Surat\'] }}\n					</span> <br>\n\n					<span ion-text text-wrap class="font" color="color4">Pengirim :\n					</span><br />\n					<span ion-text text-wrap color=\'dark\' class="font2">\n						{{ messageDetail[\'Pengirim\'][\'Nama Jabatan\'] }}\n					</span> <br>\n\n					<div *ngIf="messageDetail[\'Kode Jenis Surat\'] == \'surat_perintah\' || messageDetail[\'Kode Jenis Surat\'] == \'undangan\' || messageDetail[\'Kode Jenis Surat\'] == \'surat_dinas\' || messageDetail[\'Kode Jenis Surat\'] == \'nd_undangan\' || messageDetail[\'Kode Jenis Surat\'] == \'nd_sppd\'" >\n						<span ion-text text-wrap class="font" color="color4">Tanggal Mulai :\n						</span><br />\n						<span ion-text text-wrap color=\'dark\' class="font2">\n							{{ messageDetail[\'Agenda\'][\'Tanggal Mulai\'] }}\n						</span> \n						<span ion-text text-wrap *ngIf="messageDetail[\'Agenda\'][\'Tanggal Mulai\'] == null"  color=\'dark\' class="font2">\n							-\n						</span>\n						<br>\n\n						<span ion-text text-wrap class="font" color="color4">Tanggal Akhir :\n						</span><br />\n						<span ion-text text-wrap color=\'dark\' class="font2">\n							{{ messageDetail[\'Agenda\'][\'Tanggal Akhir\'] }}\n						</span> \n						<span ion-text text-wrap *ngIf="messageDetail[\'Agenda\'][\'Tanggal Akhir\'] == null"  color=\'dark\' class="font2">\n							-\n						</span>\n						<br>\n\n						<span ion-text text-wrap class="font" color="color4">Lokasi :\n						</span><br />\n						<span ion-text text-wrap color=\'dark\' class="font2">\n							{{ messageDetail[\'Agenda\'][\'Lokasi\'] }}\n						</span> \n						<span ion-text text-wrap *ngIf="messageDetail[\'Agenda\'][\'Lokasi\'] == null"  color=\'dark\' class="font2">\n							-\n						</span>\n						<br>\n					</div>\n					\n\n					<div *ngIf="messageDetail[\'Penerima Jabatan\'].length > 0">\n						<span ion-text text-wrap class="font" color="color4">Penerima Jabatan :\n						</span>\n						<span ion-text text-wrap class="font" color="primary"\n							*ngIf="messageDetail[\'Penerima Jabatan\'].length > 1" (click)="showMore(1)"\n							style="float:right;">\n							View more\n						</span> <br>\n						<div *ngIf="!showAllPenerimaJabatan">\n							<span ion-text text-wrap color=\'dark\' class="font2">\n								1. {{ messageDetail[\'Penerima Jabatan\'][0] }}\n							</span>\n						</div>\n						<div *ngIf="showAllPenerimaJabatan">\n							<span *ngFor="let p of messageDetail[\'Penerima Jabatan\']; let i = index" ion-text text-wrap\n								color=\'dark\' class="font2">\n								{{ i + 1 }}. {{ p }} <br />\n							</span>\n						</div>\n					</div>\n					<div *ngIf="messageDetail[\'Tembusan Jabatan\'].length > 0">\n						<span ion-text text-wrap class="font" color="color4">Tembusan Jabatan :\n						</span>\n						<span ion-text text-wrap class="font" color="primary"\n							*ngIf="messageDetail[\'Tembusan Jabatan\'].length > 1" (click)="showMore(2)"\n							style="float:right;">\n							View more\n						</span> <br>\n						<div *ngIf="!showAllTembusanJabatan">\n							<span ion-text text-wrap color=\'dark\' class="font2">\n								1. {{ messageDetail[\'Tembusan Jabatan\'][0] }}\n							</span>\n						</div>\n						<div *ngIf="showAllTembusanJabatan">\n							<span *ngFor="let p of messageDetail[\'Tembusan Jabatan\']; let i = index" ion-text text-wrap\n								color=\'dark\' class="font2">\n								{{ i + 1 }}. {{ p }} <br />\n							</span>\n						</div>\n					</div>\n\n					<div *ngIf="messageDetail[\'Penerima Pekerja\'].length > 0">\n						<span ion-text text-wrap class="font" color="color4">Penerima Pekerja :\n						</span>\n						<span ion-text text-wrap class="font" color="primary"\n							*ngIf="messageDetail[\'Penerima Pekerja\'].length > 1" (click)="showMore(3)"\n							style="float:right;">\n							View more\n						</span> <br>\n						<div *ngIf="!showAllPenerimaPekerja">\n							<span ion-text text-wrap color=\'dark\' class="font2">\n								1. {{ messageDetail[\'Penerima Pekerja\'][0] }}\n							</span>\n						</div>\n						<div *ngIf="showAllPenerimaPekerja">\n							<span *ngFor="let p of messageDetail[\'Penerima Pekerja\']; let i = index" ion-text text-wrap\n								color=\'dark\' class="font2">\n								{{ i + 1 }}. {{ p }} <br />\n							</span>\n						</div>\n					</div>\n\n					<div *ngIf="messageDetail[\'Tembusan Pekerja\'].length > 0">\n						<span ion-text text-wrap class="font" color="color4">Tembusan Pekerja :\n						</span>\n						<span ion-text text-wrap class="font" color="primary"\n							*ngIf="messageDetail[\'Tembusan Pekerja\'].length > 1" (click)="showMore(4)"\n							style="float:right;">\n							View more\n						</span> <br>\n						<div *ngIf="!showAllTembusanPekerja">\n							<span ion-text text-wrap color=\'dark\' class="font2">\n								1. {{ messageDetail[\'Tembusan Pekerja\'][0] }}\n							</span>\n						</div>\n						<div *ngIf="showAllTembusanPekerja">\n							<span *ngFor="let p of messageDetail[\'Tembusan Pekerja\']; let i = index" ion-text text-wrap\n								color=\'dark\' class="font2">\n								{{ i + 1 }}. {{ p }} <br />\n							</span>\n						</div>\n					</div>\n\n					<div *ngIf="messageDetail[\'Penerima Non Pekerja\'].length > 0">\n						<span ion-text text-wrap class="font" color="color4">Penerima Non Pekerja\n							: </span>\n						<span ion-text text-wrap class="font" color="primary"\n							*ngIf="messageDetail[\'Penerima Non Pekerja\'].length > 1" (click)="showMore(5)"\n							style="float:right;">\n							View more\n						</span> <br>\n						<div *ngIf="!showAllPenerimaNonPekerja">\n							<span ion-text text-wrap color=\'dark\' class="font2">\n								1. {{ messageDetail[\'Penerima Non Pekerja\'][0] }}\n							</span>\n						</div>\n						<div *ngIf="showAllPenerimaNonPekerja">\n							<span *ngFor="let p of messageDetail[\'Penerima Non Pekerja\']; let i = index" ion-text\n								text-wrap color=\'dark\' class="font2">\n								{{ i + 1 }}. {{ p }} <br />\n							</span>\n						</div>\n					</div>\n\n					<div *ngIf="messageDetail[\'Tembusan Non Pekerja\'].length > 0">\n						<span ion-text text-wrap class="font" color="color4">Tembusan Non Pekerja\n							: </span>\n						<span ion-text text-wrap class="font" color="primary"\n							*ngIf="messageDetail[\'Tembusan Non Pekerja\'].length > 1" (click)="showMore(6)"\n							style="float:right;">\n							View more\n						</span> <br>\n						<div *ngIf="!showAllTembusanNonPekerja">\n							<span ion-text text-wrap color=\'dark\' class="font2">\n								1. {{ messageDetail[\'Tembusan Non Pekerja\'][0] }}\n							</span>\n						</div>\n						<div *ngIf="showAllTembusanNonPekerja">\n							<span *ngFor="let p of messageDetail[\'Tembusan Non Pekerja\']; let i = index" ion-text\n								text-wrap color=\'dark\' class="font2">\n								{{ i + 1 }}. {{ p }} <br />\n							</span>\n						</div>\n					</div>\n\n					<span ion-text text-wrap class="font" style="color:#959595">Attachment :\n					</span><br />\n					<div *ngIf="attachmentList.length > 0">\n						<div *ngFor="let attachment of attachmentList" (click)="downloadAttach(attachment)">\n							<span ion-text text-wrap color=\'dark\' class="font2"\n								color="primary">{{ subStrAttachment(attachment) }}</span> <br>\n						</div>\n					</div>\n					<div *ngIf="attachmentList.length == 0">\n						<span ion-text text-wrap color=\'dark\' class="font2" color="primary">\n							-\n						</span>\n					</div>\n				</ion-item>\n\n			</ion-card>\n\n			<ion-grid no-padding fixed>\n\n				<ion-row>\n					<ion-col col-12>\n						<ion-list>\n							<ion-item *ngIf="messageDetail[\'Jenis Surat\'] == \'Surat Perintah\'" padding-left\n								padding-right text-wrap>\n								<span ion-text text-wrap class="font2" style="color:black;"><b>Dasar</b></span>\n							</ion-item>\n\n							<ion-item *ngIf="messageDetail[\'Jenis Surat\'] == \'Surat Perintah\'" padding-left\n								padding-right text-wrap>\n								<div [innerHTML]="dasarSuratPerintah"></div>\n							</ion-item>\n\n							<ion-item *ngIf="messageDetail[\'Jenis Surat\'] == \'Surat Perintah\'" padding-left\n								padding-right text-wrap>\n								<span ion-text text-wrap class="font2" style="color:black;"><b>Perintah</b></span>\n							</ion-item>\n\n							<ion-item *ngIf="messageDetail[\'Jenis Surat\'] == \'Surat Perintah\'" padding-left\n								padding-right text-wrap>\n								<div [innerHTML]="isiPerintah"></div>\n\n							</ion-item>\n\n							<ion-item *ngIf="messageDetail[\'Jenis Surat\'] != \'Surat Perintah\'" padding-left\n								padding-right margin-bottom text-wrap>\n								<div [innerHTML]="messageDetail[\'Isi Surat\']"></div>\n							</ion-item>\n						</ion-list>\n					</ion-col>\n				</ion-row>\n\n				<ion-row\n					*ngIf="!isLoading && isAtasan && messageDetail[\'Status Surat\'] == \'LIHAT SURAT\' && from_modul != \'sppd\'">\n					<ion-col col-12>\n						<ion-list>\n							<ion-item no-lines padding-left padding-right no-margin>\n								<ion-row class="my-col">\n									<ion-col col-6 align-self-start><b ion-text color="dark" class="font2">Disposisi\n											Jabatan</b> </ion-col>\n									<ion-col col-6 align-self-center padding-right (click)="showDisposisi(\'jabatan\')">\n										<ion-icon name="add" color="primary" class="plus" float-right></ion-icon>\n									</ion-col>\n								</ion-row>\n								<div *ngIf="disposisiJabatanList != null">\n									<ion-row class="my-col" *ngFor="let disposisiJabatan of disposisiJabatanList">\n										<ion-col align-self-start text-wrap>\n											<p ion-text color="primary">{{ disposisiJabatan[\'nama_jabatan\'] }} |\n												{{ disposisiJabatan[\'nama\'] }}</p>\n										</ion-col>\n										<ion-col col-6 align-self-center padding-right>\n											<ion-icon name="md-close" color="danger" class="del-disposisi"\n												(click)="delete(disposisiJabatan,\'jabatan\')" float-right></ion-icon>\n										</ion-col>\n									</ion-row>\n								</div>\n							</ion-item>\n							<ion-item no-lines padding-left padding-right no-margin>\n								<ion-row class="my-col">\n									<ion-col col-6 align-self-start><b ion-text color="dark" class="font2">Disposisi\n											Pekerja</b> </ion-col>\n									<ion-col col-6 align-self-center padding-right (click)="showDisposisi(\'pekerja\')">\n										<ion-icon name="add" color="danger" class="plus" float-right></ion-icon>\n									</ion-col>\n								</ion-row>\n								<div *ngIf="disposisiPekerjaList != null">\n									<ion-row class="my-col" *ngFor="let disposisiPekerja of disposisiPekerjaList">\n										<ion-col align-self-start text-wrap>\n											<p ion-text color="primary">{{ disposisiPekerja[\'nama\'] }} |\n												{{ disposisiPekerja[\'nipp\'] }} | {{\n														disposisiPekerja[\'nama_jabatan\'] }}</p>\n										</ion-col>\n										<ion-col col-6 align-self-center padding-right>\n											<ion-icon name="md-close" color="danger" class="del-disposisi"\n												(click)="delete(disposisiPekerja,\'pekerja\')" float-right></ion-icon>\n										</ion-col>\n									</ion-row>\n								</div>\n							</ion-item>\n						</ion-list>\n					</ion-col>\n				</ion-row>\n			</ion-grid>\n\n			<ion-grid\n				*ngIf="isAtasan && messageDetail[\'Status Surat\'].includes(\'LIHAT SURAT\')  && from_modul != \'sppd\' ">\n				<ion-row>\n					<ion-col col-6>\n						<button style="border-radius:5px;" icon-start ion-button block color="danger"\n							(click)="cancel()">\n							<ion-icon name="md-close"></ion-icon>\n							Batal\n						</button>\n					</ion-col>\n					<ion-col col-6>\n						<button style="border-radius:5px;" icon-start ion-button block (click)="sendDisposisi()"\n							color="primary"\n							[disabled]="(disposisiJabatanList.length == 0 && disposisiPekerjaList.length == 0) ? true : false">\n							<ion-icon name="md-checkmark"></ion-icon>\n							Disposisi\n						</button>\n					</ion-col>\n				</ion-row>\n			</ion-grid>\n\n			<!-- -------------------------------------- PESERTA SPPD -------------------------------------------------------------- -->\n\n			<div *ngIf="messageDetail[\'Kode Jenis Surat\'] == \'nd_sppd\'">\n\n\n				<ion-item no-padding margin-left margin-right no-lines>\n					<span ion-text text-wrap class="font2">\n						<b>Peserta SPPD</b>\n					</span> <br>\n\n					<div *ngIf=\'pesertaSppdList.length > 0\'>\n						<table width="95%">\n							<tr *ngFor="let peserta of pesertaSppdList;let i = index">\n								<td valign="top" width="10%">{{i+1}}. </td>\n								<td valign="top">\n									<span ion-text text-wrap color=\'dark\' class="font2">\n										{{ peserta[\'NAMA\'] }}\n									</span>\n								</td>\n							</tr>\n						</table>\n					</div>\n\n					<div *ngIf="pesertaSppdList.length == 0">\n						<span ion-text text-wrap color=\'color4\' class="font2">\n							tidak ada peserta SPPD\n						</span>\n					</div>\n\n					<!-- <div *ngIf="attrScanSppd.length > 0 && from_modul == \'sppd\'">						 -->\n					<div *ngIf="messageData[\'KD_STATUS\'] == \'7\' && from_modul == \'sppd\'">\n						<ion-grid>\n							<ion-row>\n								<ion-col col-12>\n									<button style="border-radius:5px;" icon-start ion-button block\n										(click)="goToPertanggungjawaban()" color="primary">\n										<ion-icon name="md-checkmark"></ion-icon>\n										Pertanggungjawabkan\n									</button>\n								</ion-col>\n							</ion-row>\n						</ion-grid>\n					</div>\n\n					<div *ngIf="messageData[\'KD_STATUS\'] == \'9\' && from_modul == \'sppd\'">\n						<ion-grid>\n							<ion-row>\n								<ion-col col-12>\n									<button style="border-radius:5px;" icon-start ion-button block\n										(click)="goToPertanggungjawaban()" color="primary">\n										<ion-icon name="md-checkmark"></ion-icon>\n										Upload Ulang Pertanggungjawabkan\n									</button>\n								</ion-col>\n							</ion-row>\n						</ion-grid>\n					</div>\n\n\n\n				</ion-item>\n\n\n\n\n\n\n			</div>\n\n			<!-- -------------------------------------- PESERTA SPPD -------------------------------------------------------------- -->\n\n			<ion-grid *ngIf="messageDetail[\'Status Surat\'].includes(\'PERIKSA\')  && from_modul != \'sppd\' ">\n				<ion-row>\n					<ion-col col-12>\n						<div class="appForm">\n							<ion-list>\n								<ion-item>\n									<span item-left>\n										<img src="assets/imgs/logo/alasan.png" class="icons">\n									</span>\n									<ion-label stacked>Komentar</ion-label>\n									<ion-input type="text" [(ngModel)]="keterangan" placeholder="" clearInput>\n									</ion-input>\n								</ion-item>\n							</ion-list>\n						</div>\n					</ion-col>\n				</ion-row>\n				<ion-row>\n					<ion-col col-6>\n						<button style="border-radius:5px;" icon-start ion-button block color="danger"\n							(click)="doPeriksa(\'decline\')">\n							<ion-icon name="md-close"></ion-icon>\n							Decline\n						</button>\n					</ion-col>\n					<ion-col col-6>\n						<button style="border-radius:5px;" icon-start ion-button block (click)="doPeriksa(\'approve\')"\n							color="primary">\n							<ion-icon name="md-checkmark"></ion-icon>\n							Approve\n						</button>\n					</ion-col>\n				</ion-row>\n				<ion-row>\n					<ion-col col-12>\n						<button style="border-radius:5px;" icon-start ion-button block (click)="doPeriksa(\'kembalikan\')"\n							color="primary">\n							<ion-icon name="md-refresh"></ion-icon>\n							Kembalikan\n						</button>\n					</ion-col>\n				</ion-row>\n			</ion-grid>\n		</div>\n\n		<div *ngIf="messageDetail[\'Kode Jenis Surat\'] == \'permohonan\'">\n			<ion-card class="header-card">\n				<ion-card-content>\n					<span ion-text text-wrap class="font-header">\n						<b>{{ messageDetail[\'Judul Surat\'] }}</b>\n					</span>\n				</ion-card-content>\n			</ion-card>\n\n			<ion-card class="my-card">\n				<ion-item>\n					<span ion-text text-wrap class="font-mini" color="color4">\n						Tanggal Pengajuan\n					</span><br>\n					<span ion-text text-wrap class="font-small">\n						{{ messageDetail[\'Tanggal Pengajuan\'] }}\n					</span><br>\n\n					<span ion-text text-wrap class="font-mini" color="color4">\n						Jenis Pengajuan\n					</span><br>\n					<span ion-text text-wrap class="font-small">\n						{{ messageDetail[\'Jenis Pengajuan\'] }}\n					</span>\n					<br>\n\n					<span ion-text text-wrap class="font-mini" color="color4">\n						tanggal Cuti/Izin\n					</span><br>\n					<span ion-text text-wrap class="font-small">\n						{{ messageDetail[\'Tanggal Mulai Cuti\'] }}\n					</span> <span ion-text text-wrap class="font-small" color="primary"> s/d </span>\n					<span ion-text text-wrap class="font-small">\n						{{ messageDetail[\'Tanggal Selesai Cuti\'] }}\n					</span>\n					<br>\n\n					<span ion-text text-wrap class="font-mini" color="color4">\n						Alamat Selama Cuti/Izin\n					</span><br>\n					<span ion-text text-wrap class="font-small">\n						{{ messageDetail[\'Alamat Cuti\'] }}\n					</span>\n					<br>\n\n					<span ion-text text-wrap class="font-mini" color="color4">\n						Alasan\n					</span><br>\n					<span ion-text text-wrap class="font-small">\n						{{ messageDetail[\'Alasan\'] }}\n					</span>\n					<br>\n				</ion-item>\n			</ion-card>\n\n			<ion-card class="my-card">\n				<ion-item>\n					<div class="header-text">\n						<span ion-text text-wrap>\n							<img src="assets/imgs/logo/nipp.png" class="icons">\n						</span>\n						<span ion-text text-wrap class="font-small">\n							<b>Biodata Pemohon</b>\n						</span>\n					</div>\n					<div class="garis"></div>\n					<span ion-text text-wrap class="font-mini" color="color4">\n						NIPP\n					</span><br>\n					<span ion-text text-wrap class="font-small">\n						{{ messageDetail[\'NIPP Pemohon\'] }}\n					</span><br>\n\n					<span ion-text text-wrap class="font-mini" color="color4">\n						Nama\n					</span><br>\n					<span ion-text text-wrap class="font-small">\n						{{ messageDetail[\'Nama Pemohon\'] }}\n					</span>\n					<br>\n\n					<span ion-text text-wrap class="font-mini" color="color4">\n						Menyetujui\n					</span><br>\n					<span ion-text text-wrap class="font-small" color="primary">\n						<b>{{ messageDetail[\'NIPP Menyetujui\'] }}</b>\n					</span> <br>\n					<span ion-text text-wrap class="font-small">\n						{{ messageDetail[\'Nama Menyetujui\'] }} |\n						{{ messageDetail[\'Jabatan Menyetujui\'] }}\n					</span>\n					<br>\n\n					<span ion-text text-wrap class="font-mini" color="color4">\n						Mengetahui\n					</span><br>\n					<span *ngIf="messageDetail[\'NIPP Mengetahui\'] == \'\' || messageDetail[\'NIPP Mengetahui\'] == null"\n						ion-text text-wrap class="font-small" color="primary">\n						-\n					</span>\n					<span *ngIf="messageDetail[\'NIPP Mengetahui\'] != \'\' || messageDetail[\'NIPP Mengetahui\'] != null"\n						ion-text text-wrap class="font-small" color="primary">\n						<b>{{ messageDetail[\'NIPP Mengetahui\'] }}</b>\n					</span> <br>\n					<span *ngIf="messageDetail[\'Nama Mengetahui\'] != \'\' || messageDetail[\'Nama Mengetahui\'] != null"\n						ion-text text-wrap class="font-small">\n						{{ messageDetail[\'Nama Mengetahui\'] }} |\n						{{ messageDetail[\'Jabatan Mengetahui\'] }}\n					</span>\n				</ion-item>\n			</ion-card>\n\n			<ion-list\n				*ngIf="!isLoading && isAtasan && messageDetail[\'Kode Status Surat\'] == \'4\' && from_modul != \'sppd\'">\n				<ion-item no-lines padding-left padding-right no-margin>\n					<ion-row class="my-col">\n						<ion-col col-6 align-self-start><b ion-text color="dark" class="font2">Disposisi\n								Jabatan</b> </ion-col>\n						<ion-col col-6 align-self-center padding-right (click)="showDisposisi(\'jabatan\')">\n							<ion-icon name="add" color="primary" class="plus" float-right></ion-icon>\n						</ion-col>\n					</ion-row>\n					<div *ngIf="disposisiJabatanList != null">\n						<ion-row class="my-col" *ngFor="let disposisiJabatan of disposisiJabatanList">\n							<ion-col align-self-start text-wrap>\n								<p ion-text color="primary">{{ disposisiJabatan[\'nama_jabatan\'] }} |\n									{{ disposisiJabatan[\'nama\'] }}</p>\n							</ion-col>\n							<ion-col col-6 align-self-center padding-right>\n								<ion-icon name="md-close" color="danger" class="del-disposisi"\n									(click)="delete(disposisiJabatan,\'jabatan\')" float-right></ion-icon>\n							</ion-col>\n						</ion-row>\n					</div>\n				</ion-item>\n				<ion-item no-lines padding-left padding-right no-margin>\n					<ion-row class="my-col">\n						<ion-col col-6 align-self-start><b ion-text color="dark" class="font2">Disposisi\n								Pekerja</b> </ion-col>\n						<ion-col col-6 align-self-center padding-right (click)="showDisposisi(\'pekerja\')">\n							<ion-icon name="add" color="danger" class="plus" float-right></ion-icon>\n						</ion-col>\n					</ion-row>\n					<div *ngIf="disposisiPekerjaList != null">\n						<ion-row class="my-col" *ngFor="let disposisiPekerja of disposisiPekerjaList">\n							<ion-col align-self-start text-wrap>\n								<p ion-text color="primary">{{ disposisiPekerja[\'nama\'] }} |\n									{{ disposisiPekerja[\'nipp\'] }} | {{\n											disposisiPekerja[\'nama_jabatan\'] }}</p>\n							</ion-col>\n							<ion-col col-6 align-self-center padding-right>\n								<ion-icon name="md-close" color="danger" class="del-disposisi"\n									(click)="delete(disposisiPekerja,\'pekerja\')" float-right></ion-icon>\n							</ion-col>\n						</ion-row>\n					</div>\n				</ion-item>\n			</ion-list>\n\n			<ion-grid\n				*ngIf="isAtasan && messageDetail[\'Kode Status Surat\'] == \'4\'  && from_modul != \'sppd\' ">\n				<ion-row>\n					<ion-col col-6>\n						<button style="border-radius:5px;" icon-start ion-button block color="danger"\n							(click)="cancel()">\n							<ion-icon name="md-close"></ion-icon>\n							Batal\n						</button>\n					</ion-col>\n					<ion-col col-6>\n						<button style="border-radius:5px;" icon-start ion-button block (click)="sendDisposisi()"\n							color="primary"\n							[disabled]="(disposisiJabatanList.length == 0 && disposisiPekerjaList.length == 0) ? true : false">\n							<ion-icon name="md-checkmark"></ion-icon>\n							Disposisi\n						</button>\n					</ion-col>\n				</ion-row>\n			</ion-grid>\n\n			<ion-grid *ngIf="isAtasan && messageDetail[\'Kode Status Surat\'] == \'2\'">\n				<ion-row>\n					<ion-col col-12>\n						<div class="appForm">\n							\n								<ion-item>\n									<span item-left>\n										<img src="assets/imgs/logo/alasan.png" class="icons">\n									</span>\n									<ion-label stacked>Komentar</ion-label>\n									<ion-input type="text" [(ngModel)]="keterangan" placeholder="" clearInput>\n									</ion-input>\n								</ion-item>\n							\n						</div>\n					</ion-col>\n				</ion-row>\n\n				<ion-row *ngIf="formDitangguhkan" >\n					<ion-col col-12>\n						<div class="appForm">\n							<div>\n								<ion-item style="width:70%; float: left;">\n									<span item-left>\n										<img src="assets/imgs/menu-icon/start_date.png" class="icons">\n									</span>\n									<ion-label stacked>Tanggal Mulai</ion-label>\n									<ion-input type="text" [readonly]="true" (ionFocus)="checkFocus(1)" (click)="checkFocus(1)" [(ngModel)]="tanggalMulai"></ion-input>\n								</ion-item>\n						\n								<ion-item style="width:30%; float:right;padding-top:14px;padding-left:3px !important;">\n									<ion-select [(ngModel)]="jamMulai" placeholder="" style="max-width:100%;">\n										<ion-option value="23">7:00</ion-option>\n										<ion-option value="24">19:00</ion-option>\n										<ion-option value="1">0:00</ion-option>\n										<ion-option value="2">8:00</ion-option>\n										<ion-option value="3">8:30</ion-option>\n										<ion-option value="4">9:00</ion-option>\n										<ion-option value="5">9:30</ion-option>\n										<ion-option value="6">10:00</ion-option>\n										<ion-option value="7">10:30</ion-option>\n										<ion-option value="8">11:00</ion-option>\n										<ion-option value="9">11:30</ion-option>\n										<ion-option value="10">12:00</ion-option>\n										<ion-option value="11">12:30</ion-option>\n										<ion-option value="12">13:00</ion-option>\n										<ion-option value="13">13:30</ion-option>\n										<ion-option value="14">14:00</ion-option>\n										<ion-option value="15">14:30</ion-option>\n										<ion-option value="16">15:00</ion-option>\n										<ion-option value="17">15:30</ion-option>\n										<ion-option value="18">16:00</ion-option>\n										<ion-option value="19">16:30</ion-option>\n										<ion-option value="20">17:00</ion-option>\n										<ion-option value="21">17:30</ion-option>\n										<ion-option value="22">18.00</ion-option>\n										<ion-option value="25">20:00</ion-option>\n										<ion-option value="26">6:00</ion-option>\n										<ion-option value="28">7:30</ion-option>\n									</ion-select>\n								</ion-item>\n							</div>\n						\n							<div>\n								<ion-item style="width:70%; float: left;">\n									<span item-left>\n										<img src="assets/imgs/menu-icon/end_date.png" class="icons">\n									</span>\n									<ion-label stacked>Tanggal Selesai</ion-label>\n									<!-- <ion-input type="text" [readonly]="true" (ionFocus)="checkFocus(2)" [(ngModel)]="tanggalSelesai"> -->\n										<ion-input type="text" [readonly]="true" (click)="checkFocus(2)" (ionFocus)="checkFocus(2)" [(ngModel)]="tanggalSelesai">\n									</ion-input>\n								</ion-item>\n						\n								<ion-item style="width:30%; float:right;padding-top:14px;padding-left:3px !important;">\n									<ion-select [(ngModel)]="jamSelesai" placeholder="" style="max-width:100%;">\n										<ion-option value="23">7:30</ion-option>\n										<ion-option value="24">20:00</ion-option>\n										<ion-option value="1">8:00</ion-option>\n										<ion-option value="2">8:30</ion-option>\n										<ion-option value="3">9:00</ion-option>\n										<ion-option value="4">9:30</ion-option>\n										<ion-option value="5">10:00</ion-option>\n										<ion-option value="6">10:30</ion-option>\n										<ion-option value="7">11:00</ion-option>\n										<ion-option value="8">11:30</ion-option>\n										<ion-option value="9">12:00</ion-option>\n										<ion-option value="10">12:30</ion-option>\n										<ion-option value="11">13:00</ion-option>\n										<ion-option value="12">13:30</ion-option>\n										<ion-option value="13">14:00</ion-option>\n										<ion-option value="14">14:30</ion-option>\n										<ion-option value="15">15:00</ion-option>\n										<ion-option value="16">15:30</ion-option>\n										<ion-option value="17">16:00</ion-option>\n										<ion-option value="18">16:30</ion-option>\n										<ion-option value="19">17:00</ion-option>\n										<ion-option value="20">17:30</ion-option>\n										<ion-option value="21">18:00</ion-option>\n										<ion-option value="22">19.00</ion-option>\n										<ion-option value="25">22:00</ion-option>\n										<ion-option value="26">7:00</ion-option>\n										<ion-option value="28">8:00</ion-option>\n									</ion-select>\n								</ion-item>\n							</div>\n						\n							<div *ngIf="tanggalSelesai != \'\'" >\n								<ion-item>\n									<span item-left>\n										<img src="assets/imgs/menu-icon/jumHari.png" class="icons">\n									</span>\n									<ion-label stacked>Jumlah Hari</ion-label>\n									<ion-input type="number" [(ngModel)]="jumHari"></ion-input>\n								</ion-item>\n						\n								<p ion-text text-wrap color="color4" style="padding-left:8px !important;">*Bila terdapat kesalahan jumlah hari silahkan disesuaikan</p>\n								<p ion-text text-wrap color="danger" style="padding-left:8px !important;">Sisa Cuti Tahunan : <b>{{ sisaCuti }}</b></p>\n							</div>\n						</div>\n					</ion-col>\n					<p ion-text text-wrap color="danger" style="padding-left:8px !important;">{{errorMsg}}</p>\n				</ion-row>\n\n				<ion-row>\n					<ion-col col-6>\n						<button style="border-radius:5px;" icon-start ion-button block color="danger"\n							(click)="doPeriksa(\'decline\')">\n							<ion-icon name="md-close"></ion-icon>\n							Keberatan\n						</button>\n					</ion-col>\n					<ion-col col-6>\n						<button style="border-radius:5px;" icon-start ion-button block (click)="doPeriksa(\'approve\')"\n							color="color6">\n							<ion-icon name="md-checkmark"></ion-icon>\n							Setujui\n						</button>\n					</ion-col>\n				</ion-row>\n				<ion-row>\n					<ion-col col-12>\n						<button style="border-radius:5px;" icon-start ion-button block (click)="ditangguhkan()"\n						color="primary">\n						<ion-icon name="md-remove-circle"></ion-icon>\n						Ditangguhkan\n					</button>\n					</ion-col>\n				</ion-row>\n			</ion-grid>\n		</div>\n\n\n\n	</div>\n\n</ion-content>'/*ion-inline-end:"/Users/itadmin/Downloads/ERDA/POS_PPI/src/pages/inbox-detail/inbox-detail.html"*/,
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavController */],
             __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* NavParams */],
@@ -1530,7 +1848,10 @@ var InboxDetailPage = /** @class */ (function () {
             __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* ModalController */],
             __WEBPACK_IMPORTED_MODULE_5__ionic_native_in_app_browser__["a" /* InAppBrowser */],
             __WEBPACK_IMPORTED_MODULE_6__ionic_native_onesignal__["a" /* OneSignal */],
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["p" /* ToastController */]])
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["p" /* ToastController */],
+            __WEBPACK_IMPORTED_MODULE_7__ionic_native_date_picker__["a" /* DatePicker */],
+            __WEBPACK_IMPORTED_MODULE_8__angular_common__["e" /* DatePipe */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["n" /* Platform */]])
     ], InboxDetailPage);
     return InboxDetailPage;
 }());

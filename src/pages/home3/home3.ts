@@ -366,8 +366,8 @@ export class Home3Page {
               sc_type: 'check_version',
               sc_code: "",
               data: {
-                "platform": "ios",
-                "version": "1.4.3",
+                "platform": "android",
+                "version": "1.0.0",
                 "player_id": id.userId,
                 "nipp": this.userdataTPK.data.NIPP,
                 "model": this.device.model,
