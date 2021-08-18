@@ -111,6 +111,10 @@ export class LoginPage {
             this.isValid = false;
             this.errorMessage = ' *Username Anda Tidak Terdaftar di IVO';
             loading.dismiss();
+          } else if (this.responData['rcmsg'] == "User Not Active") {
+            this.isValid = false;
+            this.errorMessage = ' *Status User Anda Sudah Tidak Aktif';
+            loading.dismiss();
           } else {
             this.isValid = false;
             this.errorMessage = ' *Username atau Password Salah';
