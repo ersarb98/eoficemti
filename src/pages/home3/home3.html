@@ -59,14 +59,14 @@
 
     <ion-card class="header-card" *ngIf="isLoadingHadirkoe == false && dataValidasi != null">
       <div class="menu-container">
-        <div class="menu-content" (click)="openPage('InboxPage')">
+        <div class="menu-content" (click)="getToast()">
           <div class="img-container color-1"><img src="assets/imgs/menu-icon/inbox-white.png"></div>
           <span ion-text text-wrap>Surat Masuk</span>
           <ion-badge class="my-badge" *ngIf="badgesList != null && parse(badgesList['JUMLAH_SURAT_ALL_BADGES'])"
             color="danger">{{badgesList['JUMLAH_SURAT_ALL_BADGES']}}</ion-badge>
         </div>
 
-        <div class="menu-content" (click)="openPage('OutboxPage')">
+        <div class="menu-content" (click)="getToast()">
           <div class="img-container color-2"><img src="assets/imgs/menu-icon/outbox-white.png"></div>
           <span ion-text text-wrap>Surat Keluar</span>
         </div>
@@ -117,7 +117,7 @@
   <br>
   <div *ngIf="userdataTPK != null">
     <div *ngIf="userdataTPK['data']['TNO'] == false">
-      <div style="margin-top: 175px;" class="menu-container">
+      <div style="margin-top: 200px;" class="menu-container">
         <div class="menu-content-2" (click)="openPage('AbsenListPage')">
           <div class="img-container-2"><img src="assets/imgs/menu-icon/absensi.png"></div>
           <span ion-text text-wrap>Absensi</span>
@@ -131,12 +131,12 @@
           <span ion-text text-wrap>Cuti/Izin</span>
         </div>
 
-        <div class="menu-content-2" (click)="openPage('SppdListPage')">
+        <div class="menu-content-2" (click)="getToast()">
           <div class="img-container-2"><img src="assets/imgs/menu-icon/sppd-2.png"></div>
           <span ion-text text-wrap>SPPD</span>
         </div>
 
-        <div class="menu-content-2" (click)="openPage('')">
+        <div class="menu-content-2" (click)="getToast()">
           <div class="img-container-2"><img src="assets/imgs/menu-icon/survey.png"></div>
           <span ion-text text-wrap>Arsip Personal</span>
         </div>
@@ -144,7 +144,7 @@
 
       <div *ngIf="dataValidasi != null">
         <div style="margin-top: 20px;" class="menu-container">
-          <div class="menu-content-2" (click)="openPage('SppdListPage')">
+          <div class="menu-content-2" (click)="getToast()">
             <div class="img-container-2"><img src="assets/imgs/menu-icon/sppd-2.png"></div>
             <span ion-text text-wrap>E-CV</span>
           </div>
