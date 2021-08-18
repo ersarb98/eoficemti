@@ -1,6 +1,6 @@
 webpackJsonp([18],{
 
-/***/ 314:
+/***/ 315:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -8,7 +8,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "KategoriPengajuanListPageModule", function() { return KategoriPengajuanListPageModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(100);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__kategori_pengajuan_list__ = __webpack_require__(369);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__kategori_pengajuan_list__ = __webpack_require__(370);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -551,7 +551,7 @@ module.exports = {
 
 /***/ }),
 
-/***/ 369:
+/***/ 370:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -686,7 +686,7 @@ var KategoriPengajuanListPage = /** @class */ (function () {
     KategoriPengajuanListPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
             selector: 'page-kategori-pengajuan-list',
-            providers: [__WEBPACK_IMPORTED_MODULE_2__soap_service__["a" /* SoapService */]],template:/*ion-inline-start:"/Users/itadmin/Downloads/ERDA/POS_PPI/src/pages/kategori-pengajuan-list/kategori-pengajuan-list.html"*/'<ion-header>\n  <ion-navbar>\n    <ion-title>\n      <span ion-text color="light" class="fw500">Kategori Pengajuan</span>\n    </ion-title>\n  </ion-navbar>\n</ion-header>\n\n<ion-content>\n\n  <ion-list class="dining_List" *ngIf="kategoriList.length == 0 && isLoading == false">\n    <ion-item tapplable>\n      <div style="padding:7px">\n        <span text-wrap ion-text class="font">Tidak ada Kategori</span><br />\n      </div>\n    </ion-item>\n  </ion-list>\n\n  <ion-list class="dining_List" *ngIf="kategoriList.length > 0 && isLoading == false">\n    <ion-card class="my-card" *ngFor="let kategori of kategoriList">\n      <ion-item>\n        <span item-start>\n          <img src="assets/imgs/logo/category-icon.png" class="icons">\n        </span>\n        <div style="padding:8px">\n          <span ion-text text-wrap class="font bold">{{ kategori[\'KATEGORI\'] }}</span><br />\n          <span ion-text text-wrap color="primary" class="font">{{ userdataIPCContact[\'DIREKTORAT\'] }}</span>\n        </div>\n      </ion-item>\n    </ion-card>\n  </ion-list>   \n\n  <ion-list *ngIf=\'kategoriList.length == 0 && isLoading == true\'>\n    <ion-card *ngFor=\'let fake of fakeUsers\'>\n      <ion-item>\n        <div class="animate-skeleton-background load-2"></div>\n        <div class="animate-skeleton-background load-3"></div>\n        <div class="animate-skeleton-background load-1"> </div>\n      </ion-item>\n    </ion-card>\n  </ion-list>\n\n  <ion-refresher (ionRefresh)="doRefresh($event)">\n    <ion-refresher-content pullingIcon="arrow-dropdown" pullingText="Pull to refresh" refreshingSpinner="crescent">\n    </ion-refresher-content>\n  </ion-refresher>\n\n</ion-content>\n\n<ion-footer>\n  <ion-fab right bottom style="right:20px;bottom:20px;">\n    <button ion-fab color="primary" (click)="openModal(\'AddKategoriPengajuanPage\')">\n      <ion-icon name="add"></ion-icon>\n    </button>\n  </ion-fab>\n</ion-footer>'/*ion-inline-end:"/Users/itadmin/Downloads/ERDA/POS_PPI/src/pages/kategori-pengajuan-list/kategori-pengajuan-list.html"*/,
+            providers: [__WEBPACK_IMPORTED_MODULE_2__soap_service__["a" /* SoapService */]],template:/*ion-inline-start:"D:\Project\pos-ppi\src\pages\kategori-pengajuan-list\kategori-pengajuan-list.html"*/'<ion-header>\n\n  <ion-navbar>\n\n    <ion-title>\n\n      <span ion-text color="light" class="fw500">Kategori Pengajuan</span>\n\n    </ion-title>\n\n  </ion-navbar>\n\n</ion-header>\n\n\n\n<ion-content>\n\n\n\n  <ion-list class="dining_List" *ngIf="kategoriList.length == 0 && isLoading == false">\n\n    <ion-item tapplable>\n\n      <div style="padding:7px">\n\n        <span text-wrap ion-text class="font">Tidak ada Kategori</span><br />\n\n      </div>\n\n    </ion-item>\n\n  </ion-list>\n\n\n\n  <ion-list class="dining_List" *ngIf="kategoriList.length > 0 && isLoading == false">\n\n    <ion-card class="my-card" *ngFor="let kategori of kategoriList">\n\n      <ion-item>\n\n        <span item-start>\n\n          <img src="assets/imgs/logo/category-icon.png" class="icons">\n\n        </span>\n\n        <div style="padding:8px">\n\n          <span ion-text text-wrap class="font bold">{{ kategori[\'KATEGORI\'] }}</span><br />\n\n          <span ion-text text-wrap color="primary" class="font">{{ userdataIPCContact[\'DIREKTORAT\'] }}</span>\n\n        </div>\n\n      </ion-item>\n\n    </ion-card>\n\n  </ion-list>   \n\n\n\n  <ion-list *ngIf=\'kategoriList.length == 0 && isLoading == true\'>\n\n    <ion-card *ngFor=\'let fake of fakeUsers\'>\n\n      <ion-item>\n\n        <div class="animate-skeleton-background load-2"></div>\n\n        <div class="animate-skeleton-background load-3"></div>\n\n        <div class="animate-skeleton-background load-1"> </div>\n\n      </ion-item>\n\n    </ion-card>\n\n  </ion-list>\n\n\n\n  <ion-refresher (ionRefresh)="doRefresh($event)">\n\n    <ion-refresher-content pullingIcon="arrow-dropdown" pullingText="Pull to refresh" refreshingSpinner="crescent">\n\n    </ion-refresher-content>\n\n  </ion-refresher>\n\n\n\n</ion-content>\n\n\n\n<ion-footer>\n\n  <ion-fab right bottom style="right:20px;bottom:20px;">\n\n    <button ion-fab color="primary" (click)="openModal(\'AddKategoriPengajuanPage\')">\n\n      <ion-icon name="add"></ion-icon>\n\n    </button>\n\n  </ion-fab>\n\n</ion-footer>'/*ion-inline-end:"D:\Project\pos-ppi\src\pages\kategori-pengajuan-list\kategori-pengajuan-list.html"*/,
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavController */],
             __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* NavParams */],

@@ -190,6 +190,15 @@ export class Home3Page {
       });
   }
 
+  getToast(){
+    let toast = this.toastCtrl.create({
+      message: 'Under Maintenance.',
+      duration: 3000,
+      position: 'bottom'
+    });
+    toast.present();
+  }
+
   getBadges() {
     this.soapService
       .post(api_base_url, 'eoffice_countbadges', {

@@ -34,15 +34,15 @@ var map = {
 		35
 	],
 	"../pages/absen-team-hadirkoe/absen-team-hadirkoe.module": [
-		296,
+		294,
 		34
 	],
 	"../pages/add-cuti/add-cuti.module": [
-		294,
+		295,
 		33
 	],
 	"../pages/add-kategori-pengajuan/add-kategori-pengajuan.module": [
-		295,
+		296,
 		32
 	],
 	"../pages/add-nota-restitusi/add-nota-restitusi.module": [
@@ -70,11 +70,11 @@ var map = {
 		26
 	],
 	"../pages/check-in/check-in.module": [
-		304,
+		303,
 		1
 	],
 	"../pages/coba-list/coba-list.module": [
-		303,
+		304,
 		49
 	],
 	"../pages/cuti-detail/cuti-detail.module": [
@@ -82,11 +82,11 @@ var map = {
 		25
 	],
 	"../pages/cuti-list/cuti-list.module": [
-		307,
+		306,
 		24
 	],
 	"../pages/disposisi/disposisi.module": [
-		306,
+		307,
 		48
 	],
 	"../pages/fingerprint-modal/fingerprint-modal.module": [
@@ -95,18 +95,18 @@ var map = {
 	],
 	"../pages/home/home.module": [
 		309,
-		47
+		46
 	],
 	"../pages/home2/home2.module": [
 		310,
-		46
+		47
 	],
 	"../pages/home3/home3.module": [
-		312,
+		311,
 		22
 	],
 	"../pages/inbox-detail/inbox-detail.module": [
-		311,
+		312,
 		21
 	],
 	"../pages/inbox/inbox.module": [
@@ -114,11 +114,11 @@ var map = {
 		20
 	],
 	"../pages/insert-note-attendance/insert-note-attendance.module": [
-		315,
+		314,
 		19
 	],
 	"../pages/kategori-pengajuan-list/kategori-pengajuan-list.module": [
-		314,
+		315,
 		18
 	],
 	"../pages/koreksi-absen-bawahan/koreksi-absen-bawahan.module": [
@@ -190,7 +190,7 @@ var map = {
 		6
 	],
 	"../pages/search-sppd/search-sppd.module": [
-		335,
+		333,
 		5
 	],
 	"../pages/search-team-absen/search-team-absen.module": [
@@ -198,7 +198,7 @@ var map = {
 		42
 	],
 	"../pages/select-bawahan-disposisi/select-bawahan-disposisi.module": [
-		333,
+		335,
 		41
 	],
 	"../pages/setting/setting.module": [
@@ -210,11 +210,11 @@ var map = {
 		40
 	],
 	"../pages/sppd-detail/sppd-detail.module": [
-		339,
+		338,
 		39
 	],
 	"../pages/sppd-list/sppd-list.module": [
-		338,
+		339,
 		3
 	],
 	"../pages/update-userdata/update-userdata.module": [
@@ -390,28 +390,28 @@ var AppModule = /** @class */ (function () {
                         { loadChildren: '../pages/absen-bawahan/absen-bawahan.module#AbsenBawahanPageModule', name: 'AbsenBawahanPage', segment: 'absen-bawahan', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/absen-list/absen-list.module#AbsenListPageModule', name: 'AbsenListPage', segment: 'absen-list', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/absen-mobile-detail/absen-mobile-detail.module#AbsenMobileDetailPageModule', name: 'AbsenMobileDetailPage', segment: 'absen-mobile-detail', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/absen-team-hadirkoe/absen-team-hadirkoe.module#AbsenTeamHadirkoePageModule', name: 'AbsenTeamHadirkoePage', segment: 'absen-team-hadirkoe', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/add-cuti/add-cuti.module#AddCutiPageModule', name: 'AddCutiPage', segment: 'add-cuti', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/add-kategori-pengajuan/add-kategori-pengajuan.module#AddKategoriPengajuanPageModule', name: 'AddKategoriPengajuanPage', segment: 'add-kategori-pengajuan', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/absen-team-hadirkoe/absen-team-hadirkoe.module#AbsenTeamHadirkoePageModule', name: 'AbsenTeamHadirkoePage', segment: 'absen-team-hadirkoe', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/add-nota-restitusi/add-nota-restitusi.module#AddNotaRestitusiPageModule', name: 'AddNotaRestitusiPage', segment: 'add-nota-restitusi', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/add-restitusi/add-restitusi.module#AddRestitusiPageModule', name: 'AddRestitusiPage', segment: 'add-restitusi', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/add-sppd/add-sppd.module#AddSppdPageModule', name: 'AddSppdPage', segment: 'add-sppd', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/address-bawahan/address-bawahan.module#AddressBawahanPageModule', name: 'AddressBawahanPage', segment: 'address-bawahan', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/approve-koreksi-absen/approve-koreksi-absen.module#ApproveKoreksiAbsenPageModule', name: 'ApproveKoreksiAbsenPage', segment: 'approve-koreksi-absen', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/cari-pegawai/cari-pegawai.module#CariPegawaiPageModule', name: 'CariPegawaiPage', segment: 'cari-pegawai', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/coba-list/coba-list.module#CobaListPageModule', name: 'CobaListPage', segment: 'coba-list', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/check-in/check-in.module#CheckInPageModule', name: 'CheckInPage', segment: 'check-in', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/coba-list/coba-list.module#CobaListPageModule', name: 'CobaListPage', segment: 'coba-list', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/cuti-detail/cuti-detail.module#CutiDetailPageModule', name: 'CutiDetailPage', segment: 'cuti-detail', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/disposisi/disposisi.module#DisposisiPageModule', name: 'DisposisiPage', segment: 'disposisi', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/cuti-list/cuti-list.module#CutiListPageModule', name: 'CutiListPage', segment: 'cuti-list', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/disposisi/disposisi.module#DisposisiPageModule', name: 'DisposisiPage', segment: 'disposisi', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/fingerprint-modal/fingerprint-modal.module#FingerprintModalPageModule', name: 'FingerprintModalPage', segment: 'fingerprint-modal', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/home/home.module#HomePageModule', name: 'HomePage', segment: 'home', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/home2/home2.module#Home2PageModule', name: 'Home2Page', segment: 'home2', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/inbox-detail/inbox-detail.module#InboxDetailPageModule', name: 'InboxDetailPage', segment: 'inbox-detail', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/home3/home3.module#Home3PageModule', name: 'Home3Page', segment: 'home3', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/inbox-detail/inbox-detail.module#InboxDetailPageModule', name: 'InboxDetailPage', segment: 'inbox-detail', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/inbox/inbox.module#InboxPageModule', name: 'InboxPage', segment: 'inbox', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/kategori-pengajuan-list/kategori-pengajuan-list.module#KategoriPengajuanListPageModule', name: 'KategoriPengajuanListPage', segment: 'kategori-pengajuan-list', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/insert-note-attendance/insert-note-attendance.module#InsertNoteAttendancePageModule', name: 'InsertNoteAttendancePage', segment: 'insert-note-attendance', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/kategori-pengajuan-list/kategori-pengajuan-list.module#KategoriPengajuanListPageModule', name: 'KategoriPengajuanListPage', segment: 'kategori-pengajuan-list', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/koreksi-absen-bawahan/koreksi-absen-bawahan.module#KoreksiAbsenBawahanPageModule', name: 'KoreksiAbsenBawahanPage', segment: 'koreksi-absen-bawahan', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/koreksi-absen-personal/koreksi-absen-personal.module#KoreksiAbsenPersonalPageModule', name: 'KoreksiAbsenPersonalPage', segment: 'koreksi-absen-personal', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/log-surat/log-surat.module#LogSuratPageModule', name: 'LogSuratPage', segment: 'log-surat', priority: 'low', defaultHistory: [] },
@@ -429,13 +429,13 @@ var AppModule = /** @class */ (function () {
                         { loadChildren: '../pages/search-inbox/search-inbox.module#SearchInboxPageModule', name: 'SearchInboxPage', segment: 'search-inbox', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/search-outbox/search-outbox.module#SearchOutboxPageModule', name: 'SearchOutboxPage', segment: 'search-outbox', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/search-restitusi/search-restitusi.module#SearchRestitusiPageModule', name: 'SearchRestitusiPage', segment: 'search-restitusi', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/select-bawahan-disposisi/select-bawahan-disposisi.module#SelectBawahanDisposisiPageModule', name: 'SelectBawahanDisposisiPage', segment: 'select-bawahan-disposisi', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/search-team-absen/search-team-absen.module#SearchTeamAbsenPageModule', name: 'SearchTeamAbsenPage', segment: 'search-team-absen', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/search-sppd/search-sppd.module#SearchSppdPageModule', name: 'SearchSppdPage', segment: 'search-sppd', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/search-team-absen/search-team-absen.module#SearchTeamAbsenPageModule', name: 'SearchTeamAbsenPage', segment: 'search-team-absen', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/select-bawahan-disposisi/select-bawahan-disposisi.module#SelectBawahanDisposisiPageModule', name: 'SelectBawahanDisposisiPage', segment: 'select-bawahan-disposisi', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/setting/setting.module#SettingPageModule', name: 'SettingPage', segment: 'setting', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/show-more/show-more.module#ShowMorePageModule', name: 'ShowMorePage', segment: 'show-more', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/sppd-list/sppd-list.module#SppdListPageModule', name: 'SppdListPage', segment: 'sppd-list', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/sppd-detail/sppd-detail.module#SppdDetailPageModule', name: 'SppdDetailPage', segment: 'sppd-detail', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/sppd-list/sppd-list.module#SppdListPageModule', name: 'SppdListPage', segment: 'sppd-list', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/update-userdata/update-userdata.module#UpdateUserdataPageModule', name: 'UpdateUserdataPage', segment: 'update-userdata', priority: 'low', defaultHistory: [] }
                     ]
                 }),
@@ -604,7 +604,7 @@ var MyApp = /** @class */ (function () {
         __metadata("design:type", __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* Nav */])
     ], MyApp.prototype, "nav", void 0);
     MyApp = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({template:/*ion-inline-start:"/Users/itadmin/Downloads/ERDA/POS_PPI/src/app/app.html"*/'<ion-nav [root]="rootPage"></ion-nav>\n'/*ion-inline-end:"/Users/itadmin/Downloads/ERDA/POS_PPI/src/app/app.html"*/
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({template:/*ion-inline-start:"D:\Project\pos-ppi\src\app\app.html"*/'<ion-nav [root]="rootPage"></ion-nav>\n\n'/*ion-inline-end:"D:\Project\pos-ppi\src\app\app.html"*/
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["n" /* Platform */],
             __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__["a" /* StatusBar */],

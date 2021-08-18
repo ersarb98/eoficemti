@@ -1,6 +1,6 @@
 webpackJsonp([32],{
 
-/***/ 295:
+/***/ 296:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -8,7 +8,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AddKategoriPengajuanPageModule", function() { return AddKategoriPengajuanPageModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(100);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__add_kategori_pengajuan__ = __webpack_require__(350);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__add_kategori_pengajuan__ = __webpack_require__(351);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -551,7 +551,7 @@ module.exports = {
 
 /***/ }),
 
-/***/ 350:
+/***/ 351:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -677,7 +677,7 @@ var AddKategoriPengajuanPage = /** @class */ (function () {
     AddKategoriPengajuanPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
             selector: 'page-add-kategori-pengajuan',
-            providers: [__WEBPACK_IMPORTED_MODULE_3__soap_service__["a" /* SoapService */]],template:/*ion-inline-start:"/Users/itadmin/Downloads/ERDA/POS_PPI/src/pages/add-kategori-pengajuan/add-kategori-pengajuan.html"*/'<ion-header>\n    <ion-navbar>\n        <ion-title><span style="color:#FFF">Pengajuan</span></ion-title>\n        <ion-buttons end>\n            <button ion-button icon-only (click)="cancel()">\n                <ion-icon name="ios-close-outline" style="color:#FFF"></ion-icon>\n            </button>\n        </ion-buttons>\n    </ion-navbar>\n</ion-header>\n\n<ion-content padding>\n    <form [formGroup]="addKategoriForm" class="list-form">\n        <ion-item *ngIf="!isLoading">\n            <span item-left>\n                <img src="assets/imgs/logo/direktorat-icon.png" class="icons">\n            </span>\n            <span class="bold" ion-text text-wrap color="iconColor">\n                {{ userdataIPCContact[\'DIREKTORAT\'] }}\n            </span> \n        </ion-item>\n\n        <ion-item>\n            <span item-left>\n                <img src="assets/imgs/logo/category-icon.png" class="icons">\n            </span>            \n            <ion-label stacked>Kategori</ion-label>\n            <ion-input type="text" formControlName="fcKategori"></ion-input>\n        </ion-item>\n\n        <button style="border-radius: 5px;" ion-button block color="primary" margin-top (click)="sendData()"\n            [disabled]="!addKategoriForm.valid">Ajukan</button>\n    </form>\n</ion-content>'/*ion-inline-end:"/Users/itadmin/Downloads/ERDA/POS_PPI/src/pages/add-kategori-pengajuan/add-kategori-pengajuan.html"*/,
+            providers: [__WEBPACK_IMPORTED_MODULE_3__soap_service__["a" /* SoapService */]],template:/*ion-inline-start:"D:\Project\pos-ppi\src\pages\add-kategori-pengajuan\add-kategori-pengajuan.html"*/'<ion-header>\n\n    <ion-navbar>\n\n        <ion-title><span style="color:#FFF">Pengajuan</span></ion-title>\n\n        <ion-buttons end>\n\n            <button ion-button icon-only (click)="cancel()">\n\n                <ion-icon name="ios-close-outline" style="color:#FFF"></ion-icon>\n\n            </button>\n\n        </ion-buttons>\n\n    </ion-navbar>\n\n</ion-header>\n\n\n\n<ion-content padding>\n\n    <form [formGroup]="addKategoriForm" class="list-form">\n\n        <ion-item *ngIf="!isLoading">\n\n            <span item-left>\n\n                <img src="assets/imgs/logo/direktorat-icon.png" class="icons">\n\n            </span>\n\n            <span class="bold" ion-text text-wrap color="iconColor">\n\n                {{ userdataIPCContact[\'DIREKTORAT\'] }}\n\n            </span> \n\n        </ion-item>\n\n\n\n        <ion-item>\n\n            <span item-left>\n\n                <img src="assets/imgs/logo/category-icon.png" class="icons">\n\n            </span>            \n\n            <ion-label stacked>Kategori</ion-label>\n\n            <ion-input type="text" formControlName="fcKategori"></ion-input>\n\n        </ion-item>\n\n\n\n        <button style="border-radius: 5px;" ion-button block color="primary" margin-top (click)="sendData()"\n\n            [disabled]="!addKategoriForm.valid">Ajukan</button>\n\n    </form>\n\n</ion-content>'/*ion-inline-end:"D:\Project\pos-ppi\src\pages\add-kategori-pengajuan\add-kategori-pengajuan.html"*/,
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavController */],
             __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* NavParams */],
