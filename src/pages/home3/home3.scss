@@ -205,8 +205,8 @@ page-home3 {
     // }
 
     .header-card {
-        position: absolute;
-        top: 345px;
+        position: relative;
+        // top: 48%;
         width: calc(100% - 32px);
         border-radius: 15px;
         padding: 8px;

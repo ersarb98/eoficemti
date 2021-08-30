@@ -25,7 +25,7 @@ if (oci_execute($stid)) {
 	
 	}
 
-	$pushNotifikasi = array('usernameEDI' => 'EDI-USERNAME', 'passwordEDI' => 'RURJLVBBU1NXT1JE', 'nipp' => $arr_nipp, 'data' => array('res' => 'HomePage3'), 'content' => array( 'en' => "Anda belum melakukan Check in kehadiran. Silakan Check in pada aplikasi E-Office IPCTPK Mobile/Mesin Absensi."), 'heading' => array( 'en' => "Check In Kehadiran"));
+	$pushNotifikasi = array('usernameEDI' => 'EDI-USERNAME', 'passwordEDI' => 'RURJLVBBU1NXT1JE', 'nipp' => $arr_nipp, 'data' => array('res' => 'HomePage3'), 'content' => array( 'en' => "Anda belum melakukan Check in kehadiran. Silakan Check in pada aplikasi POS PPI Mobile/Mesin Absensi."), 'heading' => array( 'en' => "Check In Kehadiran"));
 	$pushNotifikasi = json_encode($pushNotifikasi);
 	callsoap($pushNotifikasi); 
 	print_r($pushNotifikasi);

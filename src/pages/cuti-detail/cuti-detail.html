@@ -10,15 +10,15 @@
       <span ion-text color="light">Detail Cuti/Izin</span>
     </ion-title>
     <ion-buttons end>
-        <button ion-button (click)="goToLogSurat()">
-          <!-- <ion-icon style="font-size:2.4rem;" name="md-analytics" color="light"></ion-icon> -->
-          <img src="assets/imgs/menu-icon/history.png" style="    max-height: 27px;
+      <button ion-button (click)="goToLogSurat()">
+        <!-- <ion-icon style="font-size:2.4rem;" name="md-analytics" color="light"></ion-icon> -->
+        <img src="assets/imgs/menu-icon/history.png" style="    max-height: 27px;
           margin-right: 5px;">
-        </button>
-        <button ion-button (click)="downloadInbox(replaceNomorSurat(messageData['No_Surat']))">
-          <ion-icon style="font-size:2.4rem;" name="md-download" color="light"></ion-icon>
-        </button>
-      </ion-buttons>
+      </button>
+      <button ion-button (click)="downloadInbox(replaceNomorSurat(messageData['No_Surat']))">
+        <ion-icon style="font-size:2.4rem;" name="md-download" color="light"></ion-icon>
+      </button>
+    </ion-buttons>
   </ion-navbar>
 </ion-header>
 
@@ -26,7 +26,7 @@
   <div *ngIf="isLoading == false && !isEmptyObject(messageDetail)">
     <ion-card class="header-card">
       <ion-card-content>
-        <span ion-text text-wrap class="font-header" >
+        <span ion-text text-wrap class="font-header">
           <b>{{ messageDetail['Judul Surat'] }}</b>
         </span>
       </ion-card-content>
@@ -50,14 +50,14 @@
         <br>
 
         <span ion-text text-wrap class="font-mini" color="color4">
-          tanggal Cuti/Izin
+          Tanggal Cuti/Izin
         </span><br>
         <span ion-text text-wrap class="font-small">
           {{ messageDetail['Tanggal Mulai Cuti'] }}
         </span> <span ion-text text-wrap class="font-small" color="primary"> s/d </span>
         <span ion-text text-wrap class="font-small">
           {{ messageDetail['Tanggal Selesai Cuti'] }}
-        </span>        
+        </span>
         <br>
 
         <span ion-text text-wrap class="font-mini" color="color4">
@@ -134,7 +134,62 @@
         </span>
       </ion-item>
     </ion-card>
+
+    <div *ngIf="messageDetail['NIPP Pemohon'] == nipp && messageDetail['Kode Status Surat'] == '6' ">
+      <ion-card class="my-card">
+        <ion-item>
+          <div class="header-text">
+            <span ion-text text-wrap>
+              <img src="assets/flat-icon/alert.png" class="icons">
+            </span>
+            <span ion-text text-wrap class="font-small">
+              <b>Revisi Pengajuan Cuti/Izin</b>
+            </span>
+          </div>
+          <div class="garis"></div>
+          <span ion-text text-wrap class="font-mini" color="color4">
+            Tanggal Revisi Cuti/Izin
+          </span><br>
+          <span ion-text text-wrap class="font-small">
+            {{ messageDetail['TANGGAL_MULAI_REVISI'] }}
+          </span> <span ion-text text-wrap class="font-small" color="primary"> s/d </span>
+          <span ion-text text-wrap class="font-small">
+            {{ messageDetail['TANGGAL_SELESAI_REVISI'] }}
+          </span>
+          <br>
+
+          <span ion-text text-wrap class="font-mini" color="color4">
+            Alasan
+          </span><br>
+          <span ion-text text-wrap class="font-small">
+            {{ messageDetail['KETERANGAN_REVISI'] }}
+          </span>
+          <br>
+
+        </ion-item>
+      </ion-card>
+
+      <ion-grid>
+        <ion-row>
+          <ion-col col-6>
+            <button style="border-radius:5px;" icon-start ion-button block color="danger" (click)="doAction('decline')">
+              <ion-icon name="md-close"></ion-icon>
+              Keberatan
+            </button>
+          </ion-col>
+          <ion-col col-6>
+            <button style="border-radius:5px;" icon-start ion-button block (click)="doAction('approve')" color="color6">
+              <ion-icon name="md-checkmark"></ion-icon>
+              Tidak Keberatan
+            </button>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+      <br>
+    </div>
   </div>
+
+
 
   <div *ngIf="isLoading == true && isEmptyObject(messageDetail)">
     <ion-item no-lines>

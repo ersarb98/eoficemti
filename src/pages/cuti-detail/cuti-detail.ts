@@ -5,6 +5,7 @@ import { SoapService } from '../soap.service';
 import { Storage } from '@ionic/storage';
 import { api_base_url, api_user, api_pass} from '../../config';
 import { InAppBrowser, InAppBrowserOptions } from '@ionic-native/in-app-browser';
+import { DatePipe } from '@angular/common';
 import { not } from '@angular/compiler/src/output/output_ast';
 
 
@@ -38,12 +39,18 @@ export class CutiDetailPage {
     public alertCtrl: AlertController,
     public modalCtrl: ModalController,
     public toastCtrl: ToastController,
-    public inAppBrowser: InAppBrowser
+    public inAppBrowser: InAppBrowser,
+    public datePipe: DatePipe,
   ) {
-
+    this.storage.get('userdataTPK').then((val) => {
+      this.userdataTPK = val;
+    });
   }
 
   ionViewWillLoad() {
+    this.storage.get('userdataTPK').then((val) => {
+      this.userdataTPK = val;
+    });
     this.messageData = this.navParams.get('data');
     this.nipp = this.navParams.get('nipp');    
     this.getDetail();
@@ -160,6 +167,113 @@ export class CutiDetailPage {
     // result = result.replace(/-/g, '_');    
     //return result + '.pdf';
     return '';
+  }
+
+  doAction(type) {
+    if (type == 'approve') {
+      let alert = this.alertCtrl.create({
+        subTitle: 'Anda yakin ingin menyetujui revisi permohonan tersebut ?',
+        cssClass: 'alert',
+        buttons: [
+          {
+            text: 'TIDAK',
+            role: 'cancel',
+            handler: () => {
+              //console.log('Cancel clicked');
+            }
+          },
+          {
+            text: 'YA',
+            handler: () => {
+              this.penangguhan('approve');
+            }
+          }
+        ]
+      });
+      alert.present();
+    } else if (type == 'decline') {
+      let alert = this.alertCtrl.create({
+        subTitle: 'Anda yakin ingin membatalkan permohonan tersebut ?',
+        cssClass: 'alert',
+        buttons: [
+          {
+            text: 'TIDAK',
+            role: 'cancel',
+            handler: () => {
+              //console.log('Cancel clicked');
+            }
+          },
+          {
+            text: 'YA',
+            handler: () => {
+              this.penangguhan('decline');
+            }
+          }
+        ]
+      });
+      alert.present();
+    }
+  }
+
+  penangguhan(action) {
+    var tgl_mulai_revisi = this.datePipe.transform(new Date(this.messageDetail['TANGGAL_MULAI_REVISI']), 'yyyy-MM-dd HH:mm:ss');
+    var tgl_selesai_revisi = this.datePipe.transform(new Date(this.messageDetail['TANGGAL_SELESAI_REVISI']), 'yyyy-MM-dd HH:mm:ss');
+
+    console.log(tgl_selesai_revisi);
+
+    let loading = this.loadingCtrl.create({
+      spinner: 'dots',
+      content: "Memproses Cuti...",
+      cssClass: 'transparent',
+      dismissOnPageChange: true
+    });
+    loading.present();
+    this.soapService
+      .post(api_base_url, 'eoffice_cuti_user_action', {
+        fStream: JSON.stringify(
+          {
+            usernameEDI: api_user,
+            passwordEDI: api_pass,
+            nipp: this.nipp,
+            iduser: this.userdataTPK['data']['IDUSER'],
+            nama: this.userdataTPK['data']['NAMA'],
+            id_surat: this.messageDetail['ID Surat'],
+            tgl_mulai_revisi: tgl_mulai_revisi,
+            tgl_selesai_revisi: tgl_selesai_revisi,
+            jumlah_revisi: this.messageDetail['JUMLAH_HARI_REVISI'],
+            action:action
+          }
+        )
+      }).then(result => {
+        var responData = JSON.parse(String(result));
+        if (responData['rcmsg'] == "SUCCESS") {
+          let toast = this.toastCtrl.create({
+            message: 'Proses berhasil !',
+            duration: 3000,
+            position: 'bottom'
+          });
+          toast.present().then(() => {
+            this.navCtrl.pop();
+          });
+        } else {
+          let alert = this.alertCtrl.create({
+            title: '',
+            subTitle: 'Gagal Memproses Cuti, Silahkan Coba Beberapa Saat Lagi.',
+            buttons: ['OK']
+          });
+          alert.present();
+        }
+        loading.dismiss();
+      })
+      .catch(error => {
+        let alert = this.alertCtrl.create({
+          title: '',
+          subTitle: 'Gagal Memproses Cuti, Periksa Koneksi Internet Anda.',
+          buttons: ['OK']
+        });
+        alert.present();
+        loading.dismiss();
+      });
   }
 
 

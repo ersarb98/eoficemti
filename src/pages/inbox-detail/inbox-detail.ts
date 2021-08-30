@@ -1382,6 +1382,113 @@ export class InboxDetailPage {
     }
   }
 
+  doAction(type) {
+    if (type == 'approve') {
+      let alert = this.alertCtrl.create({
+        subTitle: 'Anda yakin ingin menyetujui revisi permohonan tersebut ?',
+        cssClass: 'alert',
+        buttons: [
+          {
+            text: 'TIDAK',
+            role: 'cancel',
+            handler: () => {
+              //console.log('Cancel clicked');
+            }
+          },
+          {
+            text: 'YA',
+            handler: () => {
+              this.penangguhan('approve');
+            }
+          }
+        ]
+      });
+      alert.present();
+    } else if (type == 'decline') {
+      let alert = this.alertCtrl.create({
+        subTitle: 'Anda yakin ingin membatalkan permohonan tersebut ?',
+        cssClass: 'alert',
+        buttons: [
+          {
+            text: 'TIDAK',
+            role: 'cancel',
+            handler: () => {
+              //console.log('Cancel clicked');
+            }
+          },
+          {
+            text: 'YA',
+            handler: () => {
+              this.penangguhan('decline');
+            }
+          }
+        ]
+      });
+      alert.present();
+    }
+  }
+
+  penangguhan(action) {
+    var tgl_mulai_revisi = this.datePipe.transform(new Date(this.messageDetail['TANGGAL_MULAI_REVISI']), 'yyyy-MM-dd HH:mm:ss');
+    var tgl_selesai_revisi = this.datePipe.transform(new Date(this.messageDetail['TANGGAL_SELESAI_REVISI']), 'yyyy-MM-dd HH:mm:ss');
+
+    console.log(tgl_selesai_revisi);
+
+    let loading = this.loadingCtrl.create({
+      spinner: 'dots',
+      content: "Memproses Cuti...",
+      cssClass: 'transparent',
+      dismissOnPageChange: true
+    });
+    loading.present();
+    this.soapService
+      .post(api_base_url, 'eoffice_cuti_user_action', {
+        fStream: JSON.stringify(
+          {
+            usernameEDI: api_user,
+            passwordEDI: api_pass,
+            nipp: this.nipp,
+            iduser: this.userdataTPK['data']['IDUSER'],
+            nama: this.userdataTPK['data']['NAMA'],
+            id_surat: this.messageDetail['ID Surat'],
+            tgl_mulai_revisi: tgl_mulai_revisi,
+            tgl_selesai_revisi: tgl_selesai_revisi,
+            jumlah_revisi: this.messageDetail['JUMLAH_HARI_REVISI'],
+            action:action
+          }
+        )
+      }).then(result => {
+        var responData = JSON.parse(String(result));
+        if (responData['rcmsg'] == "SUCCESS") {
+          let toast = this.toastCtrl.create({
+            message: 'Proses berhasil !',
+            duration: 3000,
+            position: 'bottom'
+          });
+          toast.present().then(() => {
+            this.navCtrl.pop();
+          });
+        } else {
+          let alert = this.alertCtrl.create({
+            title: '',
+            subTitle: 'Gagal Memproses Cuti, Silahkan Coba Beberapa Saat Lagi.',
+            buttons: ['OK']
+          });
+          alert.present();
+        }
+        loading.dismiss();
+      })
+      .catch(error => {
+        let alert = this.alertCtrl.create({
+          title: '',
+          subTitle: 'Gagal Memproses Cuti, Periksa Koneksi Internet Anda.',
+          buttons: ['OK']
+        });
+        alert.present();
+        loading.dismiss();
+      });
+  }
+
 }
 
 

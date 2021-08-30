@@ -59,7 +59,7 @@
 
     <ion-card class="header-card" *ngIf="isLoadingHadirkoe == false && dataValidasi != null">
       <div class="menu-container">
-        <div class="menu-content" (click)="getToast()">
+        <div class="menu-content" (click)="openPage('InboxPage')">
           <div class="img-container color-1"><img src="assets/imgs/menu-icon/inbox-white.png"></div>
           <span ion-text text-wrap>Surat Masuk</span>
           <ion-badge class="my-badge" *ngIf="badgesList != null && parse(badgesList['JUMLAH_SURAT_ALL_BADGES'])"
@@ -117,7 +117,7 @@
   <br>
   <div *ngIf="userdataTPK != null">
     <div *ngIf="userdataTPK['data']['TNO'] == false">
-      <div style="margin-top: 200px;" class="menu-container">
+      <div style="margin-top: 50%;" class="menu-container">
         <div class="menu-content-2" (click)="openPage('AbsenListPage')">
           <div class="img-container-2"><img src="assets/imgs/menu-icon/absensi.png"></div>
           <span ion-text text-wrap>Absensi</span>
@@ -136,7 +136,7 @@
           <span ion-text text-wrap>SPPD</span>
         </div>
 
-        <div class="menu-content-2" (click)="getToast()">
+        <div class="menu-content-2" (click)="openPage('ArsipPage')">
           <div class="img-container-2"><img src="assets/imgs/menu-icon/survey.png"></div>
           <span ion-text text-wrap>Arsip Personal</span>
         </div>
