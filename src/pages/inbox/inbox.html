@@ -52,7 +52,7 @@
 
 	<ion-list *ngIf='!isEmptyObject(messages[0])'>
 		<ion-card *ngFor='let message of messages' class="my-card">
-			<!-- <ion-item-sliding> -->
+			<ion-item-sliding>
 				<ion-item (click)="goToDetail(message)" [ngClass]="{'item-belum-baca' : !message['IsBaca']}">
 					<span [ngClass]="{'fw700': !message['IsBaca']}" style="text-align: center;" item-start>
 						<ion-icon name="mail" color="color6" class="msg-icon" *ngIf="message['IsBaca'] == '0'">
@@ -84,13 +84,13 @@
 						<ion-icon name="md-checkbox" color="secondary" *ngIf="message.Disposisi" ></ion-icon>
 					</div>
 				</ion-item>
-				<!-- <ion-item-options side="end" (click)="doArsip(message)">
+				<ion-item-options side="end" (click)="doArsip(message)">
 					<button ion-button color="primary" style="text-transform: none !important;">
 						<ion-icon name="md-filing"></ion-icon>
 						Arsipkan
 					</button>
-				</ion-item-options> -->
-			<!-- </ion-item-sliding> -->
+				</ion-item-options>
+			</ion-item-sliding>
 		</ion-card>
 	</ion-list>
 

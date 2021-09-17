@@ -42,7 +42,7 @@
 						{{ messageDetail['No Surat'] }}
 					</span>
 					<div style="padding: 10px;" item-end>
-						<button ion-button icon-only clear (click)="show()"> 
+						<button ion-button icon-only clear (click)="show()">
 							<ion-icon name="ios-arrow-down-outline" *ngIf="!showDetailPesan"></ion-icon>
 							<ion-icon name="ios-arrow-up-outline" *ngIf="showDetailPesan"></ion-icon>
 						</button>
@@ -65,13 +65,15 @@
 						{{ messageDetail['Pengirim']['Nama Jabatan'] }}
 					</span> <br>
 
-					<div *ngIf="messageDetail['Kode Jenis Surat'] == 'surat_perintah' || messageDetail['Kode Jenis Surat'] == 'undangan' || messageDetail['Kode Jenis Surat'] == 'surat_dinas' || messageDetail['Kode Jenis Surat'] == 'nd_undangan' || messageDetail['Kode Jenis Surat'] == 'nd_sppd'" >
+					<div
+						*ngIf="messageDetail['Kode Jenis Surat'] == 'surat_perintah' || messageDetail['Kode Jenis Surat'] == 'undangan' || messageDetail['Kode Jenis Surat'] == 'surat_dinas' || messageDetail['Kode Jenis Surat'] == 'nd_undangan' || messageDetail['Kode Jenis Surat'] == 'nd_sppd'">
 						<span ion-text text-wrap class="font" color="color4">Tanggal Mulai :
 						</span><br />
 						<span ion-text text-wrap color='dark' class="font2">
 							{{ messageDetail['Agenda']['Tanggal Mulai'] }}
-						</span> 
-						<span ion-text text-wrap *ngIf="messageDetail['Agenda']['Tanggal Mulai'] == null"  color='dark' class="font2">
+						</span>
+						<span ion-text text-wrap *ngIf="messageDetail['Agenda']['Tanggal Mulai'] == null" color='dark'
+							class="font2">
 							-
 						</span>
 						<br>
@@ -80,8 +82,9 @@
 						</span><br />
 						<span ion-text text-wrap color='dark' class="font2">
 							{{ messageDetail['Agenda']['Tanggal Akhir'] }}
-						</span> 
-						<span ion-text text-wrap *ngIf="messageDetail['Agenda']['Tanggal Akhir'] == null"  color='dark' class="font2">
+						</span>
+						<span ion-text text-wrap *ngIf="messageDetail['Agenda']['Tanggal Akhir'] == null" color='dark'
+							class="font2">
 							-
 						</span>
 						<br>
@@ -90,13 +93,14 @@
 						</span><br />
 						<span ion-text text-wrap color='dark' class="font2">
 							{{ messageDetail['Agenda']['Lokasi'] }}
-						</span> 
-						<span ion-text text-wrap *ngIf="messageDetail['Agenda']['Lokasi'] == null"  color='dark' class="font2">
+						</span>
+						<span ion-text text-wrap *ngIf="messageDetail['Agenda']['Lokasi'] == null" color='dark'
+							class="font2">
 							-
 						</span>
 						<br>
 					</div>
-					
+
 
 					<div *ngIf="messageDetail['Penerima Jabatan'].length > 0">
 						<span ion-text text-wrap class="font" color="color4">Penerima Jabatan :
@@ -622,8 +626,7 @@
 				</ion-item>
 			</ion-list>
 
-			<ion-grid
-				*ngIf="isAtasan && messageDetail['Kode Status Surat'] == '4'  && from_modul != 'sppd' ">
+			<ion-grid *ngIf="isAtasan && messageDetail['Kode Status Surat'] == '4'  && from_modul != 'sppd' ">
 				<ion-row>
 					<ion-col col-6>
 						<button style="border-radius:5px;" icon-start ion-button block color="danger"
@@ -643,25 +646,81 @@
 				</ion-row>
 			</ion-grid>
 
+			<div *ngIf="messageDetail['NIPP Pemohon'] == userdataTPK['data']['NIPP'] && messageDetail['Kode Status Surat'] == '6' ">
+
+				<ion-card class="my-card">
+					<ion-item>
+					  <div class="header-text">
+						<span ion-text text-wrap>
+						  <img src="assets/flat-icon/alert.png" class="icons">
+						</span>
+						<span ion-text text-wrap class="font-small">
+						  <b>Revisi Pengajuan Cuti/Izin</b>
+						</span>
+					  </div>
+					  <div class="garis"></div>
+					  <span ion-text text-wrap class="font-mini" color="color4">
+						Tanggal Revisi Cuti/Izin
+					  </span><br>
+					  <span ion-text text-wrap class="font-small">
+						{{ messageDetail['TANGGAL_MULAI_REVISI'] }}
+					  </span> <span ion-text text-wrap class="font-small" color="primary"> s/d </span>
+					  <span ion-text text-wrap class="font-small">
+						{{ messageDetail['TANGGAL_SELESAI_REVISI'] }}
+					  </span>
+					  <br>
+			
+					  <span ion-text text-wrap class="font-mini" color="color4">
+						Alasan
+					  </span><br>
+					  <span ion-text text-wrap class="font-small">
+						{{ messageDetail['KETERANGAN_REVISI'] }}
+					  </span>
+					  <br>
+			
+					</ion-item>
+				  </ion-card>
+
+				<ion-grid>
+					<ion-row>
+						<ion-col col-6>
+							<button style="border-radius:5px;" icon-start ion-button block color="danger"
+							(click)="doAction('decline')">
+								<ion-icon name="md-close"></ion-icon>
+								Keberatan
+							</button>
+						</ion-col>
+						<ion-col col-6>
+							<button style="border-radius:5px;" icon-start ion-button block (click)="doAction('approve')"
+								color="color6">
+								<ion-icon name="md-checkmark"></ion-icon>
+								Tidak Keberatan
+							</button>
+						</ion-col>
+					</ion-row>
+				</ion-grid>
+			</div>
+		
+
 			<ion-grid *ngIf="isAtasan && messageDetail['Kode Status Surat'] == '2'">
 				<ion-row>
 					<ion-col col-12>
 						<div class="appForm">
-							
-								<ion-item>
-									<span item-left>
-										<img src="assets/imgs/logo/alasan.png" class="icons">
-									</span>
-									<ion-label stacked>Komentar</ion-label>
-									<ion-input type="text" [(ngModel)]="keterangan" placeholder="" clearInput>
-									</ion-input>
-								</ion-item>
-							
+
+							<ion-item>
+								<span item-left>
+									<img src="assets/imgs/logo/alasan.png" class="icons">
+								</span>
+								<ion-label stacked>Komentar</ion-label>
+								<ion-input type="text" [(ngModel)]="keterangan" placeholder="" clearInput>
+								</ion-input>
+							</ion-item>
+
 						</div>
 					</ion-col>
 				</ion-row>
 
-				<ion-row *ngIf="formDitangguhkan" >
+				<ion-row *ngIf="formDitangguhkan">
 					<ion-col col-12>
 						<div class="appForm">
 							<div>
@@ -670,9 +729,10 @@
 										<img src="assets/imgs/menu-icon/start_date.png" class="icons">
 									</span>
 									<ion-label stacked>Tanggal Mulai</ion-label>
-									<ion-input type="text" [readonly]="true" (ionFocus)="checkFocus(1)" (click)="checkFocus(1)" [(ngModel)]="tanggalMulai"></ion-input>
+									<ion-input type="text" [readonly]="true" (ionFocus)="checkFocus(1)"
+										(click)="checkFocus(1)" [(ngModel)]="tanggalMulai"></ion-input>
 								</ion-item>
-						
+
 								<ion-item style="width:30%; float:right;padding-top:14px;padding-left:3px !important;">
 									<ion-select [(ngModel)]="jamMulai" placeholder="" style="max-width:100%;">
 										<ion-option value="23">7:00</ion-option>
@@ -705,7 +765,7 @@
 									</ion-select>
 								</ion-item>
 							</div>
-						
+
 							<div>
 								<ion-item style="width:70%; float: left;">
 									<span item-left>
@@ -713,10 +773,11 @@
 									</span>
 									<ion-label stacked>Tanggal Selesai</ion-label>
 									<!-- <ion-input type="text" [readonly]="true" (ionFocus)="checkFocus(2)" [(ngModel)]="tanggalSelesai"> -->
-										<ion-input type="text" [readonly]="true" (click)="checkFocus(2)" (ionFocus)="checkFocus(2)" [(ngModel)]="tanggalSelesai">
+									<ion-input type="text" [readonly]="true" (click)="checkFocus(2)"
+										(ionFocus)="checkFocus(2)" [(ngModel)]="tanggalSelesai">
 									</ion-input>
 								</ion-item>
-						
+
 								<ion-item style="width:30%; float:right;padding-top:14px;padding-left:3px !important;">
 									<ion-select [(ngModel)]="jamSelesai" placeholder="" style="max-width:100%;">
 										<ion-option value="23">7:30</ion-option>
@@ -749,8 +810,8 @@
 									</ion-select>
 								</ion-item>
 							</div>
-						
-							<div *ngIf="tanggalSelesai != ''" >
+
+							<div *ngIf="tanggalSelesai != ''">
 								<ion-item>
 									<span item-left>
 										<img src="assets/imgs/menu-icon/jumHari.png" class="icons">
@@ -758,9 +819,11 @@
 									<ion-label stacked>Jumlah Hari</ion-label>
 									<ion-input type="number" [(ngModel)]="jumHari"></ion-input>
 								</ion-item>
-						
-								<p ion-text text-wrap color="color4" style="padding-left:8px !important;">*Bila terdapat kesalahan jumlah hari silahkan disesuaikan</p>
-								<p ion-text text-wrap color="danger" style="padding-left:8px !important;">Sisa Cuti Tahunan : <b>{{ sisaCuti }}</b></p>
+
+								<p ion-text text-wrap color="color4" style="padding-left:8px !important;">*Bila terdapat
+									kesalahan jumlah hari silahkan disesuaikan</p>
+								<p ion-text text-wrap color="danger" style="padding-left:8px !important;">Sisa Cuti
+									Tahunan : <b>{{ sisaCuti }}</b></p>
 							</div>
 						</div>
 					</ion-col>
@@ -786,10 +849,10 @@
 				<ion-row>
 					<ion-col col-12>
 						<button style="border-radius:5px;" icon-start ion-button block (click)="ditangguhkan()"
-						color="primary">
-						<ion-icon name="md-remove-circle"></ion-icon>
-						Ditangguhkan
-					</button>
+							color="primary">
+							<ion-icon name="md-remove-circle"></ion-icon>
+							Ditangguhkan
+						</button>
 					</ion-col>
 				</ion-row>
 			</ion-grid>

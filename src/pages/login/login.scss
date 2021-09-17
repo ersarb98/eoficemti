@@ -218,15 +218,17 @@ page-login {
        
     .input-item .item-md {
         //border : 1px solid color($colors, danger) !important; 
-        background-color: rgba(233, 233, 233, 1) !important;     
+        color:white !important;
+        background-color: #3E4C55 !important;     
         background-color: transparent;     
         border-radius: 20px !important;        
 		margin-top: 10px !important;		
     }     
 
     .input-item .item-ios {
+        color:white !important;
         //border : 1px solid color($colors, danger) !important;
-        background-color: rgba(233, 233, 233, 1) !important;          
+        background-color: #3E4C55 !important;          
         border-radius: 20px !important;        
 		margin-top: 10px !important;		
     }     

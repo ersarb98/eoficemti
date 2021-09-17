@@ -5,8 +5,8 @@ import {Injectable} from "@angular/core";
 
 }   
 //prod
-export const sender_id = '184093554881';
-export const oneSignalAppId = '2db6f70c-84c2-4a3a-973c-0de125847390';
+export const sender_id = '286575097065';
+export const oneSignalAppId = '569a0df1-a068-4a2d-afc6-737efcdae5a7';
 
 //dev
 // export const sender_id = '346331100253';
