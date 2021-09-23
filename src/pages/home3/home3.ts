@@ -1,13 +1,13 @@
-import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, App, AlertController, LoadingController, ToastController, ModalController, Platform } from 'ionic-angular';
-import { Storage } from '@ionic/storage';
-import { api_base_url, api_user, api_pass, api_p2b_url, api_res } from '../../config';
-import { SoapService } from '../soap.service';
-import { Device } from '@ionic-native/device';
+import { Component } from "@angular/core";
+import { IonicPage, NavController, NavParams, App, AlertController, LoadingController, ToastController, ModalController, Platform } from "ionic-angular";
+import { Storage } from "@ionic/storage";
+import { api_base_url, api_user, api_pass, api_p2b_url, api_res } from "../../config";
+import { SoapService } from "../soap.service";
+import { Device } from "@ionic-native/device";
 
-import { OneSignal } from '@ionic-native/onesignal';
-import { InAppBrowser, InAppBrowserOptions } from '@ionic-native/in-app-browser';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { OneSignal } from "@ionic-native/onesignal";
+import { InAppBrowser, InAppBrowserOptions } from "@ionic-native/in-app-browser";
+import { HttpClient, HttpHeaders } from "@angular/common/http";
 
 /**
  * Generated class for the Home3Page page.
@@ -18,9 +18,9 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @IonicPage()
 @Component({
-  selector: 'page-home3',
+  selector: "page-home3",
   providers: [SoapService],
-  templateUrl: 'home3.html',
+  templateUrl: "home3.html",
 })
 export class Home3Page {
   userdataTPK: any;
@@ -48,24 +48,22 @@ export class Home3Page {
     public modalCtrl: ModalController,
     public http: HttpClient,
     public platform: Platform
-  ) {
-
-  }
+  ) {}
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad Home3Page');
+    console.log("ionViewDidLoad Home3Page");
   }
 
   ionViewWillEnter() {
-    this.storage.get('userdataTPK').then(val => {
+    this.storage.get("userdataTPK").then((val) => {
       // console.log(val);
       this.userdataTPK = val;
       this.getBadges();
       this.getBadgesP2b();
       this.getBadgesPrpo();
       this.getValidasi();
-      this.newSession('first', '');
-      this.getData('first', '');
+      this.newSession("first", "");
+      this.getData("first", "");
       this.cekVersi();
     });
   }
@@ -85,27 +83,25 @@ export class Home3Page {
     // this.isLoading = true;
 
     this.soapService
-      .post(api_base_url, 'eoffice_get_user_data', {
-        fStream: JSON.stringify(
-          {
-            usernameEDI: api_user,
-            passwordEDI: api_pass,
-            username: this.userdataTPK['data']['NIPP'],
-          }
-        )
-      }).then(result => {
+      .post(api_base_url, "eoffice_get_user_data", {
+        fStream: JSON.stringify({
+          usernameEDI: api_user,
+          passwordEDI: api_pass,
+          username: this.userdataTPK["data"]["NIPP"],
+        }),
+      })
+      .then((result) => {
         let responData = JSON.parse(String(result));
-        if (responData['rcmsg'] == "SUCCESS") {
-          if (responData['data']['login_status'] == '404 Not Found') {
+        if (responData["rcmsg"] == "SUCCESS") {
+          if (responData["data"]["login_status"] == "404 Not Found") {
             // console.log(responData['data']['login_status']);
-          } else if (responData['data'] == undefined) {
+          } else if (responData["data"] == undefined) {
             // console.log(responData['data']);
-          } else if (responData['data']['login_status'] == 'AP NOT ALLOWED') {
+          } else if (responData["data"]["login_status"] == "AP NOT ALLOWED") {
             // console.log(responData['data']['login_status']);
-          }
-          else {
+          } else {
             this.userdataTPK = responData;
-            this.storage.set('userdataTPK', responData).then(() => {
+            this.storage.set("userdataTPK", responData).then(() => {
               //this.getData(type, functionName, loading);
             });
           }
@@ -114,16 +110,15 @@ export class Home3Page {
           //loading.dismiss();
           // this.isLoading = false;
         }
-
       })
-      .catch(error => {
+      .catch((error) => {
         let toast = this.toastCtrl.create({
-          message: 'Terjadi Masalah Koneksi, Silahkan Coba Kembali.',
+          message: "Terjadi Masalah Koneksi, Silahkan Coba Kembali.",
           duration: 3000,
-          position: 'bottom'
+          position: "bottom",
         });
         toast.present();
-        if (type == 'refresh') {
+        if (type == "refresh") {
           functionName.complete();
           // loading.dismiss();
         }
@@ -135,54 +130,50 @@ export class Home3Page {
     this.isLoading = true;
 
     this.soapService
-      .post(api_base_url, 'eoffice_home', {
-        fStream: JSON.stringify(
-          {
-            usernameEDI: api_user,
-            passwordEDI: api_pass,
-            iduser: this.userdataTPK.data.IDUSER,
-            idjabatan: this.userdataTPK.data.IDJABATAN,
-            nipp: this.userdataTPK.data.NIPP,
-          }
-        )
-      }).then(result => {
+      .post(api_base_url, "eoffice_home", {
+        fStream: JSON.stringify({
+          usernameEDI: api_user,
+          passwordEDI: api_pass,
+          iduser: this.userdataTPK.data.IDUSER,
+          idjabatan: this.userdataTPK.data.IDJABATAN,
+          nipp: this.userdataTPK.data.NIPP,
+        }),
+      })
+      .then((result) => {
         var responData = JSON.parse(String(result));
         // console.log(responData);
-        if (responData['rcmsg'] == "SUCCESS") {
+        if (responData["rcmsg"] == "SUCCESS") {
           this.agendaList = [];
-          for (var i = 0; i < responData['data']['AGENDA_HARI_INI'].length; i++) {
-            this.agendaList.push(responData['data']['AGENDA_HARI_INI'][i]);
+          for (var i = 0; i < responData["data"]["AGENDA_HARI_INI"].length; i++) {
+            this.agendaList.push(responData["data"]["AGENDA_HARI_INI"][i]);
           }
 
-          if (type == 'refresh') {
+          if (type == "refresh") {
             functionName.complete();
             // loading.dismiss();
           }
           this.isLoading = false;
-
         } else {
           let toast = this.toastCtrl.create({
-            message: 'Mohon Maaf Sedang Terjadi Kesalahan, Coba Beberapa Saat Lagi.',
+            message: "Mohon Maaf Sedang Terjadi Kesalahan, Coba Beberapa Saat Lagi.",
             duration: 3000,
-            position: 'bottom'
+            position: "bottom",
           });
           toast.present();
-          if (type == 'refresh') {
+          if (type == "refresh") {
             functionName.complete();
           }
           this.isLoading = false;
         }
-
-
       })
-      .catch(error => {
+      .catch((error) => {
         let toast = this.toastCtrl.create({
-          message: 'Terjadi Masalah Koneksi, Silahkan Coba Kembali.',
+          message: "Terjadi Masalah Koneksi, Silahkan Coba Kembali.",
           duration: 3000,
-          position: 'bottom'
+          position: "bottom",
         });
         toast.present();
-        if (type == 'refresh') {
+        if (type == "refresh") {
           functionName.complete();
           // loading.dismiss();
         }
@@ -190,53 +181,51 @@ export class Home3Page {
       });
   }
 
-  getToast(){
+  getToast() {
     let toast = this.toastCtrl.create({
-      message: 'Under Maintenance.',
+      message: "Under Maintenance.",
       duration: 3000,
-      position: 'bottom'
+      position: "bottom",
     });
     toast.present();
   }
 
   getBadges() {
     this.soapService
-      .post(api_base_url, 'eoffice_countbadges', {
-        fStream: JSON.stringify(
-          {
-            usernameEDI: api_user,
-            passwordEDI: api_pass,
-            iduser: this.userdataTPK['data']['IDUSER'],
-            idjabatan: this.userdataTPK['data']['IDJABATAN'],
-            nipp: this.userdataTPK['data']['NIPP']
-          }
-        )
-      }).then(result => {
+      .post(api_base_url, "eoffice_countbadges", {
+        fStream: JSON.stringify({
+          usernameEDI: api_user,
+          passwordEDI: api_pass,
+          iduser: this.userdataTPK["data"]["IDUSER"],
+          idjabatan: this.userdataTPK["data"]["IDJABATAN"],
+          nipp: this.userdataTPK["data"]["NIPP"],
+        }),
+      })
+      .then((result) => {
         var responData = JSON.parse(String(result));
         console.log(responData);
 
-        if (responData['rcmsg'] == "SUCCESS") {
-          this.badgesList = responData['data'];
+        if (responData["rcmsg"] == "SUCCESS") {
+          this.badgesList = responData["data"];
           console.log(this.badgesList);
         } else {
           let toast = this.toastCtrl.create({
-            message: 'Gagal Mendapatkan Notifikasi, Coba Beberapa Saat Lagi.',
+            message: "Gagal Mendapatkan Notifikasi, Coba Beberapa Saat Lagi.",
             duration: 3000,
-            position: 'bottom'
+            position: "bottom",
           });
           toast.present();
         }
       })
-      .catch(error => {
+      .catch((error) => {
         let toast = this.toastCtrl.create({
-          message: 'Gagal Mendapatkan Notifikasi, Periksa Koneksi Internet Anda.',
+          message: "Gagal Mendapatkan Notifikasi, Periksa Koneksi Internet Anda.",
           duration: 3000,
-          position: 'bottom'
+          position: "bottom",
         });
         toast.present();
       });
   }
-
 
   getBadgesP2b() {
     // this.soapService
@@ -275,7 +264,6 @@ export class Home3Page {
     //   });
   }
 
-
   getBadgesPrpo() {
     // this.soapService
     //   .post(api_p2b_url, 'eoffice_countbadgestpk', {
@@ -288,51 +276,51 @@ export class Home3Page {
     //     )
     //   }).then(result => {
     //     var responData = JSON.parse(String(result));
-
     //     if (responData['rcmsg'] == "SUCCESS") {
     //       this.badgesPrpoList = responData['data'];
     //       console.log(this.badgesPrpoList);
     //     } else {
-         
     //     }
     //   })
     //   .catch(error => {
-       
     //   });
   }
 
-  doRefresh(refresher) { 
+  doRefresh(refresher) {
     this.getBadges();
     this.getBadgesP2b();
     this.getBadgesPrpo();
     this.getValidasi();
-    this.getData('refresh', refresher);
-    this.newSession('refresh', refresher);
+    this.getData("refresh", refresher);
+    this.newSession("refresh", refresher);
     this.cekVersi();
   }
 
   logout() {
     let alert = this.alertCtrl.create({
-      subTitle: 'Apakah anda yakin ingin log out ?',
-      cssClass: 'alert',
+      subTitle: "Apakah anda yakin ingin log out ?",
+      cssClass: "alert",
       buttons: [
         {
-          text: 'TIDAK',
-          role: 'cancel',
+          text: "TIDAK",
+          role: "cancel",
           handler: () => {
             // console.log('Cancel clicked');
-          }
+          },
         },
         {
-          text: 'YA',
+          text: "YA",
           handler: () => {
-            this.app.getRootNav().setRoot('LoginPage').then(() => {
-              //this.events.unsubscribe('user:data',() => {});
-              this.storage.clear();
-            });
-          }
-        }
-      ]
+            this.app
+              .getRootNav()
+              .setRoot("LoginPage")
+              .then(() => {
+                //this.events.unsubscribe('user:data',() => {});
+                this.storage.clear();
+              });
+          },
+        },
+      ],
     });
     alert.present();
   }
@@ -343,7 +331,7 @@ export class Home3Page {
 
   openPage2(page, param) {
     this.navCtrl.push(page, {
-      modul: param
+      modul: param,
     });
   }
 
@@ -366,37 +354,36 @@ export class Home3Page {
   }
 
   cekVersi() {
-    if (this.platform.is('cordova')) {
+    if (this.platform.is("cordova")) {
       this.oneSignal.getIds().then((id) => {
         console.log(id);
-        this.soapService.post(api_base_url, 'eoffice_bypass_wso', {
-          fStream: JSON.stringify(
-            {
-              sc_type: 'check_version',
+        this.soapService
+          .post(api_base_url, "eoffice_bypass_wso", {
+            fStream: JSON.stringify({
+              sc_type: "check_version",
               sc_code: "",
               data: {
-                "platform": "android",
-                "version": "1.0.0",
-                "player_id": id.userId,
-                "nipp": this.userdataTPK.data.NIPP,
-                "model": this.device.model,
-                "uuid": this.device.uuid
+                platform: "android",
+                version: "1.0.0",
+                player_id: id.userId,
+                nipp: this.userdataTPK.data.NIPP,
+                model: this.device.model,
+                uuid: this.device.uuid,
+              },
+            }),
+          })
+          .then((result) => {
+            var responData = JSON.parse(String(result));
+            console.log(responData);
+            if (responData["rcmsg"] == "SUCCESS") {
+              if (responData["data"]["POPUP"] == "1" || responData["data"]["POPUP"] == "2" || responData["data"]["POPUP"] == "3") {
+                this.showVersiPopup(responData["data"]["POPUP"], responData["data"]["POPUP_MESSAGE"], responData["data"]["URL"]);
+              } else {
               }
-            }
-          )
-        }).then(result => {
-          var responData = JSON.parse(String(result));
-          console.log(responData);
-          if (responData['rcmsg'] == "SUCCESS") {
-            if ((responData['data']['POPUP'] == "1" || responData['data']['POPUP'] == "2" || responData['data']['POPUP'] == "3")) {
-              this.showVersiPopup(responData['data']['POPUP'], responData['data']['POPUP_MESSAGE'], responData['data']['URL']);
             } else {
-
             }
-          } else {
-          }
-        })
-          .catch(error => {
+          })
+          .catch((error) => {
             console.log(error);
           });
       });
@@ -408,87 +395,92 @@ export class Home3Page {
     if (popupCode == "1") {
       myButton = [
         {
-          text: 'LEWATI',
-          role: 'cancel',
+          text: "LEWATI",
+          role: "cancel",
           handler: () => {
-            console.log('Cancel clicked');
+            console.log("Cancel clicked");
             this.isSkipUpdate = true;
             // return false;
-          }
+          },
         },
         {
-          text: 'UPDATE',
+          text: "UPDATE",
           handler: () => {
             const options: InAppBrowserOptions = {
-              zoom: 'no'
-            }
-            const browser = this.inAppBrowser.create(url, '_system', options);
+              zoom: "no",
+            };
+            const browser = this.inAppBrowser.create(url, "_system", options);
             return false;
-          }
-        }
+          },
+        },
       ];
     } else if (popupCode == "2") {
       myButton = [
         {
-          text: 'UPDATE',
+          text: "UPDATE",
           handler: () => {
             // this.market.open('ipc.imove');
             const options: InAppBrowserOptions = {
-              zoom: 'no'
-            }
-            const browser = this.inAppBrowser.create(url, '_system', options);
+              zoom: "no",
+            };
+            const browser = this.inAppBrowser.create(url, "_system", options);
             return false;
-          }
-        }
-      ]
+          },
+        },
+      ];
     } else if (popupCode == "3") {
       myButton = [
         {
-          text: 'OK',
-          role: 'cancel',
+          text: "OK",
+          role: "cancel",
           handler: () => {
-            console.log('Cancel clicked');
-          }
-        }
-      ]
+            console.log("Cancel clicked");
+          },
+        },
+      ];
     }
     let alert = this.alertCtrl.create({
       subTitle: popupMessage,
       enableBackdropDismiss: false,
-      cssClass: 'alert',
-      buttons: myButton
+      cssClass: "alert",
+      buttons: myButton,
     });
     alert.present();
   }
 
   showModal(myModal) {
-    let modal = this.modalCtrl.create(myModal, {
-    }, {
-      enableBackdropDismiss: true,
-      showBackdrop: true,
-      cssClass: 'my-modal10'
-    });
+    let modal = this.modalCtrl.create(
+      myModal,
+      {},
+      {
+        enableBackdropDismiss: true,
+        showBackdrop: true,
+        cssClass: "my-modal10",
+      }
+    );
     modal.present();
   }
 
-
   getValidasi() {
-
-    this.http.post(api_res + 'am3_check_shift.php', {
-      usernameEDI: api_user,
-      passwordEDI: api_pass,
-      person_id: this.userdataTPK['data']['PERSON_ID'],
-      nipp: this.userdataTPK['data']['NIPP'],
-      id_user: this.userdataTPK['data']['IDUSER']            
-    }).subscribe(data => {
-      console.log(data);
-      //var responData = JSON.parse(data);
-      this.dataValidasi = data['data'];
-      this.isLoadingHadirkoe = false;
-    }, err => {
-      console.log(err);
-      this.isLoadingHadirkoe = false;
-    });
+    this.http
+      .post(api_res + "am3_check_shift.php", {
+        usernameEDI: api_user,
+        passwordEDI: api_pass,
+        person_id: this.userdataTPK["data"]["PERSON_ID"],
+        nipp: this.userdataTPK["data"]["NIPP"],
+        id_user: this.userdataTPK["data"]["IDUSER"],
+      })
+      .subscribe(
+        (data) => {
+          console.log(data);
+          //var responData = JSON.parse(data);
+          this.dataValidasi = data["data"];
+          this.isLoadingHadirkoe = false;
+        },
+        (err) => {
+          console.log(err);
+          this.isLoadingHadirkoe = false;
+        }
+      );
   }
-
 }

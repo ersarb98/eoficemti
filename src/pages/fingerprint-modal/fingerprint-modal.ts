@@ -1,10 +1,10 @@
-import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ToastController, LoadingController, AlertController, App, ViewController } from 'ionic-angular';
-import {api_base_url, api_user, api_pass, api_res} from '../../config';
-import { SoapService } from '../soap.service';
-import { Storage } from '@ionic/storage';
-import { DatePipe } from '@angular/common';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Component } from "@angular/core";
+import { IonicPage, NavController, NavParams, ToastController, LoadingController, AlertController, App, ViewController } from "ionic-angular";
+import { api_base_url, api_user, api_pass, api_res } from "../../config";
+import { SoapService } from "../soap.service";
+import { Storage } from "@ionic/storage";
+import { DatePipe } from "@angular/common";
+import { HttpClient, HttpHeaders } from "@angular/common/http";
 
 /**
  * Generated class for the FingerprintModalPage page.
@@ -15,9 +15,9 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @IonicPage()
 @Component({
-  selector: 'page-fingerprint-modal',
+  selector: "page-fingerprint-modal",
   providers: [SoapService],
-  templateUrl: 'fingerprint-modal.html',
+  templateUrl: "fingerprint-modal.html",
 })
 export class FingerprintModalPage {
   isLoading: Boolean = false;
@@ -42,8 +42,8 @@ export class FingerprintModalPage {
     public viewCtrl: ViewController
   ) {
     // this.dataValidasi = navParams.get('dataValidasi');
-    console.log(this.dataValidasi);
-    this.storage.get('userdataTPK').then(val => {
+    // console.log(this.dataValidasi);
+    this.storage.get("userdataTPK").then((val) => {
       this.userdataTPK = val;
       // this.personId = this.userdataTPK['data']['PERSON_ID'];
       console.log(this.userdataTPK);
@@ -54,31 +54,30 @@ export class FingerprintModalPage {
     let date = new Date();
     let currentYear = date.getFullYear();
     let currentMonth = date.getMonth();
-    let bulan = (currentMonth < 10) ? "0" + (currentMonth + 1).toString() : (currentMonth + 1).toString();
-    let tgl = date.getDate();    
-    this.date = tgl + '-' + bulan + '-' + currentYear;
-    console.log(this.date);
-
+    let bulan = currentMonth < 10 ? "0" + (currentMonth + 1).toString() : (currentMonth + 1).toString();
+    let tgl = date.getDate();
+    this.date = tgl + "-" + bulan + "-" + currentYear;
+    // console.log(this.date);
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad FingerprintModalPage');
+    console.log("ionViewDidLoad FingerprintModalPage");
   }
 
   openActivityPage() {
-    if (this.dataValidasi['CHECK_IN'] == false || this.dataValidasi['CHECK_OUT'] == false) {
+    if (this.dataValidasi["CHECK_IN"] == false || this.dataValidasi["CHECK_OUT"] == false) {
       this.viewCtrl.dismiss();
-      this.appCtrl.getRootNav().push('InsertNoteAttendancePage', {
-        "fromPage": "AbsenActivityPage",
-        "shiftDate": this.dataValidasi['SHIFT_DATE']
-      });    
+      this.appCtrl.getRootNav().push("InsertNoteAttendancePage", {
+        fromPage: "AbsenActivityPage",
+        shiftDate: this.dataValidasi["SHIFT_DATE"],
+      });
     } else {
       let alert = this.alertCtrl.create({
-        title: '',
-        subTitle: 'Belum ada data absensi, silahkan melakukan Check In/Check Out terlebih dahulu.',
-        buttons: ['OK']
+        title: "",
+        subTitle: "Belum ada data absensi, silahkan melakukan Check In/Check Out terlebih dahulu.",
+        buttons: ["OK"],
       });
-      alert.present(); 
+      alert.present();
     }
 
     // let loading = this.loadingCtrl.create({
@@ -106,7 +105,7 @@ export class FingerprintModalPage {
     //     if (this.activityList.length != 0) {
     //       // if (this.activityList['CHECK_IN_PHOTO'] != null) {
     //       //   this.activityList['CHECK_IN_PHOTO'] = url_image + '/' + this.activityList['CHECK_IN_PHOTO'];
-    //       // } 
+    //       // }
     //       // if (this.activityList['CHECK_OUT_PHOTO'] != null) {
     //       //   this.activityList['CHECK_OUT_PHOTO'] = url_image + '/' + this.activityList['CHECK_OUT_PHOTO'];
     //       // }
@@ -184,12 +183,11 @@ export class FingerprintModalPage {
     //   loading.dismiss();
     // });
 
-
     // this.http.get(api_base_url_apim_absensi + 'preview?' + 'person=' + this.personId + '&tgl=' + this.date, {
     //   headers
     // }).subscribe(data => {
     //   console.log(data);
-    //   this.activityList = data;     
+    //   this.activityList = data;
     //   console.log(this.activityList);
     //   if (this.activityList['CHECK_IN'] == '' && this.activityList['CHECK_OUT'] == '') {
     //     let alert = this.alertCtrl.create({
@@ -253,21 +251,21 @@ export class FingerprintModalPage {
 
   openTeamPage() {
     this.viewCtrl.dismiss();
-    this.appCtrl.getRootNav().push('AbsenTeamHadirkoePage', {
-      "idUser": this.userdataTPK['data']['IDUSER'],
-      "date": this.datepipe.transform(new Date(), 'dd-MM-yyyy'),
-      "fromPage": "AbsenActivityPage"
-    }); 
+    this.appCtrl.getRootNav().push("AbsenTeamHadirkoePage", {
+      idUser: this.userdataTPK["data"]["IDUSER"],
+      date: this.datepipe.transform(new Date(), "dd-MM-yyyy"),
+      fromPage: "AbsenActivityPage",
+    });
   }
 
   openPage(page, type) {
     this.viewCtrl.dismiss();
     this.appCtrl.getRootNav().push(page, {
-      "type": type,
-      "long": "",
-      "lat": "",
-      "fromPage": "FingerprintModalPage",
-      "dataValidasi":this.dataValidasi
+      type: type,
+      long: "",
+      lat: "",
+      fromPage: "FingerprintModalPage",
+      dataValidasi: this.dataValidasi,
     });
     // this.navCtrl.push(page, {
     //   "type": type,
@@ -294,7 +292,7 @@ export class FingerprintModalPage {
     //   .then(result => {
     //     console.log(result);
     //     var responData = JSON.parse(String(result));
-    //     this.dataValidasi = responData;        
+    //     this.dataValidasi = responData;
     //     this.isLoading = false;
     //   })
     //   .catch(error => {
@@ -318,23 +316,25 @@ export class FingerprintModalPage {
     //   'Content-Type': 'application/json'
     // });
 
-    this.http.post(api_res + 'am3_check_shift.php', {
-      usernameEDI: api_user,
-      passwordEDI: api_pass,
-      person_id: this.userdataTPK['data']['PERSON_ID'],
-      nipp: this.userdataTPK['data']['NIPP'],
-      id_user: this.userdataTPK['data']['IDUSER']            
-    }).subscribe(data => {
-      console.log(data);
-      //var responData = JSON.parse(data);
-      this.dataValidasi = data['data'];
-      this.isLoading = false;
-    }, err => {
-      console.log(err);
-      this.isLoading = false;
-    });
+    this.http
+      .post(api_res + "am3_check_shift.php", {
+        usernameEDI: api_user,
+        passwordEDI: api_pass,
+        person_id: this.userdataTPK["data"]["PERSON_ID"],
+        nipp: this.userdataTPK["data"]["NIPP"],
+        id_user: this.userdataTPK["data"]["IDUSER"],
+      })
+      .subscribe(
+        (data) => {
+          console.log(data);
+          //var responData = JSON.parse(data);
+          this.dataValidasi = data["data"];
+          this.isLoading = false;
+        },
+        (err) => {
+          console.log(err);
+          this.isLoading = false;
+        }
+      );
   }
-
-
-
 }

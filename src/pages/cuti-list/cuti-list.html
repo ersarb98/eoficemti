@@ -12,7 +12,7 @@
 
     <ion-buttons end>
       <button ion-button (click)="searchCuti()">
-        <ion-icon style="font-size:2.4rem;" name="md-search" color="light"></ion-icon>
+        <ion-icon style="font-size: 2.4rem" name="md-search" color="light"></ion-icon>
       </button>
 
       <!-- <button ion-button *ngIf="isAtasan" (click)="presentPopover($event)">
@@ -23,56 +23,53 @@
 </ion-header>
 
 <ion-content>
-
   <ion-list class="dining_List" *ngIf="cutiList.length == 0  && isLoading == false">
     <ion-card class="primary-bg">
       <ion-card-content>
-        <span style="font-size:1.3rem">Tidak ada data izin/cuti.</span>
+        <span style="font-size: 1.3rem">Tidak ada data izin/cuti.</span>
       </ion-card-content>
     </ion-card>
   </ion-list>
 
-  <ion-list class="dining_List" *ngIf="cutiList.length != 0 && isLoading == false">   
+  <ion-list class="dining_List" *ngIf="cutiList.length != 0 && isLoading == false">
     <ion-card *ngFor="let cuti of cutiList" class="my-card" (click)="goToDetail(cuti)">
       <ion-item>
         <span item-start>
-          <img src="assets/imgs/menu-icon/cuti.png" class="icons">
+          <img src="assets/imgs/menu-icon/cuti.png" class="icons" />
         </span>
-        <span ion-text text-wrap class="font3" color="danger"><b>{{ cuti['Jumlah'] }} hari</b></span><br />
-        <span ion-text text-wrap class="font2"><b>{{ cuti['Jenis'] }}</b></span><br>
+        <span ion-text text-wrap class="font3" color="danger"><b>{{ cuti['Jumlah'] }} hari</b></span
+        ><br />
+        <span ion-text text-wrap class="font2"><b>{{ cuti['Jenis'] }}</b></span
+        ><br />
         <span ion-text text-wrap class="font">
           {{ cuti['Tanggal Mulai'] }} <span ion-text text-wrap color="primary"><b>s/d</b></span> {{ cuti['Tanggal Selesai'] }}
         </span>
-        <span ion-text text-wrap style="font-size: 1.2rem;" color="primary"  item-end><b>{{ cuti['Status'] }}</b></span>
+        <span ion-text text-wrap style="font-size: 1.2rem" color="primary" item-end><b>{{ cuti['Status'] }}</b></span>
       </ion-item>
     </ion-card>
   </ion-list>
 
-  <ion-list *ngIf='cutiList.length == 0 && isLoading == true'>
-    <ion-card *ngFor='let fake of fakeUsers'>
+  <ion-list *ngIf="cutiList.length == 0 && isLoading == true">
+    <ion-card *ngFor="let fake of fakeUsers">
       <ion-item>
         <div class="animate-skeleton-background load-2"></div>
         <div class="animate-skeleton-background load-3"></div>
-        <div class="animate-skeleton-background load-1"> </div>
+        <div class="animate-skeleton-background load-1"></div>
       </ion-item>
     </ion-card>
   </ion-list>
 
   <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
-    <ion-infinite-scroll-content>
-
-    </ion-infinite-scroll-content>
+    <ion-infinite-scroll-content> </ion-infinite-scroll-content>
   </ion-infinite-scroll>
 
   <ion-refresher (ionRefresh)="doRefresh($event)">
-    <ion-refresher-content pullingIcon="arrow-dropdown" pullingText="Pull to refresh" refreshingSpinner="circles"
-      refreshingText="Refreshing...">
-    </ion-refresher-content>
+    <ion-refresher-content pullingIcon="arrow-dropdown" pullingText="Pull to refresh" refreshingSpinner="circles" refreshingText="Refreshing..."> </ion-refresher-content>
   </ion-refresher>
 </ion-content>
 
 <ion-footer>
-  <ion-fab right bottom style="margin-right:10px; margin-bottom: 10px;">
+  <ion-fab right bottom style="margin-right: 10px; margin-bottom: 10px">
     <button ion-fab color="red" (click)="goToForm()">
       <ion-icon name="md-add" color="light"></ion-icon>
     </button>

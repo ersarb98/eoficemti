@@ -10,27 +10,25 @@
       <span ion-text color="light" *ngIf="fromPage != 'AbsenActivityPage'">Activity</span>
       <span ion-text color="light" *ngIf="fromPage == 'AbsenActivityPage'">{{ date }}</span>
     </ion-title>
-
   </ion-navbar>
 </ion-header>
 
-<ion-content no-padding style="background-color:#FFF">
+<ion-content no-padding style="background-color: #fff">
   <div padding *ngIf="fromPage == 'CheckInPage'">
-
     <div *ngIf="activityList != null && isLoading == false">
-      <br>
+      <br />
       <table>
         <tr>
           <td width="48px" align="left">
-            <img src="assets/flat-icon/fingerprint.png" class="icons">
+            <img src="assets/flat-icon/fingerprint.png" class="icons" />
           </td>
           <td>
-            <span text-wrap ion-text style="color:#959595">Jenis Absen</span><br />
-            <span text-wrap ion-text>{{ attendanceType }}</span> <br /><br>
+            <span text-wrap ion-text style="color: #959595">Jenis Absen</span><br />
+            <span text-wrap ion-text>{{ attendanceType }}</span> <br /><br />
           </td>
         </tr>
       </table>
-      <br>
+      <br />
 
       <!-- <ion-item *ngIf="activityList['CHECK_IN_ACTIVITY_SPV'] != ''" no-lines>
         <span item-left>
@@ -42,7 +40,6 @@
           style="white-space: pre-line !important;">{{ activityList['CHECK_IN_ACTIVITY_SPV'] }}</span>
         <br>
       </ion-item> -->
-
 
       <!-- <ion-item>
         <span item-left>
@@ -68,8 +65,7 @@
       </ion-grid> -->
       <div *ngFor="let inputActivity of inputActivityList; let i = index" class="my-card">
         <div class="delete-class" *ngIf="i > 0 && inputActivity['att_activity_id'] == ''">
-          <button ion-button icon-only color="danger" clear style="border-radius: 8px !important;"
-            (click)="delActivity(i)">
+          <button ion-button icon-only color="danger" clear style="border-radius: 8px !important" (click)="delActivity(i)">
             <ion-icon name="md-close"></ion-icon>
             <!-- Delete -->
           </button>
@@ -77,20 +73,19 @@
 
         <ion-item>
           <span item-left>
-            <img src="assets/flat-icon/alasan.png" class="icons">
+            <img src="assets/flat-icon/alasan.png" class="icons" />
           </span>
           <ion-label stacked>Activity</ion-label>
           <!-- <ion-input type="text" [(ngModel)]="inputActivity['activity']"></ion-input> -->
-          <ion-textarea [(ngModel)]="inputActivity['activity']" rows="2">
-          </ion-textarea>
+          <ion-textarea [(ngModel)]="inputActivity['activity']" rows="2"> </ion-textarea>
           <!-- <ion-input type="text" [(ngModel)]="inputActivity['activity']" *ngIf="inputActivity['att_activity_id'] == ''"></ion-input>
           <ion-input type="text" [readonly]="true" [(ngModel)]="inputActivity['activity']" *ngIf="inputActivity['att_activity_id'] != ''"></ion-input> -->
         </ion-item>
-        <br>
+        <br />
 
-        <ion-item style="width:80%;" lines *ngIf="checkType == 'CHECK_OUT'">
+        <ion-item style="width: 80%" lines *ngIf="checkType == 'CHECK_OUT'">
           <span item-left>
-            <img src="assets/flat-icon/jenis_cuti.png" class="icons">
+            <img src="assets/flat-icon/jenis_cuti.png" class="icons" />
           </span>
           <ion-label stacked>Status</ion-label>
           <ion-select [(ngModel)]="inputActivity['status']" placeholder="" (ionChange)="onChangeStatus($event, i)">
@@ -122,18 +117,15 @@
               <ion-option value="Dalam Proses - 90%" *ngIf="inputActivity['status'] <= this.numberExtractor('Dalam Proses - 90%')">Dalam Proses - 90%</ion-option>
               <ion-option value="Selesai - 100%">Selesai - 100%</ion-option>        
             </div> -->
-
           </ion-select>
         </ion-item>
 
-        <div style="margin-left: 10px;" *ngIf="checkType == 'CHECK_OUT' && inputActivity['att_activity_id'] != ''">
-          <div
-            *ngIf="inputActivity['status'] != null && originalActivityList[i]['status'] != null && inputActivity['status'] != '' && originalActivityList[i]['status'] != ''">
-            <span text-wrap ion-text style="color:red; font-size: 1.2rem;"
-              *ngIf="inputActivity['status'] != 'Batal' && (numberExtractor(originalActivityList[i]['status']) > numberExtractor(inputActivityList[i]['status']))">*Presentase
-              status tidak boleh kurang dari sebelumnya ( {{ numberExtractor(originalActivityList[i]['status']) }}%
-              ).</span>
-            <br>
+        <div style="margin-left: 10px" *ngIf="checkType == 'CHECK_OUT' && inputActivity['att_activity_id'] != ''">
+          <div *ngIf="inputActivity['status'] != null && originalActivityList[i]['status'] != null && inputActivity['status'] != '' && originalActivityList[i]['status'] != ''">
+            <span text-wrap ion-text style="color: red; font-size: 1.2rem" *ngIf="inputActivity['status'] != 'Batal' && (numberExtractor(originalActivityList[i]['status']) > numberExtractor(inputActivityList[i]['status']))"
+              >*Presentase status tidak boleh kurang dari sebelumnya ( {{ numberExtractor(originalActivityList[i]['status']) }}% ).</span
+            >
+            <br />
           </div>
           <!-- <span text-wrap ion-text style="color:red; font-size: 1.2rem;" >{{ originalActivityList[i]['status'] }}</span> -->
         </div>
@@ -158,14 +150,13 @@
       <table width="100%">
         <tr>
           <td width="50%" align="center" (click)="addNewActivity()">
-            <button ion-button icon-start style="width: 95% !important;border-radius: 10px;">
+            <button ion-button icon-start style="width: 95% !important; border-radius: 10px">
               <ion-icon name="ios-add"></ion-icon>
               Tambah
             </button>
           </td>
           <td width="50%" align="center">
-            <button ion-button icon-start style="width: 95% !important;border-radius: 10px;" color="secondary"
-              (click)="submitActivity('INSERT')" [disabled]="disableSubmitButton()">
+            <button ion-button icon-start style="width: 95% !important; border-radius: 10px" color="secondary" (click)="submitActivity('INSERT')" [disabled]="disableSubmitButton()">
               <ion-icon name="md-checkmark-circle-outline"></ion-icon>
               Submit
             </button>
@@ -184,8 +175,7 @@
           </td>
         </tr>
       </table> -->
-      <br>
-
+      <br />
     </div>
 
     <!-- <div *ngIf="activityList == null && isLoading == true"> -->
@@ -194,80 +184,80 @@
         <div class="my-card">
           <ion-item>
             <span item-left>
-              <img src="assets/flat-icon/alasan.png" class="icons">
+              <img src="assets/flat-icon/alasan.png" class="icons" />
             </span>
-            <div style="padding-top: 10px;" class="animate-skeleton-background load-3"></div>
+            <div style="padding-top: 10px" class="animate-skeleton-background load-3"></div>
           </ion-item>
 
-          <ion-item style="width:80%;">
+          <ion-item style="width: 80%">
             <span item-left>
-              <img src="assets/flat-icon/jenis_cuti.png" class="icons">
+              <img src="assets/flat-icon/jenis_cuti.png" class="icons" />
             </span>
-            <div style="padding-top: 10px;" class="animate-skeleton-background load-3"></div>
-          </ion-item>
-        </div>
-
-        <div class="my-card">
-          <ion-item>
-            <span item-left>
-              <img src="assets/flat-icon/alasan.png" class="icons">
-            </span>
-            <div style="padding-top: 10px;" class="animate-skeleton-background load-3"></div>
-          </ion-item>
-
-          <ion-item style="width:80%;">
-            <span item-left>
-              <img src="assets/flat-icon/jenis_cuti.png" class="icons">
-            </span>
-            <div style="padding-top: 10px;" class="animate-skeleton-background load-3"></div>
+            <div style="padding-top: 10px" class="animate-skeleton-background load-3"></div>
           </ion-item>
         </div>
 
         <div class="my-card">
           <ion-item>
             <span item-left>
-              <img src="assets/flat-icon/alasan.png" class="icons">
+              <img src="assets/flat-icon/alasan.png" class="icons" />
             </span>
-            <div style="padding-top: 10px;" class="animate-skeleton-background load-3"></div>
+            <div style="padding-top: 10px" class="animate-skeleton-background load-3"></div>
           </ion-item>
 
-          <ion-item style="width:80%;">
+          <ion-item style="width: 80%">
             <span item-left>
-              <img src="assets/flat-icon/jenis_cuti.png" class="icons">
+              <img src="assets/flat-icon/jenis_cuti.png" class="icons" />
             </span>
-            <div style="padding-top: 10px;" class="animate-skeleton-background load-3"></div>
-          </ion-item>
-        </div>
-
-        <div class="my-card">
-          <ion-item>
-            <span item-left>
-              <img src="assets/flat-icon/alasan.png" class="icons">
-            </span>
-            <div style="padding-top: 10px;" class="animate-skeleton-background load-3"></div>
-          </ion-item>
-
-          <ion-item style="width:80%;">
-            <span item-left>
-              <img src="assets/flat-icon/jenis_cuti.png" class="icons">
-            </span>
-            <div style="padding-top: 10px;" class="animate-skeleton-background load-3"></div>
+            <div style="padding-top: 10px" class="animate-skeleton-background load-3"></div>
           </ion-item>
         </div>
 
         <div class="my-card">
           <ion-item>
             <span item-left>
-              <img src="assets/flat-icon/alasan.png" class="icons">
+              <img src="assets/flat-icon/alasan.png" class="icons" />
             </span>
-            <div style="padding-top: 10px;" class="animate-skeleton-background load-3"></div>
+            <div style="padding-top: 10px" class="animate-skeleton-background load-3"></div>
           </ion-item>
 
-          <ion-item style="width:80%;">
+          <ion-item style="width: 80%">
             <span item-left>
-              <img src="assets/flat-icon/jenis_cuti.png" class="icons">
+              <img src="assets/flat-icon/jenis_cuti.png" class="icons" />
             </span>
-            <div style="padding-top: 10px;" class="animate-skeleton-background load-3"></div>
+            <div style="padding-top: 10px" class="animate-skeleton-background load-3"></div>
+          </ion-item>
+        </div>
+
+        <div class="my-card">
+          <ion-item>
+            <span item-left>
+              <img src="assets/flat-icon/alasan.png" class="icons" />
+            </span>
+            <div style="padding-top: 10px" class="animate-skeleton-background load-3"></div>
+          </ion-item>
+
+          <ion-item style="width: 80%">
+            <span item-left>
+              <img src="assets/flat-icon/jenis_cuti.png" class="icons" />
+            </span>
+            <div style="padding-top: 10px" class="animate-skeleton-background load-3"></div>
+          </ion-item>
+        </div>
+
+        <div class="my-card">
+          <ion-item>
+            <span item-left>
+              <img src="assets/flat-icon/alasan.png" class="icons" />
+            </span>
+            <div style="padding-top: 10px" class="animate-skeleton-background load-3"></div>
+          </ion-item>
+
+          <ion-item style="width: 80%">
+            <span item-left>
+              <img src="assets/flat-icon/jenis_cuti.png" class="icons" />
+            </span>
+            <div style="padding-top: 10px" class="animate-skeleton-background load-3"></div>
           </ion-item>
         </div>
       </div>
@@ -281,14 +271,10 @@
         <div class="animate-skeleton-background load-3"></div>
         <div class="animate-skeleton-background load-3"></div>
       </ion-item> -->
-
     </div>
-
   </div>
 
-
   <div *ngIf="fromPage == 'AbsenActivityPage'">
-
     <!-- <div *ngIf="activityList != null && isLoading == false"> -->
     <div *ngIf="inputActivityList.length > 0 && isLoading == false">
       <!-- <div class="image-container"> -->
@@ -353,9 +339,6 @@
           <br>
         </ion-item> -->
 
-
-
-
         <!-- <ion-item>
           <span item-left>
             <img src="assets/flat-icon/checkin.png" class="icons" *ngIf="checkType == 'Check In'">
@@ -380,29 +363,27 @@
 
         <div *ngFor="let inputActivity of inputActivityList; let i = index" class="my-card">
           <div class="delete-class" *ngIf="i > 0 && inputActivity['att_activity_id'] == ''">
-            <button ion-button icon-only color="danger" clear style="border-radius: 8px !important;"
-              (click)="delActivity(i)">
+            <button ion-button icon-only color="danger" clear style="border-radius: 8px !important" (click)="delActivity(i)">
               <ion-icon name="md-close"></ion-icon>
             </button>
           </div>
 
           <ion-item>
             <span item-left>
-              <img src="assets/flat-icon/alasan.png" class="icons">
+              <img src="assets/flat-icon/alasan.png" class="icons" />
             </span>
             <ion-label stacked>Activity</ion-label>
             <!-- <ion-input type="text" [(ngModel)]="inputActivity['activity']"></ion-input> -->
-            <ion-textarea [(ngModel)]="inputActivity['activity']" rows="2">
-            </ion-textarea>
+            <ion-textarea [(ngModel)]="inputActivity['activity']" rows="2"> </ion-textarea>
 
             <!-- <ion-input type="text" [(ngModel)]="inputActivity['activity']" *ngIf="inputActivity['att_activity_id'] == ''"></ion-input>
             <ion-input type="text" [readonly]="true" [(ngModel)]="inputActivity['activity']" *ngIf="inputActivity['att_activity_id'] != ''"></ion-input> -->
           </ion-item>
-          <br>
+          <br />
 
-          <ion-item style="width:80%;" lines *ngIf="checkType == 'CHECK_OUT'">
+          <ion-item style="width: 80%" lines *ngIf="checkType == 'CHECK_OUT'">
             <span item-left>
-              <img src="assets/flat-icon/jenis_cuti.png" class="icons">
+              <img src="assets/flat-icon/jenis_cuti.png" class="icons" />
             </span>
             <ion-label stacked>Status</ion-label>
             <ion-select [(ngModel)]="inputActivity['status']" placeholder="" (ionChange)="onChangeStatus($event, i)">
@@ -419,23 +400,18 @@
               <ion-option value="Dalam Proses - 90%">Dalam Proses - 90%</ion-option>
               <ion-option value="Selesai - 100%">Selesai - 100%</ion-option>
             </ion-select>
-            <br>
-
+            <br />
           </ion-item>
 
-          <div style="margin-left: 10px;" *ngIf="checkType == 'CHECK_OUT' && inputActivity['att_activity_id'] != ''">
-            <div
-              *ngIf="inputActivity['status'] != null && originalActivityList[i]['status'] != null && inputActivity['status'] != '' && originalActivityList[i]['status'] != ''">
-              <span text-wrap ion-text style="color:red; font-size: 1.2rem;"
-                *ngIf="inputActivity['status'] != 'Batal' && (numberExtractor(originalActivityList[i]['status']) > numberExtractor(inputActivityList[i]['status']))">*Presentase
-                status tidak boleh kurang dari sebelumnya ( {{ numberExtractor(originalActivityList[i]['status']) }}%
-                ).</span>
-              <br>
+          <div style="margin-left: 10px" *ngIf="checkType == 'CHECK_OUT' && inputActivity['att_activity_id'] != ''">
+            <div *ngIf="inputActivity['status'] != null && originalActivityList[i]['status'] != null && inputActivity['status'] != '' && originalActivityList[i]['status'] != ''">
+              <span text-wrap ion-text style="color: red; font-size: 1.2rem" *ngIf="inputActivity['status'] != 'Batal' && (numberExtractor(originalActivityList[i]['status']) > numberExtractor(inputActivityList[i]['status']))"
+                >*Presentase status tidak boleh kurang dari sebelumnya ( {{ numberExtractor(originalActivityList[i]['status']) }}% ).</span
+              >
+              <br />
             </div>
             <!-- <span text-wrap ion-text style="color:red; font-size: 1.2rem;" >{{ originalActivityList[i]['status'] }}</span> -->
           </div>
-
-
 
           <!-- <ion-item *ngIf="checkType == 'CHECK_OUT'">
             <span item-left>
@@ -454,19 +430,17 @@
           </ion-item> -->
         </div>
 
-
         <!-- <table width="100%" *ngIf="checkType != 'CHECK_OUT'"> -->
         <table width="100%">
           <tr>
             <td width="50%" align="center" (click)="addNewActivity()">
-              <button ion-button icon-start style="width: 95% !important;border-radius: 10px;">
+              <button ion-button icon-start style="width: 95% !important; border-radius: 10px">
                 <ion-icon name="ios-add"></ion-icon>
                 Tambah
               </button>
             </td>
             <td width="50%" align="center">
-              <button ion-button icon-start style="width: 95% !important;border-radius: 10px;" color="secondary"
-                (click)="submitActivity('INSERT')" [disabled]="disableSubmitButton()">
+              <button ion-button icon-start style="width: 95% !important; border-radius: 10px" color="secondary" (click)="submitActivity('INSERT')" [disabled]="disableSubmitButton()">
                 <ion-icon name="md-checkmark-circle-outline"></ion-icon>
                 Submit
               </button>
@@ -485,7 +459,7 @@
             </td>
           </tr>
         </table> -->
-        <br>
+        <br />
       </div>
     </div>
 
@@ -495,80 +469,80 @@
         <div class="my-card">
           <ion-item>
             <span item-left>
-              <img src="assets/flat-icon/alasan.png" class="icons">
+              <img src="assets/flat-icon/alasan.png" class="icons" />
             </span>
-            <div style="padding-top: 10px;" class="animate-skeleton-background load-3"></div>
+            <div style="padding-top: 10px" class="animate-skeleton-background load-3"></div>
           </ion-item>
 
-          <ion-item style="width:80%;">
+          <ion-item style="width: 80%">
             <span item-left>
-              <img src="assets/flat-icon/jenis_cuti.png" class="icons">
+              <img src="assets/flat-icon/jenis_cuti.png" class="icons" />
             </span>
-            <div style="padding-top: 10px;" class="animate-skeleton-background load-3"></div>
-          </ion-item>
-        </div>
-
-        <div class="my-card">
-          <ion-item>
-            <span item-left>
-              <img src="assets/flat-icon/alasan.png" class="icons">
-            </span>
-            <div style="padding-top: 10px;" class="animate-skeleton-background load-3"></div>
-          </ion-item>
-
-          <ion-item style="width:80%;">
-            <span item-left>
-              <img src="assets/flat-icon/jenis_cuti.png" class="icons">
-            </span>
-            <div style="padding-top: 10px;" class="animate-skeleton-background load-3"></div>
+            <div style="padding-top: 10px" class="animate-skeleton-background load-3"></div>
           </ion-item>
         </div>
 
         <div class="my-card">
           <ion-item>
             <span item-left>
-              <img src="assets/flat-icon/alasan.png" class="icons">
+              <img src="assets/flat-icon/alasan.png" class="icons" />
             </span>
-            <div style="padding-top: 10px;" class="animate-skeleton-background load-3"></div>
+            <div style="padding-top: 10px" class="animate-skeleton-background load-3"></div>
           </ion-item>
 
-          <ion-item style="width:80%;">
+          <ion-item style="width: 80%">
             <span item-left>
-              <img src="assets/flat-icon/jenis_cuti.png" class="icons">
+              <img src="assets/flat-icon/jenis_cuti.png" class="icons" />
             </span>
-            <div style="padding-top: 10px;" class="animate-skeleton-background load-3"></div>
-          </ion-item>
-        </div>
-
-        <div class="my-card">
-          <ion-item>
-            <span item-left>
-              <img src="assets/flat-icon/alasan.png" class="icons">
-            </span>
-            <div style="padding-top: 10px;" class="animate-skeleton-background load-3"></div>
-          </ion-item>
-
-          <ion-item style="width:80%;">
-            <span item-left>
-              <img src="assets/flat-icon/jenis_cuti.png" class="icons">
-            </span>
-            <div style="padding-top: 10px;" class="animate-skeleton-background load-3"></div>
+            <div style="padding-top: 10px" class="animate-skeleton-background load-3"></div>
           </ion-item>
         </div>
 
         <div class="my-card">
           <ion-item>
             <span item-left>
-              <img src="assets/flat-icon/alasan.png" class="icons">
+              <img src="assets/flat-icon/alasan.png" class="icons" />
             </span>
-            <div style="padding-top: 10px;" class="animate-skeleton-background load-3"></div>
+            <div style="padding-top: 10px" class="animate-skeleton-background load-3"></div>
           </ion-item>
 
-          <ion-item style="width:80%;">
+          <ion-item style="width: 80%">
             <span item-left>
-              <img src="assets/flat-icon/jenis_cuti.png" class="icons">
+              <img src="assets/flat-icon/jenis_cuti.png" class="icons" />
             </span>
-            <div style="padding-top: 10px;" class="animate-skeleton-background load-3"></div>
+            <div style="padding-top: 10px" class="animate-skeleton-background load-3"></div>
+          </ion-item>
+        </div>
+
+        <div class="my-card">
+          <ion-item>
+            <span item-left>
+              <img src="assets/flat-icon/alasan.png" class="icons" />
+            </span>
+            <div style="padding-top: 10px" class="animate-skeleton-background load-3"></div>
+          </ion-item>
+
+          <ion-item style="width: 80%">
+            <span item-left>
+              <img src="assets/flat-icon/jenis_cuti.png" class="icons" />
+            </span>
+            <div style="padding-top: 10px" class="animate-skeleton-background load-3"></div>
+          </ion-item>
+        </div>
+
+        <div class="my-card">
+          <ion-item>
+            <span item-left>
+              <img src="assets/flat-icon/alasan.png" class="icons" />
+            </span>
+            <div style="padding-top: 10px" class="animate-skeleton-background load-3"></div>
+          </ion-item>
+
+          <ion-item style="width: 80%">
+            <span item-left>
+              <img src="assets/flat-icon/jenis_cuti.png" class="icons" />
+            </span>
+            <div style="padding-top: 10px" class="animate-skeleton-background load-3"></div>
           </ion-item>
         </div>
       </div>
@@ -596,10 +570,5 @@
 
       </div> -->
     </div>
-
-
   </div>
-
-
-
 </ion-content>
