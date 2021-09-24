@@ -153,11 +153,10 @@ export class LemburPage {
   }
 
   goToDetail(data) {
-    console.log(data);
-    // this.navCtrl.push("LemburDetailPage", {
-    //   data: data,
-    //   nipp: this.userdataTPK["data"]["NIPP"],
-    //   userdataTPK: this.userdataTPK,
-    // });
+    // console.log(data);
+    this.navCtrl.push("LemburDetailPage", {
+      data: data,
+      nipp: this.userdataTPK["data"]["NIPP"],
+    });
   }
 }
