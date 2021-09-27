@@ -24,7 +24,7 @@
       <ion-item class="no-border">
         <span ion-text text-wrap class="font-mini" color="color4"> Nama </span>
         <br />
-        <span ion-text class="font-small" *ngIf="userdataTPK != null">{{ userdataTPK['data']['NAMA'] }}</span>
+        <span ion-text class="font-small" *ngIf="userdataTPK != null">{{ dataPemohon['Nama'] }}</span>
         <br />
         <span ion-text text-wrap class="font-mini" color="color4"> Alasan Lembur </span>
         <br />
@@ -53,7 +53,7 @@
           </ion-row>
           <ion-row>
             <ion-col> <span ion-text text-wrap class="font-small"> {{ dataLembur['namaPemeriksa1'] }}</span> </ion-col>
-            <ion-col class="ion-text-right"> <span ion-text text-wrap class="font-mini"> {{ dataLembur['statusPemeriksa1'] }}</span></ion-col>
+            <ion-col class="ion-text-right"> <span ion-text text-wrap class="font-mini" color="cyan"> {{ dataLembur['statusPemeriksa1'] }}</span></ion-col>
           </ion-row>
         </ion-grid>
         <ion-grid>
@@ -63,10 +63,27 @@
           </ion-row>
           <ion-row>
             <ion-col> <span ion-text text-wrap class="font-small"> {{ dataLembur['namaPemeriksa2'] }}</span> </ion-col>
-            <ion-col class="ion-text-right"> <span ion-text text-wrap class="font-mini"> {{ dataLembur['statusPemeriksa2'] }}</span></ion-col>
+            <ion-col class="ion-text-right"> <span ion-text text-wrap class="font-mini" color="cyan"> {{ dataLembur['statusPemeriksa2'] }}</span></ion-col>
           </ion-row>
         </ion-grid>
       </ion-item>
     </ion-card>
   </div>
+  <section class="buttons" *ngIf="isAtasan == true  && dataPemohon['Status'] == 'PERIKSA'">
+    <ion-grid>
+      <ion-row>
+        <ion-col size="12">
+          <ion-item> <ion-textarea rows="3" [(ngModel)]="keterangan" placeholder="Masukan keterangan/alasan"></ion-textarea> </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <button ion-button full color="danger" (click)="isApproved('2')">Tolak</button>
+        </ion-col>
+        <ion-col>
+          <button ion-button full color="primary" (click)="isApproved('1')">Approve</button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </section>
 </ion-content>

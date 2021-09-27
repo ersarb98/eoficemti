@@ -32,6 +32,7 @@ export class Home3Page {
   isSkipUpdate: Boolean = false;
   dataValidasi: any;
   isLoadingHadirkoe: Boolean = true;
+  isAtasan: Boolean;
 
   constructor(
     public navCtrl: NavController,
@@ -65,6 +66,11 @@ export class Home3Page {
       this.newSession("first", "");
       this.getData("first", "");
       this.cekVersi();
+      if (this.userdataTPK["data"]["DATA_BAWAHAN"].length == 0 && this.userdataTPK["data"]["DATA_BAWAHAN_TNO"].length == 0) {
+        this.isAtasan = false;
+      } else {
+        this.isAtasan = true;
+      }
     });
   }
 

@@ -1,5 +1,5 @@
 import { Component } from "@angular/core";
-import { IonicPage, NavController, NavParams, LoadingController, AlertController, ModalController, ToastController, ViewController } from "ionic-angular";
+import { IonicPage, NavController, NavParams, LoadingController, AlertController, ModalController, ToastController } from "ionic-angular";
 import { DatePipe } from "@angular/common";
 
 import { Storage } from "@ionic/storage";
@@ -7,7 +7,7 @@ import { api_res, api_user, api_pass } from "../../config";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 
 /**
- * Generated class for the LemburPage page.
+ * Generated class for the LemburBawahanPage page.
  *
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
@@ -15,13 +15,13 @@ import { HttpClient, HttpHeaders } from "@angular/common/http";
 
 @IonicPage()
 @Component({
-  selector: "page-lembur",
-  templateUrl: "lembur.html",
+  selector: "page-lembur-bawahan",
+  templateUrl: "lembur-bawahan.html",
 })
-export class LemburPage {
+export class LemburBawahanPage {
   userdataTPK: any;
   isLoading: Boolean = false;
-  lemburList: Array<any> = [];
+  lemburBawahanList: Array<any> = [];
   fakeUsers: Array<any> = new Array(5);
   isAtasan: Boolean;
   batasAtas = 1;
@@ -36,15 +36,11 @@ export class LemburPage {
     public alertCtrl: AlertController,
     public modalCtrl: ModalController,
     public toastCtrl: ToastController,
-    public datepipe: DatePipe,
-    public viewCtrl: ViewController
-  ) {
-    this.viewCtrl = this.navParams.get("viewCtrl");
-  }
+    public datepipe: DatePipe
+  ) {}
 
   ionViewDidLoad() {
-    console.log(this.lemburList.length);
-    console.log("ionViewDidLoad LemburPage");
+    console.log("ionViewDidLoad LemburBawahanPage");
     this.storage.get("userdataTPK").then((val) => {
       this.userdataTPK = val;
       if (this.userdataTPK["data"]["DATA_BAWAHAN"].length == 0 && this.userdataTPK["data"]["DATA_BAWAHAN_TNO"].length == 0) {
@@ -52,11 +48,11 @@ export class LemburPage {
       } else {
         this.isAtasan = true;
       }
-      this.getLemburList("first", "");
+      this.getLemburBawahanList("first", "");
     });
   }
 
-  getLemburList(type, functionName) {
+  getLemburBawahanList(type, functionName) {
     if (type == "first" && functionName == "") {
       this.isLoading = true;
     }
@@ -92,14 +88,14 @@ export class LemburPage {
       .subscribe(
         (result) => {
           var responseData = result;
-          console.log(responseData["data"]["Lembur"].length);
+          console.log(responseData["data"]["Lembur Bawahan"].length);
           if (responseData["rcmsg"] == "SUCCESS") {
             if (type == "refresh" && functionName != "") {
-              this.lemburList = [];
+              this.lemburBawahanList = [];
             }
-            if (responseData["data"]["Lembur"].length > 0 || responseData["data"]["Lembur"].length != null) {
-              for (var i = 0; i < responseData["data"]["Lembur"].length; i++) {
-                this.lemburList.push(responseData["data"]["Lembur"][i]);
+            if (responseData["data"]["Lembur Bawahan"].length > 0 || responseData["data"]["Lembur Bawahan"].length != null) {
+              for (var i = 0; i < responseData["data"]["Lembur Bawahan"].length; i++) {
+                this.lemburBawahanList.push(responseData["data"]["Lembur Bawahan"][i]);
               }
             }
           } else {
@@ -141,10 +137,10 @@ export class LemburPage {
   }
 
   doInfinite(infiniteScroll) {
-    if (this.lemburList.length >= 10) {
+    if (this.lemburBawahanList.length >= 10) {
       this.batasAtas = this.batasBawah + 1;
       this.batasBawah = this.batasBawah + 10;
-      this.getLemburList("infinite", infiniteScroll);
+      this.getLemburBawahanList("infinite", infiniteScroll);
     } else {
       infiniteScroll.complete();
     }
@@ -153,7 +149,7 @@ export class LemburPage {
   doRefresh(refresher) {
     this.batasAtas = 1;
     this.batasBawah = 10;
-    this.getLemburList("refresh", refresher);
+    this.getLemburBawahanList("refresh", refresher);
   }
 
   goToDetail(data) {

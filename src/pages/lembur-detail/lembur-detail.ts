@@ -24,6 +24,7 @@ export class LemburDetailPage {
   isAtasan: Boolean;
   dataPemohon: Array<any> = [];
   dataLembur: Array<any> = [];
+  keterangan: any = "";
 
   constructor(
     public navCtrl: NavController,
@@ -36,6 +37,7 @@ export class LemburDetailPage {
     public datepipe: DatePipe
   ) {
     this.dataPemohon = navParams.get("data");
+    console.log(this.dataPemohon);
   }
 
   ionViewDidLoad() {
@@ -99,5 +101,87 @@ export class LemburDetailPage {
           this.isLoading = false;
         }
       );
+  }
+
+  isApproved(data) {
+    let loader = this.loadingCtrl.create({
+      content: "Memproses data...",
+      spinner: "dots",
+      cssClass: "transparent",
+      dismissOnPageChange: true,
+    });
+    loader.present();
+
+    console.log(data);
+    console.log(this.dataPemohon["IdLembur"]);
+    console.log(this.userdataTPK["data"]["NIPP"]);
+
+    if (this.keterangan == "" || this.keterangan == null) {
+      let toast = this.toastCtrl.create({
+        message: "Keterangan harus diisi",
+        duration: 4000,
+        position: "bottom",
+      });
+      toast.present();
+      loader.dismiss();
+    } else {
+      var date = new Date();
+      var formattedDate = this.datepipe.transform(date, "yyyy-MM-dd HH:mm:ss");
+      var rand = Math.floor(Math.random() * 100000000 + 1);
+
+      var headers = new HttpHeaders({
+        Accept: "*/*",
+        username: api_user,
+        password: api_pass,
+        externalId: rand.toString(),
+        timestamp: formattedDate,
+        "Content-Type": "application/json",
+      });
+
+      this.http
+        .post(
+          api_res + "eoffice_lembur_approval.php",
+          {
+            usernameEDI: api_user,
+            passwordEDI: api_pass,
+            id_lembur: this.dataPemohon["IdLembur"],
+            isApproved: data,
+            keterangan: this.keterangan,
+            id_user: this.userdataTPK["data"]["NIPP"],
+          },
+          { headers }
+        )
+        .subscribe(
+          (data) => {
+            if (data["rcmsg"] == "SUCCESS") {
+              let toast = this.toastCtrl.create({
+                message: "Berhasil update data lembur.",
+                duration: 3000,
+                position: "bottom",
+              });
+              toast.present();
+              loader.dismiss();
+            } else {
+              let toast = this.toastCtrl.create({
+                message: "Gagal mengupdate data lembur, silahkan coba kembali.",
+                duration: 3000,
+                position: "bottom",
+              });
+              toast.present();
+              loader.dismiss();
+            }
+          },
+          (err) => {
+            let toast = this.toastCtrl.create({
+              message: "Gagal mengupdate data lembur, periksa koneksi internet anda.",
+              duration: 3000,
+              position: "bottom",
+            });
+            toast.present();
+            loader.dismiss();
+            this.isLoading = false;
+          }
+        );
+    }
   }
 }

@@ -19,6 +19,10 @@ page-lembur-detail {
 
   .no-border {
     border: none !important;
+    .grid,
+    .col {
+      padding: 0 !important;
+    }
   }
 
   .ion-text-left {
@@ -37,12 +41,16 @@ page-lembur-detail {
     padding: 0 !important;
   }
 
-  .grid,
-  .col {
-    padding: 0 !important;
-  }
-
   .divider-lines {
     width: 90%;
+  }
+
+  .input-cover {
+    border: 1px solid #c8bfbf;
+    border-radius: 12px;
+  }
+
+  .show-tabbar {
+    opacity: 0 !important;
   }
 }
