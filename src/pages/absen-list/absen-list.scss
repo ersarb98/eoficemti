@@ -1,5 +1,129 @@
 page-absen-list {
 
+	.parent-card {
+		padding: 10px 16px 10px 16px;
+		width: 100%;
+	}
+
+	.list-card {
+		margin-bottom: 10px;
+		position: relative;
+		display: flex;
+		border-radius: 20px;
+		border: 1px solid #F4F4F4;
+	}
+
+	.tgl-container {
+		display: table;
+		padding: 25px 12px;
+		text-align: center;
+		width: 20%;
+		background-color: #F4F4F4;
+		border-bottom-left-radius: 18px;
+		border-top-left-radius: 18px;
+		// display: inline-block; 
+		// *display: inline; 
+		// zoom: 1; 
+		// vertical-align: top;
+	}
+
+	.tgl-container-red {
+		display: table;
+		padding: 12px;
+		text-align: center;
+		width: 20%;
+		background-color: #fb6c6c;
+		border-bottom-left-radius: 18px;
+		border-top-left-radius: 18px;
+		// display: inline-block; 
+		// *display: inline; 
+		// zoom: 1; 
+		// vertical-align: top;
+	}
+
+	.tgl-font {
+		font-size: 2rem;
+		font-weight: bold;
+		color: gray;
+	}
+
+	.hari-font {
+		font-size: 1.2rem;
+		font-weight: bold;
+		color: gray;
+	}
+
+	.tgl-font-red {
+		font-size: 2rem;
+		font-weight: bold;
+		color: white;
+	}
+
+	.hari-font-red {
+		font-size: 1.2rem;
+		font-weight: bold;
+		color: white;
+	}
+
+	.data-container {
+		// display: inline-block; 
+		// *display: inline; 
+		// zoom: 1; 
+		// vertical-align: top;
+		width: 80%;
+		padding: 10px 10px 10px 20px;
+	}
+
+	.inline-container {
+		display: flex;
+	}
+
+	.inline-left {
+		width: 50%;
+	}
+	
+	.inline-right {
+		width: 50%;
+	}
+
+	.check-font {
+		font-size: 1.1rem;
+		color: gray;
+	}
+
+	.time-font {
+		font-size: 1.5rem;
+		font-weight: bold;
+	}
+
+	.check-type-in {
+		font-size: 1.0rem;
+		color: #14c514;
+		font-weight: bold;
+	}
+
+	.check-type-out {
+		font-size: 1.0rem;
+		color: #fb6c6c;
+		font-weight: bold;
+	}
+
+	.ket-card {
+		border: 1px solid #fb6c6c;
+		border-radius: 10px;
+		color: #fb6c6c;
+		font-size: 1.2rem;
+		padding: 5px 10px;
+		font-weight: bold;
+	}
+
+
+// ---------------- bates class baru ----------------
+
+
+
+
+
 	.overlay {
 		position: absolute;
 		width: 65%;        

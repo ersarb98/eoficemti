@@ -66,7 +66,8 @@ $colors: (
   pink    : #FF5F9B,
   black: black,
   googleColor:  #ff5450,
-  color7:#366cf3
+  color7:#366cf3,
+  hijau:#14c514
 );
 
 
@@ -112,5 +113,40 @@ $colors: (
 // Fonts
 // --------------------------------------------------
 
-@import "roboto";
-@import "noto-sans";
+// @import "roboto";
+// @import "noto-sans";
+
+@font-face {
+  font-family: 'nunito';
+  font-style: normal;
+  font-weight: 400;
+  src: url(../assets/font/Nunito-Regular.ttf);
+}
+
+@font-face {
+  font-family: 'nunito';
+  font-style: semi-bold;
+  font-weight: 600;
+  src: url(../assets/font/Nunito-SemiBold.ttf);
+}
+
+@font-face {
+  font-family: 'nunito';
+  font-style: bold;
+  font-weight: 700;
+  src: url(../assets/font/Nunito-Bold.ttf);
+}
+
+@font-face {
+  font-family: 'nunito';
+  font-style: extra-bold;
+  font-weight: 900;
+  src: url(../assets/font/Nunito-ExtraBold.ttf);
+}
+
+@font-face {
+  font-family: 'nunito';
+  font-style: bold;
+  font-weight: bold;
+  src: url(../assets/font/Nunito-ExtraBold.ttf);
+}
