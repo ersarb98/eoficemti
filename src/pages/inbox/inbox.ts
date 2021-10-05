@@ -1,9 +1,9 @@
-import { Component, NgZone } from '@angular/core';
-import { IonicPage, NavController, NavParams, LoadingController, AlertController, ModalController, ToastController } from 'ionic-angular';
+import { Component, NgZone } from "@angular/core";
+import { IonicPage, NavController, NavParams, LoadingController, AlertController, ModalController, ToastController } from "ionic-angular";
 
-import { SoapService } from '../soap.service';
-import { Storage } from '@ionic/storage';
-import { api_base_url, api_user, api_pass } from '../../config';
+import { SoapService } from "../soap.service";
+import { Storage } from "@ionic/storage";
+import { api_base_url, api_user, api_pass } from "../../config";
 
 /**
  * Generated class for the InboxPage page.
@@ -14,9 +14,9 @@ import { api_base_url, api_user, api_pass } from '../../config';
 
 @IonicPage()
 @Component({
-  selector: 'page-inbox',
+  selector: "page-inbox",
   providers: [SoapService],
-  templateUrl: 'inbox.html',
+  templateUrl: "inbox.html",
 })
 export class InboxPage {
   messages: Array<any> = [];
@@ -27,7 +27,7 @@ export class InboxPage {
   inputSearch: any;
   fakeUsers: Array<any> = new Array(5);
 
-  loadingFilter:Boolean = true;
+  loadingFilter: Boolean = true;
 
   constructor(
     public navCtrl: NavController,
@@ -39,25 +39,24 @@ export class InboxPage {
     public modalCtrl: ModalController,
     public ngZone: NgZone,
     public toastCtrl: ToastController
-  ) {    
-  }
+  ) {}
 
-  ionViewDidEnter() {            
-    this.storage.get('userdataTPK').then(val => {
+  ionViewDidEnter() {
+    this.storage.get("userdataTPK").then((val) => {
       this.halaman = 1;
       this.userdataTPK = val;
 
-      this.getMessages('first','');              
+      this.getMessages("first", "");
     });
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad InboxPage');
+    console.log("ionViewDidLoad InboxPage");
   }
 
   getMessages(type, functionName) {
     // if (type == 'first' && functionName == '') {
-    this.isLoading = true;  
+    this.isLoading = true;
     // }
 
     // console.log(JSON.stringify({
@@ -70,111 +69,111 @@ export class InboxPage {
     //   perihal: "",
     //   tanggalawal: "",
     //   tanggalakhir: "",
-    //   sorting: "3",  
-    //   filter:"0"  
+    //   sorting: "3",
+    //   filter:"0"
     // }));
-    
-    this.soapService
-      .post(api_base_url, 'eoffice_inbox', {
-        fStream: JSON.stringify(
-          {
-            usernameEDI: api_user,
-            passwordEDI: api_pass,
-            iduser: this.userdataTPK.data.IDUSER,
-            idjabatan: this.userdataTPK.data.IDJABATAN,
-            page: this.halaman,
-            jmlpage: '20',
-            perihal: "",
-            tanggalawal: "",
-            tanggalakhir: "",
-            sorting: "1",  
-            filter:"0"          
-          }
-        )
-      }).then(result => {        
-        var responData = JSON.parse(String(result));              
-        console.log(responData);
-        if (responData['rcmsg'] == "SUCCESS") {
-          if (type == 'refresh' && functionName != '') {
-            this.messages = [];
-          } else if (type == 'first' && functionName == '') {
-            this.messages = [];
-          }
-          if (responData['data']['List_Inbox'].length > 0 && !this.isEmptyObject(responData['data']['List_Inbox'][0])) {                
-            for (var i = 0; i < responData['data']['List_Inbox'].length; i++) {
-              this.messages.push(responData['data']['List_Inbox'][i]);
-            }
-          }          
 
+    this.soapService
+      .post(api_base_url, "eoffice_inbox", {
+        fStream: JSON.stringify({
+          usernameEDI: api_user,
+          passwordEDI: api_pass,
+          iduser: this.userdataTPK.data.IDUSER,
+          idjabatan: this.userdataTPK.data.IDJABATAN,
+          page: this.halaman,
+          jmlpage: "20",
+          perihal: "",
+          tanggalawal: "",
+          tanggalakhir: "",
+          sorting: "1",
+          filter: "0",
+        }),
+      })
+      .then((result) => {
+        var responData = JSON.parse(String(result));
+        console.log(responData);
+        if (responData["rcmsg"] == "SUCCESS") {
+          if (type == "refresh" && functionName != "") {
+            this.messages = [];
+          } else if (type == "first" && functionName == "") {
+            this.messages = [];
+          }
+          if (responData["data"]["List_Inbox"].length > 0 && !this.isEmptyObject(responData["data"]["List_Inbox"][0])) {
+            for (var i = 0; i < responData["data"]["List_Inbox"].length; i++) {
+              this.messages.push(responData["data"]["List_Inbox"][i]);
+            }
+          }
         } else {
           let toast = this.toastCtrl.create({
-            message: 'Mohon Maaf Sedang Terjadi Kesalahan, Coba Beberapa Saat Lagi.',
+            message: "Mohon Maaf Sedang Terjadi Kesalahan, Coba Beberapa Saat Lagi.",
             duration: 3000,
-            position: 'bottom'
+            position: "bottom",
           });
           toast.present();
         }
-        if (type == 'first' && functionName == '') {
-          
-        } else if (type == 'infinite' && functionName != '') {
+        if (type == "first" && functionName == "") {
+        } else if (type == "infinite" && functionName != "") {
           functionName.complete();
-        } else if (type == 'refresh' && functionName != '') {
+        } else if (type == "refresh" && functionName != "") {
           functionName.complete();
         }
         this.isLoading = false;
       })
-      .catch(error => {        
+      .catch((error) => {
         let toast = this.toastCtrl.create({
-          message: 'Terjadi Masalah Koneksi, Silahkan Coba Kembali.',
+          message: "Terjadi Masalah Koneksi, Silahkan Coba Kembali.",
           duration: 3000,
-          position: 'bottom'
+          position: "bottom",
         });
         toast.present();
-        if (type == 'first' && functionName == '') {
-          
-        } else if (type == 'infinite' && functionName != '') {
+        if (type == "first" && functionName == "") {
+        } else if (type == "infinite" && functionName != "") {
           functionName.complete();
-        } else if (type == 'refresh' && functionName != '') {
+        } else if (type == "refresh" && functionName != "") {
           functionName.complete();
         }
         this.isLoading = false;
       });
   }
 
-  goToDetail(message) {    
+  goToDetail(message) {
+    console.log(message);
     this.navCtrl.push("InboxDetailPage", {
       messageData: message,
-      nipp: this.userdataTPK['data']['NIPP'],
-      userdataTPK: this.userdataTPK
+      nipp: this.userdataTPK["data"]["NIPP"],
+      userdataTPK: this.userdataTPK,
     });
   }
 
   doInfinite(infiniteScroll) {
-
-    this.halaman++;    
-    this.getMessages('infinite', infiniteScroll);
+    this.halaman++;
+    this.getMessages("infinite", infiniteScroll);
   }
 
   doRefresh(refresher) {
     this.halaman = 1;
-    this.getMessages('refresh', refresher);
+    this.getMessages("refresh", refresher);
   }
 
-  submitSearch() {    
-    this.navCtrl.push('InboxSearchPage', {
+  submitSearch() {
+    this.navCtrl.push("InboxSearchPage", {
       inputSearch: this.inputSearch,
       userdataTPK: this.userdataTPK,
-      type: 'inbox'
-    })
+      type: "inbox",
+    });
   }
 
   showModal(page) {
-    let modal = this.modalCtrl.create(page, {
-      openFrom: 'inboxPage'
-    }, {
+    let modal = this.modalCtrl.create(
+      page,
+      {
+        openFrom: "inboxPage",
+      },
+      {
         enableBackdropDismiss: true,
-        showBackdrop: true,        
-      });
+        showBackdrop: true,
+      }
+    );
     modal.present();
   }
 
@@ -189,39 +188,39 @@ export class InboxPage {
 
   doArsip(data) {
     let loading = this.loadingCtrl.create({
-      spinner: 'dots',
+      spinner: "dots",
       content: "Mengarsip Surat...",
-      cssClass: 'transparent',
-      dismissOnPageChange: true
+      cssClass: "transparent",
+      dismissOnPageChange: true,
     });
     loading.present();
     this.soapService
-      .post(api_base_url, 'eoffice_arsip_add', {
-        fStream: JSON.stringify(
-          {
-            usernameEDI: api_user,
-            passwordEDI: api_pass,
-            id_surat: data['id_surat'],
-            keterangan: data['Status'],
-            id_user: this.userdataTPK.data.IDUSER,
-            id_jab: this.userdataTPK.data.IDJABATAN,
-          }
-        )
-      }).then(result => {
-        var responData = JSON.parse(String(result));        
+      .post(api_base_url, "eoffice_arsip_add", {
+        fStream: JSON.stringify({
+          usernameEDI: api_user,
+          passwordEDI: api_pass,
+          id_surat: data["id_surat"],
+          keterangan: data["Status"],
+          id_user: this.userdataTPK.data.IDUSER,
+          id_jab: this.userdataTPK.data.IDJABATAN,
+        }),
+      })
+      .then((result) => {
+        var responData = JSON.parse(String(result));
         let toast = this.toastCtrl.create({
-          message: 'Surat Berhasil Diarsipkan.',
+          message: "Surat Berhasil Diarsipkan.",
           duration: 3000,
-          position: 'bottom'
+          position: "bottom",
         });
         toast.present();
-        this.getMessages('first', '');
+        this.getMessages("first", "");
         loading.dismiss();
-      }).catch(error => {
+      })
+      .catch((error) => {
         let toast = this.toastCtrl.create({
-          message: 'Mohon Maaf Sedang Terjadi Kesalahan, Coba Beberapa Saat Lagi.',
+          message: "Mohon Maaf Sedang Terjadi Kesalahan, Coba Beberapa Saat Lagi.",
           duration: 3000,
-          position: 'bottom'
+          position: "bottom",
         });
         toast.present();
         loading.dismiss();

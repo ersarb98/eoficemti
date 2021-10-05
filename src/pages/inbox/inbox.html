@@ -1,10 +1,10 @@
 <ion-header>
-	<ion-navbar>
-		<ion-title *ngIf="!isSearch">
-			<span ion-text color="light" class="fw500">Surat Masuk</span>
-		</ion-title>
+  <ion-navbar>
+    <ion-title *ngIf="!isSearch">
+      <span ion-text color="light" class="fw500">Surat Masuk</span>
+    </ion-title>
 
-		<!-- <ion-buttons end >
+    <!-- <ion-buttons end >
             <button ion-button (click)="showSearch()">
 			  <ion-icon *ngIf="!isSearch"  style="font-size:2.4rem;" name="search" color="light"></ion-icon>
 			  <ion-icon *ngIf="isSearch"  style="font-size:2.4rem;" name="close" color="light"></ion-icon>
@@ -12,106 +12,94 @@
 			    
 		</ion-buttons> -->
 
-		<ion-buttons end>
-			<button ion-button (click)="showModal('SearchInboxPage')">
-				<ion-icon style="font-size:2.4rem;" name="md-search" color="light"></ion-icon>
-			</button>
-		</ion-buttons>
+    <ion-buttons end>
+      <button ion-button (click)="showModal('SearchInboxPage')">
+        <ion-icon style="font-size: 2.4rem" name="md-search" color="light"></ion-icon>
+      </button>
+    </ion-buttons>
 
-		<!-- <form action="." (ngSubmit)="submitSearch()">
+    <!-- <form action="." (ngSubmit)="submitSearch()">
 			<ion-searchbar *ngIf="isSearch" style="font-size:2.4rem;"
 				[(ngModel)]="inputSearch"			
 				[ngModelOptions]="{standalone: true}"		
 				(ionCancel)="showSearch()">
 			</ion-searchbar>
 		</form>		 -->
-	</ion-navbar>
+  </ion-navbar>
 
-	<!-- <ion-scroll scrollX="true" style="width:100vw; height:50px;">
+  <!-- <ion-scroll scrollX="true" style="width:100vw; height:50px;">
 		<ion-row nowrap style="padding:10px 10px 0 10px !important;">
 			<div class="my-filter-danger" tapable >Semua</div>
 			<div class="my-filter-primary" tapable >5 Surat Belum Dibaca</div>
 			<div class="my-filter-primary" tapable >7 Surat Belum Didisposisi</div>
 		</ion-row>
 	</ion-scroll> -->
-
 </ion-header>
 
 <ion-content>
-	<ion-grid *ngIf="isEmptyObject(messages[0])  && isLoading == false" fixed>
-		<ion-row>
-			<ion-col col-12>
-				<ion-card class="primary-bg">
-					<ion-card-content>
-						<span style="font-size:1.3rem">Tidak Ada Pesan.</span>
-					</ion-card-content>
-				</ion-card>
-			</ion-col>
-		</ion-row>
-	</ion-grid>
+  <ion-grid *ngIf="isEmptyObject(messages[0])  && isLoading == false" fixed>
+    <ion-row>
+      <ion-col col-12>
+        <ion-card class="primary-bg">
+          <ion-card-content>
+            <span style="font-size: 1.3rem">Tidak Ada Pesan.</span>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 
-	<ion-list *ngIf='!isEmptyObject(messages[0])'>
-		<ion-card *ngFor='let message of messages' class="my-card">
-			<ion-item-sliding>
-				<ion-item (click)="goToDetail(message)" [ngClass]="{'item-belum-baca' : !message['IsBaca']}">
-					<span [ngClass]="{'fw700': !message['IsBaca']}" style="text-align: center;" item-start>
-						<ion-icon name="mail" color="color6" class="msg-icon" *ngIf="message['IsBaca'] == '0'">
-						</ion-icon>
-						<ion-icon name="mail-open" class="msg-icon" color="color6" *ngIf="message['IsBaca'] == '1'">
-						</ion-icon> <br>
-						<!-- <span ion-text text-wrap *ngIf="!message['Disposisi']" color="color3" >D</span>
+  <ion-list *ngIf="!isEmptyObject(messages[0])">
+    <ion-card *ngFor="let message of messages" class="my-card">
+      <ion-item-sliding>
+        <ion-item (click)="goToDetail(message)" [ngClass]="{'item-belum-baca' : !message['IsBaca']}">
+          <span [ngClass]="{'fw700': !message['IsBaca']}" style="text-align: center" item-start>
+            <ion-icon name="mail" color="color6" class="msg-icon" *ngIf="message['IsBaca'] == '0'"> </ion-icon>
+            <ion-icon name="mail-open" class="msg-icon" color="color6" *ngIf="message['IsBaca'] == '1'"> </ion-icon> <br />
+            <!-- <span ion-text text-wrap *ngIf="!message['Disposisi']" color="color3" >D</span>
 						<span ion-text text-wrap *ngIf="message['Disposisi']" color="ptpBlue" >D</span> -->
-					</span>				
-					<span ion-text text-wrap *ngIf="message.No_Surat != null" style="font-size:1.2rem; color:gray;"> 
-						{{ message.No_Surat }}  
-					</span>
-					<span *ngIf="message.No_Surat == null"> - </span>				
-					<br>
-					<span ion-text text-wrap class="font-small">
-						<b>{{message.Dari}}</b>
-					</span><br>
-					<span color="black" ion-text text-wrap class="font-mini">
-						{{message['Perihal'].substring(0,80) }}
-						<span *ngIf="message['Perihal'].length > 80"> ... </span>
-					</span><br>
-					<span ion-text text-wrap class="font-mini" color="primary">
-						{{message.Tanggal_Surat}}
-					</span>				
-					<div item-end style="text-align: center;">
-						<span color="primary" ion-text text-wrap class="font-mini">
-							<b>{{message.Status}}</b>
-						</span><br>
-						<ion-icon name="md-checkbox" color="secondary" *ngIf="message.Disposisi" ></ion-icon>
-					</div>
-				</ion-item>
-				<ion-item-options side="end" (click)="doArsip(message)">
-					<button ion-button color="primary" style="text-transform: none !important;">
-						<ion-icon name="md-filing"></ion-icon>
-						Arsipkan
-					</button>
-				</ion-item-options>
-			</ion-item-sliding>
-		</ion-card>
-	</ion-list>
+          </span>
+          <span ion-text text-wrap *ngIf="message.No_Surat != null" style="font-size: 1.2rem; color: gray"> {{ message.No_Surat }} </span>
+          <span *ngIf="message.No_Surat == null"> - </span>
+          <br />
+          <span ion-text text-wrap class="font-small"> <b>{{message.Dari}}</b> </span><br />
+          <span color="black" ion-text text-wrap class="font-mini">
+            {{message['Perihal'].substring(0,80) }}
+            <span *ngIf="message['Perihal'].length > 80"> ... </span> </span
+          ><br />
+          <span ion-text text-wrap class="font-mini" color="primary"> {{message.Tanggal_Surat}} </span>
+          <br />
+          <span ion-text text-wrap class="font-mini" style="background-color: #ff0000; padding: 3px 10px 3px 10px; color: white" *ngIf="message.StatusDisposisi == 'Sedang Diselesaikan'"> {{ message.StatusDisposisi }} </span>
+          <div item-end style="text-align: center">
+            <span color="primary" ion-text text-wrap class="font-mini"> <b>{{message.Status}}</b> </span><br />
+            <ion-icon name="md-checkbox" color="secondary" *ngIf="message.Disposisi"></ion-icon>
+          </div>
+        </ion-item>
+        <ion-item-options side="end" (click)="doArsip(message)">
+          <button ion-button color="primary" style="text-transform: none !important">
+            <ion-icon name="md-filing"></ion-icon>
+            Arsipkan
+          </button>
+        </ion-item-options>
+      </ion-item-sliding>
+    </ion-card>
+  </ion-list>
 
-	<ion-list *ngIf='isEmptyObject(messages[0]) && isLoading == true'>
-		<ion-card *ngFor='let fake of fakeUsers'>
-			<ion-item>
-				<div class="animate-skeleton-background load-2"></div>
-				<div class="animate-skeleton-background load-3"></div>
-				<div class="animate-skeleton-background load-1 "> </div>
-			</ion-item>
-		</ion-card>
-	</ion-list>
+  <ion-list *ngIf="isEmptyObject(messages[0]) && isLoading == true">
+    <ion-card *ngFor="let fake of fakeUsers">
+      <ion-item>
+        <div class="animate-skeleton-background load-2"></div>
+        <div class="animate-skeleton-background load-3"></div>
+        <div class="animate-skeleton-background load-1"></div>
+      </ion-item>
+    </ion-card>
+  </ion-list>
 
-	<ion-infinite-scroll (ionInfinite)="doInfinite($event)">
-		<ion-infinite-scroll-content></ion-infinite-scroll-content>
-	</ion-infinite-scroll>
+  <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
+    <ion-infinite-scroll-content></ion-infinite-scroll-content>
+  </ion-infinite-scroll>
 
-	<ion-refresher (ionRefresh)="doRefresh($event)">
-		<ion-refresher-content pullingIcon="arrow-dropdown" pullingText="Pull to refresh" refreshingSpinner="circles"
-			refreshingText="Refreshing...">
-		</ion-refresher-content>
-	</ion-refresher>
-
+  <ion-refresher (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content pullingIcon="arrow-dropdown" pullingText="Pull to refresh" refreshingSpinner="circles" refreshingText="Refreshing..."> </ion-refresher-content>
+  </ion-refresher>
 </ion-content>
