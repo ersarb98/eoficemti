@@ -1,0 +1,152 @@
+<!--
+  Generated template for the SearchArsipPersonalPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+  <ion-navbar>
+    <ion-title><span style="color:#FFF">Search Arsip Personal</span></ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only (click)="closeModal()">
+        <ion-icon name="ios-close-outline" style="color:#FFF"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <div class="my-padding">
+    <ion-item no-padding>
+      <span item-left>
+        <img src="assets/imgs/search-inbox/pengirim.png" class="icons">
+      </span>
+      <ion-label stacked>Dari</ion-label>
+      <ion-input type="text" [(ngModel)]="namaPengirim" placeholder=""></ion-input>
+    </ion-item>
+
+    <ion-item no-padding>
+      <span item-left>
+        <img src="assets/imgs/search-inbox/no_surat.png" class="icons">
+      </span>
+      <ion-label stacked>No. Surat</ion-label>
+      <ion-input type="text" [(ngModel)]="noSurat" placeholder=""></ion-input>
+    </ion-item>
+
+    <ion-item no-padding>
+      <span item-left>
+        <img src="assets/imgs/search-inbox/perihal.png" class="icons">
+      </span>
+      <ion-label stacked>Perihal</ion-label>
+      <ion-input type="text" [(ngModel)]="perihal" placeholder=""></ion-input>
+    </ion-item>
+
+    <ion-item no-padding>
+      <span item-left>
+        <img src="assets/imgs/search-inbox/start_date.png" class="icons">
+      </span>
+      <ion-label stacked>Start Date</ion-label>
+      <ion-input type="text" [readonly]="true" [(ngModel)]="startDate" (ionFocus)="checkFocus(1)"
+        (click)="showDatePicker(1)" placeholder=""></ion-input>
+    </ion-item>
+
+    <ion-item no-padding>
+      <span item-left>
+        <img src="assets/imgs/search-inbox/end_date.png" class="icons">
+      </span>
+      <ion-label stacked>End Date</ion-label>
+      <ion-input type="text" [readonly]="true" [(ngModel)]="endDate" (ionFocus)="checkFocus(2)"
+        (click)="showDatePicker(2)" placeholder=""></ion-input>
+    </ion-item>
+
+    <ion-item no-padding>
+      <span item-left>
+        <img src="assets/imgs/search-inbox/status_baca.png" class="icons">
+      </span>
+      <ion-label stacked>Status Baca</ion-label>
+      <ion-select [(ngModel)]="statusBaca" placeholder="">
+        <ion-option value="0">Belum Dibaca</ion-option>
+        <ion-option value="1">Sudah Dibaca</ion-option>
+      </ion-select>
+    </ion-item>
+
+    <div class="row">
+      <div class="col">
+        <button ion-button icon-start full color="danger" style="border-radius: 5px;" (click)="clearField()" margin-top>
+          <ion-icon name="md-close"></ion-icon>
+          Clear
+        </button>
+      </div>
+      <div class="col">
+        <button ion-button icon-start full color="primary" style="border-radius: 5px;" (click)="doSearch()" margin-top
+          [disabled]="namaPengirim == '' && noSurat == '' && perihal == '' && startDate == '' && endDate == '' && statusBaca == '' ? true :false">
+          <ion-icon name="ios-search"></ion-icon>
+          Cari
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <ion-grid *ngIf="isEmptyObject(messages[0])  && isLoading == false" fixed>
+    <ion-row>
+      <ion-col col-12>
+        <ion-card class="primary-bg">
+          <ion-card-content>
+            <span style="font-size:1.3rem">Tidak Ada Pesan.</span>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <ion-list *ngIf='!isEmptyObject(messages[0])'>
+    <ion-card *ngFor='let message of messages' class="my-card">
+      <ion-item-sliding>
+        <ion-item (click)="goToDetail(message)" [ngClass]="{'item-belum-baca' : !message['IsBaca']}">
+          <span [ngClass]="{'fw700': !message['IsBaca']}" style="text-align: center;" item-start>
+            <ion-icon name="mail" color="danger" class="msg-icon" *ngIf="message['IsBaca'] == '0'">
+            </ion-icon>
+            <ion-icon name="mail-open" class="msg-icon" color="danger" *ngIf="message['IsBaca'] == '1'">
+            </ion-icon> <br>
+          </span>
+          <span ion-text text-wrap class="font-small">
+            <b>{{message.Dari}}</b>
+          </span><br>
+          <span color="black" ion-text text-wrap class="font-mini">
+            {{message['Perihal'].substring(0,80) }}
+            <span *ngIf="message['Perihal'].length > 80"> ... </span>
+          </span><br>
+          <span ion-text text-wrap class="font-mini" color="primary">
+            {{message.Tanggal_Surat}}
+          </span>
+          <span item-end>
+            <span color="primary" ion-text text-wrap class="font-mini">
+              <b>{{message.Status}}</b>
+            </span>
+          </span>
+        </ion-item>
+        <ion-item-options side="end" (click)="doKembalikan(message)">
+          <button ion-button color="primary" style="text-transform: none !important;">
+            <ion-icon name="md-filing"></ion-icon>
+            Kembalikan
+          </button>
+        </ion-item-options>
+      </ion-item-sliding>
+    </ion-card>
+  </ion-list>
+
+  <ion-list *ngIf='isEmptyObject(messages[0]) && isLoading == true'>
+    <ion-card *ngFor='let fake of fakeUsers'>
+      <ion-item>
+        <div class="animate-skeleton-background load-2"></div>
+        <div class="animate-skeleton-background load-3"></div>
+        <div class="animate-skeleton-background load-1 "> </div>
+      </ion-item>
+    </ion-card>
+  </ion-list>
+
+  <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
+    <ion-infinite-scroll-content></ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+
+</ion-content>

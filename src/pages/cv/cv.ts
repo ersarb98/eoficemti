@@ -51,14 +51,12 @@ export class CvPage {
   }
 
   toggleAssigment() {
-
     if (this.showAssigment == true) {
       this.showAssigment = false;
     } else {
       this.showAssigment = true;
-      // this.animator.setType('fadeInLeft').show(this.assignmentAnim.nativeElement);    
+      // this.animator.setType('fadeInLeft').show(this.assignmentAnim.nativeElement);
     }
-
   }
 
   togglePerform() {
@@ -132,5 +130,4 @@ export class CvPage {
         this.isLoading = false;
       });
   }
-
 }

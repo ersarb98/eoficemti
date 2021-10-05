@@ -13,36 +13,31 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content no-padding style="background-color:#FFF">
-
+<ion-content no-padding style="background-color: #fff">
   <div class="image-container">
     <!-- <img class="photo" src="{{ imageShow }}" /> -->
     <img class="photo" [src]="imageShow" />
   </div>
 
   <div class="data-container" padding *ngIf="userdataTPK != null">
-    <br>
+    <br />
     <table>
       <tr>
         <td width="48px" align="left">
-          <img src="assets/flat-icon/nama.png" class="icons">
+          <img src="assets/flat-icon/nama.png" class="icons" />
         </td>
         <td>
-          <span text-wrap ion-text style="color:#959595">Nama / NIPP</span><br />
-          <span text-wrap ion-text>
-            {{userdataTPK['data']['NAMA']}} / {{userdataTPK['data']['NIPP']}}
-          </span> <br /><br>
+          <span text-wrap ion-text style="color: #959595">Nama / NIPP</span><br />
+          <span text-wrap ion-text> {{userdataTPK['data']['NAMA']}} / {{userdataTPK['data']['NIPP']}} </span> <br /><br />
         </td>
       </tr>
       <tr>
-         <td>
-          <img src="assets/flat-icon/jabatan.png" class="icons">
+        <td>
+          <img src="assets/flat-icon/jabatan.png" class="icons" />
         </td>
         <td>
-          <span text-wrap ion-text style="color:#959595">Jabatan</span><br />
-          <span text-wrap ion-text>
-            {{userdataTPK['data']['NAMAJABATAN']}}
-          </span> <br /><br>
+          <span text-wrap ion-text style="color: #959595">Jabatan</span><br />
+          <span text-wrap ion-text> {{userdataTPK['data']['NAMAJABATAN']}} </span> <br /><br />
         </td>
       </tr>
       <!-- <tr>
@@ -75,14 +70,14 @@
       </tr> -->
       <tr>
         <td>
-          <img src="assets/flat-icon/fingerprint.png" class="icons">
+          <img src="assets/flat-icon/fingerprint.png" class="icons" />
         </td>
         <td>
-          <span ion-text="" style="color:#959595" text-wrap="" class="text text-md">Jenis Absen</span>
+          <span ion-text="" style="color: #959595" text-wrap="" class="text text-md">Jenis Absen</span>
 
-          <div style="margin-top:10px;" *ngIf="dataValidasi['WFH'] == true" >
+          <div style="margin-top: 10px" *ngIf="dataValidasi['WFH'] == true">
             <label class="radio-button">
-              <input type="radio" [(ngModel)]="attendanceType" id="WFH" name="absence_type" value="WFH" checked>
+              <input type="radio" [(ngModel)]="attendanceType" id="WFH" name="absence_type" value="WFH" checked />
               <!-- <label for="WFH">WFH (Work From Home)</label> -->
               <span class="label-visible">
                 <span class="fake-radiobutton"></span>
@@ -90,9 +85,9 @@
               </span>
             </label>
           </div>
-          <div style="margin-top:15px;" *ngIf="dataValidasi['WFC'] == true">
+          <div style="margin-top: 15px" *ngIf="dataValidasi['WFC'] == true">
             <label class="radio-button">
-              <input type="radio" [(ngModel)]="attendanceType" id="WFC" name="absence_type" value="WFC">
+              <input type="radio" [(ngModel)]="attendanceType" id="WFC" name="absence_type" value="WFC" />
               <!-- <label for="WFC">WFC (Work From Client)</label> -->
               <span class="label-visible">
                 <span class="fake-radiobutton"></span>
@@ -100,16 +95,40 @@
               </span>
             </label>
           </div>
-          <div style="margin-top:15px;" *ngIf="dataValidasi['WFO'] == true">
+          <div style="margin-top: 15px" *ngIf="dataValidasi['WFO'] == true">
             <label class="radio-button">
-              <input type="radio" [(ngModel)]="attendanceType" id="WFO" name="absence_type" value="WFO">            
+              <input type="radio" [(ngModel)]="attendanceType" id="WFO" name="absence_type" value="WFO" />
               <span class="label-visible">
                 <span class="fake-radiobutton"></span>
                 WFO (Work From Office)
               </span>
             </label>
           </div>
-          <br>
+          <br />
+        </td>
+      </tr>
+      <tr *ngIf="type == 'checkout'">
+        <td>
+          <img src="assets/flat-icon/overtime.png" class="icons" />
+        </td>
+        <td>
+          <span ion-text="" style="color: #959595" text-wrap="" class="text text-md">Lembur</span>
+          <div style="margin-top: 15px">
+            <label class="radio-button">
+              <input type="checkbox" [(ngModel)]="lembur" (click)="toggleLembur()" id="lembur" name="lembur" value="lembur" />
+              <span class="label-visible">
+                <span class="fake-checkbox"></span>
+                Lembur
+              </span>
+            </label>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td colspan="2" *ngIf="showLembur">
+          <ion-item>
+            <ion-textarea rows="3" [(ngModel)]="keteranganLembur" placeholder="Masukan keterangan/alasan lembur"></ion-textarea>
+          </ion-item>
         </td>
       </tr>
     </table>
@@ -117,20 +136,17 @@
     <ion-grid no-margin>
       <ion-row>
         <ion-col col-6>
-          <button ion-button class="my-button" *ngIf="type == 'checkout'" style=" border-radius: 12px;"
-            color="secondary" (click)="vadidasiAlamat()">
+          <button ion-button class="my-button" *ngIf="type == 'checkout'" style="border-radius: 12px" color="secondary" (click)="vadidasiAlamat()">
             Check Out
             <!-- <ion-icon name="md-finger-print"></ion-icon> -->
           </button>
-          <button ion-button icon-end class="my-button" *ngIf="type == 'checkin'" style=" border-radius: 12px;"
-            color="secondary" (click)="vadidasiAlamat()">
+          <button ion-button icon-end class="my-button" *ngIf="type == 'checkin'" style="border-radius: 12px" color="secondary" (click)="vadidasiAlamat()">
             Check In
             <!-- <ion-icon name="md-finger-print"></ion-icon> -->
           </button>
         </ion-col>
         <ion-col col-6>
-          <button ion-button icon-end outline class="my-button" style=" border-radius: 12px;" color="danger"
-            (click)="cancel()">
+          <button ion-button icon-end outline class="my-button" style="border-radius: 12px" color="danger" (click)="cancel()">
             cancel
             <ion-icon name="md-close"></ion-icon>
           </button>

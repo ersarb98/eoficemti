@@ -1,0 +1,56 @@
+page-lembur-detail {
+  .header-card {
+    border: none !important;
+  }
+
+  .font-header {
+    color: color($colors, cyan);
+    font-size: 1.5rem;
+  }
+
+  .font-mini {
+    font-size: 1.2rem;
+  }
+
+  .font-small {
+    font-size: 1.4rem;
+    color: black;
+  }
+
+  .no-border {
+    border: none !important;
+    .grid,
+    .col {
+      padding: 0 !important;
+    }
+  }
+
+  .ion-text-left {
+    text-align: left !important;
+  }
+
+  .ion-text-right {
+    text-align: right !important;
+  }
+
+  .border {
+    border: 1px solid !important;
+  }
+
+  .no-padding {
+    padding: 0 !important;
+  }
+
+  .divider-lines {
+    width: 90%;
+  }
+
+  .input-cover {
+    border: 1px solid #c8bfbf;
+    border-radius: 12px;
+  }
+
+  .show-tabbar {
+    opacity: 0 !important;
+  }
+}
