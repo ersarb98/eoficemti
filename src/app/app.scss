@@ -20,6 +20,10 @@
   //background-image: linear-gradient(to bottom right, #D52054, #EB4D63 ) !important;
 }
 
+* {
+  font-family: "nunito";
+}
+
 .header-md::after,
 .tabs-md[tabsPlacement="top"] > .tabbar::after,
 .footer-md::before,

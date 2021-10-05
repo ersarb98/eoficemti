@@ -290,7 +290,7 @@ export class AbsenListPage {
     // });
     // loading.present();
     this.isLoading = true;
-    this.soapService.post(api_base_url, 'eoffice_absen_list', {
+    this.soapService.post(api_base_url, 'eoffice_get_list_absen_personal', {
       fStream: JSON.stringify({
         usernameEDI: api_user,
         passwordEDI: api_pass,
@@ -303,7 +303,15 @@ export class AbsenListPage {
       var responData = JSON.parse(String(result));
       //console.log(responData);
       if (responData['rcmsg'] == "SUCCESS") {
-        this.absenList = responData['data'];        
+        this.absenList = responData['data'];    
+        for(var i=0;i<this.absenList.length;i++) {
+          var hari= this.absenList[i]['TANGGAL'].substr(0, this.absenList[i]['TANGGAL'].indexOf(','));    
+          this.absenList[i]['HARI']=hari;
+          var tglSplit = this.absenList[i]['TANGGAL'].split(" ");
+          this.absenList[i]['TGL']=tglSplit[1];          
+        } 
+        
+        console.log(this.absenList);
       } else {
         let toast = this.toastCtrl.create({
           message: 'Mohon Maaf Sedang Terjadi Kesalahan, Coba Beberapa Saat Lagi.',
@@ -462,13 +470,13 @@ export class AbsenListPage {
 
   goToAbsenMobileDetail(absen) {
     console.log(absen);
-    var tgl = absen['TANGGAL'].split(" - ");
-    var date = tgl[0];    
-    if (tgl[0] < 10) {
-      date = '0' + tgl[0];
-    }
+    // var tgl = absen['TANGGAL_ONLY'].split("-");
+    // var date = tgl[0];    
+    // if (tgl[0] < 10) {
+    //   date = '0' + tgl[0];
+    // }
 
-    console.log(date + "-" + this.bulan + "-" + this.tahun);
+    // console.log(date + "-" + this.bulan + "-" + this.tahun);
     // console.log(this.datepipe.transform(date + "-" + this.bulan + "-" + this.tahun, 'dd-MM-yyyy'));
 
     this.navCtrl.push('AbsenMobileDetailPage', {
@@ -476,7 +484,8 @@ export class AbsenListPage {
       nipp: this.userdataTPK['data']['NIPP'],
       nama : this.userdataTPK['data']['NAMA'],
       shift:"",
-      date: date + "-" + this.bulan + "-" + this.tahun,
+      // date: date + "-" + this.bulan + "-" + this.tahun,
+      date:absen['TANGGAL_ONLY'],
       fromPage:"AbsenListPage"
     })
   }

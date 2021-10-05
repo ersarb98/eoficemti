@@ -12,7 +12,8 @@ page-home3 {
     }
 
     .titleicon div{
-        display:inline-block;        
+        display:inline-block;    
+        font-size: 1.5rem;    
     }
 
     .load-3 {
@@ -209,9 +210,8 @@ page-home3 {
         // top: 48%;
         width: calc(100% - 32px);
         border-radius: 15px;
-        padding: 8px;
+        padding: 12px 8px;
         left: 16px;
-        height: 80px;
         right: 16px;
         margin: 0 !important;
         box-shadow: 1px 2px 5px -2px rgba(0,0,0,0.58) !important;
@@ -236,6 +236,7 @@ page-home3 {
         justify-content: center;
         align-items: center;
         font-size:1.3rem !important;
+        font-weight: 600;
     }
 
     .menu-content-2 {
@@ -250,17 +251,17 @@ page-home3 {
     }
 
     .img-container {        
-        margin-bottom: 2px;
+        margin-bottom: 8px;
         margin-left: auto;
         margin-right: auto;
         padding: 9px;
-        width: 48px;
-        height: 48px;
+        width: 45px;
+        height: 45px;
         border-radius: 50%;
     }
 
     .img-container-2 {        
-        margin-bottom: 2px;
+        margin-bottom: 8px;
         margin-left: auto;
         margin-right: auto;
         padding: 10px;
