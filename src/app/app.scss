@@ -97,7 +97,11 @@
   border-top-right-radius: 20px;
 }
 
-.my-modal10,
+.my-modal10 ion-backdrop {
+  visibility: visible !important;
+  opacity: 0.5 !important;
+}
+
 .my-modal12 ion-backdrop {
   visibility: visible !important;
   opacity: 0.5 !important;
