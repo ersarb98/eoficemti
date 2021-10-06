@@ -52,7 +52,7 @@
   <ion-list *ngIf="!isEmptyObject(messages[0])">
     <ion-card *ngFor="let message of messages" class="my-card">
       <ion-item-sliding>
-        <ion-item (click)="goToDetail(message)" [ngClass]="{'item-belum-baca' : !message['IsBaca']}">
+        <ion-item (click)="goToDetail(message)" [ngClass]="{'item-belum-baca' : !message['IsBaca'], 'item-disposisi' : message.StatusDisposisi == 'Sedang Diselesaikan'}">
           <span [ngClass]="{'fw700': !message['IsBaca']}" style="text-align: center" item-start>
             <ion-icon name="mail" color="color6" class="msg-icon" *ngIf="message['IsBaca'] == '0'"> </ion-icon>
             <ion-icon name="mail-open" class="msg-icon" color="color6" *ngIf="message['IsBaca'] == '1'"> </ion-icon> <br />
@@ -69,7 +69,9 @@
           ><br />
           <span ion-text text-wrap class="font-mini" color="primary"> {{message.Tanggal_Surat}} </span>
           <br />
-          <span ion-text text-wrap class="font-mini" style="background-color: #ff0000; padding: 3px 10px 3px 10px; color: white" *ngIf="message.StatusDisposisi == 'Sedang Diselesaikan'"> {{ message.StatusDisposisi }} </span>
+          <span ion-text text-wrap class="font-mini" style="background-color: rgba(255, 184, 34, 0.1); padding: 3px 10px 3px 10px; color: #ffad00" *ngIf="message.StatusDisposisi == 'Sedang Diselesaikan'">
+            {{ message.StatusDisposisi }}
+          </span>
           <div item-end style="text-align: center">
             <span color="primary" ion-text text-wrap class="font-mini"> <b>{{message.Status}}</b> </span><br />
             <ion-icon name="md-checkbox" color="secondary" *ngIf="message.Disposisi"></ion-icon>
