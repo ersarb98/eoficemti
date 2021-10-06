@@ -39,6 +39,8 @@
         </span>
         <span ion-text text-wrap class="font3" color="danger"><b>{{ cuti['Jumlah'] }} hari</b></span
         ><br />
+        <span ion-text text-wrap class="font3" color="danger" *ngIf="cuti['NO_SURAT'] != null">{{ cuti['NO_SURAT'] }} <br /></span>
+
         <span ion-text text-wrap class="font2"><b>{{ cuti['Jenis'] }}</b></span
         ><br />
         <span ion-text text-wrap class="font">
@@ -70,7 +72,7 @@
 
 <ion-footer>
   <ion-fab right bottom style="margin-right: 10px; margin-bottom: 10px">
-    <button ion-fab color="color6" (click)="goToForm()">
+    <button ion-fab color="red" (click)="goToForm()">
       <ion-icon name="md-add" color="light"></ion-icon>
     </button>
   </ion-fab>
