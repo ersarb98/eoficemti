@@ -37,10 +37,12 @@
         <span item-start>
           <img src="assets/imgs/menu-icon/cuti.png" class="icons" />
         </span>
-        <span ion-text text-wrap class="font3" color="danger"><b>{{ cuti['Jumlah'] }} hari</b></span><br>
-        <span ion-text text-wrap class="font3" color="danger" *ngIf="cuti['NO_SURAT'] != null" >{{ cuti['NO_SURAT'] }} <br /></span>
-       
-        <span ion-text text-wrap class="font2"><b>{{ cuti['Jenis'] }}</b></span><br>
+        <span ion-text text-wrap class="font3" color="danger"><b>{{ cuti['Jumlah'] }} hari</b></span
+        ><br />
+        <span ion-text text-wrap class="font3" color="danger" *ngIf="cuti['NO_SURAT'] != null">{{ cuti['NO_SURAT'] }} <br /></span>
+
+        <span ion-text text-wrap class="font2"><b>{{ cuti['Jenis'] }}</b></span
+        ><br />
         <span ion-text text-wrap class="font">
           {{ cuti['Tanggal Mulai'] }} <span ion-text text-wrap color="primary"><b>s/d</b></span> {{ cuti['Tanggal Selesai'] }}
         </span>

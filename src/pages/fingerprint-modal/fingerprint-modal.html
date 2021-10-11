@@ -5,80 +5,63 @@
   Ionic pages and navigation.
 -->
 
-<ion-content padding-top style="background-color:#FFF" scrollY="false" >
+<ion-content padding-top style="background-color: #fff" scrollY="false">
   <p><b>Hadirkoe</b></p>
-  <hr>
+  <hr />
   <ion-grid class="my-grid" *ngIf="!isLoading && dataValidasi != null">
-  <!-- <ion-grid class="my-grid"> -->
-    <ion-row >
-      <ion-col col-3 >
+    <!-- <ion-grid class="my-grid"> -->
+    <ion-row>
+      <ion-col col-3>
         <div *ngIf="dataValidasi['CHECK_IN'] == true" (click)="openPage('MapPage','checkin')">
-          <img style="width: 45%;
-          height: auto;          
-          max-width: 35vw;" src="assets/flat-icon/checkin.png" /> 
-          <span class="title">Check In</span>          
-        </div>                  
-        
-        <div *ngIf="dataValidasi['CHECK_IN'] == false" style="opacity: 0.4;">
-          <img style="width: 45%;
-          height: auto;          
-          max-width: 35vw;" src="assets/flat-icon/checkin.png" /> 
-          <span class="title">Check In</span>          
-        </div>  
+          <img style="width: 45%; height: auto; max-width: 35vw" src="assets/flat-icon/checkin.png" />
+          <span class="title">Check In</span>
+        </div>
+
+        <div *ngIf="dataValidasi['CHECK_IN'] == false" style="opacity: 0.4">
+          <img style="width: 45%; height: auto; max-width: 35vw" src="assets/flat-icon/checkin.png" />
+          <span class="title">Check In</span>
+        </div>
       </ion-col>
       <ion-col col-3>
         <div *ngIf="dataValidasi['CHECK_OUT'] == true" (click)="openPage('MapPage','checkout')">
-          <img style="width: 45%;
-          height: auto;          
-          max-width: 35vw;" src="assets/flat-icon/checkout.png" />
+          <img style="width: 45%; height: auto; max-width: 35vw" src="assets/flat-icon/checkout.png" />
           <span class="title">Check Out</span>
         </div>
 
-        <div *ngIf="dataValidasi['CHECK_OUT'] == false" style="opacity: 0.4;">
-          <img style="width: 45%;
-          height: auto;          
-          max-width: 35vw;" src="assets/flat-icon/checkout.png" />
+        <div *ngIf="dataValidasi['CHECK_OUT'] == false" style="opacity: 0.4">
+          <img style="width: 45%; height: auto; max-width: 35vw" src="assets/flat-icon/checkout.png" />
           <span class="title">Check Out</span>
         </div>
-
-      </ion-col> 
+      </ion-col>
       <ion-col col-3>
         <div (click)="openActivityPage()">
-          <img style="width: 45%;
-          height: auto;          
-          max-width: 35vw;" src="assets/flat-icon/activity.png" />
+          <img style="width: 45%; height: auto; max-width: 35vw" src="assets/flat-icon/activity.png" />
           <span class="title">Activity</span>
         </div>
-      </ion-col>     
+      </ion-col>
       <ion-col col-3>
         <div (click)="openTeamPage()">
-          <img style="width: 45%;
-          height: auto;          
-          max-width: 35vw;" src="assets/flat-icon/team.png" />
-          <span class="title">Team</span> 
+          <img style="width: 45%; height: auto; max-width: 35vw" src="assets/flat-icon/team.png" />
+          <span class="title">Team</span>
         </div>
-      </ion-col>     
-    </ion-row>   
+      </ion-col>
+    </ion-row>
   </ion-grid>
 
-  <ion-grid class="my-grid" *ngIf="isLoading && dataValidasi == null" >
-    <ion-row >
-      <ion-col col-3 >
-        <div class="animate-skeleton-background load-icon">
-        </div>         
-      </ion-col>
-      <ion-col col-3 >
-        <div class="animate-skeleton-background load-icon">
-        </div>         
+  <ion-grid class="my-grid" *ngIf="isLoading && dataValidasi == null">
+    <ion-row>
+      <ion-col col-3>
+        <div class="animate-skeleton-background load-icon"></div>
       </ion-col>
       <ion-col col-3>
-        <div class="animate-skeleton-background load-icon">                    
-        </div> 
-      </ion-col> 
+        <div class="animate-skeleton-background load-icon"></div>
+      </ion-col>
       <ion-col col-3>
-        <div class="animate-skeleton-background load-icon">                    
-        </div> 
-      </ion-col>     
-    </ion-row>   
+        <div class="animate-skeleton-background load-icon"></div>
+      </ion-col>
+      <ion-col col-3>
+        <div class="animate-skeleton-background load-icon"></div>
+      </ion-col>
+    </ion-row>
   </ion-grid>
 </ion-content>

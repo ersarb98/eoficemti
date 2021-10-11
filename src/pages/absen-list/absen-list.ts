@@ -1,10 +1,10 @@
-import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ActionSheetController, LoadingController, AlertController, PopoverController, ModalController, ToastController } from 'ionic-angular';
-import { SoapService } from '../soap.service';
-import { Storage } from '@ionic/storage';
-import { api_base_url, api_user, api_pass, api_res } from '../../config';
-import { DatePipe } from '@angular/common';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Component } from "@angular/core";
+import { IonicPage, NavController, NavParams, ActionSheetController, LoadingController, AlertController, PopoverController, ModalController, ToastController } from "ionic-angular";
+import { SoapService } from "../soap.service";
+import { Storage } from "@ionic/storage";
+import { api_base_url, api_user, api_pass, api_res } from "../../config";
+import { DatePipe } from "@angular/common";
+import { HttpClient, HttpHeaders } from "@angular/common/http";
 /**
  * Generated class for the AbsenListPage page.
  *
@@ -14,9 +14,9 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @IonicPage()
 @Component({
-  selector: 'page-absen-list',
+  selector: "page-absen-list",
   providers: [SoapService],
-  templateUrl: 'absen-list.html',
+  templateUrl: "absen-list.html",
 })
 export class AbsenListPage {
   bulan: any;
@@ -47,85 +47,83 @@ export class AbsenListPage {
     public popoverCtrl: PopoverController,
     public modalCtrl: ModalController,
     public toastCtrl: ToastController,
-    public http: HttpClient,
-  ) {
+    public http: HttpClient
+  ) {}
 
-  }
-
-  ionViewDidLoad() {    
+  ionViewDidLoad() {
     let date = new Date();
     let currentYear = date.getFullYear();
     // let lastYear = date.getFullYear() - 1;
     let currentMonth = date.getMonth();
     this.bulan = (currentMonth + 1).toString();
-    this.tahun = currentYear;    
+    this.tahun = currentYear;
 
-    this.storage.get('userdataTPK').then(val => {
+    this.storage.get("userdataTPK").then((val) => {
       this.userdataTPK = val;
       this.getBadges();
       this.newSession();
-      
+
       this.getAbsen(currentMonth + 1, currentYear);
-      this.getValidasi();    
+      this.getValidasi();
     });
 
     for (var i = 0; i < 10; i++) {
       this.tahunList.push(currentYear - i);
-    }  
+    }
 
     for (var i = 1; i <= this.bulan; i++) {
       let myMonth = this.getMonth(i);
-      this.bulanList.push({'val':i, 'bulan':myMonth});
+      this.bulanList.push({ val: i, bulan: myMonth });
     }
   }
 
-  onChangeYear() {    
+  onChangeYear() {
     let date = new Date();
     let currentYear = date.getFullYear();
     let currentMonth = date.getMonth();
     let bulan = (currentMonth + 1).toString();
 
-    if (currentYear > this.tahun ) {      
+    if (currentYear > this.tahun) {
       this.bulanList = [];
-      for (var i = 1; i <= 12; i++) {        
+      for (var i = 1; i <= 12; i++) {
         let myMonth = this.getMonth(i);
-        this.bulanList.push({'val':i, 'bulan':myMonth});
+        this.bulanList.push({ val: i, bulan: myMonth });
       }
-    } else if (currentYear == this.tahun ) {
-      this.bulan = bulan;      
-      this.bulanList = [];    
+    } else if (currentYear == this.tahun) {
+      this.bulan = bulan;
+      this.bulanList = [];
       for (var i = 1; i <= parseInt(bulan); i++) {
         let myMonth = this.getMonth(i);
-        this.bulanList.push({'val':i, 'bulan':myMonth});
+        this.bulanList.push({ val: i, bulan: myMonth });
       }
     }
   }
 
   getMonth(i) {
     if (i == 1) {
-      return 'Januari';
+      return "Januari";
     } else if (i == 2) {
-      return 'Februari';
+      return "Februari";
     } else if (i == 3) {
-      return 'Maret';
+      return "Maret";
     } else if (i == 4) {
-      return 'April';
+      return "April";
     } else if (i == 5) {
-      return 'Mei';
+      return "Mei";
     } else if (i == 6) {
-      return 'Juni';
+      return "Juni";
     } else if (i == 7) {
-      return 'Juli';
+      return "Juli";
     } else if (i == 8) {
-      return 'Agustus';
+      return "Agustus";
     } else if (i == 9) {
-      return 'September';
+      return "September";
     } else if (i == 10) {
-      return 'Oktober';
+      return "Oktober";
     } else if (i == 11) {
-      return 'November';
+      return "November";
     } else if (i == 12) {
-      return 'Desember';
+      return "Desember";
     } else {
       //console.log('error disini');
     }
@@ -133,43 +131,35 @@ export class AbsenListPage {
 
   newSession() {
     this.soapService
-      .post(api_base_url, 'eoffice_get_user_data', {
-        fStream: JSON.stringify(
-          {
-            usernameEDI: api_user,
-            passwordEDI: api_pass,
-            username: this.userdataTPK['data']['NIPP'],
-          }
-        )
-      }).then(result => {
-        let responData = JSON.parse(String(result));        
-       // console.log(responData);
-        if (responData['rcmsg'] == "SUCCESS") {
-          if (responData['data']['login_status'] == '404 Not Found') {
-            
-          } else if (responData['data'] == undefined) {
-            
-          } else if (responData['data']['login_status'] == 'AP NOT ALLOWED') {
-            
-          }
-          else {
-            responData['data']['FL_FIRST_IMOVE'] = false;
+      .post(api_base_url, "eoffice_get_user_data", {
+        fStream: JSON.stringify({
+          usernameEDI: api_user,
+          passwordEDI: api_pass,
+          username: this.userdataTPK["data"]["NIPP"],
+        }),
+      })
+      .then((result) => {
+        let responData = JSON.parse(String(result));
+        // console.log(responData);
+        if (responData["rcmsg"] == "SUCCESS") {
+          if (responData["data"]["login_status"] == "404 Not Found") {
+          } else if (responData["data"] == undefined) {
+          } else if (responData["data"]["login_status"] == "AP NOT ALLOWED") {
+          } else {
+            responData["data"]["FL_FIRST_IMOVE"] = false;
             this.userdataTPK = responData;
-            if (this.isEmptyObject(this.userdataTPK['data']['LISTOFFICER'][0]) && this.isEmptyObject(this.userdataTPK['data']['DATA_BAWAHAN'][0]) && this.isEmptyObject(this.userdataTPK['data']['DATA_BAWAHAN_TNO'][0])) {
+            if (this.isEmptyObject(this.userdataTPK["data"]["LISTOFFICER"][0]) && this.isEmptyObject(this.userdataTPK["data"]["DATA_BAWAHAN"][0]) && this.isEmptyObject(this.userdataTPK["data"]["DATA_BAWAHAN_TNO"][0])) {
               this.isAtasan = false;
             } else {
               this.isAtasan = true;
-            }          
+            }
 
-            this.storage.set('userdataTPK', responData).then(() => {
-
-            });
+            this.storage.set("userdataTPK", responData).then(() => {});
           }
         } else {
-          
-        }        
+        }
       })
-      .catch(error => {
+      .catch((error) => {
         //console.log(error);
       });
   }
@@ -177,103 +167,108 @@ export class AbsenListPage {
   showOption(type, absen) {
     let buttonList = [];
     buttonList.push({
-      text: 'Koreksi Jam Datang',
-      role: 'koreksiDatang',
-      cssClass: absen['IS_KOREKSI_DATANG'] ? '' : 'action-sheet-disable',
-      handler: () => {        
-        let modal = this.modalCtrl.create("KoreksiAbsenPersonalPage", {
-          userdataTPK: this.userdataTPK,
-          dataAbsen: absen,
-          jenisAbsen: '1'
-        }, {
+      text: "Koreksi Jam Datang",
+      role: "koreksiDatang",
+      cssClass: absen["IS_KOREKSI_DATANG"] ? "" : "action-sheet-disable",
+      handler: () => {
+        let modal = this.modalCtrl.create(
+          "KoreksiAbsenPersonalPage",
+          {
+            userdataTPK: this.userdataTPK,
+            dataAbsen: absen,
+            jenisAbsen: "1",
+          },
+          {
             enableBackdropDismiss: true,
             showBackdrop: true,
-            cssClass: 'my-modal2'
-          });
+            cssClass: "my-modal2",
+          }
+        );
 
-        if (absen['IS_KOREKSI_DATANG']) {
+        if (absen["IS_KOREKSI_DATANG"]) {
           modal.present();
         }
 
-        modal.onDidDismiss(data => {
+        modal.onDidDismiss((data) => {
           if (!data.isCancel) {
             this.selectVal(this.bulan, this.tahun);
           }
         });
-      }
+      },
     });
 
     buttonList.push({
-      text: 'Koreksi Jam Pulang',
-      role: 'koreksiPulang',
-      cssClass: absen['IS_KOREKSI_PULANG'] ? '' : 'action-sheet-disable',
-      handler: () => {        
-        let modal = this.modalCtrl.create("KoreksiAbsenPersonalPage", {
-          userdataTPK: this.userdataTPK,
-          dataAbsen: absen,
-          jenisAbsen: '2'
-        }, {
+      text: "Koreksi Jam Pulang",
+      role: "koreksiPulang",
+      cssClass: absen["IS_KOREKSI_PULANG"] ? "" : "action-sheet-disable",
+      handler: () => {
+        let modal = this.modalCtrl.create(
+          "KoreksiAbsenPersonalPage",
+          {
+            userdataTPK: this.userdataTPK,
+            dataAbsen: absen,
+            jenisAbsen: "2",
+          },
+          {
             enableBackdropDismiss: true,
             showBackdrop: true,
-            cssClass: 'my-modal2'
-          });
-        if (absen['IS_KOREKSI_PULANG']) {
+            cssClass: "my-modal2",
+          }
+        );
+        if (absen["IS_KOREKSI_PULANG"]) {
           modal.present();
         }
-        modal.onDidDismiss(data => {          
+        modal.onDidDismiss((data) => {
           if (!data.isCancel) {
             this.selectVal(this.bulan, this.tahun);
           }
         });
-      }
+      },
     });
 
     buttonList.push({
-      text: 'Tutup',
-      role: 'cancel',
-      handler: () => {        
-      }
+      text: "Tutup",
+      role: "cancel",
+      handler: () => {},
     });
 
-    if (type == 1) {      
+    if (type == 1) {
       let actionSheet = this.actionSheetCtrl.create({
-        title: 'Pilih Proses',
+        title: "Pilih Proses",
         cssClass: "my-action-sheet",
-        buttons: buttonList
+        buttons: buttonList,
       });
 
       actionSheet.present();
-
-    } else if (type == 2) {      
+    } else if (type == 2) {
       let actionSheet = this.actionSheetCtrl.create({
         //title: 'Choose Action',
         buttons: [
           {
-            text: 'Koreksi Jam Datang',
-            role: 'koreksiDatang',
+            text: "Koreksi Jam Datang",
+            role: "koreksiDatang",
             handler: () => {
               //console.log('koreksiDatang clicked');
-            }
+            },
           },
           {
-            text: 'Koreksi Jam Pulang',
+            text: "Koreksi Jam Pulang",
             handler: () => {
               //console.log('koreksiPulang clicked');
-            }
+            },
           },
           {
-            text: 'Tutup',
-            role: 'cancel',
+            text: "Tutup",
+            role: "cancel",
             handler: () => {
               //console.log('Cancel clicked');
-            }
-          }
-        ]
+            },
+          },
+        ],
       });
 
       actionSheet.present();
     }
-
   }
 
   selectVal(bln, thn) {
@@ -284,50 +279,51 @@ export class AbsenListPage {
   getAbsen(bulan, tahun) {
     // let loading = this.loadingCtrl.create({
     //   spinner: 'dots',
-    //   content: "Mohon Tunggu...",       
+    //   content: "Mohon Tunggu...",
     //   cssClass: 'transparent',
     //   dismissOnPageChange:true
     // });
     // loading.present();
     this.isLoading = true;
-    this.soapService.post(api_base_url, 'eoffice_get_list_absen_personal', {
-      fStream: JSON.stringify({
-        usernameEDI: api_user,
-        passwordEDI: api_pass,
-        nipp: this.userdataTPK.data.NIPP,
-        bulan: bulan,
-        tahun: tahun
-      }
-      )
-    }).then(result => {
-      var responData = JSON.parse(String(result));
-      //console.log(responData);
-      if (responData['rcmsg'] == "SUCCESS") {
-        this.absenList = responData['data'];    
-        for(var i=0;i<this.absenList.length;i++) {
-          var hari= this.absenList[i]['TANGGAL'].substr(0, this.absenList[i]['TANGGAL'].indexOf(','));    
-          this.absenList[i]['HARI']=hari;
-          var tglSplit = this.absenList[i]['TANGGAL'].split(" ");
-          this.absenList[i]['TGL']=tglSplit[1];          
-        } 
-        
-        console.log(this.absenList);
-      } else {
+    this.soapService
+      .post(api_base_url, "eoffice_get_list_absen_personal", {
+        fStream: JSON.stringify({
+          usernameEDI: api_user,
+          passwordEDI: api_pass,
+          nipp: this.userdataTPK.data.NIPP,
+          bulan: bulan,
+          tahun: tahun,
+        }),
+      })
+      .then((result) => {
+        var responData = JSON.parse(String(result));
+        //console.log(responData);
+        if (responData["rcmsg"] == "SUCCESS") {
+          this.absenList = responData["data"];
+          for (var i = 0; i < this.absenList.length; i++) {
+            var hari = this.absenList[i]["TANGGAL"].substr(0, this.absenList[i]["TANGGAL"].indexOf(","));
+            this.absenList[i]["HARI"] = hari;
+            var tglSplit = this.absenList[i]["TANGGAL"].split(" ");
+            this.absenList[i]["TGL"] = tglSplit[1];
+          }
+
+          console.log(this.absenList);
+        } else {
+          let toast = this.toastCtrl.create({
+            message: "Mohon Maaf Sedang Terjadi Kesalahan, Coba Beberapa Saat Lagi.",
+            duration: 3000,
+            position: "bottom",
+          });
+          toast.present();
+        }
+        // loading.dismiss();
+        this.isLoading = false;
+      })
+      .catch((error) => {
         let toast = this.toastCtrl.create({
-          message: 'Mohon Maaf Sedang Terjadi Kesalahan, Coba Beberapa Saat Lagi.',
+          message: "Terjadi Masalah Koneksi, Silahkan Coba Kembali.",
           duration: 3000,
-          position: 'bottom'
-        });
-        toast.present();
-      }
-      // loading.dismiss();
-      this.isLoading = false;
-    })
-      .catch(error => {        
-        let toast = this.toastCtrl.create({
-          message: 'Terjadi Masalah Koneksi, Silahkan Coba Kembali.',
-          duration: 3000,
-          position: 'bottom'
+          position: "bottom",
         });
         toast.present();
         // loading.dismiss();
@@ -338,20 +334,19 @@ export class AbsenListPage {
   getBadges() {
     this.isLoadingBadges = true;
     this.soapService
-      .post(api_base_url, 'eoffice_countbadges', {
-        fStream: JSON.stringify(
-          {
-            usernameEDI: api_user,
-            passwordEDI: api_pass,
-            iduser: this.userdataTPK['data']['IDUSER'],
-            idjabatan: this.userdataTPK['data']['IDJABATAN'],
-            nipp: this.userdataTPK['data']['NIPP']
-          }
-        )
-      }).then(result => {
-        var responData = JSON.parse(String(result));        
-        if (responData['rcmsg'] == "SUCCESS") {
-          this.badgesList = responData['data'];
+      .post(api_base_url, "eoffice_countbadges", {
+        fStream: JSON.stringify({
+          usernameEDI: api_user,
+          passwordEDI: api_pass,
+          iduser: this.userdataTPK["data"]["IDUSER"],
+          idjabatan: this.userdataTPK["data"]["IDJABATAN"],
+          nipp: this.userdataTPK["data"]["NIPP"],
+        }),
+      })
+      .then((result) => {
+        var responData = JSON.parse(String(result));
+        if (responData["rcmsg"] == "SUCCESS") {
+          this.badgesList = responData["data"];
         } else {
           // let toast = this.toastCtrl.create({
           //   message: 'Gagal Mendapatkan Notifikasi',
@@ -362,14 +357,14 @@ export class AbsenListPage {
         }
         this.isLoadingBadges = false;
       })
-      .catch(error => {
+      .catch((error) => {
         //console.log(error);
         // let toast = this.toastCtrl.create({
         //   message: 'Gagal Mendapatkan Notifikasi, Periksa Koneksi Internet Anda.',
         //   duration: 3000,
         //   position: 'bottom'
         // });
-        //toast.present();    
+        //toast.present();
         this.isLoadingBadges = false;
       });
   }
@@ -377,35 +372,35 @@ export class AbsenListPage {
   presentPopover(myEvent) {
     let popover = this.popoverCtrl.create("MenuAbsenPage", {}, { cssClass: "my-popover" });
     popover.present({
-      ev: myEvent
+      ev: myEvent,
     });
   }
 
   convertMonths() {
-    switch (this.bulan.split('_')[0]) {
-      case '1':
+    switch (this.bulan.split("_")[0]) {
+      case "1":
         return "Januari";
-      case '2':
+      case "2":
         return "Februari";
-      case '3':
+      case "3":
         return "Maret";
-      case '4':
+      case "4":
         return "April";
-      case '5':
+      case "5":
         return "Mei";
-      case '6':
+      case "6":
         return "Juni";
-      case '7':
+      case "7":
         return "Juli";
-      case '8':
+      case "8":
         return "Agustus";
-      case '9':
+      case "9":
         return "September";
-      case '10':
+      case "10":
         return "Oktober";
-      case '11':
+      case "11":
         return "November";
-      case '12':
+      case "12":
         return "Desember";
       default:
         return "false";
@@ -443,7 +438,6 @@ export class AbsenListPage {
     }
   }
 
-
   subTanggal(val) {
     //console.log(val.split(" - "));
     //return val.split(" ", 1);
@@ -471,7 +465,7 @@ export class AbsenListPage {
   goToAbsenMobileDetail(absen) {
     console.log(absen);
     // var tgl = absen['TANGGAL_ONLY'].split("-");
-    // var date = tgl[0];    
+    // var date = tgl[0];
     // if (tgl[0] < 10) {
     //   date = '0' + tgl[0];
     // }
@@ -479,39 +473,42 @@ export class AbsenListPage {
     // console.log(date + "-" + this.bulan + "-" + this.tahun);
     // console.log(this.datepipe.transform(date + "-" + this.bulan + "-" + this.tahun, 'dd-MM-yyyy'));
 
-    this.navCtrl.push('AbsenMobileDetailPage', {
-      id_user: this.userdataTPK['data']['IDUSER'],
-      nipp: this.userdataTPK['data']['NIPP'],
-      nama : this.userdataTPK['data']['NAMA'],
-      shift:"",
+    this.navCtrl.push("AbsenMobileDetailPage", {
+      id_user: this.userdataTPK["data"]["IDUSER"],
+      nipp: this.userdataTPK["data"]["NIPP"],
+      nama: this.userdataTPK["data"]["NAMA"],
+      shift: "",
       // date: date + "-" + this.bulan + "-" + this.tahun,
-      date:absen['TANGGAL_ONLY'],
-      fromPage:"AbsenListPage"
-    })
+      date: absen["TANGGAL_ONLY"],
+      fromPage: "AbsenListPage",
+    });
   }
 
-  getValidasi() {   
+  getValidasi() {
     var date = new Date();
-    var formattedDate = this.datepipe.transform(date, 'yyyy-MM-dd HH:mm:ss');
-    var rand = Math.floor((Math.random() * 100000000) + 1);
-    this.http.post(api_res + 'am3_check_shift.php', {
-      usernameEDI: api_user,
-      passwordEDI: api_pass,      
-      nipp: this.userdataTPK['data']['NIPP'],
-      id_user: this.userdataTPK['data']['IDUSER']            
-    }).subscribe(data => {
-      console.log(data);
-      if (data['rcmsg'] == 'SUCCESS') {
-        this.dataValidasi = data['data'];          
-        this.isHadirkoe = this.dataValidasi['HADIRKOE'];      
-      } else {
-        this.isHadirkoe = false;
-      }    
-    }, err => {
-      console.log(err);
-      this.isHadirkoe = false;
-    });  
-
+    var formattedDate = this.datepipe.transform(date, "yyyy-MM-dd HH:mm:ss");
+    var rand = Math.floor(Math.random() * 100000000 + 1);
+    this.http
+      .post(api_res + "am3_check_shift.php", {
+        usernameEDI: api_user,
+        passwordEDI: api_pass,
+        nipp: this.userdataTPK["data"]["NIPP"],
+        id_user: this.userdataTPK["data"]["IDUSER"],
+      })
+      .subscribe(
+        (data) => {
+          console.log(data);
+          if (data["rcmsg"] == "SUCCESS") {
+            this.dataValidasi = data["data"];
+            this.isHadirkoe = this.dataValidasi["HADIRKOE"];
+          } else {
+            this.isHadirkoe = false;
+          }
+        },
+        (err) => {
+          console.log(err);
+          this.isHadirkoe = false;
+        }
+      );
   }
-
 }

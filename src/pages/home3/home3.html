@@ -30,22 +30,21 @@
     </ion-title>
     <ion-buttons end>
       <button ion-button (click)="openPage('SettingPage')">
-        <ion-icon style="font-size:2.5rem;" name="md-settings" color="gray"></ion-icon>
+        <ion-icon style="font-size: 2.5rem" name="md-settings" color="gray"></ion-icon>
       </button>
       <button ion-button (click)="logout()">
-        <ion-icon style="font-size:2.5rem;" name="md-log-out" color="danger"></ion-icon>
+        <ion-icon style="font-size: 2.5rem" name="md-log-out" color="danger"></ion-icon>
       </button>
     </ion-buttons>
   </ion-navbar>
   <div class="header-container" *ngIf="userdataTPK != null">
     <div class="welcome-class">
-      <span *ngIf="userdataTPK != null" ion-text text-wrap style="font-size: 1.4rem;" > <b>{{ userdataTPK['data']['NAMA'] }}</b></span> <br>
-      <span ion-text text-wrap style="font-size: 1.2rem;" color="color4">Selamat datang di PPI Office System</span> 
-      
+      <span *ngIf="userdataTPK != null" ion-text text-wrap style="font-size: 1.4rem"> <b>{{ userdataTPK['data']['NAMA'] }}</b></span> <br />
+      <span ion-text text-wrap style="font-size: 1.2rem" color="color4">Selamat datang di PPI Office System</span>
     </div>
     <!-- <div class="header-img"></div> -->
 
-    <ion-slides style="margin-top: 50px" autoplay="5000" loop="true" speed="500">
+    <ion-slides style="margin-top: 60px" autoplay="5000" loop="true" speed="500">
       <ion-slide class="my-slide">
         <img src="assets/imgs/slide-1.png" class="my-slider-img" />
       </ion-slide>
@@ -115,7 +114,7 @@
   <br />
   <div *ngIf="userdataTPK != null">
     <div *ngIf="userdataTPK['data']['TNO'] == false">
-      <div style="margin-top: 55%;" class="menu-container">
+      <div style="margin-top: 55%" class="menu-container">
         <div class="menu-content-2" (click)="openPage('AbsenListPage')">
           <div class="img-container-2"><img src="assets/imgs/menu-icon/absensi.png" /></div>
           <span ion-text text-wrap>Absensi</span>

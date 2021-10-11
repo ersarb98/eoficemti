@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, LoadingController, AlertController, ModalController, Modal, ToastController } from 'ionic-angular';
+import { Component } from "@angular/core";
+import { IonicPage, NavController, NavParams, LoadingController, AlertController, ModalController, Modal, ToastController } from "ionic-angular";
 
 import { SoapService } from '../soap.service';
 import { Storage } from '@ionic/storage';
@@ -7,9 +7,9 @@ import { api_base_url, api_user, api_pass, sender_id, oneSignalAppId, sc_code, u
 import { InAppBrowser, InAppBrowserOptions } from '@ionic-native/in-app-browser';
 import { OneSignal } from '@ionic-native/onesignal';
 
-import { DatePicker } from '@ionic-native/date-picker';
-import { DatePipe } from '@angular/common';
-import { Platform } from 'ionic-angular';
+import { DatePicker } from "@ionic-native/date-picker";
+import { DatePipe } from "@angular/common";
+import { Platform } from "ionic-angular";
 
 import { FileTransfer, FileUploadOptions, FileTransferObject } from '@ionic-native/file-transfer';
 import { FilePath } from '@ionic-native/file-path';
@@ -25,12 +25,11 @@ import { FileOpener } from '@ionic-native/file-opener';
 
 @IonicPage()
 @Component({
-  selector: 'page-inbox-detail',
+  selector: "page-inbox-detail",
   providers: [SoapService],
-  templateUrl: 'inbox-detail.html',
+  templateUrl: "inbox-detail.html",
 })
 export class InboxDetailPage {
-
   isLoading: boolean = true;
   isAtasan: boolean;
   showAllPenerima: boolean = false;
@@ -59,21 +58,20 @@ export class InboxDetailPage {
   lastCatatan: string = "";
   keterangan: string = "";
 
-  from_modul = '';
+  from_modul = "";
   pesertaSppdList: Array<any> = [];
   attrScanSppd: Array<any> = [];
 
   formDitangguhkan: Boolean = false;
-  tanggalMulai: any = '';
-  jamMulai: any = '23';
-  jamSelesai: any = '23';
-  tanggalSelesai: any = '';
-
+  tanggalMulai: any = "";
+  jamMulai: any = "23";
+  jamSelesai: any = "23";
+  tanggalSelesai: any = "";
 
   sisaCuti: any;
   dataJenisCuti: any;
   jumHari: any = 0;
-  errorMsg: any = '';
+  errorMsg: any = "";
 
   firstDate: any;
   secondDate: any;
@@ -96,7 +94,6 @@ export class InboxDetailPage {
     public transfer: FileTransfer, public file: File,
     public fileOpener: FileOpener
   ) {
-
     oneSignal.startInit(oneSignalAppId, sender_id);
     oneSignal.endInit();
   }
@@ -105,23 +102,31 @@ export class InboxDetailPage {
     this.showDetailPesan = !this.showDetailPesan;
   }
 
-  ionViewWillLoad() {
-
-  }
+  ionViewWillLoad() {}
 
   ionViewDidLoad() {
     this.isLoading = true;
-    this.messageData = this.navParams.get('messageData');
+    this.messageData = this.navParams.get("messageData");
     // console.log(this.messageData);
-    this.from_modul = this.navParams.get('from_modul');
-    this.storage.get('userdataTPK').then((val) => {
+    this.from_modul = this.navParams.get("from_modul");
+    this.storage.get("userdataTPK").then((val) => {
       this.userdataTPK = val;
-      this.nipp = this.userdataTPK['data']['NIPP'];
+      this.nipp = this.userdataTPK["data"]["NIPP"];
       this.getDetail();
     });
+  }
 
-
-
+  showModal(myModal) {
+    let modal = this.modalCtrl.create(
+      myModal,
+      { idSurat: this.messageDetail["ID Surat"] },
+      {
+        enableBackdropDismiss: true,
+        showBackdrop: true,
+        cssClass: "my-modal12",
+      }
+    );
+    modal.present();
   }
 
   getDetail() {
@@ -134,17 +139,16 @@ export class InboxDetailPage {
     // loading.present();
 
     this.soapService
-      .post(api_base_url, 'eoffice_viewmail', {
-        fStream: JSON.stringify(
-          {
-            usernameEDI: api_user,
-            passwordEDI: api_pass,
-            nipp: this.nipp,
-            linkSurat: this.messageData['Location'],
-            from_modul: (this.from_modul != null || this.from_modul != '') ? this.from_modul : 'inbox'
-          }
-        )
-      }).then(result => {
+      .post(api_base_url, "eoffice_viewmail", {
+        fStream: JSON.stringify({
+          usernameEDI: api_user,
+          passwordEDI: api_pass,
+          nipp: this.nipp,
+          linkSurat: this.messageData["Location"],
+          from_modul: this.from_modul != null || this.from_modul != "" ? this.from_modul : "inbox",
+        }),
+      })
+      .then((result) => {
         var responData = JSON.parse(String(result));
         console.log(responData);
 
@@ -172,40 +176,36 @@ export class InboxDetailPage {
           if (this.messageDetail['Jenis Surat'] == 'Surat Perintah') {
             this.dasarSuratPerintah = this.messageDetail['Isi Surat'].split('xxdasaxx_').pop().split('_xxperintxx_')[0] + '<br>';
             this.dasarSuratPerintah = this.dasarSuratPerintah.replace(/_/gi, "<br><br>");
-            this.isiPerintah = this.messageDetail['Isi Surat'].split('_xxperintxx_')[1];
+            this.isiPerintah = this.messageDetail["Isi Surat"].split("_xxperintxx_")[1];
             this.isiPerintah = this.isiPerintah.replace(/_/gi, "<br><br>");
           }
 
-          if (this.messageDetail['Kode Jenis Surat'] == 'nd_sppd') {
-            this.getPesertaSPPD(this.messageDetail['ID Surat']);
-          } else if (this.messageDetail['Kode Jenis Surat'] == "permohonan") {
-            this.getSisaCuti(this.messageDetail['NIPP Pemohon']);
+          if (this.messageDetail["Kode Jenis Surat"] == "nd_sppd") {
+            this.getPesertaSPPD(this.messageDetail["ID Surat"]);
+          } else if (this.messageDetail["Kode Jenis Surat"] == "permohonan") {
+            this.getSisaCuti(this.messageDetail["NIPP Pemohon"]);
           } else {
             this.newSession();
           }
 
-
-
-
-          this.linkSurat = this.messageDetail['Link Surat Asli'];
-          this.attachmentList = this.messageDetail['Attachment'];
+          this.linkSurat = this.messageDetail["Link Surat Asli"];
+          this.attachmentList = this.messageDetail["Attachment"];
         } else {
           let toast = this.toastCtrl.create({
-            message: 'Mohon Maaf Sedang Terjadi Kesalahan, Coba Beberapa Saat Lagi.',
+            message: "Mohon Maaf Sedang Terjadi Kesalahan, Coba Beberapa Saat Lagi.",
             duration: 3000,
-            position: 'bottom'
+            position: "bottom",
           });
           toast.present();
           this.isLoading = false;
         }
-
       })
       .catch(error => {
         console.log(error);
         let toast = this.toastCtrl.create({
           message: 'Terjadi Masalah Koneksi, Silahkan Coba Kembali (1).',
           duration: 3000,
-          position: 'bottom'
+          position: "bottom",
         });
         toast.present();
         this.isLoading = false;
@@ -214,33 +214,32 @@ export class InboxDetailPage {
 
   getPesertaSPPD(idSurat) {
     this.soapService
-      .post(api_base_url, 'eoffice_sppd_peserta', {
-        fStream: JSON.stringify(
-          {
-            usernameEDI: api_user,
-            passwordEDI: api_pass,
-            id_surat: atob(idSurat),
-          }
-        )
-      }).then(result => {
+      .post(api_base_url, "eoffice_sppd_peserta", {
+        fStream: JSON.stringify({
+          usernameEDI: api_user,
+          passwordEDI: api_pass,
+          id_surat: atob(idSurat),
+        }),
+      })
+      .then((result) => {
         let responData = JSON.parse(String(result));
         // console.log(responData);
-        if (responData['rcmsg'] == "SUCCESS") {
-          if (responData['data']['PESERTA_JABATAN'].length > 0) {
-            for (var i = 0; i < responData['data']['PESERTA_JABATAN'].length; i++) {
-              this.pesertaSppdList.push(responData['data']['PESERTA_JABATAN'][i]);
+        if (responData["rcmsg"] == "SUCCESS") {
+          if (responData["data"]["PESERTA_JABATAN"].length > 0) {
+            for (var i = 0; i < responData["data"]["PESERTA_JABATAN"].length; i++) {
+              this.pesertaSppdList.push(responData["data"]["PESERTA_JABATAN"][i]);
             }
           }
 
-          if (responData['data']['PESERTA_PEGAWAI'].length > 0) {
-            for (var i = 0; i < responData['data']['PESERTA_PEGAWAI'].length; i++) {
-              this.pesertaSppdList.push(responData['data']['PESERTA_PEGAWAI'][i]);
+          if (responData["data"]["PESERTA_PEGAWAI"].length > 0) {
+            for (var i = 0; i < responData["data"]["PESERTA_PEGAWAI"].length; i++) {
+              this.pesertaSppdList.push(responData["data"]["PESERTA_PEGAWAI"][i]);
             }
           }
 
-          if (responData['data']['PESERTA_NON_PEGAWAI'].length > 0) {
-            for (var i = 0; i < responData['data']['PESERTA_NON_PEGAWAI'].length; i++) {
-              this.pesertaSppdList.push(responData['data']['PESERTA_NON_PEGAWAI'][i]);
+          if (responData["data"]["PESERTA_NON_PEGAWAI"].length > 0) {
+            for (var i = 0; i < responData["data"]["PESERTA_NON_PEGAWAI"].length; i++) {
+              this.pesertaSppdList.push(responData["data"]["PESERTA_NON_PEGAWAI"][i]);
             }
           }
 
@@ -252,53 +251,45 @@ export class InboxDetailPage {
           this.newSession();
         } else {
           let toast = this.toastCtrl.create({
-            message: 'Mohon Maaf Sedang Terjadi Kesalahan, Coba Beberapa Saat Lagi.',
+            message: "Mohon Maaf Sedang Terjadi Kesalahan, Coba Beberapa Saat Lagi.",
             duration: 3000,
-            position: 'bottom'
+            position: "bottom",
           });
           toast.present();
           this.isLoading = false;
         }
-
       })
-      .catch(error => {
+      .catch((error) => {
         // console.log(error);
         let toast = this.toastCtrl.create({
-          message: 'Terjadi Masalah Koneksi, Silahkan Coba Kembali.',
+          message: "Terjadi Masalah Koneksi, Silahkan Coba Kembali.",
           duration: 3000,
-          position: 'bottom'
+          position: "bottom",
         });
         toast.present();
         this.isLoading = false;
       });
   }
 
-
   newSession() {
     this.soapService
-      .post(api_base_url, 'eoffice_get_user_data', {
-        fStream: JSON.stringify(
-          {
-            usernameEDI: api_user,
-            passwordEDI: api_pass,
-            username: this.nipp,
-          }
-        )
-      }).then(result => {
-
+      .post(api_base_url, "eoffice_get_user_data", {
+        fStream: JSON.stringify({
+          usernameEDI: api_user,
+          passwordEDI: api_pass,
+          username: this.nipp,
+        }),
+      })
+      .then((result) => {
         let responData = JSON.parse(String(result));
-        if (responData['rcmsg'] == "SUCCESS") {
-          if (responData['data']['login_status'] == '404 Not Found') {
-
-          } else if (responData['data'] == undefined) {
-
-          } else if (responData['data']['login_status'] == 'AP NOT ALLOWED') {
-
-          }
-          else {
-            responData['data']['FL_FIRST_IMOVE'] = false;
+        if (responData["rcmsg"] == "SUCCESS") {
+          if (responData["data"]["login_status"] == "404 Not Found") {
+          } else if (responData["data"] == undefined) {
+          } else if (responData["data"]["login_status"] == "AP NOT ALLOWED") {
+          } else {
+            responData["data"]["FL_FIRST_IMOVE"] = false;
             this.userdataTPK = responData;
-            if (this.isEmptyObject(this.userdataTPK['data']['LISTOFFICER'][0]) && this.isEmptyObject(this.userdataTPK['data']['DATA_BAWAHAN'][0]) && this.isEmptyObject(this.userdataTPK['data']['DATA_BAWAHAN_TNO'][0])) {
+            if (this.isEmptyObject(this.userdataTPK["data"]["LISTOFFICER"][0]) && this.isEmptyObject(this.userdataTPK["data"]["DATA_BAWAHAN"][0]) && this.isEmptyObject(this.userdataTPK["data"]["DATA_BAWAHAN_TNO"][0])) {
               this.isAtasan = false;
             } else {
               this.isAtasan = true;
@@ -306,22 +297,18 @@ export class InboxDetailPage {
             this.getDataBawahan();
             this.getPenerima();
 
-            this.storage.set('userdataTPK', responData).then(() => {
-            });
+            this.storage.set("userdataTPK", responData).then(() => {});
           }
         } else {
-
         }
         this.isLoading = false;
       })
-      .catch(error => {
-
+      .catch((error) => {
         this.isLoading = false;
       });
   }
 
   showMore(type) {
-
     //this.showAllPenerima = !this.showAllPenerima;
     if (type == 1) {
       this.showAllPenerimaJabatan = !this.showAllPenerimaJabatan;
@@ -336,7 +323,6 @@ export class InboxDetailPage {
     } else if (type == 6) {
       this.showAllTembusanNonPekerja = !this.showAllTembusanNonPekerja;
     } else {
-
     }
   }
 
@@ -347,57 +333,53 @@ export class InboxDetailPage {
     //   }
     // }
 
-    if (!this.isEmptyObject(this.userdataTPK['data']['DATA_BAWAHAN'][0])) {
-      for (var i = 0; i < this.userdataTPK['data']['DATA_BAWAHAN'].length; i++) {
-        this.databawahan.push(this.userdataTPK['data']['DATA_BAWAHAN'][i]);
+    if (!this.isEmptyObject(this.userdataTPK["data"]["DATA_BAWAHAN"][0])) {
+      for (var i = 0; i < this.userdataTPK["data"]["DATA_BAWAHAN"].length; i++) {
+        this.databawahan.push(this.userdataTPK["data"]["DATA_BAWAHAN"][i]);
       }
     }
 
-    if (!this.isEmptyObject(this.userdataTPK['data']['DATA_BAWAHAN_TNO'][0])) {
-      for (var i = 0; i < this.userdataTPK['data']['DATA_BAWAHAN'].length; i++) {
-        this.databawahan.push(this.userdataTPK['data']['DATA_BAWAHAN'][i]);
+    if (!this.isEmptyObject(this.userdataTPK["data"]["DATA_BAWAHAN_TNO"][0])) {
+      for (var i = 0; i < this.userdataTPK["data"]["DATA_BAWAHAN"].length; i++) {
+        this.databawahan.push(this.userdataTPK["data"]["DATA_BAWAHAN"][i]);
       }
-
     }
   }
 
   getPenerima() {
-
-    if (this.messageDetail['Penerima Pekerja'] != null) {
-      for (var i = 0; i < this.messageDetail['Penerima Pekerja'].length; i++) {
-        this.penerima.push(this.messageDetail['Penerima Pekerja'][i]);
+    if (this.messageDetail["Penerima Pekerja"] != null) {
+      for (var i = 0; i < this.messageDetail["Penerima Pekerja"].length; i++) {
+        this.penerima.push(this.messageDetail["Penerima Pekerja"][i]);
       }
     }
 
-    if (this.messageDetail['Penerima Jabatan'] != null) {
-      for (var i = 0; i < this.messageDetail['Penerima Jabatan'].length; i++) {
-        this.penerima.push(this.messageDetail['Penerima Jabatan'][i]);
+    if (this.messageDetail["Penerima Jabatan"] != null) {
+      for (var i = 0; i < this.messageDetail["Penerima Jabatan"].length; i++) {
+        this.penerima.push(this.messageDetail["Penerima Jabatan"][i]);
       }
     }
 
-    if (this.messageDetail['Penerima Non Pekerja'] != null) {
-      for (var i = 0; i < this.messageDetail['Penerima Non Pekerja'].length; i++) {
-        this.penerima.push(this.messageDetail['Penerima Non Pekerja'][i]);
-      }
-
-    }
-
-    if (this.messageDetail['Tembusan Pekerja'] != null) {
-      for (var i = 0; i < this.messageDetail['Tembusan Pekerja'].length; i++) {
-        this.penerima.push(this.messageDetail['Tembusan Pekerja'][i]);
-      }
-
-    }
-
-    if (this.messageDetail['Tembusan Jabatan'] != null) {
-      for (var i = 0; i < this.messageDetail['Penerima Jabatan'].length; i++) {
-        this.penerima.push(this.messageDetail['Penerima Jabatan'][i]);
+    if (this.messageDetail["Penerima Non Pekerja"] != null) {
+      for (var i = 0; i < this.messageDetail["Penerima Non Pekerja"].length; i++) {
+        this.penerima.push(this.messageDetail["Penerima Non Pekerja"][i]);
       }
     }
 
-    if (this.messageDetail['Tembusan Non Pekerja'] != null) {
-      for (var i = 0; i < this.messageDetail['Tembusan Non Pekerja'].length; i++) {
-        this.penerima.push(this.messageDetail['Tembusan Non Pekerja'][i]);
+    if (this.messageDetail["Tembusan Pekerja"] != null) {
+      for (var i = 0; i < this.messageDetail["Tembusan Pekerja"].length; i++) {
+        this.penerima.push(this.messageDetail["Tembusan Pekerja"][i]);
+      }
+    }
+
+    if (this.messageDetail["Tembusan Jabatan"] != null) {
+      for (var i = 0; i < this.messageDetail["Penerima Jabatan"].length; i++) {
+        this.penerima.push(this.messageDetail["Penerima Jabatan"][i]);
+      }
+    }
+
+    if (this.messageDetail["Tembusan Non Pekerja"] != null) {
+      for (var i = 0; i < this.messageDetail["Tembusan Non Pekerja"].length; i++) {
+        this.penerima.push(this.messageDetail["Tembusan Non Pekerja"][i]);
       }
     }
   }
@@ -405,63 +387,67 @@ export class InboxDetailPage {
   showDisposisi(tipeDisposisi) {
     var data;
 
-    if (tipeDisposisi == 'jabatan') {
-
-      let modal = this.modalCtrl.create("DisposisiPage", {
-        kepadaList: this.databawahan,
-        lastCatatan: this.lastCatatan,
-        tipeDisposisi: tipeDisposisi
-      }, {
-        enableBackdropDismiss: true,
-        showBackdrop: true,
-      });
+    if (tipeDisposisi == "jabatan") {
+      let modal = this.modalCtrl.create(
+        "DisposisiPage",
+        {
+          kepadaList: this.databawahan,
+          lastCatatan: this.lastCatatan,
+          tipeDisposisi: tipeDisposisi,
+        },
+        {
+          enableBackdropDismiss: true,
+          showBackdrop: true,
+        }
+      );
       modal.present();
 
-      modal.onDidDismiss(data => {
+      modal.onDidDismiss((data) => {
         if (data != null) {
-          if (data['disposisiJabatanList'].length > 0) {
-            for (let i = 0; i < data['disposisiJabatanList'].length; i++) {
-              this.disposisiJabatanList.push(data['disposisiJabatanList'][i]);
+          if (data["disposisiJabatanList"].length > 0) {
+            for (let i = 0; i < data["disposisiJabatanList"].length; i++) {
+              this.disposisiJabatanList.push(data["disposisiJabatanList"][i]);
             }
           }
-          this.lastCatatan = data['lastCatatan'];
+          this.lastCatatan = data["lastCatatan"];
         }
       });
-
-    } else if (tipeDisposisi == 'pekerja') {
-      let modal = this.modalCtrl.create("DisposisiPage", {
-        kepadaList: this.userdataTPK['data']['DATA_BAWAHAN'],
-        lastCatatan: this.lastCatatan,
-        tipeDisposisi: tipeDisposisi
-      }, {
-        enableBackdropDismiss: true,
-        showBackdrop: true,
-      });
+    } else if (tipeDisposisi == "pekerja") {
+      let modal = this.modalCtrl.create(
+        "DisposisiPage",
+        {
+          kepadaList: this.userdataTPK["data"]["DATA_BAWAHAN"],
+          lastCatatan: this.lastCatatan,
+          tipeDisposisi: tipeDisposisi,
+        },
+        {
+          enableBackdropDismiss: true,
+          showBackdrop: true,
+        }
+      );
       modal.present();
 
-      modal.onDidDismiss(data => {
+      modal.onDidDismiss((data) => {
         if (data != null) {
-          if (data['disposisiPekerjaList'].length > 0) {
-            for (let i = 0; i < data['disposisiPekerjaList'].length; i++) {
-              this.disposisiPekerjaList.push(data['disposisiPekerjaList'][i]);
+          if (data["disposisiPekerjaList"].length > 0) {
+            for (let i = 0; i < data["disposisiPekerjaList"].length; i++) {
+              this.disposisiPekerjaList.push(data["disposisiPekerjaList"][i]);
             }
           }
-          this.lastCatatan = data['lastCatatan'];
+          this.lastCatatan = data["lastCatatan"];
         }
       });
-
     } else {
     }
-
   }
 
   delete(disposisidata, tipeDisposisi) {
-    if (tipeDisposisi == 'jabatan') {
+    if (tipeDisposisi == "jabatan") {
       const index: number = this.disposisiJabatanList.indexOf(disposisidata);
       if (index !== -1) {
         this.disposisiJabatanList.splice(index, 1);
       }
-    } else if (tipeDisposisi == 'pekerja') {
+    } else if (tipeDisposisi == "pekerja") {
       const index: number = this.disposisiPekerjaList.indexOf(disposisidata);
       if (index !== -1) {
         this.disposisiPekerjaList.splice(index, 1);
@@ -471,173 +457,160 @@ export class InboxDetailPage {
 
   sendDisposisi() {
     let alert = this.alertCtrl.create({
-      subTitle: 'Anda yakin ingin disposisi surat ?',
-      cssClass: 'alert',
+      subTitle: "Anda yakin ingin disposisi surat ?",
+      cssClass: "alert",
       buttons: [
         {
-          text: 'TIDAK',
-          role: 'cancel',
-          handler: () => {
-
-          }
+          text: "TIDAK",
+          role: "cancel",
+          handler: () => {},
         },
         {
-          text: 'YA',
+          text: "YA",
           handler: () => {
             let loading = this.loadingCtrl.create({
-              spinner: 'dots',
+              spinner: "dots",
               content: "Mohon Tunggu...",
-              cssClass: 'transparent',
-              dismissOnPageChange: true
+              cssClass: "transparent",
+              dismissOnPageChange: true,
             });
             loading.present();
             this.isLoading = true;
             this.soapService
-              .post(api_base_url, 'eoffice_disposisi', {
-                fStream: JSON.stringify(
-                  {
-                    usernameEDI: api_user,
-                    passwordEDI: api_pass,
-                    nipp: this.nipp,
-                    linkSurat: this.messageData['Location'],
-                    disposisi_jabatan: this.disposisiJabatanList,
-                    disposisi_pekerja: this.disposisiPekerjaList
-                  }
-                )
-              }).then(result => {
+              .post(api_base_url, "eoffice_disposisi", {
+                fStream: JSON.stringify({
+                  usernameEDI: api_user,
+                  passwordEDI: api_pass,
+                  nipp: this.nipp,
+                  linkSurat: this.messageData["Location"],
+                  disposisi_jabatan: this.disposisiJabatanList,
+                  disposisi_pekerja: this.disposisiPekerjaList,
+                }),
+              })
+              .then((result) => {
                 var responData = JSON.parse(String(result));
                 // console.log(responData);
 
-                if (responData['rcmsg'] == "SUCCESS") {
+                if (responData["rcmsg"] == "SUCCESS") {
                   let toast = this.toastCtrl.create({
-                    message: 'Disposisi Berhasil',
+                    message: "Disposisi Berhasil",
                     duration: 3000,
-                    position: 'bottom'
+                    position: "bottom",
                   });
                   toast.present().then(() => {
                     this.pushNotif();
                     this.navCtrl.pop();
                   });
-
                 } else {
                   let alert = this.alertCtrl.create({
-                    title: '',
-                    subTitle: 'Gagal Melakukan Disposisi, Silahkan Coba Beberapa Saat Lagi.',
-                    buttons: ['OK']
+                    title: "",
+                    subTitle: "Gagal Melakukan Disposisi, Silahkan Coba Beberapa Saat Lagi.",
+                    buttons: ["OK"],
                   });
                   alert.present();
                 }
                 loading.dismiss();
                 this.isLoading = false;
               })
-              .catch(error => {
-
+              .catch((error) => {
                 let alert = this.alertCtrl.create({
-                  title: '',
-                  subTitle: 'Gagal Melakukan Disposisi, Periksa Koneksi Internet Anda.',
-                  buttons: ['OK']
+                  title: "",
+                  subTitle: "Gagal Melakukan Disposisi, Periksa Koneksi Internet Anda.",
+                  buttons: ["OK"],
                 });
                 alert.present();
                 loading.dismiss();
                 this.isLoading = false;
               });
-          }
-        }
-      ]
+          },
+        },
+      ],
     });
     alert.present();
   }
 
   pushNotif() {
     this.oneSignal.getIds().then((id) => {
-
-      let userList = []
+      let userList = [];
       if (this.disposisiJabatanList.length > 0) {
         for (let i = 0; i < this.disposisiJabatanList.length; i++) {
-          userList.push(this.disposisiJabatanList[i]['id_user']);
+          userList.push(this.disposisiJabatanList[i]["id_user"]);
         }
-
       }
       if (this.disposisiPekerjaList.length > 0) {
         for (let i = 0; i < this.disposisiPekerjaList.length; i++) {
-          userList.push(this.disposisiPekerjaList[i]['id_user']);
+          userList.push(this.disposisiPekerjaList[i]["id_user"]);
         }
       }
 
       this.soapService
-        .post(api_base_url, 'eoffice_notif_imove', {
-          fStream: JSON.stringify(
-            {
-              usernameEDI: api_user,
-              passwordEDI: api_pass,
-              id_user: userList,
-              data: {
-                // "res": "InboxPage"
-                res: "InboxDetailPage",
-                nipp: this.nipp,
-                //userdataTPK : this.userdataTPK,
-                messageData: this.messageData
-              },
-              heading: {
-                "en": "Surat Masuk"
-              },
-              content: {
-                "en": "Anda memiliki disposisi baru dari " + this.userdataTPK['data']['NAMA'] + ". \nPerihal : " + this.messageDetail['Perihal']
-              },
-            }
-          )
-        }).then(result => {
+        .post(api_base_url, "eoffice_notif_imove", {
+          fStream: JSON.stringify({
+            usernameEDI: api_user,
+            passwordEDI: api_pass,
+            id_user: userList,
+            data: {
+              // "res": "InboxPage"
+              res: "InboxDetailPage",
+              nipp: this.nipp,
+              //userdataTPK : this.userdataTPK,
+              messageData: this.messageData,
+            },
+            heading: {
+              en: "Surat Masuk",
+            },
+            content: {
+              en: "Anda memiliki disposisi baru dari " + this.userdataTPK["data"]["NAMA"] + ". \nPerihal : " + this.messageDetail["Perihal"],
+            },
+          }),
+        })
+        .then((result) => {
           let hasil = JSON.parse(String(result));
-
-        }).catch(error => {
-
+        })
+        .catch((error) => {
           this.navCtrl.pop();
         });
     });
   }
 
   cancel() {
-
     this.navCtrl.pop();
   }
 
   downloadInbox(data) {
     let loading = this.loadingCtrl.create({
-      spinner: 'dots',
+      spinner: "dots",
       content: "Mengunduh surat...",
-      cssClass: 'transparent',
-      dismissOnPageChange: true
+      cssClass: "transparent",
+      dismissOnPageChange: true,
     });
     loading.present();
     this.soapService
-      .post(api_base_url, 'find_file', {
-        fStream: JSON.stringify(
-          {
-            "usernameEDI": api_user,
-            "passwordEDI": api_pass,
-            "fileName": data,
-            "id_surat": this.messageDetail['ID Surat'],
-            "jenis_surat": this.messageDetail['Kode Jenis Surat'],
-            "no_surat": this.messageData['No_Surat']
-          }
-        )
-      }).then(result => {
+      .post(api_base_url, "find_file", {
+        fStream: JSON.stringify({
+          usernameEDI: api_user,
+          passwordEDI: api_pass,
+          fileName: data,
+          id_surat: this.messageDetail["ID Surat"],
+          jenis_surat: this.messageDetail["Kode Jenis Surat"],
+          no_surat: this.messageData["No_Surat"],
+        }),
+      })
+      .then((result) => {
         var responData = JSON.parse(String(result));
 
         loading.dismiss();
         const options: InAppBrowserOptions = {
-          zoom: 'no'
-        }
+          zoom: "no",
+        };
 
-        const browser = this.inAppBrowser.create(responData['data']['LINK'], '_system', options);
-
+        const browser = this.inAppBrowser.create(responData["data"]["LINK"], "_system", options);
       })
-      .catch(error => {
-
+      .catch((error) => {
         let alert = this.alertCtrl.create({
-          title: '',
-          subTitle: 'Gagal download surat, silahkan coba lagi',
-          buttons: ['OK']
+          title: "",
+          subTitle: "Gagal download surat, silahkan coba lagi",
+          buttons: ["OK"],
         });
         alert.present();
         loading.dismiss();
@@ -646,432 +619,423 @@ export class InboxDetailPage {
 
   downloadAttach(data) {
     const options: InAppBrowserOptions = {
-      zoom: 'no'
-    }
-    const browser = this.inAppBrowser.create(data, '_system', options);
+      zoom: "no",
+    };
+    const browser = this.inAppBrowser.create(data, "_system", options);
   }
 
   subStrAttachment(data) {
     var str = data;
-    var n = str.lastIndexOf('/');
+    var n = str.lastIndexOf("/");
     return str.substring(n + 1);
   }
 
   doPeriksa(type) {
     if (this.keterangan == '') {
       let toast = this.toastCtrl.create({
-        message: 'Komentar harus diisi.',
+        message: "Komentar harus diisi.",
         duration: 3000,
-        position: 'bottom'
+        position: "bottom",
       });
       toast.present();
     } else {
-      if (type == 'approve') {
+      if (type == "approve") {
         let alert = this.alertCtrl.create({
-          subTitle: 'Anda yakin ingin approve surat ?',
-          cssClass: 'alert',
+          subTitle: "Anda yakin ingin approve surat ?",
+          cssClass: "alert",
           buttons: [
             {
-              text: 'TIDAK',
-              role: 'cancel',
-              handler: () => {
-              }
+              text: "TIDAK",
+              role: "cancel",
+              handler: () => {},
             },
             {
-              text: 'YA',
+              text: "YA",
               handler: () => {
                 let loading = this.loadingCtrl.create({
-                  spinner: 'dots',
+                  spinner: "dots",
                   content: "Approve surat...",
-                  cssClass: 'transparent',
-                  dismissOnPageChange: true
+                  cssClass: "transparent",
+                  dismissOnPageChange: true,
                 });
                 loading.present();
                 this.soapService
-                  .post(api_base_url, 'eoffice_approve', {
-                    fStream: JSON.stringify(
-                      {
-                        usernameEDI: api_user,
-                        passwordEDI: api_pass,
-                        nipp: this.nipp,
-                        iduser: this.userdataTPK['data']['IDUSER'],
-                        nama: this.userdataTPK['data']['NAMA'],
-                        id_surat: this.messageDetail['ID Surat'],
-                        kode_jenis_surat: this.messageDetail['Kode Jenis Surat'] != 'permohonan' && this.messageDetail['Jenis Surat'] != null ? this.messageDetail['Jenis Surat'].toLowerCase() : this.messageDetail['Kode Jenis Surat'].toLowerCase(),
-                        komentar: this.keterangan
-                      }
-                    )
-                  }).then(result => {
+                  .post(api_base_url, "eoffice_approve", {
+                    fStream: JSON.stringify({
+                      usernameEDI: api_user,
+                      passwordEDI: api_pass,
+                      nipp: this.nipp,
+                      iduser: this.userdataTPK["data"]["IDUSER"],
+                      nama: this.userdataTPK["data"]["NAMA"],
+                      id_surat: this.messageDetail["ID Surat"],
+                      kode_jenis_surat:
+                        this.messageDetail["Kode Jenis Surat"] != "permohonan" && this.messageDetail["Jenis Surat"] != null ? this.messageDetail["Jenis Surat"].toLowerCase() : this.messageDetail["Kode Jenis Surat"].toLowerCase(),
+                      komentar: this.keterangan,
+                    }),
+                  })
+                  .then((result) => {
                     var responData = JSON.parse(String(result));
-                    if (responData['rcmsg'] == "SUCCESS") {
+                    if (responData["rcmsg"] == "SUCCESS") {
                       let toast = this.toastCtrl.create({
-                        message: 'Approve berhasil !',
+                        message: "Approve berhasil !",
                         duration: 3000,
-                        position: 'bottom'
+                        position: "bottom",
                       });
                       toast.present().then(() => {
-                        this.sendApprovalNotif('approve');
+                        this.sendApprovalNotif("approve");
                         this.navCtrl.pop();
                       });
                     } else {
                       let alert = this.alertCtrl.create({
-                        title: '',
-                        subTitle: 'Gagal Approve Surat, Silahkan Coba Beberapa Saat Lagi.',
-                        buttons: ['OK']
+                        title: "",
+                        subTitle: "Gagal Approve Surat, Silahkan Coba Beberapa Saat Lagi.",
+                        buttons: ["OK"],
                       });
                       alert.present();
                     }
                     loading.dismiss();
                   })
-                  .catch(error => {
+                  .catch((error) => {
                     let alert = this.alertCtrl.create({
-                      title: '',
-                      subTitle: 'Gagal Approve Surat, Periksa Koneksi Internet Anda.',
-                      buttons: ['OK']
+                      title: "",
+                      subTitle: "Gagal Approve Surat, Periksa Koneksi Internet Anda.",
+                      buttons: ["OK"],
                     });
                     alert.present();
                     loading.dismiss();
                   });
-              }
-            }
-          ]
+              },
+            },
+          ],
         });
         alert.present();
-      } else if (type == 'decline') {
+      } else if (type == "decline") {
         let alert = this.alertCtrl.create({
-          subTitle: 'Anda yakin ingin decline surat ?',
-          cssClass: 'alert',
+          subTitle: "Anda yakin ingin decline surat ?",
+          cssClass: "alert",
           buttons: [
             {
-              text: 'TIDAK',
-              role: 'cancel',
-              handler: () => {
-              }
+              text: "TIDAK",
+              role: "cancel",
+              handler: () => {},
             },
             {
-              text: 'YA',
+              text: "YA",
               handler: () => {
                 let loading = this.loadingCtrl.create({
-                  spinner: 'dots',
+                  spinner: "dots",
                   content: "Decline surat...",
-                  cssClass: 'transparent',
-                  dismissOnPageChange: true
+                  cssClass: "transparent",
+                  dismissOnPageChange: true,
                 });
                 loading.present();
                 this.soapService
-                  .post(api_base_url, 'eoffice_decline', {
-                    fStream: JSON.stringify(
-                      {
-                        usernameEDI: api_user,
-                        passwordEDI: api_pass,
-                        nipp: this.nipp,
-                        iduser: this.userdataTPK['data']['IDUSER'],
-                        nama: this.userdataTPK['data']['NAMA'],
-                        id_surat: this.messageDetail['ID Surat'],
-                        kode_jenis_surat: this.messageDetail['Kode Jenis Surat'] != 'permohonan' ? this.messageDetail['Jenis Surat'].toLowerCase() : this.messageDetail['Kode Jenis Surat'].toLowerCase(),
-                        komentar: this.keterangan
-                      }
-                    )
-                  }).then(result => {
+                  .post(api_base_url, "eoffice_decline", {
+                    fStream: JSON.stringify({
+                      usernameEDI: api_user,
+                      passwordEDI: api_pass,
+                      nipp: this.nipp,
+                      iduser: this.userdataTPK["data"]["IDUSER"],
+                      nama: this.userdataTPK["data"]["NAMA"],
+                      id_surat: this.messageDetail["ID Surat"],
+                      kode_jenis_surat: this.messageDetail["Kode Jenis Surat"] != "permohonan" ? this.messageDetail["Jenis Surat"].toLowerCase() : this.messageDetail["Kode Jenis Surat"].toLowerCase(),
+                      komentar: this.keterangan,
+                    }),
+                  })
+                  .then((result) => {
                     var responData = JSON.parse(String(result));
-                    if (responData['rcmsg'] == "SUCCESS") {
+                    if (responData["rcmsg"] == "SUCCESS") {
                       let toast = this.toastCtrl.create({
-                        message: 'Decline berhasil !',
+                        message: "Decline berhasil !",
                         duration: 3000,
-                        position: 'bottom'
+                        position: "bottom",
                       });
                       toast.present().then(() => {
-                        this.sendApprovalNotif('decline');
+                        this.sendApprovalNotif("decline");
                         this.navCtrl.pop();
                       });
                     } else {
                       let alert = this.alertCtrl.create({
-                        title: '',
-                        subTitle: 'Gagal Decline Surat, Silahkan Coba Beberapa Saat Lagi.',
-                        buttons: ['OK']
+                        title: "",
+                        subTitle: "Gagal Decline Surat, Silahkan Coba Beberapa Saat Lagi.",
+                        buttons: ["OK"],
                       });
                       alert.present();
                     }
                     loading.dismiss();
                   })
-                  .catch(error => {
+                  .catch((error) => {
                     let alert = this.alertCtrl.create({
-                      title: '',
-                      subTitle: 'Gagal Decline Surat, Periksa Koneksi Internet Anda.',
-                      buttons: ['OK']
+                      title: "",
+                      subTitle: "Gagal Decline Surat, Periksa Koneksi Internet Anda.",
+                      buttons: ["OK"],
                     });
                     alert.present();
                     loading.dismiss();
                   });
-              }
-            }
-          ]
+              },
+            },
+          ],
         });
         alert.present();
 
       } else if (type == 'kembalikan') {
         this.formDitangguhkan = true;
         let alert = this.alertCtrl.create({
-          subTitle: 'Anda yakin ingin kembalikan surat ?',
-          cssClass: 'alert',
+          subTitle: "Anda yakin ingin kembalikan surat ?",
+          cssClass: "alert",
           buttons: [
             {
-              text: 'TIDAK',
-              role: 'cancel',
-              handler: () => {
-              }
+              text: "TIDAK",
+              role: "cancel",
+              handler: () => {},
             },
             {
-              text: 'YA',
+              text: "YA",
               handler: () => {
                 let loading = this.loadingCtrl.create({
-                  spinner: 'dots',
+                  spinner: "dots",
                   content: "Kembalikan surat...",
-                  cssClass: 'transparent',
-                  dismissOnPageChange: true
+                  cssClass: "transparent",
+                  dismissOnPageChange: true,
                 });
                 loading.present();
                 this.soapService
-                  .post(api_base_url, 'eoffice_kembalikan', {
-                    fStream: JSON.stringify(
-                      {
-                        usernameEDI: api_user,
-                        passwordEDI: api_pass,
-                        id_surat: atob(this.messageDetail['ID Surat']),
-                        keterangan: this.keterangan
-                      }
-                    )
-                  }).then(result => {
+                  .post(api_base_url, "eoffice_kembalikan", {
+                    fStream: JSON.stringify({
+                      usernameEDI: api_user,
+                      passwordEDI: api_pass,
+                      id_surat: atob(this.messageDetail["ID Surat"]),
+                      keterangan: this.keterangan,
+                    }),
+                  })
+                  .then((result) => {
                     var responData = JSON.parse(String(result));
-                    if (responData['rcmsg'] == "SUCCESS") {
+                    if (responData["rcmsg"] == "SUCCESS") {
                       let toast = this.toastCtrl.create({
-                        message: 'Kembalikan berhasil !',
+                        message: "Kembalikan berhasil !",
                         duration: 3000,
-                        position: 'bottom'
+                        position: "bottom",
                       });
                       toast.present().then(() => {
-                        this.sendApprovalNotif('kembalikan');
+                        this.sendApprovalNotif("kembalikan");
                         this.navCtrl.pop();
                       });
                     } else {
                       let alert = this.alertCtrl.create({
-                        title: '',
-                        subTitle: 'Gagal Kembalikan Surat, Silahkan Coba Beberapa Saat Lagi.',
-                        buttons: ['OK']
+                        title: "",
+                        subTitle: "Gagal Kembalikan Surat, Silahkan Coba Beberapa Saat Lagi.",
+                        buttons: ["OK"],
                       });
                       alert.present();
                     }
                     loading.dismiss();
                   })
-                  .catch(error => {
+                  .catch((error) => {
                     let alert = this.alertCtrl.create({
-                      title: '',
-                      subTitle: 'Gagal Decline Surat, Periksa Koneksi Internet Anda.',
-                      buttons: ['OK']
+                      title: "",
+                      subTitle: "Gagal Decline Surat, Periksa Koneksi Internet Anda.",
+                      buttons: ["OK"],
                     });
                     alert.present();
                     loading.dismiss();
                   });
-              }
-            }
-          ]
+              },
+            },
+          ],
         });
         alert.present();
       }
     }
-
-
   }
 
   sendApprovalNotif(type) {
     let nippList = [];
     let pesan = "";
-    let res = '';
+    let res = "";
 
     if (type == "approve") {
-      if (this.messageDetail['Kode Jenis Surat'] == 'permohonan') {
-        if (this.nipp == this.messageDetail['NIPP Menyetujui']) {
-          if (this.messageDetail['NIPP Mengetahui'] != null) {
-            nippList.push(this.messageDetail['NIPP Mengetahui']);
-            pesan = 'Pengajuan cuti/izin dari ' + this.messageDetail['Nama Pemohon'] + ' membutuhkan persetujuan.';
-            res = 'InboxDetailPage';
+      if (this.messageDetail["Kode Jenis Surat"] == "permohonan") {
+        if (this.nipp == this.messageDetail["NIPP Menyetujui"]) {
+          if (this.messageDetail["NIPP Mengetahui"] != null) {
+            nippList.push(this.messageDetail["NIPP Mengetahui"]);
+            pesan = "Pengajuan cuti/izin dari " + this.messageDetail["Nama Pemohon"] + " membutuhkan persetujuan.";
+            res = "InboxDetailPage";
           } else {
-            nippList.push(this.messageDetail['NIPP Pemohon']);
-            pesan = 'Pengajuan cuti/izin anda telah disetujui.';
-            res = 'CutiListPage';
+            nippList.push(this.messageDetail["NIPP Pemohon"]);
+            pesan = "Pengajuan cuti/izin anda telah disetujui.";
+            res = "CutiListPage";
           }
-        } else if (this.nipp == this.messageDetail['NIPP Mengetahui']) {
-          nippList.push(this.messageDetail['NIPP Pemohon']);
-          pesan = 'Pengajuan cuti/izin anda telah disetujui.';
-          res = 'CutiListPage';
+        } else if (this.nipp == this.messageDetail["NIPP Mengetahui"]) {
+          nippList.push(this.messageDetail["NIPP Pemohon"]);
+          pesan = "Pengajuan cuti/izin anda telah disetujui.";
+          res = "CutiListPage";
         }
-
       } else {
         let pemeriksa: Array<any> = [];
-        pemeriksa = this.messageDetail['Pemeriksa'].filter(x => x['nipp_pemeriksa'].includes(this.userdataTPK['data']['NIPP']));
+        pemeriksa = this.messageDetail["Pemeriksa"].filter((x) => x["nipp_pemeriksa"].includes(this.userdataTPK["data"]["NIPP"]));
 
-        this.pushNotifKeDrafter(this.messageDetail['Drafter'][0]['nipp_drafter'], this.userdataTPK['data']['NAMA']);
-        this.pushNotifKePemeriksa(this.messageDetail['Pemeriksa'], this.userdataTPK['data']['NAMA']);
+        this.pushNotifKeDrafter(this.messageDetail["Drafter"][0]["nipp_drafter"], this.userdataTPK["data"]["NAMA"]);
+        this.pushNotifKePemeriksa(this.messageDetail["Pemeriksa"], this.userdataTPK["data"]["NAMA"]);
 
-        if (this.messageDetail['Pemeriksa'].indexOf(pemeriksa[0]) != -1) {
-          if (this.messageDetail['Pemeriksa'].indexOf(pemeriksa[0]) != this.messageDetail['Pemeriksa'].length - 1) {
-            nippList.push(this.messageDetail['Pemeriksa'][this.messageDetail['Pemeriksa'].indexOf(pemeriksa[0]) + 1]['nipp_pemeriksa']);
-          } else if (this.messageDetail['Pemeriksa'].indexOf(pemeriksa[0]) == this.messageDetail['Pemeriksa'].length - 1) {
-            nippList.push(this.messageDetail['Pengirim']['NIPP']);
+        if (this.messageDetail["Pemeriksa"].indexOf(pemeriksa[0]) != -1) {
+          if (this.messageDetail["Pemeriksa"].indexOf(pemeriksa[0]) != this.messageDetail["Pemeriksa"].length - 1) {
+            nippList.push(this.messageDetail["Pemeriksa"][this.messageDetail["Pemeriksa"].indexOf(pemeriksa[0]) + 1]["nipp_pemeriksa"]);
+          } else if (this.messageDetail["Pemeriksa"].indexOf(pemeriksa[0]) == this.messageDetail["Pemeriksa"].length - 1) {
+            nippList.push(this.messageDetail["Pengirim"]["NIPP"]);
           } else {
           }
         }
 
-        pesan = "Surat Dari " + this.messageDetail['Drafter'][0]['nama_drafter'] + " Membutuhkan Approval. \nPerihal : " + this.messageDetail['Perihal'];
-        res = 'InboxDetailPage';
+        pesan = "Surat Dari " + this.messageDetail["Drafter"][0]["nama_drafter"] + " Membutuhkan Approval. \nPerihal : " + this.messageDetail["Perihal"];
+        res = "InboxDetailPage";
       }
     } else if (type == "decline") {
-      if (this.messageDetail['Kode Jenis Surat'] == 'permohonan') {
-        nippList.push(this.messageDetail['NIPP Pemohon']);
-        pesan = "Permohonan cuti/izin Anda Telah dibatalkan oleh " + this.userdataTPK['data']['NAMA'];
-        res = 'CutiListPage';
+      if (this.messageDetail["Kode Jenis Surat"] == "permohonan") {
+        nippList.push(this.messageDetail["NIPP Pemohon"]);
+        pesan = "Permohonan cuti/izin Anda Telah dibatalkan oleh " + this.userdataTPK["data"]["NAMA"];
+        res = "CutiListPage";
       } else {
-        nippList.push(this.messageDetail['Drafter'][0]['nipp_drafter']);
-        pesan = "Surat Anda Telah Dibatalkan oleh " + this.userdataTPK['data']['NAMA'] + ". \nPerihal : " + this.messageDetail['Perihal'];
-        res = 'InboxDetailPage';
+        nippList.push(this.messageDetail["Drafter"][0]["nipp_drafter"]);
+        pesan = "Surat Anda Telah Dibatalkan oleh " + this.userdataTPK["data"]["NAMA"] + ". \nPerihal : " + this.messageDetail["Perihal"];
+        res = "InboxDetailPage";
       }
-
     } else if (type == "kembalikan") {
-      if (this.messageDetail['Kode Jenis Surat'] == 'permohonan') {
-        nippList.push(this.messageDetail['NIPP Pemohon']);
-        pesan = "Permohonan cuti/izin Anda Telah dikembalikan oleh " + this.userdataTPK['data']['NAMA'];
-        res = 'CutiListPage';
+      if (this.messageDetail["Kode Jenis Surat"] == "permohonan") {
+        nippList.push(this.messageDetail["NIPP Pemohon"]);
+        pesan = "Permohonan cuti/izin Anda Telah dikembalikan oleh " + this.userdataTPK["data"]["NAMA"];
+        res = "CutiListPage";
       } else {
-        nippList.push(this.messageDetail['Drafter'][0]['nipp_drafter']);
-        pesan = "Surat Anda Dikembalikan oleh " + this.userdataTPK['data']['NAMA'] + ". \nPerihal : " + this.messageDetail['Perihal'];
-        res = 'InboxDetailPage';
+        nippList.push(this.messageDetail["Drafter"][0]["nipp_drafter"]);
+        pesan = "Surat Anda Dikembalikan oleh " + this.userdataTPK["data"]["NAMA"] + ". \nPerihal : " + this.messageDetail["Perihal"];
+        res = "InboxDetailPage";
       }
-    } else if (type = 'tangguhkan') {
-      if (this.messageDetail['Kode Jenis Surat'] == 'permohonan') {
-        nippList.push(this.messageDetail['NIPP Pemohon']);
-        pesan = "Permohonan cuti/izin Anda Telah ditangguhkan oleh " + this.userdataTPK['data']['NAMA'];
-        res = 'CutiListPage';
+    } else if ((type = "tangguhkan")) {
+      if (this.messageDetail["Kode Jenis Surat"] == "permohonan") {
+        nippList.push(this.messageDetail["NIPP Pemohon"]);
+        pesan = "Permohonan cuti/izin Anda Telah ditangguhkan oleh " + this.userdataTPK["data"]["NAMA"];
+        res = "CutiListPage";
       } else {
-        nippList.push(this.messageDetail['Drafter'][0]['nipp_drafter']);
-        pesan = "Surat Anda Telah ditangguhkan oleh " + this.userdataTPK['data']['NAMA'] + ". \nPerihal : " + this.messageDetail['Perihal'];
-        res = 'InboxDetailPage';
+        nippList.push(this.messageDetail["Drafter"][0]["nipp_drafter"]);
+        pesan = "Surat Anda Telah ditangguhkan oleh " + this.userdataTPK["data"]["NAMA"] + ". \nPerihal : " + this.messageDetail["Perihal"];
+        res = "InboxDetailPage";
       }
     }
 
     this.soapService
-      .post(api_base_url, 'eoffice_notif_imove_nipp', {
-        fStream: JSON.stringify(
-          {
-            usernameEDI: api_user,
-            passwordEDI: api_pass,
-            nipp: nippList,
-            data: {
-              "res": res,
-              "nipp": this.nipp,
-              "messageData": this.messageData
-            },
-            content: {
-              "en": pesan
-            },
-            heading: {
-              "en": "Surat Masuk"
-            },
-            id_kategori: ""
-          }
-        )
-      }).then(result => {
+      .post(api_base_url, "eoffice_notif_imove_nipp", {
+        fStream: JSON.stringify({
+          usernameEDI: api_user,
+          passwordEDI: api_pass,
+          nipp: nippList,
+          data: {
+            res: res,
+            nipp: this.nipp,
+            messageData: this.messageData,
+          },
+          content: {
+            en: pesan,
+          },
+          heading: {
+            en: "Surat Masuk",
+          },
+          id_kategori: "",
+        }),
+      })
+      .then((result) => {
         let hasil = JSON.stringify(result);
         this.navCtrl.pop();
-      }).catch(error => {
+      })
+      .catch((error) => {
         this.navCtrl.pop();
       });
   }
 
   pushNotifKeDrafter(nippTujuan, namaSession) {
     let nippList = [];
-    let pesan = 'surat anda telah diapprove oleh ' + namaSession + ". \nPerihal : " + this.messageDetail['Perihal'];
-    let res = 'OutboxPage';
+    let pesan = "surat anda telah diapprove oleh " + namaSession + ". \nPerihal : " + this.messageDetail["Perihal"];
+    let res = "OutboxPage";
     nippList.push(nippTujuan);
 
     this.soapService
-      .post(api_base_url, 'eoffice_notif_imove_nipp', {
-        fStream: JSON.stringify(
-          {
-            usernameEDI: api_user,
-            passwordEDI: api_pass,
-            nipp: nippList,
-            data: {
-              "res": res,
-              "nipp": this.nipp,
-              "messageData": this.messageData
-            },
-            heading: {
-              "en": "Surat Masuk"
-            },
-            content: {
-              "en": pesan
-            },
-            id_kategori: ""
-          }
-        )
-      }).then(result => {
+      .post(api_base_url, "eoffice_notif_imove_nipp", {
+        fStream: JSON.stringify({
+          usernameEDI: api_user,
+          passwordEDI: api_pass,
+          nipp: nippList,
+          data: {
+            res: res,
+            nipp: this.nipp,
+            messageData: this.messageData,
+          },
+          heading: {
+            en: "Surat Masuk",
+          },
+          content: {
+            en: pesan,
+          },
+          id_kategori: "",
+        }),
+      })
+      .then((result) => {
         let hasil = JSON.stringify(result);
         this.navCtrl.pop();
-      }).catch(error => {
+      })
+      .catch((error) => {
         this.navCtrl.pop();
       });
   }
 
   pushNotifKePemeriksa(nippPemeriksaList, namaSession) {
     let pemeriksa: Array<any> = [];
-    pemeriksa = this.messageDetail['Pemeriksa'].filter(x => x['nipp_pemeriksa'].includes(this.userdataTPK['data']['NIPP']));
-    let indexSessionPemeriksa = nippPemeriksaList.indexOf(pemeriksa[0])
+    pemeriksa = this.messageDetail["Pemeriksa"].filter((x) => x["nipp_pemeriksa"].includes(this.userdataTPK["data"]["NIPP"]));
+    let indexSessionPemeriksa = nippPemeriksaList.indexOf(pemeriksa[0]);
 
     let nippList = [];
-    let pesan = 'surat anda telah diapprove oleh ' + namaSession + ". \nPerihal : " + this.messageDetail['Perihal'];
-    let res = 'OutboxPage';
+    let pesan = "surat anda telah diapprove oleh " + namaSession + ". \nPerihal : " + this.messageDetail["Perihal"];
+    let res = "OutboxPage";
     for (let i = 0; i < nippPemeriksaList.length; i++) {
       if (indexSessionPemeriksa != -1) {
         if (i < indexSessionPemeriksa) {
-          nippList.push(nippPemeriksaList[i]['nipp_pemeriksa']);
+          nippList.push(nippPemeriksaList[i]["nipp_pemeriksa"]);
         }
       } else {
-        nippList.push(nippPemeriksaList[i]['nipp_pemeriksa']);
+        nippList.push(nippPemeriksaList[i]["nipp_pemeriksa"]);
       }
     }
 
     this.soapService
-      .post(api_base_url, 'eoffice_notif_imove_nipp', {
-        fStream: JSON.stringify(
-          {
-            usernameEDI: api_user,
-            passwordEDI: api_pass,
-            nipp: nippList,
-            data: {
-              "res": res,
-              "nipp": this.nipp,
-              "messageData": this.messageData
-            },
-            content: {
-              "en": pesan
-            },
-            heading: {
-              "en": "Surat Masuk"
-            },
-            id_kategori: ""
-          }
-        )
-      }).then(result => {
+      .post(api_base_url, "eoffice_notif_imove_nipp", {
+        fStream: JSON.stringify({
+          usernameEDI: api_user,
+          passwordEDI: api_pass,
+          nipp: nippList,
+          data: {
+            res: res,
+            nipp: this.nipp,
+            messageData: this.messageData,
+          },
+          content: {
+            en: pesan,
+          },
+          heading: {
+            en: "Surat Masuk",
+          },
+          id_kategori: "",
+        }),
+      })
+      .then((result) => {
         let hasil = JSON.stringify(result);
         this.navCtrl.pop();
-      }).catch(error => {
+      })
+      .catch((error) => {
         this.navCtrl.pop();
       });
   }
 
   goToLogSurat() {
-    this.navCtrl.push('LogSuratPage', {
-      idSurat: this.messageDetail['ID Surat']
+    this.navCtrl.push("LogSuratPage", {
+      idSurat: this.messageDetail["ID Surat"],
     });
   }
 
@@ -1085,21 +1049,25 @@ export class InboxDetailPage {
   }
 
   replaceNomorSurat(noSurat) {
-    var result = '';
+    var result = "";
     result = noSurat.replace(/[-.\/]/g, "_");
-    return result + '.pdf';
+    return result + ".pdf";
   }
 
   goToPertanggungjawaban() {
-    let modal = this.modalCtrl.create("PertanggungjawabanSppdPage", {
-      messageData: this.messageData
-    }, {
-      enableBackdropDismiss: true,
-      showBackdrop: true,
-    });
+    let modal = this.modalCtrl.create(
+      "PertanggungjawabanSppdPage",
+      {
+        messageData: this.messageData,
+      },
+      {
+        enableBackdropDismiss: true,
+        showBackdrop: true,
+      }
+    );
     modal.present();
 
-    modal.onDidDismiss(data => {
+    modal.onDidDismiss((data) => {
       if (data != null) {
         this.navCtrl.pop();
       }
@@ -1108,39 +1076,35 @@ export class InboxDetailPage {
 
   getSisaCuti(nipp) {
     this.soapService
-      .post(api_base_url, 'eoffice_sisa_cuti', {
-        fStream: JSON.stringify(
-          {
-            usernameEDI: api_user,
-            passwordEDI: api_pass,
-            nipp: nipp
-          }
-        )
+      .post(api_base_url, "eoffice_sisa_cuti", {
+        fStream: JSON.stringify({
+          usernameEDI: api_user,
+          passwordEDI: api_pass,
+          nipp: nipp,
+        }),
       })
-      .then(result => {
+      .then((result) => {
         let responData = JSON.parse(String(result));
         //console.log(responData);
-        if (responData['rcmsg'] == "SUCCESS") {
-          this.sisaCuti = responData['data']['SISA_CUTI'];
+        if (responData["rcmsg"] == "SUCCESS") {
+          this.sisaCuti = responData["data"]["SISA_CUTI"];
           console.log("sisa cuti : " + this.sisaCuti);
           this.getJenisCuti();
-
         } else {
           let toast = this.toastCtrl.create({
-            message: responData['rcmsg'],
+            message: responData["rcmsg"],
             duration: 3000,
-            position: 'bottom'
+            position: "bottom",
           });
           toast.present();
           this.isLoading = false;
         }
-
       })
-      .catch(error => {
+      .catch((error) => {
         let toast = this.toastCtrl.create({
-          message: 'Gagal mendapatkan sisa cuti, silahkan periksa koneksi internet anda.',
+          message: "Gagal mendapatkan sisa cuti, silahkan periksa koneksi internet anda.",
           duration: 3000,
-          position: 'bottom'
+          position: "bottom",
         });
         toast.present();
         this.isLoading = false;
@@ -1149,39 +1113,35 @@ export class InboxDetailPage {
 
   getJenisCuti() {
     this.soapService
-      .post(api_base_url, 'eoffice_jenis_cuti', {
-        fStream: JSON.stringify(
-          {
-            usernameEDI: api_user,
-            passwordEDI: api_pass,
-          }
-        )
+      .post(api_base_url, "eoffice_jenis_cuti", {
+        fStream: JSON.stringify({
+          usernameEDI: api_user,
+          passwordEDI: api_pass,
+        }),
       })
-      .then(result => {
+      .then((result) => {
         let responData = JSON.parse(String(result));
         console.log(responData);
-        if (responData['rcmsg'] == "SUCCESS") {
-          var jenisPengajuanList = responData['data'];
-          this.dataJenisCuti = jenisPengajuanList.filter(x => x.JN_PENGAJUAN.includes(this.messageDetail['Jenis Pengajuan']));
+        if (responData["rcmsg"] == "SUCCESS") {
+          var jenisPengajuanList = responData["data"];
+          this.dataJenisCuti = jenisPengajuanList.filter((x) => x.JN_PENGAJUAN.includes(this.messageDetail["Jenis Pengajuan"]));
           console.log(this.dataJenisCuti);
           this.newSession();
-
         } else {
           let toast = this.toastCtrl.create({
-            message: responData['rcmsg'],
+            message: responData["rcmsg"],
             duration: 3000,
-            position: 'bottom'
+            position: "bottom",
           });
           toast.present();
           this.isLoading = false;
         }
-
       })
-      .catch(error => {
+      .catch((error) => {
         let toast = this.toastCtrl.create({
-          message: 'Gagal mendapatkan jenis cuti, silahkan periksa koneksi internet anda.',
+          message: "Gagal mendapatkan jenis cuti, silahkan periksa koneksi internet anda.",
           duration: 3000,
-          position: 'bottom'
+          position: "bottom",
         });
         toast.present();
         this.isLoading = false;
@@ -1193,152 +1153,144 @@ export class InboxDetailPage {
       this.formDitangguhkan = true;
     } else {
       let validationForm;
-      validationForm = this.tanggalMulai == '' || this.tanggalSelesai == '' || this.jamMulai == '' || this.jamSelesai == '' || this.jumHari == '';
+      validationForm = this.tanggalMulai == "" || this.tanggalSelesai == "" || this.jamMulai == "" || this.jamSelesai == "" || this.jumHari == "";
 
       if (validationForm) {
-        this.errorMsg = '*mohon melengkapi seluruh input.';
-      } else if (this.dataJenisCuti[0]['IS_POTONG'] == '1' && parseInt(this.jumHari) > parseInt(this.sisaCuti)) {
-        this.errorMsg = '*Jumlah hari cuti melebihi sisa cuti.';
+        this.errorMsg = "*mohon melengkapi seluruh input.";
+      } else if (this.dataJenisCuti[0]["IS_POTONG"] == "1" && parseInt(this.jumHari) > parseInt(this.sisaCuti)) {
+        this.errorMsg = "*Jumlah hari cuti melebihi sisa cuti.";
       } else {
         let alert = this.alertCtrl.create({
-          subTitle: 'Anda yakin ingin menangguhkan cuti ?',
-          cssClass: 'alert',
+          subTitle: "Anda yakin ingin menangguhkan cuti ?",
+          cssClass: "alert",
           buttons: [
             {
-              text: 'TIDAK',
-              role: 'cancel',
+              text: "TIDAK",
+              role: "cancel",
               handler: () => {
                 //console.log('Cancel clicked');
-              }
+              },
             },
             {
-              text: 'YA',
+              text: "YA",
               handler: () => {
                 let loading = this.loadingCtrl.create({
-                  spinner: 'dots',
+                  spinner: "dots",
                   content: "Tangguhkan cuti...",
-                  cssClass: 'transparent',
-                  dismissOnPageChange: true
+                  cssClass: "transparent",
+                  dismissOnPageChange: true,
                 });
                 loading.present();
                 this.soapService
-                  .post(api_base_url, 'eoffice_tangguhkan', {
-                    fStream: JSON.stringify(
-                      {
-                        usernameEDI: api_user,
-                        passwordEDI: api_pass,
-                        nipp: this.nipp,
-                        iduser: this.userdataTPK['data']['IDUSER'],
-                        nama: this.userdataTPK['data']['NAMA'],
-                        id_surat: this.messageDetail['ID Surat'],
-                        kode_jenis_surat: this.messageDetail['Kode Jenis Surat'] != 'permohonan' ? this.messageDetail['Jenis Surat'].toLowerCase() : this.messageDetail['Kode Jenis Surat'].toLowerCase(),
-                        komentar: this.keterangan,
-                        tgl_mulai: this.tanggalMulai,
-                        tgl_selesai: this.tanggalSelesai,
-                        jam_mulai: this.jamMulai,
-                        jam_selesai: this.jamSelesai,
-                        jumlah: this.jumHari
-                      }
-                    )
-                  }).then(result => {
+                  .post(api_base_url, "eoffice_tangguhkan", {
+                    fStream: JSON.stringify({
+                      usernameEDI: api_user,
+                      passwordEDI: api_pass,
+                      nipp: this.nipp,
+                      iduser: this.userdataTPK["data"]["IDUSER"],
+                      nama: this.userdataTPK["data"]["NAMA"],
+                      id_surat: this.messageDetail["ID Surat"],
+                      kode_jenis_surat: this.messageDetail["Kode Jenis Surat"] != "permohonan" ? this.messageDetail["Jenis Surat"].toLowerCase() : this.messageDetail["Kode Jenis Surat"].toLowerCase(),
+                      komentar: this.keterangan,
+                      tgl_mulai: this.tanggalMulai,
+                      tgl_selesai: this.tanggalSelesai,
+                      jam_mulai: this.jamMulai,
+                      jam_selesai: this.jamSelesai,
+                      jumlah: this.jumHari,
+                    }),
+                  })
+                  .then((result) => {
                     var responData = JSON.parse(String(result));
-                    if (responData['rcmsg'] == "SUCCESS") {
+                    if (responData["rcmsg"] == "SUCCESS") {
                       let toast = this.toastCtrl.create({
-                        message: 'Tangguhkan berhasil !',
+                        message: "Tangguhkan berhasil !",
                         duration: 3000,
-                        position: 'bottom'
+                        position: "bottom",
                       });
                       toast.present().then(() => {
-                        this.sendApprovalNotif('tangguhkan');
+                        this.sendApprovalNotif("tangguhkan");
                         this.navCtrl.pop();
                       });
                     } else {
                       let alert = this.alertCtrl.create({
-                        title: '',
-                        subTitle: 'Gagal Decline Surat, Silahkan Coba Beberapa Saat Lagi.',
-                        buttons: ['OK']
+                        title: "",
+                        subTitle: "Gagal Decline Surat, Silahkan Coba Beberapa Saat Lagi.",
+                        buttons: ["OK"],
                       });
                       alert.present();
                     }
                     loading.dismiss();
                   })
-                  .catch(error => {
+                  .catch((error) => {
                     let alert = this.alertCtrl.create({
-                      title: '',
-                      subTitle: 'Gagal Decline Surat, Periksa Koneksi Internet Anda.',
-                      buttons: ['OK']
+                      title: "",
+                      subTitle: "Gagal Decline Surat, Periksa Koneksi Internet Anda.",
+                      buttons: ["OK"],
                     });
                     alert.present();
                     loading.dismiss();
                   });
-              }
-            }
-          ]
+              },
+            },
+          ],
         });
 
-        if (parseInt(this.dataJenisCuti[0]['MAX_JUM_CUTI']) == 0) {
-          if (this.jumHari >= parseInt(this.dataJenisCuti[0]['MIN_JUM_CUTI'])) {
+        if (parseInt(this.dataJenisCuti[0]["MAX_JUM_CUTI"]) == 0) {
+          if (this.jumHari >= parseInt(this.dataJenisCuti[0]["MIN_JUM_CUTI"])) {
             alert.present();
           } else {
-            this.errorMsg = '*' + this.dataJenisCuti[0]['JN_PENGAJUAN'] + " minimal " + this.dataJenisCuti[0]['MIN_JUM_CUTI'] + " hari.";
+            this.errorMsg = "*" + this.dataJenisCuti[0]["JN_PENGAJUAN"] + " minimal " + this.dataJenisCuti[0]["MIN_JUM_CUTI"] + " hari.";
           }
         } else {
-          if (this.jumHari >= parseInt(this.dataJenisCuti[0]['MIN_JUM_CUTI']) && this.jumHari <= parseInt(this.dataJenisCuti[0]['MAX_JUM_CUTI'])) {
+          if (this.jumHari >= parseInt(this.dataJenisCuti[0]["MIN_JUM_CUTI"]) && this.jumHari <= parseInt(this.dataJenisCuti[0]["MAX_JUM_CUTI"])) {
             alert.present();
           } else {
-            this.errorMsg = '*' + this.dataJenisCuti[0]['JN_PENGAJUAN'] + " minimal " + this.dataJenisCuti[0]['MIN_JUM_CUTI'] + " hari dan maksimal " + this.dataJenisCuti[0]['MIN_JUM_CUTI'] + " hari.";
+            this.errorMsg = "*" + this.dataJenisCuti[0]["JN_PENGAJUAN"] + " minimal " + this.dataJenisCuti[0]["MIN_JUM_CUTI"] + " hari dan maksimal " + this.dataJenisCuti[0]["MIN_JUM_CUTI"] + " hari.";
           }
         }
-
       }
-
-
     }
   }
 
   getJumHari() {
     let loading = this.loadingCtrl.create({
-      spinner: 'dots',
+      spinner: "dots",
       content: "Mengambil Data Cuti...",
-      cssClass: 'transparent',
-      dismissOnPageChange: true
+      cssClass: "transparent",
+      dismissOnPageChange: true,
     });
     loading.present();
     this.soapService
-      .post(api_base_url, 'eoffice_cuti_jumlah', {
-        fStream: JSON.stringify(
-          {
-            usernameEDI: api_user,
-            passwordEDI: api_pass,
-            id_user: this.userdataTPK['data']['IDUSER'],
-            tgl_mulai: this.tanggalMulai,
-            tgl_selesai: this.tanggalSelesai,
-          }
-        )
+      .post(api_base_url, "eoffice_cuti_jumlah", {
+        fStream: JSON.stringify({
+          usernameEDI: api_user,
+          passwordEDI: api_pass,
+          id_user: this.userdataTPK["data"]["IDUSER"],
+          tgl_mulai: this.tanggalMulai,
+          tgl_selesai: this.tanggalSelesai,
+        }),
       })
-      .then(result => {
+      .then((result) => {
         let responData = JSON.parse(String(result));
         //console.log(responData);
-        if (responData['rcmsg'] == "SUCCESS") {
-          this.jumHari = responData['data']['JUMLAH_HARI'];
+        if (responData["rcmsg"] == "SUCCESS") {
+          this.jumHari = responData["data"]["JUMLAH_HARI"];
           loading.dismiss();
-
         } else {
           let toast = this.toastCtrl.create({
-            message: responData['rcmsg'],
+            message: responData["rcmsg"],
             duration: 3000,
-            position: 'bottom'
+            position: "bottom",
           });
           toast.present();
           loading.dismiss();
         }
-
       })
-      .catch(error => {
+      .catch((error) => {
         let toast = this.toastCtrl.create({
-          message: 'Gagal mendapatkan hari, silahkan periksa koneksi internet anda.',
+          message: "Gagal mendapatkan hari, silahkan periksa koneksi internet anda.",
           duration: 3000,
-          position: 'bottom'
+          position: "bottom",
         });
         toast.present();
         loading.dismiss();
@@ -1350,19 +1302,18 @@ export class InboxDetailPage {
   }
 
   showDatePicker(type: number) {
-
     var myDate = new Date();
     var datePickerOption;
     datePickerOption = {
       date: myDate,
-      mode: 'date',
-      androidTheme: this.datePicker.ANDROID_THEMES.THEME_HOLO_LIGHT
+      mode: "date",
+      androidTheme: this.datePicker.ANDROID_THEMES.THEME_HOLO_LIGHT,
     };
 
     // if (this.jenisPengajuan == 'Cuti Sakit') {
     //   datePickerOption = {
     //     date: myDate,
-    //     mode: 'date',        
+    //     mode: 'date',
     //     androidTheme: this.datePicker.ANDROID_THEMES.THEME_HOLO_LIGHT
     //   };
     // } else {
@@ -1375,97 +1326,100 @@ export class InboxDetailPage {
     // }
 
     if (type == 1) {
-
-      this.datePicker.show(datePickerOption).then(date => {
-        this.firstDate = date;
-        this.tanggalMulai = this.datePipe.transform(date, 'MM/dd/yyyy');
-        this.startTglSelesai = date;
-      },
-        err => console.log('Error occurred while getting date: ', err)
+      this.datePicker.show(datePickerOption).then(
+        (date) => {
+          this.firstDate = date;
+          this.tanggalMulai = this.datePipe.transform(date, "MM/dd/yyyy");
+          this.startTglSelesai = date;
+        },
+        (err) => console.log("Error occurred while getting date: ", err)
       );
     } else if (type == 2) {
-      if (this.tanggalMulai == '') {
+      if (this.tanggalMulai == "") {
         let toast = this.toastCtrl.create({
-          message: 'tanggal mulai harus diisi dahulu.',
+          message: "tanggal mulai harus diisi dahulu.",
           duration: 3000,
-          position: 'bottom'
+          position: "bottom",
         });
         toast.present();
       } else {
         myDate = new Date(this.startTglSelesai);
-        this.datePicker.show({
-          date: myDate,
-          mode: 'date',
-          minDate: this.platform.is('ios') ? myDate : (myDate).valueOf(),
-          androidTheme: this.datePicker.ANDROID_THEMES.THEME_HOLO_LIGHT
-        }).then(date => {
-          this.secondDate = date;
-          this.tanggalSelesai = this.datePipe.transform(date, 'MM/dd/yyyy');
-          this.getJumHari();
-        },
-          err => console.log('Error occurred while getting date: ', err)
-        );
+        this.datePicker
+          .show({
+            date: myDate,
+            mode: "date",
+            minDate: this.platform.is("ios") ? myDate : myDate.valueOf(),
+            androidTheme: this.datePicker.ANDROID_THEMES.THEME_HOLO_LIGHT,
+          })
+          .then(
+            (date) => {
+              this.secondDate = date;
+              this.tanggalSelesai = this.datePipe.transform(date, "MM/dd/yyyy");
+              this.getJumHari();
+            },
+            (err) => console.log("Error occurred while getting date: ", err)
+          );
       }
     }
   }
 
   doAction(type) {
-    if (type == 'approve') {
+    if (type == "approve") {
       let alert = this.alertCtrl.create({
-        subTitle: 'Anda yakin ingin menyetujui revisi permohonan tersebut ?',
-        cssClass: 'alert',
+        subTitle: "Anda yakin ingin menyetujui revisi permohonan tersebut ?",
+        cssClass: "alert",
         buttons: [
           {
-            text: 'TIDAK',
-            role: 'cancel',
+            text: "TIDAK",
+            role: "cancel",
             handler: () => {
               //console.log('Cancel clicked');
-            }
+            },
           },
           {
-            text: 'YA',
+            text: "YA",
             handler: () => {
-              this.penangguhan('approve');
-            }
-          }
-        ]
+              this.penangguhan("approve");
+            },
+          },
+        ],
       });
       alert.present();
-    } else if (type == 'decline') {
+    } else if (type == "decline") {
       let alert = this.alertCtrl.create({
-        subTitle: 'Anda yakin ingin membatalkan permohonan tersebut ?',
-        cssClass: 'alert',
+        subTitle: "Anda yakin ingin membatalkan permohonan tersebut ?",
+        cssClass: "alert",
         buttons: [
           {
-            text: 'TIDAK',
-            role: 'cancel',
+            text: "TIDAK",
+            role: "cancel",
             handler: () => {
               //console.log('Cancel clicked');
-            }
+            },
           },
           {
-            text: 'YA',
+            text: "YA",
             handler: () => {
-              this.penangguhan('decline');
-            }
-          }
-        ]
+              this.penangguhan("decline");
+            },
+          },
+        ],
       });
       alert.present();
     }
   }
 
   penangguhan(action) {
-    var tgl_mulai_revisi = this.datePipe.transform(new Date(this.messageDetail['TANGGAL_MULAI_REVISI']), 'yyyy-MM-dd HH:mm:ss');
-    var tgl_selesai_revisi = this.datePipe.transform(new Date(this.messageDetail['TANGGAL_SELESAI_REVISI']), 'yyyy-MM-dd HH:mm:ss');
+    var tgl_mulai_revisi = this.datePipe.transform(new Date(this.messageDetail["TANGGAL_MULAI_REVISI"]), "yyyy-MM-dd HH:mm:ss");
+    var tgl_selesai_revisi = this.datePipe.transform(new Date(this.messageDetail["TANGGAL_SELESAI_REVISI"]), "yyyy-MM-dd HH:mm:ss");
 
     console.log(tgl_selesai_revisi);
 
     let loading = this.loadingCtrl.create({
-      spinner: 'dots',
+      spinner: "dots",
       content: "Memproses Cuti...",
-      cssClass: 'transparent',
-      dismissOnPageChange: true
+      cssClass: "transparent",
+      dismissOnPageChange: true,
     });
     loading.present();
     this.soapService
@@ -1486,30 +1440,30 @@ export class InboxDetailPage {
         )
       }).then(result => {
         var responData = JSON.parse(String(result));
-        if (responData['rcmsg'] == "SUCCESS") {
+        if (responData["rcmsg"] == "SUCCESS") {
           let toast = this.toastCtrl.create({
-            message: 'Proses berhasil !',
+            message: "Proses berhasil !",
             duration: 3000,
-            position: 'bottom'
+            position: "bottom",
           });
           toast.present().then(() => {
             this.navCtrl.pop();
           });
         } else {
           let alert = this.alertCtrl.create({
-            title: '',
-            subTitle: 'Gagal Memproses Cuti, Silahkan Coba Beberapa Saat Lagi.',
-            buttons: ['OK']
+            title: "",
+            subTitle: "Gagal Memproses Cuti, Silahkan Coba Beberapa Saat Lagi.",
+            buttons: ["OK"],
           });
           alert.present();
         }
         loading.dismiss();
       })
-      .catch(error => {
+      .catch((error) => {
         let alert = this.alertCtrl.create({
-          title: '',
-          subTitle: 'Gagal Memproses Cuti, Periksa Koneksi Internet Anda.',
-          buttons: ['OK']
+          title: "",
+          subTitle: "Gagal Memproses Cuti, Periksa Koneksi Internet Anda.",
+          buttons: ["OK"],
         });
         alert.present();
         loading.dismiss();
