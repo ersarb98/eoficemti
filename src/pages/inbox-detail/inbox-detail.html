@@ -4,13 +4,22 @@
 			<!-- <span ion-text color="light">Detail Surat</span> -->
 		</ion-title>
 
-		<ion-buttons end>
+		<ion-buttons end  *ngIf="isLoading == false">
 			<button ion-button (click)="goToLogSurat()">
 				<!-- <ion-icon style="font-size:2.4rem;" name="md-analytics" color="light"></ion-icon> -->
 				<img src="assets/imgs/menu-icon/history.png" style="    max-height: 27px;
 				margin-right: 5px;">
 			</button>
-			<button ion-button (click)="downloadInbox(replaceNomorSurat(messageData['No_Surat']))">
+
+			<button *ngIf="messageDetail['Kode Jenis Surat'] == 'nd_sppd'" ion-button (click)="downloadSPPD()">
+				<ion-icon style="font-size:2.4rem;" name="md-download" color="light"></ion-icon>
+			</button>
+
+			<button *ngIf="messageDetail['Kode Jenis Surat'] != 'nd_sppd' && messageDetail['Kode Jenis Surat'] != 'permohonan'" ion-button (click)="downloadInbox(replaceNomorSurat(messageData['No_Surat']))">
+				<ion-icon style="font-size:2.4rem;" name="md-download" color="light"></ion-icon>
+			</button>
+
+			<button *ngIf="messageDetail['Kode Jenis Surat'] == 'permohonan' && messageDetail['Kode Status Surat'] != '2'" ion-button (click)="downloadCuti()">
 				<ion-icon style="font-size:2.4rem;" name="md-download" color="light"></ion-icon>
 			</button>
 		</ion-buttons>
@@ -846,8 +855,8 @@
 						</button>
 					</ion-col>
 				</ion-row>
-				<ion-row>
-					<ion-col col-12>
+				<ion-row *ngIf="messageDetail['URUT_PEMERIKSA'] != '' && (messageDetail['URUT_PEMERIKSA'] != messageDetail['JUMLAH_PEMERIKSA'] || messageDetail['JUMLAH_PEMERIKSA'] == '1')" >
+					<ion-col col-12>  
 						<button style="border-radius:5px;" icon-start ion-button block (click)="ditangguhkan()"
 							color="primary">
 							<ion-icon name="md-remove-circle"></ion-icon>

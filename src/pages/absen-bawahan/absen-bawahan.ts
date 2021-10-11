@@ -101,7 +101,7 @@ export class AbsenBawahanPage {
     var bawahanSplit = this.dataBawahan.split('_');
     console.log(bawahanSplit[2]);
     this.isLoading = true;
-    this.soapService.post(api_base_url,'eoffice_absen_list',{fStream:JSON.stringify({
+    this.soapService.post(api_base_url,'eoffice_get_list_absen_personal',{fStream:JSON.stringify({
         usernameEDI : api_user, 
         passwordEDI : api_pass, 
         nipp : bawahanSplit[2],
@@ -111,7 +111,13 @@ export class AbsenBawahanPage {
     )}).then(result => {
       var responData = JSON.parse(String(result));            
       if (responData['rcmsg'] == "SUCCESS") {
-        this.absenList = responData['data'];                    
+        this.absenList = responData['data'];    
+        for(var i=0;i<this.absenList.length;i++) {
+          var hari= this.absenList[i]['TANGGAL'].substr(0, this.absenList[i]['TANGGAL'].indexOf(','));    
+          this.absenList[i]['HARI']=hari;
+          var tglSplit = this.absenList[i]['TANGGAL'].split(" ");
+          this.absenList[i]['TGL']=tglSplit[1];          
+        }                 
       } else {        
         let toast = this.toastCtrl.create({
           message: 'Mohon Maaf Sedang Terjadi Kesalahan, Coba Beberapa Saat Lagi.',

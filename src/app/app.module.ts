@@ -28,6 +28,8 @@ import { AndroidPermissions } from '@ionic-native/android-permissions';
 import { Diagnostic } from '@ionic-native/diagnostic';
 import { OpenNativeSettings } from '@ionic-native/open-native-settings';
 
+import { Downloader } from '@ionic-native/downloader';
+import { FileOpener } from '@ionic-native/file-opener';
 
 var config = {
   backButtonText: '',
@@ -71,6 +73,8 @@ var config = {
     AndroidPermissions,
     Diagnostic,
     OpenNativeSettings,
+    Downloader,
+    FileOpener,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })

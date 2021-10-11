@@ -15,7 +15,7 @@
         <img src="assets/imgs/menu-icon/history.png" style="    max-height: 27px;
           margin-right: 5px;">
       </button>
-      <button ion-button (click)="downloadInbox(replaceNomorSurat(messageData['No_Surat']))">
+      <button *ngIf="messageData['Status'] == 'DISETUJUI'" ion-button (click)="downloadInbox()">
         <ion-icon style="font-size:2.4rem;" name="md-download" color="light"></ion-icon>
       </button>
     </ion-buttons>
