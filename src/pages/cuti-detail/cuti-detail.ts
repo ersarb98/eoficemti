@@ -3,11 +3,16 @@ import { IonicPage, NavController, NavParams, LoadingController, AlertController
 
 import { SoapService } from '../soap.service';
 import { Storage } from '@ionic/storage';
-import { api_base_url, api_user, api_pass} from '../../config';
+import { api_base_url, api_user, api_pass, urldownload_srt } from '../../config';
 import { InAppBrowser, InAppBrowserOptions } from '@ionic-native/in-app-browser';
 import { DatePipe } from '@angular/common';
 import { not } from '@angular/compiler/src/output/output_ast';
+import { Downloader, DownloadRequest, NotificationVisibility } from '@ionic-native/downloader';
 
+import { FileTransfer, FileUploadOptions, FileTransferObject } from '@ionic-native/file-transfer';
+import { FilePath } from '@ionic-native/file-path';
+import { File } from '@ionic-native/file';
+import { FileOpener } from '@ionic-native/file-opener';
 
 /**
  * Generated class for the CutiDetailPage page.
@@ -41,6 +46,9 @@ export class CutiDetailPage {
     public toastCtrl: ToastController,
     public inAppBrowser: InAppBrowser,
     public datePipe: DatePipe,
+    public downloader: Downloader,
+    public transfer: FileTransfer, public file: File,
+    public fileOpener: FileOpener
   ) {
     this.storage.get('userdataTPK').then((val) => {
       this.userdataTPK = val;
@@ -52,7 +60,8 @@ export class CutiDetailPage {
       this.userdataTPK = val;
     });
     this.messageData = this.navParams.get('data');
-    this.nipp = this.navParams.get('nipp');    
+    console.log(this.messageData);
+    this.nipp = this.navParams.get('nipp');
     this.getDetail();
   }
 
@@ -74,10 +83,10 @@ export class CutiDetailPage {
           }
         )
       }).then(result => {
-        var responData = JSON.parse(String(result));        
+        var responData = JSON.parse(String(result));
 
         if (responData['rcmsg'] == "SUCCESS") {
-          this.messageDetail = responData['data'];          
+          this.messageDetail = responData['data'];
 
           this.linkSurat = this.messageDetail['Link Surat Asli'];
         } else {
@@ -91,7 +100,7 @@ export class CutiDetailPage {
         // loading.dismiss();
         this.isLoading = false;
       })
-      .catch(error => {        
+      .catch(error => {
         let toast = this.toastCtrl.create({
           message: 'Terjadi Masalah Koneksi, Silahkan Coba Kembali.',
           duration: 3000,
@@ -126,37 +135,128 @@ export class CutiDetailPage {
       dismissOnPageChange: true
     });
     loading.present();
-    this.soapService
-      .post(api_base_url, 'find_file_cuti', {
-        fStream: JSON.stringify(
-          {
-            "usernameEDI": api_user,
-            "passwordEDI": api_pass,
-            "fileName": data,
-            "id_surat":this.messageDetail['ID Surat'],
-            "jenis_surat":this.messageDetail['Kode Jenis Surat'],
-            "no_surat":''
-          }
-        )
-      }).then(result => {
-        var responData = JSON.parse(String(result));        
-        loading.dismiss(); 
-        const options: InAppBrowserOptions = {
-          zoom: 'no'
-        }
+    // this.soapService
+    //   .post(api_base_url, 'find_file_cuti', {
+    //     fStream: JSON.stringify(
+    //       {
+    //         "usernameEDI": api_user,
+    //         "passwordEDI": api_pass,
+    //         "fileName": data,
+    //         "id_surat":this.messageDetail['ID Surat'],
+    //         "jenis_surat":this.messageDetail['Kode Jenis Surat'],
+    //         "no_surat":''
+    //       }
+    //     )
+    //   }).then(result => {
+    //     var responData = JSON.parse(String(result));        
+    //     loading.dismiss(); 
+    //     const options: InAppBrowserOptions = {
+    //       zoom: 'no'
+    //     }
 
-        const browser = this.inAppBrowser.create(responData['data']['LINK'], '_system', options);
+    //     const browser = this.inAppBrowser.create(responData['data']['LINK'], '_system', options);
 
-      })
-      .catch(error => {        
+    //   })
+    //   .catch(error => {        npm install --save @ionic-native/downloader@4
+    //     let alert = this.alertCtrl.create({
+    //       title: '',
+    //       subTitle: 'Gagal download surat, silahkan coba lagi',
+    //       buttons: ['OK']
+    //     });
+    //     alert.present();
+    //     loading.dismiss();
+    //   });
+
+    var link = '';
+    link = urldownload_srt + 'DownloadMobile/cetak_cuti_recreate/' + this.messageDetail['ID Surat'] + '/' + this.userdataTPK['data']['IDJABATAN'];
+    // const options: InAppBrowserOptions = {
+    //   zoom: 'no'
+    // }    
+    // const browser = this.inAppBrowser.create(link, '_blank', options);
+
+    var link2 = '';
+    link2 = urldownload_srt + 'DownloadMobile/cetak_cuti_generate/' + this.messageDetail['ID Surat'] + '/' + this.userdataTPK['data']['IDJABATAN'];
+    // const options2: InAppBrowserOptions = {
+    //   zoom: 'no'
+    // }
+    // const browser2 = this.inAppBrowser.create(link2, '_blank', options2);
+    var localPath1 = '';
+    var localPath2 = '';
+    const fileTransfer: FileTransferObject = this.transfer.create();
+    fileTransfer.download(link, this.file.dataDirectory + 'Recreate_' + this.messageData['NO_SURAT'] + '.pdf').then((entry) => {
+      console.log('download complete 1: ' + entry.toURL());
+      localPath1 = entry.toURL();
+      fileTransfer.download(link2, this.file.dataDirectory + 'Generate_' + this.messageData['NO_SURAT'] + '.pdf').then((entry) => {
+        console.log('download complete 2: ' + entry.toURL());
+        localPath2 = entry.toURL();
+        loading.dismiss();
         let alert = this.alertCtrl.create({
-          title: '',
-          subTitle: 'Gagal download surat, silahkan coba lagi',
-          buttons: ['OK']
+          subTitle: 'Recreate dan Generate PDF Berhasil!',
+          cssClass: 'alert',
+          buttons: [
+            {
+              text: 'Tutup',
+              role: 'cancel',
+              handler: () => {
+                //console.log('Cancel clicked');
+              }
+            },
+            {
+              text: 'Buka Recreate',
+              handler: () => {
+                this.fileOpener.open(localPath1, 'application/pdf')
+                  .then(() => console.log('File is opened'))
+                  .catch(e => console.log('Error opening file', e));
+              }
+            },
+            {
+              text: 'Buka Generate',
+              handler: () => {
+                this.fileOpener.open(localPath2, 'application/pdf')
+                  .then(() => console.log('File is opened'))
+                  .catch(e => console.log('Error opening file', e));
+              }
+            }
+          ]
         });
         alert.present();
+      }, (error) => {
+        // handle error
         loading.dismiss();
       });
+    }, (error) => {
+      // handle error
+      loading.dismiss();
+    });
+
+    // var request: DownloadRequest = {
+    //   uri: urldownload_srt + 'cetak_cuti_recreate/' + this.messageDetail['ID Surat'] + '/' + this.userdataTPK['data']['IDJABATAN'],
+    //   title: 'MyDownload',
+    //   description: '',
+    //   mimeType: '',
+    //   visibleInDownloadsUi: true,
+    //   notificationVisibility: NotificationVisibility.VisibleNotifyCompleted,
+    //   destinationInExternalPublicDir: {
+    //     dirType: 'Download',
+    //     subPath: this.messageData['NO_SURAT'] + '.pdf'
+    //   }
+    // };
+
+
+    // this.downloader.download(request)
+    //   .then((location: string) => {
+    //     console.log('File downloaded at:' + location);
+    //     let toast = this.toastCtrl.create({
+    //       message: 'Download berhasil, file didownload di folder ' + location,
+    //       duration: 3000,
+    //       position: 'bottom'
+    //     });
+    //     toast.present().then(() => {
+    //       this.navCtrl.pop();
+    //     });
+    //   }).catch((error: any) => console.error(error));
+
+
   }
 
   replaceNomorSurat(noSurat) {
@@ -241,7 +341,7 @@ export class CutiDetailPage {
             tgl_mulai_revisi: tgl_mulai_revisi,
             tgl_selesai_revisi: tgl_selesai_revisi,
             jumlah_revisi: this.messageDetail['JUMLAH_HARI_REVISI'],
-            action:action
+            action: action
           }
         )
       }).then(result => {

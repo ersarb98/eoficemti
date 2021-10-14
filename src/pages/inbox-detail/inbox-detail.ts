@@ -1,15 +1,20 @@
 import { Component } from "@angular/core";
 import { IonicPage, NavController, NavParams, LoadingController, AlertController, ModalController, Modal, ToastController } from "ionic-angular";
 
-import { SoapService } from "../soap.service";
-import { Storage } from "@ionic/storage";
-import { api_base_url, api_user, api_pass, sender_id, oneSignalAppId, sc_code } from "../../config";
-import { InAppBrowser, InAppBrowserOptions } from "@ionic-native/in-app-browser";
-import { OneSignal } from "@ionic-native/onesignal";
+import { SoapService } from '../soap.service';
+import { Storage } from '@ionic/storage';
+import { api_base_url, api_user, api_pass, sender_id, oneSignalAppId, sc_code, urldownload_srt } from '../../config';
+import { InAppBrowser, InAppBrowserOptions } from '@ionic-native/in-app-browser';
+import { OneSignal } from '@ionic-native/onesignal';
 
 import { DatePicker } from "@ionic-native/date-picker";
 import { DatePipe } from "@angular/common";
 import { Platform } from "ionic-angular";
+
+import { FileTransfer, FileUploadOptions, FileTransferObject } from '@ionic-native/file-transfer';
+import { FilePath } from '@ionic-native/file-path';
+import { File } from '@ionic-native/file';
+import { FileOpener } from '@ionic-native/file-opener';
 
 /**
  * Generated class for the InboxDetailPage page.
@@ -85,7 +90,9 @@ export class InboxDetailPage {
     public toastCtrl: ToastController,
     private datePicker: DatePicker,
     public datePipe: DatePipe,
-    public platform: Platform
+    public platform: Platform,
+    public transfer: FileTransfer, public file: File,
+    public fileOpener: FileOpener
   ) {
     oneSignal.startInit(oneSignalAppId, sender_id);
     oneSignal.endInit();
@@ -145,10 +152,29 @@ export class InboxDetailPage {
         var responData = JSON.parse(String(result));
         console.log(responData);
 
-        if (responData["rcmsg"] == "SUCCESS") {
-          this.messageDetail = responData["data"];
-          if (this.messageDetail["Jenis Surat"] == "Surat Perintah") {
-            this.dasarSuratPerintah = this.messageDetail["Isi Surat"].split("xxdasaxx_").pop().split("_xxperintxx_")[0] + "<br>";
+        if (responData['rcmsg'] == "SUCCESS") {
+          this.messageDetail = responData['data'];
+          console.log(this.messageDetail);
+
+          
+          if (this.messageData['Status'].indexOf('PERIKSA') != -1) {
+            var mySubString = this.messageData['Status'].substring(
+              this.messageData['Status'].indexOf("(") + 1,
+              this.messageData['Status'].lastIndexOf(")")
+            );
+
+            var split = mySubString.split('/');
+            
+            this.messageDetail['URUT_PEMERIKSA'] = split[0];
+            this.messageDetail['JUMLAH_PEMERIKSA'] = split[1];
+          } else {
+            this.messageDetail['URUT_PEMERIKSA'] = '';
+            this.messageDetail['JUMLAH_PEMERIKSA'] ='';
+          }
+          console.log(this.messageDetail);
+
+          if (this.messageDetail['Jenis Surat'] == 'Surat Perintah') {
+            this.dasarSuratPerintah = this.messageDetail['Isi Surat'].split('xxdasaxx_').pop().split('_xxperintxx_')[0] + '<br>';
             this.dasarSuratPerintah = this.dasarSuratPerintah.replace(/_/gi, "<br><br>");
             this.isiPerintah = this.messageDetail["Isi Surat"].split("_xxperintxx_")[1];
             this.isiPerintah = this.isiPerintah.replace(/_/gi, "<br><br>");
@@ -174,9 +200,10 @@ export class InboxDetailPage {
           this.isLoading = false;
         }
       })
-      .catch((error) => {
+      .catch(error => {
+        console.log(error);
         let toast = this.toastCtrl.create({
-          message: "Terjadi Masalah Koneksi, Silahkan Coba Kembali.",
+          message: 'Terjadi Masalah Koneksi, Silahkan Coba Kembali (1).',
           duration: 3000,
           position: "bottom",
         });
@@ -604,8 +631,7 @@ export class InboxDetailPage {
   }
 
   doPeriksa(type) {
-    this.formDitangguhkan = true;
-    if (this.keterangan == "") {
+    if (this.keterangan == '') {
       let toast = this.toastCtrl.create({
         message: "Komentar harus diisi.",
         duration: 3000,
@@ -752,7 +778,9 @@ export class InboxDetailPage {
           ],
         });
         alert.present();
-      } else if (type == "kembalikan") {
+
+      } else if (type == 'kembalikan') {
+        this.formDitangguhkan = true;
         let alert = this.alertCtrl.create({
           subTitle: "Anda yakin ingin kembalikan surat ?",
           cssClass: "alert",
@@ -1395,21 +1423,22 @@ export class InboxDetailPage {
     });
     loading.present();
     this.soapService
-      .post(api_base_url, "eoffice_cuti_user_action", {
-        fStream: JSON.stringify({
-          usernameEDI: api_user,
-          passwordEDI: api_pass,
-          nipp: this.nipp,
-          iduser: this.userdataTPK["data"]["IDUSER"],
-          nama: this.userdataTPK["data"]["NAMA"],
-          id_surat: this.messageDetail["ID Surat"],
-          tgl_mulai_revisi: tgl_mulai_revisi,
-          tgl_selesai_revisi: tgl_selesai_revisi,
-          jumlah_revisi: this.messageDetail["JUMLAH_HARI_REVISI"],
-          action: action,
-        }),
-      })
-      .then((result) => {
+      .post(api_base_url, 'eoffice_cuti_user_action', {
+        fStream: JSON.stringify(
+          {
+            usernameEDI: api_user,
+            passwordEDI: api_pass,
+            nipp: this.nipp,
+            iduser: this.userdataTPK['data']['IDUSER'],
+            nama: this.userdataTPK['data']['NAMA'],
+            id_surat: this.messageDetail['ID Surat'],
+            tgl_mulai_revisi: tgl_mulai_revisi,
+            tgl_selesai_revisi: tgl_selesai_revisi,
+            jumlah_revisi: this.messageDetail['JUMLAH_HARI_REVISI'],
+            action: action
+          }
+        )
+      }).then(result => {
         var responData = JSON.parse(String(result));
         if (responData["rcmsg"] == "SUCCESS") {
           let toast = this.toastCtrl.create({
@@ -1440,4 +1469,119 @@ export class InboxDetailPage {
         loading.dismiss();
       });
   }
+
+  downloadSPPD() {
+    let loading = this.loadingCtrl.create({
+      spinner: 'dots',
+      content: "Mengunduh surat...",
+      cssClass: 'transparent',
+      dismissOnPageChange: true
+    });
+    loading.present();
+    var link = '';
+    const fileTransfer: FileTransferObject = this.transfer.create();
+    link = urldownload_srt + 'outbox/cetak_surat_dup/prev_dir_dup/' + this.messageDetail['ID Surat'];
+    fileTransfer.download(link, this.file.dataDirectory + 'Generate_' + this.messageData['NO_SURAT'] + '.pdf').then((entry) => {
+      console.log('download complete 2: ' + entry.toURL());
+      loading.dismiss();
+      let alert = this.alertCtrl.create({
+        subTitle: 'Recreate dan Generate PDF Berhasil!',
+        cssClass: 'alert',
+        buttons: [
+          {
+            text: 'Tutup',
+            role: 'cancel',
+            handler: () => {
+              //console.log('Cancel clicked');
+            }
+          },
+          {
+            text: 'Buka Surat',
+            handler: () => {
+              this.fileOpener.open(entry.toURL(), 'application/pdf')
+                .then(() => console.log('File is opened'))
+                .catch(e => console.log('Error opening file', e));
+            }
+          }
+        ]
+      });
+      alert.present();
+    }, (error) => {
+      // handle error
+      loading.dismiss();
+    });
+  }
+
+  downloadCuti(data) {
+    let loading = this.loadingCtrl.create({
+      spinner: 'dots',
+      content: "Mengunduh surat...",
+      cssClass: 'transparent',
+      dismissOnPageChange: true
+    });
+    loading.present();
+
+    var link = '';
+    link = urldownload_srt + 'DownloadMobile/cetak_cuti_recreate/' + this.messageDetail['ID Surat'] + '/' + this.userdataTPK['data']['IDJABATAN'];
+
+    var link2 = '';
+    link2 = urldownload_srt + 'DownloadMobile/cetak_cuti_generate/' + this.messageDetail['ID Surat'] + '/' + this.userdataTPK['data']['IDJABATAN'];
+  
+    var localPath1 = '';
+    var localPath2 = '';
+    const fileTransfer: FileTransferObject = this.transfer.create();
+    fileTransfer.download(link, this.file.dataDirectory + 'Recreate_' + this.messageData['NO_SURAT'] + '.pdf').then((entry) => {
+      console.log('download complete 1: ' + entry.toURL());
+      localPath1 = entry.toURL();
+      fileTransfer.download(link2, this.file.dataDirectory + 'Generate_' + this.messageData['NO_SURAT'] + '.pdf').then((entry) => {
+        console.log('download complete 2: ' + entry.toURL());
+        localPath2 = entry.toURL();
+        loading.dismiss();
+        let alert = this.alertCtrl.create({
+          subTitle: 'Recreate dan Generate PDF Berhasil!',
+          cssClass: 'alert',
+          buttons: [
+            {
+              text: 'Tutup',
+              role: 'cancel',
+              handler: () => {
+                //console.log('Cancel clicked');
+              }
+            },
+            {
+              text: 'Buka Recreate',
+              handler: () => {
+                this.fileOpener.open(localPath1, 'application/pdf')
+                  .then(() => console.log('File is opened'))
+                  .catch(e => console.log('Error opening file', e));
+              }
+            },
+            {
+              text: 'Buka Generate',
+              handler: () => {
+                this.fileOpener.open(localPath2, 'application/pdf')
+                  .then(() => console.log('File is opened'))
+                  .catch(e => console.log('Error opening file', e));
+              }
+            }
+          ]
+        });
+        alert.present();
+      }, (error) => {
+        // handle error
+        loading.dismiss();
+      });
+    }, (error) => {
+      // handle error
+      loading.dismiss();
+    });
+  }
+
 }
+
+
+
+
+
+
+

@@ -100,32 +100,25 @@ export class AbsenBawahanPage {
     var bawahanSplit = this.dataBawahan.split("_");
     console.log(bawahanSplit[2]);
     this.isLoading = true;
-    this.soapService
-      .post(api_base_url, "eoffice_absen_list", {
-        fStream: JSON.stringify({
-          usernameEDI: api_user,
-          passwordEDI: api_pass,
-          nipp: bawahanSplit[2],
-          bulan: bulan,
-          tahun: tahun,
-        }),
-      })
-      .then((result) => {
-        var responData = JSON.parse(String(result));
-        console.log(result);
-        if (responData["rcmsg"] == "SUCCESS") {
-          this.absenList = responData["data"];
-        } else {
-          let toast = this.toastCtrl.create({
-            message: "Mohon Maaf Sedang Terjadi Kesalahan, Coba Beberapa Saat Lagi.",
-            duration: 3000,
-            position: "bottom",
-          });
-          toast.present();
-        }
+    this.soapService.post(api_base_url,'eoffice_get_list_absen_personal',{fStream:JSON.stringify({
+        usernameEDI : api_user, 
+        passwordEDI : api_pass, 
+        nipp : bawahanSplit[2],
+        bulan : bulan,
+        tahun : tahun                
+      }
+    )}).then(result => {
+      var responData = JSON.parse(String(result));            
+      if (responData['rcmsg'] == "SUCCESS") {
+        this.absenList = responData['data'];    
+        for(var i=0;i<this.absenList.length;i++) {
+          var hari= this.absenList[i]['TANGGAL'].substr(0, this.absenList[i]['TANGGAL'].indexOf(','));    
+          this.absenList[i]['HARI']=hari;
+          var tglSplit = this.absenList[i]['TANGGAL'].split(" ");
+          this.absenList[i]['TGL']=tglSplit[1];          
+        }                 
         this.isLoading = false;
-      })
-      .catch((error) => {
+      } else {        
         let toast = this.toastCtrl.create({
           message: "Terjadi Masalah Koneksi, Silahkan Coba Kembali.",
           duration: 3000,
@@ -133,7 +126,7 @@ export class AbsenBawahanPage {
         });
         toast.present();
         this.isLoading = false;
-      });
+      }});
   }
 
   searchBawahan() {

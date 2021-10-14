@@ -61,7 +61,7 @@
     </ion-col> -->
   </div>
 
-  <ion-grid fixed no-padding *ngIf="isLoading == false">
+  <!-- <ion-grid fixed no-padding *ngIf='isLoading == false'>
     <ion-row>
       <ion-col col-12 no-padding>
         <ion-list class="dining_List">
@@ -120,10 +120,110 @@
         </ion-list>
       </ion-col>
     </ion-row>
-  </ion-grid>
+  </ion-grid> -->
 
-  <ion-list *ngIf="isLoading == true">
-    <ion-card *ngFor="let fake of fakeUsers">
+  <div class="parent-card" *ngIf='isLoading == false'>
+    <div *ngFor="let absen of absenList">
+      <div class="list-card" *ngIf="absen['STATUS'] != 'Sabtu' && absen['STATUS'] != 'Minggu'"
+        (click)="goToAbsenMobileDetail(absen)">
+        <div class="tgl-container">
+          <span style="display: table-cell;
+                vertical-align: middle;">
+            <span ion-text text-wrap class="hari-font">{{ absen['HARI'] }}</span><br>
+            <span ion-text text-wrap class="tgl-font">{{ absen['TGL'] }}</span>
+          </span>
+
+        </div>
+        <div class="data-container">
+          <div class="inline-container">
+            <div class="inline-left">
+              <span ion-text text-wrap class="check-font">Check In </span>
+              <span ion-text text-wrap class="check-type-in"
+                *ngIf="absen['CHECK_IN_TYPE'] == 'WFH' || absen['CHECK_IN_TYPE'] == 'WFC' || absen['CHECK_IN_TYPE'] == 'WFO'">{{ absen['CHECK_IN_TYPE'] }}</span>
+              <br>
+              <span ion-text text-wrap class="time-font">{{ absen['JAM_DATANG'] }}</span>
+              <span ion-text text-wrap *ngIf="absen['JAM_DATANG'] == ''" class="check-font"> - </span>
+            </div>
+            <div class="inline-right">
+              <span ion-text text-wrap class="check-font">Check Out </span>
+              <span ion-text text-wrap class="check-type-out"
+                *ngIf="absen['CHECK_OUT_TYPE'] == 'WFH' || absen['CHECK_OUT_TYPE'] == 'WFC' || absen['CHECK_OUT_TYPE'] == 'WFO'">{{ absen['CHECK_OUT_TYPE'] }}</span>
+              <br>
+              <span ion-text text-wrap class="time-font">{{ absen['JAM_PULANG'] }}</span>
+              <span ion-text text-wrap *ngIf="absen['JAM_DATANG'] == ''" class="check-font"> - </span>
+
+            </div>
+          </div>
+          <div *ngIf="absen['MENIT_TELAT'] != '-'">
+            <span ion-text text-wrap style="font-size: 1.0rem;color: gray;">Telat Datang: </span>
+            <span ion-text text-wrap class="check-type-out">{{ absen['MENIT_TELAT'] }} menit</span>
+            <br>
+          </div>
+          <div *ngIf="absen['MENIT_KURANG'] != '-'">
+            <span ion-text text-wrap style="font-size: 1.0rem;color: gray;">Cepat Pulang: </span>
+            <span ion-text text-wrap class="check-type-out">{{ absen['MENIT_KURANG'] }} menit</span>
+            <br>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="list-card"
+        *ngIf="absen['STATUS'] == 'Sabtu' || absen['STATUS'] == 'Minggu' || absen['STATUS'] == 'Libur'"
+        (click)="goToAbsenMobileDetail(absen)">
+        <div class="tgl-container-red">
+          <span style="display: table-cell;
+                vertical-align: middle;">
+            <span ion-text text-wrap class="hari-font-red">{{ absen['HARI'] }}</span><br>
+            <span ion-text text-wrap class="tgl-font-red">{{ absen['TGL'] }}</span>
+          </span>
+
+        </div>
+        <div class="data-container">
+          <div class="inline-container">
+            <div class="inline-left">
+              <span ion-text text-wrap class="check-font">Check In </span>
+              <span ion-text text-wrap class="check-type-in"
+                *ngIf="absen['CHECK_IN_TYPE'] == 'WFH' || absen['CHECK_IN_TYPE'] == 'WFC' || absen['CHECK_IN_TYPE'] == 'WFO'">{{ absen['CHECK_IN_TYPE'] }}</span>
+              <br>
+              <span ion-text text-wrap class="time-font">{{ absen['JAM_DATANG'] }}</span>
+              <span ion-text text-wrap *ngIf="absen['JAM_DATANG'] == ''" class="check-font"> - </span>
+            </div>
+            <div class="inline-right">
+              <span ion-text text-wrap class="check-font">Check Out </span>
+              <span ion-text text-wrap class="check-type-out"
+                *ngIf="absen['CHECK_OUT_TYPE'] == 'WFH' || absen['CHECK_OUT_TYPE'] == 'WFC' || absen['CHECK_OUT_TYPE'] == 'WFO'">{{ absen['CHECK_OUT_TYPE'] }}</span>
+              <br>
+              <span ion-text text-wrap class="time-font">{{ absen['JAM_PULANG'] }}</span>
+              <span ion-text text-wrap *ngIf="absen['JAM_DATANG'] == ''" class="check-font"> - </span>
+            </div>
+          </div>
+          <div *ngIf="absen['MENIT_TELAT'] != '-'">
+            <span ion-text text-wrap style="font-size: 1.0rem;color: gray;">Telat Datang: </span>
+            <span ion-text text-wrap class="check-type-out">{{ absen['MENIT_TELAT'] }} menit</span>
+            <br>
+          </div>
+          <div *ngIf="absen['MENIT_KURANG'] != '-'">
+            <span ion-text text-wrap style="font-size: 1.0rem;color: gray;">Cepat Pulang: </span>
+            <span ion-text text-wrap class="check-type-out">{{ absen['MENIT_KURANG'] }} menit</span>
+            <br>
+          </div>
+
+          <br>
+          <div class="ket-card"
+            *ngIf="absen['DETAIL_KETERANGAN'] != '' && (absen['STATUS'] == 'Cuti' || absen['STATUS'] == 'Libur')">
+            <span ion-text text-wrap style="font-size: 1.2rem;">{{ absen['DETAIL_KETERANGAN'] }}</span>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+
+  <ion-list *ngIf='isLoading == true'>
+    <ion-card *ngFor='let fake of fakeUsers'>
       <ion-item>
         <h2 class="animate-skeleton-background"></h2>
         <h3 class="animate-skeleton-background"></h3>
