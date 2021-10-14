@@ -9,9 +9,12 @@
     <ion-title>
       <span ion-text color="light" class="fw500">Absensi</span>
     </ion-title>
-    <ion-buttons end *ngIf="isAtasan" style="padding-right: 5px">
-      <button ion-button (click)="presentPopover($event)">
-        <ion-icon style="font-size: 2.4rem; padding-right: 16px" name="more" color="light"></ion-icon>
+    <ion-buttons end style="padding-right: 5px">
+      <button ion-button (click)="cetakAbsen()">
+        <ion-icon style="font-size: 2.4rem" name="md-download" color="light"></ion-icon>
+      </button>
+      <button *ngIf="isAtasan" ion-button (click)="presentPopover($event)">
+        <ion-icon style="font-size: 2.4rem; padding: 0 5px 0 5px" name="more" color="light"></ion-icon>
         <ion-badge class="my-badges" *ngIf="!isLoadingBadges  && !isEmptyObject(badgesList) && parse(badgesList['JUMLAH_ABSEN_BELUM_KOREKSI'])" color="danger">{{ badgesList['JUMLAH_ABSEN_BELUM_KOREKSI'] }}</ion-badge>
       </button>
     </ion-buttons>

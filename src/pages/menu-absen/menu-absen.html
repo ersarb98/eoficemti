@@ -1,11 +1,10 @@
-
-  <ion-list padding-left padding-right padding-bottom no-margin>
-    <ion-list-header class="header" no-padding no-margin >
-      <b>Menu</b>
-    </ion-list-header>      
-    <button ion-item no-padding no-margin no-lines style="font-size:1.5rem;" (click)="goToPage('AbsenBawahanPage')">Absen Harian Bawahan</button>  
-    <button ion-item no-padding no-margin no-lines style="font-size:1.5rem;" (click)="goToPage('KoreksiAbsenBawahanPage')">
-      Koreksi Absen Bawahan     
-      <ion-badge style="position:absolute; right:25px;" *ngIf="!isLoadingBadges  && !isEmptyObject(badgesList) && parse(badgesList['JUMLAH_ABSEN_BELUM_KOREKSI'])" color="color6">{{ badgesList['JUMLAH_ABSEN_BELUM_KOREKSI'] }}</ion-badge>            
-    </button>  
-  </ion-list>
+<ion-list padding-left padding-right padding-bottom no-margin>
+  <ion-list-header class="header" no-padding no-margin>
+    <b>Menu</b>
+  </ion-list-header>
+  <button ion-item no-padding no-margin no-lines style="font-size: 1.5rem" (click)="goToPage('AbsenBawahanPage')">Absen Harian Bawahan</button>
+  <button ion-item no-padding no-margin no-lines style="font-size: 1.5rem" (click)="goToPage('KoreksiAbsenBawahanPage')">
+    Koreksi Absen Bawahan
+    <ion-badge style="position: absolute; right: 25px" *ngIf="!isLoadingBadges  && !isEmptyObject(badgesList) && parse(badgesList['JUMLAH_ABSEN_BELUM_KOREKSI'])" color="color6">{{ badgesList['JUMLAH_ABSEN_BELUM_KOREKSI'] }}</ion-badge>
+  </button>
+</ion-list>

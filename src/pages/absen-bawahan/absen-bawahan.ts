@@ -2,8 +2,10 @@ import { Component } from "@angular/core";
 import { IonicPage, NavController, NavParams, LoadingController, AlertController, ToastController } from "ionic-angular";
 import { SoapService } from "../soap.service";
 import { Storage } from "@ionic/storage";
-import { api_base_url, api_user, api_pass } from "../../config";
+import { InAppBrowser, InAppBrowserOptions } from "@ionic-native/in-app-browser";
+import { api_base_url, api_user, api_pass, api_res } from "../../config";
 import { DatePipe } from "@angular/common";
+import { HttpClient, HttpHeaders } from "@angular/common/http";
 
 /**
  * Generated class for the AbsenBawahanPage page.
@@ -38,7 +40,9 @@ export class AbsenBawahanPage {
     public soapService: SoapService,
     public storage: Storage,
     public datepipe: DatePipe,
-    public toastCtrl: ToastController
+    public toastCtrl: ToastController,
+    public inAppBrowser: InAppBrowser,
+    public http: HttpClient
   ) {
     let date = new Date();
     let currentYear = date.getFullYear();
@@ -191,5 +195,61 @@ export class AbsenBawahanPage {
       date: date + "-" + this.bulan + "-" + this.tahun,
       fromPage: "AbsenBawahanPage",
     });
+  }
+
+  cetakAbsenBawahan() {
+    if (this.bulan == null || this.tahun == null || this.dataBawahan == null) {
+      let toast = this.toastCtrl.create({
+        message: "Anda belum memilih bulan, tahun atau data bawahan.",
+        duration: 3000,
+        position: "bottom",
+      });
+      toast.present();
+    } else {
+      var bawahanSplit = this.dataBawahan.split("_");
+      let loading = this.loadingCtrl.create({
+        spinner: "dots",
+        content: "Mengunduh Absen...",
+        cssClass: "transparent",
+        dismissOnPageChange: true,
+      });
+      loading.present();
+      this.http
+        .post(api_res + "cetak_absen.php", {
+          usernameEDI: api_user,
+          passwordEDI: api_pass,
+          nipp: btoa(bawahanSplit[2]),
+          bulan: this.bulan,
+          tahun: this.tahun,
+        })
+        .subscribe(
+          (result) => {
+            var responData = result;
+            if (responData["rcmsg"] == "SUCCESS") {
+              const options: InAppBrowserOptions = {
+                zoom: "no",
+              };
+
+              const browser = this.inAppBrowser.create(responData["data"]["LINK"], "_system", options);
+            } else {
+              let toast = this.toastCtrl.create({
+                message: "Terjadi kesalahan.",
+                duration: 3000,
+                position: "bottom",
+              });
+              toast.present();
+            }
+          },
+          (err) => {
+            let toast = this.toastCtrl.create({
+              message: "Gagal mengunduh absen, silahkan coba kembali.",
+              duration: 3000,
+              position: "bottom",
+            });
+            toast.present();
+          }
+        );
+      loading.dismiss();
+    }
   }
 }
