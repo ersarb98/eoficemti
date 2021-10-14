@@ -144,9 +144,10 @@
             <span ion-text text-wrap>E-CV</span>
           </div>
 
-          <div class="menu-content-2" *ngIf="isAtasan == true" (click)="openPage('TabsLemburPage')">
+          <div class="menu-content-2" *ngIf="isAtasan == true" (click)="openPage2('TabsLemburPage',badgesList['JUMLAH_LEMBUR_BAWAHAN'])">
             <div class="img-container-2"><img src="assets/flat-icon/overtime.png" /></div>
             <span ion-text text-wrap>Lembur</span>
+            <ion-badge class="my-badge" *ngIf="badgesList != null && parse(badgesList['JUMLAH_LEMBUR_BAWAHAN'])" color="danger">{{badgesList['JUMLAH_LEMBUR_BAWAHAN']}}</ion-badge>
           </div>
 
           <div class="menu-content-2" *ngIf="isAtasan == false" (click)="openPage('LemburPage')">
