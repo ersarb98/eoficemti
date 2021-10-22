@@ -3,9 +3,12 @@ import { IonicPage, NavController, NavParams, ActionSheetController, LoadingCont
 import { SoapService } from "../soap.service";
 import { Storage } from "@ionic/storage";
 import { InAppBrowser, InAppBrowserOptions } from "@ionic-native/in-app-browser";
-import { api_base_url, api_user, api_pass, api_res } from "../../config";
+import { api_base_url, api_user, api_pass, api_res, urldownload_srt } from "../../config";
 import { DatePipe } from "@angular/common";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
+import { FileTransfer, FileUploadOptions, FileTransferObject } from "@ionic-native/file-transfer";
+import { File } from "@ionic-native/file";
+import { FileOpener } from "@ionic-native/file-opener";
 /**
  * Generated class for the AbsenListPage page.
  *
@@ -49,7 +52,10 @@ export class AbsenListPage {
     public modalCtrl: ModalController,
     public toastCtrl: ToastController,
     public inAppBrowser: InAppBrowser,
-    public http: HttpClient
+    public http: HttpClient,
+    public transfer: FileTransfer,
+    public file: File,
+    public fileOpener: FileOpener
   ) {}
 
   ionViewDidLoad() {
@@ -514,77 +520,130 @@ export class AbsenListPage {
       );
   }
 
+  // cetakAbsen() {
+  //   var date = new Date();
+  //   var formattedDate = this.datepipe.transform(date, "yyyy-MM-dd HH:mm:ss");
+  //   var rand = Math.floor(Math.random() * 100000000 + 1);
+
+  //   var headers = new HttpHeaders({
+  //     Accept: "*/*",
+  //     username: api_user,
+  //     password: api_pass,
+  //     externalId: rand.toString(),
+  //     timestamp: formattedDate,
+  //     "Content-Type": "application/json",
+  //   });
+
+  //   if (this.bulan == null || this.tahun == null) {
+  //     let toast = this.toastCtrl.create({
+  //       message: "Anda belum memilih bulan atau tahun.",
+  //       duration: 3000,
+  //       position: "bottom",
+  //     });
+  //     toast.present();
+  //   } else {
+  //     let loading = this.loadingCtrl.create({
+  //       spinner: "dots",
+  //       content: "Mengunduh Absen...",
+  //       cssClass: "transparent",
+  //       dismissOnPageChange: true,
+  //     });
+  //     loading.present();
+  //     this.http
+  //       .post(
+  //         api_res + "DownloadMobile.php",
+  //         {
+  //           usernameEDI: api_user,
+  //           passwordEDI: api_pass,
+  //           nipp: btoa(this.userdataTPK["data"]["NIPP"]),
+  //           bulan: this.bulan,
+  //           tahun: this.tahun,
+  //         },
+  //         {
+  //           headers,
+  //         }
+  //       )
+  //       .subscribe(
+  //         (result) => {
+  //           var responData = result;
+  //           if (responData["rcmsg"] == "SUCCESS") {
+  //             const options: InAppBrowserOptions = {
+  //               zoom: "no",
+  //             };
+
+  //             const browser = this.inAppBrowser.create(responData["data"]["LINK"], "_system", options);
+  //           } else {
+  //             let toast = this.toastCtrl.create({
+  //               message: "Terjadi kesalahan.",
+  //               duration: 3000,
+  //               position: "bottom",
+  //             });
+  //             toast.present();
+  //           }
+  //         },
+  //         (err) => {
+  //           let toast = this.toastCtrl.create({
+  //             message: "Gagal mengunduh absen, silahkan coba kembali.",
+  //             duration: 3000,
+  //             position: "bottom",
+  //           });
+  //           toast.present();
+  //         }
+  //       );
+  //     loading.dismiss();
+  //   }
+  // }
+
   cetakAbsen() {
-    var date = new Date();
-    var formattedDate = this.datepipe.transform(date, "yyyy-MM-dd HH:mm:ss");
-    var rand = Math.floor(Math.random() * 100000000 + 1);
-
-    var headers = new HttpHeaders({
-      Accept: "*/*",
-      username: api_user,
-      password: api_pass,
-      externalId: rand.toString(),
-      timestamp: formattedDate,
-      "Content-Type": "application/json",
+    let loading = this.loadingCtrl.create({
+      spinner: "dots",
+      content: "Mengunduh Absen ...",
+      cssClass: "transparent",
+      dismissOnPageChange: true,
     });
+    loading.present();
 
-    if (this.bulan == null || this.tahun == null) {
-      let toast = this.toastCtrl.create({
-        message: "Anda belum memilih bulan atau tahun.",
-        duration: 3000,
-        position: "bottom",
-      });
-      toast.present();
-    } else {
-      let loading = this.loadingCtrl.create({
-        spinner: "dots",
-        content: "Mengunduh Absen...",
-        cssClass: "transparent",
-        dismissOnPageChange: true,
-      });
-      loading.present();
-      this.http
-        .post(
-          api_res + "cetak_absen.php",
-          {
-            usernameEDI: api_user,
-            passwordEDI: api_pass,
-            nipp: btoa(this.userdataTPK["data"]["NIPP"]),
-            bulan: this.bulan,
-            tahun: this.tahun,
-          },
-          {
-            headers,
-          }
-        )
-        .subscribe(
-          (result) => {
-            var responData = result;
-            if (responData["rcmsg"] == "SUCCESS") {
-              const options: InAppBrowserOptions = {
-                zoom: "no",
-              };
+    var link = "";
+    link = urldownload_srt + "DownloadMobile/cetak_absen?nipp=" + btoa(this.userdataTPK["data"]["NIPP"]) + "&bulan=" + this.bulan + "&tahun=" + this.tahun;
 
-              const browser = this.inAppBrowser.create(responData["data"]["LINK"], "_system", options);
-            } else {
-              let toast = this.toastCtrl.create({
-                message: "Terjadi kesalahan.",
-                duration: 3000,
-                position: "bottom",
-              });
-              toast.present();
-            }
-          },
-          (err) => {
-            let toast = this.toastCtrl.create({
-              message: "Gagal mengunduh absen, silahkan coba kembali.",
-              duration: 3000,
-              position: "bottom",
-            });
-            toast.present();
-          }
-        );
-      loading.dismiss();
-    }
+    console.log(link);
+    var localPath1 = "";
+
+    const fileTransfer: FileTransferObject = this.transfer.create();
+    fileTransfer.download(link, this.file.dataDirectory + "Report_Absen_" + this.userdataTPK["data"]["NIPP"] + "_" + this.bulan + "_" + this.tahun + ".pdf").then(
+      (entry) => {
+        console.log("download complete 1: " + entry.toURL());
+        localPath1 = entry.toURL();
+
+        loading.dismiss();
+        let alert = this.alertCtrl.create({
+          subTitle: "Generate Absen PDF Berhasil!",
+          cssClass: "alert",
+          buttons: [
+            {
+              text: "Tutup",
+              role: "cancel",
+              handler: () => {
+                //console.log('Cancel clicked');
+              },
+            },
+            {
+              text: "Buka Report Absen",
+              handler: () => {
+                this.fileOpener
+                  .open(localPath1, "application/pdf")
+                  .then(() => console.log("File is opened"))
+                  .catch((e) => console.log("Error opening file", e));
+              },
+            },
+          ],
+        });
+        alert.present();
+      },
+      (error) => {
+        // handle error
+        loading.dismiss();
+      }
+    );
   }
 }
