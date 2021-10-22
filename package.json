@@ -78,7 +78,7 @@
     "cordova-plugin-whitelist": "^1.3.3",
     "cordova.plugins.diagnostic": "^6.0.3",
     "integrator-cordova-plugin-downloader": "^1.1.0",
-    "onesignal-cordova-plugin": "^2.11.4",
+    "onesignal-cordova-plugin": "^2.7.0",
     "typescript": "~2.6.2"
   },
   "description": "An Ionic project",
@@ -114,11 +114,11 @@
       "cordova-open-native-settings": {},
       "cordova-plugin-androidx": {},
       "cordova-plugin-androidx-adapter": {},
-      "onesignal-cordova-plugin": {},
       "integrator-cordova-plugin-downloader": {},
       "cordova-plugin-file-opener2": {
         "ANDROID_SUPPORT_V4_VERSION": "27.+"
-      }
+      },
+      "onesignal-cordova-plugin": {}
     },
     "platforms": [
       "android",

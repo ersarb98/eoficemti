@@ -1,20 +1,23 @@
 import { Component } from "@angular/core";
 import { IonicPage, NavController, NavParams, LoadingController, AlertController, ModalController, Modal, ToastController } from "ionic-angular";
 
-import { SoapService } from "../soap.service";
-import { Storage } from "@ionic/storage";
-import { api_base_url, api_user, api_pass, sender_id, oneSignalAppId, sc_code, urldownload_srt } from "../../config";
-import { InAppBrowser, InAppBrowserOptions } from "@ionic-native/in-app-browser";
-import { OneSignal } from "@ionic-native/onesignal";
+import { SoapService } from '../soap.service';
+import { Storage } from '@ionic/storage';
+import { api_base_url, api_user, api_pass, sender_id, oneSignalAppId, sc_code, urldownload_srt, url_upload_sppd } from '../../config';
+import { InAppBrowser, InAppBrowserOptions } from '@ionic-native/in-app-browser';
+import { OneSignal } from '@ionic-native/onesignal';
 
 import { DatePicker } from "@ionic-native/date-picker";
 import { DatePipe } from "@angular/common";
 import { Platform } from "ionic-angular";
 
-import { FileTransfer, FileUploadOptions, FileTransferObject } from "@ionic-native/file-transfer";
-import { FilePath } from "@ionic-native/file-path";
-import { File } from "@ionic-native/file";
-import { FileOpener } from "@ionic-native/file-opener";
+import { FileTransfer, FileUploadOptions, FileTransferObject } from '@ionic-native/file-transfer';
+import { FilePath } from '@ionic-native/file-path';
+import { File } from '@ionic-native/file';
+import { FileOpener } from '@ionic-native/file-opener';
+import { FileChooser } from '@ionic-native/file-chooser';
+import { Camera, CameraOptions } from '@ionic-native/camera';
+
 
 /**
  * Generated class for the InboxDetailPage page.
@@ -77,6 +80,27 @@ export class InboxDetailPage {
   secondDate: any;
   startTglSelesai: any;
 
+
+  // param baru untuk revisi sppd
+  isRevisi: Boolean = false;
+
+  tanggalMulaiRevisi: any = '';
+  tanggalSelesaiRevisi: any = '';
+  startTglSelesaiRevisi: any;
+  firstDateRevisi: any;
+  secondDateRevisi: any;
+
+  alasanRevisi: any;
+  komentarRevisi: any;
+
+  private win: any = window;
+  imageURI: any = "";
+  imageShow: any = "assets/imgs/logo/camera.png";
+  fileDocPath: any;
+  fileName: any;
+  fileType: any;
+  imageFileName: any;
+
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
@@ -91,9 +115,11 @@ export class InboxDetailPage {
     private datePicker: DatePicker,
     public datePipe: DatePipe,
     public platform: Platform,
-    public transfer: FileTransfer,
-    public file: File,
-    public fileOpener: FileOpener
+    public transfer: FileTransfer, public file: File,
+    public fileOpener: FileOpener,
+    public camera: Camera,
+    public filepath: FilePath,
+    public fileChooser: FileChooser
   ) {
     oneSignal.startInit(oneSignalAppId, sender_id);
     oneSignal.endInit();
@@ -103,11 +129,14 @@ export class InboxDetailPage {
     this.showDetailPesan = !this.showDetailPesan;
   }
 
-  ionViewWillLoad() {}
+  ionViewWillLoad() { }
 
   ionViewDidLoad() {
     this.isLoading = true;
     this.messageData = this.navParams.get("messageData");
+    this.isRevisi = this.navParams.get("isRevisi");
+    console.log(this.isRevisi);
+
     // console.log(this.messageData);
     this.from_modul = this.navParams.get("from_modul");
     this.storage.get("userdataTPK").then((val) => {
@@ -157,16 +186,33 @@ export class InboxDetailPage {
           this.messageDetail = responData["data"];
           console.log(this.messageDetail);
 
-          if (this.messageData["Status"].indexOf("PERIKSA") != -1) {
-            var mySubString = this.messageData["Status"].substring(this.messageData["Status"].indexOf("(") + 1, this.messageData["Status"].lastIndexOf(")"));
+          if (this.isRevisi == true) {
+            var tglMulaiSplit = this.messageDetail['Agenda']['Tanggal Mulai'].split('-');
+            var tglSelesaiSplit = this.messageDetail['Agenda']['Tanggal Akhir'].split('-');
+            console.log(tglMulaiSplit);
+            var dateMulai = new Date(tglMulaiSplit[2], tglMulaiSplit[1], tglMulaiSplit[0]);
 
-            var split = mySubString.split("/");
+            var dateSelesai = new Date(tglSelesaiSplit[2], tglSelesaiSplit[1], tglSelesaiSplit[0]);
+            console.log(dateMulai);
+            this.tanggalMulaiRevisi = this.datePipe.transform(dateMulai, 'dd/MM/yyyy');
+            this.tanggalSelesaiRevisi = this.datePipe.transform(dateSelesai, 'dd/MM/yyyy');
+          }
 
-            this.messageDetail["URUT_PEMERIKSA"] = split[0];
-            this.messageDetail["JUMLAH_PEMERIKSA"] = split[1];
-          } else {
-            this.messageDetail["URUT_PEMERIKSA"] = "";
-            this.messageDetail["JUMLAH_PEMERIKSA"] = "";
+          if (this.messageDetail.hasOwnProperty['Status']) {
+            if (this.messageData['Status'].indexOf('PERIKSA') != -1) {
+              var mySubString = this.messageData['Status'].substring(
+                this.messageData['Status'].indexOf("(") + 1,
+                this.messageData['Status'].lastIndexOf(")")
+              );
+
+              var split = mySubString.split('/');
+
+              this.messageDetail['URUT_PEMERIKSA'] = split[0];
+              this.messageDetail['JUMLAH_PEMERIKSA'] = split[1];
+            } else {
+              this.messageDetail['URUT_PEMERIKSA'] = '';
+              this.messageDetail['JUMLAH_PEMERIKSA'] = '';
+            }
           }
           console.log(this.messageDetail);
 
@@ -294,7 +340,7 @@ export class InboxDetailPage {
             this.getDataBawahan();
             this.getPenerima();
 
-            this.storage.set("userdataTPK", responData).then(() => {});
+            this.storage.set("userdataTPK", responData).then(() => { });
           }
         } else {
         }
@@ -460,7 +506,7 @@ export class InboxDetailPage {
         {
           text: "TIDAK",
           role: "cancel",
-          handler: () => {},
+          handler: () => { },
         },
         {
           text: "YA",
@@ -644,7 +690,7 @@ export class InboxDetailPage {
             {
               text: "TIDAK",
               role: "cancel",
-              handler: () => {},
+              handler: () => { },
             },
             {
               text: "YA",
@@ -714,7 +760,7 @@ export class InboxDetailPage {
             {
               text: "TIDAK",
               role: "cancel",
-              handler: () => {},
+              handler: () => { },
             },
             {
               text: "YA",
@@ -784,7 +830,7 @@ export class InboxDetailPage {
             {
               text: "TIDAK",
               role: "cancel",
-              handler: () => {},
+              handler: () => { },
             },
             {
               text: "YA",
@@ -1473,7 +1519,15 @@ export class InboxDetailPage {
       dismissOnPageChange: true,
     });
     loading.present();
-    var link = "";
+
+    var link = '';
+    link = urldownload_srt + 'DownloadMobile/cetak_cuti_recreate/' + this.messageDetail['ID Surat'] + '/' + this.userdataTPK['data']['IDJABATAN'];
+
+    var link2 = '';
+    link2 = urldownload_srt + 'DownloadMobile/cetak_cuti_generate/' + this.messageDetail['ID Surat'] + '/' + this.userdataTPK['data']['IDJABATAN'];
+
+    var localPath1 = '';
+    var localPath2 = '';
     const fileTransfer: FileTransferObject = this.transfer.create();
     link = urldownload_srt + "outbox/cetak_surat_dup/prev_dir_dup/" + this.messageDetail["ID Surat"];
     fileTransfer.download(link, this.file.dataDirectory + "Generate_" + this.messageData["NO_SURAT"] + ".pdf").then(
@@ -1511,14 +1565,400 @@ export class InboxDetailPage {
     );
   }
 
-  downloadCuti(data) {
-    let loading = this.loadingCtrl.create({
-      spinner: "dots",
-      content: "Mengunduh surat...",
-      cssClass: "transparent",
-      dismissOnPageChange: true,
+
+  showDatePickerRevisi(type: number) {
+
+    var myDate;
+
+    if (type == 1) {
+      myDate = new Date();
+      this.datePicker.show({
+        date: myDate,
+        mode: 'date',
+        minDate: this.platform.is('ios') ? new Date() : (new Date()).valueOf(),
+        androidTheme: this.datePicker.ANDROID_THEMES.THEME_HOLO_LIGHT
+      }).then(date => {
+        this.firstDateRevisi = date;
+        this.tanggalMulaiRevisi = this.datePipe.transform(date, 'dd/MM/yyyy');
+        this.startTglSelesaiRevisi = date;
+      },
+        err => console.log('Error occurred while getting date: ', err)
+      );
+    } else if (type == 2) {
+      if (this.tanggalMulaiRevisi == '') {
+        let toast = this.toastCtrl.create({
+          message: 'tanggal mulai harus diisi dahulu.',
+          duration: 3000,
+          position: 'bottom'
+        });
+        toast.present();
+      } else {
+        myDate = new Date(this.startTglSelesaiRevisi);
+        this.datePicker.show({
+          date: myDate,
+          mode: 'date',
+          minDate: this.platform.is('ios') ? new Date() : (new Date()).valueOf(),
+          androidTheme: this.datePicker.ANDROID_THEMES.THEME_HOLO_LIGHT
+        }).then(date => {
+          this.secondDateRevisi = date;
+          this.tanggalSelesaiRevisi = this.datePipe.transform(date, 'dd/MM/yyyy');
+        },
+          err => console.log('Error occurred while getting date: ', err)
+        );
+      }
+    }
+  }
+
+  takeImage(sourceType: number, type) {
+    let mType = this.camera.MediaType.PICTURE;
+    // console.log(mType);
+
+    var options = {
+      quality: 100,
+      mediaType: mType,
+      sourceType: sourceType,
+      saveToPhotoAlbum: false,
+      correctOrientation: true
+    };
+
+    this.camera.getPicture(options).then((imageData) => {
+      let URI;
+      this.imageShow = this.win.Ionic.WebView.convertFileSrc(imageData);
+      this.imageURI = imageData;
+      URI = this.imageURI;
+
+
+      if (this.platform.is('android') && sourceType === this.camera.PictureSourceType.PHOTOLIBRARY) {
+        this.filepath.resolveNativePath(URI)
+          .then(filePath => {
+            let correctPath = filePath.substr(0, filePath.lastIndexOf('/') + 1);
+            let currentName = imageData.substring(imageData.lastIndexOf('/') + 1, imageData.lastIndexOf('?'));
+            this.copyFileToLocalDir(correctPath, currentName, this.createFileName(type), type);
+          });
+      } else {
+        var currentName = imageData.substr(imageData.lastIndexOf('/') + 1);
+        var correctPath = imageData.substr(0, imageData.lastIndexOf('/') + 1);
+        this.copyFileToLocalDir(correctPath, currentName, this.createFileName(type), type);
+      }
+      console.log(URI);
+    }, (err) => {
+      console.log(err);
     });
-    loading.present();
+  }
+
+  private copyFileToLocalDir(namePath, currentName, filename, type) {
+    this.file.copyFile(namePath, currentName, this.file.dataDirectory, filename).then(success => {
+      this.imageFileName = filename;
+      console.log(this.imageFileName);
+    }, error => {
+      console.log('Error while storing file: ' + error);
+    });
+  }
+
+  private createFileName(type) {
+    var newFileName = '';
+
+    if (this.fileType == 'gambar') {
+      var d = new Date(), n = d.getTime();
+      newFileName = n + "_SPPD.jpg";
+    } else {
+      // console.log('error disini');
+    }
+
+
+    // console.log(newFileName);
+    return newFileName;
+  }
+
+  public pathForImage(img) {
+    if (img === null) {
+      return '';
+    } else {
+      return this.file.dataDirectory + img;
+    }
+  }
+
+  upload(idSurat, loader) {
+    // console.log(this.fileDocPath);
+    if (this.fileType == 'file') {
+      const fileTransfer: FileTransferObject = this.transfer.create();
+      var options = {
+        fileKey: "file",
+        fileName: this.fileName,
+        chunkedMode: false,
+        mimeType: "multipart/form-data",
+        params: { id_surat: idSurat, type: '1' }
+      };
+
+      fileTransfer.upload(
+        this.fileDocPath,
+        url_upload_sppd, options)
+        .then((data) => {
+          // console.log(JSON.stringify(data));
+          // console.log(" Uploaded Successfully");    
+          if (data['responseCode'] == 200) {
+            var responData = JSON.parse(String(data['response']));
+            // console.log(responData);
+
+            if (responData['rcmsg'] == 'SUCCESS') {
+              let toast = this.toastCtrl.create({
+                message: 'Revisi SPPD Berhasil.',
+                duration: 3000,
+                position: 'bottom'
+              });
+              toast.present();
+              loader.dismiss();
+              this.navCtrl.pop();
+            } else {
+              let toast = this.toastCtrl.create({
+                message: "Revisi SPPD Berhasil, namun file attachment gagal diupload, silahkan hubungi admin.",
+                duration: 3000,
+                position: 'bottom'
+              });
+              toast.present();
+              loader.dismiss();
+              this.navCtrl.pop();
+            }
+          } else {
+            let toast = this.toastCtrl.create({
+              message: "Revisi SPPD Berhasil, namun file attachment gagal diupload, silahkan hubungi admin.",
+              duration: 3000,
+              position: 'bottom'
+            });
+            toast.present();
+            loader.dismiss();
+            this.navCtrl.pop();
+          }
+
+        }, (err) => {
+          // console.log("masuk sini");
+          // console.log(err);
+          let toast = this.toastCtrl.create({
+            message: "Revisi SPPD Berhasil, namun file attachment gagal diupload, silahkan hubungi admin.",
+            duration: 3000,
+            position: 'bottom'
+          });
+          toast.present();
+          loader.dismiss();
+          this.navCtrl.pop();
+
+          // this.presentToast(err);
+        });
+    } else if (this.fileType == 'gambar') {
+      console.log(this.imageFileName);
+      console.log("image file path : " + this.pathForImage(this.imageFileName));
+      const fileTransfer: FileTransferObject = this.transfer.create();
+
+      var options = {
+        fileKey: "file",
+        fileName: this.fileName,
+        chunkedMode: false,
+        mimeType: "multipart/form-data",
+        params: { id_surat: idSurat, type: '1' }
+      };
+
+      fileTransfer.upload(
+        this.pathForImage(this.imageFileName),
+        url_upload_sppd, options)
+        .then((data) => {
+          if (data['responseCode'] == 200) {
+
+            var responData = JSON.parse(String(data['response']));
+            console.log(responData);
+
+            if (responData['rcmsg'] == 'SUCCESS') {
+              let toast = this.toastCtrl.create({
+                message: 'Pengajuan SPPD Berhasil.',
+                duration: 3000,
+                position: 'bottom'
+              });
+              toast.present();
+              loader.dismiss();
+              this.navCtrl.pop();
+
+            } else {
+              let toast = this.toastCtrl.create({
+                message: "Revisi SPPD Berhasil, namun file attachment gagal diupload, silahkan hubungi admin.",
+                duration: 3000,
+                position: 'bottom'
+              });
+              toast.present();
+              loader.dismiss();
+              this.navCtrl.pop();
+            }
+          } else {
+            let toast = this.toastCtrl.create({
+              message: "Revisi SPPD Berhasil, namun file attachment gagal diupload, silahkan hubungi admin.",
+              duration: 3000,
+              position: 'bottom'
+            });
+            toast.present();
+            loader.dismiss();
+            this.navCtrl.pop();
+          }
+        }, (err) => {
+          // console.log("masuk sini");
+          // console.log(err);
+          let toast = this.toastCtrl.create({
+            message: "Revisi SPPD Berhasil, namun file attachment gagal diupload, silahkan hubungi admin.",
+            duration: 3000,
+            position: 'bottom'
+          });
+          toast.present();
+          loader.dismiss();
+          this.navCtrl.pop();
+
+
+        });
+    }
+  }
+
+  openChooser(type) {
+    this.fileChooser.open()
+      .then(uri => {
+        this.fileDocPath = uri;
+        this.fileName = uri.substr(uri.lastIndexOf('/') + 1);
+        this.fileName = this.fileName.substr(10);
+        this.fileName = this.fileName.replace(/%20/g, " ");
+
+        console.log(this.fileName);
+      })
+      .catch(e => {
+        // console.log(e)
+      });
+  }
+
+  doRevisi() {
+    var err = [];
+    if (this.tanggalMulaiRevisi == '' || this.tanggalMulaiRevisi == null) {
+      err.push("Tanggal Mulai");
+    }
+    if (this.tanggalSelesaiRevisi == '' || this.tanggalSelesaiRevisi == null) {
+      err.push("Tanggal Selesai");
+    }
+    if (this.alasanRevisi == '' || this.alasanRevisi == null) {
+      err.push("Alasan Revisi");
+    }
+    if (this.komentarRevisi == '' || this.komentarRevisi == null) {
+      err.push("Komentar Revisi");
+    }
+
+    var showErr = '';
+
+    for (var i = 0; i < err.length; i++) {
+      if (i == err.length - 1) {
+        showErr = showErr + err[i];
+      } else {
+        showErr = showErr + err[i] + ', ';
+      }
+    }
+
+    if (err.length > 0) {
+      let alertError = this.alertCtrl.create({
+        title: 'Peringatan',
+        subTitle: 'Field ' + showErr + ' tidak boleh kosong !',
+        cssClass: 'alert',
+        buttons: [
+          {
+            text: 'TUTUP',
+            role: 'cancel',
+            handler: () => {
+              //console.log('Cancel clicked');
+            }
+          }
+        ]
+      });
+      alertError.present();
+    } else {
+      let alert = this.alertCtrl.create({
+        subTitle: 'Anda yakin ingin melakukan revisi SPPD?',
+        cssClass: 'alert',
+        buttons: [
+          {
+            text: 'TIDAK',
+            role: 'cancel',
+            handler: () => {
+              //console.log('Cancel clicked');
+            }
+          },
+          {
+            text: 'YA',
+            handler: () => {
+
+              let loading = this.loadingCtrl.create({
+                spinner: 'dots',
+                content: "Mengirim revisi SPPD, Mohon Tunggu...",
+                cssClass: 'transparent',
+                dismissOnPageChange: true
+              });
+              loading.present();
+
+              this.soapService
+                .post(api_base_url, 'eoffice_revisi_sppd', {
+                  fStream: JSON.stringify({
+                    usernameEDI: api_user,
+                    passwordEDI: api_pass,
+                    nipp_pembuat: this.userdataTPK["data"]["NIPP"],
+                    nama_pembuat: this.userdataTPK["data"]["NAMA"],
+                    id_pembuat: this.userdataTPK["data"]["IDUSER"],
+                    tgl_surat: '',
+                    tgl_mulai: this.tanggalMulaiRevisi,
+                    tgl_selesai: this.tanggalSelesaiRevisi,
+                    komentar: this.komentarRevisi,
+                    id_surat_asli: atob(this.messageDetail["ID Surat"]),
+                    alasan_revisi: this.alasanRevisi
+                  })
+                }).then((result) => {
+                  var responData = JSON.parse(String(result));
+                  if (responData["rcmsg"] == "SUCCESS") {
+                    if ((this.imageURI != '') || (this.fileName != null)) {
+                      this.upload(responData['data']['ID_SURAT'], loading);
+                    } else {
+                      let toast = this.toastCtrl.create({
+                        message: 'Revisi SPPD Berhasil.',
+                        duration: 3000,
+                        position: 'bottom'
+                      });
+                      toast.present();
+                      loading.dismiss();
+                      this.navCtrl.pop();
+                    }
+                  } else {
+                    let toast = this.toastCtrl.create({
+                      message: "Gagal Revisi SPPD, silahkan coba kembali.",
+                      duration: 3000,
+                      position: 'bottom'
+                    });
+                    toast.present();
+                    loading.dismiss();
+                  }
+
+                }).catch((error) => {
+                  let toast = this.toastCtrl.create({
+                    message: 'Input gagal, silahkan periksa koneksi internet anda.',
+                    duration: 3000,
+                    position: 'bottom'
+                  });
+                  toast.present();
+                  loading.dismiss();
+                });
+
+            }
+          }
+        ]
+      });
+      alert.present();
+    }
+
+
+
+  }
+
+}
+
+
+
+
 
     var link = "";
     link = urldownload_srt + "DownloadMobile/cetak_cuti_recreate/" + this.messageDetail["ID Surat"] + "/" + this.userdataTPK["data"]["IDJABATAN"];

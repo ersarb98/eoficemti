@@ -18,380 +18,729 @@
 </ion-header>
 
 <ion-content padding>
-  <ion-card class="my-card">
-    <ion-card-content>
-      <div class="header-text">
-        <span ion-text text-wrap class="font-small">
-          <b>Kepala Surat</b>
-        </span>
-      </div>
-      <div class="garis"></div>
-
-      <span ion-text text-wrap class="font-mini" color="color4">
-        Tanggal
-      </span> <br>
-      <span ion-text text-wrap class="font-small">
-        {{ tglPengajuan }}
-      </span> <br>
-
-      <span ion-text text-wrap class="font-mini" color="color4">
-        Klasifikasi Masalah
-      </span> <br>
-      <span ion-text text-wrap class="font-small">
-        UM.340-Surat perintah jalan/ Pindah
-      </span> <br>
-
-      <div class="row">
-        <div col="col">
-          <ion-item>
-            <ion-label stacked>Tanggal Mulai</ion-label>
-            <ion-input type="text" [readonly]="true" (ionFocus)="showDatePicker(1)" (click)="showDatePicker(1)"
-              [(ngModel)]="tanggalMulai"></ion-input>
-          </ion-item>
+  <div *ngIf="isLoading == false && dataSPPD != null">
+    <ion-card class="my-card">
+      <ion-card-content>
+        <div class="header-text">
+          <span ion-text text-wrap class="font-small">
+            <b>Kepala Surat</b>
+          </span>
         </div>
-        <div col="col">
-          <div style="
+        <div class="garis"></div>
+
+        <span ion-text text-wrap class="font-mini" color="color4">
+          Tanggal
+        </span> <br>
+        <span ion-text text-wrap class="font-small">
+          {{ tglPengajuan }}
+        </span> <br>
+
+        <span ion-text text-wrap class="font-mini" color="color4">
+          Klasifikasi Masalah
+        </span> <br>
+        <span ion-text text-wrap class="font-small">
+          670 | Perjalanan Dinas
+        </span> <br>
+
+        <ion-item>
+          <ion-label stacked>Klasifikasi Perjalanan Dinas</ion-label>
+          <ion-select [(ngModel)]="klasifikasiPerjalananDinas" placeholder="">
+            <ion-option value="Dalam Negeri">Dalam Negeri</ion-option>
+            <ion-option value="Luar Negeri">Luar Negeri</ion-option>
+            <ion-option value="Pindah Tugas">Pindah Tugas</ion-option>
+          </ion-select>
+        </ion-item>
+
+        <div class="row">
+          <div col="col">
+            <ion-item>
+              <ion-label stacked>Tanggal Mulai</ion-label>
+              <ion-input type="text" [readonly]="true" (ionFocus)="showDatePicker(1)" (click)="showDatePicker(1)"
+                [(ngModel)]="tanggalMulai"></ion-input>
+            </ion-item>
+          </div>
+          <div col="col">
+            <div style="
             text-align: center;
             width: 100%;                    
             height: 100%;          
             margin-top: 45px;
             font-size: 1.2rem;">
-            <span ion-text text-wrap color="color4">
-              s/d
+              <span ion-text text-wrap color="color4">
+                s/d
+              </span>
+            </div>
+          </div>
+          <div col="col">
+            <ion-item>
+              <ion-label stacked>Tanggal Selesai</ion-label>
+              <ion-input type="text" [readonly]="true" (ionFocus)="showDatePicker(2)" (click)="showDatePicker(2)"
+                [(ngModel)]="tanggalSelesai"></ion-input>
+            </ion-item>
+          </div>
+
+          <ion-item>
+            <span item-left>
+              <img src="assets/imgs/menu-icon/alamat.png" class="icons">
             </span>
+            <ion-label stacked>Kota Asal</ion-label>
+            <ion-input type="text" [(ngModel)]="kotaAsal"></ion-input>
+          </ion-item>
+
+
+          <ion-item>
+            <span item-left>
+              <img src="assets/imgs/menu-icon/alamat.png" class="icons">
+            </span>
+            <ion-label stacked>Kota Tujuan</ion-label>
+            <!-- <ion-textarea rows="3" [(ngModel)]="lokasi"></ion-textarea> -->
+            <ion-input type="text" [(ngModel)]="kotaTujuan"></ion-input>
+          </ion-item>
+
+          <ion-item>
+            <span item-left>
+              <img src="assets/imgs/menu-icon/alasan.png" class="icons">
+            </span>
+            <ion-label stacked>Perihal</ion-label>
+            <ion-input type="text" [(ngModel)]="perihal"></ion-input>
+          </ion-item>
+
+          <ion-item>
+            <span item-left>
+              <img src="assets/imgs/menu-icon/alasan.png" class="icons">
+            </span>
+            <ion-label stacked>Proyek</ion-label>
+            <ion-select [(ngModel)]="proyek" placeholder="">
+              <ion-option *ngFor="let proyek of dataSPPD['DATA_PROYEK']" value="{{ proyek['KD_PROJEK'] }}">
+                {{ proyek['NAMA_PROJEK'] }}</ion-option>
+            </ion-select>
+          </ion-item>
+
+          <ion-item>
+            <span item-left>
+              <img src="assets/imgs/menu-icon/alasan.png" class="icons">
+            </span>
+            <ion-label stacked>Angkutan yang Digunakan</ion-label>
+            <ion-select [(ngModel)]="angkutan" placeholder="">
+              <ion-option value="Darat">Darat</ion-option>
+              <ion-option value="Udara">Udara</ion-option>
+              <ion-option value="Laut">Laut</ion-option>
+            </ion-select>
+          </ion-item>
+
+          <ion-item>
+            <span item-left>
+              <img src="assets/imgs/menu-icon/alamat.png" class="icons">
+            </span>
+            <ion-label stacked>Maksud Perjalanan Dinas</ion-label>
+            <ion-textarea rows="3" [(ngModel)]="maksudDinas"></ion-textarea>
+          </ion-item>
+
+          <ion-item>
+            <span item-left>
+              <img src="assets/imgs/menu-icon/alamat.png" class="icons">
+            </span>
+            <ion-label stacked>Nama Hotel</ion-label>
+            <ion-textarea rows="2" [(ngModel)]="namaHotel"></ion-textarea>
+          </ion-item>
+
+          <div style="position: relative; width: 100%;">
+            <br>
+            <span ion-text="" style="color: #959595" text-wrap="" class="text text-md">Membutuhkan Ruang Rapat</span>
+            <div style="margin-top: 15px">
+              <label class="radio-button">
+                <input type="checkbox" [(ngModel)]="isRuangRapat" (click)="toggleRuangRapat()" id="isRuangRapat" name="isRuangRapat" value="Membutuhkan Ruang Rapat" />
+                <span class="label-visible">
+                  <span class="fake-checkbox"></span>
+                  Ya
+                </span>
+              </label>
+            </div>
+          </div>
+
+          <div *ngIf="showRuangRapat == true" >
+            <ion-item>
+              <ion-label stacked>Ruang Rapat</ion-label>
+              <ion-textarea rows="2" [(ngModel)]="ruangRapat"></ion-textarea>
+            </ion-item>
+  
+            <ion-item>
+              <ion-label stacked>Tipe Ruang Rapat</ion-label>
+              <ion-input type="text" [(ngModel)]="tipeRuangRapat"></ion-input>
+            </ion-item>
+          </div>
+
+          <div style="position: relative; width: 100%;">
+            <br>
+            <span ion-text="" style="color: #959595" text-wrap="" class="text text-md">Membutuhkan Jamuan Rapat</span>
+            <div style="margin-top: 15px">
+              <label class="radio-button">
+                <input type="checkbox" [(ngModel)]="isJamuanRapat" (click)="toggleJamuanRapat()" id="isJamuanRapat" name="isJamuanRapat" value="Membutuhkan Jamuan Rapat" />
+                <span class="label-visible">
+                  <span class="fake-checkbox"></span>
+                  Ya
+                </span>
+              </label>
+            </div>
+          </div>
+
+          <div *ngIf="showJamuan == true">
+            <div style="position: relative; width: 100%;" >
+              <br>
+              <span ion-text="" style="color: #959595" text-wrap="" class="text text-md">Jamuan Rapat</span>
+  
+              <div style="margin-top: 10px">
+                <label class="radio-button">
+                  <input type="radio" [(ngModel)]="jamuanRapat" id="jamuanRapatYa" name="jamuanRapat" value="Fullday" checked />
+                  <!-- <label for="WFH">WFH (Work From Home)</label> -->
+                  <span class="label-visible">
+                    <span class="fake-radiobutton"></span>
+                    Fullday
+                  </span>
+                </label>
+              </div>
+              <div style="margin-top: 15px">
+                <label class="radio-button">
+                  <input type="radio" [(ngModel)]="jamuanRapat" id="jamuanRapatNo" name="jamuanRapat" value="Halfday" />
+                  <!-- <label for="WFC">WFC (Work From Client)</label> -->
+                  <span class="label-visible">
+                    <span class="fake-radiobutton"></span>
+                    Halfday
+                  </span>
+                </label>
+              </div>
+            </div>
+
+            <div style="position: relative; width: 100%;" >
+              <br>
+              <span ion-text="" style="color: #959595" text-wrap="" class="text text-md">Konsumsi Jamuan Rapat</span>
+  
+              <div style="margin-top: 10px">
+                <label class="radio-button">
+                  <input type="radio" [(ngModel)]="konsumsiJamuanRapat" id="konsumsiJamuanRapatYa" name="konsumsiJamuanRapat" value="Coffe Break" checked />
+                  <!-- <label for="WFH">WFH (Work From Home)</label> -->
+                  <span class="label-visible">
+                    <span class="fake-radiobutton"></span>
+                    Coffe Break
+                  </span>
+                </label>
+              </div>
+              <div style="margin-top: 15px">
+                <label class="radio-button">
+                  <input type="radio" [(ngModel)]="konsumsiJamuanRapat" id="konsumsiJamuanRapatNo" name="konsumsiJamuanRapat" value="Lunch" />
+                  <!-- <label for="WFC">WFC (Work From Client)</label> -->
+                  <span class="label-visible">
+                    <span class="fake-radiobutton"></span>
+                    Lunch
+                  </span>
+                </label>
+              </div>
+              <div style="margin-top: 15px">
+                <label class="radio-button">
+                  <input type="radio" [(ngModel)]="konsumsiJamuanRapat" id="konsumsiJamuanRapatNo" name="konsumsiJamuanRapat" value="Dinner" />
+                  <!-- <label for="WFC">WFC (Work From Client)</label> -->
+                  <span class="label-visible">
+                    <span class="fake-radiobutton"></span>
+                    Dinner
+                  </span>
+                </label>
+              </div>
+            </div>
+          </div>
+
+          <div style="position: relative; width: 100%;" *ngIf="showLaundry == true">
+            <br>
+            <span ion-text="" style="color: #959595" text-wrap="" class="text text-md">Laundry</span>
+
+            <div style="margin-top: 10px">
+              <label class="radio-button">
+                <input type="radio" [(ngModel)]="laundry" id="laundryYa" name="laundry" value="YA" checked />
+                <!-- <label for="WFH">WFH (Work From Home)</label> -->
+                <span class="label-visible">
+                  <span class="fake-radiobutton"></span>
+                  Ya
+                </span>
+              </label>
+            </div>
+            <div style="margin-top: 15px">
+              <label class="radio-button">
+                <input type="radio" [(ngModel)]="laundry" id="laundryNo" name="laundry" value="TIDAK" />
+                <!-- <label for="WFC">WFC (Work From Client)</label> -->
+                <span class="label-visible">
+                  <span class="fake-radiobutton"></span>
+                  Tidak
+                </span>
+              </label>
+            </div>
+          </div>
+
+          <div style="position: relative; width: 100%;" >
+            <br>
+            <span ion-text="" style="color: #959595" text-wrap="" class="text text-md">Screening Antigen/PCR</span>
+
+            <div style="margin-top: 10px">
+              <label class="radio-button">
+                <input type="radio" [(ngModel)]="screeningCovid" id="screeningYa" name="screening_covid" value="YA" checked />
+                <!-- <label for="WFH">WFH (Work From Home)</label> -->
+                <span class="label-visible">
+                  <span class="fake-radiobutton"></span>
+                  Ya
+                </span>
+              </label>
+            </div>
+            <div style="margin-top: 15px">
+              <label class="radio-button">
+                <input type="radio" [(ngModel)]="screeningCovid" id="screeningNo" name="screening_covid" value="TIDAK" />
+                <!-- <label for="WFC">WFC (Work From Client)</label> -->
+                <span class="label-visible">
+                  <span class="fake-radiobutton"></span>
+                  Tidak
+                </span>
+              </label>
+            </div>
+          </div>
+          <br>
+
+          <ion-item>
+            <span item-left>
+              <img src="assets/imgs/logo/document-icon.png" class="icons">
+            </span>
+            <ion-label stacked>Lampiran</ion-label>
+            <ion-input type="text" [(ngModel)]="lampiran"></ion-input>
+          </ion-item>
+
+          <div class="row" style="width:100%;">
+            <div class="col">
+              <ion-item>
+                <ion-label stacked>Prioritas</ion-label>
+                <ion-select [(ngModel)]="prioritas" placeholder="">
+                  <ion-option value="0">Normal</ion-option>
+                  <ion-option value="1">Penting</ion-option>
+                  <ion-option value="2">Mendesak</ion-option>
+                </ion-select>
+              </ion-item>
+            </div>
+            <div class="col">
+              <ion-item>
+                <ion-label stacked>Klasifikasi</ion-label>
+                <ion-select [(ngModel)]="klasifikasi" placeholder="">
+                  <ion-option value="0">Biasa</ion-option>
+                  <ion-option value="1">Rahasia</ion-option>
+                </ion-select>
+              </ion-item>
+            </div>
           </div>
         </div>
-        <div col="col">
-          <ion-item>
-            <ion-label stacked>Tanggal Selesai</ion-label>
-            <ion-input type="text" [readonly]="true" (ionFocus)="showDatePicker(2)" (click)="showDatePicker(2)"
-              [(ngModel)]="tanggalSelesai"></ion-input>
+      </ion-card-content>
+    </ion-card>
+    <br>
+
+    <ion-card class="my-card">
+      <ion-card-content>
+        <div class="header-text">
+          <span ion-text text-wrap class="font-small">
+            <b>Penanggung Jawab</b>
+          </span>
+        </div>
+        <div class="garis"></div>
+        <ion-item>
+          <span item-left>
+            <img src="assets/imgs/logo/nipp.png" class="icons">
+          </span>
+          <ion-label stacked>Nama | Jabatan</ion-label>
+          <ion-input type="text" [(ngModel)]="penanggungJawab" (keyup)="getPenanggungJawab()"></ion-input>
+        </ion-item>
+        <div *ngIf="searchResultPenanggungJawabList.length > 0 && showResultPenanggungJawab">
+          <ion-item *ngFor="let searchResultPenanggungJawab of searchResultPenanggungJawabList" no-margin>
+            <span ion-text text-wrap style="font-size:1.3rem !important;"
+              (click)="setPenanggungJawab(searchResultPenanggungJawab)">
+              {{searchResultPenanggungJawab['NM_JABATAN'] }} | {{ searchResultPenanggungJawab['NAMA'] }}</span>
           </ion-item>
         </div>
 
+        <br>
+
+        <div *ngIf='dataPenanggungJawab != null'>
+          <div class="row">
+            <div class="col">
+              <span ion-text text-wrap class="font-mini" color="color4">
+                NIPP
+              </span> <br>
+              <span ion-text text-wrap class="font-small">
+                {{dataPenanggungJawab['NIPP']}}
+              </span>
+            </div>
+            <div class="col">
+              <span ion-text text-wrap class="font-mini" color="color4">
+                Nama
+              </span> <br>
+              <span ion-text text-wrap class="font-small">
+                {{dataPenanggungJawab['NAMA']}}
+              </span> <br>
+            </div>
+          </div>
+
+          <span ion-text text-wrap class="font-mini" color="color4">
+            Jabatan
+          </span> <br>
+          <span ion-text text-wrap class="font-small">
+            {{dataPenanggungJawab['NM_JABATAN']}}
+          </span> <br>
+        </div>
+      </ion-card-content>
+    </ion-card>
+
+    <br>
+
+    <ion-card class="my-card">
+      <ion-card-content>
+        <div class="header-text">
+          <span ion-text text-wrap class="font-small">
+            <b>Pengirim</b>
+          </span>
+        </div>
+        <div class="garis"></div>
         <ion-item>
           <span item-left>
-            <img src="assets/imgs/menu-icon/alamat.png" class="icons">
+            <img src="assets/imgs/logo/nipp.png" class="icons">
           </span>
-          <ion-label stacked>Lokasi</ion-label>
-          <ion-textarea rows="3" [(ngModel)]="lokasi"></ion-textarea>
+          <ion-label stacked>Jabatan</ion-label>
+          <ion-input type="text" [(ngModel)]="jabatanPengirim" (keyup)="getPengirim()"></ion-input>
         </ion-item>
+        <div *ngIf="searchResultPengirimList.length > 0 && showResultPengirim">
+          <ion-item *ngFor="let searchResultPengirim of searchResultPengirimList" no-margin>
+            <span ion-text text-wrap style="font-size:1.3rem !important;" (click)="setPengirim(searchResultPengirim)">
+              {{searchResultPengirim['NM_JABATAN'] }} - {{ searchResultPengirim['NAMA'] }}</span>
+          </ion-item>
+        </div>
+
+        <br>
+
+        <div *ngIf='pengirim != null'>
+          <div class="row">
+            <div class="col">
+              <span ion-text text-wrap class="font-mini" color="color4">
+                NIPP
+              </span> <br>
+              <span ion-text text-wrap class="font-small">
+                {{pengirim['NIPP']}}
+              </span>
+            </div>
+            <div class="col">
+              <span ion-text text-wrap class="font-mini" color="color4">
+                Nama
+              </span> <br>
+              <span ion-text text-wrap class="font-small">
+                {{pengirim['NAMA']}}
+              </span> <br>
+            </div>
+          </div>
+
+          <span ion-text text-wrap class="font-mini" color="color4">
+            Divisi
+          </span> <br>
+          <span ion-text text-wrap class="font-small">
+            {{pengirim['BAWAHAN']}}
+          </span> <br>
+
+          <span ion-text text-wrap class="font-mini" color="color4">
+            Direktorat
+          </span> <br>
+          <span ion-text text-wrap class="font-small">
+            {{pengirim['ATASAN']}}
+          </span> <br>
+        </div>
+      </ion-card-content>
+    </ion-card>
+
+    <br>
+
+    <ion-card class="my-card">
+      <ion-card-content>
+        <div class="header-text">
+          <span ion-text text-wrap class="font-small">
+            <b>Penerima</b>
+          </span>
+        </div>
+        <div class="garis"></div>
+        <table width="100%">
+          <tr>
+            <td width="10%" valign="top">
+              1. 
+            </td>
+            <td>
+              <span ion-text text-wrap class="font-small">
+                GENERAL AFFAIR OFFICER_SPPD (Jabatan)
+              </span>
+            </td>
+          </tr>
+          <tr>
+            <td width="10%" valign="top">
+              2. 
+            </td>
+            <td>
+              <span ion-text text-wrap class="font-small">
+                Vice President Sumber Daya Manusia dan Umum (Tembusan)
+              </span>
+            </td>
+          </tr>
+          <tr>
+            <td width="10%" valign="top">
+              3. 
+            </td>
+            <td>
+              <span ion-text text-wrap class="font-small">
+                Deputy Vice President Administrasi dan Umum (Tembusan)
+              </span>
+            </td>
+          </tr>
+        </table>
+       
+       
+      </ion-card-content>
+    </ion-card>
+
+    <br>
+
+
+    <ion-card class="my-card">
+      <ion-card-content>
+        <div class="header-text">
+          <span ion-text text-wrap class="font-small">
+            <b>Pemeriksa</b>
+          </span>
+        </div>
+        <div class="garis"></div>
+        <div *ngFor="let pemeriksa of pemeriksaList; let i = index" margin-top>
+          <ion-item>
+            <span item-left>
+              <img src="assets/imgs/logo/pemeriksa.png" class="icons">
+            </span>
+            <ion-label stacked>Pemeriksa ke - {{ i+1 }}</ion-label>
+            <ion-input type="text" placeholder="" (keyup)="getPemeriksa(i, '')" (ionFocus)="checkFocus(i)"
+              [(ngModel)]="pemeriksa.value"></ion-input>
+
+            <ion-icon style="z-index:999; font-size:2.3rem; padding:8px 0 8px 0;" *ngIf="i == 0" name="add"
+              (click)="addPemeriksa()" color="primary" item-right></ion-icon>
+            <ion-icon style="z-index:999; font-size:2.3rem; padding:8px 0 8px 0;" *ngIf="i > 0" name="md-remove"
+              color="danger" (click)="removePemeriksa(i)" item-right>
+            </ion-icon>
+          </ion-item>
+
+          <div *ngIf="pemeriksaSearchResultList.length > 0 && showResult && pemeriksaInputFocused == i ">
+            <ion-item *ngFor="let pemeriksaSearchResult of pemeriksaSearchResultList" no-margin
+              (click)="setPemeriksa(pemeriksaSearchResult,i)">
+              <span ion-text text-wrap style="font-size:1.3rem !important;">
+                {{pemeriksaSearchResult['NAMA'] }} - {{ pemeriksaSearchResult['NM_JABATAN'] }}</span>
+            </ion-item>
+          </div>
+        </div>
+      </ion-card-content>
+    </ion-card>
+
+    <br>
+
+    <ion-card class="my-card">
+      <ion-card-content>
+        <div class="header-text">
+          <span ion-text text-wrap class="font-small">
+            <b>Peserta SPPD</b>
+          </span>
+        </div>
+        <div class="garis"></div>
+        <div *ngFor="let pesertaJabatan of pesertaJabatanList let i = index" margin-top>
+          <ion-item>
+            <span item-left>
+              <img src="assets/imgs/logo/peserta_jabatan.png" class="icons">
+            </span>
+            <ion-label stacked>Peserta Jabatan - {{ i+1 }}</ion-label>
+            <ion-input type="text" placeholder="" (keyup)="getPesertaJabatan(i, '')"
+              (ionFocus)="checkFocusPesertaJabatan(i)" [(ngModel)]="pesertaJabatan.value"></ion-input>
+
+            <ion-icon style="z-index:999; font-size:2.3rem; padding:8px 0 8px 0;" *ngIf="i == 0" name="add"
+              (click)="addPesertaJabatan()" color="primary" item-right></ion-icon>
+            <ion-icon style="z-index:999; font-size:2.3rem; padding:8px 0 8px 0;" *ngIf="i > 0" name="md-remove"
+              color="danger" (click)="removePesertaJabatan(i)" item-right>
+            </ion-icon>
+          </ion-item>
+
+          <div
+            *ngIf="pesertaJabatanSearchResultList.length > 0 && pesertaJabatanshowResult && pesertaJabatanInputFocused == i ">
+            <ion-item *ngFor="let pesertaJabatanSearchResult of pesertaJabatanSearchResultList" no-margin
+              (click)="setPesertaJabatan(pesertaJabatanSearchResult,i)">
+              <span ion-text text-wrap style="font-size:1.3rem !important;">
+                {{ pesertaJabatanSearchResult['NM_JABATAN'] }}</span>
+            </ion-item>
+          </div>
+        </div>
+
+        <br>
+
+        <div *ngFor="let pesertaPekerja of pesertaPekerjaList let i = index" margin-top>
+          <ion-item>
+            <span item-left>
+              <img src="assets/imgs/logo/peserta_pekerja.png" class="icons">
+            </span>
+            <ion-label stacked>Peserta Pekerja - {{ i+1 }}</ion-label>
+            <ion-input type="text" placeholder="" (keyup)="getPesertaPekerja(i, '')"
+              (ionFocus)="checkFocusPesertaPekerja(i)" [(ngModel)]="pesertaPekerja.value"></ion-input>
+
+            <ion-icon style="z-index:999; font-size:2.3rem; padding:8px 0 8px 0;" *ngIf="i == 0" name="add"
+              (click)="addPesertaPekerja()" color="primary" item-right></ion-icon>
+            <ion-icon style="z-index:999; font-size:2.3rem; padding:8px 0 8px 0;" *ngIf="i > 0" name="md-remove"
+              color="danger" (click)="removePesertaPekerja(i)" item-right>
+            </ion-icon>
+          </ion-item>
+
+          <div
+            *ngIf="pesertaPekerjaSearchResultList.length > 0 && pesertaPekerjashowResult && pesertaPekerjaInputFocused == i ">
+            <ion-item *ngFor="let pesertaPekerjaSearchResult of pesertaPekerjaSearchResultList" no-margin
+              (click)="setPesertaPekerja(pesertaPekerjaSearchResult,i)">
+              <span ion-text text-wrap style="font-size:1.3rem !important;">
+                {{ pesertaPekerjaSearchResult['NAMA'] }} | {{ pesertaPekerjaSearchResult['NM_JABATAN'] }}</span>
+            </ion-item>
+          </div>
+        </div>
+
+        <br>
+
+        <div *ngFor="let pesertaEksternal of pesertaEksternalList let i = index" margin-top>
+          <ion-item>
+            <span item-left>
+              <img src="assets/imgs/logo/peserta_eksternal.png" class="icons">
+            </span>
+            <ion-label stacked>Peserta Eksternal - {{ i+1 }}</ion-label>
+            <ion-input type="text" placeholder="" [(ngModel)]="pesertaEksternal.value"></ion-input>
+
+            <ion-icon style="z-index:999; font-size:2.3rem; padding:8px 0 8px 0;" *ngIf="i == 0" name="add"
+              (click)="addPesertaEksternal()" color="primary" item-right></ion-icon>
+            <ion-icon style="z-index:999; font-size:2.3rem; padding:8px 0 8px 0;" *ngIf="i > 0" name="md-remove"
+              color="danger" (click)="removePesertaEksternal(i)" item-right>
+            </ion-icon>
+          </ion-item>
+          <ion-item>
+            <ion-label stacked>Jabatan</ion-label>
+            <ion-input type="text" placeholder="" [(ngModel)]="pesertaEksternal.jabatan"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label stacked>Golongan</ion-label>
+            <ion-input type="text" placeholder="" [(ngModel)]="pesertaEksternal.golongan"></ion-input>
+          </ion-item>
+        </div>
+      </ion-card-content>
+    </ion-card>
+
+    <br>
+
+    <ion-card class="my-card">
+      <ion-card-content>
+        <div class="header-text">
+          <span ion-text text-wrap class="font-small">
+            <b>Komentar</b>
+          </span>
+        </div>
+        <div class="garis"></div>
 
         <ion-item>
           <span item-left>
-            <img src="assets/imgs/menu-icon/alasan.png" class="icons">
+            <img src="assets/imgs/logo/perihal.png" class="icons">
           </span>
-          <ion-label stacked>Perihal</ion-label>
-          <ion-input type="text" [(ngModel)]="perihal"></ion-input>
+          <ion-label stacked>komentar</ion-label>
+          <ion-textarea rows="3" [(ngModel)]="komentar"></ion-textarea>
         </ion-item>
+
+      </ion-card-content>
+    </ion-card>
+
+    <br>
+    <ion-card class="my-card">
+      <ion-card-content>
+        <div class="header-text">
+          <span ion-text text-wrap class="font-small">
+            <b>Upload Form Permintaan SPPD</b>
+          </span>
+        </div>
+        <div class="garis"></div>
 
         <ion-item>
           <span item-left>
             <img src="assets/imgs/logo/document-icon.png" class="icons">
           </span>
-          <ion-label stacked>Lampiran</ion-label>
-          <ion-input type="text" [(ngModel)]="lampiran"></ion-input>
+          <ion-label stacked>Upload File</ion-label>
+          <ion-select [(ngModel)]="fileType" cancelText="Cancel" okText="OK">
+            <div>
+              <ion-option value="file">File</ion-option>
+              <ion-option value="gambar">Foto</ion-option>
+            </div>
+          </ion-select>
         </ion-item>
 
-        <div class="row" style="width:100%;">
-          <div class="col">
-            <ion-item>
-              <ion-label stacked>Prioritas</ion-label>
-              <ion-select [(ngModel)]="prioritas" placeholder="">
-                <ion-option value="0">Normal</ion-option>
-                <ion-option value="1">Penting</ion-option>
-                <ion-option value="2">Mendesak</ion-option>
-              </ion-select>
-            </ion-item>
-          </div>
-          <div class="col">
-            <ion-item>
-              <ion-label stacked>Klasifikasi</ion-label>
-              <ion-select [(ngModel)]="klasifikasi" placeholder="">
-                <ion-option value="0">Biasa</ion-option>
-                <ion-option value="1">Rahasia</ion-option>
-              </ion-select>
-            </ion-item>
+        <div *ngIf="fileType == 'gambar'">
+          <div class="image-container">
+            <img (click)="takeImage(0,'1')" class="photo" src="{{ imageShow }}" />
+            <span ion-text style="text-align:center;color:gray;">Upload Foto (png, jpg, jpeg)</span>
           </div>
         </div>
-      </div>
-    </ion-card-content>
-  </ion-card>
-
-  <br>
-
-  <ion-card class="my-card">
-    <ion-card-content>
-      <div class="header-text">
-        <span ion-text text-wrap class="font-small">
-          <b>Pengirim</b>
-        </span>
-      </div>
-      <div class="garis"></div>
-      <ion-item>
-        <span item-left>
-          <img src="assets/imgs/logo/nipp.png" class="icons">
-        </span>
-        <ion-label stacked>Jabatan</ion-label>
-        <ion-input type="text" [(ngModel)]="jabatanPengirim" (keyup)="getPengirim()"></ion-input>
-      </ion-item>
-      <div *ngIf="searchResultPengirimList.length > 0 && showResultPengirim">
-        <ion-item *ngFor="let searchResultPengirim of searchResultPengirimList" no-margin>
-          <span ion-text text-wrap style="font-size:1.3rem !important;" (click)="setPengirim(searchResultPengirim)">
-            {{searchResultPengirim['NM_JABATAN'] }} - {{ searchResultPengirim['NAMA'] }}</span>
+        <ion-item *ngIf="fileType == 'file'">
+          <ion-label stacked>Upload File (docx, doc, xlxs, xls,xlsx, pdf)</ion-label>
+          <ion-input type="text" [(ngModel)]="fileName" [readonly]="true" (ionFocus)="openChooser('1')"
+            (click)="openChooser('1')" placeholder="pilih file"></ion-input>
         </ion-item>
-      </div>
+      </ion-card-content>
+    </ion-card>
 
-      <br>
-
-      <div *ngIf='pengirim != null'>
-        <div class="row">
-          <div class="col">
-            <span ion-text text-wrap class="font-mini" color="color4">
-              NIPP
-            </span> <br>
-            <span ion-text text-wrap class="font-small">
-              {{pengirim['NIPP']}}
-            </span>
-          </div>
-          <div class="col">
-            <span ion-text text-wrap class="font-mini" color="color4">
-              Nama
-            </span> <br>
-            <span ion-text text-wrap class="font-small">
-              {{pengirim['NAMA']}}
-            </span> <br>
-          </div>
+    <br>
+    <ion-card class="my-card">
+      <ion-card-content>
+        <div class="header-text">
+          <span ion-text text-wrap class="font-small">
+            <b>Upload Form Permintaan Ruang Rapat dan Komsumsi (Optional)</b>
+          </span>
         </div>
+        <div class="garis"></div>
 
-        <span ion-text text-wrap class="font-mini" color="color4">
-          Divisi
-        </span> <br>
-        <span ion-text text-wrap class="font-small">
-          {{pengirim['BAWAHAN']}}
-        </span> <br>
-
-        <span ion-text text-wrap class="font-mini" color="color4">
-          Direktorat
-        </span> <br>
-        <span ion-text text-wrap class="font-small">
-          {{pengirim['ATASAN']}}
-        </span> <br>
-      </div>
-    </ion-card-content>
-  </ion-card>
-
-  <br>
-
-  <ion-card class="my-card">
-    <ion-card-content>
-      <div class="header-text">
-        <span ion-text text-wrap class="font-small">
-          <b>Penerima</b>
-        </span>
-      </div>
-      <div class="garis"></div>
-      <span ion-text text-wrap class="font-small">
-        Direktur Keuangan & SDM
-      </span> <br>
-    </ion-card-content>
-  </ion-card>
-
-  <br>
-
-
-  <ion-card class="my-card">
-    <ion-card-content>
-      <div class="header-text">
-        <span ion-text text-wrap class="font-small">
-          <b>Pemeriksa</b>
-        </span>
-      </div>
-      <div class="garis"></div>
-      <div *ngFor="let pemeriksa of pemeriksaList; let i = index" margin-top>
         <ion-item>
           <span item-left>
-            <img src="assets/imgs/logo/pemeriksa.png" class="icons">
+            <img src="assets/imgs/logo/document-icon.png" class="icons">
           </span>
-          <ion-label stacked>Pemeriksa ke - {{ i+1 }}</ion-label>
-          <ion-input type="text" placeholder="" (keyup)="getPemeriksa(i, '')" (ionFocus)="checkFocus(i)"
-            [(ngModel)]="pemeriksa.value"></ion-input>
-
-          <ion-icon style="z-index:999; font-size:2.3rem; padding:8px 0 8px 0;" *ngIf="i == 0" name="add"
-            (click)="addPemeriksa()" color="primary" item-right></ion-icon>
-          <ion-icon style="z-index:999; font-size:2.3rem; padding:8px 0 8px 0;" *ngIf="i > 0" name="md-remove"
-            color="danger" (click)="removePemeriksa(i)" item-right>
-          </ion-icon>
+          <ion-label stacked>Upload File</ion-label>
+          <ion-select [(ngModel)]="fileType2" cancelText="Cancel" okText="OK">
+            <div>
+              <ion-option value="file">File</ion-option>
+              <ion-option value="gambar">Foto</ion-option>
+            </div>
+          </ion-select>
         </ion-item>
 
-        <div *ngIf="pemeriksaSearchResultList.length > 0 && showResult && pemeriksaInputFocused == i ">
-          <ion-item *ngFor="let pemeriksaSearchResult of pemeriksaSearchResultList" no-margin
-            (click)="setPemeriksa(pemeriksaSearchResult,i)">
-            <span ion-text text-wrap style="font-size:1.3rem !important;">
-              {{pemeriksaSearchResult['NAMA'] }} - {{ pemeriksaSearchResult['NM_JABATAN'] }}</span>
-          </ion-item>
-        </div>
-      </div>
-    </ion-card-content>
-  </ion-card>
-
-  <br>
-
-  <ion-card class="my-card">
-    <ion-card-content>
-      <div class="header-text">
-        <span ion-text text-wrap class="font-small">
-          <b>Peserta SPPD</b>
-        </span>
-      </div>
-      <div class="garis"></div>
-      <div *ngFor="let pesertaJabatan of pesertaJabatanList let i = index" margin-top>
-        <ion-item>
-          <span item-left>
-            <img src="assets/imgs/logo/peserta_jabatan.png" class="icons">
-          </span>
-          <ion-label stacked>Peserta Jabatan - {{ i+1 }}</ion-label>
-          <ion-input type="text" placeholder="" (keyup)="getPesertaJabatan(i, '')"
-            (ionFocus)="checkFocusPesertaJabatan(i)" [(ngModel)]="pesertaJabatan.value"></ion-input>
-
-          <ion-icon style="z-index:999; font-size:2.3rem; padding:8px 0 8px 0;" *ngIf="i == 0" name="add"
-            (click)="addPesertaJabatan()" color="primary" item-right></ion-icon>
-          <ion-icon style="z-index:999; font-size:2.3rem; padding:8px 0 8px 0;" *ngIf="i > 0" name="md-remove"
-            color="danger" (click)="removePesertaJabatan(i)" item-right>
-          </ion-icon>
-        </ion-item>
-
-        <div
-          *ngIf="pesertaJabatanSearchResultList.length > 0 && pesertaJabatanshowResult && pesertaJabatanInputFocused == i ">
-          <ion-item *ngFor="let pesertaJabatanSearchResult of pesertaJabatanSearchResultList" no-margin
-            (click)="setPesertaJabatan(pesertaJabatanSearchResult,i)">
-            <span ion-text text-wrap style="font-size:1.3rem !important;">
-              {{ pesertaJabatanSearchResult['NM_JABATAN'] }}</span>
-          </ion-item>
-        </div>
-      </div>
-
-      <br>
-
-      <div *ngFor="let pesertaPekerja of pesertaPekerjaList let i = index" margin-top>
-        <ion-item>
-          <span item-left>
-            <img src="assets/imgs/logo/peserta_pekerja.png" class="icons">
-          </span>
-          <ion-label stacked>Peserta Pekerja - {{ i+1 }}</ion-label>
-          <ion-input type="text" placeholder="" (keyup)="getPesertaPekerja(i, '')"
-            (ionFocus)="checkFocusPesertaPekerja(i)" [(ngModel)]="pesertaPekerja.value"></ion-input>
-
-          <ion-icon style="z-index:999; font-size:2.3rem; padding:8px 0 8px 0;" *ngIf="i == 0" name="add"
-            (click)="addPesertaPekerja()" color="primary" item-right></ion-icon>
-          <ion-icon style="z-index:999; font-size:2.3rem; padding:8px 0 8px 0;" *ngIf="i > 0" name="md-remove"
-            color="danger" (click)="removePesertaPekerja(i)" item-right>
-          </ion-icon>
-        </ion-item>
-
-        <div
-          *ngIf="pesertaPekerjaSearchResultList.length > 0 && pesertaPekerjashowResult && pesertaPekerjaInputFocused == i ">
-          <ion-item *ngFor="let pesertaPekerjaSearchResult of pesertaPekerjaSearchResultList" no-margin
-            (click)="setPesertaPekerja(pesertaPekerjaSearchResult,i)">
-            <span ion-text text-wrap style="font-size:1.3rem !important;">
-              {{ pesertaPekerjaSearchResult['NAMA'] }} | {{ pesertaPekerjaSearchResult['NM_JABATAN'] }}</span>
-          </ion-item>
-        </div>
-      </div>
-
-      <br>
-
-      <div *ngFor="let pesertaEksternal of pesertaEksternalList let i = index" margin-top>
-        <ion-item>
-          <span item-left>
-            <img src="assets/imgs/logo/peserta_eksternal.png" class="icons">
-          </span>
-          <ion-label stacked>Peserta Eksternal - {{ i+1 }}</ion-label>
-          <ion-input type="text" placeholder="" [(ngModel)]="pesertaEksternal.value"></ion-input>
-
-          <ion-icon style="z-index:999; font-size:2.3rem; padding:8px 0 8px 0;" *ngIf="i == 0" name="add"
-            (click)="addPesertaEksternal()" color="primary" item-right></ion-icon>
-          <ion-icon style="z-index:999; font-size:2.3rem; padding:8px 0 8px 0;" *ngIf="i > 0" name="md-remove"
-            color="danger" (click)="removePesertaEksternal(i)" item-right>
-          </ion-icon>
-        </ion-item>
-      </div>
-    </ion-card-content>
-  </ion-card>
-
-  <br>
-
-  <ion-card class="my-card">
-    <ion-card-content>
-      <div class="header-text">
-        <span ion-text text-wrap class="font-small">
-          <b>Komentar</b>
-        </span>
-      </div>
-      <div class="garis"></div>
-
-      <ion-item>
-        <span item-left>
-          <img src="assets/imgs/logo/perihal.png" class="icons">
-        </span>
-        <ion-label stacked>komentar</ion-label>
-        <ion-textarea rows="3" [(ngModel)]="komentar"></ion-textarea>
-      </ion-item>
-
-    </ion-card-content>
-  </ion-card>
-
-  <br>
-  <ion-card class="my-card">
-    <ion-card-content>
-      <div class="header-text">
-        <span ion-text text-wrap class="font-small">
-          <b>Upload File (Optional)</b>
-        </span>
-      </div>
-      <div class="garis"></div>
-
-      <ion-item>
-        <span item-left>
-          <img src="assets/imgs/logo/document-icon.png" class="icons">
-        </span>
-        <ion-label stacked>Upload File</ion-label>
-        <ion-select [(ngModel)]="fileType" cancelText="Cancel" okText="OK">
-          <div>
-            <ion-option value="file">File</ion-option>
-            <ion-option value="gambar">Foto</ion-option>
+        <div *ngIf="fileType2 == 'gambar'">
+          <div class="image-container">
+            <img (click)="takeImage(0,'2')" class="photo" src="{{ imageShow2 }}" />
+            <span ion-text style="text-align:center;color:gray;">Upload Foto (png, jpg, jpeg)</span>
           </div>
-        </ion-select>
-      </ion-item>
-
-      <div *ngIf="fileType == 'gambar'">
-        <div class="image-container">
-          <img (click)="takeImage(0)" class="photo" src="{{ imageShow }}" />
-          <span ion-text style="text-align:center;color:gray;">Upload Foto (png, jpg, jpeg)</span>
         </div>
+        <ion-item *ngIf="fileType2 == 'file'">
+          <ion-label stacked>Upload File (docx, doc, xlxs, xls,xlsx, pdf)</ion-label>
+          <ion-input type="text" [(ngModel)]="fileName2" [readonly]="true" (ionFocus)="openChooser('2')"
+            (click)="openChooser('2')" placeholder="pilih file"></ion-input>
+        </ion-item>
+      </ion-card-content>
+    </ion-card>
+
+    <br>
+
+    <div class="row">
+      <div class="col" style="padding:5px !important;">
+        <button ion-button full icon-start color="secondary" style="border-radius: 5px;" (click)="submit('simpan')">
+          <ion-icon name="ios-document"></ion-icon>
+          Simpan
+        </button>
       </div>
-      <ion-item *ngIf="fileType == 'file'">
-        <ion-label stacked>Upload File (docx, doc, xlxs, xls,xlsx, pdf)</ion-label>
-        <ion-input type="text" [(ngModel)]="fileName" [readonly]="true" (ionFocus)="openChooser()"
-          (click)="openChooser()" placeholder="pilih file"></ion-input>
-      </ion-item>
-    </ion-card-content>
-  </ion-card>
-
-  <br>
-
-  <div class="row">
-    <div class="col" style="padding:5px !important;">
-      <button ion-button full icon-start color="danger" style="border-radius: 5px;" (click)="cancel()">
-        <ion-icon name="close"></ion-icon>
-        Batal
-      </button>
-    </div>
-    <div class="col" style="padding:5px !important;">
-      <button ion-button full icon-end style="border-radius: 5px;" [disabled]='disable' (click)="submit()">
-        Kirim
-        <ion-icon name="arrow-forward"></ion-icon>
-      </button>
+      <div class="col" style="padding:5px !important;">
+        <button ion-button full icon-end style="border-radius: 5px;" [disabled]='disable' (click)="submit('kirim')">
+          Kirim
+          <ion-icon name="arrow-forward"></ion-icon>
+        </button>
+      </div>
     </div>
   </div>
 </ion-content>

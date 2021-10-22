@@ -370,7 +370,7 @@ export class Home3Page {
               sc_code: "",
               data: {
                 platform: "android",
-                version: "1.0.0",
+                version: "1.1.0",
                 player_id: id.userId,
                 nipp: this.userdataTPK.data.NIPP,
                 model: this.device.model,

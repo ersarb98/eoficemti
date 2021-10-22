@@ -185,7 +185,8 @@ export class AbsenBawahanPage {
       nipp: bawahanSplit[2],
       nama: bawahanSplit[1],
       shift: "",
-      date: date + "-" + this.bulan + "-" + this.tahun,
+      // date: date + "-" + this.bulan + "-" + this.tahun,
+      date: absen["TANGGAL_ONLY"],
       fromPage: "AbsenBawahanPage",
     });
   }
