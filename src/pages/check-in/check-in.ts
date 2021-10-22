@@ -146,8 +146,8 @@ export class CheckInPage {
         var long_kantor = "";
 
         if (this.userdataTPK["data"]["IDCABANG"] == "31") {
-          lat_kantor = this.addressData["LAT_TPK_PUSAT"];
-          long_kantor = this.addressData["LONG_TPK_PUSAT"];
+          lat_kantor = this.addressData["LAT_PPI_PUSAT"];
+          long_kantor = this.addressData["LONG_PPI_PUSAT"];
         } else if (this.userdataTPK["data"]["IDCABANG"] == "32") {
           lat_kantor = this.addressData["LAT_TPK_JAMBI"];
           long_kantor = this.addressData["LONG_TPK_JAMBI"];
@@ -216,8 +216,8 @@ export class CheckInPage {
         var long_kantor = "";
 
         if (this.userdataTPK["data"]["IDCABANG"] == "31") {
-          lat_kantor = this.addressData["LAT_TPK_PUSAT"];
-          long_kantor = this.addressData["LONG_TPK_PUSAT"];
+          lat_kantor = this.addressData["LAT_PPI_PUSAT"];
+          long_kantor = this.addressData["LONG_PPI_PUSAT"];
         } else if (this.userdataTPK["data"]["IDCABANG"] == "32") {
           lat_kantor = this.addressData["LAT_TPK_JAMBI"];
           long_kantor = this.addressData["LONG_TPK_JAMBI"];

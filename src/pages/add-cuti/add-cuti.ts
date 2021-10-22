@@ -274,9 +274,27 @@ export class AddCutiPage {
               //   });
               //   toast.present();
               // }
+              // console.log(JSON.stringify(
+              //   {
+              //     usernameEDI: api_user,
+              //     passwordEDI: api_pass,
+              //     id_user: this.userdataTPK['data']['IDUSER'],
+              //     id_cabang: this.userdataTPK['data']['IDCABANG'],
+              //     jenis: this.jenisPengajuan,
+              //     tgl_mulai: this.tanggalMulai,
+              //     tgl_selesai: this.tanggalSelesai,
+              //     jam_mulai: this.jamMulai,
+              //     jam_selesai: this.jamSelesai,
+              //     alasan: this.alasan,
+              //     alasan_cuti_penting: this.alasan,
+              //     lokasi: this.alamat,
+              //     jumlah: this.jumHari,
+              //     sisa_cuti: this.userdataTPK['data']['SISA_CUTI']
+              //   }
+              // ));
               let loading = this.loadingCtrl.create({
                 spinner: 'dots',
-                content: "Mengubah Data...",
+                content: "Mengajukan Cuti...",
                 cssClass: 'transparent',
                 dismissOnPageChange: true
               });
