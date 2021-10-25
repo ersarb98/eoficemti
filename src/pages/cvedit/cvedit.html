@@ -1,0 +1,1189 @@
+<!--
+  Generated template for the CveditPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      <span ion-text color="light" class="fw500">Edit E-CV</span>
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <div class="container">
+    <!-- Personal -->
+    <div class="content-4">
+      <div class="fill-4">
+        <div class="header-content-4">
+          <span ion-text text-wrap>Personal Info</span>
+        </div>
+
+        <div class="body-content-4" *ngIf="showPersonal">
+          <ion-item no-padding>
+            <ion-label stacked>Nama Personal</ion-label>
+            <ion-input type="text" placeholder=""></ion-input>
+          </ion-item>
+          <ion-item no-padding>
+            <ion-label stacked>NIPP</ion-label>
+            <ion-input type="number" placeholder=""></ion-input>
+          </ion-item>
+          <ion-item no-padding>
+            <ion-label stacked>Puspel</ion-label>
+            <ion-input type="text" placeholder=""></ion-input>
+          </ion-item>
+          <ion-item no-padding>
+            <ion-label stacked>Nama Personal</ion-label>
+            <ion-input type="text" placeholder=""></ion-input>
+          </ion-item>
+          <ion-item no-padding>
+            <ion-label stacked>Direktorat</ion-label>
+            <ion-select placeholder="">
+              <ion-option value="0">Belum Dibaca</ion-option>
+            </ion-select>
+          </ion-item>
+          <ion-item no-padding>
+            <ion-label stacked>Divisi</ion-label>
+            <ion-select placeholder="">
+              <ion-option value="0">Belum Dibaca</ion-option>
+            </ion-select>
+          </ion-item>
+          <ion-item no-padding>
+            <ion-label stacked>Sub Divisi</ion-label>
+            <ion-select placeholder="">
+              <ion-option value="0">Belum Dibaca</ion-option>
+            </ion-select>
+          </ion-item>
+          <ion-item no-padding>
+            <ion-label stacked>Kategori Jabatan</ion-label>
+            <ion-select placeholder="">
+              <ion-option value="0">Belum Dibaca</ion-option>
+            </ion-select>
+          </ion-item>
+          <ion-item no-padding>
+            <ion-label stacked>Jabatan</ion-label>
+            <ion-input type="text" placeholder=""></ion-input>
+          </ion-item>
+          <ion-item no-padding>
+            <ion-label stacked>Kelas Jabatan</ion-label>
+            <ion-input type="text" placeholder=""></ion-input>
+          </ion-item>
+          <ion-item no-padding>
+            <ion-label stacked>Area Jabatan</ion-label>
+            <ion-input type="text" placeholder=""></ion-input>
+          </ion-item>
+          <ion-item no-padding>
+            <ion-label stacked>Golongan</ion-label>
+            <ion-input type="text" placeholder=""></ion-input>
+          </ion-item>
+          <ion-item no-padding>
+            <ion-label stacked>Status Pekerja</ion-label>
+            <ion-select placeholder="">
+              <ion-option value="0">Belum Dibaca</ion-option>
+            </ion-select>
+          </ion-item>
+          <ion-item no-padding>
+            <ion-label stacked>Status Jabatan</ion-label>
+            <ion-select placeholder="">
+              <ion-option value="0">Belum Dibaca</ion-option>
+            </ion-select>
+          </ion-item>
+          <ion-item no-padding>
+            <ion-label stacked>Kelompok Posisi</ion-label>
+            <ion-select placeholder="">
+              <ion-option value="0">Belum Dibaca</ion-option>
+            </ion-select>
+          </ion-item>
+          <ion-item no-padding>
+            <ion-label stacked>Tanggal Capeg</ion-label>
+            <ion-datetime value="1990-02-19" placeholder=""></ion-datetime>
+          </ion-item>
+          <ion-item no-padding>
+            <ion-label stacked>Kelompok Capeg</ion-label>
+            <ion-select placeholder="">
+              <ion-option value="0">Belum Dibaca</ion-option>
+            </ion-select>
+          </ion-item>
+          <ion-item no-padding>
+            <ion-label stacked>TMT Penuh</ion-label>
+            <ion-datetime value="1990-02-19" placeholder=""></ion-datetime>
+          </ion-item>
+          <ion-item no-padding>
+            <ion-label stacked>TMT Jabatan</ion-label>
+            <ion-datetime value="1990-02-19" placeholder=""></ion-datetime>
+          </ion-item>
+          <ion-item no-padding>
+            <ion-label stacked>TMT Kelas Jabatan</ion-label>
+            <ion-datetime value="1990-02-19" placeholder=""></ion-datetime>
+          </ion-item>
+          <ion-item no-padding>
+            <ion-label stacked>TMT Golongan</ion-label>
+            <ion-datetime value="1990-02-19" placeholder=""></ion-datetime>
+          </ion-item>
+          <ion-item no-padding>
+            <ion-label stacked>Tanggal Masuk PPI</ion-label>
+            <ion-datetime value="1990-02-19" placeholder=""></ion-datetime>
+          </ion-item>
+          <ion-item no-padding>
+            <ion-label stacked>Tanggal Keluar PPI</ion-label>
+            <ion-datetime value="1990-02-19" placeholder=""></ion-datetime>
+          </ion-item>
+          <ion-item no-padding>
+            <ion-label stacked>Alasan Keluar</ion-label>
+            <ion-input placeholder=""></ion-input>
+          </ion-item>
+          <ion-item no-padding>
+            <ion-label stacked>Masa Kerja PPI</ion-label>
+            <ion-input readonly placeholder=""></ion-input>
+          </ion-item>
+          <ion-item no-padding>
+            <ion-label stacked>Nomor KTP</ion-label>
+            <ion-input type="number" placeholder=""></ion-input>
+          </ion-item>
+          <ion-item no-padding>
+            <ion-label stacked>Nomor NPWP</ion-label>
+            <ion-input type="number" placeholder=""></ion-input>
+          </ion-item>
+          <ion-item no-padding>
+            <ion-label stacked>Status Pajak</ion-label>
+            <ion-select placeholder="">
+              <ion-option value="0">Belum Dibaca</ion-option>
+            </ion-select>
+          </ion-item>
+          <ion-item no-padding>
+            <ion-label stacked>Nomor KK</ion-label>
+            <ion-input type="number" placeholder=""></ion-input>
+          </ion-item>
+          <ion-item no-padding>
+            <ion-label stacked>Nomor BPJS Kesehatan</ion-label>
+            <ion-input type="number" placeholder=""></ion-input>
+          </ion-item>
+          <ion-item no-padding>
+            <ion-label stacked>Nomor BPJS Ketenagakerjaan</ion-label>
+            <ion-input type="number" placeholder=""></ion-input>
+          </ion-item>
+          <ion-item no-padding>
+            <ion-label stacked>Tanggal Lahir</ion-label>
+            <ion-datetime value="1990-02-19" placeholder=""></ion-datetime>
+          </ion-item>
+          <ion-item no-padding>
+            <ion-label stacked>Tempat Lahir</ion-label>
+            <ion-input type="text" placeholder=""></ion-input>
+          </ion-item>
+          <ion-item no-padding>
+            <ion-label stacked>Agama</ion-label>
+            <ion-input type="text" placeholder=""></ion-input>
+          </ion-item>
+          <ion-item no-padding>
+            <ion-label stacked>Tempat Lahir</ion-label>
+            <ion-input type="text" placeholder=""></ion-input>
+          </ion-item>
+          <ion-item no-padding>
+            <ion-label stacked>Pendidikan Terakhir</ion-label>
+            <ion-input type="text" placeholder=""></ion-input>
+          </ion-item>
+          <ion-item no-padding>
+            <ion-label stacked>Jurusan</ion-label>
+            <ion-input type="text" placeholder=""></ion-input>
+          </ion-item>
+          <ion-item no-padding>
+            <ion-label stacked>Nama Institusi Pandidikan</ion-label>
+            <ion-input type="text" placeholder=""></ion-input>
+          </ion-item>
+          <ion-item no-padding>
+            <ion-label stacked>Jenis Kelamin</ion-label>
+            <ion-select placeholder="">
+              <ion-option value="0">Laki Laki</ion-option>
+              <ion-option value="0">Perempuan</ion-option>
+            </ion-select>
+          </ion-item>
+          <ion-item no-padding>
+            <ion-label stacked>Alamat KTP</ion-label>
+            <ion-textarea></ion-textarea>
+          </ion-item>
+          <ion-item no-padding>
+            <ion-label stacked>Alamat Domisili</ion-label>
+            <ion-textarea></ion-textarea>
+          </ion-item>
+          <ion-item no-padding>
+            <ion-label stacked>Status Perkawinan</ion-label>
+            <ion-select placeholder="">
+              <ion-option value="0">K1</ion-option>
+            </ion-select>
+          </ion-item>
+          <ion-item no-padding>
+            <ion-label stacked>Jumlah Anak</ion-label>
+            <ion-input type="number" placeholder=""></ion-input>
+          </ion-item>
+          <ion-item no-padding>
+            <ion-label stacked>Jumlah Tanggungan</ion-label>
+            <ion-input type="number" placeholder=""></ion-input>
+          </ion-item>
+          <ion-item no-padding>
+            <ion-label stacked>Ahli Waris</ion-label>
+            <ion-input type="text" placeholder=""></ion-input>
+          </ion-item>
+          <ion-item no-padding>
+            <ion-label stacked>E-Mail</ion-label>
+            <ion-input type="email" placeholder=""></ion-input>
+          </ion-item>
+          <ion-item no-padding>
+            <ion-label stacked>2nd E-mail</ion-label>
+            <ion-input type="email" placeholder=""></ion-input>
+          </ion-item>
+          <ion-item no-padding>
+            <ion-label stacked>No. Handphone</ion-label>
+            <ion-input type="number" placeholder=""></ion-input>
+          </ion-item>
+          <ion-item no-padding>
+            <ion-label stacked>No. Telepon Rumah</ion-label>
+            <ion-input type="number" placeholder=""></ion-input>
+          </ion-item>
+          <button
+            ion-button
+            round
+            style="width: 100%; font-size: 1.3rem"
+            color="primary"
+          >
+            Simpan
+          </button>
+        </div>
+        <div
+          class="body-content-4"
+          *ngIf="showPersonal == true"
+          (click)="togglePersonal()"
+        >
+          <button
+            ion-button
+            round
+            outline
+            style="width: 100%; font-size: 1.3rem"
+            color="danger"
+          >
+            Sembunyikan Personal Data
+          </button>
+        </div>
+        <div
+          class="body-content-4"
+          *ngIf="showPersonal == false"
+          (click)="togglePersonal()"
+        >
+          <button
+            ion-button
+            round
+            outline
+            style="width: 100%; font-size: 1.3rem"
+          >
+            Tampilkan Personal Data
+          </button>
+        </div>
+      </div>
+    </div>
+    <br />
+
+    <!-- Panggilan Darurat -->
+    <div class="content-4">
+      <div class="fill-4">
+        <div class="header-content-4">
+          <span ion-text text-wrap>Informasi Panggilan Darurat</span>
+        </div>
+
+        <div class="body-content-4" *ngIf="showPDarurat">
+          <button
+            ion-button
+            round
+            small
+            color="primary"
+            (click)="openPage('panggilandarurat')"
+          >
+            Tambahkan
+          </button>
+          <table *ngIf="dataCV['DATA_PERFORMANSI'].length > 0">
+            <tr
+              *ngFor="let perform of dataCV['DATA_PERFORMANSI'];let i = index"
+            >
+              <td style="vertical-align: top" width="10%">
+                <div>
+                  <span
+                    ion-text
+                    text-wrap
+                    class="medium-text"
+                    style="font-weight: normal !important"
+                  >
+                    {{ i+1 }}.
+                  </span>
+                </div>
+              </td>
+              <td style="vertical-align: top">
+                <div>
+                  <span ion-text text-wrap class="medium-text">
+                    {{ perform['KATEGORI'] }}
+                  </span>
+                  <span
+                    ion-text
+                    text-wrap
+                    class="medium-text"
+                    style="font-weight: 600 !important"
+                  >
+                    | {{ perform['TAHUN'] }}
+                  </span>
+                  <br />
+                  <span ion-text text-wrap class="small-text"
+                    >Nilai Kinerja Tahunan :
+                  </span>
+                  <span ion-text text-wrap class="medium-text" color="color7">
+                    {{ perform['NILAI_KINERJA_TAHUNAN'] }}
+                  </span>
+                  <br /><br />
+                </div>
+              </td>
+            </tr>
+          </table>
+
+          <div
+            *ngIf="dataCV['DATA_PERFORMANSI'].length == 0"
+            style="text-align: center"
+          >
+            <span ion-text text-wrap class="small-text"
+              >Tidak ada data Performance Record.</span
+            >
+          </div>
+        </div>
+
+        <div
+          class="body-content-4"
+          *ngIf="showPDarurat == true"
+          (click)="togglePDarurat()"
+        >
+          <button
+            ion-button
+            round
+            outline
+            style="width: 100%; font-size: 1.3rem"
+            color="danger"
+          >
+            Sembunyikan
+          </button>
+        </div>
+
+        <div
+          class="body-content-4"
+          *ngIf="showPDarurat == false"
+          (click)="togglePDarurat()"
+        >
+          <button
+            ion-button
+            round
+            outline
+            style="width: 100%; font-size: 1.3rem"
+          >
+            Tampilkan
+          </button>
+        </div>
+      </div>
+    </div>
+    <br />
+
+    <!-- Riwayat Pendidikan Formal -->
+    <div class="content-4">
+      <div class="fill-4">
+        <div class="header-content-4">
+          <span ion-text text-wrap>Riwayat Pendidikan Formal</span>
+        </div>
+
+        <div class="body-content-4" *ngIf="showPFormal">
+          <button
+            ion-button
+            round
+            small
+            color="primary"
+            (click)="openPage('pendidikanformal')"
+          >
+            Tambahkan
+          </button>
+          <table *ngIf="dataCV['DATA_PEND_FORMAL'].length > 0">
+            <tr
+              *ngFor="let pendFormal of dataCV['DATA_PEND_FORMAL'];let i = index"
+            >
+              <td *ngIf="i+1 > 1 && i+1 != dataCV['DATA_PEND_FORMAL'].length">
+                <div class="dot-cont">
+                  <div class="vertical"></div>
+                  <div class="dot"></div>
+                  <div class="vertical"></div>
+                </div>
+              </td>
+
+              <td *ngIf="i+1 == 1">
+                <div class="dot-cont" style="padding-top: 20px">
+                  <div class="dot"></div>
+                  <div class="vertical"></div>
+                </div>
+              </td>
+
+              <td *ngIf="i+1 == dataCV['DATA_PEND_FORMAL'].length">
+                <div class="dot-cont" style="padding-bottom: 25px">
+                  <div class="vertical"></div>
+                  <div class="dot"></div>
+                </div>
+              </td>
+
+              <td>
+                <span ion-text text-wrap class="medium-text">
+                  {{ pendFormal['NAMA_INSTANSI'] }} </span
+                ><br />
+                <span ion-text text-wrap class="small-text">Jurusan : </span
+                ><br />
+                <span ion-text text-wrap class="medium-text">
+                  {{ pendFormal['JURUSAN'] }} </span
+                ><br />
+                <span ion-text text-wrap class="small-text"
+                  >Tahun Lulus :
+                </span>
+                <span ion-text text-wrap class="medium-text" color="color7">
+                  {{ pendFormal['TAHUN_LULUS'] }} </span
+                ><br />
+              </td>
+            </tr>
+          </table>
+
+          <div
+            *ngIf="dataCV['DATA_PERFORMANSI'].length == 0"
+            style="text-align: center"
+          >
+            <span ion-text text-wrap class="small-text"
+              >Tidak ada data Performance Record.</span
+            >
+          </div>
+        </div>
+
+        <div
+          class="body-content-4"
+          *ngIf="showPFormal == true"
+          (click)="togglePFormal()"
+        >
+          <button
+            ion-button
+            round
+            outline
+            style="width: 100%; font-size: 1.3rem"
+            color="danger"
+          >
+            Sembunyikan
+          </button>
+        </div>
+
+        <div
+          class="body-content-4"
+          *ngIf="showPFormal == false"
+          (click)="togglePFormal()"
+        >
+          <button
+            ion-button
+            round
+            outline
+            style="width: 100%; font-size: 1.3rem"
+          >
+            Tampilkan
+          </button>
+        </div>
+      </div>
+    </div>
+    <br />
+    <!-- Riwayat Pekerjaan -->
+    <div class="content-4">
+      <div class="fill-4">
+        <div class="header-content-4">
+          <span ion-text text-wrap>Riwayat Pekerjaan</span>
+        </div>
+
+        <div class="body-content-4" *ngIf="showPekerjaan">
+          <button
+            ion-button
+            round
+            small
+            color="primary"
+            (click)="openPage('pekerjaan')"
+          >
+            Tambahkan
+          </button>
+          <table *ngIf="dataCV['DATA_PERFORMANSI'].length > 0">
+            <tr
+              *ngFor="let perform of dataCV['DATA_PERFORMANSI'];let i = index"
+            >
+              <td style="vertical-align: top" width="10%">
+                <div>
+                  <span
+                    ion-text
+                    text-wrap
+                    class="medium-text"
+                    style="font-weight: normal !important"
+                  >
+                    {{ i+1 }}.
+                  </span>
+                </div>
+              </td>
+              <td style="vertical-align: top">
+                <div>
+                  <span ion-text text-wrap class="medium-text">
+                    {{ perform['KATEGORI'] }}
+                  </span>
+                  <span
+                    ion-text
+                    text-wrap
+                    class="medium-text"
+                    style="font-weight: 600 !important"
+                  >
+                    | {{ perform['TAHUN'] }}
+                  </span>
+                  <br />
+                  <span ion-text text-wrap class="small-text"
+                    >Nilai Kinerja Tahunan :
+                  </span>
+                  <span ion-text text-wrap class="medium-text" color="color7">
+                    {{ perform['NILAI_KINERJA_TAHUNAN'] }}
+                  </span>
+                  <br /><br />
+                </div>
+              </td>
+            </tr>
+          </table>
+
+          <div
+            *ngIf="dataCV['DATA_PERFORMANSI'].length == 0"
+            style="text-align: center"
+          >
+            <span ion-text text-wrap class="small-text"
+              >Tidak ada data Performance Record.</span
+            >
+          </div>
+        </div>
+
+        <div
+          class="body-content-4"
+          *ngIf="showPekerjaan == true"
+          (click)="togglePekerjaan()"
+        >
+          <button
+            ion-button
+            round
+            outline
+            style="width: 100%; font-size: 1.3rem"
+            color="danger"
+          >
+            Sembunyikan
+          </button>
+        </div>
+
+        <div
+          class="body-content-4"
+          *ngIf="showPekerjaan == false"
+          (click)="togglePekerjaan()"
+        >
+          <button
+            ion-button
+            round
+            outline
+            style="width: 100%; font-size: 1.3rem"
+          >
+            Tampilkan
+          </button>
+        </div>
+      </div>
+    </div>
+    <br />
+    <!-- Assigment History -->
+    <div class="content-4">
+      <div class="fill-4">
+        <div class="header-content-4">
+          <span ion-text text-wrap>Assignment History</span>
+        </div>
+
+        <div class="body-content-4" *ngIf="showAsHistory">
+          <button
+            ion-button
+            round
+            small
+            color="primary"
+            (click)="openPage('assigmenthistory')"
+          >
+            Tambahkan
+          </button>
+          <table *ngIf="dataCV['DATA_ASSIGN_HISTORY'].length > 0">
+            <tr
+              *ngFor="let assignHistory of dataCV['DATA_ASSIGN_HISTORY'];let i = index"
+            >
+              <td *ngIf="i+1 > 1 && i+1 < dataCV['DATA_ASSIGN_HISTORY'].length">
+                <div class="dot-cont">
+                  <div class="vertical-2"></div>
+                  <div class="dot-2"></div>
+                  <div class="vertical-2"></div>
+                </div>
+              </td>
+
+              <td *ngIf="i+1 == 1">
+                <div class="dot-cont" style="padding-top: 25px">
+                  <div class="dot-2"></div>
+                  <div class="vertical-2"></div>
+                </div>
+              </td>
+
+              <td
+                *ngIf="i+1 == dataCV['DATA_ASSIGN_HISTORY'].length && dataCV['DATA_ASSIGN_HISTORY'].length != 1"
+              >
+                <div class="dot-cont" style="padding-bottom: 25px">
+                  <div class="vertical-2"></div>
+                  <div class="dot-2"></div>
+                </div>
+              </td>
+
+              <td>
+                <span ion-text text-wrap class="medium-text">
+                  {{ assignHistory['POSISI_JABATAN'] }} </span
+                ><br />
+                <span
+                  ion-text
+                  text-wrap
+                  class="medium-text"
+                  style="font-weight: normal !important"
+                  >{{ assignHistory['NO_SK'] }}</span
+                ><br />
+                <span ion-text text-wrap class="small-text">
+                  {{ assignHistory['LAMA_JABATAN'] }} </span
+                ><br />
+              </td>
+            </tr>
+          </table>
+
+          <div
+            *ngIf="dataCV['DATA_PERFORMANSI'].length == 0"
+            style="text-align: center"
+          >
+            <span ion-text text-wrap class="small-text"
+              >Tidak ada data Performance Record.</span
+            >
+          </div>
+        </div>
+
+        <div
+          class="body-content-4"
+          *ngIf="showAsHistory == true"
+          (click)="toggleAsHistory()"
+        >
+          <button
+            ion-button
+            round
+            outline
+            style="width: 100%; font-size: 1.3rem"
+            color="danger"
+          >
+            Sembunyikan
+          </button>
+        </div>
+
+        <div
+          class="body-content-4"
+          *ngIf="showAsHistory == false"
+          (click)="toggleAsHistory()"
+        >
+          <button
+            ion-button
+            round
+            outline
+            style="width: 100%; font-size: 1.3rem"
+          >
+            Tampilkan
+          </button>
+        </div>
+      </div>
+    </div>
+    <br />
+    <!-- Riwayat Kesehatan -->
+    <div class="content-4">
+      <div class="fill-4">
+        <div class="header-content-4">
+          <span ion-text text-wrap>Riwayat Kesehatan</span>
+        </div>
+
+        <div class="body-content-4" *ngIf="showKesehatan">
+          <button
+            ion-button
+            round
+            small
+            color="primary"
+            (click)="openPage('kesehatan')"
+          >
+            Tambahkan
+          </button>
+          <table *ngIf="dataCV['DATA_PERFORMANSI'].length > 0">
+            <tr
+              *ngFor="let perform of dataCV['DATA_PERFORMANSI'];let i = index"
+            >
+              <td style="vertical-align: top" width="10%">
+                <div>
+                  <span
+                    ion-text
+                    text-wrap
+                    class="medium-text"
+                    style="font-weight: normal !important"
+                  >
+                    {{ i+1 }}.
+                  </span>
+                </div>
+              </td>
+              <td style="vertical-align: top">
+                <div>
+                  <span ion-text text-wrap class="medium-text">
+                    {{ perform['KATEGORI'] }}
+                  </span>
+                  <span
+                    ion-text
+                    text-wrap
+                    class="medium-text"
+                    style="font-weight: 600 !important"
+                  >
+                    | {{ perform['TAHUN'] }}
+                  </span>
+                  <br />
+                  <span ion-text text-wrap class="small-text"
+                    >Nilai Kinerja Tahunan :
+                  </span>
+                  <span ion-text text-wrap class="medium-text" color="color7">
+                    {{ perform['NILAI_KINERJA_TAHUNAN'] }}
+                  </span>
+                  <br /><br />
+                </div>
+              </td>
+            </tr>
+          </table>
+
+          <div
+            *ngIf="dataCV['DATA_PERFORMANSI'].length == 0"
+            style="text-align: center"
+          >
+            <span ion-text text-wrap class="small-text"
+              >Tidak ada data Performance Record.</span
+            >
+          </div>
+        </div>
+
+        <div
+          class="body-content-4"
+          *ngIf="showKesehatan == true"
+          (click)="toggleKesehatan()"
+        >
+          <button
+            ion-button
+            round
+            outline
+            style="width: 100%; font-size: 1.3rem"
+            color="danger"
+          >
+            Sembunyikan
+          </button>
+        </div>
+
+        <div
+          class="body-content-4"
+          *ngIf="showKesehatan == false"
+          (click)="toggleKesehatan()"
+        >
+          <button
+            ion-button
+            round
+            outline
+            style="width: 100%; font-size: 1.3rem"
+          >
+            Tampilkan
+          </button>
+        </div>
+      </div>
+    </div>
+    <br />
+    <!-- Riwayat Pelatihan PPI -->
+    <div class="content-4">
+      <div class="fill-4">
+        <div class="header-content-4">
+          <span ion-text text-wrap>Riwayat Pelatihan PPI</span>
+        </div>
+
+        <div class="body-content-4" *ngIf="showPelatihanPPI">
+          <button
+            ion-button
+            round
+            small
+            color="primary"
+            (click)="openPage('pelatihanppi')"
+          >
+            Tambahkan
+          </button>
+          <table *ngIf="dataCV['DATA_PELATIHAN'].length > 0">
+            <tr *ngFor="let training of dataCV['DATA_PELATIHAN'];let i = index">
+              <td style="vertical-align: top" width="10%">
+                <div>
+                  <span
+                    ion-text
+                    text-wrap
+                    class="medium-text"
+                    style="font-weight: normal !important"
+                  >
+                    {{ i+1 }}.
+                  </span>
+                </div>
+              </td>
+              <td style="vertical-align: top">
+                <div>
+                  <span ion-text text-wrap class="medium-text">
+                    {{ training['NAMA_PELATIHAN'] }}
+                  </span>
+                  <span
+                    ion-text
+                    text-wrap
+                    class="medium-text"
+                    style="font-weight: 600 !important"
+                  >
+                    | {{ training['TAHUN_PELATIHAN'] }}
+                  </span>
+                  <br />
+                  <span ion-text text-wrap class="small-text"
+                    >Penyelenggara: </span
+                  ><br />
+                  <span ion-text text-wrap class="medium-text">
+                    {{ training['NAMA_PENYELENGGARA'] }} | {{ training['LOKASI']
+                    }} </span
+                  ><br />
+                  <span
+                    ion-text
+                    text-wrap
+                    class="medium-text"
+                    style="font-weight: normal"
+                    color="hijau"
+                  >
+                    <b>IDR.</b>{{ training['HARGA_PELATIHAN'] }}
+                  </span>
+
+                  <br /><br />
+                </div>
+              </td>
+            </tr>
+          </table>
+
+          <div
+            *ngIf="dataCV['DATA_PERFORMANSI'].length == 0"
+            style="text-align: center"
+          >
+            <span ion-text text-wrap class="small-text"
+              >Tidak ada data Performance Record.</span
+            >
+          </div>
+        </div>
+
+        <div
+          class="body-content-4"
+          *ngIf="showPelatihanPPI == true"
+          (click)="toggleRiwayatPelPPI()"
+        >
+          <button
+            ion-button
+            round
+            outline
+            style="width: 100%; font-size: 1.3rem"
+            color="danger"
+          >
+            Sembunyikan
+          </button>
+        </div>
+
+        <div
+          class="body-content-4"
+          *ngIf="showPelatihanPPI == false"
+          (click)="toggleRiwayatPelPPI()"
+        >
+          <button
+            ion-button
+            round
+            outline
+            style="width: 100%; font-size: 1.3rem"
+          >
+            Tampilkan
+          </button>
+        </div>
+      </div>
+    </div>
+    <br />
+    <!-- Identitas Keluarga -->
+    <div class="content-4">
+      <div class="fill-4">
+        <div class="header-content-4">
+          <span ion-text text-wrap>Identitas Keluarga</span>
+        </div>
+
+        <div class="body-content-4" *ngIf="showIdentiasKeluarga">
+          <button
+            ion-button
+            round
+            small
+            color="primary"
+            (click)="openPage('identitaskeluarga')"
+          >
+            Tambahkan
+          </button>
+          <div *ngIf="dataCV['DATA_IDENTITAS_KELUARGA'].length > 0">
+            <ion-item
+              *ngFor="let family of dataCV['DATA_IDENTITAS_KELUARGA'];let i = index"
+              style="margin-bottom: 10px"
+            >
+              <span item-start>
+                <img src="assets/flat-icon/family.png" class="icon-family" />
+              </span>
+              <span ion-text text-wrap class="medium-text">
+                {{ family['NAMA'] }} </span
+              ><br />
+              <span
+                ion-text
+                text-wrap
+                class="small-text"
+                style="color: black !important"
+                >{{ family['HUBUNGAN'] }}</span
+              >
+              <br />
+              <span ion-text text-wrap class="small-text"
+                >Tanggal Lahir: {{ family['TGL_LAHIR'] }}</span
+              >
+            </ion-item>
+          </div>
+
+          <div
+            *ngIf="dataCV['DATA_PERFORMANSI'].length == 0"
+            style="text-align: center"
+          >
+            <span ion-text text-wrap class="small-text"
+              >Tidak ada data Performance Record.</span
+            >
+          </div>
+        </div>
+
+        <div
+          class="body-content-4"
+          *ngIf="showIdentiasKeluarga == true"
+          (click)="toggleIdentitasKeluarga()"
+        >
+          <button
+            ion-button
+            round
+            outline
+            style="width: 100%; font-size: 1.3rem"
+            color="danger"
+          >
+            Sembunyikan
+          </button>
+        </div>
+
+        <div
+          class="body-content-4"
+          *ngIf="showIdentiasKeluarga == false"
+          (click)="toggleIdentitasKeluarga()"
+        >
+          <button
+            ion-button
+            round
+            outline
+            style="width: 100%; font-size: 1.3rem"
+          >
+            Tampilkan
+          </button>
+        </div>
+      </div>
+    </div>
+    <br />
+    <!-- Penghargaan dan Hukuman Kerja -->
+    <div class="content-4">
+      <div class="fill-4">
+        <div class="header-content-4">
+          <span ion-text text-wrap>Penghargaan dan Hukuman Kerja</span>
+        </div>
+
+        <div class="body-content-4" *ngIf="showRewardDanPunishment">
+          <button
+            ion-button
+            round
+            small
+            color="primary"
+            (click)="openPage('rewardpunish')"
+          >
+            Tambahkan
+          </button>
+          <div *ngIf="dataCV['DATA_PENGHARGAAN_HK'].length > 0">
+            <ion-item
+              *ngFor="let reward of dataCV['DATA_PENGHARGAAN_HK'];let i = index"
+              style="margin-bottom: 10px"
+            >
+              <span item-start>
+                <img src="assets/flat-icon/reward.png" class="icon-family" />
+              </span>
+              <span ion-text text-wrap class="medium-text">
+                {{ reward['DESKRIPSI'] }} </span
+              ><br />
+              <span
+                ion-text
+                text-wrap
+                class="medium-text"
+                style="font-weight: normal !important"
+                >{{ reward['TAHUN'] }} | {{ reward['INSTANSI_YANG_MENGELUARKAN']
+                }}</span
+              >
+              <br />
+              <span ion-text text-wrap class="small-text"
+                >Result: {{ reward['JENIS'] }}</span
+              >
+            </ion-item>
+          </div>
+
+          <div
+            *ngIf="dataCV['DATA_PERFORMANSI'].length == 0"
+            style="text-align: center"
+          >
+            <span ion-text text-wrap class="small-text"
+              >Tidak ada data Performance Record.</span
+            >
+          </div>
+        </div>
+
+        <div
+          class="body-content-4"
+          *ngIf="showRewardDanPunishment == true"
+          (click)="toggleRewardDanPunishment()"
+        >
+          <button
+            ion-button
+            round
+            outline
+            style="width: 100%; font-size: 1.3rem"
+            color="danger"
+          >
+            Sembunyikan
+          </button>
+        </div>
+
+        <div
+          class="body-content-4"
+          *ngIf="showRewardDanPunishment == false"
+          (click)="toggleRewardDanPunishment()"
+        >
+          <button
+            ion-button
+            round
+            outline
+            style="width: 100%; font-size: 1.3rem"
+          >
+            Tampilkan
+          </button>
+        </div>
+      </div>
+    </div>
+    <br />
+    <!-- Performa Kerja -->
+    <div class="content-4">
+      <div class="fill-4">
+        <div class="header-content-4">
+          <span ion-text text-wrap>Riwayat Performansi</span>
+        </div>
+
+        <div class="body-content-4" *ngIf="showPerformance">
+          <button
+            ion-button
+            round
+            small
+            color="primary"
+            (click)="openPage('performa')"
+          >
+            Tambahkan
+          </button>
+          <table *ngIf="dataCV['DATA_PERFORMANSI'].length > 0">
+            <tr
+              *ngFor="let perform of dataCV['DATA_PERFORMANSI'];let i = index"
+            >
+              <td style="vertical-align: top" width="10%">
+                <div>
+                  <span
+                    ion-text
+                    text-wrap
+                    class="medium-text"
+                    style="font-weight: normal !important"
+                  >
+                    {{ i+1 }}.
+                  </span>
+                </div>
+              </td>
+              <td style="vertical-align: top">
+                <div>
+                  <span ion-text text-wrap class="medium-text">
+                    {{ perform['KATEGORI'] }}
+                  </span>
+                  <span
+                    ion-text
+                    text-wrap
+                    class="medium-text"
+                    style="font-weight: 600 !important"
+                  >
+                    | {{ perform['TAHUN'] }}
+                  </span>
+                  <br />
+                  <span ion-text text-wrap class="small-text"
+                    >Nilai Kinerja Tahunan :
+                  </span>
+                  <span ion-text text-wrap class="medium-text" color="color7">
+                    {{ perform['NILAI_KINERJA_TAHUNAN'] }}
+                  </span>
+                  <br /><br />
+                </div>
+              </td>
+            </tr>
+          </table>
+
+          <div
+            *ngIf="dataCV['DATA_PERFORMANSI'].length == 0"
+            style="text-align: center"
+          >
+            <span ion-text text-wrap class="small-text"
+              >Tidak ada data Performance Record.</span
+            >
+          </div>
+        </div>
+
+        <div
+          class="body-content-4"
+          *ngIf="showPerformance == true"
+          (click)="togglePerformance()"
+        >
+          <button
+            ion-button
+            round
+            outline
+            style="width: 100%; font-size: 1.3rem"
+            color="danger"
+          >
+            Sembunyikan
+          </button>
+        </div>
+
+        <div
+          class="body-content-4"
+          *ngIf="showPerformance == false"
+          (click)="togglePerformance()"
+        >
+          <button
+            ion-button
+            round
+            outline
+            style="width: 100%; font-size: 1.3rem"
+          >
+            Tampilkan
+          </button>
+        </div>
+      </div>
+    </div>
+    <br />
+  </div>
+</ion-content>

@@ -1,0 +1,511 @@
+<!--
+  Generated template for the CveditEditPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      <span ion-text color="light" class="fw500">Tambahkan</span>
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <div class="my-padding" *ngIf="kat == 'panggilandarurat';">
+    <span>Informasi Panggilan Darurat</span>
+    <ion-item no-padding>
+      <ion-label stacked>No. Darurat</ion-label>
+      <ion-input type="number" placeholder=""></ion-input>
+    </ion-item>
+
+    <ion-item no-padding>
+      <ion-label stacked>Nama Darurat</ion-label>
+      <ion-input type="text" placeholder=""></ion-input>
+    </ion-item>
+
+    <ion-item no-padding>
+      <ion-label stacked>Status Hubungan</ion-label>
+      <ion-input type="text" placeholder=""></ion-input>
+    </ion-item>
+
+    <div class="row">
+      <div class="col">
+        <button
+          ion-button
+          icon-start
+          full
+          color="danger"
+          style="border-radius: 5px"
+          margin-top
+        >
+          <ion-icon name="md-close"></ion-icon>
+          Batal
+        </button>
+      </div>
+      <div class="col">
+        <button
+          ion-button
+          icon-start
+          full
+          color="primary"
+          style="border-radius: 5px"
+          margin-top
+        >
+          <ion-icon name="ios-search"></ion-icon>
+          Simpan
+        </button>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="kat == 'pendidikanformal';">
+    <ion-item no-padding>
+      <ion-label stacked>Tingkat Pendidikan</ion-label>
+      <ion-input type="text" placeholder=""></ion-input>
+    </ion-item>
+    <ion-item no-padding>
+      <ion-label stacked>Nama Sekolah</ion-label>
+      <ion-input type="text" placeholder=""></ion-input>
+    </ion-item>
+    <ion-item no-padding>
+      <ion-label stacked>Jurusan</ion-label>
+      <ion-input type="text" placeholder=""></ion-input>
+    </ion-item>
+    <ion-item no-padding>
+      <ion-label stacked>Tahun Lulus</ion-label>
+      <ion-input type="number" placeholder=""></ion-input>
+    </ion-item>
+    <div class="row">
+      <div class="col">
+        <button
+          ion-button
+          icon-start
+          full
+          color="danger"
+          style="border-radius: 5px"
+          margin-top
+        >
+          <ion-icon name="md-close"></ion-icon>
+          Batal
+        </button>
+      </div>
+      <div class="col">
+        <button
+          ion-button
+          icon-start
+          full
+          color="primary"
+          style="border-radius: 5px"
+          margin-top
+        >
+          <ion-icon name="ios-search"></ion-icon>
+          Simpan
+        </button>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="kat == 'pekerjaan';">
+    <ion-item no-padding>
+      <ion-label stacked>Jabatan</ion-label>
+      <ion-input type="text" placeholder=""></ion-input>
+    </ion-item>
+
+    <ion-item no-padding>
+      <ion-label stacked>Nama Perusahaan</ion-label>
+      <ion-input type="text" placeholder=""></ion-input>
+    </ion-item>
+
+    <ion-item no-padding>
+      <ion-label stacked>Prestasi</ion-label>
+      <ion-input type="text" placeholder=""></ion-input>
+    </ion-item>
+
+    <ion-item no-padding>
+      <ion-label stacked>Jabatan</ion-label>
+      <ion-input type="text" placeholder=""></ion-input>
+    </ion-item>
+
+    <div class="row">
+      <div class="col">
+        <button
+          ion-button
+          icon-start
+          full
+          color="danger"
+          style="border-radius: 5px"
+          margin-top
+        >
+          <ion-icon name="md-close"></ion-icon>
+          Batal
+        </button>
+      </div>
+      <div class="col">
+        <button
+          ion-button
+          icon-start
+          full
+          color="primary"
+          style="border-radius: 5px"
+          margin-top
+        >
+          <ion-icon name="ios-search"></ion-icon>
+          Simpan
+        </button>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="kat == 'assigmenthistory';">
+    <ion-item no-padding>
+      <ion-label stacked>Posisi Jabatan</ion-label>
+      <ion-input type="text" placeholder=""></ion-input>
+    </ion-item>
+    <ion-item no-padding>
+      <ion-label stacked>No SK</ion-label>
+      <ion-input type="text" placeholder=""></ion-input>
+    </ion-item>
+
+    <ion-item no-padding>
+      <ion-label stacked>Start Date</ion-label>
+      <ion-input
+        type="text"
+        (click)="showDatePicker(1)"
+        (ionFocus)="checkFocus(1)"
+        placeholder=""
+      ></ion-input>
+    </ion-item>
+
+    <ion-item no-padding>
+      <ion-label stacked>End Date</ion-label>
+      <ion-input
+        type="text"
+        (click)="showDatePicker(1)"
+        (ionFocus)="checkFocus(1)"
+        placeholder=""
+      ></ion-input>
+    </ion-item>
+
+    <div class="row">
+      <div class="col">
+        <button
+          ion-button
+          icon-start
+          full
+          color="danger"
+          style="border-radius: 5px"
+          margin-top
+        >
+          <ion-icon name="md-close"></ion-icon>
+          Batal
+        </button>
+      </div>
+      <div class="col">
+        <button
+          ion-button
+          icon-start
+          full
+          color="primary"
+          style="border-radius: 5px"
+          margin-top
+        >
+          <ion-icon name="ios-search"></ion-icon>
+          Simpan
+        </button>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col">
+        <button
+          ion-button
+          icon-start
+          full
+          color="danger"
+          style="border-radius: 5px"
+          margin-top
+        >
+          <ion-icon name="md-close"></ion-icon>
+          Batal
+        </button>
+      </div>
+      <div class="col">
+        <button
+          ion-button
+          icon-start
+          full
+          color="primary"
+          style="border-radius: 5px"
+          margin-top
+        >
+          <ion-icon name="ios-search"></ion-icon>
+          Simpan
+        </button>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="kat == 'kesehatan';">
+    <ion-item no-padding>
+      <ion-label stacked>Tanggal MCU</ion-label>
+      <ion-input
+        type="text"
+        (click)="showDatePicker(1)"
+        (ionFocus)="checkFocus(1)"
+        placeholder=""
+      ></ion-input>
+    </ion-item>
+    <ion-item no-padding>
+      <ion-label stacked>Level Kesehatan</ion-label>
+      <ion-input type="text" placeholder=""></ion-input>
+    </ion-item>
+    <ion-item no-padding>
+      <ion-label stacked>Upload File</ion-label>
+    </ion-item>
+    <div class="row">
+      <div class="col">
+        <button
+          ion-button
+          icon-start
+          full
+          color="danger"
+          style="border-radius: 5px"
+          margin-top
+        >
+          <ion-icon name="md-close"></ion-icon>
+          Batal
+        </button>
+      </div>
+      <div class="col">
+        <button
+          ion-button
+          icon-start
+          full
+          color="primary"
+          style="border-radius: 5px"
+          margin-top
+        >
+          <ion-icon name="ios-search"></ion-icon>
+          Simpan
+        </button>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="kat == 'pelatihanppi';">
+    <ion-item no-padding>
+      <ion-label stacked>Nama Pelatihan</ion-label>
+      <ion-input type="text" placeholder=""></ion-input>
+    </ion-item>
+    <ion-item no-padding>
+      <ion-label stacked>Tahun Pelatihan</ion-label>
+      <ion-input type="number" placeholder=""></ion-input>
+    </ion-item>
+    <ion-item no-padding>
+      <ion-label stacked>Nama Penyelenggara</ion-label>
+      <ion-input type="text" placeholder=""></ion-input>
+    </ion-item>
+    <ion-item no-padding>
+      <ion-label stacked>Upload Bukti Serifikat</ion-label>
+    </ion-item>
+    <ion-item no-padding>
+      <ion-label stacked>Evaluasi 1</ion-label>
+      <ion-input type="text" placeholder=""></ion-input>
+    </ion-item>
+    <ion-item no-padding>
+      <ion-label stacked>Upload Dokumen Evaluasi 1</ion-label>
+    </ion-item>
+    <ion-item no-padding>
+      <ion-label stacked>Evaluasi 2</ion-label>
+      <ion-input type="text" placeholder=""></ion-input>
+    </ion-item>
+    <ion-item no-padding>
+      <ion-label stacked>Upload Dokumen Evaluasi 2</ion-label>
+    </ion-item>
+    <ion-item no-padding>
+      <ion-label stacked>Harga Pelatihan</ion-label>
+      <ion-input type="text" placeholder=""></ion-input>
+    </ion-item>
+    <ion-item no-padding>
+      <ion-label stacked>Lokasi</ion-label>
+      <ion-input type="text" placeholder=""></ion-input>
+    </ion-item>
+    <ion-item no-padding>
+      <ion-label stacked>Tanggal Pelatihan</ion-label>
+      <ion-input
+        type="text"
+        (click)="showDatePicker(1)"
+        (ionFocus)="checkFocus(1)"
+        placeholder=""
+      ></ion-input>
+    </ion-item>
+    <ion-item no-padding>
+      <ion-label stacked>Keterangan</ion-label>
+      <ion-input type="text" placeholder=""></ion-input>
+    </ion-item>
+    <div class="row">
+      <div class="col">
+        <button
+          ion-button
+          icon-start
+          full
+          color="danger"
+          style="border-radius: 5px"
+          margin-top
+        >
+          <ion-icon name="md-close"></ion-icon>
+          Batal
+        </button>
+      </div>
+      <div class="col">
+        <button
+          ion-button
+          icon-start
+          full
+          color="primary"
+          style="border-radius: 5px"
+          margin-top
+        >
+          <ion-icon name="ios-search"></ion-icon>
+          Simpan
+        </button>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="kat == 'identitaskeluarga';">
+    <ion-item no-padding>
+      <ion-label stacked>Nama</ion-label>
+      <ion-input type="text" placeholder=""></ion-input>
+    </ion-item>
+    <ion-item no-padding>
+      <ion-label stacked>Tanggal Lahir</ion-label>
+      <ion-input
+        type="text"
+        (click)="showDatePicker(1)"
+        (ionFocus)="checkFocus(1)"
+        placeholder=""
+      ></ion-input>
+    </ion-item>
+    <ion-item no-padding>
+      <ion-label stacked>Hubungan</ion-label>
+      <ion-input type="text" placeholder=""></ion-input>
+    </ion-item>
+    <ion-item no-padding>
+      <ion-label stacked>NIK</ion-label>
+      <ion-input type="number" placeholder=""></ion-input>
+    </ion-item>
+    <div class="row">
+      <div class="col">
+        <button
+          ion-button
+          icon-start
+          full
+          color="danger"
+          style="border-radius: 5px"
+          margin-top
+        >
+          <ion-icon name="md-close"></ion-icon>
+          Batal
+        </button>
+      </div>
+      <div class="col">
+        <button
+          ion-button
+          icon-start
+          full
+          color="primary"
+          style="border-radius: 5px"
+          margin-top
+        >
+          <ion-icon name="ios-search"></ion-icon>
+          Simpan
+        </button>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="kat == 'rewardpunish';">
+    <ion-item no-padding>
+      <ion-label stacked>Deskripsi</ion-label>
+      <ion-input type="text" placeholder=""></ion-input>
+    </ion-item>
+    <ion-item no-padding>
+      <ion-label stacked>Tahun</ion-label>
+      <ion-input type="text" placeholder=""></ion-input>
+    </ion-item>
+    <ion-item no-padding>
+      <ion-label stacked>Jenis</ion-label>
+      <ion-input type="text" placeholder=""></ion-input>
+    </ion-item>
+    <ion-item no-padding>
+      <ion-label stacked>Instansi yang Mengeluarkan</ion-label>
+      <ion-input type="text" placeholder=""></ion-input>
+    </ion-item>
+    <div class="row">
+      <div class="col">
+        <button
+          ion-button
+          icon-start
+          full
+          color="danger"
+          style="border-radius: 5px"
+          margin-top
+        >
+          <ion-icon name="md-close"></ion-icon>
+          Batal
+        </button>
+      </div>
+      <div class="col">
+        <button
+          ion-button
+          icon-start
+          full
+          color="primary"
+          style="border-radius: 5px"
+          margin-top
+        >
+          <ion-icon name="ios-search"></ion-icon>
+          Simpan
+        </button>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="kat == 'performa';">
+    <ion-item no-padding>
+      <ion-label stacked>Nilai Kerja Tahunan</ion-label>
+      <ion-input type="text" placeholder=""></ion-input>
+    </ion-item>
+    <ion-item no-padding>
+      <ion-label stacked>Kategori</ion-label>
+      <ion-input type="text" placeholder=""></ion-input>
+    </ion-item>
+    <ion-item no-padding>
+      <ion-label stacked>Tahun</ion-label>
+      <ion-input type="number" placeholder=""></ion-input>
+    </ion-item>
+    <div class="row">
+      <div class="col">
+        <button
+          ion-button
+          icon-start
+          full
+          color="danger"
+          style="border-radius: 5px"
+          margin-top
+        >
+          <ion-icon name="md-close"></ion-icon>
+          Batal
+        </button>
+      </div>
+      <div class="col">
+        <button
+          ion-button
+          icon-start
+          full
+          color="primary"
+          style="border-radius: 5px"
+          margin-top
+        >
+          <ion-icon name="ios-search"></ion-icon>
+          Simpan
+        </button>
+      </div>
+    </div>
+  </div>
+</ion-content>

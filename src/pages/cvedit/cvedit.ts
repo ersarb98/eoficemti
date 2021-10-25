@@ -1,12 +1,11 @@
-import { Component, ViewChild } from "@angular/core";
+import { Component, ViewChild, Injectable } from "@angular/core";
 import { IonicPage, NavController, NavParams, ToastController } from "ionic-angular";
 import { SoapService } from "../soap.service";
 import { Storage } from "@ionic/storage";
 import { api_base_url, api_user, api_pass } from "../../config";
-// import { AnimationService, AnimationBuilder } from 'css-animator';
 
 /**
- * Generated class for the CvPage page.
+ * Generated class for the CveditPage page.
  *
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
@@ -14,24 +13,25 @@ import { api_base_url, api_user, api_pass } from "../../config";
 
 @IonicPage()
 @Component({
-  selector: "page-cv",
+  selector: 'page-cvedit',
   providers: [SoapService],
-  templateUrl: "cv.html",
+  templateUrl: 'cvedit.html',
 })
-export class CvPage {
-  @ViewChild("assignmentAnim") assignmentAnim;
-  // public animator: AnimationBuilder;
+export class CveditPage {
   userdataTPK: any;
   isLoading: Boolean = true;
   dataCV: any;
 
-  showAssigment: Boolean = false;
-  showPerform: Boolean = false;
-  showEducation: boolean = false;
-  showTraining: boolean = false;
-  showFamily: boolean = false;
-  showAssignHistory: Boolean = false;
-  showReward: boolean = false;
+  showPersonal: Boolean = false;
+  showPDarurat: Boolean = false;
+  showPFormal: Boolean = false;
+  showPekerjaan: Boolean = false;
+  showAsHistory: Boolean = false;
+  showKesehatan: Boolean = false;
+  showPelatihanPPI: Boolean = false;
+  showIdentiasKeluarga: Boolean = false;
+  showRewardDanPunishment: Boolean = false;
+  showPerformance: Boolean = false;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public soapService: SoapService, public storage: Storage, public toastCtrl: ToastController) {
     this.storage.get("userdataTPK").then((val) => {
@@ -44,37 +44,35 @@ export class CvPage {
     console.log("ionViewDidLoad CvPage");
   }
 
-  toggleAssigment() {
-    if (this.showAssigment == true) {
-      this.showAssigment = false;
-    } else {
-      this.showAssigment = true;
-      // this.animator.setType('fadeInLeft').show(this.assignmentAnim.nativeElement);
-    }
+  togglePersonal() {
+    this.showPersonal = !this.showPersonal;
   }
-
-  togglePerform() {
-    this.showPerform = !this.showPerform;
+  togglePDarurat() {
+    this.showPDarurat = !this.showPDarurat;
   }
-
-  toggleEducation() {
-    this.showEducation = !this.showEducation;
+  togglePFormal() {
+    this.showPFormal = !this.showPFormal;
   }
-
-  toggleTraining() {
-    this.showTraining = !this.showTraining;
+  togglePekerjaan() {
+    this.showPekerjaan = !this.showPekerjaan;
   }
-
-  toggleFamily() {
-    this.showFamily = !this.showFamily;
+  toggleAsHistory() {
+    this.showAsHistory = !this.showAsHistory;
   }
-
-  toggleAssignHistory() {
-    this.showAssignHistory = !this.showAssignHistory;
+  toggleKesehatan() {
+    this.showKesehatan = !this.showKesehatan;
   }
-
-  toggleReward() {
-    this.showReward = !this.showReward;
+  toggleRiwayatPelPPI() {
+    this.showPelatihanPPI = !this.showPelatihanPPI;
+  }
+  toggleIdentitasKeluarga() {
+    this.showIdentiasKeluarga = !this.showIdentiasKeluarga;
+  }
+  toggleRewardDanPunishment() {
+    this.showRewardDanPunishment = !this.showRewardDanPunishment;
+  }
+  togglePerformance() {
+    this.showPerformance = !this.showPerformance;
   }
 
   getDataCV() {
@@ -117,7 +115,9 @@ export class CvPage {
         this.isLoading = false;
       });
   }
-  openPage(page) {
-    this.navCtrl.push(page);
+  openPage(kategori) {
+    this.navCtrl.push('CveditEditPage', {
+      kat: kategori
+    });
   }
 }
