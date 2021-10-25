@@ -84,6 +84,11 @@ export class InboxDetailPage {
   // param baru untuk revisi sppd
   isRevisi: Boolean = false;
 
+  // param baru untuk laporan
+  isLaporan: Boolean = false;
+  jumFileLaporan: any = '0';
+  komentarLaporan: any = '';
+
   tanggalMulaiRevisi: any = '';
   tanggalSelesaiRevisi: any = '';
   startTglSelesaiRevisi: any;
@@ -100,6 +105,55 @@ export class InboxDetailPage {
   fileName: any;
   fileType: any;
   imageFileName: any;
+
+  imageURILaporan1: any = "";
+  imageShowLaporan1: any = "assets/imgs/logo/camera.png";
+  fileDocPathLaporan1: any = '';
+  fileNameLaporan1: any = '';
+  fileTypeLaporan1: any = '';
+  imageFileNameLaporan1: any = '';
+
+  imageURILaporan2: any = "";
+  imageShowLaporan2: any = "assets/imgs/logo/camera.png";
+  fileDocPathLaporan2: any = '';
+  fileNameLaporan2: any = '';
+  fileTypeLaporan2: any = '';
+  imageFileNameLaporan2: any = '';
+
+  imageURILaporan3: any = "";
+  imageShowLaporan3: any = "assets/imgs/logo/camera.png";
+  fileDocPathLaporan3: any = '';
+  fileNameLaporan3: any = '';
+  fileTypeLaporan3: any = '';
+  imageFileNameLaporan3: any = '';
+
+  imageURILaporan4: any = "";
+  imageShowLaporan4: any = "assets/imgs/logo/camera.png";
+  fileDocPathLaporan4: any = '';
+  fileNameLaporan4: any = '';
+  fileTypeLaporan4: any = '';
+  imageFileNameLaporan4: any = '';
+
+  imageURILaporan5: any = "";
+  imageShowLaporan5: any = "assets/imgs/logo/camera.png";
+  fileDocPathLaporan5: any = '';
+  fileNameLaporan5: any = '';
+  fileTypeLaporan5: any = '';
+  imageFileNameLaporan5: any = '';
+
+  imageURILaporan6: any = "";
+  imageShowLaporan6: any = "assets/imgs/logo/camera.png";
+  fileDocPathLaporan6: any = '';
+  fileNameLaporan6: any = '';
+  fileTypeLaporan6: any = '';
+  imageFileNameLaporan6: any = '';
+
+  imageURILaporan7: any = "";
+  imageShowLaporan7: any = "assets/imgs/logo/camera.png";
+  fileDocPathLaporan7: any = '';
+  fileNameLaporan7: any = '';
+  fileTypeLaporan7: any = '';
+  imageFileNameLaporan7: any = '';
 
   constructor(
     public navCtrl: NavController,
@@ -135,6 +189,7 @@ export class InboxDetailPage {
     this.isLoading = true;
     this.messageData = this.navParams.get("messageData");
     this.isRevisi = this.navParams.get("isRevisi");
+    this.isLaporan = this.navParams.get("isLaporan");
     console.log(this.isRevisi);
 
     // console.log(this.messageData);
@@ -1155,6 +1210,7 @@ export class InboxDetailPage {
   }
 
   getJenisCuti() {
+    console.log(this.messageDetail["Jenis Pengajuan"]);
     this.soapService
       .post(api_base_url, "eoffice_jenis_cuti", {
         fStream: JSON.stringify({
@@ -1167,7 +1223,8 @@ export class InboxDetailPage {
         console.log(responData);
         if (responData["rcmsg"] == "SUCCESS") {
           var jenisPengajuanList = responData["data"];
-          this.dataJenisCuti = jenisPengajuanList.filter((x) => x.JN_PENGAJUAN.includes(this.messageDetail["Jenis Pengajuan"]));
+          console.log(jenisPengajuanList);
+          this.dataJenisCuti = jenisPengajuanList.filter((x) => (x.JN_PENGAJUAN != null) ? x.JN_PENGAJUAN.includes(this.messageDetail["Jenis Pengajuan"]) : null);
           console.log(this.dataJenisCuti);
           this.newSession();
         } else {
@@ -1181,6 +1238,7 @@ export class InboxDetailPage {
         }
       })
       .catch((error) => {
+        console.log(error);
         let toast = this.toastCtrl.create({
           message: "Gagal mendapatkan jenis cuti, silahkan periksa koneksi internet anda.",
           duration: 3000,
@@ -1800,7 +1858,9 @@ export class InboxDetailPage {
           // this.presentToast(err);
         });
     } else if (this.fileType == 'gambar') {
+     
       console.log(this.imageFileName);
+      console.log(this.fileName);
       console.log("image file path : " + this.pathForImage(this.imageFileName));
       const fileTransfer: FileTransferObject = this.transfer.create();
 
@@ -1816,6 +1876,7 @@ export class InboxDetailPage {
         this.pathForImage(this.imageFileName),
         url_upload_sppd, options)
         .then((data) => {
+          console.log(data);
           if (data['responseCode'] == 200) {
 
             var responData = JSON.parse(String(data['response']));
@@ -2004,9 +2065,619 @@ export class InboxDetailPage {
       });
       alert.present();
     }
+  }
+
+  createRange(data) {
+    var dataInt = parseInt(data);
+    return new Array(dataInt);
+  }
+
+  takeImageLaporan(sourceType: number, type) {
+    let mType = this.camera.MediaType.PICTURE;
+    // console.log(mType);
+
+    var options = {
+      quality: 100,
+      mediaType: mType,
+      sourceType: sourceType,
+      saveToPhotoAlbum: false,
+      correctOrientation: true
+    };
+
+    this.camera.getPicture(options).then((imageData) => {
+      let URI;
+      if (type == '1') {
+        this.imageShowLaporan1 = this.win.Ionic.WebView.convertFileSrc(imageData);
+        this.imageURILaporan1 = imageData;
+        URI = this.imageURILaporan1;
+      } else if (type == '2') {
+        this.imageShowLaporan2 = this.win.Ionic.WebView.convertFileSrc(imageData);
+        this.imageURILaporan2 = imageData;
+        URI = this.imageURILaporan2;
+      } else if (type == '3') {
+        this.imageShowLaporan3 = this.win.Ionic.WebView.convertFileSrc(imageData);
+        this.imageURILaporan3 = imageData;
+        URI = this.imageURILaporan3;
+      } else if (type == '4') {
+        this.imageShowLaporan4 = this.win.Ionic.WebView.convertFileSrc(imageData);
+        this.imageURILaporan4 = imageData;
+        URI = this.imageURILaporan4;
+      } else if (type == '5') {
+        this.imageShowLaporan5 = this.win.Ionic.WebView.convertFileSrc(imageData);
+        this.imageURILaporan5 = imageData;
+        URI = this.imageURILaporan5;
+      } else if (type == '6') {
+        this.imageShowLaporan6 = this.win.Ionic.WebView.convertFileSrc(imageData);
+        this.imageURILaporan6 = imageData;
+        URI = this.imageURILaporan6;
+      } else if (type == '7') {
+        this.imageShowLaporan7 = this.win.Ionic.WebView.convertFileSrc(imageData);
+        this.imageURILaporan7 = imageData;
+        URI = this.imageURILaporan7;
+      }
 
 
+      if (this.platform.is('android') && sourceType === this.camera.PictureSourceType.PHOTOLIBRARY) {
+        this.filepath.resolveNativePath(URI)
+          .then(filePath => {
+            let correctPath = filePath.substr(0, filePath.lastIndexOf('/') + 1);
+            let currentName = imageData.substring(imageData.lastIndexOf('/') + 1, imageData.lastIndexOf('?'));
+            this.copyFileToLocalDirLaporan(correctPath, currentName, this.createFileNameLaporan(type), type);
+          });
+      } else {
+        var currentName = imageData.substr(imageData.lastIndexOf('/') + 1);
+        var correctPath = imageData.substr(0, imageData.lastIndexOf('/') + 1);
+        this.copyFileToLocalDirLaporan(correctPath, currentName, this.createFileNameLaporan(type), type);
+      }
+      console.log(URI);
+    }, (err) => {
+      console.log(err);
+    });
+  }
 
+  private createFileNameLaporan(type) {
+    var newFileName = '';
+    if (type == '1') {
+      if (this.fileTypeLaporan1 == 'gambar') {
+        var d = new Date(), n = d.getTime();
+        newFileName = n + "_SPPD.jpg";
+      } else {
+        // console.log('error disini');
+      }
+    } else if (type == '2') {
+      if (this.fileTypeLaporan2 == 'gambar') {
+        var d = new Date(), n = d.getTime();
+        newFileName = n + "_SPPD.jpg";
+      } else {
+        // console.log('error disini');
+      }
+    } else if (type == '3') {
+      if (this.fileTypeLaporan2 == 'gambar') {
+        var d = new Date(), n = d.getTime();
+        newFileName = n + "_SPPD.jpg";
+      } else {
+        // console.log('error disini');
+      }
+    } else if (type == '4') {
+      if (this.fileTypeLaporan2 == 'gambar') {
+        var d = new Date(), n = d.getTime();
+        newFileName = n + "_SPPD.jpg";
+      } else {
+        // console.log('error disini');
+      }
+    } else if (type == '5') {
+      if (this.fileTypeLaporan2 == 'gambar') {
+        var d = new Date(), n = d.getTime();
+        newFileName = n + "_SPPD.jpg";
+      } else {
+        // console.log('error disini');
+      }
+    } else if (type == '6') {
+      if (this.fileTypeLaporan2 == 'gambar') {
+        var d = new Date(), n = d.getTime();
+        newFileName = n + "_SPPD.jpg";
+      } else {
+        // console.log('error disini');
+      }
+    } else if (type == '7') {
+      if (this.fileTypeLaporan2 == 'gambar') {
+        var d = new Date(), n = d.getTime();
+        newFileName = n + "_SPPD.jpg";
+      } else {
+        // console.log('error disini');
+      }
+    }
+
+    return newFileName;
+
+  }
+
+  private copyFileToLocalDirLaporan(namePath, currentName, filename, type) {
+    this.file.copyFile(namePath, currentName, this.file.dataDirectory, filename).then(success => {
+      if (type == '1') {
+        this.imageFileNameLaporan1 = filename;
+      } else if (type == '2') {
+        this.imageFileNameLaporan2 = filename;
+      } else if (type == '3') {
+        this.imageFileNameLaporan3 = filename;
+      } else if (type == '4') {
+        this.imageFileNameLaporan4 = filename;
+      } else if (type == '5') {
+        this.imageFileNameLaporan5 = filename;
+      } else if (type == '6') {
+        this.imageFileNameLaporan6 = filename;
+      } else if (type == '7') {
+        this.imageFileNameLaporan7 = filename;
+      }
+
+
+      console.log(this.imageFileNameLaporan1);
+    }, error => {
+      console.log('Error while storing file: ' + error);
+    });
+  }
+
+  openChooserLaporan(type) {
+    this.fileChooser.open()
+      .then(uri => {
+        // console.log(uri);
+        if (type == '1') {
+          this.fileDocPathLaporan1 = uri;
+          this.fileNameLaporan1 = uri.substr(uri.lastIndexOf('/') + 1);
+          this.fileNameLaporan1 = this.fileNameLaporan1.substr(10);
+          this.fileNameLaporan1 = this.fileNameLaporan1.replace(/%20/g, " ");
+        } else if (type == '2') {
+          this.fileDocPathLaporan2 = uri;
+          this.fileNameLaporan2 = uri.substr(uri.lastIndexOf('/') + 1);
+          this.fileNameLaporan2 = this.fileNameLaporan2.substr(10);
+          this.fileNameLaporan2 = this.fileNameLaporan2.replace(/%20/g, " ");
+        } else if (type == '3') {
+          this.fileDocPathLaporan3 = uri;
+          this.fileNameLaporan3 = uri.substr(uri.lastIndexOf('/') + 1);
+          this.fileNameLaporan3 = this.fileNameLaporan3.substr(10);
+          this.fileNameLaporan3 = this.fileNameLaporan3.replace(/%20/g, " ");
+        } else if (type == '4') {
+          this.fileDocPathLaporan4 = uri;
+          this.fileNameLaporan4 = uri.substr(uri.lastIndexOf('/') + 1);
+          this.fileNameLaporan4 = this.fileNameLaporan4.substr(10);
+          this.fileNameLaporan4 = this.fileNameLaporan4.replace(/%20/g, " ");
+        } else if (type == '5') {
+          this.fileDocPathLaporan5 = uri;
+          this.fileNameLaporan5 = uri.substr(uri.lastIndexOf('/') + 1);
+          this.fileNameLaporan5 = this.fileNameLaporan5.substr(10);
+          this.fileNameLaporan5 = this.fileNameLaporan5.replace(/%20/g, " ");
+        } else if (type == '6') {
+          this.fileDocPathLaporan6 = uri;
+          this.fileNameLaporan6 = uri.substr(uri.lastIndexOf('/') + 1);
+          this.fileNameLaporan6 = this.fileNameLaporan6.substr(10);
+          this.fileNameLaporan6 = this.fileNameLaporan6.replace(/%20/g, " ");
+        } else if (type == '7') {
+          this.fileDocPathLaporan7 = uri;
+          this.fileNameLaporan7 = uri.substr(uri.lastIndexOf('/') + 1);
+          this.fileNameLaporan7 = this.fileNameLaporan7.substr(10);
+          this.fileNameLaporan7 = this.fileNameLaporan7.replace(/%20/g, " ");
+        }
+
+        // console.log(this.fileName);
+        // console.log(this.fileName2);
+      })
+      .catch(e => {
+        // console.log(e)
+      });
+  }
+
+  doLaporan() {
+    var err = [];
+
+    if (this.komentarLaporan == '' || this.komentarLaporan == null) {
+      err.push("Komentar Laporan");
+    }
+
+    var showErr = '';
+
+    for (var i = 0; i < err.length; i++) {
+      if (i == err.length - 1) {
+        showErr = showErr + err[i];
+      } else {
+        showErr = showErr + err[i] + ', ';
+      }
+    }
+
+    if (err.length > 0) {
+      let alertError = this.alertCtrl.create({
+        title: 'Peringatan',
+        subTitle: 'Field ' + showErr + ' tidak boleh kosong !',
+        cssClass: 'alert',
+        buttons: [
+          {
+            text: 'TUTUP',
+            role: 'cancel',
+            handler: () => {
+              //console.log('Cancel clicked');
+            }
+          }
+        ]
+      });
+      alertError.present();
+    } else {
+      let alert = this.alertCtrl.create({
+        subTitle: 'Anda yakin ingin melakukan Pelaporan SPPD?',
+        cssClass: 'alert',
+        buttons: [
+          {
+            text: 'TIDAK',
+            role: 'cancel',
+            handler: () => {
+              //console.log('Cancel clicked');
+            }
+          },
+          {
+            text: 'YA',
+            handler: () => {
+
+              let loading = this.loadingCtrl.create({
+                spinner: 'dots',
+                content: "Mengirim Laporan SPPD, Mohon Tunggu...",
+                cssClass: 'transparent',
+                dismissOnPageChange: true
+              });
+              loading.present();
+
+              this.soapService
+                .post(api_base_url, 'eoffice_laporan_sppd', {
+                  fStream: JSON.stringify({
+                    usernameEDI: api_user,
+                    passwordEDI: api_pass,
+                    nipp_pembuat: this.userdataTPK["data"]["NIPP"],
+                    nama_pembuat: this.userdataTPK["data"]["NAMA"],
+                    id_pembuat: this.userdataTPK["data"]["IDUSER"],
+                    komentar: this.komentarRevisi,
+                    id_surat_asli: atob(this.messageDetail["ID Surat"]),
+                  })
+                }).then((result) => {
+                  var responData = JSON.parse(String(result));
+                  if (responData["rcmsg"] == "SUCCESS") {
+                    if (parseInt(this.jumFileLaporan) != 0) {
+                      this.uploadLaporan(responData['data']['ID_SURAT'], loading);
+                    } else {
+                      let toast = this.toastCtrl.create({
+                        message: 'Laporan SPPD Berhasil.',
+                        duration: 3000,
+                        position: 'bottom'
+                      });
+                      toast.present();
+                      loading.dismiss();
+                      this.navCtrl.pop();
+                    }
+                  } else {
+                    let toast = this.toastCtrl.create({
+                      message: "Gagal Laporan SPPD, silahkan coba kembali.",
+                      duration: 3000,
+                      position: 'bottom'
+                    });
+                    toast.present();
+                    loading.dismiss();
+                  }
+
+                }).catch((error) => {
+                  let toast = this.toastCtrl.create({
+                    message: 'Input gagal, silahkan periksa koneksi internet anda.',
+                    duration: 3000,
+                    position: 'bottom'
+                  });
+                  toast.present();
+                  loading.dismiss();
+                });
+
+            }
+          }
+        ]
+      });
+      alert.present();
+    }
+  }
+
+  uploadLaporan(idSurat, loading) {
+
+    // let loading = this.loadingCtrl.create({
+    //   spinner: 'dots',
+    //   content: "Mohon Tunggu...",
+    //   cssClass: 'transparent',
+    //   dismissOnPageChange: true
+    // });
+    // loading.present();
+
+    var dataUpload = [];
+
+    for (var i = 1; i <= parseInt(this.jumFileLaporan); i++) {
+      if (i == 1) {
+        dataUpload.push({
+          "fileType": this.fileTypeLaporan1,
+          "fileName": this.fileNameLaporan1,
+          "fileDocPath": this.fileDocPathLaporan1,
+          "imageFileName": this.imageFileNameLaporan1
+        });
+      }
+      if (i == 2) {
+        dataUpload.push({
+          "fileType": this.fileTypeLaporan2,
+          "fileName": this.fileNameLaporan2,
+          "fileDocPath": this.fileDocPathLaporan2,
+          "imageFileName": this.imageFileNameLaporan2
+        });
+      }
+      if (i == 3) {
+        dataUpload.push({
+          "fileType": this.fileTypeLaporan3,
+          "fileName": this.fileNameLaporan3,
+          "fileDocPath": this.fileDocPathLaporan3,
+          "imageFileName": this.imageFileNameLaporan3
+        });
+      }
+      if (i == 4) {
+        dataUpload.push({
+          "fileType": this.fileTypeLaporan4,
+          "fileName": this.fileNameLaporan4,
+          "fileDocPath": this.fileDocPathLaporan4,
+          "imageFileName": this.imageFileNameLaporan4
+        });
+      }
+      if (i == 5) {
+        dataUpload.push({
+          "fileType": this.fileTypeLaporan5,
+          "fileName": this.fileNameLaporan5,
+          "fileDocPath": this.fileDocPathLaporan5,
+          "imageFileName": this.imageFileNameLaporan5
+        });
+      }
+      if (i == 6) {
+        dataUpload.push({
+          "fileType": this.fileTypeLaporan6,
+          "fileName": this.fileNameLaporan6,
+          "fileDocPath": this.fileDocPathLaporan6,
+          "imageFileName": this.imageFileNameLaporan6
+        });
+      }
+      if (i == 7) {
+        dataUpload.push({
+          "fileType": this.fileTypeLaporan7,
+          "fileName": this.fileNameLaporan7,
+          "fileDocPath": this.fileDocPathLaporan7,
+          "imageFileName": this.imageFileNameLaporan7
+        });
+      }
+    }
+
+    console.log(dataUpload);
+    var isUpload = false;
+    var err = [];
+    var success = [];
+    var counterupload = 0;
+
+    dataUpload.forEach((item, i) => {
+      console.log(i);
+      if ((item['fileName'] != null && item['fileName'] != '') || (item['imageFileName'] != null && item['imageFileName'] != '')) {
+        if (item['fileType'] == 'file') {
+          const fileTransfer: FileTransferObject = this.transfer.create();
+          var options = {
+            fileKey: "file",
+            fileName: item['fileName'],
+            chunkedMode: false,
+            mimeType: "multipart/form-data",
+            params: { id_surat: idSurat, type: '1' }
+          };
+
+          fileTransfer.upload(
+            item['fileDocPath'],
+            url_upload_sppd, options)
+            .then((data) => {
+              if (data['responseCode'] == 200) {
+                var responData = JSON.parse(String(data['response']));
+                console.log(responData);
+                if (responData['rcmsg'] == 'SUCCESS') {
+                  isUpload = false;
+                  success.push('success upload ke - ' + i);
+                } else {
+                  err.push("gagal upload file ke - " + i);
+                  isUpload = false;
+                }
+              } else {
+                err.push("gagal upload file ke - " + i);
+                isUpload = false;
+              }
+
+              if (i+1 == parseInt(this.jumFileLaporan)) {
+                loading.dismiss();
+                let toast = this.toastCtrl.create({
+                  message: 'Laporan SPPD Berhasil.',
+                  duration: 3000,
+                  position: 'bottom'
+                });
+                toast.present();
+                this.navCtrl.pop();
+              }
+
+            }, (err) => {
+              if (i+1 == parseInt(this.jumFileLaporan)) {
+                loading.dismiss();
+                let toast = this.toastCtrl.create({
+                  message: 'Laporan SPPD Berhasil, namun file attachment gagal diupload, hubungi admin.',
+                  duration: 3000,
+                  position: 'bottom'
+                });
+                toast.present();
+                this,this.navCtrl.pop();
+              }
+              err.push("error upload file ke - " + i);
+              isUpload = false;
+            });
+        } else if (item['fileType'] == 'gambar') {
+          console.log('path image : ' + this.pathForImage(item['imageFileName']));
+          const fileTransfer: FileTransferObject = this.transfer.create();
+
+          var options = {
+            fileKey: "file",
+            fileName: this.fileName,
+            chunkedMode: false,
+            mimeType: "multipart/form-data",
+            params: { id_surat: idSurat, type: '1' }
+          };
+
+          fileTransfer.upload(
+            this.pathForImage(item['imageFileName']),
+            url_upload_sppd, options)
+            .then((data) => {
+              console.log(data);
+              if (data['responseCode'] == 200) {
+                var responData = JSON.parse(String(data['response']));
+                console.log(responData);
+
+                if (responData['rcmsg'] == 'SUCCESS') {
+                  isUpload = false;
+                  success.push('success upload ke - ' + i);
+                } else {
+                  err.push("gagal upload gambar ke - " + i);
+                  isUpload = false;
+                }
+              } else {
+                err.push("gagal upload gambar ke - " + i);
+                isUpload = false;
+              }
+              if (i+1 == parseInt(this.jumFileLaporan)) {
+                loading.dismiss();
+                let toast = this.toastCtrl.create({
+                  message: 'Laporan SPPD Berhasil.',
+                  duration: 3000,
+                  position: 'bottom'
+                });
+                toast.present();
+                this,this.navCtrl.pop();
+              }
+            }, (err) => {
+              err.push("error upload gambar ke - " + i);
+              isUpload = false;
+              if (i+1 == parseInt(this.jumFileLaporan)) {
+                loading.dismiss();
+                let toast = this.toastCtrl.create({
+                  message: 'Laporan SPPD Berhasil, namun file attachment gagal diupload, hubungi admin.',
+                  duration: 3000,
+                  position: 'bottom'
+                });
+                toast.present();
+                this,this.navCtrl.pop();
+              }
+            });
+        }
+      } else {
+        isUpload = false;
+      }
+    })
+
+    // for (var i = 0; i < parseInt(this.jumFileLaporan) && isUpload == false; i++) {
+    //   isUpload = true;
+    //   if ((dataUpload[i]['fileName'] != null && dataUpload[i]['fileName'] != '') || (dataUpload[i]['imageFileName'] != null &&  dataUpload[i]['imageFileName'] != '') ) {
+    //     if (dataUpload[i]['fileType'] == 'file') {
+    //       const fileTransfer: FileTransferObject = this.transfer.create();
+    //       var options = {
+    //         fileKey: "file",
+    //         fileName: dataUpload[i]['fileName'],
+    //         chunkedMode: false,
+    //         mimeType: "multipart/form-data",
+    //         params: { id_surat: idSurat, type: '1' }
+    //       };
+
+    //       fileTransfer.upload(
+    //         dataUpload[i]['fileDocPath'],
+    //         url_upload_sppd, options)
+    //         .then((data) => {
+    //           if (data['responseCode'] == 200) {
+    //             var responData = JSON.parse(String(data['response']));
+    //             console.log(responData);
+    //             if (responData['rcmsg'] == 'SUCCESS') {
+    //               isUpload = false;
+    //             } else {
+    //               err.push("gagal upload file ke - " + i);
+    //               isUpload = false;
+    //             }
+    //           } else {
+    //             err.push("gagal upload file ke - " + i);
+    //             isUpload = false;
+    //           }
+
+    //         }, (err) => {
+    //           err.push("error upload file ke - " + i);
+    //           isUpload = false;
+    //         });
+    //     } else if (dataUpload[i]['fileType'] == 'gambar') {
+    //       const fileTransfer: FileTransferObject = this.transfer.create();
+
+    //       var options = {
+    //         fileKey: "file",
+    //         fileName: this.fileName,
+    //         chunkedMode: false,
+    //         mimeType: "multipart/form-data",
+    //         params: { id_surat: idSurat, type: '1' }
+    //       };
+
+    //       fileTransfer.upload(
+    //         this.pathForImage(dataUpload[i]['imageFileName']),
+    //         url_upload_sppd, options)
+    //         .then((data) => {
+    //           if (data['responseCode'] == 200) {
+    //             var responData = JSON.parse(String(data['response']));
+    //             console.log(responData);
+
+    //             if (responData['rcmsg'] == 'SUCCESS') {
+    //               isUpload = false;
+    //             } else {
+    //               err.push("gagal upload gambar ke - " + i);
+    //               isUpload = false;
+    //             }
+    //           } else {
+    //             err.push("gagal upload gambar ke - " + i);
+    //             isUpload = false;
+    //           }
+    //         }, (err) => {
+    //           err.push("error upload gambar ke - " + i);
+    //           isUpload = false;
+    //         });
+    //     }
+    //   } else {
+    //     isUpload = false;
+    //   }
+
+    //   counterupload++;
+    // }
+
+    // console.log(counterupload);
+    // console.log(parseInt(this.jumFileLaporan));
+
+    // var showErr = '';
+    // for (var i = 0; i < err.length; i++) {
+    //   if (i == err.length - 1) {
+    //     showErr = showErr + err[i];
+    //   } else {
+    //     showErr = showErr + err[i] + ', ';
+    //   }
+    // }
+    // console.log(showErr);
+
+    // if (counterupload == parseInt(this.jumFileLaporan)) {
+    //   console.log("upload selesai");
+    //   loading.dismiss();
+    // }
+
+  }
+
+  tesUploadRevisi(id_surat) {
+    let loading = this.loadingCtrl.create({
+      spinner: 'dots',
+      content: "Mohon Tunggu...",
+      cssClass: 'transparent',
+      dismissOnPageChange: true
+    });
+    loading.present();
+    this.upload(id_surat, loading);
   }
 
 }

@@ -648,7 +648,8 @@
 								<ion-item style="padding-left: 0 !important;">
 									<ion-label stacked>Tanggal Selesai</ion-label>
 									<ion-input type="text" [readonly]="true" (ionFocus)="showDatePickerRevisi(2)"
-										(click)="showDatePickerRevisi(2)" [(ngModel)]="tanggalSelesaiRevisi"></ion-input>
+										(click)="showDatePickerRevisi(2)" [(ngModel)]="tanggalSelesaiRevisi">
+									</ion-input>
 								</ion-item>
 							</div>
 						</div>
@@ -702,13 +703,243 @@
 					</ion-card-content>
 				</ion-card>
 				<br>
-				<button style="border-radius:5px;" icon-start ion-button block (click)="doRevisi()"
-					color="primary">
+				<button style="border-radius:5px;" icon-start ion-button block (click)="doRevisi()" color="primary">
 					<ion-icon name="md-checkmark"></ion-icon>
 					Kirim
 				</button>
+				<!-- <button style="border-radius:5px;" icon-start ion-button block (click)="tesUploadRevisi('15508')" color="primary">
+					<ion-icon name="md-checkmark"></ion-icon>
+					Kirim revisi
+				</button> -->
 
 			</div>
+
+			<!-- -------------------------------------- REVISI SPPD -------------------------------------------------------------- -->
+
+			<!-- -------------------------------------- LAPORAN SPPD -------------------------------------------------------------- -->
+
+			<div *ngIf="from_modul == 'sppd' && isLaporan == true" padding-left padding-right>
+				<br>
+				<ion-card class="my-card-2">
+					<ion-card-content>
+						<div class="header-text">
+							<span ion-text text-wrap class="font-small">
+								<b>Data Laporan SPPD</b>
+							</span>
+						</div>
+						<div class="garis"></div>
+						<ion-item style="padding-left: 0 !important;">
+							<ion-label stacked>Komentar</ion-label>
+							<ion-input type="text" [(ngModel)]="komentarLaporan"></ion-input>
+						</ion-item>
+					</ion-card-content>
+				</ion-card>
+
+				<br>
+				<ion-card class="my-card-2">
+					<ion-card-content>
+						<ion-item>
+							<ion-label stacked>Jumlah File Upload</ion-label>
+							<ion-select [(ngModel)]="jumFileLaporan" cancelText="Cancel" okText="OK">
+								<div>
+									<ion-option value="1">1</ion-option>
+									<ion-option value="2">2</ion-option>
+									<ion-option value="3">3</ion-option>
+									<ion-option value="4">4</ion-option>
+									<ion-option value="5">5</ion-option>
+									<ion-option value="6">6</ion-option>
+									<ion-option value="7">7</ion-option>
+
+								</div>
+							</ion-select>
+						</ion-item>
+					</ion-card-content>
+				</ion-card>
+				<br>
+
+				<div *ngFor="let item of createRange(jumFileLaporan); let i = index">
+					<br>
+					<ion-card class="my-card-2"  >
+						<ion-card-content>
+							<div class="header-text">
+								<span ion-text text-wrap class="font-small">
+									<b>Upload File Laporan {{ i+1 }}</b>
+								</span>
+							</div>
+							<div class="garis"></div>
+	
+							<ion-item>
+								<span item-left>
+									<img src="assets/imgs/logo/document-icon.png" class="icons">
+								</span>
+								<ion-label stacked>Upload File</ion-label>
+								<ion-select *ngIf="i+1 == 1" [(ngModel)]="fileTypeLaporan1" cancelText="Cancel" okText="OK">
+									<div>
+										<ion-option value="file">File</ion-option>
+										<ion-option value="gambar">Foto</ion-option>
+									</div>
+								</ion-select>
+								<ion-select *ngIf="i+1 == 2" [(ngModel)]="fileTypeLaporan2" cancelText="Cancel" okText="OK">
+									<div>
+										<ion-option value="file">File</ion-option>
+										<ion-option value="gambar">Foto</ion-option>
+									</div>
+								</ion-select>
+								<ion-select *ngIf="i+1 == 3" [(ngModel)]="fileTypeLaporan3" cancelText="Cancel" okText="OK">
+									<div>
+										<ion-option value="file">File</ion-option>
+										<ion-option value="gambar">Foto</ion-option>
+									</div>
+								</ion-select>
+								<ion-select *ngIf="i+1 == 4" [(ngModel)]="fileTypeLaporan4" cancelText="Cancel" okText="OK">
+									<div>
+										<ion-option value="file">File</ion-option>
+										<ion-option value="gambar">Foto</ion-option>
+									</div>
+								</ion-select>
+								<ion-select *ngIf="i+1 == 5" [(ngModel)]="fileTypeLaporan5" cancelText="Cancel" okText="OK">
+									<div>
+										<ion-option value="file">File</ion-option>
+										<ion-option value="gambar">Foto</ion-option>
+									</div>
+								</ion-select>
+								<ion-select *ngIf="i+1 == 6" [(ngModel)]="fileTypeLaporan6" cancelText="Cancel" okText="OK">
+									<div>
+										<ion-option value="file">File</ion-option>
+										<ion-option value="gambar">Foto</ion-option>
+									</div>
+								</ion-select>
+								<ion-select *ngIf="i+1 == 7" [(ngModel)]="fileTypeLaporan7" cancelText="Cancel" okText="OK">
+									<div>
+										<ion-option value="file">File</ion-option>
+										<ion-option value="gambar">Foto</ion-option>
+									</div>
+								</ion-select>
+							</ion-item>
+							
+							<div *ngIf="i+1 == 1">
+								<div *ngIf="fileTypeLaporan1 == 'gambar'">
+									<div class="image-container">
+										<img (click)="takeImageLaporan(0,'1')" class="photo" src="{{ imageShowLaporan1 }}" />
+										<span ion-text style="text-align:center;color:gray;">Upload Foto (png, jpg, jpeg)</span>
+									</div>
+								</div>
+								<ion-item *ngIf="fileTypeLaporan1 == 'file'">
+									<ion-label stacked>Upload File (docx, doc, xlxs, xls,xlsx, pdf)</ion-label>
+									<ion-input type="text" [(ngModel)]="fileNameLaporan1" [readonly]="true"
+										(ionFocus)="openChooserLaporan('1')" (click)="openChooserLaporan('1')"
+										placeholder="pilih file">
+									</ion-input>
+								</ion-item>
+							</div>
+							<div *ngIf="i+1 == 2">
+								<div *ngIf="fileTypeLaporan2 == 'gambar'">
+									<div class="image-container">
+										<img (click)="takeImageLaporan(0,'2')" class="photo" src="{{ imageShowLaporan2 }}" />
+										<span ion-text style="text-align:center;color:gray;">Upload Foto (png, jpg, jpeg)</span>
+									</div>
+								</div>
+								<ion-item *ngIf="fileTypeLaporan2 == 'file'">
+									<ion-label stacked>Upload File (docx, doc, xlxs, xls,xlsx, pdf)</ion-label>
+									<ion-input type="text" [(ngModel)]="fileNameLaporan2" [readonly]="true"
+										(ionFocus)="openChooserLaporan('2')" (click)="openChooserLaporan('2')"
+										placeholder="pilih file">
+									</ion-input>
+								</ion-item>
+							</div>
+							<div *ngIf="i+1 == 3">
+								<div *ngIf="fileTypeLaporan3 == 'gambar'">
+									<div class="image-container">
+										<img (click)="takeImageLaporan(0,'3')" class="photo" src="{{ imageShowLaporan3 }}" />
+										<span ion-text style="text-align:center;color:gray;">Upload Foto (png, jpg, jpeg)</span>
+									</div>
+								</div>
+								<ion-item *ngIf="fileTypeLaporan3 == 'file'">
+									<ion-label stacked>Upload File (docx, doc, xlxs, xls,xlsx, pdf)</ion-label>
+									<ion-input type="text" [(ngModel)]="fileNameLaporan3" [readonly]="true"
+										(ionFocus)="openChooserLaporan('3')" (click)="openChooserLaporan('3')"
+										placeholder="pilih file">
+									</ion-input>
+								</ion-item>
+							</div>
+							<div *ngIf="i+1 == 4">
+								<div *ngIf="fileTypeLaporan4 == 'gambar'">
+									<div class="image-container">
+										<img (click)="takeImageLaporan(0,'4')" class="photo" src="{{ imageShowLaporan4 }}" />
+										<span ion-text style="text-align:center;color:gray;">Upload Foto (png, jpg, jpeg)</span>
+									</div>
+								</div>
+								<ion-item *ngIf="fileTypeLaporan4 == 'file'">
+									<ion-label stacked>Upload File (docx, doc, xlxs, xls,xlsx, pdf)</ion-label>
+									<ion-input type="text" [(ngModel)]="fileNameLaporan4" [readonly]="true"
+										(ionFocus)="openChooserLaporan('4')" (click)="openChooserLaporan('4')"
+										placeholder="pilih file">
+									</ion-input>
+								</ion-item>
+							</div>
+							<div *ngIf="i+1 == 5">
+								<div *ngIf="fileTypeLaporan5 == 'gambar'">
+									<div class="image-container">
+										<img (click)="takeImageLaporan(0,'5')" class="photo" src="{{ imageShowLaporan5 }}" />
+										<span ion-text style="text-align:center;color:gray;">Upload Foto (png, jpg, jpeg)</span>
+									</div>
+								</div>
+								<ion-item *ngIf="fileTypeLaporan5 == 'file'">
+									<ion-label stacked>Upload File (docx, doc, xlxs, xls,xlsx, pdf)</ion-label>
+									<ion-input type="text" [(ngModel)]="fileNameLaporan5" [readonly]="true"
+										(ionFocus)="openChooserLaporan('5')" (click)="openChooserLaporan('5')"
+										placeholder="pilih file">
+									</ion-input>
+								</ion-item>
+							</div>
+							<div *ngIf="i+1 == 6">
+								<div *ngIf="fileTypeLaporan6 == 'gambar'">
+									<div class="image-container">
+										<img (click)="takeImageLaporan(0,'6')" class="photo" src="{{ imageShowLaporan6 }}" />
+										<span ion-text style="text-align:center;color:gray;">Upload Foto (png, jpg, jpeg)</span>
+									</div>
+								</div>
+								<ion-item *ngIf="fileTypeLaporan6 == 'file'">
+									<ion-label stacked>Upload File (docx, doc, xlxs, xls,xlsx, pdf)</ion-label>
+									<ion-input type="text" [(ngModel)]="fileNameLaporan6" [readonly]="true"
+										(ionFocus)="openChooserLaporan('6')" (click)="openChooserLaporan('6')"
+										placeholder="pilih file">
+									</ion-input>
+								</ion-item>
+							</div>
+							<div *ngIf="i+1 == 7">
+								<div *ngIf="fileTypeLaporan7 == 'gambar'">
+									<div class="image-container">
+										<img (click)="takeImageLaporan(0,'7')" class="photo" src="{{ imageShowLaporan7 }}" />
+										<span ion-text style="text-align:center;color:gray;">Upload Foto (png, jpg, jpeg)</span>
+									</div>
+								</div>
+								<ion-item *ngIf="fileTypeLaporan7 == 'file'">
+									<ion-label stacked>Upload File (docx, doc, xlxs, xls,xlsx, pdf)</ion-label>
+									<ion-input type="text" [(ngModel)]="fileNameLaporan7" [readonly]="true"
+										(ionFocus)="openChooserLaporan('7')" (click)="openChooserLaporan('7')"
+										placeholder="pilih file">
+									</ion-input>
+								</ion-item>
+							</div>
+							
+						</ion-card-content>
+					</ion-card>
+				</div>
+				
+				<br>
+				<button style="border-radius:5px;" icon-start ion-button block (click)="doLaporan()" color="primary">
+					<ion-icon name="md-checkmark"></ion-icon>
+					Kirim laporan
+				</button>
+				<!-- <button style="border-radius:5px;" icon-start ion-button block (click)="uploadLaporan('15508','')" color="primary">
+					<ion-icon name="md-checkmark"></ion-icon>
+					tes uplaod laporan
+				</button> -->
+
+			</div>
+
+
 
 
 			<ion-grid *ngIf="messageDetail['Status Surat'].includes('PERIKSA')  && from_modul != 'sppd' ">
