@@ -1,7 +1,7 @@
 import { Component } from "@angular/core";
-import { IonicPage, NavController, NavParams, LoadingController, AlertController, ToastController } from "ionic-angular";
+import { IonicPage, NavController, NavParams, LoadingController, AlertController, ToastController, Events } from "ionic-angular";
 import { api_res, api_user, api_pass } from "../../config";
-import { DatePipe } from "@angular/common";
+import { DatePipe, Location } from "@angular/common";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Storage } from "@ionic/storage";
 
@@ -34,7 +34,9 @@ export class LemburDetailPage {
     public storage: Storage,
     public alertCtrl: AlertController,
     public toastCtrl: ToastController,
-    public datepipe: DatePipe
+    public datepipe: DatePipe,
+    public location: Location,
+    public events: Events
   ) {
     this.dataPemohon = navParams.get("data");
     console.log(this.dataPemohon);
@@ -161,6 +163,8 @@ export class LemburDetailPage {
               });
               toast.present();
               loader.dismiss();
+              this.events.publish("badges", 1);
+              this.location.back();
             } else {
               let toast = this.toastCtrl.create({
                 message: "Gagal mengupdate data lembur, silahkan coba kembali.",

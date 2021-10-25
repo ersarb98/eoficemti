@@ -1,33 +1,28 @@
 <ion-header>
-	<ion-navbar>
-		<ion-title>
-			<!-- <span ion-text color="light">Detail Surat</span> -->
-		</ion-title>
+  <ion-navbar>
+    <ion-title>
+      <!-- <span ion-text color="light">Detail Surat</span> -->
+    </ion-title>
 
-		<ion-buttons end *ngIf="isLoading == false">
-			<button ion-button (click)="goToLogSurat()">
-				<!-- <ion-icon style="font-size:2.4rem;" name="md-analytics" color="light"></ion-icon> -->
-				<img src="assets/imgs/menu-icon/history.png" style="    max-height: 27px;
-				margin-right: 5px;">
-			</button>
+    <ion-buttons end *ngIf="isLoading == false">
+      <button ion-button (click)="goToLogSurat()">
+        <!-- <ion-icon style="font-size:2.4rem;" name="md-analytics" color="light"></ion-icon> -->
+        <img src="assets/imgs/menu-icon/history.png" style="max-height: 27px; margin-right: 5px" />
+      </button>
 
-			<button *ngIf="messageDetail['Kode Jenis Surat'] == 'nd_sppd'" ion-button (click)="downloadSPPD()">
-				<ion-icon style="font-size:2.4rem;" name="md-download" color="light"></ion-icon>
-			</button>
+      <button *ngIf="messageDetail['Kode Jenis Surat'] == 'nd_sppd'" ion-button (click)="downloadSPPD()">
+        <ion-icon style="font-size: 2.4rem" name="md-download" color="light"></ion-icon>
+      </button>
 
-			<button
-				*ngIf="messageDetail['Kode Jenis Surat'] != 'nd_sppd' && messageDetail['Kode Jenis Surat'] != 'permohonan'"
-				ion-button (click)="downloadInbox(replaceNomorSurat(messageData['No_Surat']))">
-				<ion-icon style="font-size:2.4rem;" name="md-download" color="light"></ion-icon>
-			</button>
+      <button *ngIf="messageDetail['Kode Jenis Surat'] != 'nd_sppd' && messageDetail['Kode Jenis Surat'] != 'permohonan'" ion-button (click)="downloadInbox(replaceNomorSurat(messageData['No_Surat']))">
+        <ion-icon style="font-size: 2.4rem" name="md-download" color="light"></ion-icon>
+      </button>
 
-			<button
-				*ngIf="messageDetail['Kode Jenis Surat'] == 'permohonan' && messageDetail['Kode Status Surat'] != '2'"
-				ion-button (click)="downloadCuti()">
-				<ion-icon style="font-size:2.4rem;" name="md-download" color="light"></ion-icon>
-			</button>
-		</ion-buttons>
-	</ion-navbar>
+      <button *ngIf="messageDetail['Kode Jenis Surat'] == 'permohonan' && messageDetail['Kode Status Surat'] != '2'" ion-button (click)="downloadCuti()">
+        <ion-icon style="font-size: 2.4rem" name="md-download" color="light"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
 </ion-header>
 
 <ion-content margin-bottom>
