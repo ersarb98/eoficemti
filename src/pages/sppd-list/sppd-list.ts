@@ -239,6 +239,13 @@ export class SppdListPage {
             text: 'PELAPORAN',
 
             handler: () => {
+              this.navCtrl.push("InboxDetailPage", {
+                from_modul: 'sppd',
+                messageData: message,
+                nipp: this.userdataTPK['data']['NIPP'],
+                userdataTPK: this.userdataTPK,
+                isLaporan: true
+              });
             }
           }
         ]
