@@ -1573,9 +1573,16 @@ export class InboxDetailPage {
       dismissOnPageChange: true,
     });
     loading.present();
+
+
     var link = "";
+    if (this.messageData['KD_STATUS'] == '1') {
+      link = urldownload_srt + "outbox/cetak_surat/prev_dir_jadi/" + this.messageDetail["ID Surat"];
+    } else {
+      link = urldownload_srt + "outbox/cetak_surat_dup/prev_dir_dup/" + this.messageDetail["ID Surat"];
+    }
     const fileTransfer: FileTransferObject = this.transfer.create();
-    link = urldownload_srt + "outbox/cetak_surat_dup/prev_dir_dup/" + this.messageDetail["ID Surat"];
+    
     fileTransfer.download(link, this.file.dataDirectory + "Generate_" + this.messageData["NO_SURAT"] + ".pdf").then(
       (entry) => {
         console.log("download complete 2: " + entry.toURL());
@@ -1605,6 +1612,7 @@ export class InboxDetailPage {
         alert.present();
       },
       (error) => {
+        console.log(error);
         // handle error
         loading.dismiss();
       }

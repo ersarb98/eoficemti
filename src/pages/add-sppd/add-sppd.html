@@ -254,7 +254,7 @@
 
             <div style="margin-top: 10px">
               <label class="radio-button">
-                <input type="radio" [(ngModel)]="laundry" id="laundryYa" name="laundry" value="YA" checked />
+                <input type="radio" [(ngModel)]="laundry" id="laundryYa" name="laundry" value="Ya" checked />
                 <!-- <label for="WFH">WFH (Work From Home)</label> -->
                 <span class="label-visible">
                   <span class="fake-radiobutton"></span>
@@ -280,7 +280,7 @@
 
             <div style="margin-top: 10px">
               <label class="radio-button">
-                <input type="radio" [(ngModel)]="screeningCovid" id="screeningYa" name="screening_covid" value="YA" checked />
+                <input type="radio" [(ngModel)]="screeningCovid" id="screeningYa" name="screening_covid" value="Ya" checked />
                 <!-- <label for="WFH">WFH (Work From Home)</label> -->
                 <span class="label-visible">
                   <span class="fake-radiobutton"></span>
@@ -290,7 +290,7 @@
             </div>
             <div style="margin-top: 15px">
               <label class="radio-button">
-                <input type="radio" [(ngModel)]="screeningCovid" id="screeningNo" name="screening_covid" value="TIDAK" />
+                <input type="radio" [(ngModel)]="screeningCovid" id="screeningNo" name="screening_covid" value="Tidak" />
                 <!-- <label for="WFC">WFC (Work From Client)</label> -->
                 <span class="label-visible">
                   <span class="fake-radiobutton"></span>
@@ -662,6 +662,10 @@
         </div>
         <div class="garis"></div>
 
+        <div *ngIf="actionType == 'edit' && attachmentPermintaan != ''">
+          <div (click)="downloadAttach(attachmentPermintaan,'permintaan')"><span ion-text text-wrap color="dark" class="font2" color="primary">{{ subStrAttachment(attachmentPermintaan) }}</span> <br /></div>
+        </div>
+
         <ion-item>
           <span item-left>
             <img src="assets/imgs/logo/document-icon.png" class="icons">
@@ -698,6 +702,10 @@
           </span>
         </div>
         <div class="garis"></div>
+
+        <div *ngIf="actionType == 'edit' && attachmentRuangRapat != ''">
+          <div (click)="downloadAttach(attachmentRuangRapat,'rapat')"><span ion-text text-wrap color="dark" class="font2" color="primary">{{ subStrAttachment(attachmentRuangRapat) }}</span> <br /></div>
+        </div>
 
         <ion-item>
           <span item-left>
