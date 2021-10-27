@@ -15,6 +15,8 @@ import { FileTransfer, FileUploadOptions, FileTransferObject } from '@ionic-nati
 import { FileChooser } from '@ionic-native/file-chooser';
 import { Camera, CameraOptions } from '@ionic-native/camera';
 
+import { InAppBrowser, InAppBrowserOptions } from "@ionic-native/in-app-browser";
+
 /**
  * Generated class for the AddSppdPage page.
  *
@@ -121,6 +123,16 @@ export class AddSppdPage {
   laundry: any = '';
   screeningCovid: any = '';
 
+  actionType: any = ''
+  message: any = '';
+  messageDetail: any;
+  attachmentList: any;
+
+  attachmentPermintaan: any = '';
+  attachmentRuangRapat: any = '';
+  deleteAttachmentList: any = [];
+  id_surat: any = '';
+
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
@@ -138,15 +150,26 @@ export class AddSppdPage {
     public fileChooser: FileChooser,
     public filepath: FilePath,
     public file: File,
-    public camera: Camera
+    public camera: Camera,
+    public inAppBrowser: InAppBrowser
   ) {
     oneSignal.startInit(oneSignalAppId, sender_id);
     oneSignal.endInit();
 
-    this.pemeriksaList.push({ value: '' });
-    this.pesertaJabatanList.push({ value: '' });
-    this.pesertaPekerjaList.push({ value: '' });
-    this.pesertaEksternalList.push({ value: '', jabatan: '', golongan: '' });
+    this.actionType = this.navParams.get('actionType');
+    this.message = this.navParams.get("message");
+    console.log(this.actionType);
+
+
+    if (this.actionType == 'add') {
+      this.pemeriksaList.push({ value: '' });
+      this.pesertaJabatanList.push({ value: '' });
+      this.pesertaPekerjaList.push({ value: '' });
+      this.pesertaEksternalList.push({ value: '', jabatan: '', golongan: '' });
+    }
+
+
+
 
     this.tglPengajuan = new Date();
     this.tglPengajuan = this.datePipe.transform(this.tglPengajuan, 'dd/MM/yyyy');
@@ -195,6 +218,13 @@ export class AddSppdPage {
         if (responData['rcmsg'] == "SUCCESS") {
           this.dataSPPD = responData['data'];
           console.log(this.dataSPPD);
+          if (this.actionType == 'edit') {
+            this.getDetail(loading);
+          } else {
+            loading.dismiss();
+            this.isLoading = false;
+          }
+
         } else {
           let toast = this.toastCtrl.create({
             message: 'Mohon Maaf Sedang Terjadi Kesalahan, Coba Beberapa Saat Lagi.',
@@ -202,9 +232,10 @@ export class AddSppdPage {
             position: 'bottom'
           });
           toast.present();
+          loading.dismiss();
+          this.isLoading = false;
         }
-        loading.dismiss();
-        this.isLoading = false;
+
       })
       .catch(error => {
         //console.log(error);
@@ -217,9 +248,306 @@ export class AddSppdPage {
         loading.dismiss();
         this.isLoading = false;
       });
+  }
+
+  getDetail(loader) {
+    this.soapService
+      .post(api_base_url, "eoffice_viewmail", {
+        fStream: JSON.stringify({
+          usernameEDI: api_user,
+          passwordEDI: api_pass,
+          nipp: this.userdataTPK['data']['NIPP'],
+          linkSurat: this.message["Location"],
+          from_modul: "sppd",
+        }),
+      })
+      .then((result) => {
+        var responData = JSON.parse(String(result));
+        console.log(responData);
+
+        if (responData["rcmsg"] == "SUCCESS") {
+          this.messageDetail = responData["data"];
+          console.log(this.messageDetail);
+
+          var tglMulaiSplit = this.messageDetail["Agenda"]["Tanggal Mulai"].split("-");
+          var tglSelesaiSplit = this.messageDetail["Agenda"]["Tanggal Akhir"].split("-");
+          console.log(tglMulaiSplit);
+          var dateMulai = new Date(tglMulaiSplit[2], tglMulaiSplit[1], tglMulaiSplit[0]);
+
+          var dateSelesai = new Date(tglSelesaiSplit[2], tglSelesaiSplit[1], tglSelesaiSplit[0]);
+          console.log(dateMulai);
+
+          this.tanggalMulai = this.datePipe.transform(dateMulai, "dd/MM/yyyy");
+          this.tanggalSelesai = this.datePipe.transform(dateSelesai, "dd/MM/yyyy");
+          this.klasifikasiPerjalananDinas = this.messageDetail['Agenda']['klasifikasi_sppd'];
+          this.kotaAsal = this.messageDetail['Agenda']['kota_asal'];
+          this.kotaTujuan = this.messageDetail['Agenda']['kota_tujuan'];
+          this.perihal = this.messageDetail['Perihal'];
+          this.proyek = this.messageDetail['Agenda']['id_projek'];
+          this.angkutan = this.messageDetail['Agenda']['angkutan'];
+          this.maksudDinas = this.messageDetail['Agenda']['maksud_sppd'];
+          this.namaHotel = this.messageDetail['Agenda']['nama_hotel'];
+
+          this.ruangRapat = this.messageDetail['Agenda']['nm_ruang_rapat'];
+          this.tipeRuangRapat = this.messageDetail['Agenda']['tipe_ruang_rapat'];
+
+          if (this.ruangRapat != null || this.ruangRapat != '') {
+            this.isRuangRapat = 'Membutuhkan Ruang Rapat';
+            this.showRuangRapat = true;
+          }
+
+          this.jamuanRapat = this.messageDetail['Agenda']['jamuan_rapat'];
+          this.konsumsiJamuanRapat = this.messageDetail['Agenda']['konsumsi_jamuan_rapat'];
+
+          if (this.jamuanRapat != null || this.jamuanRapat != '') {
+            this.isJamuanRapat = 'Membutuhkan Jamuan Rapat';
+            this.showJamuan = true;
+          }
+
+          this.laundry = this.messageDetail['Agenda']['is_laundry'];
+          if (this.laundry != null || this.laundry != '') {
+            this.showLaundry = true;
+          }
+          this.screeningCovid = this.messageDetail['Agenda']['is_antigen_pcr'];
+          this.lampiran = this.messageDetail['Lampiran'];
+
+          if (this.messageDetail['Prioritas'] == 'Normal') {
+            this.prioritas = '0';
+          } else if (this.messageDetail['Prioritas'] == 'Penting') {
+            this.prioritas = '1';
+          } else if (this.messageDetail['Prioritas'] == 'Mendesak') {
+            this.prioritas = '2';
+          }
+
+          if (this.messageDetail['Klasifikasi'] == 'Biasa') {
+            this.klasifikasi = '0';
+          } else if (this.messageDetail['Klasifikasi'] == 'Rahasia') {
+            this.klasifikasi = '1';
+          }
+
+          this.komentar = this.messageDetail['SPPD_komentar'];
+
+          if (this.messageDetail['SPPD_pemeriksa'].length > 0) {
+            for (var i = 0; i < this.messageDetail['SPPD_pemeriksa'].length; i++) {
+              this.pemeriksaList.push({
+                'value': this.messageDetail['SPPD_pemeriksa'][i]['value'],
+                'ID_USER': this.messageDetail['SPPD_pemeriksa'][i]['ID_USER'],
+                'NIPP': this.messageDetail['SPPD_pemeriksa'][i]['NIPP'],
+                'NAMA': this.messageDetail['SPPD_pemeriksa'][i]['NAMA'],
+                'NM_JABATAN': this.messageDetail['SPPD_pemeriksa'][i]['NM_JABATAN'],
+                'ID_JABATAN': this.messageDetail['SPPD_pemeriksa'][i]['ID_JABATAN'],
+                'ID_CABANG': this.messageDetail['SPPD_pemeriksa'][i]['ID_CABANG'],
+                'NAMA_CABANG': this.messageDetail['SPPD_pemeriksa'][i]['NAMA_CABANG'],
+              });
+            }
+          }
+
+          this.dataPenanggungJawab = {
+            "ID_USER": this.messageDetail['SPPD_penanggungjawab']['ID_USER'],
+            "NIPP": this.messageDetail['SPPD_penanggungjawab']['NIPP'],
+            "NAMA": this.messageDetail['SPPD_penanggungjawab']['NAMA'],
+            "NM_JABATAN": this.messageDetail['SPPD_penanggungjawab']['NM_JABATAN'],
+            "ID_JABATAN": this.messageDetail['SPPD_penanggungjawab']['ID_JABATAN'],
+            "JABATANCABANG": this.messageDetail['SPPD_penanggungjawab']['JABATANCABANG']
+          };
+
+          this.penanggungJawab = this.dataPenanggungJawab['NAMA'] + ' | ' + this.dataPenanggungJawab['NM_JABATAN'];
+
+          this.pengirim = {
+            "ID_USER": this.messageDetail['Pengirim']['id_user'],
+            "NIPP": this.messageDetail['Pengirim']['NIPP'],
+            "NAMA": this.messageDetail['Pengirim']['Nama'],
+            "NM_JABATAN": this.messageDetail['Pengirim']['Nama Jabatan'],
+            "ID_JABATAN": this.messageDetail['Pengirim']['Id Jabatan'],
+            "BAWAHAN": this.messageDetail['Pengirim']['Divisi'],
+            "ATASAN": this.messageDetail['Pengirim']['Cab or Dir']
+          };
+          this.jabatanPengirim = this.messageDetail['SPPD_penanggungjawab']['Nama Jabatan'];
+
+          this.getPesertaSPPD(this.messageDetail["ID Surat"], loader);
+          this.id_surat = atob(this.messageDetail["ID Surat"]);
+
+          // this.linkSurat = this.messageDetail["Link Surat Asli"];
+          this.attachmentPermintaan = this.messageDetail["SPPD_attachment"][0]['url'];
+          this.attachmentRuangRapat = this.messageDetail["SPPD_attachment"][1]['url'];
+          loader.dismiss();
+          this.isLoading = false;
+        } else {
+          let toast = this.toastCtrl.create({
+            message: "Mohon Maaf Sedang Terjadi Kesalahan, Coba Beberapa Saat Lagi.",
+            duration: 3000,
+            position: "bottom",
+          });
+          toast.present();
+          loader.dismiss();
+          this.isLoading = false;
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+        let toast = this.toastCtrl.create({
+          message: "Terjadi Masalah Koneksi, Silahkan Coba Kembali (1).",
+          duration: 3000,
+          position: "bottom",
+        });
+        toast.present();
+        loader.dismiss();
+        this.isLoading = false;
+      });
+  }
+
+  downloadAttach(data, type) {
+
+    let alert = this.alertCtrl.create({
+      title: 'Attachment',
+      subTitle: this.subStrAttachment(data),
+      cssClass: 'alert',
+      buttons: [
+        {
+          text: 'Cancel',
+          role: 'cancel',
+          handler: () => {
+            //console.log('Cancel clicked');
+          }
+        },
+        {
+          text: 'Buka',
+          handler: () => {
+            const options: InAppBrowserOptions = {
+              zoom: "no",
+            };
+            const browser = this.inAppBrowser.create(data, "_system", options);
+          }
+        },
+        {
+          text: 'Hapus',
+          handler: () => {
+            if (type == 'permintaan') {
+              this.attachmentPermintaan = '';
+              this.deleteAttachmentList.push({
+                "url": this.messageDetail["SPPD_attachment"][0]['url'],
+                "id_file": this.messageDetail["SPPD_attachment"][0]['id_file'],
+                "id_surat": this.messageDetail["SPPD_attachment"][0]['id_surat']
+              })
+            } else if (type == 'rapat') {
+              this.attachmentRuangRapat = '';
+              this.deleteAttachmentList.push({
+                "url": this.messageDetail["SPPD_attachment"][1]['url'],
+                "id_file": this.messageDetail["SPPD_attachment"][1]['id_file'],
+                "id_surat": this.messageDetail["SPPD_attachment"][1]['id_surat']
+              })
+            }
+
+            console.log(this.deleteAttachmentList);
+          }
+        }
+      ]
+    });
+    alert.present();
+  }
+
+  subStrAttachment(data) {
+    var str = data;
+    var n = str.lastIndexOf("/");
+    return str.substring(n + 1);
+  }
+
+  getPesertaSPPD(idSurat, loader) {
+    this.soapService
+      .post(api_base_url, "eoffice_sppd_peserta", {
+        fStream: JSON.stringify({
+          usernameEDI: api_user,
+          passwordEDI: api_pass,
+          id_surat: atob(idSurat),
+        }),
+      })
+      .then((result) => {
+        let responData = JSON.parse(String(result));
+        console.log(responData);
+        if (responData["rcmsg"] == "SUCCESS") {
+          if (responData["data"]["PESERTA_JABATAN"].length > 0) {
+            for (var i = 0; i < responData["data"]["PESERTA_JABATAN"].length; i++) {
+              // this.pesertaSppdList.push(responData["data"]["PESERTA_JABATAN"][i]);
+              this.pesertaJabatanList.push({
+                'value': responData["data"]["PESERTA_JABATAN"][i]['value'],
+                'ID_USER': '',
+                'NIPP': '',
+                'NAMA': '',
+                'NM_JABATAN': responData["data"]["PESERTA_JABATAN"][i]['NAMA'],
+                'ID_JABATAN': responData["data"]["PESERTA_JABATAN"][i]['ID_JABATAN'],
+                'ID_CABANG': '',
+                'KD_PARA': '',
+                'NAMA_CABANG': ''
+              });
+            }
+          } else {
+            this.pesertaJabatanList.push({ value: '' });
+          }
+
+          if (responData["data"]["PESERTA_PEGAWAI"].length > 0) {
+            for (var i = 0; i < responData["data"]["PESERTA_PEGAWAI"].length; i++) {
+              // console.log(responData["data"][i]["PESERTA_PEGAWAI"]['value']);
+              // this.pesertaSppdList.push(responData["data"]["PESERTA_PEGAWAI"][i]);
+              this.pesertaPekerjaList.push({
+                'value': responData["data"]["PESERTA_PEGAWAI"][i]['value'],
+                'ID_USER': responData["data"]["PESERTA_PEGAWAI"][i]['ID_USER'],
+                'NIPP': responData["data"]["PESERTA_PEGAWAI"][i]['NIPP'],
+                'NAMA': responData["data"]["PESERTA_PEGAWAI"][i]['NAMA'],
+                'NM_JABATAN': responData["data"]["PESERTA_PEGAWAI"][i]['NAMA_JABATAN'],
+                'ID_JABATAN': responData["data"]["PESERTA_PEGAWAI"][i]['ID_JABATAN'],
+                'ID_CABANG': '',
+                'KD_PARA': '',
+                'NAMA_CABANG': '',
+              })
+            }
+          } else {
+            this.pesertaPekerjaList.push({ value: '' });
+          }
 
 
 
+          if (responData["data"]["PESERTA_NON_PEGAWAI"].length > 0) {
+            for (var i = 0; i < responData["data"]["PESERTA_NON_PEGAWAI"].length; i++) {
+              // this.pesertaSppdList.push(responData["data"]["PESERTA_NON_PEGAWAI"][i]);
+              this.pesertaEksternalList.push(
+                {
+                  value: responData["data"]["PESERTA_NON_PEGAWAI"][i]['value'],
+                  jabatan: responData["data"]["PESERTA_NON_PEGAWAI"][i]['JABATAN'],
+                  golongan: responData["data"]["PESERTA_NON_PEGAWAI"][i]['GOLONGAN']
+                }
+              );
+            }
+          } else {
+            this.pesertaEksternalList.push({ value: '', jabatan: '', golongan: '' });
+          }
+
+          // if (responData['data']['SCAN_SPPD'].length > 0) {
+          //   for (var i = 0; i < responData['data']['SCAN_SPPD'].length; i++) {
+          //     this.attrScanSppd.push( responData['data']['SCAN_SPPD'][i]);
+          //   }
+          // }
+          console.log(this.pesertaPekerjaList);
+          loader.dismiss();
+        } else {
+          let toast = this.toastCtrl.create({
+            message: "Mohon Maaf Sedang Terjadi Kesalahan, Coba Beberapa Saat Lagi.",
+            duration: 3000,
+            position: "bottom",
+          });
+          toast.present();
+          loader.dismiss();
+        }
+      })
+      .catch((error) => {
+        // console.log(error);
+        let toast = this.toastCtrl.create({
+          message: "Terjadi Masalah Koneksi, Silahkan Coba Kembali.",
+          duration: 3000,
+          position: "bottom",
+        });
+        toast.present();
+        loader.dismiss();
+      });
   }
 
   showDatePicker(type: number) {
@@ -269,8 +597,10 @@ export class AddSppdPage {
           console.log('lama sppd : ' + lamaSPPD);
           if (lamaSPPD > 3) {
             this.showLaundry = true;
+            this.laundry = '';
           } else {
             this.showLaundry = false;
+            this.laundry = 'Tidak';
           }
         },
           err => console.log('Error occurred while getting date: ', err)
@@ -507,7 +837,8 @@ export class AddSppdPage {
 
   setPesertaPekerja(pesertaPekerjaSearchResult, i) {
     this.pesertaPekerjaindex = i;
-    this.pesertaPekerjaList[this.pesertaPekerjaindex]['value'] = pesertaPekerjaSearchResult['NM_JABATAN'] + " | " + pesertaPekerjaSearchResult['NM_JABATAN'];
+    // this.pesertaPekerjaList[this.pesertaPekerjaindex]['value'] = pesertaPekerjaSearchResult['NM_JABATAN'] + " | " + pesertaPekerjaSearchResult['NM_JABATAN'];
+    this.pesertaPekerjaList[this.pesertaPekerjaindex]['value'] = pesertaPekerjaSearchResult['NAMA'];
     this.pesertaPekerjaList[this.pesertaPekerjaindex]['ID_USER'] = pesertaPekerjaSearchResult['ID_USER'];
     this.pesertaPekerjaList[this.pesertaPekerjaindex]['NIPP'] = pesertaPekerjaSearchResult['NIPP'];
     this.pesertaPekerjaList[this.pesertaPekerjaindex]['NAMA'] = pesertaPekerjaSearchResult['NAMA'];
@@ -638,7 +969,7 @@ export class AddSppdPage {
     this.showResultPenanggungJawab = false;
   }
 
-  submit(actionType) {
+  submit(submitType) {
     console.log(this.pesertaEksternalList);
     var err = [];
     if (this.klasifikasiPerjalananDinas == '' || this.klasifikasiPerjalananDinas == null) {
@@ -695,9 +1026,12 @@ export class AddSppdPage {
       err.push('Penanggung Jawab');
     }
 
-    if ((this.imageURI == null || this.imageURI == '') && (this.fileName == null || this.fileName == '')) {
-      err.push("Form Permintaan SPPD");
+    if (this.actionType == 'add' || (this.actionType == 'edit' && this.attachmentPermintaan == null)) {
+      if ((this.imageURI == null || this.imageURI == '') && (this.fileName == null || this.fileName == '')) {
+        err.push("Form Permintaan SPPD");
+      }
     }
+
     if (this.pengirim == null) {
       err.push("Pengirim");
     }
@@ -837,20 +1171,33 @@ export class AddSppdPage {
           "Konsumsi_jamuan": this.konsumsiJamuanRapat,
           "laundry": this.laundry,
           "screening_covid": this.screeningCovid,
-          "penanggungjawab": this.dataPenanggungJawab
+          "penanggungjawab": this.dataPenanggungJawab,
+          "id_surat": this.id_surat
         }));
 
 
       var action = '';
       var alertText = '';
+      var alertType = '';
 
-      if (actionType == 'simpan') {
-        action = 'eoffice_simpan_sppd';
+      if (submitType == 'simpan') {
+        if (this.actionType == 'add') {
+          action = 'eoffice_simpan_sppd';
+        } else if (this.actionType == 'edit') {
+          action = 'eoffice_edit_simpan_sppd';
+        }
+        alertType = 'Simpan';
         alertText = 'Anda yakin ingin menyimpan SPPD?';
-      } else if (actionType == 'kirim') {
-        action = 'eoffice_add_sppd';
+      } else if (submitType == 'kirim') {
+        if (this.actionType == 'add') {
+          action = 'eoffice_add_sppd';
+        } else if (this.actionType == 'edit') {
+          action = 'eoffice_edit_sppd';
+        }
+        alertType = 'Pengajuan';
         alertText = 'Anda yakin ingin mengajukan SPPD?';
       }
+
       let alert = this.alertCtrl.create({
         subTitle: alertText,
         cssClass: 'alert',
@@ -909,7 +1256,8 @@ export class AddSppdPage {
                       "Konsumsi_jamuan": this.konsumsiJamuanRapat,
                       "laundry": this.laundry,
                       "screening_covid": this.screeningCovid,
-                      "penanggungjawab": this.dataPenanggungJawab
+                      "penanggungjawab": this.dataPenanggungJawab,
+                      "id_surat": this.id_surat
                     }
                   )
                 })
@@ -918,12 +1266,20 @@ export class AddSppdPage {
                   //console.log(responData);
 
                   if (responData['rcmsg'] == "SUCCESS") {
+                    if (this.deleteAttachmentList.length > 0) {
+                      this.deleteAttachment();
+                    }
                     if (this.fileType != null) {
-                      if ((this.imageURI != '') || (this.fileName != null)) {
-                        this.upload(responData['data']['ID_SURAT'], loading);
-                      } else {
+                      if ((this.imageURI != '' || this.fileName != null) && (this.imageURI2 != '' || this.fileName2 != null)) {
+                        this.upload(responData['data']['ID_SURAT'], loading, alertType);
+                      }  else if ((this.imageURI == '' || this.fileName == null) && (this.imageURI2 != '' || this.fileName2 != null)) {
+                        this.upload2(responData['data']['ID_SURAT'], loading, alertType);
+                      } else if ((this.imageURI != '' || this.fileName != null) && (this.imageURI2 == '' || this.fileName2 == null)) {
+                        this.upload(responData['data']['ID_SURAT'], loading, alertType);
+                      }
+                      else {
                         let toast = this.toastCtrl.create({
-                          message: 'Pengajuan SPPD Berhasil.',
+                          message: alertType + ' SPPD Berhasil.',
                           duration: 3000,
                           position: 'bottom'
                         });
@@ -934,7 +1290,7 @@ export class AddSppdPage {
                       }
                     } else {
                       let toast = this.toastCtrl.create({
-                        message: 'Pengajuan SPPD Berhasil.',
+                        message: alertType + ' SPPD Berhasil.',
                         duration: 3000,
                         position: 'bottom'
                       });
@@ -946,7 +1302,7 @@ export class AddSppdPage {
 
                   } else {
                     let toast = this.toastCtrl.create({
-                      message: "Gagal mengajukan SPPD, silahkan coba kembali.",
+                      message: alertType + " SPPD Gagal, silahkan coba kembali.",
                       duration: 3000,
                       position: 'bottom'
                     });
@@ -970,6 +1326,27 @@ export class AddSppdPage {
       });
       alert.present();
     }
+  }
+
+  deleteAttachment() {
+    this.soapService
+      .post(api_base_url, 'eoffice_delete_attachment_sppd', {
+        fStream: JSON.stringify(
+          {
+            "usernameEDI": api_user,
+            "passwordEDI": api_pass,
+            "id_surat": this.id_surat,
+            "attachment": this.deleteAttachmentList
+          }
+        )
+      })
+      .then(result => {
+        let responData = JSON.parse(String(result));
+        console.log(responData);
+      })
+      .catch(error => {
+        console.log(error);
+      });
   }
 
   openChooser(type) {
@@ -1020,7 +1397,7 @@ export class AddSppdPage {
         URI = this.imageURI2;
       }
 
-      
+
       if (this.platform.is('android') && sourceType === this.camera.PictureSourceType.PHOTOLIBRARY) {
         this.filepath.resolveNativePath(URI)
           .then(filePath => {
@@ -1083,7 +1460,7 @@ export class AddSppdPage {
     }
   }
 
-  upload(idSurat, loader) {
+  upload(idSurat, loader, alertType) {
     // console.log(this.fileDocPath);
     if (this.fileType == 'file') {
       const fileTransfer: FileTransferObject = this.transfer.create();
@@ -1108,10 +1485,10 @@ export class AddSppdPage {
             if (responData['rcmsg'] == 'SUCCESS') {
 
               if ((this.imageURI2 != '') || (this.fileName2 != null)) {
-                this.upload2(idSurat, loader);
+                this.upload2(idSurat, loader, alertType);
               } else {
                 let toast = this.toastCtrl.create({
-                  message: 'Pengajuan SPPD Berhasil.',
+                  message: alertType + ' SPPD Berhasil.',
                   duration: 3000,
                   position: 'bottom'
                 });
@@ -1121,10 +1498,10 @@ export class AddSppdPage {
               }
             } else {
               if ((this.imageURI2 != '') || (this.fileName2 != null)) {
-                this.upload2(idSurat, loader);
+                this.upload2(idSurat, loader, alertType);
               } else {
                 let toast = this.toastCtrl.create({
-                  message: "Pengajuan SPPD Berhasil, namun file attachment gagal diupload, silahkan hubungi admin.",
+                  message: alertType + " SPPD Berhasil, namun file attachment gagal diupload, silahkan hubungi admin.",
                   duration: 3000,
                   position: 'bottom'
                 });
@@ -1136,10 +1513,10 @@ export class AddSppdPage {
             }
           } else {
             if ((this.imageURI2 != '') || (this.fileName2 != null)) {
-              this.upload2(idSurat, loader);
+              this.upload2(idSurat, loader, alertType);
             } else {
               let toast = this.toastCtrl.create({
-                message: "Pengajuan SPPD Berhasil, namun file attachment gagal diupload, silahkan hubungi admin.",
+                message: alertType + " SPPD Berhasil, namun file attachment gagal diupload, silahkan hubungi admin.",
                 duration: 3000,
                 position: 'bottom'
               });
@@ -1154,12 +1531,12 @@ export class AddSppdPage {
           // console.log("masuk sini");
           // console.log(err);
           let toast = this.toastCtrl.create({
-            message: "Pengajuan SPPD Berhasil, namun file attachment gagal diupload, silahkan hubungi admin.",
+            message: alertType + " SPPD Berhasil, namun file attachment gagal diupload, silahkan hubungi admin.",
             duration: 3000,
             position: 'bottom'
           });
           if ((this.imageURI2 != '') || (this.fileName2 != null)) {
-            this.upload2(idSurat, loader);
+            this.upload2(idSurat, loader, alertType);
           } else {
             toast.present();
             loader.dismiss();
@@ -1192,10 +1569,10 @@ export class AddSppdPage {
 
             if (responData['rcmsg'] == 'SUCCESS') {
               if ((this.imageURI2 != '') || (this.fileName2 != null)) {
-                this.upload2(idSurat,loader);
+                this.upload2(idSurat, loader, alertType);
               } else {
                 let toast = this.toastCtrl.create({
-                  message: 'Pengajuan SPPD Berhasil.',
+                  message: alertType + ' SPPD Berhasil.',
                   duration: 3000,
                   position: 'bottom'
                 });
@@ -1206,10 +1583,10 @@ export class AddSppdPage {
 
             } else {
               if ((this.imageURI2 != '') || (this.fileName2 != null)) {
-                this.upload2(idSurat,loader);
+                this.upload2(idSurat, loader, alertType);
               } else {
                 let toast = this.toastCtrl.create({
-                  message: "Pengajuan SPPD Berhasil, namun file attachment gagal diupload, silahkan hubungi admin.",
+                  message: alertType + " SPPD Berhasil, namun file attachment gagal diupload, silahkan hubungi admin.",
                   duration: 3000,
                   position: 'bottom'
                 });
@@ -1220,10 +1597,10 @@ export class AddSppdPage {
             }
           } else {
             if ((this.imageURI2 != '') || (this.fileName2 != null)) {
-              this.upload2(idSurat,loader);
+              this.upload2(idSurat, loader, alertType);
             } else {
               let toast = this.toastCtrl.create({
-                message: "Pengajuan SPPD Berhasil, namun file attachment gagal diupload, silahkan hubungi admin.",
+                message: alertType + " SPPD Berhasil, namun file attachment gagal diupload, silahkan hubungi admin.",
                 duration: 3000,
                 position: 'bottom'
               });
@@ -1236,13 +1613,13 @@ export class AddSppdPage {
           // console.log("masuk sini");
           // console.log(err);
           let toast = this.toastCtrl.create({
-            message: "Pengajuan SPPD Berhasil, namun file attachment gagal diupload, silahkan hubungi admin.",
+            message: alertType + " SPPD Berhasil, namun file attachment gagal diupload, silahkan hubungi admin.",
             duration: 3000,
             position: 'bottom'
           });
 
           if ((this.imageURI2 != '') || (this.fileName2 != null)) {
-            this.upload2(idSurat,loader);
+            this.upload2(idSurat, loader, alertType);
           } else {
             toast.present();
             loader.dismiss();
@@ -1252,7 +1629,7 @@ export class AddSppdPage {
     }
   }
 
-  upload2(idSurat, loader) {
+  upload2(idSurat, loader, alertType) {
     // console.log(this.fileDocPath);
     if (this.fileType2 == 'file') {
       const fileTransfer: FileTransferObject = this.transfer.create();
@@ -1277,7 +1654,7 @@ export class AddSppdPage {
             if (responData['rcmsg'] == 'SUCCESS') {
 
               let toast = this.toastCtrl.create({
-                message: 'Pengajuan SPPD Berhasil.',
+                message: alertType + ' SPPD Berhasil.',
                 duration: 3000,
                 position: 'bottom'
               });
@@ -1286,7 +1663,7 @@ export class AddSppdPage {
               this.viewCtrl.dismiss({ isSuccess: true });
             } else {
               let toast = this.toastCtrl.create({
-                message: "Pengajuan SPPD Berhasil, namun file attachment Permintaan Ruang Rapat dan Konsumsi gagal diupload, silahkan hubungi admin.",
+                message: alertType +  " SPPD Berhasil, namun file attachment Permintaan Ruang Rapat dan Konsumsi gagal diupload, silahkan hubungi admin.",
                 duration: 3000,
                 position: 'bottom'
               });
@@ -1296,7 +1673,7 @@ export class AddSppdPage {
             }
           } else {
             let toast = this.toastCtrl.create({
-              message: "Pengajuan SPPD Berhasil, namun file attachment Permintaan Ruang Rapat dan Konsumsi gagal diupload, silahkan hubungi admin.",
+              message: alertType +  " SPPD Berhasil, namun file attachment Permintaan Ruang Rapat dan Konsumsi gagal diupload, silahkan hubungi admin.",
               duration: 3000,
               position: 'bottom'
             });
@@ -1309,7 +1686,7 @@ export class AddSppdPage {
           // console.log("masuk sini");
           // console.log(err);
           let toast = this.toastCtrl.create({
-            message: "Pengajuan SPPD Berhasil, namun file attachment Permintaan Ruang Rapat dan Konsumsi gagal diupload, silahkan hubungi admin.",
+            message: alertType +  " SPPD Berhasil, namun file attachment Permintaan Ruang Rapat dan Konsumsi gagal diupload, silahkan hubungi admin.",
             duration: 3000,
             position: 'bottom'
           });
@@ -1352,7 +1729,7 @@ export class AddSppdPage {
               this.viewCtrl.dismiss({ isSuccess: true });
             } else {
               let toast = this.toastCtrl.create({
-                message: "Pengajuan SPPD Berhasil, namun file attachment Permintaan Ruang Rapat dan Konsumsi gagal diupload, silahkan hubungi admin.",
+                message: alertType +  " SPPD Berhasil, namun file attachment Permintaan Ruang Rapat dan Konsumsi gagal diupload, silahkan hubungi admin.",
                 duration: 3000,
                 position: 'bottom'
               });
@@ -1362,7 +1739,7 @@ export class AddSppdPage {
             }
           } else {
             let toast = this.toastCtrl.create({
-              message: "Pengajuan SPPD Berhasil, namun file attachment Permintaan Ruang Rapat dan Konsumsi gagal diupload, silahkan hubungi admin.",
+              message: alertType +  " SPPD Berhasil, namun file attachment Permintaan Ruang Rapat dan Konsumsi gagal diupload, silahkan hubungi admin.",
               duration: 3000,
               position: 'bottom'
             });
@@ -1374,7 +1751,7 @@ export class AddSppdPage {
           // console.log("masuk sini");
           // console.log(err);
           let toast = this.toastCtrl.create({
-            message: "Pengajuan SPPD Berhasil, namun file attachment Permintaan Ruang Rapat dan Konsumsi gagal diupload, silahkan hubungi admin.",
+            message: alertType +  " SPPD Berhasil, namun file attachment Permintaan Ruang Rapat dan Konsumsi gagal diupload, silahkan hubungi admin.",
             duration: 3000,
             position: 'bottom'
           });

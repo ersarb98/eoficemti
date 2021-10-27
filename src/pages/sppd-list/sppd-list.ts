@@ -53,8 +53,12 @@ export class SppdListPage {
     });
   }
 
-  goToForm() {
+  goToForm(actionType,data) {
+
     let modal = this.modalCtrl.create("AddSppdPage", {
+      "actionType": actionType,
+      "message": data
+      
     }, {
       enableBackdropDismiss: true,
       showBackdrop: true,
@@ -191,7 +195,7 @@ export class SppdListPage {
             text: 'EDIT',
 
             handler: () => {
-
+              this.goToForm('edit',message);
             }
           },
           {
