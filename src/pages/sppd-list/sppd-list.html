@@ -34,11 +34,12 @@
           <img src="assets/imgs/menu-icon/sppd.png" class="icons">
         </span>
         <div>
-          <span ion-text text-wrap class="font3" color="danger" *ngIf="sppd['TEMPAT_SPPD'] == '' || sppd['TEMPAT_SPPD'] == null"><b> - </b></span>
-          <span ion-text text-wrap class="font3" color="danger"><b>{{ sppd['TEMPAT_SPPD'] }}</b></span>
-          <span ion-text text-wrap class="font3" > -> </span>
           <span ion-text text-wrap class="font3" color="danger" *ngIf="sppd['TEMPAT_BERANGKAT'] == '' || sppd['TEMPAT_BERANGKAT'] == null"><b> - </b></span>
           <span ion-text text-wrap class="font3" color="danger"><b>{{ sppd['TEMPAT_BERANGKAT'] }}</b></span>
+          <span ion-text text-wrap class="font3" > -> </span>
+          <span ion-text text-wrap class="font3" color="danger" *ngIf="sppd['TEMPAT_SPPD'] == '' || sppd['TEMPAT_SPPD'] == null"><b> - </b></span>
+          <span ion-text text-wrap class="font3" color="danger"><b>{{ sppd['TEMPAT_SPPD'] }}</b></span>
+          
           <br />
         </div>
 
@@ -82,7 +83,7 @@
 
 <ion-footer>
   <ion-fab right bottom style="margin-right:10px; margin-bottom: 10px;">
-    <button ion-fab color="red" (click)="goToForm()">
+    <button ion-fab color="red" (click)="goToForm('add','')">
       <ion-icon name="md-add" color="light"></ion-icon>
     </button>
   </ion-fab>

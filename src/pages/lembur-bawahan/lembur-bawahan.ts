@@ -48,8 +48,12 @@ export class LemburBawahanPage {
       } else {
         this.isAtasan = true;
       }
-      this.getLemburBawahanList("first", "");
     });
+  }
+
+  ionViewWillEnter() {
+    this.lemburBawahanList = [];
+    this.getLemburBawahanList("first", "");
   }
 
   getLemburBawahanList(type, functionName) {
@@ -147,6 +151,7 @@ export class LemburBawahanPage {
   }
 
   doRefresh(refresher) {
+    console.log(refresher);
     this.batasAtas = 1;
     this.batasBawah = 10;
     this.getLemburBawahanList("refresh", refresher);

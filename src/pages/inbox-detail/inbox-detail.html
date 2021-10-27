@@ -1,873 +1,1042 @@
 <ion-header>
-	<ion-navbar>
-		<ion-title>
-			<!-- <span ion-text color="light">Detail Surat</span> -->
-		</ion-title>
+  <ion-navbar>
+    <ion-title>
+      <!-- <span ion-text color="light">Detail Surat</span> -->
+    </ion-title>
 
-		<ion-buttons end  *ngIf="isLoading == false">
-			<button ion-button (click)="goToLogSurat()">
-				<!-- <ion-icon style="font-size:2.4rem;" name="md-analytics" color="light"></ion-icon> -->
-				<img src="assets/imgs/menu-icon/history.png" style="    max-height: 27px;
-				margin-right: 5px;">
-			</button>
+    <ion-buttons end *ngIf="isLoading == false">
+      <button ion-button (click)="goToLogSurat()">
+        <!-- <ion-icon style="font-size:2.4rem;" name="md-analytics" color="light"></ion-icon> -->
+        <img src="assets/imgs/menu-icon/history.png" style="max-height: 27px; margin-right: 5px" />
+      </button>
 
-			<button *ngIf="messageDetail['Kode Jenis Surat'] == 'nd_sppd'" ion-button (click)="downloadSPPD()">
-				<ion-icon style="font-size:2.4rem;" name="md-download" color="light"></ion-icon>
-			</button>
+      <button *ngIf="messageDetail['Kode Jenis Surat'] == 'nd_sppd'" ion-button (click)="downloadSPPD()">
+        <ion-icon style="font-size: 2.4rem" name="md-download" color="light"></ion-icon>
+      </button>
 
-			<button *ngIf="messageDetail['Kode Jenis Surat'] != 'nd_sppd' && messageDetail['Kode Jenis Surat'] != 'permohonan'" ion-button (click)="downloadInbox(replaceNomorSurat(messageData['No_Surat']))">
-				<ion-icon style="font-size:2.4rem;" name="md-download" color="light"></ion-icon>
-			</button>
+      <button *ngIf="messageDetail['Kode Jenis Surat'] != 'nd_sppd' && messageDetail['Kode Jenis Surat'] != 'permohonan'" ion-button (click)="downloadInbox(replaceNomorSurat(messageData['No_Surat']))">
+        <ion-icon style="font-size: 2.4rem" name="md-download" color="light"></ion-icon>
+      </button>
 
-			<button *ngIf="messageDetail['Kode Jenis Surat'] == 'permohonan' && messageDetail['Kode Status Surat'] != '2'" ion-button (click)="downloadCuti()">
-				<ion-icon style="font-size:2.4rem;" name="md-download" color="light"></ion-icon>
-			</button>
-		</ion-buttons>
-	</ion-navbar>
+      <button *ngIf="messageDetail['Kode Jenis Surat'] == 'permohonan' && messageDetail['Kode Status Surat'] != '2'" ion-button (click)="downloadCuti()">
+        <ion-icon style="font-size: 2.4rem" name="md-download" color="light"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
 </ion-header>
 
 <ion-content margin-bottom>
-	<div *ngIf="isLoading == true">
-		<ion-item no-lines>
-			<div class="animate-skeleton-background load-2"></div>
-			<div class="animate-skeleton-background load-3"></div>
-			<div class="garis"></div>
-			<div class="animate-skeleton-background load-1"> </div>
-			<div class="animate-skeleton-background load-3"></div>
-			<div class="animate-skeleton-background load-1"> </div>
-			<div class="animate-skeleton-background load-3"></div>
-		</ion-item>
-	</div>
-
-	<div *ngIf="isLoading == false">
-		<div *ngIf="messageDetail['Kode Jenis Surat'] != 'permohonan'">
-			<ion-card class="header-menu">
-				<ion-item no-padding margin-left>
-					<span ion-text text-wrap style="font-size:1.5rem;">
-						<b>{{ messageDetail['Perihal'] }}</b>
-					</span> <br>
-					<span ion-text text-wrap style="font-size:1.2rem; color:gray;">
-						{{ messageDetail['No Surat'] }}
-					</span>
-					<div style="padding: 10px;" item-end>
-						<button ion-button icon-only clear (click)="show()">
-							<ion-icon name="ios-arrow-down-outline" *ngIf="!showDetailPesan"></ion-icon>
-							<ion-icon name="ios-arrow-up-outline" *ngIf="showDetailPesan"></ion-icon>
-						</button>
-					</div>
-
-				</ion-item>
-			</ion-card>
-
-			<ion-card class="my-card" style="margin-top:10px !important;" *ngIf="showDetailPesan">
-				<ion-item>
-					<span ion-text text-wrap class="font" color="color4">Tanggal :
-					</span><br />
-					<span ion-text text-wrap color='dark' class="font2">
-						{{ messageDetail['Tanggal Surat'] }}
-					</span> <br>
-
-					<span ion-text text-wrap class="font" color="color4">Pengirim :
-					</span><br />
-					<span ion-text text-wrap color='dark' class="font2">
-						{{ messageDetail['Pengirim']['Nama Jabatan'] }}
-					</span> <br>
-
-					<div
-						*ngIf="messageDetail['Kode Jenis Surat'] == 'surat_perintah' || messageDetail['Kode Jenis Surat'] == 'undangan' || messageDetail['Kode Jenis Surat'] == 'surat_dinas' || messageDetail['Kode Jenis Surat'] == 'nd_undangan' || messageDetail['Kode Jenis Surat'] == 'nd_sppd'">
-						<span ion-text text-wrap class="font" color="color4">Tanggal Mulai :
-						</span><br />
-						<span ion-text text-wrap color='dark' class="font2">
-							{{ messageDetail['Agenda']['Tanggal Mulai'] }}
-						</span>
-						<span ion-text text-wrap *ngIf="messageDetail['Agenda']['Tanggal Mulai'] == null" color='dark'
-							class="font2">
-							-
-						</span>
-						<br>
-
-						<span ion-text text-wrap class="font" color="color4">Tanggal Akhir :
-						</span><br />
-						<span ion-text text-wrap color='dark' class="font2">
-							{{ messageDetail['Agenda']['Tanggal Akhir'] }}
-						</span>
-						<span ion-text text-wrap *ngIf="messageDetail['Agenda']['Tanggal Akhir'] == null" color='dark'
-							class="font2">
-							-
-						</span>
-						<br>
-
-						<span ion-text text-wrap class="font" color="color4">Lokasi :
-						</span><br />
-						<span ion-text text-wrap color='dark' class="font2">
-							{{ messageDetail['Agenda']['Lokasi'] }}
-						</span>
-						<span ion-text text-wrap *ngIf="messageDetail['Agenda']['Lokasi'] == null" color='dark'
-							class="font2">
-							-
-						</span>
-						<br>
-					</div>
-
-
-					<div *ngIf="messageDetail['Penerima Jabatan'].length > 0">
-						<span ion-text text-wrap class="font" color="color4">Penerima Jabatan :
-						</span>
-						<span ion-text text-wrap class="font" color="primary"
-							*ngIf="messageDetail['Penerima Jabatan'].length > 1" (click)="showMore(1)"
-							style="float:right;">
-							View more
-						</span> <br>
-						<div *ngIf="!showAllPenerimaJabatan">
-							<span ion-text text-wrap color='dark' class="font2">
-								1. {{ messageDetail['Penerima Jabatan'][0] }}
-							</span>
-						</div>
-						<div *ngIf="showAllPenerimaJabatan">
-							<span *ngFor="let p of messageDetail['Penerima Jabatan']; let i = index" ion-text text-wrap
-								color='dark' class="font2">
-								{{ i + 1 }}. {{ p }} <br />
-							</span>
-						</div>
-					</div>
-					<div *ngIf="messageDetail['Tembusan Jabatan'].length > 0">
-						<span ion-text text-wrap class="font" color="color4">Tembusan Jabatan :
-						</span>
-						<span ion-text text-wrap class="font" color="primary"
-							*ngIf="messageDetail['Tembusan Jabatan'].length > 1" (click)="showMore(2)"
-							style="float:right;">
-							View more
-						</span> <br>
-						<div *ngIf="!showAllTembusanJabatan">
-							<span ion-text text-wrap color='dark' class="font2">
-								1. {{ messageDetail['Tembusan Jabatan'][0] }}
-							</span>
-						</div>
-						<div *ngIf="showAllTembusanJabatan">
-							<span *ngFor="let p of messageDetail['Tembusan Jabatan']; let i = index" ion-text text-wrap
-								color='dark' class="font2">
-								{{ i + 1 }}. {{ p }} <br />
-							</span>
-						</div>
-					</div>
-
-					<div *ngIf="messageDetail['Penerima Pekerja'].length > 0">
-						<span ion-text text-wrap class="font" color="color4">Penerima Pekerja :
-						</span>
-						<span ion-text text-wrap class="font" color="primary"
-							*ngIf="messageDetail['Penerima Pekerja'].length > 1" (click)="showMore(3)"
-							style="float:right;">
-							View more
-						</span> <br>
-						<div *ngIf="!showAllPenerimaPekerja">
-							<span ion-text text-wrap color='dark' class="font2">
-								1. {{ messageDetail['Penerima Pekerja'][0] }}
-							</span>
-						</div>
-						<div *ngIf="showAllPenerimaPekerja">
-							<span *ngFor="let p of messageDetail['Penerima Pekerja']; let i = index" ion-text text-wrap
-								color='dark' class="font2">
-								{{ i + 1 }}. {{ p }} <br />
-							</span>
-						</div>
-					</div>
-
-					<div *ngIf="messageDetail['Tembusan Pekerja'].length > 0">
-						<span ion-text text-wrap class="font" color="color4">Tembusan Pekerja :
-						</span>
-						<span ion-text text-wrap class="font" color="primary"
-							*ngIf="messageDetail['Tembusan Pekerja'].length > 1" (click)="showMore(4)"
-							style="float:right;">
-							View more
-						</span> <br>
-						<div *ngIf="!showAllTembusanPekerja">
-							<span ion-text text-wrap color='dark' class="font2">
-								1. {{ messageDetail['Tembusan Pekerja'][0] }}
-							</span>
-						</div>
-						<div *ngIf="showAllTembusanPekerja">
-							<span *ngFor="let p of messageDetail['Tembusan Pekerja']; let i = index" ion-text text-wrap
-								color='dark' class="font2">
-								{{ i + 1 }}. {{ p }} <br />
-							</span>
-						</div>
-					</div>
-
-					<div *ngIf="messageDetail['Penerima Non Pekerja'].length > 0">
-						<span ion-text text-wrap class="font" color="color4">Penerima Non Pekerja
-							: </span>
-						<span ion-text text-wrap class="font" color="primary"
-							*ngIf="messageDetail['Penerima Non Pekerja'].length > 1" (click)="showMore(5)"
-							style="float:right;">
-							View more
-						</span> <br>
-						<div *ngIf="!showAllPenerimaNonPekerja">
-							<span ion-text text-wrap color='dark' class="font2">
-								1. {{ messageDetail['Penerima Non Pekerja'][0] }}
-							</span>
-						</div>
-						<div *ngIf="showAllPenerimaNonPekerja">
-							<span *ngFor="let p of messageDetail['Penerima Non Pekerja']; let i = index" ion-text
-								text-wrap color='dark' class="font2">
-								{{ i + 1 }}. {{ p }} <br />
-							</span>
-						</div>
-					</div>
-
-					<div *ngIf="messageDetail['Tembusan Non Pekerja'].length > 0">
-						<span ion-text text-wrap class="font" color="color4">Tembusan Non Pekerja
-							: </span>
-						<span ion-text text-wrap class="font" color="primary"
-							*ngIf="messageDetail['Tembusan Non Pekerja'].length > 1" (click)="showMore(6)"
-							style="float:right;">
-							View more
-						</span> <br>
-						<div *ngIf="!showAllTembusanNonPekerja">
-							<span ion-text text-wrap color='dark' class="font2">
-								1. {{ messageDetail['Tembusan Non Pekerja'][0] }}
-							</span>
-						</div>
-						<div *ngIf="showAllTembusanNonPekerja">
-							<span *ngFor="let p of messageDetail['Tembusan Non Pekerja']; let i = index" ion-text
-								text-wrap color='dark' class="font2">
-								{{ i + 1 }}. {{ p }} <br />
-							</span>
-						</div>
-					</div>
-
-					<span ion-text text-wrap class="font" style="color:#959595">Attachment :
-					</span><br />
-					<div *ngIf="attachmentList.length > 0">
-						<div *ngFor="let attachment of attachmentList" (click)="downloadAttach(attachment)">
-							<span ion-text text-wrap color='dark' class="font2"
-								color="primary">{{ subStrAttachment(attachment) }}</span> <br>
-						</div>
-					</div>
-					<div *ngIf="attachmentList.length == 0">
-						<span ion-text text-wrap color='dark' class="font2" color="primary">
-							-
-						</span>
-					</div>
-				</ion-item>
-
-			</ion-card>
-
-			<ion-grid no-padding fixed>
-
-				<ion-row>
-					<ion-col col-12>
-						<ion-list>
-							<ion-item *ngIf="messageDetail['Jenis Surat'] == 'Surat Perintah'" padding-left
-								padding-right text-wrap>
-								<span ion-text text-wrap class="font2" style="color:black;"><b>Dasar</b></span>
-							</ion-item>
-
-							<ion-item *ngIf="messageDetail['Jenis Surat'] == 'Surat Perintah'" padding-left
-								padding-right text-wrap>
-								<div [innerHTML]="dasarSuratPerintah"></div>
-							</ion-item>
-
-							<ion-item *ngIf="messageDetail['Jenis Surat'] == 'Surat Perintah'" padding-left
-								padding-right text-wrap>
-								<span ion-text text-wrap class="font2" style="color:black;"><b>Perintah</b></span>
-							</ion-item>
-
-							<ion-item *ngIf="messageDetail['Jenis Surat'] == 'Surat Perintah'" padding-left
-								padding-right text-wrap>
-								<div [innerHTML]="isiPerintah"></div>
-
-							</ion-item>
-
-							<ion-item *ngIf="messageDetail['Jenis Surat'] != 'Surat Perintah'" padding-left
-								padding-right margin-bottom text-wrap>
-								<div [innerHTML]="messageDetail['Isi Surat']"></div>
-							</ion-item>
-						</ion-list>
-					</ion-col>
-				</ion-row>
-
-				<ion-row
-					*ngIf="!isLoading && isAtasan && messageDetail['Status Surat'] == 'LIHAT SURAT' && from_modul != 'sppd'">
-					<ion-col col-12>
-						<ion-list>
-							<ion-item no-lines padding-left padding-right no-margin>
-								<ion-row class="my-col">
-									<ion-col col-6 align-self-start><b ion-text color="dark" class="font2">Disposisi
-											Jabatan</b> </ion-col>
-									<ion-col col-6 align-self-center padding-right (click)="showDisposisi('jabatan')">
-										<ion-icon name="add" color="primary" class="plus" float-right></ion-icon>
-									</ion-col>
-								</ion-row>
-								<div *ngIf="disposisiJabatanList != null">
-									<ion-row class="my-col" *ngFor="let disposisiJabatan of disposisiJabatanList">
-										<ion-col align-self-start text-wrap>
-											<p ion-text color="primary">{{ disposisiJabatan['nama_jabatan'] }} |
-												{{ disposisiJabatan['nama'] }}</p>
-										</ion-col>
-										<ion-col col-6 align-self-center padding-right>
-											<ion-icon name="md-close" color="danger" class="del-disposisi"
-												(click)="delete(disposisiJabatan,'jabatan')" float-right></ion-icon>
-										</ion-col>
-									</ion-row>
-								</div>
-							</ion-item>
-							<ion-item no-lines padding-left padding-right no-margin>
-								<ion-row class="my-col">
-									<ion-col col-6 align-self-start><b ion-text color="dark" class="font2">Disposisi
-											Pekerja</b> </ion-col>
-									<ion-col col-6 align-self-center padding-right (click)="showDisposisi('pekerja')">
-										<ion-icon name="add" color="danger" class="plus" float-right></ion-icon>
-									</ion-col>
-								</ion-row>
-								<div *ngIf="disposisiPekerjaList != null">
-									<ion-row class="my-col" *ngFor="let disposisiPekerja of disposisiPekerjaList">
-										<ion-col align-self-start text-wrap>
-											<p ion-text color="primary">{{ disposisiPekerja['nama'] }} |
-												{{ disposisiPekerja['nipp'] }} | {{
-														disposisiPekerja['nama_jabatan'] }}</p>
-										</ion-col>
-										<ion-col col-6 align-self-center padding-right>
-											<ion-icon name="md-close" color="danger" class="del-disposisi"
-												(click)="delete(disposisiPekerja,'pekerja')" float-right></ion-icon>
-										</ion-col>
-									</ion-row>
-								</div>
-							</ion-item>
-						</ion-list>
-					</ion-col>
-				</ion-row>
-			</ion-grid>
-
-			<ion-grid
-				*ngIf="isAtasan && messageDetail['Status Surat'].includes('LIHAT SURAT')  && from_modul != 'sppd' ">
-				<ion-row>
-					<ion-col col-6>
-						<button style="border-radius:5px;" icon-start ion-button block color="danger"
-							(click)="cancel()">
-							<ion-icon name="md-close"></ion-icon>
-							Batal
-						</button>
-					</ion-col>
-					<ion-col col-6>
-						<button style="border-radius:5px;" icon-start ion-button block (click)="sendDisposisi()"
-							color="primary"
-							[disabled]="(disposisiJabatanList.length == 0 && disposisiPekerjaList.length == 0) ? true : false">
-							<ion-icon name="md-checkmark"></ion-icon>
-							Disposisi
-						</button>
-					</ion-col>
-				</ion-row>
-			</ion-grid>
-
-			<!-- -------------------------------------- PESERTA SPPD -------------------------------------------------------------- -->
-
-			<div *ngIf="messageDetail['Kode Jenis Surat'] == 'nd_sppd'">
-
-
-				<ion-item no-padding margin-left margin-right no-lines>
-					<span ion-text text-wrap class="font2">
-						<b>Peserta SPPD</b>
-					</span> <br>
-
-					<div *ngIf='pesertaSppdList.length > 0'>
-						<table width="95%">
-							<tr *ngFor="let peserta of pesertaSppdList;let i = index">
-								<td valign="top" width="10%">{{i+1}}. </td>
-								<td valign="top">
-									<span ion-text text-wrap color='dark' class="font2">
-										{{ peserta['NAMA'] }}
-									</span>
-								</td>
-							</tr>
-						</table>
-					</div>
-
-					<div *ngIf="pesertaSppdList.length == 0">
-						<span ion-text text-wrap color='color4' class="font2">
-							tidak ada peserta SPPD
-						</span>
-					</div>
-
-					<!-- <div *ngIf="attrScanSppd.length > 0 && from_modul == 'sppd'">						 -->
-					<div *ngIf="messageData['KD_STATUS'] == '7' && from_modul == 'sppd'">
-						<ion-grid>
-							<ion-row>
-								<ion-col col-12>
-									<button style="border-radius:5px;" icon-start ion-button block
-										(click)="goToPertanggungjawaban()" color="primary">
-										<ion-icon name="md-checkmark"></ion-icon>
-										Pertanggungjawabkan
-									</button>
-								</ion-col>
-							</ion-row>
-						</ion-grid>
-					</div>
-
-					<div *ngIf="messageData['KD_STATUS'] == '9' && from_modul == 'sppd'">
-						<ion-grid>
-							<ion-row>
-								<ion-col col-12>
-									<button style="border-radius:5px;" icon-start ion-button block
-										(click)="goToPertanggungjawaban()" color="primary">
-										<ion-icon name="md-checkmark"></ion-icon>
-										Upload Ulang Pertanggungjawabkan
-									</button>
-								</ion-col>
-							</ion-row>
-						</ion-grid>
-					</div>
-
-
-
-				</ion-item>
-
-
-
-
-
-
-			</div>
-
-			<!-- -------------------------------------- PESERTA SPPD -------------------------------------------------------------- -->
-
-			<ion-grid *ngIf="messageDetail['Status Surat'].includes('PERIKSA')  && from_modul != 'sppd' ">
-				<ion-row>
-					<ion-col col-12>
-						<div class="appForm">
-							<ion-list>
-								<ion-item>
-									<span item-left>
-										<img src="assets/imgs/logo/alasan.png" class="icons">
-									</span>
-									<ion-label stacked>Komentar</ion-label>
-									<ion-input type="text" [(ngModel)]="keterangan" placeholder="" clearInput>
-									</ion-input>
-								</ion-item>
-							</ion-list>
-						</div>
-					</ion-col>
-				</ion-row>
-				<ion-row>
-					<ion-col col-6>
-						<button style="border-radius:5px;" icon-start ion-button block color="danger"
-							(click)="doPeriksa('decline')">
-							<ion-icon name="md-close"></ion-icon>
-							Decline
-						</button>
-					</ion-col>
-					<ion-col col-6>
-						<button style="border-radius:5px;" icon-start ion-button block (click)="doPeriksa('approve')"
-							color="primary">
-							<ion-icon name="md-checkmark"></ion-icon>
-							Approve
-						</button>
-					</ion-col>
-				</ion-row>
-				<ion-row>
-					<ion-col col-12>
-						<button style="border-radius:5px;" icon-start ion-button block (click)="doPeriksa('kembalikan')"
-							color="primary">
-							<ion-icon name="md-refresh"></ion-icon>
-							Kembalikan
-						</button>
-					</ion-col>
-				</ion-row>
-			</ion-grid>
-		</div>
-
-		<div *ngIf="messageDetail['Kode Jenis Surat'] == 'permohonan'">
-			<ion-card class="header-card">
-				<ion-card-content>
-					<span ion-text text-wrap class="font-header">
-						<b>{{ messageDetail['Judul Surat'] }}</b>
-					</span>
-				</ion-card-content>
-			</ion-card>
-
-			<ion-card class="my-card">
-				<ion-item>
-					<span ion-text text-wrap class="font-mini" color="color4">
-						Tanggal Pengajuan
-					</span><br>
-					<span ion-text text-wrap class="font-small">
-						{{ messageDetail['Tanggal Pengajuan'] }}
-					</span><br>
-
-					<span ion-text text-wrap class="font-mini" color="color4">
-						Jenis Pengajuan
-					</span><br>
-					<span ion-text text-wrap class="font-small">
-						{{ messageDetail['Jenis Pengajuan'] }}
-					</span>
-					<br>
-
-					<span ion-text text-wrap class="font-mini" color="color4">
-						tanggal Cuti/Izin
-					</span><br>
-					<span ion-text text-wrap class="font-small">
-						{{ messageDetail['Tanggal Mulai Cuti'] }}
-					</span> <span ion-text text-wrap class="font-small" color="primary"> s/d </span>
-					<span ion-text text-wrap class="font-small">
-						{{ messageDetail['Tanggal Selesai Cuti'] }}
-					</span>
-					<br>
-
-					<span ion-text text-wrap class="font-mini" color="color4">
-						Alamat Selama Cuti/Izin
-					</span><br>
-					<span ion-text text-wrap class="font-small">
-						{{ messageDetail['Alamat Cuti'] }}
-					</span>
-					<br>
-
-					<span ion-text text-wrap class="font-mini" color="color4">
-						Alasan
-					</span><br>
-					<span ion-text text-wrap class="font-small">
-						{{ messageDetail['Alasan'] }}
-					</span>
-					<br>
-				</ion-item>
-			</ion-card>
-
-			<ion-card class="my-card">
-				<ion-item>
-					<div class="header-text">
-						<span ion-text text-wrap>
-							<img src="assets/imgs/logo/nipp.png" class="icons">
-						</span>
-						<span ion-text text-wrap class="font-small">
-							<b>Biodata Pemohon</b>
-						</span>
-					</div>
-					<div class="garis"></div>
-					<span ion-text text-wrap class="font-mini" color="color4">
-						NIPP
-					</span><br>
-					<span ion-text text-wrap class="font-small">
-						{{ messageDetail['NIPP Pemohon'] }}
-					</span><br>
-
-					<span ion-text text-wrap class="font-mini" color="color4">
-						Nama
-					</span><br>
-					<span ion-text text-wrap class="font-small">
-						{{ messageDetail['Nama Pemohon'] }}
-					</span>
-					<br>
-
-					<span ion-text text-wrap class="font-mini" color="color4">
-						Menyetujui
-					</span><br>
-					<span ion-text text-wrap class="font-small" color="primary">
-						<b>{{ messageDetail['NIPP Menyetujui'] }}</b>
-					</span> <br>
-					<span ion-text text-wrap class="font-small">
-						{{ messageDetail['Nama Menyetujui'] }} |
-						{{ messageDetail['Jabatan Menyetujui'] }}
-					</span>
-					<br>
-
-					<span ion-text text-wrap class="font-mini" color="color4">
-						Mengetahui
-					</span><br>
-					<span *ngIf="messageDetail['NIPP Mengetahui'] == '' || messageDetail['NIPP Mengetahui'] == null"
-						ion-text text-wrap class="font-small" color="primary">
-						-
-					</span>
-					<span *ngIf="messageDetail['NIPP Mengetahui'] != '' || messageDetail['NIPP Mengetahui'] != null"
-						ion-text text-wrap class="font-small" color="primary">
-						<b>{{ messageDetail['NIPP Mengetahui'] }}</b>
-					</span> <br>
-					<span *ngIf="messageDetail['Nama Mengetahui'] != '' || messageDetail['Nama Mengetahui'] != null"
-						ion-text text-wrap class="font-small">
-						{{ messageDetail['Nama Mengetahui'] }} |
-						{{ messageDetail['Jabatan Mengetahui'] }}
-					</span>
-				</ion-item>
-			</ion-card>
-
-			<ion-list
-				*ngIf="!isLoading && isAtasan && messageDetail['Kode Status Surat'] == '4' && from_modul != 'sppd'">
-				<ion-item no-lines padding-left padding-right no-margin>
-					<ion-row class="my-col">
-						<ion-col col-6 align-self-start><b ion-text color="dark" class="font2">Disposisi
-								Jabatan</b> </ion-col>
-						<ion-col col-6 align-self-center padding-right (click)="showDisposisi('jabatan')">
-							<ion-icon name="add" color="primary" class="plus" float-right></ion-icon>
-						</ion-col>
-					</ion-row>
-					<div *ngIf="disposisiJabatanList != null">
-						<ion-row class="my-col" *ngFor="let disposisiJabatan of disposisiJabatanList">
-							<ion-col align-self-start text-wrap>
-								<p ion-text color="primary">{{ disposisiJabatan['nama_jabatan'] }} |
-									{{ disposisiJabatan['nama'] }}</p>
-							</ion-col>
-							<ion-col col-6 align-self-center padding-right>
-								<ion-icon name="md-close" color="danger" class="del-disposisi"
-									(click)="delete(disposisiJabatan,'jabatan')" float-right></ion-icon>
-							</ion-col>
-						</ion-row>
-					</div>
-				</ion-item>
-				<ion-item no-lines padding-left padding-right no-margin>
-					<ion-row class="my-col">
-						<ion-col col-6 align-self-start><b ion-text color="dark" class="font2">Disposisi
-								Pekerja</b> </ion-col>
-						<ion-col col-6 align-self-center padding-right (click)="showDisposisi('pekerja')">
-							<ion-icon name="add" color="danger" class="plus" float-right></ion-icon>
-						</ion-col>
-					</ion-row>
-					<div *ngIf="disposisiPekerjaList != null">
-						<ion-row class="my-col" *ngFor="let disposisiPekerja of disposisiPekerjaList">
-							<ion-col align-self-start text-wrap>
-								<p ion-text color="primary">{{ disposisiPekerja['nama'] }} |
-									{{ disposisiPekerja['nipp'] }} | {{
-											disposisiPekerja['nama_jabatan'] }}</p>
-							</ion-col>
-							<ion-col col-6 align-self-center padding-right>
-								<ion-icon name="md-close" color="danger" class="del-disposisi"
-									(click)="delete(disposisiPekerja,'pekerja')" float-right></ion-icon>
-							</ion-col>
-						</ion-row>
-					</div>
-				</ion-item>
-			</ion-list>
-
-			<ion-grid *ngIf="isAtasan && messageDetail['Kode Status Surat'] == '4'  && from_modul != 'sppd' ">
-				<ion-row>
-					<ion-col col-6>
-						<button style="border-radius:5px;" icon-start ion-button block color="danger"
-							(click)="cancel()">
-							<ion-icon name="md-close"></ion-icon>
-							Batal
-						</button>
-					</ion-col>
-					<ion-col col-6>
-						<button style="border-radius:5px;" icon-start ion-button block (click)="sendDisposisi()"
-							color="primary"
-							[disabled]="(disposisiJabatanList.length == 0 && disposisiPekerjaList.length == 0) ? true : false">
-							<ion-icon name="md-checkmark"></ion-icon>
-							Disposisi
-						</button>
-					</ion-col>
-				</ion-row>
-			</ion-grid>
-
-			<div *ngIf="messageDetail['NIPP Pemohon'] == userdataTPK['data']['NIPP'] && messageDetail['Kode Status Surat'] == '6' ">
-
-				<ion-card class="my-card">
-					<ion-item>
-					  <div class="header-text">
-						<span ion-text text-wrap>
-						  <img src="assets/flat-icon/alert.png" class="icons">
-						</span>
-						<span ion-text text-wrap class="font-small">
-						  <b>Revisi Pengajuan Cuti/Izin</b>
-						</span>
-					  </div>
-					  <div class="garis"></div>
-					  <span ion-text text-wrap class="font-mini" color="color4">
-						Tanggal Revisi Cuti/Izin
-					  </span><br>
-					  <span ion-text text-wrap class="font-small">
-						{{ messageDetail['TANGGAL_MULAI_REVISI'] }}
-					  </span> <span ion-text text-wrap class="font-small" color="primary"> s/d </span>
-					  <span ion-text text-wrap class="font-small">
-						{{ messageDetail['TANGGAL_SELESAI_REVISI'] }}
-					  </span>
-					  <br>
-			
-					  <span ion-text text-wrap class="font-mini" color="color4">
-						Alasan
-					  </span><br>
-					  <span ion-text text-wrap class="font-small">
-						{{ messageDetail['KETERANGAN_REVISI'] }}
-					  </span>
-					  <br>
-			
-					</ion-item>
-				  </ion-card>
-
-				<ion-grid>
-					<ion-row>
-						<ion-col col-6>
-							<button style="border-radius:5px;" icon-start ion-button block color="danger"
-							(click)="doAction('decline')">
-								<ion-icon name="md-close"></ion-icon>
-								Keberatan
-							</button>
-						</ion-col>
-						<ion-col col-6>
-							<button style="border-radius:5px;" icon-start ion-button block (click)="doAction('approve')"
-								color="color6">
-								<ion-icon name="md-checkmark"></ion-icon>
-								Tidak Keberatan
-							</button>
-						</ion-col>
-					</ion-row>
-				</ion-grid>
-			</div>
-		
-
-			<ion-grid *ngIf="isAtasan && messageDetail['Kode Status Surat'] == '2'">
-				<ion-row>
-					<ion-col col-12>
-						<div class="appForm">
-
-							<ion-item>
-								<span item-left>
-									<img src="assets/imgs/logo/alasan.png" class="icons">
-								</span>
-								<ion-label stacked>Komentar</ion-label>
-								<ion-input type="text" [(ngModel)]="keterangan" placeholder="" clearInput>
-								</ion-input>
-							</ion-item>
-
-						</div>
-					</ion-col>
-				</ion-row>
-
-				<ion-row *ngIf="formDitangguhkan">
-					<ion-col col-12>
-						<div class="appForm">
-							<div>
-								<ion-item style="width:70%; float: left;">
-									<span item-left>
-										<img src="assets/imgs/menu-icon/start_date.png" class="icons">
-									</span>
-									<ion-label stacked>Tanggal Mulai</ion-label>
-									<ion-input type="text" [readonly]="true" (ionFocus)="checkFocus(1)"
-										(click)="checkFocus(1)" [(ngModel)]="tanggalMulai"></ion-input>
-								</ion-item>
-
-								<ion-item style="width:30%; float:right;padding-top:14px;padding-left:3px !important;">
-									<ion-select [(ngModel)]="jamMulai" placeholder="" style="max-width:100%;">
-										<ion-option value="23">7:00</ion-option>
-										<ion-option value="24">19:00</ion-option>
-										<ion-option value="1">0:00</ion-option>
-										<ion-option value="2">8:00</ion-option>
-										<ion-option value="3">8:30</ion-option>
-										<ion-option value="4">9:00</ion-option>
-										<ion-option value="5">9:30</ion-option>
-										<ion-option value="6">10:00</ion-option>
-										<ion-option value="7">10:30</ion-option>
-										<ion-option value="8">11:00</ion-option>
-										<ion-option value="9">11:30</ion-option>
-										<ion-option value="10">12:00</ion-option>
-										<ion-option value="11">12:30</ion-option>
-										<ion-option value="12">13:00</ion-option>
-										<ion-option value="13">13:30</ion-option>
-										<ion-option value="14">14:00</ion-option>
-										<ion-option value="15">14:30</ion-option>
-										<ion-option value="16">15:00</ion-option>
-										<ion-option value="17">15:30</ion-option>
-										<ion-option value="18">16:00</ion-option>
-										<ion-option value="19">16:30</ion-option>
-										<ion-option value="20">17:00</ion-option>
-										<ion-option value="21">17:30</ion-option>
-										<ion-option value="22">18.00</ion-option>
-										<ion-option value="25">20:00</ion-option>
-										<ion-option value="26">6:00</ion-option>
-										<ion-option value="28">7:30</ion-option>
-									</ion-select>
-								</ion-item>
-							</div>
-
-							<div>
-								<ion-item style="width:70%; float: left;">
-									<span item-left>
-										<img src="assets/imgs/menu-icon/end_date.png" class="icons">
-									</span>
-									<ion-label stacked>Tanggal Selesai</ion-label>
-									<!-- <ion-input type="text" [readonly]="true" (ionFocus)="checkFocus(2)" [(ngModel)]="tanggalSelesai"> -->
-									<ion-input type="text" [readonly]="true" (click)="checkFocus(2)"
-										(ionFocus)="checkFocus(2)" [(ngModel)]="tanggalSelesai">
-									</ion-input>
-								</ion-item>
-
-								<ion-item style="width:30%; float:right;padding-top:14px;padding-left:3px !important;">
-									<ion-select [(ngModel)]="jamSelesai" placeholder="" style="max-width:100%;">
-										<ion-option value="23">7:30</ion-option>
-										<ion-option value="24">20:00</ion-option>
-										<ion-option value="1">8:00</ion-option>
-										<ion-option value="2">8:30</ion-option>
-										<ion-option value="3">9:00</ion-option>
-										<ion-option value="4">9:30</ion-option>
-										<ion-option value="5">10:00</ion-option>
-										<ion-option value="6">10:30</ion-option>
-										<ion-option value="7">11:00</ion-option>
-										<ion-option value="8">11:30</ion-option>
-										<ion-option value="9">12:00</ion-option>
-										<ion-option value="10">12:30</ion-option>
-										<ion-option value="11">13:00</ion-option>
-										<ion-option value="12">13:30</ion-option>
-										<ion-option value="13">14:00</ion-option>
-										<ion-option value="14">14:30</ion-option>
-										<ion-option value="15">15:00</ion-option>
-										<ion-option value="16">15:30</ion-option>
-										<ion-option value="17">16:00</ion-option>
-										<ion-option value="18">16:30</ion-option>
-										<ion-option value="19">17:00</ion-option>
-										<ion-option value="20">17:30</ion-option>
-										<ion-option value="21">18:00</ion-option>
-										<ion-option value="22">19.00</ion-option>
-										<ion-option value="25">22:00</ion-option>
-										<ion-option value="26">7:00</ion-option>
-										<ion-option value="28">8:00</ion-option>
-									</ion-select>
-								</ion-item>
-							</div>
-
-							<div *ngIf="tanggalSelesai != ''">
-								<ion-item>
-									<span item-left>
-										<img src="assets/imgs/menu-icon/jumHari.png" class="icons">
-									</span>
-									<ion-label stacked>Jumlah Hari</ion-label>
-									<ion-input type="number" [(ngModel)]="jumHari"></ion-input>
-								</ion-item>
-
-								<p ion-text text-wrap color="color4" style="padding-left:8px !important;">*Bila terdapat
-									kesalahan jumlah hari silahkan disesuaikan</p>
-								<p ion-text text-wrap color="danger" style="padding-left:8px !important;">Sisa Cuti
-									Tahunan : <b>{{ sisaCuti }}</b></p>
-							</div>
-						</div>
-					</ion-col>
-					<p ion-text text-wrap color="danger" style="padding-left:8px !important;">{{errorMsg}}</p>
-				</ion-row>
-
-				<ion-row>
-					<ion-col col-6>
-						<button style="border-radius:5px;" icon-start ion-button block color="danger"
-							(click)="doPeriksa('decline')">
-							<ion-icon name="md-close"></ion-icon>
-							Keberatan
-						</button>
-					</ion-col>
-					<ion-col col-6>
-						<button style="border-radius:5px;" icon-start ion-button block (click)="doPeriksa('approve')"
-							color="color6">
-							<ion-icon name="md-checkmark"></ion-icon>
-							Setujui
-						</button>
-					</ion-col>
-				</ion-row>
-				<ion-row *ngIf="messageDetail['URUT_PEMERIKSA'] != '' && (messageDetail['URUT_PEMERIKSA'] != messageDetail['JUMLAH_PEMERIKSA'] || messageDetail['JUMLAH_PEMERIKSA'] == '1')" >
-					<ion-col col-12>  
-						<button style="border-radius:5px;" icon-start ion-button block (click)="ditangguhkan()"
-							color="primary">
-							<ion-icon name="md-remove-circle"></ion-icon>
-							Ditangguhkan
-						</button>
-					</ion-col>
-				</ion-row>
-			</ion-grid>
-		</div>
-
-
-
-	</div>
-
+  <div *ngIf="isLoading == true">
+    <ion-item no-lines>
+      <div class="animate-skeleton-background load-2"></div>
+      <div class="animate-skeleton-background load-3"></div>
+      <div class="garis"></div>
+      <div class="animate-skeleton-background load-1"></div>
+      <div class="animate-skeleton-background load-3"></div>
+      <div class="animate-skeleton-background load-1"></div>
+      <div class="animate-skeleton-background load-3"></div>
+    </ion-item>
+  </div>
+
+  <div *ngIf="isLoading == false">
+    <div *ngIf="messageDetail['Kode Jenis Surat'] != 'permohonan'">
+      <ion-card class="header-menu">
+        <ion-item no-padding margin-left>
+          <span ion-text text-wrap style="font-size: 1.5rem">
+            <b>{{ messageDetail['Perihal'] }}</b>
+          </span>
+          <br />
+          <span ion-text text-wrap style="font-size: 1.2rem; color: gray"> {{ messageDetail['No Surat'] }} </span>
+          <div style="padding: 10px" item-end>
+            <button ion-button icon-only clear (click)="show()">
+              <ion-icon name="ios-arrow-down-outline" *ngIf="!showDetailPesan"></ion-icon>
+              <ion-icon name="ios-arrow-up-outline" *ngIf="showDetailPesan"></ion-icon>
+            </button>
+          </div>
+        </ion-item>
+      </ion-card>
+
+      <ion-card class="my-card" style="margin-top: 10px !important" *ngIf="showDetailPesan">
+        <ion-item>
+          <span ion-text text-wrap class="font" color="color4">Tanggal : </span><br />
+          <span ion-text text-wrap color="dark" class="font2"> {{ messageDetail['Tanggal Surat'] }} </span> <br />
+
+          <span ion-text text-wrap class="font" color="color4">Proyek : </span><br />
+          <span ion-text text-wrap color="dark" class="font2"> {{ messageDetail['KD_PROYEK'] }} </span> <br />
+
+          <span ion-text text-wrap class="font" color="color4">Merujuk : </span><br />
+          <span ion-text text-wrap color="dark" class="font2"> {{ messageDetail['MERUJUK'] }} </span> <br />
+
+          <span ion-text text-wrap class="font" color="color4">Pengirim : </span><br />
+          <span ion-text text-wrap color="dark" class="font2"> {{ messageDetail['Pengirim']['Nama Jabatan'] }} </span> <br />
+
+          <div *ngIf="messageDetail['Kode Jenis Surat'] == 'surat_perintah' || messageDetail['Kode Jenis Surat'] == 'undangan' || messageDetail['Kode Jenis Surat'] == 'surat_dinas' || messageDetail['Kode Jenis Surat'] == 'nd_undangan'">
+            <span ion-text text-wrap class="font" color="color4">Tanggal Mulai : </span><br />
+            <span ion-text text-wrap color="dark" class="font2"> {{ messageDetail['Agenda']['Tanggal Mulai'] }} </span>
+            <span ion-text text-wrap *ngIf="messageDetail['Agenda']['Tanggal Mulai'] == null" color="dark" class="font2"> - </span>
+            <br />
+
+            <span ion-text text-wrap class="font" color="color4">Tanggal Akhir : </span><br />
+            <span ion-text text-wrap color="dark" class="font2"> {{ messageDetail['Agenda']['Tanggal Akhir'] }} </span>
+            <span ion-text text-wrap *ngIf="messageDetail['Agenda']['Tanggal Akhir'] == null" color="dark" class="font2"> - </span>
+            <br />
+
+            <span ion-text text-wrap class="font" color="color4">Lokasi : </span><br />
+            <span ion-text text-wrap color="dark" class="font2"> {{ messageDetail['Agenda']['Lokasi'] }} </span>
+            <span ion-text text-wrap *ngIf="messageDetail['Agenda']['Lokasi'] == null" color="dark" class="font2"> - </span>
+            <br />
+          </div>
+
+          <div *ngIf="messageDetail['Kode Jenis Surat'] == 'nd_sppd'">
+            <span ion-text text-wrap class="font" color="color4">Tanggal Mulai : </span><br />
+            <span ion-text text-wrap color="dark" class="font2"> {{ messageDetail['Agenda']['Tanggal Mulai'] }} </span>
+            <span ion-text text-wrap *ngIf="messageDetail['Agenda']['Tanggal Mulai'] == null" color="dark" class="font2"> - </span>
+            <br />
+
+            <span ion-text text-wrap class="font" color="color4">Tanggal Akhir : </span><br />
+            <span ion-text text-wrap color="dark" class="font2"> {{ messageDetail['Agenda']['Tanggal Akhir'] }} </span>
+            <span ion-text text-wrap *ngIf="messageDetail['Agenda']['Tanggal Akhir'] == null" color="dark" class="font2"> - </span>
+            <br />
+
+            <span ion-text text-wrap class="font" color="color4">Kota Asal -> Kota Tujuan : </span><br />
+            <span ion-text text-wrap color="dark" class="font2"> {{ messageDetail['Agenda']['kota_asal'] }} -> {{ messageDetail['Agenda']['kota_tujuan'] }} </span>
+            <span ion-text text-wrap *ngIf="messageDetail['Agenda']['kota_asal'] == null" color="dark" class="font2"> - </span>
+            <br />
+
+            <span ion-text text-wrap class="font" color="color4">Proyek : </span><br />
+            <span ion-text text-wrap color="dark" class="font2"> {{ messageDetail['Agenda']['id_projek'] }} </span>
+            <span ion-text text-wrap *ngIf="messageDetail['Agenda']['id_projek'] == null" color="dark" class="font2"> - </span>
+            <br />
+
+            <span ion-text text-wrap class="font" color="color4">Klasifikasi Masalah : </span><br />
+            <span ion-text text-wrap color="dark" class="font2"> {{ messageDetail['Klasifikasi Masalah'] }} </span>
+            <span ion-text text-wrap *ngIf="messageDetail['Klasifikasi Masalah'] == null" color="dark" class="font2"> - </span>
+            <br />
+
+            <span ion-text text-wrap class="font" color="color4">Klasifikasi Perjalanan Dinas : </span><br />
+            <span ion-text text-wrap color="dark" class="font2"> {{ messageDetail['Agenda']['klasifikasi_sppd'] }} </span>
+            <span ion-text text-wrap *ngIf="messageDetail['Agenda']['klasifikasi_sppd'] == null" color="dark" class="font2"> - </span>
+            <br />
+
+            <span ion-text text-wrap class="font" color="color4">Angkutan yang Digunakan : </span><br />
+            <span ion-text text-wrap color="dark" class="font2"> {{ messageDetail['Agenda']['angkutan'] }} </span>
+            <span ion-text text-wrap *ngIf="messageDetail['Agenda']['angkutan'] == null" color="dark" class="font2"> - </span>
+            <br />
+
+            <span ion-text text-wrap class="font" color="color4">Maksud Perjalanan Dinas : </span><br />
+            <span ion-text text-wrap color="dark" class="font2"> {{ messageDetail['Agenda']['maksud_sppd'] }} </span>
+            <span ion-text text-wrap *ngIf="messageDetail['Agenda']['maksud_sppd'] == null" color="dark" class="font2"> - </span>
+            <br />
+
+            <span ion-text text-wrap class="font" color="color4">Nama Hotel : </span><br />
+            <span ion-text text-wrap color="dark" class="font2"> {{ messageDetail['Agenda']['nama_hotel'] }} </span>
+            <span ion-text text-wrap *ngIf="messageDetail['Agenda']['nama_hotel'] == null" color="dark" class="font2"> - </span>
+            <br />
+
+            <div *ngIf="messageDetail['Agenda']['nm_ruang_rapat'] != null">
+              <span ion-text text-wrap class="font" color="color4">Nama Ruang Rapat : </span><br />
+              <span ion-text text-wrap color="dark" class="font2"> {{ messageDetail['Agenda']['nm_ruang_rapat'] }} </span>
+              <span ion-text text-wrap *ngIf="messageDetail['Agenda']['nm_ruang_rapat'] == null" color="dark" class="font2"> - </span>
+              <br />
+            </div>
+
+            <div *ngIf="messageDetail['Agenda']['tipe_ruang_rapat'] != null">
+              <span ion-text text-wrap class="font" color="color4">Tipe Ruang Rapat : </span><br />
+              <span ion-text text-wrap color="dark" class="font2"> {{ messageDetail['Agenda']['tipe_ruang_rapat'] }} </span>
+              <span ion-text text-wrap *ngIf="messageDetail['Agenda']['tipe_ruang_rapat'] == null" color="dark" class="font2"> - </span>
+              <br />
+            </div>
+
+            <div *ngIf="messageDetail['Agenda']['jamuan_rapat'] != null">
+              <span ion-text text-wrap class="font" color="color4">Jamuan Rapat : </span><br />
+              <span ion-text text-wrap color="dark" class="font2"> {{ messageDetail['Agenda']['jamuan_rapat'] }} </span>
+              <span ion-text text-wrap *ngIf="messageDetail['Agenda']['jamuan_rapat'] == null" color="dark" class="font2"> - </span>
+              <br />
+            </div>
+
+            <div *ngIf="messageDetail['Agenda']['konsumsi_jamuan_rapat'] != null">
+              <span ion-text text-wrap class="font" color="color4">Konsumsi Jamuan Rapat : </span><br />
+              <span ion-text text-wrap color="dark" class="font2"> {{ messageDetail['Agenda']['konsumsi_jamuan_rapat'] }} </span>
+              <span ion-text text-wrap *ngIf="messageDetail['Agenda']['konsumsi_jamuan_rapat'] == null" color="dark" class="font2"> - </span>
+              <br />
+            </div>
+
+            <span ion-text text-wrap class="font" color="color4">Laundry : </span><br />
+            <span ion-text text-wrap color="dark" class="font2"> {{ messageDetail['Agenda']['is_laundry'] }} </span>
+            <span ion-text text-wrap *ngIf="messageDetail['Agenda']['is_laundry'] == null" color="dark" class="font2"> - </span>
+            <br />
+
+            <span ion-text text-wrap class="font" color="color4">Screening Antigen/PCR : </span><br />
+            <span ion-text text-wrap color="dark" class="font2"> {{ messageDetail['Agenda']['is_antigen_pcr'] }} </span>
+            <span ion-text text-wrap *ngIf="messageDetail['Agenda']['is_antigen_pcr'] == null" color="dark" class="font2"> - </span>
+            <br />
+          </div>
+
+          <div *ngIf="messageDetail['Penerima Jabatan'].length > 0">
+            <span ion-text text-wrap class="font" color="color4">Penerima Jabatan : </span>
+            <span ion-text text-wrap class="font" color="primary" *ngIf="messageDetail['Penerima Jabatan'].length > 1" (click)="showMore(1)" style="float: right"> View more </span> <br />
+            <div *ngIf="!showAllPenerimaJabatan">
+              <span ion-text text-wrap color="dark" class="font2"> 1. {{ messageDetail['Penerima Jabatan'][0] }} </span>
+            </div>
+            <div *ngIf="showAllPenerimaJabatan">
+              <span *ngFor="let p of messageDetail['Penerima Jabatan']; let i = index" ion-text text-wrap color="dark" class="font2"> {{ i + 1 }}. {{ p }} <br /> </span>
+            </div>
+          </div>
+          <div *ngIf="messageDetail['Tembusan Jabatan'].length > 0">
+            <span ion-text text-wrap class="font" color="color4">Tembusan Jabatan : </span>
+            <span ion-text text-wrap class="font" color="primary" *ngIf="messageDetail['Tembusan Jabatan'].length > 1" (click)="showMore(2)" style="float: right"> View more </span> <br />
+            <div *ngIf="!showAllTembusanJabatan">
+              <span ion-text text-wrap color="dark" class="font2"> 1. {{ messageDetail['Tembusan Jabatan'][0] }} </span>
+            </div>
+            <div *ngIf="showAllTembusanJabatan">
+              <span *ngFor="let p of messageDetail['Tembusan Jabatan']; let i = index" ion-text text-wrap color="dark" class="font2"> {{ i + 1 }}. {{ p }} <br /> </span>
+            </div>
+          </div>
+
+          <div *ngIf="messageDetail['Penerima Pekerja'].length > 0">
+            <span ion-text text-wrap class="font" color="color4">Penerima Pekerja : </span>
+            <span ion-text text-wrap class="font" color="primary" *ngIf="messageDetail['Penerima Pekerja'].length > 1" (click)="showMore(3)" style="float: right"> View more </span> <br />
+            <div *ngIf="!showAllPenerimaPekerja">
+              <span ion-text text-wrap color="dark" class="font2"> 1. {{ messageDetail['Penerima Pekerja'][0] }} </span>
+            </div>
+            <div *ngIf="showAllPenerimaPekerja">
+              <span *ngFor="let p of messageDetail['Penerima Pekerja']; let i = index" ion-text text-wrap color="dark" class="font2"> {{ i + 1 }}. {{ p }} <br /> </span>
+            </div>
+          </div>
+
+          <div *ngIf="messageDetail['Tembusan Pekerja'].length > 0">
+            <span ion-text text-wrap class="font" color="color4">Tembusan Pekerja : </span>
+            <span ion-text text-wrap class="font" color="primary" *ngIf="messageDetail['Tembusan Pekerja'].length > 1" (click)="showMore(4)" style="float: right"> View more </span> <br />
+            <div *ngIf="!showAllTembusanPekerja">
+              <span ion-text text-wrap color="dark" class="font2"> 1. {{ messageDetail['Tembusan Pekerja'][0] }} </span>
+            </div>
+            <div *ngIf="showAllTembusanPekerja">
+              <span *ngFor="let p of messageDetail['Tembusan Pekerja']; let i = index" ion-text text-wrap color="dark" class="font2"> {{ i + 1 }}. {{ p }} <br /> </span>
+            </div>
+          </div>
+
+          <div *ngIf="messageDetail['Penerima Non Pekerja'].length > 0">
+            <span ion-text text-wrap class="font" color="color4">Penerima Non Pekerja : </span>
+            <span ion-text text-wrap class="font" color="primary" *ngIf="messageDetail['Penerima Non Pekerja'].length > 1" (click)="showMore(5)" style="float: right"> View more </span> <br />
+            <div *ngIf="!showAllPenerimaNonPekerja">
+              <span ion-text text-wrap color="dark" class="font2"> 1. {{ messageDetail['Penerima Non Pekerja'][0] }} </span>
+            </div>
+            <div *ngIf="showAllPenerimaNonPekerja">
+              <span *ngFor="let p of messageDetail['Penerima Non Pekerja']; let i = index" ion-text text-wrap color="dark" class="font2"> {{ i + 1 }}. {{ p }} <br /> </span>
+            </div>
+          </div>
+
+          <div *ngIf="messageDetail['Tembusan Non Pekerja'].length > 0">
+            <span ion-text text-wrap class="font" color="color4">Tembusan Non Pekerja : </span>
+            <span ion-text text-wrap class="font" color="primary" *ngIf="messageDetail['Tembusan Non Pekerja'].length > 1" (click)="showMore(6)" style="float: right"> View more </span> <br />
+            <div *ngIf="!showAllTembusanNonPekerja">
+              <span ion-text text-wrap color="dark" class="font2"> 1. {{ messageDetail['Tembusan Non Pekerja'][0] }} </span>
+            </div>
+            <div *ngIf="showAllTembusanNonPekerja">
+              <span *ngFor="let p of messageDetail['Tembusan Non Pekerja']; let i = index" ion-text text-wrap color="dark" class="font2"> {{ i + 1 }}. {{ p }} <br /> </span>
+            </div>
+          </div>
+
+          <span ion-text text-wrap class="font" style="color: #959595">Attachment : </span><br />
+          <div *ngIf="attachmentList.length > 0">
+            <div *ngFor="let attachment of attachmentList" (click)="downloadAttach(attachment)"><span ion-text text-wrap color="dark" class="font2" color="primary">{{ subStrAttachment(attachment) }}</span> <br /></div>
+          </div>
+          <div *ngIf="attachmentList.length == 0">
+            <span ion-text text-wrap color="dark" class="font2" color="primary"> - </span>
+          </div>
+        </ion-item>
+      </ion-card>
+
+      <ion-grid no-padding fixed>
+        <ion-row>
+          <ion-col col-12>
+            <ion-list>
+              <ion-item *ngIf="messageDetail['Jenis Surat'] == 'Surat Perintah'" padding-left padding-right text-wrap>
+                <span ion-text text-wrap class="font2" style="color: black"><b>Dasar</b></span>
+              </ion-item>
+
+              <ion-item *ngIf="messageDetail['Jenis Surat'] == 'Surat Perintah'" padding-left padding-right text-wrap>
+                <div [innerHTML]="dasarSuratPerintah"></div>
+              </ion-item>
+
+              <ion-item *ngIf="messageDetail['Jenis Surat'] == 'Surat Perintah'" padding-left padding-right text-wrap>
+                <span ion-text text-wrap class="font2" style="color: black"><b>Perintah</b></span>
+              </ion-item>
+
+              <ion-item *ngIf="messageDetail['Jenis Surat'] == 'Surat Perintah'" padding-left padding-right text-wrap>
+                <div [innerHTML]="isiPerintah"></div>
+              </ion-item>
+
+              <ion-item *ngIf="messageDetail['Jenis Surat'] != 'Surat Perintah'" padding-left padding-right margin-bottom text-wrap>
+                <div [innerHTML]="messageDetail['Isi Surat']"></div>
+              </ion-item>
+            </ion-list>
+          </ion-col>
+        </ion-row>
+
+        <ion-grid *ngIf="messageData.Status == 'DISPOSISI' && isAtasan == false">
+          <ion-row>
+            <ion-col col-12>
+              <button style="border-radius: 5px" icon-start ion-button block color="cyan" (click)="showModal('KomitmenModalPage')">Komitmen</button>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+
+        <ion-row *ngIf="!isLoading && isAtasan && messageDetail['Status Surat'] == 'LIHAT SURAT' && from_modul != 'sppd'">
+          <ion-col col-12>
+            <ion-list>
+              <ion-item no-lines padding-left padding-right no-margin>
+                <ion-row class="my-col">
+                  <ion-col col-6 align-self-start><b ion-text color="dark" class="font2">Disposisi Jabatan</b> </ion-col>
+                  <ion-col col-6 align-self-center padding-right (click)="showDisposisi('jabatan')">
+                    <ion-icon name="add" color="primary" class="plus" float-right></ion-icon>
+                  </ion-col>
+                </ion-row>
+                <div *ngIf="disposisiJabatanList != null">
+                  <ion-row class="my-col" *ngFor="let disposisiJabatan of disposisiJabatanList">
+                    <ion-col align-self-start text-wrap>
+                      <p ion-text color="primary">{{ disposisiJabatan['nama_jabatan'] }} | {{ disposisiJabatan['nama'] }}</p>
+                    </ion-col>
+                    <ion-col col-6 align-self-center padding-right>
+                      <ion-icon name="md-close" color="danger" class="del-disposisi" (click)="delete(disposisiJabatan,'jabatan')" float-right></ion-icon>
+                    </ion-col>
+                  </ion-row>
+                </div>
+              </ion-item>
+              <ion-item no-lines padding-left padding-right no-margin>
+                <ion-row class="my-col">
+                  <ion-col col-6 align-self-start><b ion-text color="dark" class="font2">Disposisi Pekerja</b> </ion-col>
+                  <ion-col col-6 align-self-center padding-right (click)="showDisposisi('pekerja')">
+                    <ion-icon name="add" color="danger" class="plus" float-right></ion-icon>
+                  </ion-col>
+                </ion-row>
+                <div *ngIf="disposisiPekerjaList != null">
+                  <ion-row class="my-col" *ngFor="let disposisiPekerja of disposisiPekerjaList">
+                    <ion-col align-self-start text-wrap>
+                      <p ion-text color="primary">{{ disposisiPekerja['nama'] }} | {{ disposisiPekerja['nipp'] }} | {{ disposisiPekerja['nama_jabatan'] }}</p>
+                    </ion-col>
+                    <ion-col col-6 align-self-center padding-right>
+                      <ion-icon name="md-close" color="danger" class="del-disposisi" (click)="delete(disposisiPekerja,'pekerja')" float-right></ion-icon>
+                    </ion-col>
+                  </ion-row>
+                </div>
+              </ion-item>
+            </ion-list>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+
+      <ion-grid *ngIf="isAtasan && messageDetail['Status Surat'].includes('LIHAT SURAT')  && from_modul != 'sppd' ">
+        <ion-row>
+          <ion-col col-6>
+            <button style="border-radius: 5px" icon-start ion-button block color="danger" (click)="cancel()">
+              <ion-icon name="md-close"></ion-icon>
+              Batal
+            </button>
+          </ion-col>
+          <ion-col col-6>
+            <button style="border-radius: 5px" icon-start ion-button block (click)="sendDisposisi()" color="primary" [disabled]="(disposisiJabatanList.length == 0 && disposisiPekerjaList.length == 0) ? true : false">
+              <ion-icon name="md-checkmark"></ion-icon>
+              Disposisi
+            </button>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+
+      <!-- -------------------------------------- PESERTA SPPD -------------------------------------------------------------- -->
+
+      <div *ngIf="messageDetail['Kode Jenis Surat'] == 'nd_sppd'">
+        <ion-item no-padding margin-left margin-right no-lines>
+          <span ion-text text-wrap class="font2">
+            <b>Peserta SPPD</b>
+          </span>
+          <br />
+
+          <div *ngIf="pesertaSppdList.length > 0">
+            <table width="95%">
+              <tr *ngFor="let peserta of pesertaSppdList;let i = index">
+                <td valign="top" width="10%">{{i+1}}.</td>
+                <td valign="top">
+                  <span ion-text text-wrap color="dark" class="font2"> {{ peserta['NAMA'] }} </span>
+                </td>
+              </tr>
+            </table>
+          </div>
+
+          <div *ngIf="pesertaSppdList.length == 0">
+            <span ion-text text-wrap color="color4" class="font2"> tidak ada peserta SPPD </span>
+          </div>
+
+          <!-- <div *ngIf="attrScanSppd.length > 0 && from_modul == 'sppd'">						 -->
+          <div *ngIf="messageData['KD_STATUS'] == '7' && from_modul == 'sppd'">
+            <ion-grid>
+              <ion-row>
+                <ion-col col-12>
+                  <button style="border-radius: 5px" icon-start ion-button block (click)="goToPertanggungjawaban()" color="primary">
+                    <ion-icon name="md-checkmark"></ion-icon>
+                    Pertanggungjawabkan
+                  </button>
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+          </div>
+
+          <div *ngIf="messageData['KD_STATUS'] == '9' && from_modul == 'sppd'">
+            <ion-grid>
+              <ion-row>
+                <ion-col col-12>
+                  <button style="border-radius: 5px" icon-start ion-button block (click)="goToPertanggungjawaban()" color="primary">
+                    <ion-icon name="md-checkmark"></ion-icon>
+                    Upload Ulang Pertanggungjawabkan
+                  </button>
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+          </div>
+        </ion-item>
+      </div>
+
+      <!-- -------------------------------------- PESERTA SPPD -------------------------------------------------------------- -->
+
+      <!-- -------------------------------------- REVISI SPPD -------------------------------------------------------------- -->
+
+      <div *ngIf="from_modul == 'sppd' && isRevisi == true" padding-left padding-right>
+        <br />
+        <ion-card class="my-card-2">
+          <ion-card-content>
+            <div class="header-text">
+              <span ion-text text-wrap class="font-small">
+                <b>Data Revisi SPPD</b>
+              </span>
+            </div>
+            <div class="garis"></div>
+            <div class="row">
+              <div col="col">
+                <ion-item style="padding-left: 0 !important" lines>
+                  <ion-label stacked>Tanggal Mulai</ion-label>
+                  <ion-input type="text" [readonly]="true" (ionFocus)="showDatePickerRevisi(1)" (click)="showDatePickerRevisi(1)" [(ngModel)]="tanggalMulaiRevisi"></ion-input>
+                </ion-item>
+              </div>
+              <div col="col">
+                <div style="text-align: center; width: 100%; height: 100%; margin-top: 45px; font-size: 1.2rem">
+                  <span ion-text text-wrap color="color4"> s/d </span>
+                </div>
+              </div>
+              <div col="col">
+                <ion-item style="padding-left: 0 !important">
+                  <ion-label stacked>Tanggal Selesai</ion-label>
+                  <ion-input type="text" [readonly]="true" (ionFocus)="showDatePickerRevisi(2)" (click)="showDatePickerRevisi(2)" [(ngModel)]="tanggalSelesaiRevisi"> </ion-input>
+                </ion-item>
+              </div>
+            </div>
+            <ion-item style="padding-left: 0 !important">
+              <ion-label stacked>Alasan Perubahan SPPD</ion-label>
+              <ion-input type="text" [(ngModel)]="alasanRevisi"></ion-input>
+            </ion-item>
+            <ion-item style="padding-left: 0 !important">
+              <ion-label stacked>Komentar</ion-label>
+              <ion-input type="text" [(ngModel)]="komentarRevisi"></ion-input>
+            </ion-item>
+          </ion-card-content>
+        </ion-card>
+
+        <br />
+        <ion-card class="my-card-2">
+          <ion-card-content>
+            <div class="header-text">
+              <span ion-text text-wrap class="font-small">
+                <b>Upload File</b>
+              </span>
+            </div>
+            <div class="garis"></div>
+
+            <ion-item>
+              <span item-left>
+                <img src="assets/imgs/logo/document-icon.png" class="icons" />
+              </span>
+              <ion-label stacked>Upload File</ion-label>
+              <ion-select [(ngModel)]="fileType" cancelText="Cancel" okText="OK">
+                <div>
+                  <ion-option value="file">File</ion-option>
+                  <ion-option value="gambar">Foto</ion-option>
+                </div>
+              </ion-select>
+            </ion-item>
+
+            <div *ngIf="fileType == 'gambar'">
+              <div class="image-container">
+                <img (click)="takeImage(0,'1')" class="photo" src="{{ imageShow }}" />
+                <span ion-text style="text-align: center; color: gray">Upload Foto (png, jpg, jpeg)</span>
+              </div>
+            </div>
+            <ion-item *ngIf="fileType == 'file'">
+              <ion-label stacked>Upload File (docx, doc, xlxs, xls,xlsx, pdf)</ion-label>
+              <ion-input type="text" [(ngModel)]="fileName" [readonly]="true" (ionFocus)="openChooser('1')" (click)="openChooser('1')" placeholder="pilih file"> </ion-input>
+            </ion-item>
+          </ion-card-content>
+        </ion-card>
+        <br />
+        <button style="border-radius: 5px" icon-start ion-button block (click)="doRevisi()" color="primary">
+          <ion-icon name="md-checkmark"></ion-icon>
+          Kirim
+        </button>
+        <!-- <button style="border-radius:5px;" icon-start ion-button block (click)="tesUploadRevisi('15508')" color="primary">
+					<ion-icon name="md-checkmark"></ion-icon>
+					Kirim revisi
+				</button> -->
+      </div>
+
+      <!-- -------------------------------------- REVISI SPPD -------------------------------------------------------------- -->
+
+      <!-- -------------------------------------- LAPORAN SPPD -------------------------------------------------------------- -->
+
+      <div *ngIf="from_modul == 'sppd' && isLaporan == true" padding-left padding-right>
+        <br />
+        <ion-card class="my-card-2">
+          <ion-card-content>
+            <div class="header-text">
+              <span ion-text text-wrap class="font-small">
+                <b>Data Laporan SPPD</b>
+              </span>
+            </div>
+            <div class="garis"></div>
+            <ion-item style="padding-left: 0 !important">
+              <ion-label stacked>Komentar</ion-label>
+              <ion-input type="text" [(ngModel)]="komentarLaporan"></ion-input>
+            </ion-item>
+          </ion-card-content>
+        </ion-card>
+
+        <br />
+        <ion-card class="my-card-2">
+          <ion-card-content>
+            <ion-item>
+              <ion-label stacked>Jumlah File Upload</ion-label>
+              <ion-select [(ngModel)]="jumFileLaporan" cancelText="Cancel" okText="OK">
+                <div>
+                  <ion-option value="1">1</ion-option>
+                  <ion-option value="2">2</ion-option>
+                  <ion-option value="3">3</ion-option>
+                  <ion-option value="4">4</ion-option>
+                  <ion-option value="5">5</ion-option>
+                  <ion-option value="6">6</ion-option>
+                  <ion-option value="7">7</ion-option>
+                </div>
+              </ion-select>
+            </ion-item>
+          </ion-card-content>
+        </ion-card>
+        <br />
+
+        <div *ngFor="let item of createRange(jumFileLaporan); let i = index">
+          <br />
+          <ion-card class="my-card-2">
+            <ion-card-content>
+              <div class="header-text">
+                <span ion-text text-wrap class="font-small">
+                  <b>Upload File Laporan {{ i+1 }}</b>
+                </span>
+              </div>
+              <div class="garis"></div>
+
+              <ion-item>
+                <span item-left>
+                  <img src="assets/imgs/logo/document-icon.png" class="icons" />
+                </span>
+                <ion-label stacked>Upload File</ion-label>
+                <ion-select *ngIf="i+1 == 1" [(ngModel)]="fileTypeLaporan1" cancelText="Cancel" okText="OK">
+                  <div>
+                    <ion-option value="file">File</ion-option>
+                    <ion-option value="gambar">Foto</ion-option>
+                  </div>
+                </ion-select>
+                <ion-select *ngIf="i+1 == 2" [(ngModel)]="fileTypeLaporan2" cancelText="Cancel" okText="OK">
+                  <div>
+                    <ion-option value="file">File</ion-option>
+                    <ion-option value="gambar">Foto</ion-option>
+                  </div>
+                </ion-select>
+                <ion-select *ngIf="i+1 == 3" [(ngModel)]="fileTypeLaporan3" cancelText="Cancel" okText="OK">
+                  <div>
+                    <ion-option value="file">File</ion-option>
+                    <ion-option value="gambar">Foto</ion-option>
+                  </div>
+                </ion-select>
+                <ion-select *ngIf="i+1 == 4" [(ngModel)]="fileTypeLaporan4" cancelText="Cancel" okText="OK">
+                  <div>
+                    <ion-option value="file">File</ion-option>
+                    <ion-option value="gambar">Foto</ion-option>
+                  </div>
+                </ion-select>
+                <ion-select *ngIf="i+1 == 5" [(ngModel)]="fileTypeLaporan5" cancelText="Cancel" okText="OK">
+                  <div>
+                    <ion-option value="file">File</ion-option>
+                    <ion-option value="gambar">Foto</ion-option>
+                  </div>
+                </ion-select>
+                <ion-select *ngIf="i+1 == 6" [(ngModel)]="fileTypeLaporan6" cancelText="Cancel" okText="OK">
+                  <div>
+                    <ion-option value="file">File</ion-option>
+                    <ion-option value="gambar">Foto</ion-option>
+                  </div>
+                </ion-select>
+                <ion-select *ngIf="i+1 == 7" [(ngModel)]="fileTypeLaporan7" cancelText="Cancel" okText="OK">
+                  <div>
+                    <ion-option value="file">File</ion-option>
+                    <ion-option value="gambar">Foto</ion-option>
+                  </div>
+                </ion-select>
+              </ion-item>
+
+              <div *ngIf="i+1 == 1">
+                <div *ngIf="fileTypeLaporan1 == 'gambar'">
+                  <div class="image-container">
+                    <img (click)="takeImageLaporan(0,'1')" class="photo" src="{{ imageShowLaporan1 }}" />
+                    <span ion-text style="text-align: center; color: gray">Upload Foto (png, jpg, jpeg)</span>
+                  </div>
+                </div>
+                <ion-item *ngIf="fileTypeLaporan1 == 'file'">
+                  <ion-label stacked>Upload File (docx, doc, xlxs, xls,xlsx, pdf)</ion-label>
+                  <ion-input type="text" [(ngModel)]="fileNameLaporan1" [readonly]="true" (ionFocus)="openChooserLaporan('1')" (click)="openChooserLaporan('1')" placeholder="pilih file"> </ion-input>
+                </ion-item>
+              </div>
+              <div *ngIf="i+1 == 2">
+                <div *ngIf="fileTypeLaporan2 == 'gambar'">
+                  <div class="image-container">
+                    <img (click)="takeImageLaporan(0,'2')" class="photo" src="{{ imageShowLaporan2 }}" />
+                    <span ion-text style="text-align: center; color: gray">Upload Foto (png, jpg, jpeg)</span>
+                  </div>
+                </div>
+                <ion-item *ngIf="fileTypeLaporan2 == 'file'">
+                  <ion-label stacked>Upload File (docx, doc, xlxs, xls,xlsx, pdf)</ion-label>
+                  <ion-input type="text" [(ngModel)]="fileNameLaporan2" [readonly]="true" (ionFocus)="openChooserLaporan('2')" (click)="openChooserLaporan('2')" placeholder="pilih file"> </ion-input>
+                </ion-item>
+              </div>
+              <div *ngIf="i+1 == 3">
+                <div *ngIf="fileTypeLaporan3 == 'gambar'">
+                  <div class="image-container">
+                    <img (click)="takeImageLaporan(0,'3')" class="photo" src="{{ imageShowLaporan3 }}" />
+                    <span ion-text style="text-align: center; color: gray">Upload Foto (png, jpg, jpeg)</span>
+                  </div>
+                </div>
+                <ion-item *ngIf="fileTypeLaporan3 == 'file'">
+                  <ion-label stacked>Upload File (docx, doc, xlxs, xls,xlsx, pdf)</ion-label>
+                  <ion-input type="text" [(ngModel)]="fileNameLaporan3" [readonly]="true" (ionFocus)="openChooserLaporan('3')" (click)="openChooserLaporan('3')" placeholder="pilih file"> </ion-input>
+                </ion-item>
+              </div>
+              <div *ngIf="i+1 == 4">
+                <div *ngIf="fileTypeLaporan4 == 'gambar'">
+                  <div class="image-container">
+                    <img (click)="takeImageLaporan(0,'4')" class="photo" src="{{ imageShowLaporan4 }}" />
+                    <span ion-text style="text-align: center; color: gray">Upload Foto (png, jpg, jpeg)</span>
+                  </div>
+                </div>
+                <ion-item *ngIf="fileTypeLaporan4 == 'file'">
+                  <ion-label stacked>Upload File (docx, doc, xlxs, xls,xlsx, pdf)</ion-label>
+                  <ion-input type="text" [(ngModel)]="fileNameLaporan4" [readonly]="true" (ionFocus)="openChooserLaporan('4')" (click)="openChooserLaporan('4')" placeholder="pilih file"> </ion-input>
+                </ion-item>
+              </div>
+              <div *ngIf="i+1 == 5">
+                <div *ngIf="fileTypeLaporan5 == 'gambar'">
+                  <div class="image-container">
+                    <img (click)="takeImageLaporan(0,'5')" class="photo" src="{{ imageShowLaporan5 }}" />
+                    <span ion-text style="text-align: center; color: gray">Upload Foto (png, jpg, jpeg)</span>
+                  </div>
+                </div>
+                <ion-item *ngIf="fileTypeLaporan5 == 'file'">
+                  <ion-label stacked>Upload File (docx, doc, xlxs, xls,xlsx, pdf)</ion-label>
+                  <ion-input type="text" [(ngModel)]="fileNameLaporan5" [readonly]="true" (ionFocus)="openChooserLaporan('5')" (click)="openChooserLaporan('5')" placeholder="pilih file"> </ion-input>
+                </ion-item>
+              </div>
+              <div *ngIf="i+1 == 6">
+                <div *ngIf="fileTypeLaporan6 == 'gambar'">
+                  <div class="image-container">
+                    <img (click)="takeImageLaporan(0,'6')" class="photo" src="{{ imageShowLaporan6 }}" />
+                    <span ion-text style="text-align: center; color: gray">Upload Foto (png, jpg, jpeg)</span>
+                  </div>
+                </div>
+                <ion-item *ngIf="fileTypeLaporan6 == 'file'">
+                  <ion-label stacked>Upload File (docx, doc, xlxs, xls,xlsx, pdf)</ion-label>
+                  <ion-input type="text" [(ngModel)]="fileNameLaporan6" [readonly]="true" (ionFocus)="openChooserLaporan('6')" (click)="openChooserLaporan('6')" placeholder="pilih file"> </ion-input>
+                </ion-item>
+              </div>
+              <div *ngIf="i+1 == 7">
+                <div *ngIf="fileTypeLaporan7 == 'gambar'">
+                  <div class="image-container">
+                    <img (click)="takeImageLaporan(0,'7')" class="photo" src="{{ imageShowLaporan7 }}" />
+                    <span ion-text style="text-align: center; color: gray">Upload Foto (png, jpg, jpeg)</span>
+                  </div>
+                </div>
+                <ion-item *ngIf="fileTypeLaporan7 == 'file'">
+                  <ion-label stacked>Upload File (docx, doc, xlxs, xls,xlsx, pdf)</ion-label>
+                  <ion-input type="text" [(ngModel)]="fileNameLaporan7" [readonly]="true" (ionFocus)="openChooserLaporan('7')" (click)="openChooserLaporan('7')" placeholder="pilih file"> </ion-input>
+                </ion-item>
+              </div>
+            </ion-card-content>
+          </ion-card>
+        </div>
+
+        <br />
+        <button style="border-radius: 5px" icon-start ion-button block (click)="doLaporan()" color="primary">
+          <ion-icon name="md-checkmark"></ion-icon>
+          Kirim laporan
+        </button>
+        <!-- <button style="border-radius:5px;" icon-start ion-button block (click)="uploadLaporan('15508','')" color="primary">
+					<ion-icon name="md-checkmark"></ion-icon>
+					tes uplaod laporan
+				</button> -->
+      </div>
+
+      <ion-grid *ngIf="messageDetail['Status Surat'].includes('PERIKSA')  && from_modul != 'sppd' ">
+        <ion-row>
+          <ion-col col-12>
+            <div class="appForm">
+              <ion-list>
+                <ion-item>
+                  <span item-left>
+                    <img src="assets/imgs/logo/alasan.png" class="icons" />
+                  </span>
+                  <ion-label stacked>Komentar</ion-label>
+                  <ion-input type="text" [(ngModel)]="keterangan" placeholder="" clearInput> </ion-input>
+                </ion-item>
+              </ion-list>
+            </div>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col col-6>
+            <button style="border-radius: 5px" icon-start ion-button block color="danger" (click)="doPeriksa('decline')">
+              <ion-icon name="md-close"></ion-icon>
+              Decline
+            </button>
+          </ion-col>
+          <ion-col col-6>
+            <button style="border-radius: 5px" icon-start ion-button block (click)="doPeriksa('approve')" color="primary">
+              <ion-icon name="md-checkmark"></ion-icon>
+              Approve
+            </button>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col col-12>
+            <button style="border-radius: 5px" icon-start ion-button block (click)="doPeriksa('kembalikan')" color="primary">
+              <ion-icon name="md-refresh"></ion-icon>
+              Kembalikan
+            </button>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </div>
+
+    <div *ngIf="messageDetail['Kode Jenis Surat'] == 'permohonan'">
+      <ion-card class="header-card">
+        <ion-card-content>
+          <span ion-text text-wrap class="font-header">
+            <b>{{ messageDetail['Judul Surat'] }}</b>
+          </span>
+        </ion-card-content>
+      </ion-card>
+
+      <ion-card class="my-card">
+        <ion-item>
+          <span ion-text text-wrap class="font-mini" color="color4"> Tanggal Pengajuan </span><br />
+          <span ion-text text-wrap class="font-small"> {{ messageDetail['Tanggal Pengajuan'] }} </span><br />
+
+          <span ion-text text-wrap class="font-mini" color="color4"> Jenis Pengajuan </span><br />
+          <span ion-text text-wrap class="font-small"> {{ messageDetail['Jenis Pengajuan'] }} </span>
+          <br />
+
+          <span ion-text text-wrap class="font-mini" color="color4"> tanggal Cuti/Izin </span><br />
+          <span ion-text text-wrap class="font-small"> {{ messageDetail['Tanggal Mulai Cuti'] }} </span> <span ion-text text-wrap class="font-small" color="primary"> s/d </span>
+          <span ion-text text-wrap class="font-small"> {{ messageDetail['Tanggal Selesai Cuti'] }} </span>
+          <br />
+
+          <span ion-text text-wrap class="font-mini" color="color4"> Alamat Selama Cuti/Izin </span><br />
+          <span ion-text text-wrap class="font-small"> {{ messageDetail['Alamat Cuti'] }} </span>
+          <br />
+
+          <span ion-text text-wrap class="font-mini" color="color4"> Alasan </span><br />
+          <span ion-text text-wrap class="font-small"> {{ messageDetail['Alasan'] }} </span>
+          <br />
+        </ion-item>
+      </ion-card>
+
+      <ion-card class="my-card">
+        <ion-item>
+          <div class="header-text">
+            <span ion-text text-wrap>
+              <img src="assets/imgs/logo/nipp.png" class="icons" />
+            </span>
+            <span ion-text text-wrap class="font-small">
+              <b>Biodata Pemohon</b>
+            </span>
+          </div>
+          <div class="garis"></div>
+          <span ion-text text-wrap class="font-mini" color="color4"> NIPP </span><br />
+          <span ion-text text-wrap class="font-small"> {{ messageDetail['NIPP Pemohon'] }} </span><br />
+
+          <span ion-text text-wrap class="font-mini" color="color4"> Nama </span><br />
+          <span ion-text text-wrap class="font-small"> {{ messageDetail['Nama Pemohon'] }} </span>
+          <br />
+
+          <span ion-text text-wrap class="font-mini" color="color4"> Menyetujui </span><br />
+          <span ion-text text-wrap class="font-small" color="primary">
+            <b>{{ messageDetail['NIPP Menyetujui'] }}</b>
+          </span>
+          <br />
+          <span ion-text text-wrap class="font-small"> {{ messageDetail['Nama Menyetujui'] }} | {{ messageDetail['Jabatan Menyetujui'] }} </span>
+          <br />
+
+          <span ion-text text-wrap class="font-mini" color="color4"> Mengetahui </span><br />
+          <span *ngIf="messageDetail['NIPP Mengetahui'] == '' || messageDetail['NIPP Mengetahui'] == null" ion-text text-wrap class="font-small" color="primary"> - </span>
+          <span *ngIf="messageDetail['NIPP Mengetahui'] != '' || messageDetail['NIPP Mengetahui'] != null" ion-text text-wrap class="font-small" color="primary">
+            <b>{{ messageDetail['NIPP Mengetahui'] }}</b>
+          </span>
+          <br />
+          <span *ngIf="messageDetail['Nama Mengetahui'] != '' || messageDetail['Nama Mengetahui'] != null" ion-text text-wrap class="font-small"> {{ messageDetail['Nama Mengetahui'] }} | {{ messageDetail['Jabatan Mengetahui'] }} </span>
+        </ion-item>
+      </ion-card>
+
+      <ion-list *ngIf="!isLoading && isAtasan && messageDetail['Kode Status Surat'] == '4' && from_modul != 'sppd'">
+        <ion-item no-lines padding-left padding-right no-margin>
+          <ion-row class="my-col">
+            <ion-col col-6 align-self-start><b ion-text color="dark" class="font2">Disposisi Jabatan</b> </ion-col>
+            <ion-col col-6 align-self-center padding-right (click)="showDisposisi('jabatan')">
+              <ion-icon name="add" color="primary" class="plus" float-right></ion-icon>
+            </ion-col>
+          </ion-row>
+          <div *ngIf="disposisiJabatanList != null">
+            <ion-row class="my-col" *ngFor="let disposisiJabatan of disposisiJabatanList">
+              <ion-col align-self-start text-wrap>
+                <p ion-text color="primary">{{ disposisiJabatan['nama_jabatan'] }} | {{ disposisiJabatan['nama'] }}</p>
+              </ion-col>
+              <ion-col col-6 align-self-center padding-right>
+                <ion-icon name="md-close" color="danger" class="del-disposisi" (click)="delete(disposisiJabatan,'jabatan')" float-right></ion-icon>
+              </ion-col>
+            </ion-row>
+          </div>
+        </ion-item>
+        <ion-item no-lines padding-left padding-right no-margin>
+          <ion-row class="my-col">
+            <ion-col col-6 align-self-start><b ion-text color="dark" class="font2">Disposisi Pekerja</b> </ion-col>
+            <ion-col col-6 align-self-center padding-right (click)="showDisposisi('pekerja')">
+              <ion-icon name="add" color="danger" class="plus" float-right></ion-icon>
+            </ion-col>
+          </ion-row>
+          <div *ngIf="disposisiPekerjaList != null">
+            <ion-row class="my-col" *ngFor="let disposisiPekerja of disposisiPekerjaList">
+              <ion-col align-self-start text-wrap>
+                <p ion-text color="primary">{{ disposisiPekerja['nama'] }} | {{ disposisiPekerja['nipp'] }} | {{ disposisiPekerja['nama_jabatan'] }}</p>
+              </ion-col>
+              <ion-col col-6 align-self-center padding-right>
+                <ion-icon name="md-close" color="danger" class="del-disposisi" (click)="delete(disposisiPekerja,'pekerja')" float-right></ion-icon>
+              </ion-col>
+            </ion-row>
+          </div>
+        </ion-item>
+      </ion-list>
+
+      <ion-grid *ngIf="isAtasan && messageDetail['Kode Status Surat'] == '4'  && from_modul != 'sppd' ">
+        <ion-row>
+          <ion-col col-6>
+            <button style="border-radius: 5px" icon-start ion-button block color="danger" (click)="cancel()">
+              <ion-icon name="md-close"></ion-icon>
+              Batal
+            </button>
+          </ion-col>
+          <ion-col col-6>
+            <button style="border-radius: 5px" icon-start ion-button block (click)="sendDisposisi()" color="primary" [disabled]="(disposisiJabatanList.length == 0 && disposisiPekerjaList.length == 0) ? true : false">
+              <ion-icon name="md-checkmark"></ion-icon>
+              Disposisi
+            </button>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+
+      <div *ngIf="messageDetail['NIPP Pemohon'] == userdataTPK['data']['NIPP'] && messageDetail['Kode Status Surat'] == '6' ">
+        <ion-card class="my-card">
+          <ion-item>
+            <div class="header-text">
+              <span ion-text text-wrap>
+                <img src="assets/flat-icon/alert.png" class="icons" />
+              </span>
+              <span ion-text text-wrap class="font-small">
+                <b>Revisi Pengajuan Cuti/Izin</b>
+              </span>
+            </div>
+            <div class="garis"></div>
+            <span ion-text text-wrap class="font-mini" color="color4"> Tanggal Revisi Cuti/Izin </span><br />
+            <span ion-text text-wrap class="font-small"> {{ messageDetail['TANGGAL_MULAI_REVISI'] }} </span> <span ion-text text-wrap class="font-small" color="primary"> s/d </span>
+            <span ion-text text-wrap class="font-small"> {{ messageDetail['TANGGAL_SELESAI_REVISI'] }} </span>
+            <br />
+
+            <span ion-text text-wrap class="font-mini" color="color4"> Alasan </span><br />
+            <span ion-text text-wrap class="font-small"> {{ messageDetail['KETERANGAN_REVISI'] }} </span>
+            <br />
+          </ion-item>
+        </ion-card>
+
+        <ion-grid>
+          <ion-row>
+            <ion-col col-6>
+              <button style="border-radius: 5px" icon-start ion-button block color="danger" (click)="doAction('decline')">
+                <ion-icon name="md-close"></ion-icon>
+                Keberatan
+              </button>
+            </ion-col>
+            <ion-col col-6>
+              <button style="border-radius: 5px" icon-start ion-button block (click)="doAction('approve')" color="color6">
+                <ion-icon name="md-checkmark"></ion-icon>
+                Tidak Keberatan
+              </button>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </div>
+
+      <ion-grid *ngIf="isAtasan && messageDetail['Kode Status Surat'] == '2'">
+        <ion-row>
+          <ion-col col-12>
+            <div class="appForm">
+              <ion-item>
+                <span item-left>
+                  <img src="assets/imgs/logo/alasan.png" class="icons" />
+                </span>
+                <ion-label stacked>Komentar</ion-label>
+                <ion-input type="text" [(ngModel)]="keterangan" placeholder="" clearInput> </ion-input>
+              </ion-item>
+            </div>
+          </ion-col>
+        </ion-row>
+
+        <ion-row *ngIf="formDitangguhkan">
+          <ion-col col-12>
+            <div class="appForm">
+              <div>
+                <ion-item style="width: 70%; float: left">
+                  <span item-left>
+                    <img src="assets/imgs/menu-icon/start_date.png" class="icons" />
+                  </span>
+                  <ion-label stacked>Tanggal Mulai</ion-label>
+                  <ion-input type="text" [readonly]="true" (ionFocus)="checkFocus(1)" (click)="checkFocus(1)" [(ngModel)]="tanggalMulai"></ion-input>
+                </ion-item>
+
+                <ion-item style="width: 30%; float: right; padding-top: 14px; padding-left: 3px !important">
+                  <ion-select [(ngModel)]="jamMulai" placeholder="" style="max-width: 100%">
+                    <ion-option value="23">7:00</ion-option>
+                    <ion-option value="24">19:00</ion-option>
+                    <ion-option value="1">0:00</ion-option>
+                    <ion-option value="2">8:00</ion-option>
+                    <ion-option value="3">8:30</ion-option>
+                    <ion-option value="4">9:00</ion-option>
+                    <ion-option value="5">9:30</ion-option>
+                    <ion-option value="6">10:00</ion-option>
+                    <ion-option value="7">10:30</ion-option>
+                    <ion-option value="8">11:00</ion-option>
+                    <ion-option value="9">11:30</ion-option>
+                    <ion-option value="10">12:00</ion-option>
+                    <ion-option value="11">12:30</ion-option>
+                    <ion-option value="12">13:00</ion-option>
+                    <ion-option value="13">13:30</ion-option>
+                    <ion-option value="14">14:00</ion-option>
+                    <ion-option value="15">14:30</ion-option>
+                    <ion-option value="16">15:00</ion-option>
+                    <ion-option value="17">15:30</ion-option>
+                    <ion-option value="18">16:00</ion-option>
+                    <ion-option value="19">16:30</ion-option>
+                    <ion-option value="20">17:00</ion-option>
+                    <ion-option value="21">17:30</ion-option>
+                    <ion-option value="22">18.00</ion-option>
+                    <ion-option value="25">20:00</ion-option>
+                    <ion-option value="26">6:00</ion-option>
+                    <ion-option value="28">7:30</ion-option>
+                  </ion-select>
+                </ion-item>
+              </div>
+
+              <div>
+                <ion-item style="width: 70%; float: left">
+                  <span item-left>
+                    <img src="assets/imgs/menu-icon/end_date.png" class="icons" />
+                  </span>
+                  <ion-label stacked>Tanggal Selesai</ion-label>
+                  <!-- <ion-input type="text" [readonly]="true" (ionFocus)="checkFocus(2)" [(ngModel)]="tanggalSelesai"> -->
+                  <ion-input type="text" [readonly]="true" (click)="checkFocus(2)" (ionFocus)="checkFocus(2)" [(ngModel)]="tanggalSelesai"> </ion-input>
+                </ion-item>
+
+                <ion-item style="width: 30%; float: right; padding-top: 14px; padding-left: 3px !important">
+                  <ion-select [(ngModel)]="jamSelesai" placeholder="" style="max-width: 100%">
+                    <ion-option value="23">7:30</ion-option>
+                    <ion-option value="24">20:00</ion-option>
+                    <ion-option value="1">8:00</ion-option>
+                    <ion-option value="2">8:30</ion-option>
+                    <ion-option value="3">9:00</ion-option>
+                    <ion-option value="4">9:30</ion-option>
+                    <ion-option value="5">10:00</ion-option>
+                    <ion-option value="6">10:30</ion-option>
+                    <ion-option value="7">11:00</ion-option>
+                    <ion-option value="8">11:30</ion-option>
+                    <ion-option value="9">12:00</ion-option>
+                    <ion-option value="10">12:30</ion-option>
+                    <ion-option value="11">13:00</ion-option>
+                    <ion-option value="12">13:30</ion-option>
+                    <ion-option value="13">14:00</ion-option>
+                    <ion-option value="14">14:30</ion-option>
+                    <ion-option value="15">15:00</ion-option>
+                    <ion-option value="16">15:30</ion-option>
+                    <ion-option value="17">16:00</ion-option>
+                    <ion-option value="18">16:30</ion-option>
+                    <ion-option value="19">17:00</ion-option>
+                    <ion-option value="20">17:30</ion-option>
+                    <ion-option value="21">18:00</ion-option>
+                    <ion-option value="22">19.00</ion-option>
+                    <ion-option value="25">22:00</ion-option>
+                    <ion-option value="26">7:00</ion-option>
+                    <ion-option value="28">8:00</ion-option>
+                  </ion-select>
+                </ion-item>
+              </div>
+
+              <div *ngIf="tanggalSelesai != ''">
+                <ion-item>
+                  <span item-left>
+                    <img src="assets/imgs/menu-icon/jumHari.png" class="icons" />
+                  </span>
+                  <ion-label stacked>Jumlah Hari</ion-label>
+                  <ion-input type="number" [(ngModel)]="jumHari"></ion-input>
+                </ion-item>
+
+                <p ion-text text-wrap color="color4" style="padding-left: 8px !important">*Bila terdapat kesalahan jumlah hari silahkan disesuaikan</p>
+                <p ion-text text-wrap color="danger" style="padding-left: 8px !important">Sisa Cuti Tahunan : <b>{{ sisaCuti }}</b></p>
+              </div>
+            </div>
+          </ion-col>
+          <p ion-text text-wrap color="danger" style="padding-left: 8px !important">{{errorMsg}}</p>
+        </ion-row>
+
+        <ion-row>
+          <ion-col col-6>
+            <button style="border-radius: 5px" icon-start ion-button block color="danger" (click)="doPeriksa('decline')">
+              <ion-icon name="md-close"></ion-icon>
+              Keberatan
+            </button>
+          </ion-col>
+          <ion-col col-6>
+            <button style="border-radius: 5px" icon-start ion-button block (click)="doPeriksa('approve')" color="color6">
+              <ion-icon name="md-checkmark"></ion-icon>
+              Setujui
+            </button>
+          </ion-col>
+        </ion-row>
+        <ion-row *ngIf="messageDetail['URUT_PEMERIKSA'] != '' && (messageDetail['URUT_PEMERIKSA'] != messageDetail['JUMLAH_PEMERIKSA'] || messageDetail['JUMLAH_PEMERIKSA'] == '1')">
+          <ion-col col-12>
+            <button style="border-radius: 5px" icon-start ion-button block (click)="ditangguhkan()" color="primary">
+              <ion-icon name="md-remove-circle"></ion-icon>
+              Ditangguhkan
+            </button>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </div>
+  </div>
 </ion-content>

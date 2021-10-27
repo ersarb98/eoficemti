@@ -9,9 +9,12 @@
     <ion-title>
       <span ion-text color="light" class="fw500">Absensi</span>
     </ion-title>
-    <ion-buttons end *ngIf="isAtasan" style="padding-right: 5px">
-      <button ion-button (click)="presentPopover($event)">
-        <ion-icon style="font-size: 2.4rem; padding-right: 16px" name="more" color="light"></ion-icon>
+    <ion-buttons end style="padding-right: 5px">
+      <button ion-button (click)="cetakAbsen()">
+        <ion-icon style="font-size: 2.4rem" name="md-download" color="light"></ion-icon>
+      </button>
+      <button *ngIf="isAtasan" ion-button (click)="presentPopover($event)">
+        <ion-icon style="font-size: 2.4rem; padding: 0 5px 0 5px" name="more" color="light"></ion-icon>
         <ion-badge class="my-badges" *ngIf="!isLoadingBadges  && !isEmptyObject(badgesList) && parse(badgesList['JUMLAH_ABSEN_BELUM_KOREKSI'])" color="danger">{{ badgesList['JUMLAH_ABSEN_BELUM_KOREKSI'] }}</ion-badge>
       </button>
     </ion-buttons>
@@ -157,6 +160,9 @@
             <span ion-text text-wrap class="check-type-out">{{ absen['LEMBUR'] }}</span>
             <br />
           </div>
+          <div class="ket-card" *ngIf="absen['DETAIL_KETERANGAN'] != '' && (absen['STATUS'] == 'Cuti' || absen['STATUS'] == 'Libur'  || absen['STATUS'] == 'Izin')">
+            <span ion-text text-wrap style="font-size: 1.2rem">{{ absen['DETAIL_KETERANGAN'] }}</span>
+          </div>
         </div>
       </div>
 
@@ -196,7 +202,7 @@
           </div>
 
           <br />
-          <div class="ket-card" *ngIf="absen['DETAIL_KETERANGAN'] != '' && (absen['STATUS'] == 'Cuti' || absen['STATUS'] == 'Libur')">
+          <div class="ket-card" *ngIf="absen['DETAIL_KETERANGAN'] != '' && (absen['STATUS'] == 'Cuti' || absen['STATUS'] == 'Libur' || absen['STATUS'] == 'Izin')">
             <span ion-text text-wrap style="font-size: 1.2rem">{{ absen['DETAIL_KETERANGAN'] }}</span>
           </div>
         </div>

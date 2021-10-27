@@ -91,7 +91,7 @@ export class CheckInPage {
     this.dataValidasi = navParams.get("dataValidasi");
     this.imageShow = url_image + "/" + this.filename;
     //this.imageShow = this.sanitizer.bypassSecurityTrustUrl("data:Image/*;base64," + this.fileBase64);
-    console.log(this.dataValidasi);
+    console.log(this.dataValidasi["SHIFT_DATE"]);
 
     // this.imageShow = url_image + '/' + '20200625_094623_1770451718.jpg';
 
@@ -146,8 +146,8 @@ export class CheckInPage {
         var long_kantor = "";
 
         if (this.userdataTPK["data"]["IDCABANG"] == "31") {
-          lat_kantor = this.addressData["LAT_TPK_PUSAT"];
-          long_kantor = this.addressData["LONG_TPK_PUSAT"];
+          lat_kantor = this.addressData["LAT_PPI_PUSAT"];
+          long_kantor = this.addressData["LONG_PPI_PUSAT"];
         } else if (this.userdataTPK["data"]["IDCABANG"] == "32") {
           lat_kantor = this.addressData["LAT_TPK_JAMBI"];
           long_kantor = this.addressData["LONG_TPK_JAMBI"];
@@ -216,8 +216,8 @@ export class CheckInPage {
         var long_kantor = "";
 
         if (this.userdataTPK["data"]["IDCABANG"] == "31") {
-          lat_kantor = this.addressData["LAT_TPK_PUSAT"];
-          long_kantor = this.addressData["LONG_TPK_PUSAT"];
+          lat_kantor = this.addressData["LAT_PPI_PUSAT"];
+          long_kantor = this.addressData["LONG_PPI_PUSAT"];
         } else if (this.userdataTPK["data"]["IDCABANG"] == "32") {
           lat_kantor = this.addressData["LAT_TPK_JAMBI"];
           long_kantor = this.addressData["LONG_TPK_JAMBI"];
@@ -378,6 +378,7 @@ export class CheckInPage {
                           act_type: "1",
                           isLembur: this.showLembur,
                           keteranganLembur: this.keteranganLembur,
+                          shift_date: this.dataValidasi["SHIFT_DATE"],
                         },
                         {
                           headers,

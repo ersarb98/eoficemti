@@ -40,7 +40,7 @@ export class SppdListPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad SppdListPage');
-    
+
   }
 
   ionViewDidEnter() {
@@ -53,8 +53,12 @@ export class SppdListPage {
     });
   }
 
-  goToForm() {
-    let modal = this.modalCtrl.create("AddSppdPage", {      
+  goToForm(actionType,data) {
+
+    let modal = this.modalCtrl.create("AddSppdPage", {
+      "actionType": actionType,
+      "message": data
+      
     }, {
       enableBackdropDismiss: true,
       showBackdrop: true,
@@ -68,7 +72,7 @@ export class SppdListPage {
         this.batasAtas = 1;
         this.batasBawah = 10;
         this.getSppdList('first', '');
-      }    
+      }
     });
   }
 
@@ -168,12 +172,172 @@ export class SppdListPage {
   }
 
   goToDetail(message) {
-    this.navCtrl.push("InboxDetailPage", {
-      from_modul: 'sppd',
-      messageData: message,
-      nipp: this.userdataTPK['data']['NIPP'],
-      userdataTPK: this.userdataTPK
+    console.log(message['IS_REVISI'] ); 
+    if (message['KETERANGAN'] == 'SIMPAN') {
+      let alert = this.alertCtrl.create({
+        title: message['PERIHAL'],
+        subTitle: '',
+        cssClass: 'alert',
+        buttons: [
+          {
+            text: 'PREVIEW',
+
+            handler: () => {
+              this.navCtrl.push("InboxDetailPage", {
+                from_modul: 'sppd',
+                messageData: message,
+                nipp: this.userdataTPK['data']['NIPP'],
+                userdataTPK: this.userdataTPK
+              });
+            }
+          },
+          {
+            text: 'EDIT',
+
+            handler: () => {
+              this.goToForm('edit',message);
+            }
+          },
+          {
+            text: 'DELETE',
+
+            handler: () => {
+              this.deleteSPPD(message);
+            }
+          }
+        ]
+      });
+      alert.present();
+    } else if (message['IS_REVISI'] == true) {
+      let alert = this.alertCtrl.create({
+        title: message['PERIHAL'],
+        subTitle: '',
+        cssClass: 'alert',
+        buttons: [
+          {
+            text: 'PREVIEW',
+
+            handler: () => {
+              this.navCtrl.push("InboxDetailPage", {
+                from_modul: 'sppd',
+                messageData: message,
+                nipp: this.userdataTPK['data']['NIPP'],
+                userdataTPK: this.userdataTPK
+              });
+            }
+          },
+          {
+            text: 'REVISI',
+
+            handler: () => {
+              this.navCtrl.push("InboxDetailPage", {
+                from_modul: 'sppd',
+                messageData: message,
+                nipp: this.userdataTPK['data']['NIPP'],
+                userdataTPK: this.userdataTPK,
+                isRevisi: true
+              });
+            }
+          },
+          {
+            text: 'PELAPORAN',
+
+            handler: () => {
+              this.navCtrl.push("InboxDetailPage", {
+                from_modul: 'sppd',
+                messageData: message,
+                nipp: this.userdataTPK['data']['NIPP'],
+                userdataTPK: this.userdataTPK,
+                isLaporan: true
+              });
+            }
+          }
+        ]
+      });
+      alert.present();
+    } else {
+      this.navCtrl.push("InboxDetailPage", {
+        from_modul: 'sppd',
+        messageData: message,
+        nipp: this.userdataTPK['data']['NIPP'],
+        userdataTPK: this.userdataTPK
+      });
+    }
+
+  }
+
+  deleteSPPD(data) {
+    let alert = this.alertCtrl.create({
+      title: "Apakah anda yakin ingin menghapus pengajuan ini?",
+      subTitle: '',
+      cssClass: 'alert',
+      buttons: [
+        {
+          text: 'Ya',
+
+          handler: () => {
+            let loading = this.loadingCtrl.create({
+              spinner: 'dots',
+              content: "Menghapus pengajuan...",
+              cssClass: 'transparent',
+              dismissOnPageChange: true
+            });
+            loading.present();
+            this.soapService
+              .post(api_base_url, 'eoffice_delete_sppd', {
+                fStream: JSON.stringify(
+                  {
+                    usernameEDI: api_user,
+                    passwordEDI: api_pass,
+                    id_surat: data['ID_SURAT']
+                  }
+                )
+              }).then(result => {
+                var responData = JSON.parse(String(result));
+                console.log(responData);
+                if (responData['rcmsg'] == "SUCCESS") {
+                  var findIndex = this.sppdList.findIndex(x =>x.ID_SURAT.includes(data['ID_SURAT']));
+                  this.sppdList.splice(findIndex, 1);
+
+                  let toast = this.toastCtrl.create({
+                    message: 'Pengajuan berhasil dihapus.',
+                    duration: 3000,
+                    position: 'bottom'
+                  });
+                  toast.present();
+                  
+                } else {
+                  let toast = this.toastCtrl.create({
+                    message: 'Gagal menghapus data SPPD, silahkan coba kembali.',
+                    duration: 3000,
+                    position: 'bottom'
+                  });
+                  toast.present();
+                }
+                loading.dismiss();
+              })
+              .catch(error => {
+                console.log(error);
+                let toast = this.toastCtrl.create({
+                  message: 'Gagal menghapus data SPPD, periksa koneksi internet anda.',
+                  duration: 3000,
+                  position: 'bottom'
+                });
+                toast.present();
+                loading.dismiss();
+              });
+          }
+        },
+        {
+          text: 'Tidak',
+          role: 'cancel',
+          handler: () => {
+
+          }
+        }
+      ]
     });
+    alert.present();
   }
 
 
