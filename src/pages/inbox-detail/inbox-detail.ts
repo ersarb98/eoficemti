@@ -244,9 +244,9 @@ export class InboxDetailPage {
             var tglMulaiSplit = this.messageDetail["Agenda"]["Tanggal Mulai"].split("-");
             var tglSelesaiSplit = this.messageDetail["Agenda"]["Tanggal Akhir"].split("-");
             console.log(tglMulaiSplit);
-            var dateMulai = new Date(tglMulaiSplit[2], tglMulaiSplit[1], tglMulaiSplit[0]);
+            var dateMulai = new Date(tglMulaiSplit[2], (tglMulaiSplit[1] != '0') ? parseInt(tglMulaiSplit[1])-1 : tglMulaiSplit[1], tglMulaiSplit[0]);
 
-            var dateSelesai = new Date(tglSelesaiSplit[2], tglSelesaiSplit[1], tglSelesaiSplit[0]);
+            var dateSelesai = new Date(tglSelesaiSplit[2], (tglSelesaiSplit[1] != '0') ? parseInt(tglSelesaiSplit[1])-1 : tglSelesaiSplit[1], tglSelesaiSplit[0]);
             console.log(dateMulai);
             this.tanggalMulaiRevisi = this.datePipe.transform(dateMulai, "dd/MM/yyyy");
             this.tanggalSelesaiRevisi = this.datePipe.transform(dateSelesai, "dd/MM/yyyy");

@@ -1185,6 +1185,266 @@
         </div>
       </div>
 
+      <br />
+
+      <div class="content-4">
+        <div class="fill-4">
+          <div class="header-content-4">
+            <span ion-text text-wrap>Emergency Contact</span>
+          </div>
+
+          <div class="body-content-4" *ngIf="showEmergency">
+            <div *ngIf="dataCV['DATA_PANGGILAN_DARURAT'].length > 0">
+              <ion-item
+                *ngFor="let emergency of dataCV['DATA_PANGGILAN_DARURAT'];let i = index"
+                style="margin-bottom: 10px"
+              >
+                <span item-start>
+                  <img src="assets/imgs/setting-icon/phone.png" class="icon-family" />
+                </span>
+                <span ion-text text-wrap class="medium-text">
+                  {{ emergency['NAMA'] }} </span
+                ><br />
+                <span
+                  ion-text
+                  text-wrap
+                  class="medium-text"
+                  style="font-weight: normal !important"
+                  >{{ emergency['STATUS_HUBUNGAN'] }}</span
+                >
+                <br />
+                <span ion-text text-wrap class="small-text"
+                  >Nomor Darurat : {{ emergency['NO_DARURAT'] }}</span
+                >
+              </ion-item>
+            </div>
+
+            <div
+              *ngIf="dataCV['DATA_PANGGILAN_DARURAT'].length == 0"
+              style="text-align: center"
+            >
+              <span ion-text text-wrap class="small-text"
+                >Tidak ada data Emergency Contact</span
+              >
+            </div>
+          </div>
+
+          <div
+            class="body-content-4"
+            *ngIf="showEmergency == true"
+            (click)="toggleEmergency()"
+          >
+            <button
+              ion-button
+              round
+              outline
+              style="width: 100%; font-size: 1.3rem"
+              color="danger"
+            >
+              Sembunyikan Data Emergency Contact
+            </button>
+          </div>
+
+          <div
+            class="body-content-4"
+            *ngIf="showEmergency == false"
+            (click)="toggleEmergency()"
+          >
+            <button
+              ion-button
+              round
+              outline
+              style="width: 100%; font-size: 1.3rem"
+            >
+              Tampilkan Data Emergency Contact
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <br />
+
+      <div class="content-4">
+        <div class="fill-4">
+          <div class="header-content-4">
+            <span ion-text text-wrap>Working History</span>
+          </div>
+
+          <div class="body-content-4" *ngIf="showWorkingHistory">
+            <table *ngIf="dataCV['DATA_PEKERJAAN'].length > 0">
+              <tr
+                *ngFor="let working of dataCV['DATA_PEKERJAAN'];let i = index"
+              >
+                <td
+                  *ngIf="i+1 > 1 && i+1 < dataCV['DATA_PEKERJAAN'].length"
+                >
+                  <div class="dot-cont">
+                    <div class="vertical-2"></div>
+                    <div class="dot-2"></div>
+                    <div class="vertical-2"></div>
+                  </div>
+                </td>
+
+                <td *ngIf="i+1 == 1">
+                  <div class="dot-cont" style="padding-top: 25px">
+                    <div class="dot-2"></div>
+                    <div class="vertical-2"></div>
+                  </div>
+                </td>
+
+                <td
+                  *ngIf="i+1 == dataCV['DATA_PEKERJAAN'].length && dataCV['DATA_PEKERJAAN'].length != 1"
+                >
+                  <div class="dot-cont" style="padding-bottom: 25px">
+                    <div class="vertical-2"></div>
+                    <div class="dot-2"></div>
+                  </div>
+                </td>
+
+                <td>
+                  <span ion-text text-wrap class="medium-text">
+                    {{ working['JABATAN'] }} </span
+                  ><br />
+                  <span
+                    ion-text
+                    text-wrap
+                    class="medium-text"
+                    style="font-weight: normal !important"
+                    > Perusahaan : {{ working['NAMA_PERUSAHAAN'] }}</span
+                  ><br />
+                  <span ion-text text-wrap class="small-text">
+                    Lama Bekerja : {{ working['LAMA_KERJA'] }} </span
+                  ><br />
+                  <span ion-text text-wrap class="small-text">
+                    Prestasi : {{ working['LAMA_KERJA'] }} </span
+                  ><br />
+                </td>
+              </tr>
+            </table>
+
+            <div
+              *ngIf="dataCV['DATA_PEKERJAAN'].length == 0"
+              style="text-align: center"
+            >
+              <span ion-text text-wrap class="small-text"
+                >Tidak ada data Working History.</span
+              >
+            </div>
+          </div>
+
+          <div
+            class="body-content-4"
+            *ngIf="showWorkingHistory == true"
+            (click)="toggleWorkingHistory()"
+          >
+            <button
+              ion-button
+              round
+              outline
+              style="width: 100%; font-size: 1.3rem"
+              color="danger"
+            >
+              Sembunyikan Data Working History
+            </button>
+          </div>
+
+          <div
+            class="body-content-4"
+            *ngIf="showWorkingHistory == false"
+            (click)="toggleWorkingHistory()"
+          >
+            <button
+              ion-button
+              round
+              outline
+              style="width: 100%; font-size: 1.3rem"
+            >
+              Tampilkan Data Working History
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <br />
+
+      <div class="content-4">
+        <div class="fill-4">
+          <div class="header-content-4">
+            <span ion-text text-wrap>Medical History</span>
+          </div>
+
+          <div class="body-content-4" *ngIf="showMedical">
+            <div *ngIf="dataCV['DATA_KESEHATAN'].length > 0">
+              <ion-item
+                *ngFor="let medical of dataCV['DATA_KESEHATAN'];let i = index"
+                style="margin-bottom: 10px"
+              >
+                <span item-start>
+                  <img src="assets/imgs/logo/biaya_dokter.png" class="icon-family" />
+                </span>
+                <span ion-text text-wrap class="medium-text">
+                  {{ medical['TGL_MCU'] }} </span
+                ><br />
+                <span
+                  ion-text
+                  text-wrap
+                  class="medium-text"
+                  style="font-weight: normal !important;"
+                  (click)="download(medical['UPLOAD_HASIL_MCU'])"
+                  color="primary"
+                  >{{ medical['UPLOAD_HASIL_MCU'] }}</span
+                >
+                <br />
+                <span ion-text text-wrap class="small-text"
+                  >Level Kesehatan : {{ medical['LEVEL_KESEHATAN'] }}</span
+                >
+              </ion-item>
+            </div>
+
+            <div
+              *ngIf="dataCV['DATA_KESEHATAN'].length == 0"
+              style="text-align: center"
+            >
+              <span ion-text text-wrap class="small-text"
+                >Tidak ada data Medical History</span
+              >
+            </div>
+          </div>
+
+          <div
+            class="body-content-4"
+            *ngIf="showMedical == true"
+            (click)="toggleMedical()"
+          >
+            <button
+              ion-button
+              round
+              outline
+              style="width: 100%; font-size: 1.3rem"
+              color="danger"
+            >
+              Sembunyikan Data Medical History
+            </button>
+          </div>
+
+          <div
+            class="body-content-4"
+            *ngIf="showMedical == false"
+            (click)="toggleMedical()"
+          >
+            <button
+              ion-button
+              round
+              outline
+              style="width: 100%; font-size: 1.3rem"
+            >
+              Tampilkan Data Medical History
+            </button>
+          </div>
+        </div>
+      </div>
+
+
       <br /><br />
     </div>
   </div>

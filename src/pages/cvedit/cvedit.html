@@ -24,258 +24,275 @@
         <div class="body-content-4" *ngIf="showPersonal">
           <ion-item no-padding>
             <ion-label stacked>Nama Personal</ion-label>
-            <ion-input type="text" placeholder=""></ion-input>
+            <ion-input type="text" placeholder="" [(ngModel)]="namaPersonal"></ion-input>
           </ion-item>
           <ion-item no-padding>
             <ion-label stacked>NIPP</ion-label>
-            <ion-input type="number" placeholder=""></ion-input>
+            <ion-input type="number" placeholder="" [(ngModel)]="nipp"></ion-input>
           </ion-item>
           <ion-item no-padding>
             <ion-label stacked>Puspel</ion-label>
-            <ion-input type="text" placeholder=""></ion-input>
-          </ion-item>
-          <ion-item no-padding>
-            <ion-label stacked>Nama Personal</ion-label>
-            <ion-input type="text" placeholder=""></ion-input>
+            <ion-input type="text" placeholder="" [(ngModel)]="puspel"></ion-input>
           </ion-item>
           <ion-item no-padding>
             <ion-label stacked>Direktorat</ion-label>
-            <ion-select placeholder="">
-              <ion-option value="0">Belum Dibaca</ion-option>
+            <ion-select placeholder="" [(ngModel)]="direktorat">
+              <ion-option *ngFor="let direktorat of this.dataCV['DATA_DIREKTORAT']" value="{{ direktorat['ID_UNIT'] }}">
+                {{ direktorat['NM_UNIT'] }}</ion-option>
             </ion-select>
           </ion-item>
           <ion-item no-padding>
             <ion-label stacked>Divisi</ion-label>
-            <ion-select placeholder="">
-              <ion-option value="0">Belum Dibaca</ion-option>
+            <ion-select placeholder="" [(ngModel)]="divisi">
+              <ion-option *ngFor="let divisi of this.dataCV['DATA_DIVISI']" value="{{ divisi['ID_UNIT'] }}">
+                {{ divisi['NM_UNIT'] }}</ion-option>
             </ion-select>
           </ion-item>
           <ion-item no-padding>
             <ion-label stacked>Sub Divisi</ion-label>
-            <ion-select placeholder="">
-              <ion-option value="0">Belum Dibaca</ion-option>
+            <ion-select placeholder="" [(ngModel)]="subDivisi">
+              <ion-option *ngFor="let subdivisi of this.dataCV['DATA_SUBDIVISI']" value="{{ subdivisi['ID_UNIT'] }}">
+                {{ subdivisi['NM_UNIT'] }}</ion-option>
             </ion-select>
           </ion-item>
           <ion-item no-padding>
             <ion-label stacked>Kategori Jabatan</ion-label>
-            <ion-select placeholder="">
-              <ion-option value="0">Belum Dibaca</ion-option>
+            <ion-select placeholder="" [(ngModel)]="kategoriJabatan">
+              <ion-option value="DIREKSI">DIREKSI</ion-option>
+              <ion-option value="VP">VP</ion-option>
+              <ion-option value="DVP">DVP</ion-option>
+              <ion-option value="STAFF">STAFF</ion-option>
+              <ion-option value="DRIVER">DRIVER</ion-option>
+              <ion-option value="OFFICEBOY">OFFICEBOY</ion-option>
             </ion-select>
           </ion-item>
           <ion-item no-padding>
             <ion-label stacked>Jabatan</ion-label>
-            <ion-input type="text" placeholder=""></ion-input>
+            <ion-input type="text" placeholder="" [(ngModel)]="jabatan"></ion-input>
           </ion-item>
           <ion-item no-padding>
             <ion-label stacked>Kelas Jabatan</ion-label>
-            <ion-input type="text" placeholder=""></ion-input>
+            <ion-input type="text" placeholder="" [(ngModel)]="kelasJabatan"></ion-input>
           </ion-item>
           <ion-item no-padding>
-            <ion-label stacked>Area Jabatan</ion-label>
-            <ion-input type="text" placeholder=""></ion-input>
+            <ion-label stacked>Area Kerja</ion-label>
+            <ion-input type="text" placeholder="" [(ngModel)]="areaKerja"></ion-input>
           </ion-item>
           <ion-item no-padding>
             <ion-label stacked>Golongan</ion-label>
-            <ion-input type="text" placeholder=""></ion-input>
+            <ion-input type="text" placeholder="" [(ngModel)]="golongan"></ion-input>
           </ion-item>
           <ion-item no-padding>
             <ion-label stacked>Status Pekerja</ion-label>
-            <ion-select placeholder="">
-              <ion-option value="0">Belum Dibaca</ion-option>
+            <ion-select placeholder="" [(ngModel)]="statusPekerja">
+              <ion-option value="Organik">Organik</ion-option>
+              <ion-option value="PKWT">PKWT</ion-option>
+              <ion-option value="TNO">TNO</ion-option>
             </ion-select>
           </ion-item>
           <ion-item no-padding>
             <ion-label stacked>Status Jabatan</ion-label>
-            <ion-select placeholder="">
-              <ion-option value="0">Belum Dibaca</ion-option>
+            <ion-select placeholder="" [(ngModel)]="statusJabatan">
+              <ion-option value="PJS">PJS</ion-option>
+              <ion-option value="PJ">PJ</ion-option>
+              <ion-option value="Definitif">Definitif</ion-option>
             </ion-select>
           </ion-item>
           <ion-item no-padding>
             <ion-label stacked>Kelompok Posisi</ion-label>
-            <ion-select placeholder="">
-              <ion-option value="0">Belum Dibaca</ion-option>
+            <ion-select placeholder="" [(ngModel)]="kelompokPosisi">
+              <ion-option value="Fungsional">Fungsional</ion-option>
+              <ion-option value="Struktural">Struktural</ion-option>
+              <ion-option value="Spesialis">Spesialis</ion-option>
+            </ion-select>
+          </ion-item>
+          <ion-item no-padding>
+            <ion-label stacked>Kategori Posisi</ion-label>
+            <ion-select placeholder="" [(ngModel)]="kategoriPosisi">
+              <ion-option value="Penunjang Operasional">Penunjang Operasional</ion-option>
+              <ion-option value="Operasional Langsung">Operasional Langsung</ion-option>
+              <ion-option value="Operasional Tidak Langsung">Operasional Tidak Langsung</ion-option>
             </ion-select>
           </ion-item>
           <ion-item no-padding>
             <ion-label stacked>Tanggal Capeg</ion-label>
-            <ion-datetime value="1990-02-19" placeholder=""></ion-datetime>
+            <ion-input type="text" [readonly]="true" (ionFocus)="showDatePicker(1)" (click)="showDatePicker(1)"
+              [(ngModel)]="tanggalCapeg"></ion-input>
           </ion-item>
           <ion-item no-padding>
-            <ion-label stacked>Kelompok Capeg</ion-label>
-            <ion-select placeholder="">
+            <ion-label stacked>Kelas Capeg</ion-label>
+            <ion-select placeholder="" [(ngModel)]="kelasCapeg">
               <ion-option value="0">Belum Dibaca</ion-option>
             </ion-select>
           </ion-item>
           <ion-item no-padding>
             <ion-label stacked>TMT Penuh</ion-label>
-            <ion-datetime value="1990-02-19" placeholder=""></ion-datetime>
+            <ion-input type="text" [readonly]="true" (ionFocus)="showDatePicker(2)" (click)="showDatePicker(2)"
+              [(ngModel)]="tmtPenuh"></ion-input>
           </ion-item>
           <ion-item no-padding>
             <ion-label stacked>TMT Jabatan</ion-label>
-            <ion-datetime value="1990-02-19" placeholder=""></ion-datetime>
+            <ion-input type="text" [readonly]="true" (ionFocus)="showDatePicker(3)" (click)="showDatePicker(3)"
+              [(ngModel)]="tmtJabatan"></ion-input>
           </ion-item>
           <ion-item no-padding>
             <ion-label stacked>TMT Kelas Jabatan</ion-label>
-            <ion-datetime value="1990-02-19" placeholder=""></ion-datetime>
+            <ion-input type="text" [readonly]="true" (ionFocus)="showDatePicker(4)" (click)="showDatePicker(4)"
+              [(ngModel)]="tmtKelasJabatan"></ion-input>
           </ion-item>
           <ion-item no-padding>
             <ion-label stacked>TMT Golongan</ion-label>
-            <ion-datetime value="1990-02-19" placeholder=""></ion-datetime>
+            <ion-input type="text" [readonly]="true" (ionFocus)="showDatePicker(5)" (click)="showDatePicker(5)"
+              [(ngModel)]="tmtGolongan"></ion-input>
           </ion-item>
           <ion-item no-padding>
             <ion-label stacked>Tanggal Masuk PPI</ion-label>
-            <ion-datetime value="1990-02-19" placeholder=""></ion-datetime>
+            <ion-input type="text" [readonly]="true" (ionFocus)="showDatePicker(6)" (click)="showDatePicker(6)"
+              [(ngModel)]="tglMasukPPI"></ion-input>
           </ion-item>
           <ion-item no-padding>
             <ion-label stacked>Tanggal Keluar PPI</ion-label>
-            <ion-datetime value="1990-02-19" placeholder=""></ion-datetime>
+            <ion-input type="text" [readonly]="true" (ionFocus)="showDatePicker(7)" (click)="showDatePicker(7)"
+              [(ngModel)]="tglKeluarPPI"></ion-input>
           </ion-item>
           <ion-item no-padding>
             <ion-label stacked>Alasan Keluar</ion-label>
-            <ion-input placeholder=""></ion-input>
+            <ion-select placeholder="" [(ngModel)]="alasanKeluar">
+              <ion-option value="Pensiun"></ion-option>
+              <ion-option value="Habis Kontrak"></ion-option>
+              <ion-option value="Indispliner"></ion-option>
+            </ion-select>
           </ion-item>
           <ion-item no-padding>
             <ion-label stacked>Masa Kerja PPI</ion-label>
-            <ion-input readonly placeholder=""></ion-input>
+            <ion-input readonly placeholder="" [(ngModel)]="masaKerjaPPI"></ion-input>
           </ion-item>
           <ion-item no-padding>
             <ion-label stacked>Nomor KTP</ion-label>
-            <ion-input type="number" placeholder=""></ion-input>
+            <ion-input type="number" placeholder="" [(ngModel)]="nomorKTP"></ion-input>
           </ion-item>
           <ion-item no-padding>
             <ion-label stacked>Nomor NPWP</ion-label>
-            <ion-input type="number" placeholder=""></ion-input>
+            <ion-input type="number" placeholder="" [(ngModel)]="nomorNPWP"></ion-input>
           </ion-item>
           <ion-item no-padding>
             <ion-label stacked>Status Pajak</ion-label>
-            <ion-select placeholder="">
-              <ion-option value="0">Belum Dibaca</ion-option>
+            <ion-select placeholder="" [(ngModel)]="statusPajak">
+              <ion-option value="M0">M0</ion-option>
+              <ion-option value="M1">M1</ion-option>
+              <ion-option value="M2">M2</ion-option>
+              <ion-option value="M3">M3</ion-option>
             </ion-select>
           </ion-item>
           <ion-item no-padding>
             <ion-label stacked>Nomor KK</ion-label>
-            <ion-input type="number" placeholder=""></ion-input>
+            <ion-input type="number" placeholder="" [(ngModel)]="nomorKK"></ion-input>
           </ion-item>
           <ion-item no-padding>
             <ion-label stacked>Nomor BPJS Kesehatan</ion-label>
-            <ion-input type="number" placeholder=""></ion-input>
+            <ion-input type="number" placeholder="" [(ngModel)]="bpjsKesehatan"></ion-input>
           </ion-item>
           <ion-item no-padding>
             <ion-label stacked>Nomor BPJS Ketenagakerjaan</ion-label>
-            <ion-input type="number" placeholder=""></ion-input>
+            <ion-input type="number" placeholder="" [(ngModel)]="bpjsKetenagakerjaan"></ion-input>
           </ion-item>
           <ion-item no-padding>
             <ion-label stacked>Tanggal Lahir</ion-label>
-            <ion-datetime value="1990-02-19" placeholder=""></ion-datetime>
+            <ion-input type="text" [readonly]="true" (ionFocus)="showDatePicker(8)" (click)="showDatePicker(8)"
+              [(ngModel)]="tglLahir"></ion-input>
           </ion-item>
           <ion-item no-padding>
             <ion-label stacked>Tempat Lahir</ion-label>
-            <ion-input type="text" placeholder=""></ion-input>
+            <ion-input type="text" placeholder="" [(ngModel)]="tempatLahir"></ion-input>
           </ion-item>
           <ion-item no-padding>
             <ion-label stacked>Agama</ion-label>
-            <ion-input type="text" placeholder=""></ion-input>
-          </ion-item>
-          <ion-item no-padding>
-            <ion-label stacked>Tempat Lahir</ion-label>
-            <ion-input type="text" placeholder=""></ion-input>
+            <ion-input type="text" placeholder="" [(ngModel)]="agama"></ion-input>
           </ion-item>
           <ion-item no-padding>
             <ion-label stacked>Pendidikan Terakhir</ion-label>
-            <ion-input type="text" placeholder=""></ion-input>
+            <ion-input type="text" placeholder="" [(ngModel)]="pendidikanTerakhir"></ion-input>
           </ion-item>
           <ion-item no-padding>
             <ion-label stacked>Jurusan</ion-label>
-            <ion-input type="text" placeholder=""></ion-input>
+            <ion-input type="text" placeholder="" [(ngModel)]="jurusan"></ion-input>
           </ion-item>
           <ion-item no-padding>
             <ion-label stacked>Nama Institusi Pandidikan</ion-label>
-            <ion-input type="text" placeholder=""></ion-input>
+            <ion-input type="text" placeholder="" [(ngModel)]="namaInstitusi"></ion-input>
           </ion-item>
           <ion-item no-padding>
             <ion-label stacked>Jenis Kelamin</ion-label>
-            <ion-select placeholder="">
-              <ion-option value="0">Laki Laki</ion-option>
-              <ion-option value="0">Perempuan</ion-option>
+            <ion-select placeholder="" [(ngModel)]="jenisKelamin">
+              <ion-option value="Laki-laki">Laki-laki</ion-option>
+              <ion-option value="Perempuan">Perempuan</ion-option>
             </ion-select>
           </ion-item>
           <ion-item no-padding>
             <ion-label stacked>Alamat KTP</ion-label>
-            <ion-textarea></ion-textarea>
+            <ion-textarea rows="3" [(ngModel)]="alamatKTP"></ion-textarea>
           </ion-item>
           <ion-item no-padding>
             <ion-label stacked>Alamat Domisili</ion-label>
-            <ion-textarea></ion-textarea>
+            <ion-textarea rows="3" [(ngModel)]="alamatDomisili"></ion-textarea>
           </ion-item>
           <ion-item no-padding>
             <ion-label stacked>Status Perkawinan</ion-label>
-            <ion-select placeholder="">
-              <ion-option value="0">K1</ion-option>
+            <ion-select placeholder="" [(ngModel)]="statusPerkawinan">
+              <ion-option value="TKO">TKO</ion-option>
+              <ion-option value="TK1">TK1</ion-option>
+              <ion-option value="TK2">TK2</ion-option>
+              <ion-option value="TK3">TK3</ion-option>
+              <ion-option value="K0">K0</ion-option>
+              <ion-option value="K1">K1</ion-option>
+              <ion-option value="K2">K2</ion-option>
+              <ion-option value="K3">K3</ion-option>
+              <ion-option value="D0">D0</ion-option>
+              <ion-option value="D1">D1</ion-option>
+              <ion-option value="D2">D2</ion-option>
+              <ion-option value="D3">D3</ion-option>
+              <ion-option value="J0">J0</ion-option>
+              <ion-option value="J1">J1</ion-option>
+              <ion-option value="J2">J2</ion-option>
+              <ion-option value="J3">J3</ion-option>
             </ion-select>
           </ion-item>
           <ion-item no-padding>
             <ion-label stacked>Jumlah Anak</ion-label>
-            <ion-input type="number" placeholder=""></ion-input>
+            <ion-input type="number" placeholder="" [(ngModel)]="jumlahAnak"></ion-input>
           </ion-item>
           <ion-item no-padding>
             <ion-label stacked>Jumlah Tanggungan</ion-label>
-            <ion-input type="number" placeholder=""></ion-input>
+            <ion-input type="number" placeholder="" [(ngModel)]="jumlahTanggungan"></ion-input>
           </ion-item>
           <ion-item no-padding>
             <ion-label stacked>Ahli Waris</ion-label>
-            <ion-input type="text" placeholder=""></ion-input>
+            <ion-input type="text" placeholder="" [(ngModel)]="ahliWaris"></ion-input>
           </ion-item>
           <ion-item no-padding>
             <ion-label stacked>E-Mail</ion-label>
-            <ion-input type="email" placeholder=""></ion-input>
+            <ion-input type="email" placeholder="" [(ngModel)]="email"></ion-input>
           </ion-item>
           <ion-item no-padding>
             <ion-label stacked>2nd E-mail</ion-label>
-            <ion-input type="email" placeholder=""></ion-input>
+            <ion-input type="email" placeholder="" [(ngModel)]="email2"></ion-input>
           </ion-item>
           <ion-item no-padding>
             <ion-label stacked>No. Handphone</ion-label>
-            <ion-input type="number" placeholder=""></ion-input>
+            <ion-input type="number" placeholder="" [(ngModel)]="noHp"></ion-input>
           </ion-item>
           <ion-item no-padding>
             <ion-label stacked>No. Telepon Rumah</ion-label>
-            <ion-input type="number" placeholder=""></ion-input>
+            <ion-input type="number" placeholder="" [(ngModel)]="noTelpRumah"></ion-input>
           </ion-item>
-          <button
-            ion-button
-            round
-            style="width: 100%; font-size: 1.3rem"
-            color="primary"
-          >
-            Simpan
-          </button>
         </div>
-        <div
-          class="body-content-4"
-          *ngIf="showPersonal == true"
-          (click)="togglePersonal()"
-        >
-          <button
-            ion-button
-            round
-            outline
-            style="width: 100%; font-size: 1.3rem"
-            color="danger"
-          >
+        <div class="body-content-4" *ngIf="showPersonal == true" (click)="togglePersonal()">
+          <button ion-button round outline style="width: 100%; font-size: 1.3rem" color="danger">
             Sembunyikan Personal Data
           </button>
         </div>
-        <div
-          class="body-content-4"
-          *ngIf="showPersonal == false"
-          (click)="togglePersonal()"
-        >
-          <button
-            ion-button
-            round
-            outline
-            style="width: 100%; font-size: 1.3rem"
-          >
+        <div class="body-content-4" *ngIf="showPersonal == false" (click)="togglePersonal()">
+          <button ion-button round outline style="width: 100%; font-size: 1.3rem">
             Tampilkan Personal Data
           </button>
         </div>
@@ -291,94 +308,46 @@
         </div>
 
         <div class="body-content-4" *ngIf="showPDarurat">
-          <button
-            ion-button
-            round
-            small
-            color="primary"
-            (click)="openPage('panggilandarurat')"
-          >
-            Tambahkan
-          </button>
-          <table *ngIf="dataCV['DATA_PERFORMANSI'].length > 0">
-            <tr
-              *ngFor="let perform of dataCV['DATA_PERFORMANSI'];let i = index"
-            >
-              <td style="vertical-align: top" width="10%">
-                <div>
-                  <span
-                    ion-text
-                    text-wrap
-                    class="medium-text"
-                    style="font-weight: normal !important"
-                  >
-                    {{ i+1 }}.
-                  </span>
-                </div>
-              </td>
-              <td style="vertical-align: top">
-                <div>
-                  <span ion-text text-wrap class="medium-text">
-                    {{ perform['KATEGORI'] }}
-                  </span>
-                  <span
-                    ion-text
-                    text-wrap
-                    class="medium-text"
-                    style="font-weight: 600 !important"
-                  >
-                    | {{ perform['TAHUN'] }}
-                  </span>
-                  <br />
-                  <span ion-text text-wrap class="small-text"
-                    >Nilai Kinerja Tahunan :
-                  </span>
-                  <span ion-text text-wrap class="medium-text" color="color7">
-                    {{ perform['NILAI_KINERJA_TAHUNAN'] }}
-                  </span>
-                  <br /><br />
-                </div>
-              </td>
-            </tr>
-          </table>
+          <div style="width: 100%;position: relative;display: flex;">
+            <button ion-button icon-end round color="primary" style="    margin-right: 0;
+            margin-left: auto;" (click)="openPage('panggilandarurat')">
+              Tambah
+              <ion-icon name="md-add"></ion-icon>
+            </button>
+          </div>
+          <div *ngFor="let emergency of dataCV['DATA_PANGGILAN_DARURAT'];let i = index">
+            <ion-item *ngIf="emergency['IS_DELETED'] == '0' || emergency['IS_DELETED'] == '2'"
+              style="margin-bottom: 10px" no-lines>
+              <span item-start>
+                <img src="assets/imgs/setting-icon/phone.png" class="icon-family" />
+              </span>
+              <span ion-text text-wrap class="medium-text">
+                {{ emergency['NAMA'] }} </span><br />
+              <span ion-text text-wrap class="medium-text"
+                style="font-weight: normal !important">{{ emergency['STATUS_HUBUNGAN'] }}</span>
+              <br />
+              <span ion-text text-wrap class="small-text">Nomor Darurat : {{ emergency['NO_DARURAT'] }}</span>
+              <span item-end>
+                <ion-icon name="md-close" style="margin-right: 5px;font-size: 2.3rem;" color="danger"
+                  (click)="delete('emergency',i,emergency)"></ion-icon>
+              </span>
+            </ion-item>
+          </div>
 
-          <div
-            *ngIf="dataCV['DATA_PERFORMANSI'].length == 0"
-            style="text-align: center"
-          >
-            <span ion-text text-wrap class="small-text"
-              >Tidak ada data Performance Record.</span
-            >
+
+          <div *ngIf="dataCV['DATA_PANGGILAN_DARURAT'].length == 0" style="text-align: center">
+            <span ion-text text-wrap class="small-text">Tidak ada data Performance Record.</span>
           </div>
         </div>
 
-        <div
-          class="body-content-4"
-          *ngIf="showPDarurat == true"
-          (click)="togglePDarurat()"
-        >
-          <button
-            ion-button
-            round
-            outline
-            style="width: 100%; font-size: 1.3rem"
-            color="danger"
-          >
+        <div class="body-content-4" *ngIf="showPDarurat == true" (click)="togglePDarurat()">
+          <button ion-button round outline style="width: 100%; font-size: 1.3rem" color="danger">
             Sembunyikan
           </button>
         </div>
 
-        <div
-          class="body-content-4"
-          *ngIf="showPDarurat == false"
-          (click)="togglePDarurat()"
-        >
-          <button
-            ion-button
-            round
-            outline
-            style="width: 100%; font-size: 1.3rem"
-          >
+        <div class="body-content-4" *ngIf="showPDarurat == false" (click)="togglePDarurat()">
+          <button ion-button round outline style="width: 100%; font-size: 1.3rem">
             Tampilkan
           </button>
         </div>
@@ -394,97 +363,55 @@
         </div>
 
         <div class="body-content-4" *ngIf="showPFormal">
-          <button
-            ion-button
-            round
-            small
-            color="primary"
-            (click)="openPage('pendidikanformal')"
-          >
-            Tambahkan
-          </button>
-          <table *ngIf="dataCV['DATA_PEND_FORMAL'].length > 0">
-            <tr
-              *ngFor="let pendFormal of dataCV['DATA_PEND_FORMAL'];let i = index"
-            >
-              <td *ngIf="i+1 > 1 && i+1 != dataCV['DATA_PEND_FORMAL'].length">
-                <div class="dot-cont">
-                  <div class="vertical"></div>
-                  <div class="dot"></div>
-                  <div class="vertical"></div>
-                </div>
-              </td>
+          <div style="width: 100%;position: relative;display: flex;">
+            <button ion-button icon-end round color="primary" style="    margin-right: 0;
+            margin-left: auto;" (click)="openPage('pendidikanformal')">
+              Tambah
+              <ion-icon name="md-add"></ion-icon>
+            </button>
+          </div>
+          <div *ngIf="dataCV['DATA_PEND_FORMAL'].length > 0">
+            <table width="100%" *ngFor="let pendFormal of dataCV['DATA_PEND_FORMAL'];let i = index">
+              <tr *ngIf="pendFormal['IS_DELETED'] == '0' || pendFormal['IS_DELETED'] == '2'">
+                <td>
+                  <ion-item style="margin-bottom: 10px" no-lines>
+                    <span item-start>
+                      <img src="assets/imgs/logo/scores.png" class="icon-family" />
+                    </span>
+                    <span ion-text text-wrap class="medium-text">
+                      {{ pendFormal['NAMA_INSTANSI'] }} </span><br />
+                    <span ion-text text-wrap class="small-text">Jurusan : </span><br />
+                    <span ion-text text-wrap class="medium-text">
+                      {{ pendFormal['JURUSAN'] }} </span><br />
+                    <span ion-text text-wrap class="small-text">Tahun Lulus :
+                    </span>
+                    <span ion-text text-wrap class="medium-text" color="color7">
+                      {{ pendFormal['TAHUN_LULUS'] }} </span>
 
-              <td *ngIf="i+1 == 1">
-                <div class="dot-cont" style="padding-top: 20px">
-                  <div class="dot"></div>
-                  <div class="vertical"></div>
-                </div>
-              </td>
+                    <span item-end>
 
-              <td *ngIf="i+1 == dataCV['DATA_PEND_FORMAL'].length">
-                <div class="dot-cont" style="padding-bottom: 25px">
-                  <div class="vertical"></div>
-                  <div class="dot"></div>
-                </div>
-              </td>
+                      <ion-icon name="md-close" style="margin-right: 5px;font-size: 2.3rem;" color="danger"
+                        (click)="delete('pend_formal',i,pendFormal)"></ion-icon>
+                    </span>
+                  </ion-item>
+                </td>
+              </tr>
+            </table>
+          </div>
 
-              <td>
-                <span ion-text text-wrap class="medium-text">
-                  {{ pendFormal['NAMA_INSTANSI'] }} </span
-                ><br />
-                <span ion-text text-wrap class="small-text">Jurusan : </span
-                ><br />
-                <span ion-text text-wrap class="medium-text">
-                  {{ pendFormal['JURUSAN'] }} </span
-                ><br />
-                <span ion-text text-wrap class="small-text"
-                  >Tahun Lulus :
-                </span>
-                <span ion-text text-wrap class="medium-text" color="color7">
-                  {{ pendFormal['TAHUN_LULUS'] }} </span
-                ><br />
-              </td>
-            </tr>
-          </table>
-
-          <div
-            *ngIf="dataCV['DATA_PERFORMANSI'].length == 0"
-            style="text-align: center"
-          >
-            <span ion-text text-wrap class="small-text"
-              >Tidak ada data Performance Record.</span
-            >
+          <div *ngIf="dataCV['DATA_PERFORMANSI'].length == 0" style="text-align: center">
+            <span ion-text text-wrap class="small-text">Tidak ada data Performance Record.</span>
           </div>
         </div>
 
-        <div
-          class="body-content-4"
-          *ngIf="showPFormal == true"
-          (click)="togglePFormal()"
-        >
-          <button
-            ion-button
-            round
-            outline
-            style="width: 100%; font-size: 1.3rem"
-            color="danger"
-          >
+        <div class="body-content-4" *ngIf="showPFormal == true" (click)="togglePFormal()">
+          <button ion-button round outline style="width: 100%; font-size: 1.3rem" color="danger">
             Sembunyikan
           </button>
         </div>
 
-        <div
-          class="body-content-4"
-          *ngIf="showPFormal == false"
-          (click)="togglePFormal()"
-        >
-          <button
-            ion-button
-            round
-            outline
-            style="width: 100%; font-size: 1.3rem"
-          >
+        <div class="body-content-4" *ngIf="showPFormal == false" (click)="togglePFormal()">
+          <button ion-button round outline style="width: 100%; font-size: 1.3rem">
             Tampilkan
           </button>
         </div>
@@ -499,94 +426,51 @@
         </div>
 
         <div class="body-content-4" *ngIf="showPekerjaan">
-          <button
-            ion-button
-            round
-            small
-            color="primary"
-            (click)="openPage('pekerjaan')"
-          >
-            Tambahkan
-          </button>
-          <table *ngIf="dataCV['DATA_PERFORMANSI'].length > 0">
-            <tr
-              *ngFor="let perform of dataCV['DATA_PERFORMANSI'];let i = index"
-            >
-              <td style="vertical-align: top" width="10%">
-                <div>
-                  <span
-                    ion-text
-                    text-wrap
-                    class="medium-text"
-                    style="font-weight: normal !important"
-                  >
-                    {{ i+1 }}.
-                  </span>
-                </div>
-              </td>
-              <td style="vertical-align: top">
-                <div>
-                  <span ion-text text-wrap class="medium-text">
-                    {{ perform['KATEGORI'] }}
-                  </span>
-                  <span
-                    ion-text
-                    text-wrap
-                    class="medium-text"
-                    style="font-weight: 600 !important"
-                  >
-                    | {{ perform['TAHUN'] }}
-                  </span>
-                  <br />
-                  <span ion-text text-wrap class="small-text"
-                    >Nilai Kinerja Tahunan :
-                  </span>
-                  <span ion-text text-wrap class="medium-text" color="color7">
-                    {{ perform['NILAI_KINERJA_TAHUNAN'] }}
-                  </span>
-                  <br /><br />
-                </div>
-              </td>
-            </tr>
-          </table>
+          <div style="width: 100%;position: relative;display: flex;">
+            <button ion-button icon-end round color="primary" style="    margin-right: 0;
+            margin-left: auto;" (click)="openPage('pekerjaan')">
+              Tambah
+              <ion-icon name="md-add"></ion-icon>
+            </button>
+          </div>
+          <div *ngIf="dataCV['DATA_PEKERJAAN'].length > 0">
+            <table width="100%" *ngFor="let working of dataCV['DATA_PEKERJAAN'];let i = index">
+              <tr *ngIf="working['IS_DELETED'] == '0' || working['IS_DELETED'] == '2'">
+                <td style="vertical-align: top">
+                  <ion-item style="margin-bottom: 10px" no-lines>
+                    <span item-start>
+                      <img src="assets/imgs/logo/scores.png" class="icon-family" />
+                    </span>
+                    <span ion-text text-wrap class="medium-text" style="font-weight: normal !important"> Perusahaan :
+                      {{ working['NAMA_PERUSAHAAN'] }}</span><br />
+                    <span ion-text text-wrap class="small-text">
+                      Lama Bekerja : {{ working['LAMA_KERJA'] }} </span><br />
+                    <span ion-text text-wrap class="small-text">
+                      Prestasi : {{ working['LAMA_KERJA'] }} </span>
+                    <span item-end>
+                      <ion-icon name="md-close" style="margin-right: 5px;font-size: 2.3rem;" color="danger"
+                        (click)="delete('working',i,working)"></ion-icon>
+                    </span>
+                  </ion-item>
+                </td>
+              </tr>
+            </table>
+          </div>
 
-          <div
-            *ngIf="dataCV['DATA_PERFORMANSI'].length == 0"
-            style="text-align: center"
-          >
-            <span ion-text text-wrap class="small-text"
-              >Tidak ada data Performance Record.</span
-            >
+
+          <div *ngIf="dataCV['DATA_PEKERJAAN'].length == 0" style="text-align: center">
+            <span ion-text text-wrap class="small-text">Tidak ada data Pekerjaan.</span>
           </div>
         </div>
 
-        <div
-          class="body-content-4"
-          *ngIf="showPekerjaan == true"
-          (click)="togglePekerjaan()"
-        >
-          <button
-            ion-button
-            round
-            outline
-            style="width: 100%; font-size: 1.3rem"
-            color="danger"
-          >
+        <div class="body-content-4" *ngIf="showPekerjaan == true" (click)="togglePekerjaan()">
+          <button ion-button round outline style="width: 100%; font-size: 1.3rem" color="danger">
             Sembunyikan
           </button>
         </div>
 
-        <div
-          class="body-content-4"
-          *ngIf="showPekerjaan == false"
-          (click)="togglePekerjaan()"
-        >
-          <button
-            ion-button
-            round
-            outline
-            style="width: 100%; font-size: 1.3rem"
-          >
+        <div class="body-content-4" *ngIf="showPekerjaan == false" (click)="togglePekerjaan()">
+          <button ion-button round outline style="width: 100%; font-size: 1.3rem">
             Tampilkan
           </button>
         </div>
@@ -601,98 +485,52 @@
         </div>
 
         <div class="body-content-4" *ngIf="showAsHistory">
-          <button
-            ion-button
-            round
-            small
-            color="primary"
-            (click)="openPage('assigmenthistory')"
-          >
-            Tambahkan
-          </button>
-          <table *ngIf="dataCV['DATA_ASSIGN_HISTORY'].length > 0">
-            <tr
-              *ngFor="let assignHistory of dataCV['DATA_ASSIGN_HISTORY'];let i = index"
-            >
-              <td *ngIf="i+1 > 1 && i+1 < dataCV['DATA_ASSIGN_HISTORY'].length">
-                <div class="dot-cont">
-                  <div class="vertical-2"></div>
-                  <div class="dot-2"></div>
-                  <div class="vertical-2"></div>
-                </div>
-              </td>
+          <div style="width: 100%;position: relative;display: flex;">
+            <button ion-button icon-end round color="primary" style="    margin-right: 0;
+            margin-left: auto;" (click)="openPage('assigmenthistory')">
+              Tambah
+              <ion-icon name="md-add"></ion-icon>
+            </button>
+          </div>
 
-              <td *ngIf="i+1 == 1">
-                <div class="dot-cont" style="padding-top: 25px">
-                  <div class="dot-2"></div>
-                  <div class="vertical-2"></div>
-                </div>
-              </td>
+          <div *ngIf="dataCV['DATA_ASSIGN_HISTORY'].length > 0">
+            <table width="100%" *ngFor="let assignHistory of dataCV['DATA_ASSIGN_HISTORY'];let i = index">
+              <tr *ngIf="assignHistory['IS_DELETED'] == '0' || assignHistory['IS_DELETED'] == '2'">
+                <td>
+                  <ion-item style="margin-bottom: 10px" no-lines>
+                    <span item-start>
+                      <img src="assets/imgs/logo/scores.png" class="icon-family" />
+                    </span>
+                    <span ion-text text-wrap class="medium-text">
+                      {{ assignHistory['POSISI_JABATAN'] }} </span><br />
+                    <span ion-text text-wrap class="medium-text"
+                      style="font-weight: normal !important">{{ assignHistory['NO_SK'] }}</span><br />
+                    <span ion-text text-wrap class="small-text">
+                      {{ assignHistory['LAMA_JABATAN'] }} </span>
+                    <span item-end>
+                      <ion-icon name="md-close" style="margin-right: 5px;font-size: 2.3rem;" color="danger"
+                        (click)="delete('assignHistory',i,assignHistory)"></ion-icon>
+                    </span>
+                  </ion-item>
 
-              <td
-                *ngIf="i+1 == dataCV['DATA_ASSIGN_HISTORY'].length && dataCV['DATA_ASSIGN_HISTORY'].length != 1"
-              >
-                <div class="dot-cont" style="padding-bottom: 25px">
-                  <div class="vertical-2"></div>
-                  <div class="dot-2"></div>
-                </div>
-              </td>
+                </td>
+              </tr>
+            </table>
+          </div>
 
-              <td>
-                <span ion-text text-wrap class="medium-text">
-                  {{ assignHistory['POSISI_JABATAN'] }} </span
-                ><br />
-                <span
-                  ion-text
-                  text-wrap
-                  class="medium-text"
-                  style="font-weight: normal !important"
-                  >{{ assignHistory['NO_SK'] }}</span
-                ><br />
-                <span ion-text text-wrap class="small-text">
-                  {{ assignHistory['LAMA_JABATAN'] }} </span
-                ><br />
-              </td>
-            </tr>
-          </table>
-
-          <div
-            *ngIf="dataCV['DATA_PERFORMANSI'].length == 0"
-            style="text-align: center"
-          >
-            <span ion-text text-wrap class="small-text"
-              >Tidak ada data Performance Record.</span
-            >
+          <div *ngIf="dataCV['DATA_PERFORMANSI'].length == 0" style="text-align: center">
+            <span ion-text text-wrap class="small-text">Tidak ada data Assigment History.</span>
           </div>
         </div>
 
-        <div
-          class="body-content-4"
-          *ngIf="showAsHistory == true"
-          (click)="toggleAsHistory()"
-        >
-          <button
-            ion-button
-            round
-            outline
-            style="width: 100%; font-size: 1.3rem"
-            color="danger"
-          >
+        <div class="body-content-4" *ngIf="showAsHistory == true" (click)="toggleAsHistory()">
+          <button ion-button round outline style="width: 100%; font-size: 1.3rem" color="danger">
             Sembunyikan
           </button>
         </div>
 
-        <div
-          class="body-content-4"
-          *ngIf="showAsHistory == false"
-          (click)="toggleAsHistory()"
-        >
-          <button
-            ion-button
-            round
-            outline
-            style="width: 100%; font-size: 1.3rem"
-          >
+        <div class="body-content-4" *ngIf="showAsHistory == false" (click)="toggleAsHistory()">
+          <button ion-button round outline style="width: 100%; font-size: 1.3rem">
             Tampilkan
           </button>
         </div>
@@ -707,94 +545,52 @@
         </div>
 
         <div class="body-content-4" *ngIf="showKesehatan">
-          <button
-            ion-button
-            round
-            small
-            color="primary"
-            (click)="openPage('kesehatan')"
-          >
-            Tambahkan
-          </button>
-          <table *ngIf="dataCV['DATA_PERFORMANSI'].length > 0">
-            <tr
-              *ngFor="let perform of dataCV['DATA_PERFORMANSI'];let i = index"
-            >
-              <td style="vertical-align: top" width="10%">
-                <div>
-                  <span
-                    ion-text
-                    text-wrap
-                    class="medium-text"
-                    style="font-weight: normal !important"
-                  >
-                    {{ i+1 }}.
-                  </span>
-                </div>
-              </td>
-              <td style="vertical-align: top">
-                <div>
-                  <span ion-text text-wrap class="medium-text">
-                    {{ perform['KATEGORI'] }}
-                  </span>
-                  <span
-                    ion-text
-                    text-wrap
-                    class="medium-text"
-                    style="font-weight: 600 !important"
-                  >
-                    | {{ perform['TAHUN'] }}
-                  </span>
-                  <br />
-                  <span ion-text text-wrap class="small-text"
-                    >Nilai Kinerja Tahunan :
-                  </span>
-                  <span ion-text text-wrap class="medium-text" color="color7">
-                    {{ perform['NILAI_KINERJA_TAHUNAN'] }}
-                  </span>
-                  <br /><br />
-                </div>
-              </td>
-            </tr>
-          </table>
+          <div style="width: 100%;position: relative;display: flex;">
+            <button ion-button icon-end round color="primary" style="    margin-right: 0;
+            margin-left: auto;" (click)="openPage('kesehatan')">
+              Tambah
+              <ion-icon name="md-add"></ion-icon>
+            </button>
+          </div>
+          <div *ngIf="dataCV['DATA_KESEHATAN'].length > 0">
+            <table width="100%" *ngFor="let medical of dataCV['DATA_KESEHATAN'];let i = index">
+              <tr *ngIf="medical['IS_DELETED'] == '0' || medical['IS_DELETED'] == '2'">
+                <td style="vertical-align: top">
+                  <ion-item style="margin-bottom: 10px" no-lines>
+                    <span item-start>
+                      <img src="assets/imgs/logo/biaya_dokter.png" class="icon-family" />
+                    </span>
+                    <span ion-text text-wrap class="medium-text">
+                      {{ medical['TGL_MCU'] }} </span><br />
+                    <span ion-text text-wrap class="medium-text" style="font-weight: normal !important;"
+                      (click)="download(medical['UPLOAD_HASIL_MCU'])"
+                      color="primary">{{ medical['UPLOAD_HASIL_MCU'] }}</span>
+                    <br />
+                    <span ion-text text-wrap class="small-text">Level Kesehatan :
+                      {{ medical['LEVEL_KESEHATAN'] }}</span>
+                    <span item-end>
+                      <ion-icon name="md-close" style="margin-right: 5px;font-size: 2.3rem;" color="danger"
+                        (click)="delete('kesehatan',i,medical)"></ion-icon>
+                    </span>
+                  </ion-item>
+                </td>
+              </tr>
+            </table>
+          </div>
 
-          <div
-            *ngIf="dataCV['DATA_PERFORMANSI'].length == 0"
-            style="text-align: center"
-          >
-            <span ion-text text-wrap class="small-text"
-              >Tidak ada data Performance Record.</span
-            >
+          <div *ngIf="dataCV['DATA_KESEHATAN'].length == 0" style="text-align: center">
+            <span ion-text text-wrap class="small-text">Tidak ada data Kesehatan.</span>
           </div>
         </div>
 
-        <div
-          class="body-content-4"
-          *ngIf="showKesehatan == true"
-          (click)="toggleKesehatan()"
-        >
-          <button
-            ion-button
-            round
-            outline
-            style="width: 100%; font-size: 1.3rem"
-            color="danger"
-          >
+        <div class="body-content-4" *ngIf="showKesehatan == true" (click)="toggleKesehatan()">
+          <button ion-button round outline style="width: 100%; font-size: 1.3rem" color="danger">
             Sembunyikan
           </button>
         </div>
 
-        <div
-          class="body-content-4"
-          *ngIf="showKesehatan == false"
-          (click)="toggleKesehatan()"
-        >
-          <button
-            ion-button
-            round
-            outline
-            style="width: 100%; font-size: 1.3rem"
-          >
+        <div class="body-content-4" *ngIf="showKesehatan == false" (click)="toggleKesehatan()">
+          <button ion-button round outline style="width: 100%; font-size: 1.3rem">
             Tampilkan
           </button>
         </div>
@@ -809,103 +605,61 @@
         </div>
 
         <div class="body-content-4" *ngIf="showPelatihanPPI">
-          <button
-            ion-button
-            round
-            small
-            color="primary"
-            (click)="openPage('pelatihanppi')"
-          >
-            Tambahkan
-          </button>
-          <table *ngIf="dataCV['DATA_PELATIHAN'].length > 0">
-            <tr *ngFor="let training of dataCV['DATA_PELATIHAN'];let i = index">
-              <td style="vertical-align: top" width="10%">
-                <div>
-                  <span
-                    ion-text
-                    text-wrap
-                    class="medium-text"
-                    style="font-weight: normal !important"
-                  >
-                    {{ i+1 }}.
-                  </span>
-                </div>
-              </td>
-              <td style="vertical-align: top">
-                <div>
-                  <span ion-text text-wrap class="medium-text">
-                    {{ training['NAMA_PELATIHAN'] }}
-                  </span>
-                  <span
-                    ion-text
-                    text-wrap
-                    class="medium-text"
-                    style="font-weight: 600 !important"
-                  >
-                    | {{ training['TAHUN_PELATIHAN'] }}
-                  </span>
-                  <br />
-                  <span ion-text text-wrap class="small-text"
-                    >Penyelenggara: </span
-                  ><br />
-                  <span ion-text text-wrap class="medium-text">
-                    {{ training['NAMA_PENYELENGGARA'] }} | {{ training['LOKASI']
-                    }} </span
-                  ><br />
-                  <span
-                    ion-text
-                    text-wrap
-                    class="medium-text"
-                    style="font-weight: normal"
-                    color="hijau"
-                  >
-                    <b>IDR.</b>{{ training['HARGA_PELATIHAN'] }}
-                  </span>
+          <div style="width: 100%;position: relative;display: flex;">
+            <button ion-button icon-end round color="primary" style="    margin-right: 0;
+            margin-left: auto;" (click)="openPage('pelatihanppi')">
+              Tambah
+              <ion-icon name="md-add"></ion-icon>
+            </button>
+          </div>
+          <div *ngIf="dataCV['DATA_PELATIHAN'].length > 0">
+            <table *ngFor="let training of dataCV['DATA_PELATIHAN'];let i = index">
+              <tr *ngIf="training['IS_DELETED'] == '0' || training['IS_DELETED'] == '2'">
+                <td style="vertical-align: top" width="10%">
+                  <div>
+                    <span ion-text text-wrap class="medium-text" style="font-weight: normal !important">
+                      {{ i+1 }}.
+                    </span>
+                  </div>
+                </td>
+                <td style="vertical-align: top">
+                  <div>
+                    <span ion-text text-wrap class="medium-text">
+                      {{ training['NAMA_PELATIHAN'] }}
+                    </span>
+                    <span ion-text text-wrap class="medium-text" style="font-weight: 600 !important">
+                      | {{ training['TAHUN_PELATIHAN'] }}
+                    </span>
+                    <br />
+                    <span ion-text text-wrap class="small-text">Penyelenggara: </span><br />
+                    <span ion-text text-wrap class="medium-text">
+                      {{ training['NAMA_PENYELENGGARA'] }} | {{ training['LOKASI']
+                      }} </span><br />
+                    <span ion-text text-wrap class="medium-text" style="font-weight: normal" color="hijau">
+                      <b>IDR.</b>{{ training['HARGA_PELATIHAN'] }}
+                    </span>
 
-                  <br /><br />
-                </div>
-              </td>
-            </tr>
-          </table>
+                    <br /><br />
+                  </div>
+                </td>
+              </tr>
+            </table>
+          </div>
 
-          <div
-            *ngIf="dataCV['DATA_PERFORMANSI'].length == 0"
-            style="text-align: center"
-          >
-            <span ion-text text-wrap class="small-text"
-              >Tidak ada data Performance Record.</span
-            >
+
+          <div *ngIf="dataCV['DATA_PERFORMANSI'].length == 0" style="text-align: center">
+            <span ion-text text-wrap class="small-text">Tidak ada data Performance Record.</span>
           </div>
         </div>
 
-        <div
-          class="body-content-4"
-          *ngIf="showPelatihanPPI == true"
-          (click)="toggleRiwayatPelPPI()"
-        >
-          <button
-            ion-button
-            round
-            outline
-            style="width: 100%; font-size: 1.3rem"
-            color="danger"
-          >
+        <div class="body-content-4" *ngIf="showPelatihanPPI == true" (click)="toggleRiwayatPelPPI()">
+          <button ion-button round outline style="width: 100%; font-size: 1.3rem" color="danger">
             Sembunyikan
           </button>
         </div>
 
-        <div
-          class="body-content-4"
-          *ngIf="showPelatihanPPI == false"
-          (click)="toggleRiwayatPelPPI()"
-        >
-          <button
-            ion-button
-            round
-            outline
-            style="width: 100%; font-size: 1.3rem"
-          >
+        <div class="body-content-4" *ngIf="showPelatihanPPI == false" (click)="toggleRiwayatPelPPI()">
+          <button ion-button round outline style="width: 100%; font-size: 1.3rem">
             Tampilkan
           </button>
         </div>
@@ -920,77 +674,51 @@
         </div>
 
         <div class="body-content-4" *ngIf="showIdentiasKeluarga">
-          <button
-            ion-button
-            round
-            small
-            color="primary"
-            (click)="openPage('identitaskeluarga')"
-          >
-            Tambahkan
-          </button>
-          <div *ngIf="dataCV['DATA_IDENTITAS_KELUARGA'].length > 0">
-            <ion-item
-              *ngFor="let family of dataCV['DATA_IDENTITAS_KELUARGA'];let i = index"
-              style="margin-bottom: 10px"
-            >
-              <span item-start>
-                <img src="assets/flat-icon/family.png" class="icon-family" />
-              </span>
-              <span ion-text text-wrap class="medium-text">
-                {{ family['NAMA'] }} </span
-              ><br />
-              <span
-                ion-text
-                text-wrap
-                class="small-text"
-                style="color: black !important"
-                >{{ family['HUBUNGAN'] }}</span
-              >
-              <br />
-              <span ion-text text-wrap class="small-text"
-                >Tanggal Lahir: {{ family['TGL_LAHIR'] }}</span
-              >
-            </ion-item>
+          <div style="width: 100%;position: relative;display: flex;">
+            <button ion-button icon-end round color="primary" style="    margin-right: 0;
+            margin-left: auto;" (click)="openPage('identitaskeluarga')">
+              Tambah
+              <ion-icon name="md-add"></ion-icon>
+            </button>
           </div>
 
-          <div
-            *ngIf="dataCV['DATA_PERFORMANSI'].length == 0"
-            style="text-align: center"
-          >
-            <span ion-text text-wrap class="small-text"
-              >Tidak ada data Performance Record.</span
-            >
+          <div *ngIf="dataCV['DATA_IDENTITAS_KELUARGA'].length > 0">
+            <table width="100%" *ngFor="let family of dataCV['DATA_IDENTITAS_KELUARGA'];let i = index">
+              <tr width="100%" *ngIf="family['IS_DELETED'] == '0' || family['IS_DELETED'] == '2'">
+                <td style="vertical-align: top">
+                  <ion-item style="margin-bottom: 10px" no-lines>
+                    <span item-start>
+                      <img src="assets/flat-icon/family.png" class="icon-family" />
+                    </span>
+                    <span ion-text text-wrap class="medium-text">
+                      {{ family['NAMA'] }} </span><br />
+                    <span ion-text text-wrap class="small-text"
+                      style="color: black !important">{{ family['HUBUNGAN'] }}</span>
+                    <br />
+                    <span ion-text text-wrap class="small-text">Tanggal Lahir: {{ family['TGL_LAHIR'] }}</span>
+                    <span item-end>
+                      <ion-icon name="md-close" style="margin-right: 5px;font-size: 2.3rem;" color="danger"
+                        (click)="delete('keluarga',i,family)"></ion-icon>
+                    </span>
+                  </ion-item>
+                </td>
+              </tr>
+            </table>
+          </div>
+
+          <div *ngIf="dataCV['DATA_IDENTITAS_KELUARGA'].length == 0" style="text-align: center">
+            <span ion-text text-wrap class="small-text">Tidak ada data Keluarga.</span>
           </div>
         </div>
 
-        <div
-          class="body-content-4"
-          *ngIf="showIdentiasKeluarga == true"
-          (click)="toggleIdentitasKeluarga()"
-        >
-          <button
-            ion-button
-            round
-            outline
-            style="width: 100%; font-size: 1.3rem"
-            color="danger"
-          >
+        <div class="body-content-4" *ngIf="showIdentiasKeluarga == true" (click)="toggleIdentitasKeluarga()">
+          <button ion-button round outline style="width: 100%; font-size: 1.3rem" color="danger">
             Sembunyikan
           </button>
         </div>
 
-        <div
-          class="body-content-4"
-          *ngIf="showIdentiasKeluarga == false"
-          (click)="toggleIdentitasKeluarga()"
-        >
-          <button
-            ion-button
-            round
-            outline
-            style="width: 100%; font-size: 1.3rem"
-          >
+        <div class="body-content-4" *ngIf="showIdentiasKeluarga == false" (click)="toggleIdentitasKeluarga()">
+          <button ion-button round outline style="width: 100%; font-size: 1.3rem">
             Tampilkan
           </button>
         </div>
@@ -1005,78 +733,54 @@
         </div>
 
         <div class="body-content-4" *ngIf="showRewardDanPunishment">
-          <button
-            ion-button
-            round
-            small
-            color="primary"
-            (click)="openPage('rewardpunish')"
-          >
-            Tambahkan
-          </button>
-          <div *ngIf="dataCV['DATA_PENGHARGAAN_HK'].length > 0">
-            <ion-item
-              *ngFor="let reward of dataCV['DATA_PENGHARGAAN_HK'];let i = index"
-              style="margin-bottom: 10px"
-            >
-              <span item-start>
-                <img src="assets/flat-icon/reward.png" class="icon-family" />
-              </span>
-              <span ion-text text-wrap class="medium-text">
-                {{ reward['DESKRIPSI'] }} </span
-              ><br />
-              <span
-                ion-text
-                text-wrap
-                class="medium-text"
-                style="font-weight: normal !important"
-                >{{ reward['TAHUN'] }} | {{ reward['INSTANSI_YANG_MENGELUARKAN']
-                }}</span
-              >
-              <br />
-              <span ion-text text-wrap class="small-text"
-                >Result: {{ reward['JENIS'] }}</span
-              >
-            </ion-item>
+          <div style="width: 100%;position: relative;display: flex;">
+            <button ion-button icon-end round color="primary" style="    margin-right: 0;
+            margin-left: auto;" (click)="openPage('rewardpunish')">
+              Tambah
+              <ion-icon name="md-add"></ion-icon>
+            </button>
           </div>
 
-          <div
-            *ngIf="dataCV['DATA_PERFORMANSI'].length == 0"
-            style="text-align: center"
-          >
-            <span ion-text text-wrap class="small-text"
-              >Tidak ada data Performance Record.</span
-            >
+          <div *ngIf="dataCV['DATA_PENGHARGAAN_HK'].length > 0">
+            <table width="100%" *ngFor="let reward of dataCV['DATA_PENGHARGAAN_HK'];let i = index">
+              <tr width="100%" *ngIf="reward['IS_DELETED'] == '0' || reward['IS_DELETED'] == '2'">
+                <td style="vertical-align: top">
+                  <ion-item style="margin-bottom: 10px" no-lines>
+                    <span item-start>
+                      <img src="assets/flat-icon/reward.png" class="icon-family" />
+                    </span>
+                    <span ion-text text-wrap class="medium-text">
+                      {{ reward['DESKRIPSI'] }} </span><br />
+                    <span ion-text text-wrap class="medium-text"
+                      style="font-weight: normal !important">{{ reward['TAHUN'] }}
+                      | {{ reward['INSTANSI_YANG_MENGELUARKAN']
+                      }}</span>
+                    <br />
+                    <span ion-text text-wrap class="small-text">Result: {{ reward['JENIS'] }}</span>
+                    <span item-end>
+                      <ion-icon name="md-close" style="margin-right: 5px;font-size: 2.3rem;" color="danger"
+                        (click)="delete('penghargaan',i,reward)"></ion-icon>
+                    </span>
+                  </ion-item>
+                </td>
+              </tr>
+            </table>
+
+          </div>
+
+          <div *ngIf="dataCV['DATA_PENGHARGAAN_HK'].length == 0" style="text-align: center">
+            <span ion-text text-wrap class="small-text">Tidak ada data Penghargaan.</span>
           </div>
         </div>
 
-        <div
-          class="body-content-4"
-          *ngIf="showRewardDanPunishment == true"
-          (click)="toggleRewardDanPunishment()"
-        >
-          <button
-            ion-button
-            round
-            outline
-            style="width: 100%; font-size: 1.3rem"
-            color="danger"
-          >
+        <div class="body-content-4" *ngIf="showRewardDanPunishment == true" (click)="toggleRewardDanPunishment()">
+          <button ion-button round outline style="width: 100%; font-size: 1.3rem" color="danger">
             Sembunyikan
           </button>
         </div>
 
-        <div
-          class="body-content-4"
-          *ngIf="showRewardDanPunishment == false"
-          (click)="toggleRewardDanPunishment()"
-        >
-          <button
-            ion-button
-            round
-            outline
-            style="width: 100%; font-size: 1.3rem"
-          >
+        <div class="body-content-4" *ngIf="showRewardDanPunishment == false" (click)="toggleRewardDanPunishment()">
+          <button ion-button round outline style="width: 100%; font-size: 1.3rem">
             Tampilkan
           </button>
         </div>
@@ -1091,94 +795,58 @@
         </div>
 
         <div class="body-content-4" *ngIf="showPerformance">
-          <button
-            ion-button
-            round
-            small
-            color="primary"
-            (click)="openPage('performa')"
-          >
-            Tambahkan
-          </button>
-          <table *ngIf="dataCV['DATA_PERFORMANSI'].length > 0">
-            <tr
-              *ngFor="let perform of dataCV['DATA_PERFORMANSI'];let i = index"
-            >
-              <td style="vertical-align: top" width="10%">
-                <div>
-                  <span
-                    ion-text
-                    text-wrap
-                    class="medium-text"
-                    style="font-weight: normal !important"
-                  >
-                    {{ i+1 }}.
-                  </span>
-                </div>
-              </td>
-              <td style="vertical-align: top">
-                <div>
-                  <span ion-text text-wrap class="medium-text">
-                    {{ perform['KATEGORI'] }}
-                  </span>
-                  <span
-                    ion-text
-                    text-wrap
-                    class="medium-text"
-                    style="font-weight: 600 !important"
-                  >
-                    | {{ perform['TAHUN'] }}
-                  </span>
-                  <br />
-                  <span ion-text text-wrap class="small-text"
-                    >Nilai Kinerja Tahunan :
-                  </span>
-                  <span ion-text text-wrap class="medium-text" color="color7">
-                    {{ perform['NILAI_KINERJA_TAHUNAN'] }}
-                  </span>
-                  <br /><br />
-                </div>
-              </td>
-            </tr>
-          </table>
+          <div style="width: 100%;position: relative;display: flex;">
+            <button ion-button icon-end round color="primary" style="    margin-right: 0;
+            margin-left: auto;" (click)="openPage('performa')">
+              Tambah
+              <ion-icon name="md-add"></ion-icon>
+            </button>
+          </div>
+          <div *ngIf="dataCV['DATA_PERFORMANSI'].length > 0">
+            <table width="100%" *ngFor="let perform of dataCV['DATA_PERFORMANSI'];let i = index">
+              <tr *ngIf="perform['IS_DELETED'] == '0' || perform['IS_DELETED'] == '2'">
+                <td style="vertical-align: top">
+                  <ion-item style="margin-bottom: 10px" no-lines>
+                    <span item-start>
+                      <img src="assets/flat-icon/reward.png" class="icon-family" />
+                    </span>
 
-          <div
-            *ngIf="dataCV['DATA_PERFORMANSI'].length == 0"
-            style="text-align: center"
-          >
-            <span ion-text text-wrap class="small-text"
-              >Tidak ada data Performance Record.</span
-            >
+                    <span ion-text text-wrap class="medium-text">
+                      {{ perform['KATEGORI'] }}
+                    </span>
+                    <span ion-text text-wrap class="medium-text" style="font-weight: 600 !important">
+                      | {{ perform['TAHUN'] }}
+                    </span>
+                    <br />
+                    <span ion-text text-wrap class="small-text">Nilai Kinerja Tahunan :
+                    </span>
+                    <span ion-text text-wrap class="medium-text" color="color7">
+                      {{ perform['NILAI_KINERJA_TAHUNAN'] }}
+                    </span>
+
+                    <span item-end>
+                      <ion-icon name="md-close" style="margin-right: 5px;font-size: 2.3rem;" color="danger"
+                        (click)="delete('performansi',i,perform)"></ion-icon>
+                    </span>
+                  </ion-item>
+                </td>
+              </tr>
+            </table>
+          </div>
+
+          <div *ngIf="dataCV['DATA_PERFORMANSI'].length == 0" style="text-align: center">
+            <span ion-text text-wrap class="small-text">Tidak ada data Performance.</span>
           </div>
         </div>
 
-        <div
-          class="body-content-4"
-          *ngIf="showPerformance == true"
-          (click)="togglePerformance()"
-        >
-          <button
-            ion-button
-            round
-            outline
-            style="width: 100%; font-size: 1.3rem"
-            color="danger"
-          >
+        <div class="body-content-4" *ngIf="showPerformance == true" (click)="togglePerformance()">
+          <button ion-button round outline style="width: 100%; font-size: 1.3rem" color="danger">
             Sembunyikan
           </button>
         </div>
 
-        <div
-          class="body-content-4"
-          *ngIf="showPerformance == false"
-          (click)="togglePerformance()"
-        >
-          <button
-            ion-button
-            round
-            outline
-            style="width: 100%; font-size: 1.3rem"
-          >
+        <div class="body-content-4" *ngIf="showPerformance == false" (click)="togglePerformance()">
+          <button ion-button round outline style="width: 100%; font-size: 1.3rem">
             Tampilkan
           </button>
         </div>
@@ -1186,4 +854,7 @@
     </div>
     <br />
   </div>
+  <button ion-button round style="width: 100%; font-size: 1.3rem" color="primary" (click)="submit()">
+    Simpan
+  </button>
 </ion-content>

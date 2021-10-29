@@ -2,7 +2,8 @@ import { Component, ViewChild } from "@angular/core";
 import { IonicPage, NavController, NavParams, ToastController } from "ionic-angular";
 import { SoapService } from "../soap.service";
 import { Storage } from "@ionic/storage";
-import { api_base_url, api_user, api_pass } from "../../config";
+import { api_base_url, api_user, api_pass, urldownload_srt } from "../../config";
+import { InAppBrowser, InAppBrowserOptions } from "@ionic-native/in-app-browser";
 // import { AnimationService, AnimationBuilder } from 'css-animator';
 
 /**
@@ -32,8 +33,18 @@ export class CvPage {
   showFamily: boolean = false;
   showAssignHistory: Boolean = false;
   showReward: boolean = false;
+  showEmergency: boolean = false;
+  showWorkingHistory:boolean = false;
+  showMedical:boolean = false;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public soapService: SoapService, public storage: Storage, public toastCtrl: ToastController) {
+  constructor(
+    public navCtrl: NavController, 
+    public navParams: NavParams, 
+    public soapService: SoapService, 
+    public storage: Storage, 
+    public toastCtrl: ToastController,
+    public inAppBrowser: InAppBrowser
+    ) {
     this.storage.get("userdataTPK").then((val) => {
       this.userdataTPK = val;
       this.getDataCV();
@@ -75,6 +86,18 @@ export class CvPage {
 
   toggleReward() {
     this.showReward = !this.showReward;
+  }
+
+  toggleEmergency() {
+    this.showEmergency = !this.showEmergency;
+  }
+
+  toggleWorkingHistory() {
+    this.showWorkingHistory = !this.showWorkingHistory;
+  }
+
+  toggleMedical() {
+    this.showMedical = !this.showMedical;
   }
 
   getDataCV() {
@@ -119,5 +142,12 @@ export class CvPage {
   }
   openPage(page) {
     this.navCtrl.push(page);
+  }
+
+  download(data) {
+    const options: InAppBrowserOptions = {
+      zoom: "no",
+    };
+    const browser = this.inAppBrowser.create(urldownload_srt + 'upload_personal_info/' + data, "_system", options);
   }
 }

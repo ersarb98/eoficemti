@@ -272,9 +272,9 @@ export class AddSppdPage {
           var tglMulaiSplit = this.messageDetail["Agenda"]["Tanggal Mulai"].split("-");
           var tglSelesaiSplit = this.messageDetail["Agenda"]["Tanggal Akhir"].split("-");
           console.log(tglMulaiSplit);
-          var dateMulai = new Date(tglMulaiSplit[2], tglMulaiSplit[1], tglMulaiSplit[0]);
+          var dateMulai = new Date(tglMulaiSplit[2],(tglMulaiSplit[1] != '0') ? parseInt(tglMulaiSplit[1])-1 : tglMulaiSplit[1], tglMulaiSplit[0]);
 
-          var dateSelesai = new Date(tglSelesaiSplit[2], tglSelesaiSplit[1], tglSelesaiSplit[0]);
+          var dateSelesai = new Date(tglSelesaiSplit[2], (tglSelesaiSplit[1] != '0') ? parseInt(tglSelesaiSplit[1])-1 : tglSelesaiSplit[1], tglSelesaiSplit[0]);
           console.log(dateMulai);
 
           this.tanggalMulai = this.datePipe.transform(dateMulai, "dd/MM/yyyy");
@@ -362,14 +362,19 @@ export class AddSppdPage {
             "BAWAHAN": this.messageDetail['Pengirim']['Divisi'],
             "ATASAN": this.messageDetail['Pengirim']['Cab or Dir']
           };
-          this.jabatanPengirim = this.messageDetail['SPPD_penanggungjawab']['Nama Jabatan'];
+          this.jabatanPengirim = this.messageDetail['Pengirim']['Nama Jabatan'];
 
           this.getPesertaSPPD(this.messageDetail["ID Surat"], loader);
           this.id_surat = atob(this.messageDetail["ID Surat"]);
 
           // this.linkSurat = this.messageDetail["Link Surat Asli"];
-          this.attachmentPermintaan = this.messageDetail["SPPD_attachment"][0]['url'];
-          this.attachmentRuangRapat = this.messageDetail["SPPD_attachment"][1]['url'];
+          if (this.messageDetail['SPPD_attachment'].length > 0) {
+            this.attachmentPermintaan = this.messageDetail["SPPD_attachment"][0]['url'];
+          }
+          if (this.messageDetail['SPPD_attachment'].length > 1) {
+           this.attachmentRuangRapat = this.messageDetail["SPPD_attachment"][1]['url'];
+          }
+         
           loader.dismiss();
           this.isLoading = false;
         } else {
@@ -587,11 +592,10 @@ export class AddSppdPage {
           this.secondDate = date;
           this.tanggalSelesai = this.datePipe.transform(date, 'dd/MM/yyyy');
 
-
           var date1Split = this.tanggalMulai.split('/');
           var date2Split = this.tanggalSelesai.split('/');
-          var date1 = new Date(date1Split[2], date1Split[1], date1Split[0]);
-          var date2 = new Date(date2Split[2], date2Split[1], date2Split[0]);
+          var date1 = new Date(date1Split[2], (date1Split[1] != '0') ? parseInt(date1Split[1])-1 : date1Split[1], date1Split[0]);
+          var date2 = new Date(date2Split[2], (date2Split[1] != '0') ? parseInt(date2Split[1])-1 : date2Split[1], date2Split[0]);
           var Difference_In_Time = date2.getTime() - date1.getTime();
           var lamaSPPD = Difference_In_Time / (1000 * 3600 * 24);
           console.log('lama sppd : ' + lamaSPPD);
@@ -836,19 +840,95 @@ export class AddSppdPage {
   }
 
   setPesertaPekerja(pesertaPekerjaSearchResult, i) {
-    this.pesertaPekerjaindex = i;
-    // this.pesertaPekerjaList[this.pesertaPekerjaindex]['value'] = pesertaPekerjaSearchResult['NM_JABATAN'] + " | " + pesertaPekerjaSearchResult['NM_JABATAN'];
-    this.pesertaPekerjaList[this.pesertaPekerjaindex]['value'] = pesertaPekerjaSearchResult['NAMA'];
-    this.pesertaPekerjaList[this.pesertaPekerjaindex]['ID_USER'] = pesertaPekerjaSearchResult['ID_USER'];
-    this.pesertaPekerjaList[this.pesertaPekerjaindex]['NIPP'] = pesertaPekerjaSearchResult['NIPP'];
-    this.pesertaPekerjaList[this.pesertaPekerjaindex]['NAMA'] = pesertaPekerjaSearchResult['NAMA'];
-    this.pesertaPekerjaList[this.pesertaPekerjaindex]['NM_JABATAN'] = pesertaPekerjaSearchResult['NM_JABATAN'];
-    this.pesertaPekerjaList[this.pesertaPekerjaindex]['ID_JABATAN'] = pesertaPekerjaSearchResult['ID_JABATAN'];
-    this.pesertaPekerjaList[this.pesertaPekerjaindex]['ID_CABANG'] = pesertaPekerjaSearchResult['ID_CABANG'];
-    this.pesertaPekerjaList[this.pesertaPekerjaindex]['KD_PARA'] = pesertaPekerjaSearchResult['KD_PARA'];
-    this.pesertaPekerjaList[this.pesertaPekerjaindex]['NAMA_CABANG'] = pesertaPekerjaSearchResult['NAMA_CABANG'];
-    this.pesertaPekerjashowResult = false;
-    //console.log(this.pesertaPekerjaList);
+    let loading = this.loadingCtrl.create({
+      spinner: 'dots',
+      content: "Memeriksa data peserta...",
+      cssClass: 'transparent',
+      dismissOnPageChange: true
+    });
+    loading.present();
+
+    this.soapService
+        .post(api_base_url, 'eoffice_validasi_peserta_sppd', {
+          fStream: JSON.stringify(
+            {
+              "usernameEDI": api_user,
+              "passwordEDI": api_pass,
+              "id_user": pesertaPekerjaSearchResult['ID_USER'],
+              "nipp": pesertaPekerjaSearchResult['NIPP'],
+              "tgl_mulai": this.tanggalMulai,
+              "tgl_akhir": this.tanggalSelesai,
+            }
+
+          )
+        }).then(result => {
+          var responData = JSON.parse(String(result));
+          console.log(responData);
+          this.pesertaPekerjaindex = i;
+          if (responData['rcmsg'] == "SUCCESS") {
+            var jumLaporan = parseInt(responData['data']['JUMLAH_SPPD_ASLI']) - parseInt(responData['data']['JUMLAH_SPPD_LAPORAN']);
+            if (parseInt(responData['data']['JUMLAH_CUTI']) > 0) {
+              let toast = this.toastCtrl.create({
+                message: 'Pegawai ' + pesertaPekerjaSearchResult['NAMA'] + ' Tidak bisa diundang dikarenakan sedang cuti pada range tanggal tersebut.',
+                duration: 3000,
+                position: 'bottom'
+              });
+              toast.present();
+              this.pesertaPekerjaList[this.pesertaPekerjaindex]['value'] = '';
+            } else if (parseInt(responData['data']['JUMLAH_SPPD']) > 0 ) {
+              let toast = this.toastCtrl.create({
+                message: 'Pegawai '+  pesertaPekerjaSearchResult['NAMA'] +' sedang dinas pada range tanggal tersebut.',
+                duration: 3000,
+                position: 'bottom'
+              });
+              toast.present();
+              this.pesertaPekerjaList[this.pesertaPekerjaindex]['value'] = '';
+             
+            } else if (jumLaporan > 3 ) {
+              let toast = this.toastCtrl.create({
+                message: 'Pegawai ' + pesertaPekerjaSearchResult['NAMA'] + ' ini memiliki ' + jumLaporan + ' perjalanan dinas yang belum di laporkan.',
+                duration: 3000,
+                position: 'bottom'
+              });
+              toast.present();
+              this.pesertaPekerjaList[this.pesertaPekerjaindex]['value'] = '';
+            } else {
+              
+              // this.pesertaPekerjaList[this.pesertaPekerjaindex]['value'] = pesertaPekerjaSearchResult['NM_JABATAN'] + " | " + pesertaPekerjaSearchResult['NM_JABATAN'];
+              this.pesertaPekerjaList[this.pesertaPekerjaindex]['value'] = pesertaPekerjaSearchResult['NAMA'];
+              this.pesertaPekerjaList[this.pesertaPekerjaindex]['ID_USER'] = pesertaPekerjaSearchResult['ID_USER'];
+              this.pesertaPekerjaList[this.pesertaPekerjaindex]['NIPP'] = pesertaPekerjaSearchResult['NIPP'];
+              this.pesertaPekerjaList[this.pesertaPekerjaindex]['NAMA'] = pesertaPekerjaSearchResult['NAMA'];
+              this.pesertaPekerjaList[this.pesertaPekerjaindex]['NM_JABATAN'] = pesertaPekerjaSearchResult['NM_JABATAN'];
+              this.pesertaPekerjaList[this.pesertaPekerjaindex]['ID_JABATAN'] = pesertaPekerjaSearchResult['ID_JABATAN'];
+              this.pesertaPekerjaList[this.pesertaPekerjaindex]['ID_CABANG'] = pesertaPekerjaSearchResult['ID_CABANG'];
+              this.pesertaPekerjaList[this.pesertaPekerjaindex]['KD_PARA'] = pesertaPekerjaSearchResult['KD_PARA'];
+              this.pesertaPekerjaList[this.pesertaPekerjaindex]['NAMA_CABANG'] = pesertaPekerjaSearchResult['NAMA_CABANG'];
+              
+              //console.log(this.pesertaPekerjaList);
+            }
+            this.pesertaPekerjashowResult = false;
+            loading.dismiss();
+          } else {
+            let toast = this.toastCtrl.create({
+              message: 'Mohon Maaf Sedang Terjadi Kesalahan, Coba Beberapa Saat Lagi.',
+              duration: 3000,
+              position: 'bottom'
+            });
+            toast.present();
+            loading.dismiss();
+          }
+        })
+        .catch(error => {
+          console.log(error);
+          let toast = this.toastCtrl.create({
+            message: 'Terjadi Masalah Koneksi, Silahkan Coba Kembali.',
+            duration: 3000,
+            position: 'bottom'
+          });
+          toast.present();
+          loading.dismiss();
+        });
   }
 
   addPesertaEksternal() {

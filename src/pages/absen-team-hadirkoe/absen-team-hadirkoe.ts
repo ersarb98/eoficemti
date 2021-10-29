@@ -49,7 +49,7 @@ export class AbsenTeamHadirkoePage {
       this.idUser = navParams.get('idUser');
       this.date = navParams.get('date');
       var split = this.date.split("-");
-      this.dateConvert = new Date(split[2], split[1], split[0]);
+      this.dateConvert = new Date(split[2], (split[1] != '0') ? parseInt(split[1])-1 : split[1], split[0]);
       var weekday = new Array(7);
       weekday[0] = "Minggu";
       weekday[1] = "Senin";

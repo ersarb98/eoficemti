@@ -9,6 +9,11 @@
     <ion-title>
       <span ion-text color="light" class="fw500">Tambahkan</span>
     </ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only (click)="cancel()">
+        <ion-icon name="ios-close-outline" style="color:#FFF"></ion-icon>
+      </button>
+    </ion-buttons>
   </ion-navbar>
 </ion-header>
 
@@ -17,42 +22,29 @@
     <span>Informasi Panggilan Darurat</span>
     <ion-item no-padding>
       <ion-label stacked>No. Darurat</ion-label>
-      <ion-input type="number" placeholder=""></ion-input>
+      <ion-input type="number" placeholder="" [(ngModel)]="noDarurat"></ion-input>
     </ion-item>
 
     <ion-item no-padding>
       <ion-label stacked>Nama Darurat</ion-label>
-      <ion-input type="text" placeholder=""></ion-input>
+      <ion-input type="text" placeholder="" [(ngModel)]="namaDarurat"></ion-input>
     </ion-item>
 
     <ion-item no-padding>
       <ion-label stacked>Status Hubungan</ion-label>
-      <ion-input type="text" placeholder=""></ion-input>
+      <ion-input type="text" placeholder="" [(ngModel)]="hubunganDarurat"></ion-input>
     </ion-item>
 
     <div class="row">
       <div class="col">
-        <button
-          ion-button
-          icon-start
-          full
-          color="danger"
-          style="border-radius: 5px"
-          margin-top
-        >
+        <button ion-button icon-start full color="danger" style="border-radius: 5px" margin-top (click)="cancel()">
           <ion-icon name="md-close"></ion-icon>
           Batal
         </button>
       </div>
       <div class="col">
-        <button
-          ion-button
-          icon-start
-          full
-          color="primary"
-          style="border-radius: 5px"
-          margin-top
-        >
+        <button ion-button icon-start full color="primary" style="border-radius: 5px" margin-top
+          (click)="submit('emergency')">
           <ion-icon name="ios-search"></ion-icon>
           Simpan
         </button>
@@ -62,227 +54,173 @@
   <div *ngIf="kat == 'pendidikanformal';">
     <ion-item no-padding>
       <ion-label stacked>Tingkat Pendidikan</ion-label>
-      <ion-input type="text" placeholder=""></ion-input>
+      <ion-input type="text" placeholder="" [(ngModel)]="tingkatPendidikan"></ion-input>
     </ion-item>
     <ion-item no-padding>
       <ion-label stacked>Nama Sekolah</ion-label>
-      <ion-input type="text" placeholder=""></ion-input>
+      <ion-input type="text" placeholder="" [(ngModel)]="namaSekolah"></ion-input>
     </ion-item>
     <ion-item no-padding>
       <ion-label stacked>Jurusan</ion-label>
-      <ion-input type="text" placeholder=""></ion-input>
+      <ion-input type="text" placeholder="" [(ngModel)]="jurusan"></ion-input>
     </ion-item>
     <ion-item no-padding>
       <ion-label stacked>Tahun Lulus</ion-label>
-      <ion-input type="number" placeholder=""></ion-input>
+      <ion-input type="number" placeholder="" [(ngModel)]="tahunLulus"></ion-input>
     </ion-item>
     <div class="row">
       <div class="col">
-        <button
-          ion-button
-          icon-start
-          full
-          color="danger"
-          style="border-radius: 5px"
-          margin-top
-        >
+        <button ion-button icon-start full color="danger" style="border-radius: 5px" margin-top (click)="cancel()">
           <ion-icon name="md-close"></ion-icon>
           Batal
         </button>
       </div>
       <div class="col">
-        <button
-          ion-button
-          icon-start
-          full
-          color="primary"
-          style="border-radius: 5px"
-          margin-top
-        >
+        <button ion-button icon-start full color="primary" style="border-radius: 5px" margin-top
+          (click)="submit('pend_formal')">
           <ion-icon name="ios-search"></ion-icon>
           Simpan
         </button>
       </div>
     </div>
   </div>
-  <div *ngIf="kat == 'pekerjaan';">
+  <div *ngIf="kat == 'pekerjaan'">
     <ion-item no-padding>
       <ion-label stacked>Jabatan</ion-label>
-      <ion-input type="text" placeholder=""></ion-input>
+      <ion-input type="text" placeholder="" [(ngModel)]="jabatanPekerjaan"></ion-input>
     </ion-item>
 
     <ion-item no-padding>
       <ion-label stacked>Nama Perusahaan</ion-label>
-      <ion-input type="text" placeholder=""></ion-input>
+      <ion-input type="text" placeholder="" [(ngModel)]="namaPerusahaan"></ion-input>
+    </ion-item>
+
+    <ion-item no-padding>
+      <ion-label stacked>Lama Kerja</ion-label>
+      <ion-input type="text" placeholder="" [(ngModel)]="lamaKerja"></ion-input>
     </ion-item>
 
     <ion-item no-padding>
       <ion-label stacked>Prestasi</ion-label>
-      <ion-input type="text" placeholder=""></ion-input>
-    </ion-item>
-
-    <ion-item no-padding>
-      <ion-label stacked>Jabatan</ion-label>
-      <ion-input type="text" placeholder=""></ion-input>
+      <ion-input type="text" placeholder="" [(ngModel)]="prestasi"></ion-input>
     </ion-item>
 
     <div class="row">
       <div class="col">
-        <button
-          ion-button
-          icon-start
-          full
-          color="danger"
-          style="border-radius: 5px"
-          margin-top
-        >
+        <button ion-button icon-start full color="danger" style="border-radius: 5px" margin-top (click)="cancel()">
           <ion-icon name="md-close"></ion-icon>
           Batal
         </button>
       </div>
       <div class="col">
-        <button
-          ion-button
-          icon-start
-          full
-          color="primary"
-          style="border-radius: 5px"
-          margin-top
-        >
+        <button ion-button icon-start full color="primary" style="border-radius: 5px" margin-top margin-top
+          (click)="submit('pekerjaan')">
           <ion-icon name="ios-search"></ion-icon>
           Simpan
         </button>
       </div>
     </div>
   </div>
-  <div *ngIf="kat == 'assigmenthistory';">
+  <div *ngIf="kat == 'assigmenthistory'">
     <ion-item no-padding>
       <ion-label stacked>Posisi Jabatan</ion-label>
-      <ion-input type="text" placeholder=""></ion-input>
+      <ion-input type="text" placeholder="" [(ngModel)]="posisiJabatan"></ion-input>
     </ion-item>
     <ion-item no-padding>
       <ion-label stacked>No SK</ion-label>
-      <ion-input type="text" placeholder=""></ion-input>
+      <ion-input type="text" placeholder="" [(ngModel)]="noSK"></ion-input>
     </ion-item>
 
     <ion-item no-padding>
-      <ion-label stacked>Start Date</ion-label>
-      <ion-input
-        type="text"
-        (click)="showDatePicker(1)"
-        (ionFocus)="checkFocus(1)"
-        placeholder=""
-      ></ion-input>
+      <ion-label stacked>Tanggal Mulai Jabatan</ion-label>
+      <ion-input type="text" (click)="showDatePicker(1)" (ionFocus)="checkFocus(1)" placeholder=""
+        [(ngModel)]="tglMulaiJab"></ion-input>
     </ion-item>
 
     <ion-item no-padding>
-      <ion-label stacked>End Date</ion-label>
-      <ion-input
-        type="text"
-        (click)="showDatePicker(1)"
-        (ionFocus)="checkFocus(1)"
-        placeholder=""
-      ></ion-input>
+      <ion-label stacked>Tanggal Akhir Jabatan</ion-label>
+      <ion-input type="text" (click)="showDatePicker(2)" (ionFocus)="checkFocus(2)" placeholder=""
+        [(ngModel)]="tglAkhirJab"></ion-input>
+    </ion-item>
+
+    <ion-item no-padding>
+      <ion-label stacked>lama Jabatan</ion-label>
+      <ion-input type="text" [readonly]="true" placeholder="" [(ngModel)]="lamaJabatan"></ion-input>
     </ion-item>
 
     <div class="row">
       <div class="col">
-        <button
-          ion-button
-          icon-start
-          full
-          color="danger"
-          style="border-radius: 5px"
-          margin-top
-        >
+        <button ion-button icon-start full color="danger" style="border-radius: 5px" margin-top (click)="cancel()">
           <ion-icon name="md-close"></ion-icon>
           Batal
         </button>
       </div>
       <div class="col">
-        <button
-          ion-button
-          icon-start
-          full
-          color="primary"
-          style="border-radius: 5px"
-          margin-top
-        >
-          <ion-icon name="ios-search"></ion-icon>
-          Simpan
-        </button>
-      </div>
-    </div>
-
-    <div class="row">
-      <div class="col">
-        <button
-          ion-button
-          icon-start
-          full
-          color="danger"
-          style="border-radius: 5px"
-          margin-top
-        >
-          <ion-icon name="md-close"></ion-icon>
-          Batal
-        </button>
-      </div>
-      <div class="col">
-        <button
-          ion-button
-          icon-start
-          full
-          color="primary"
-          style="border-radius: 5px"
-          margin-top
-        >
+        <button ion-button icon-start full color="primary" style="border-radius: 5px" margin-top
+          (click)="submit('assigmenthistory')">
           <ion-icon name="ios-search"></ion-icon>
           Simpan
         </button>
       </div>
     </div>
   </div>
-  <div *ngIf="kat == 'kesehatan';">
+  <div *ngIf="kat == 'kesehatan'">
     <ion-item no-padding>
       <ion-label stacked>Tanggal MCU</ion-label>
-      <ion-input
-        type="text"
-        (click)="showDatePicker(1)"
-        (ionFocus)="checkFocus(1)"
-        placeholder=""
-      ></ion-input>
+      <ion-input type="text" (click)="showDatePicker(3)" (ionFocus)="checkFocus(3)" placeholder="" [(ngModel)]="tglMCU">
+      </ion-input>
     </ion-item>
     <ion-item no-padding>
       <ion-label stacked>Level Kesehatan</ion-label>
-      <ion-input type="text" placeholder=""></ion-input>
+      <ion-input type="number" placeholder="" [(ngModel)]="levelKesehatan"></ion-input>
     </ion-item>
-    <ion-item no-padding>
-      <ion-label stacked>Upload File</ion-label>
-    </ion-item>
+
+    <br>
+
+    <ion-card class="my-card">
+      <ion-card-content>
+        <div class="header-text">
+          <span ion-text text-wrap class="font-small">
+            <b>Upload Hasil MCU</b>
+          </span>
+        </div>
+        <div class="garis"></div>
+        <ion-item>
+          <span item-left>
+            <img src="assets/imgs/logo/document-icon.png" class="icons">
+          </span>
+          <ion-label stacked>Upload File</ion-label>
+          <ion-select [(ngModel)]="fileType" cancelText="Cancel" okText="OK">
+            <div>
+              <ion-option value="file">File</ion-option>
+              <ion-option value="gambar">Foto</ion-option>
+            </div>
+          </ion-select>
+        </ion-item>
+        <div *ngIf="fileType == 'gambar'">
+          <div class="image-container">
+            <img (click)="takeImage(0,'1')" class="photo" src="{{ imageShow }}" />
+            <span ion-text style="text-align:center;color:gray;">Upload Foto (png, jpg, jpeg)</span>
+          </div>
+        </div>
+        <ion-item *ngIf="fileType == 'file'">
+          <ion-label stacked>Upload File (docx, doc, xlxs, xls,xlsx, pdf)</ion-label>
+          <ion-input type="text" [(ngModel)]="fileName" [readonly]="true" (ionFocus)="openChooser('1')"
+            (click)="openChooser('1')" placeholder="pilih file"></ion-input>
+        </ion-item>
+      </ion-card-content>
+    </ion-card>
+
     <div class="row">
       <div class="col">
-        <button
-          ion-button
-          icon-start
-          full
-          color="danger"
-          style="border-radius: 5px"
-          margin-top
-        >
+        <button ion-button icon-start full color="danger" style="border-radius: 5px" margin-top (click)="cancel()">
           <ion-icon name="md-close"></ion-icon>
           Batal
         </button>
       </div>
       <div class="col">
-        <button
-          ion-button
-          icon-start
-          full
-          color="primary"
-          style="border-radius: 5px"
-          margin-top
-        >
+        <button ion-button icon-start full color="primary" style="border-radius: 5px" margin-top
+          (click)="submit('kesehatan')">
           <ion-icon name="ios-search"></ion-icon>
           Simpan
         </button>
@@ -329,12 +267,7 @@
     </ion-item>
     <ion-item no-padding>
       <ion-label stacked>Tanggal Pelatihan</ion-label>
-      <ion-input
-        type="text"
-        (click)="showDatePicker(1)"
-        (ionFocus)="checkFocus(1)"
-        placeholder=""
-      ></ion-input>
+      <ion-input type="text" (click)="showDatePicker(1)" (ionFocus)="checkFocus(1)" placeholder=""></ion-input>
     </ion-item>
     <ion-item no-padding>
       <ion-label stacked>Keterangan</ion-label>
@@ -342,27 +275,13 @@
     </ion-item>
     <div class="row">
       <div class="col">
-        <button
-          ion-button
-          icon-start
-          full
-          color="danger"
-          style="border-radius: 5px"
-          margin-top
-        >
+        <button ion-button icon-start full color="danger" style="border-radius: 5px" margin-top (click)="cancel()">
           <ion-icon name="md-close"></ion-icon>
           Batal
         </button>
       </div>
       <div class="col">
-        <button
-          ion-button
-          icon-start
-          full
-          color="primary"
-          style="border-radius: 5px"
-          margin-top
-        >
+        <button ion-button icon-start full color="primary" style="border-radius: 5px" margin-top>
           <ion-icon name="ios-search"></ion-icon>
           Simpan
         </button>
@@ -376,12 +295,7 @@
     </ion-item>
     <ion-item no-padding>
       <ion-label stacked>Tanggal Lahir</ion-label>
-      <ion-input
-        type="text"
-        (click)="showDatePicker(1)"
-        (ionFocus)="checkFocus(1)"
-        placeholder=""
-      ></ion-input>
+      <ion-input type="text" (click)="showDatePicker(1)" (ionFocus)="checkFocus(1)" placeholder=""></ion-input>
     </ion-item>
     <ion-item no-padding>
       <ion-label stacked>Hubungan</ion-label>
@@ -393,27 +307,13 @@
     </ion-item>
     <div class="row">
       <div class="col">
-        <button
-          ion-button
-          icon-start
-          full
-          color="danger"
-          style="border-radius: 5px"
-          margin-top
-        >
+        <button ion-button icon-start full color="danger" style="border-radius: 5px" margin-top (click)="cancel()">
           <ion-icon name="md-close"></ion-icon>
           Batal
         </button>
       </div>
       <div class="col">
-        <button
-          ion-button
-          icon-start
-          full
-          color="primary"
-          style="border-radius: 5px"
-          margin-top
-        >
+        <button ion-button icon-start full color="primary" style="border-radius: 5px" margin-top>
           <ion-icon name="ios-search"></ion-icon>
           Simpan
         </button>
@@ -439,27 +339,13 @@
     </ion-item>
     <div class="row">
       <div class="col">
-        <button
-          ion-button
-          icon-start
-          full
-          color="danger"
-          style="border-radius: 5px"
-          margin-top
-        >
+        <button ion-button icon-start full color="danger" style="border-radius: 5px" margin-top (click)="cancel()">
           <ion-icon name="md-close"></ion-icon>
           Batal
         </button>
       </div>
       <div class="col">
-        <button
-          ion-button
-          icon-start
-          full
-          color="primary"
-          style="border-radius: 5px"
-          margin-top
-        >
+        <button ion-button icon-start full color="primary" style="border-radius: 5px" margin-top>
           <ion-icon name="ios-search"></ion-icon>
           Simpan
         </button>
@@ -481,27 +367,13 @@
     </ion-item>
     <div class="row">
       <div class="col">
-        <button
-          ion-button
-          icon-start
-          full
-          color="danger"
-          style="border-radius: 5px"
-          margin-top
-        >
+        <button ion-button icon-start full color="danger" style="border-radius: 5px" margin-top (click)="cancel()">
           <ion-icon name="md-close"></ion-icon>
           Batal
         </button>
       </div>
       <div class="col">
-        <button
-          ion-button
-          icon-start
-          full
-          color="primary"
-          style="border-radius: 5px"
-          margin-top
-        >
+        <button ion-button icon-start full color="primary" style="border-radius: 5px" margin-top>
           <ion-icon name="ios-search"></ion-icon>
           Simpan
         </button>
