@@ -64,7 +64,7 @@
           <ion-badge class="my-badge" *ngIf="badgesList != null && parse(badgesList['JUMLAH_SURAT_ALL_BADGES'])" color="danger">{{badgesList['JUMLAH_SURAT_ALL_BADGES']}}</ion-badge>
         </div>
 
-        <div class="menu-content" (click)="getToast()">
+        <div class="menu-content" (click)="openPage('OutboxPage')">
           <div class="img-container color-2"><img src="assets/imgs/menu-icon/outbox-white.png" /></div>
           <span ion-text text-wrap>Surat Keluar</span>
         </div>
