@@ -613,17 +613,13 @@
             </button>
           </div>
           <div *ngIf="dataCV['DATA_PELATIHAN'].length > 0">
-            <table *ngFor="let training of dataCV['DATA_PELATIHAN'];let i = index">
+            <table width="100%" *ngFor="let training of dataCV['DATA_PELATIHAN'];let i = index">
               <tr *ngIf="training['IS_DELETED'] == '0' || training['IS_DELETED'] == '2'">
-                <td style="vertical-align: top" width="10%">
-                  <div>
-                    <span ion-text text-wrap class="medium-text" style="font-weight: normal !important">
-                      {{ i+1 }}.
-                    </span>
-                  </div>
-                </td>
                 <td style="vertical-align: top">
-                  <div>
+                  <ion-item style="margin-bottom: 10px" no-lines>
+                    <span item-start>
+                      <img src="assets/imgs/logo/biaya_dokter.png" class="icon-family" />
+                    </span>
                     <span ion-text text-wrap class="medium-text">
                       {{ training['NAMA_PELATIHAN'] }}
                     </span>
@@ -638,9 +634,11 @@
                     <span ion-text text-wrap class="medium-text" style="font-weight: normal" color="hijau">
                       <b>IDR.</b>{{ training['HARGA_PELATIHAN'] }}
                     </span>
-
-                    <br /><br />
-                  </div>
+                    <span item-end>
+                      <ion-icon name="md-close" style="margin-right: 5px;font-size: 2.3rem;" color="danger"
+                        (click)="delete('pelatihan',i,training)"></ion-icon>
+                    </span>
+                  </ion-item>
                 </td>
               </tr>
             </table>

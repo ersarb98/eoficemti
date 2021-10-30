@@ -1,5 +1,5 @@
 import { Component, ViewChild, Injectable } from "@angular/core";
-import { IonicPage, NavController, NavParams, ToastController, ModalController, Platform } from "ionic-angular";
+import { IonicPage, NavController, NavParams, ToastController, ModalController, Platform, AlertController, LoadingController } from "ionic-angular";
 import { SoapService } from "../soap.service";
 import { Storage } from "@ionic/storage";
 import { api_base_url, api_user, api_pass } from "../../config";
@@ -75,7 +75,7 @@ export class CveditPage {
   namaInstitusi: any = '';
   jenisKelamin: any = '';
   alamatDomisili: any = '';
-  alamatKTP:any = ''
+  alamatKTP: any = ''
   statusPerkawinan: any = '';
   jumlahAnak: any = '';
   jumlahTanggungan: any = '';
@@ -86,23 +86,29 @@ export class CveditPage {
   noTelpRumah: any = '';
 
   jsonPerubahan: any;
-  jsonInformasiPanggilanDarurat:any = [];
-  jsonPendFormal:any = [];
-  jsonPekerjaan:any = [];
-  jsonAssignmentHistory:any = [];
-  jsonKesehatan;any = [];
+  jsonInformasiPanggilanDarurat: any = [];
+  jsonPendFormal: any = [];
+  jsonPekerjaan: any = [];
+  jsonAssignmentHistory: any = [];
+  jsonKesehatan: any = [];
+  jsonIdentitasKeluarga: any = [];
+  jsonPenghargaan: any = [];
+  jsonPerformansi: any = [];
+  jsonPelatihan: any = [];
 
   constructor(
-    public navCtrl: NavController, 
-    public navParams: NavParams, 
-    public soapService: SoapService, 
-    public storage: Storage, 
+    public navCtrl: NavController,
+    public navParams: NavParams,
+    public soapService: SoapService,
+    public storage: Storage,
     public toastCtrl: ToastController,
     public modalCtrl: ModalController,
     private datePicker: DatePicker,
     public platform: Platform,
-    public datePipe: DatePipe
-    ) {
+    public datePipe: DatePipe,
+    public alertCtrl: AlertController,
+    public loadingCtrl: LoadingController
+  ) {
     this.storage.get("userdataTPK").then((val) => {
       this.userdataTPK = val;
       this.getDataCV();
@@ -259,7 +265,7 @@ export class CveditPage {
               "NAMA": data['data']['NAMA'],
               "STATUS_HUBUNGAN": data['data']['STATUS_HUBUNGAN'],
               "IS_DELETED": data['data']['IS_DELETED']
-            },
+            }
           );
 
           console.log(this.dataCV['DATA_PANGGILAN_DARURAT']);
@@ -272,7 +278,7 @@ export class CveditPage {
               "JURUSAN": data['data']['JURUSAN'],
               "TAHUN_LULUS": data['data']['TAHUN_LULUS'],
               "IS_DELETED": '2'
-            },
+            }
           );
 
           console.log(this.dataCV['DATA_PEND_FORMAL']);
@@ -285,7 +291,7 @@ export class CveditPage {
               "PRESTASI": data['data']['PRESTASI'],
               "ID_RIWAYAT_PEKERJAAN": '0',
               "IS_DELETED": '2'
-            },
+            }
           );
 
           console.log(this.dataCV['DATA_PEKERJAAN']);
@@ -299,7 +305,7 @@ export class CveditPage {
               "LAMA_JABATAN": data['data']['LAMA_JABATAN'],
               'ID_ASSIGNMENT': '0',
               "IS_DELETED": '2',
-            },
+            }
           );
 
           console.log(this.dataCV['DATA_ASSIGN_HISTORY']);
@@ -311,12 +317,72 @@ export class CveditPage {
               "UPLOAD_HASIL_MCU": data['data']['UPLOAD_HASIL_MCU'],
               "ID_RIWAYAT_KESEHATAN": '0',
               "IS_DELETED": '2',
-            },
+            }
           );
 
           console.log(this.dataCV['DATA_KESEHATAN']);
+        } else if (kategori == 'identitaskeluarga') {
+          this.dataCV['DATA_IDENTITAS_KELUARGA'].push(
+            {
+              "NAMA": data['data']['NAMA'],
+              "TGL_LAHIR": data['data']['TGL_LAHIR'],
+              "HUBUNGAN": data['data']['HUBUNGAN'],
+              "NIK": data['data']['NIK'],
+              "TGL_NIKAH": data['data']['TGL_NIKAH'],
+              'ID_IDENTITAS': '0',
+              "IS_DELETED": '2',
+            }
+          );
+
+          console.log(this.dataCV['DATA_IDENTITAS_KELUARGA']);
+        } else if (kategori == 'rewardpunish') {
+          this.dataCV['DATA_PENGHARGAAN_HK'].push(
+            {
+              "DESKRIPSI": data['data']['DESKRIPSI'],
+              "TAHUN": data['data']['TAHUN'],
+              "JENIS": data['data']['JENIS'],
+              "INSTANSI_YANG_MENGELUARKAN": data['data']['INSTANSI_YANG_MENGELUARKAN'],
+              "ID_PENGHUK": '0',
+              "IS_DELETED": '2'
+            }
+          );
+
+          console.log(this.dataCV['DATA_PENGHARGAAN_HK']);
+        } else if (kategori == 'performa') {
+          this.dataCV['DATA_PERFORMANSI'].push(
+            {
+              "NILAI_KINERJA_TAHUNAN": data['data']['NILAI_KINERJA_TAHUNAN'],
+              "KATEGORI": data['data']['KATEGORI'],
+              "TAHUN": data['data']['TAHUN'],
+              "ID_RIWAYAT_PERFORMA": '0',
+              "IS_DELETED": '2'
+            }
+          );
+
+          console.log(this.dataCV['DATA_PERFORMANSI']);
+        } else if (kategori == 'pelatihanppi') {
+          this.dataCV['DATA_PELATIHAN'].push(
+            {
+              "NAMA_PELATIHAN": data['data']['NAMA_PELATIHAN'],
+              "TAHUN_PELATIHAN": data['data']['TAHUN_PELATIHAN'],
+              "NAMA_PENYELENGGARA": data['data']['NAMA_PENYELENGGARA'],
+              "UPLOAD_BUKTI_SERTIFIKAT": data['data']['UPLOAD_BUKTI_SERTIFIKAT'],
+              "EVALUASI1": data['data']['EVALUASI1'],
+              "UPLOAD_DOK_EVAL1": data['data']['UPLOAD_DOK_EVAL1'],
+              "EVALUASI2": data['data']['EVALUASI2'],
+              "UPLOAD_DOK_EVAL2": data['data']['UPLOAD_DOK_EVAL2'],
+              "HARGA_PELATIHAN": data['data']['HARGA_PELATIHAN'],
+              "LOKASI": data['data']['LOKASI'],
+              "TGL_PELATIHAN": data['data']['TGL_PELATIHAN'],
+              "KETERANGAN": data['data']['KETERANGAN'],
+              "ID_RIWAYAT_PELATIHAN": '0',
+              "IS_DELETED": '2'
+            }
+          );
+
+          console.log(this.dataCV['DATA_PELATIHAN']);
         }
-      } 
+      }
     });
   }
 
@@ -387,58 +453,58 @@ export class CveditPage {
     var info_personal = [
       'Y',
       this.namaPersonal == this.dataCV['DATA_HEADER']['NAMA_USER'] ? "" : this.namaPersonal,
-    this.nipp == this.dataCV['DATA_HEADER']['NIPP'] ? "" : this.nipp,
-    this.puspel == this.dataCV['DATA_HEADER']['PUSPEL'] ? "" : this.puspel,
-    this.direktorat == this.dataCV['DATA_HEADER']['DIREKTORAT'] ? "" : this.direktorat,
-    this.divisi == this.dataCV['DATA_HEADER']['DIVISI'] ? "" :  this.divisi,
-    this.subDivisi == this.dataCV['DATA_HEADER']['SUB_DIVISI'] ? "" : this.subDivisi,
-    this.kategoriJabatan == this.dataCV['DATA_HEADER']['KATEGORI_JABATAN'] ? "" : this.kategoriJabatan,
-    this.jabatan == this.dataCV['DATA_HEADER']['JABATAN'] ? "" : this.jabatan,
-    this.kelasJabatan == this.dataCV['DATA_HEADER']['KELAS_JABATAN'] ? "" : this.kelasJabatan,
-    this.areaKerja == this.dataCV['DATA_HEADER']['AREA_KERJA'] ? "" : this.areaKerja,
-    this.golongan == this.dataCV['DATA_HEADER']['GOLONGAN'] ? "" : this.golongan,
-    "",
-    this.statusPekerja == this.dataCV['DATA_HEADER']['STATUS_PEKERJA'] ? "" : this.statusPekerja,
-    this.statusJabatan == this.dataCV['DATA_HEADER']['STATUS_JABATAN'] ? "" : this.statusJabatan,
-    this.kelompokPosisi == this.dataCV['DATA_HEADER']['KELOMPOK_POSISI'] ? "" : this.kelompokPosisi,
-    this.kategoriPosisi == this.dataCV['DATA_HEADER']['KATEGORI_POSISI'] ? "" : this.kategoriPosisi,
-    this.tanggalCapeg == this.dataCV['DATA_HEADER']['TGL_CAPEG'] ? "" : this.tanggalCapeg,
-    this.tglMasukPPI == this.dataCV['DATA_HEADER']['TGL_MASUK_PPI'] ? "" : this.tglKeluarPPI,
-    this.tglKeluarPPI == this.dataCV['DATA_HEADER']['TGL_KELUAR_PPI'] ? "" : this.tglKeluarPPI,
-    this.masaKerjaPPI == this.dataCV['DATA_HEADER']['MASA_KERJA_PPI'] ? "" : this.masaKerjaPPI,
-    this.nomorKTP == this.dataCV['DATA_HEADER']['NO_KTP'] ? "" : this.nomorKTP,
-    this.nomorNPWP == this.dataCV['DATA_HEADER']['NO_NPWP'] ? "" : this.nomorNPWP,
-    this.nomorKK == this.dataCV['DATA_HEADER']['NO_KK'] ? "" : this.nomorKK,
-    this.bpjsKesehatan == this.dataCV['DATA_HEADER']['NO_BPJS_KESEHATAN'] ? "" : this.bpjsKesehatan,
-    this.bpjsKetenagakerjaan == this.dataCV['DATA_HEADER']['NO_BPJS_KETENAGAKERJAAN'] ? "" : this.bpjsKetenagakerjaan,
-    this.tglLahir == this.dataCV['DATA_HEADER']['TGL_LAHIR'] ? "" : this.tglLahir,
-    this.tempatLahir == this.dataCV['DATA_HEADER']['TEMPAT_LAHIR'] ? "" : this.tempatLahir,
-    this.agama == this.dataCV['DATA_HEADER']['AGAMA'] ? "" : this.agama,
-    this.pendidikanTerakhir == this.dataCV['DATA_HEADER']['PEND_TERAKHIR'] ? "" : this.pendidikanTerakhir,
-    this.jurusan == this.dataCV['DATA_HEADER']['JURUSAN'] ? "" : this.jurusan,
-    this.namaInstitusi == this.dataCV['DATA_HEADER']['NAMA_INSTITUSI'] ? "" : this.namaInstitusi,
-    this.jenisKelamin == this.dataCV['DATA_HEADER']['JENIS_KELAMIN'] ? "" : this.jenisKelamin,
-    this.alamatKTP == this.dataCV['DATA_HEADER']['ALAMAT_KTP'] ? "" : this.alamatKTP,
-    this.alamatDomisili == this.dataCV['DATA_HEADER']['ALAMAT_DOMISILI'] ? "" : this.alamatDomisili,
-    this.statusPerkawinan == this.dataCV['DATA_HEADER']['STATUS_PERKAWINAN'] ? "" : this.statusPerkawinan,
-    this.jumlahAnak == this.dataCV['DATA_HEADER']['JUMLAH_ANAK'] ? "" : this.jumlahAnak,
-    this.jumlahTanggungan == this.dataCV['DATA_HEADER']['JUMLAH_TANGGUNGAN'] ? "" : this.jumlahTanggungan,
-    this.email == this.dataCV['DATA_HEADER']['EMAIL1'] ? "" : this.email,
-    this.email2 == this.dataCV['DATA_HEADER']['EMAIL2'] ? "" : this.email2,
-    this.noHp == this.dataCV['DATA_HEADER']['NO_HP'] ? "" : this.noHp,
-    this.noTelpRumah == this.dataCV['DATA_HEADER']['NO_TELP'] ? "" : this.noTelpRumah,
-    this.kelasCapeg == this.dataCV['DATA_HEADER']['KELAS_CAPEG'] ? "" : this.kelasCapeg,
-    this.tmtPenuh == this.dataCV['DATA_HEADER']['TMT_PENUH'] ? "" : this.tmtPenuh,
-    this.tmtJabatan == this.dataCV['DATA_HEADER']['TMT_JABATAN'] ? "" : this.tmtJabatan,
-    this.tmtKelasJabatan == this.dataCV['DATA_HEADER']['TMT_KELAS_JABATAN'] ? "" : this.tmtKelasJabatan,
-    this.tmtGolongan == this.dataCV['DATA_HEADER']['TMT_GOLONGAN'] ? "" : this.tmtGolongan,
-    this.alasanKeluar == this.dataCV['DATA_HEADER']['ALASAN_KELUAR'] ? "" : this.alasanKeluar,
-    this.statusPajak == this.dataCV['DATA_HEADER']['STATUS_PAJAK'] ? "" : this.statusPajak,
-    this.ahliWaris == this.dataCV['DATA_HEADER']['AHLI_WARIS'] ? "" : this.ahliWaris,   
-    chekupdate
+      this.nipp == this.dataCV['DATA_HEADER']['NIPP'] ? "" : this.nipp,
+      this.puspel == this.dataCV['DATA_HEADER']['PUSPEL'] ? "" : this.puspel,
+      this.direktorat == this.dataCV['DATA_HEADER']['DIREKTORAT'] ? "" : this.direktorat,
+      this.divisi == this.dataCV['DATA_HEADER']['DIVISI'] ? "" : this.divisi,
+      this.subDivisi == this.dataCV['DATA_HEADER']['SUB_DIVISI'] ? "" : this.subDivisi,
+      this.kategoriJabatan == this.dataCV['DATA_HEADER']['KATEGORI_JABATAN'] ? "" : this.kategoriJabatan,
+      this.jabatan == this.dataCV['DATA_HEADER']['JABATAN'] ? "" : this.jabatan,
+      this.kelasJabatan == this.dataCV['DATA_HEADER']['KELAS_JABATAN'] ? "" : this.kelasJabatan,
+      this.areaKerja == this.dataCV['DATA_HEADER']['AREA_KERJA'] ? "" : this.areaKerja,
+      this.golongan == this.dataCV['DATA_HEADER']['GOLONGAN'] ? "" : this.golongan,
+      "",
+      this.statusPekerja == this.dataCV['DATA_HEADER']['STATUS_PEKERJA'] ? "" : this.statusPekerja,
+      this.statusJabatan == this.dataCV['DATA_HEADER']['STATUS_JABATAN'] ? "" : this.statusJabatan,
+      this.kelompokPosisi == this.dataCV['DATA_HEADER']['KELOMPOK_POSISI'] ? "" : this.kelompokPosisi,
+      this.kategoriPosisi == this.dataCV['DATA_HEADER']['KATEGORI_POSISI'] ? "" : this.kategoriPosisi,
+      this.tanggalCapeg == this.dataCV['DATA_HEADER']['TGL_CAPEG'] ? "" : this.tanggalCapeg,
+      this.tglMasukPPI == this.dataCV['DATA_HEADER']['TGL_MASUK_PPI'] ? "" : this.tglKeluarPPI,
+      this.tglKeluarPPI == this.dataCV['DATA_HEADER']['TGL_KELUAR_PPI'] ? "" : this.tglKeluarPPI,
+      this.masaKerjaPPI == this.dataCV['DATA_HEADER']['MASA_KERJA_PPI'] ? "" : this.masaKerjaPPI,
+      this.nomorKTP == this.dataCV['DATA_HEADER']['NO_KTP'] ? "" : this.nomorKTP,
+      this.nomorNPWP == this.dataCV['DATA_HEADER']['NO_NPWP'] ? "" : this.nomorNPWP,
+      this.nomorKK == this.dataCV['DATA_HEADER']['NO_KK'] ? "" : this.nomorKK,
+      this.bpjsKesehatan == this.dataCV['DATA_HEADER']['NO_BPJS_KESEHATAN'] ? "" : this.bpjsKesehatan,
+      this.bpjsKetenagakerjaan == this.dataCV['DATA_HEADER']['NO_BPJS_KETENAGAKERJAAN'] ? "" : this.bpjsKetenagakerjaan,
+      this.tglLahir == this.dataCV['DATA_HEADER']['TGL_LAHIR'] ? "" : this.tglLahir,
+      this.tempatLahir == this.dataCV['DATA_HEADER']['TEMPAT_LAHIR'] ? "" : this.tempatLahir,
+      this.agama == this.dataCV['DATA_HEADER']['AGAMA'] ? "" : this.agama,
+      this.pendidikanTerakhir == this.dataCV['DATA_HEADER']['PEND_TERAKHIR'] ? "" : this.pendidikanTerakhir,
+      this.jurusan == this.dataCV['DATA_HEADER']['JURUSAN'] ? "" : this.jurusan,
+      this.namaInstitusi == this.dataCV['DATA_HEADER']['NAMA_INSTITUSI'] ? "" : this.namaInstitusi,
+      this.jenisKelamin == this.dataCV['DATA_HEADER']['JENIS_KELAMIN'] ? "" : this.jenisKelamin,
+      this.alamatKTP == this.dataCV['DATA_HEADER']['ALAMAT_KTP'] ? "" : this.alamatKTP,
+      this.alamatDomisili == this.dataCV['DATA_HEADER']['ALAMAT_DOMISILI'] ? "" : this.alamatDomisili,
+      this.statusPerkawinan == this.dataCV['DATA_HEADER']['STATUS_PERKAWINAN'] ? "" : this.statusPerkawinan,
+      this.jumlahAnak == this.dataCV['DATA_HEADER']['JUMLAH_ANAK'] ? "" : this.jumlahAnak,
+      this.jumlahTanggungan == this.dataCV['DATA_HEADER']['JUMLAH_TANGGUNGAN'] ? "" : this.jumlahTanggungan,
+      this.email == this.dataCV['DATA_HEADER']['EMAIL1'] ? "" : this.email,
+      this.email2 == this.dataCV['DATA_HEADER']['EMAIL2'] ? "" : this.email2,
+      this.noHp == this.dataCV['DATA_HEADER']['NO_HP'] ? "" : this.noHp,
+      this.noTelpRumah == this.dataCV['DATA_HEADER']['NO_TELP'] ? "" : this.noTelpRumah,
+      this.kelasCapeg == this.dataCV['DATA_HEADER']['KELAS_CAPEG'] ? "" : this.kelasCapeg,
+      this.tmtPenuh == this.dataCV['DATA_HEADER']['TMT_PENUH'] ? "" : this.tmtPenuh,
+      this.tmtJabatan == this.dataCV['DATA_HEADER']['TMT_JABATAN'] ? "" : this.tmtJabatan,
+      this.tmtKelasJabatan == this.dataCV['DATA_HEADER']['TMT_KELAS_JABATAN'] ? "" : this.tmtKelasJabatan,
+      this.tmtGolongan == this.dataCV['DATA_HEADER']['TMT_GOLONGAN'] ? "" : this.tmtGolongan,
+      this.alasanKeluar == this.dataCV['DATA_HEADER']['ALASAN_KELUAR'] ? "" : this.alasanKeluar,
+      this.statusPajak == this.dataCV['DATA_HEADER']['STATUS_PAJAK'] ? "" : this.statusPajak,
+      this.ahliWaris == this.dataCV['DATA_HEADER']['AHLI_WARIS'] ? "" : this.ahliWaris,
+      chekupdate
     ];
 
-    for(var i=0;i < this.dataCV['DATA_PANGGILAN_DARURAT'].length;i++) {
+    for (var i = 0; i < this.dataCV['DATA_PANGGILAN_DARURAT'].length; i++) {
       var data = [
         this.dataCV['DATA_PANGGILAN_DARURAT'][i]['NO_DARURAT'],
         this.dataCV['DATA_PANGGILAN_DARURAT'][i]['NAMA'],
@@ -452,7 +518,7 @@ export class CveditPage {
       )
     }
 
-    for(var i=0;i < this.dataCV['DATA_PEND_FORMAL'].length;i++) {
+    for (var i = 0; i < this.dataCV['DATA_PEND_FORMAL'].length; i++) {
       var data = [
         this.dataCV['DATA_PEND_FORMAL'][i]['TINGKAT_PEND'],
         this.dataCV['DATA_PEND_FORMAL'][i]['NAMA_INSTANSI'],
@@ -467,7 +533,7 @@ export class CveditPage {
       )
     }
 
-    for(var i=0;i < this.dataCV['DATA_PEKERJAAN'].length;i++) {
+    for (var i = 0; i < this.dataCV['DATA_PEKERJAAN'].length; i++) {
       var data = [
         this.dataCV['DATA_PEKERJAAN'][i]['JABATAN'],
         this.dataCV['DATA_PEKERJAAN'][i]['NAMA_PERUSAHAAN'],
@@ -482,7 +548,7 @@ export class CveditPage {
       )
     }
 
-    for(var i=0;i < this.dataCV['DATA_ASSIGN_HISTORY'].length;i++) {
+    for (var i = 0; i < this.dataCV['DATA_ASSIGN_HISTORY'].length; i++) {
       var data = [
         this.dataCV['DATA_ASSIGN_HISTORY'][i]['POSISI_JABATAN'],
         this.dataCV['DATA_ASSIGN_HISTORY'][i]['NO_SK'],
@@ -498,7 +564,7 @@ export class CveditPage {
       )
     }
 
-    for(var i=0;i < this.dataCV['DATA_KESEHATAN'].length;i++) {
+    for (var i = 0; i < this.dataCV['DATA_KESEHATAN'].length; i++) {
       var data = [
         this.dataCV['DATA_KESEHATAN'][i]['TGL_MCU'],
         this.dataCV['DATA_KESEHATAN'][i]['LEVEL_KESEHATAN'],
@@ -512,15 +578,157 @@ export class CveditPage {
       )
     }
 
+    for (var i = 0; i < this.dataCV['DATA_IDENTITAS_KELUARGA'].length; i++) {
+      var data = [
+        this.dataCV['DATA_IDENTITAS_KELUARGA'][i]['NAMA'],
+        this.dataCV['DATA_IDENTITAS_KELUARGA'][i]['TGL_LAHIR'],
+        this.dataCV['DATA_IDENTITAS_KELUARGA'][i]['HUBUNGAN'],
+        this.dataCV['DATA_IDENTITAS_KELUARGA'][i]['NIK'],
+        this.dataCV['DATA_IDENTITAS_KELUARGA'][i]['TGL_NIKAH'],
+        this.dataCV['DATA_IDENTITAS_KELUARGA'][i]['ID_IDENTITAS'],
+        this.dataCV['DATA_IDENTITAS_KELUARGA'][i]['IS_DELETED']
+      ]
+      console.log(data);
+      this.jsonIdentitasKeluarga.push(
+        data
+      )
+    }
+
+    for (var i = 0; i < this.dataCV['DATA_PENGHARGAAN_HK'].length; i++) {
+      var data = [
+        this.dataCV['DATA_PENGHARGAAN_HK'][i]['DESKRIPSI'],
+        this.dataCV['DATA_PENGHARGAAN_HK'][i]['TAHUN'],
+        this.dataCV['DATA_PENGHARGAAN_HK'][i]['JENIS'],
+        this.dataCV['DATA_PENGHARGAAN_HK'][i]['INSTANSI_YANG_MENGELUARKAN'],
+        this.dataCV['DATA_PENGHARGAAN_HK'][i]['ID_PENGHUK'],
+        this.dataCV['DATA_PENGHARGAAN_HK'][i]['IS_DELETED']
+      ]
+      console.log(data);
+      this.jsonPenghargaan.push(
+        data
+      )
+    }
+
+    for (var i = 0; i < this.dataCV['DATA_PERFORMANSI'].length; i++) {
+      var data = [
+        this.dataCV['DATA_PERFORMANSI'][i]['NILAI_KINERJA_TAHUNAN'],
+        this.dataCV['DATA_PERFORMANSI'][i]['KATEGORI'],
+        this.dataCV['DATA_PERFORMANSI'][i]['TAHUN'],
+        this.dataCV['DATA_PERFORMANSI'][i]['ID_RIWAYAT_PERFORMA'],
+        this.dataCV['DATA_PERFORMANSI'][i]['IS_DELETED']
+      ]
+      console.log(data);
+      this.jsonPerformansi.push(
+        data
+      )
+    }
+
+    for (var i = 0; i < this.dataCV['DATA_PELATIHAN'].length; i++) {
+      var data = [
+        this.dataCV['DATA_PELATIHAN'][i]['NAMA_PELATIHAN'],
+        this.dataCV['DATA_PELATIHAN'][i]['TAHUN_PELATIHAN'],
+        this.dataCV['DATA_PELATIHAN'][i]['NAMA_PENYELENGGARA'],
+        this.dataCV['DATA_PELATIHAN'][i]['UPLOAD_BUKTI_SERTIFIKAT'],
+        this.dataCV['DATA_PELATIHAN'][i]['EVALUASI1'],
+        this.dataCV['DATA_PELATIHAN'][i]['UPLOAD_DOK_EVAL1'],
+        this.dataCV['DATA_PELATIHAN'][i]['EVALUASI2'],
+        this.dataCV['DATA_PELATIHAN'][i]['UPLOAD_DOK_EVAL2'],
+        this.dataCV['DATA_PELATIHAN'][i]['HARGA_PELATIHAN'],
+        this.dataCV['DATA_PELATIHAN'][i]['LOKASI'],
+        this.dataCV['DATA_PELATIHAN'][i]['TGL_PELATIHAN'],
+        this.dataCV['DATA_PELATIHAN'][i]['KETERANGAN'],
+        this.dataCV['DATA_PELATIHAN'][i]['ID_RIWAYAT_PELATIHAN'],
+        this.dataCV['DATA_PELATIHAN'][i]['IS_DELETED']
+      ]
+      console.log(data);
+      this.jsonPelatihan.push(
+        data
+      )
+    }
+
+
     this.jsonPerubahan = {
       "info_personal": info_personal,
-      "informasi_panggilan_darurat" : this.jsonInformasiPanggilanDarurat,
-      "riwayat_pendidikan_formal" : this.jsonPendFormal,
+      "informasi_panggilan_darurat": this.jsonInformasiPanggilanDarurat,
+      "riwayat_pendidikan_formal": this.jsonPendFormal,
       "riwayat_pekerjaan": this.jsonPekerjaan,
       "assignment_history": this.jsonAssignmentHistory,
-      "riwayat_kesehatan": this.jsonKesehatan
+      "riwayat_kesehatan": this.jsonKesehatan,
+      "riwayat_pelatihan_ppi": this.jsonPelatihan,
+      "identitas_keluarga": this.jsonIdentitasKeluarga,
+      "penghargaan_hukuman_kerja": this.jsonPenghargaan,
+      "riwayat_performansi": this.jsonPerformansi
     }
     console.log(this.jsonPerubahan);
+
+    let alertError = this.alertCtrl.create({
+      title: 'Request Perubahan CV',
+      subTitle: 'Anda yakin ingin melakukan request perubahan CV?',
+      cssClass: 'alert',
+      buttons: [
+        {
+          text: 'Tidak',
+          role: 'cancel',
+          handler: () => {
+            //console.log('Cancel clicked');
+          }
+        },
+        {
+          text: 'Ya',
+          handler: () => {
+            //console.log('Cancel clicked');
+            let loading = this.loadingCtrl.create({
+              spinner: 'dots',
+              content: "Request perubahan CV...",
+              cssClass: 'transparent',
+              dismissOnPageChange: true
+            });
+            loading.present();
+    
+            this.soapService
+              .post(api_base_url, "eoffice_request_perubahan_cv", {
+                fStream: JSON.stringify({
+                  usernameEDI: api_user,
+                  passwordEDI: api_pass,
+                  id_user: this.userdataTPK["data"]["IDUSER"],
+                  json_param: JSON.stringify(this.jsonPerubahan)
+                }),
+              })
+              .then((result) => {
+                var responData = JSON.parse(String(result));
+                console.log(responData);
+                if (responData["rcmsg"] == "SUCCESS") {
+                  let toast = this.toastCtrl.create({
+                    message: "Request perubahan data CV berhasil.",
+                    duration: 3000,
+                    position: "bottom",
+                  });
+                  toast.present();
+                  this.navCtrl.pop();
+                } else {
+                  let toast = this.toastCtrl.create({
+                    message: "Gagal request perubahan CV, coba kembali.",
+                    duration: 3000,
+                    position: "bottom",
+                  });
+                  toast.present();
+                }
+                loading.dismiss();
+              })
+              .catch((error) => {
+                let toast = this.toastCtrl.create({
+                  message: "Gagal request perubahan CV, coba kembali.",
+                  duration: 3000,
+                  position: "bottom",
+                });
+                toast.present();
+                loading.dismiss();
+              });
+          }
+        }
+      ]
+    });
+    alertError.present();
   }
 
   delete(type, index, data) {
@@ -580,8 +788,15 @@ export class CveditPage {
       } else if (data['IS_DELETED'] == '2') {
         this.dataCV['DATA_PERFORMANSI'].splice(index, 1);
       }
-    }         
-    
+    } else if (type == 'pelatihan') {
+      console.log('mausuk');
+      if (data['IS_DELETED'] == '0') {
+        this.dataCV['DATA_PELATIHAN'][index]['IS_DELETED'] = '1';
+      } else if (data['IS_DELETED'] == '2') {
+        this.dataCV['DATA_PELATIHAN'].splice(index, 1);
+      }
+    }
+
   }
 
   showDatePicker(type: number) {
@@ -591,69 +806,69 @@ export class CveditPage {
 
     if (type == 1 && (this.tanggalCapeg != null && this.tanggalCapeg != '')) {
       var dateSplit = this.tanggalCapeg.split("/");
-      myDate = new Date(dateSplit[2],(dateSplit[1] != '0') ? parseInt(dateSplit[1])-1 : dateSplit[1], dateSplit[0]);
+      myDate = new Date(dateSplit[2], (dateSplit[1] != '0') ? parseInt(dateSplit[1]) - 1 : dateSplit[1], dateSplit[0]);
     }
     if (type == 2 && (this.tmtPenuh != null && this.tmtPenuh != '')) {
       var dateSplit = this.tmtPenuh.split("/");
-      myDate = new Date(dateSplit[2],(dateSplit[1] != '0') ? parseInt(dateSplit[1])-1 : dateSplit[1], dateSplit[0]);
+      myDate = new Date(dateSplit[2], (dateSplit[1] != '0') ? parseInt(dateSplit[1]) - 1 : dateSplit[1], dateSplit[0]);
     }
     if (type == 3 && (this.tmtJabatan != null && this.tmtJabatan != '')) {
       var dateSplit = this.tmtJabatan.split("/");
-      myDate = new Date(dateSplit[2],(dateSplit[1] != '0') ? parseInt(dateSplit[1])-1 : dateSplit[1], dateSplit[0]);
+      myDate = new Date(dateSplit[2], (dateSplit[1] != '0') ? parseInt(dateSplit[1]) - 1 : dateSplit[1], dateSplit[0]);
     }
     if (type == 4 && (this.tmtKelasJabatan != null && this.tmtKelasJabatan != '')) {
       var dateSplit = this.tmtKelasJabatan.split("/");
-      myDate = new Date(dateSplit[2],(dateSplit[1] != '0') ? parseInt(dateSplit[1])-1 : dateSplit[1], dateSplit[0]);
+      myDate = new Date(dateSplit[2], (dateSplit[1] != '0') ? parseInt(dateSplit[1]) - 1 : dateSplit[1], dateSplit[0]);
     }
     if (type == 5 && (this.tmtGolongan != null && this.tmtGolongan != '')) {
       var dateSplit = this.tmtGolongan.split("/");
-      myDate = new Date(dateSplit[2],(dateSplit[1] != '0') ? parseInt(dateSplit[1])-1 : dateSplit[1], dateSplit[0]);
+      myDate = new Date(dateSplit[2], (dateSplit[1] != '0') ? parseInt(dateSplit[1]) - 1 : dateSplit[1], dateSplit[0]);
     }
     if (type == 6 && (this.tglMasukPPI != null && this.tglMasukPPI != '')) {
       var dateSplit = this.tglMasukPPI.split("/");
-      myDate = new Date(dateSplit[2],(dateSplit[1] != '0') ? parseInt(dateSplit[1])-1 : dateSplit[1], dateSplit[0]);
+      myDate = new Date(dateSplit[2], (dateSplit[1] != '0') ? parseInt(dateSplit[1]) - 1 : dateSplit[1], dateSplit[0]);
     }
     if (type == 7 && (this.tglLahir != null && this.tglLahir != '')) {
       var dateSplit = this.tglLahir.split("/");
-      myDate = new Date(dateSplit[2],(dateSplit[1] != '0') ? parseInt(dateSplit[1])-1 : dateSplit[1], dateSplit[0]);
+      myDate = new Date(dateSplit[2], (dateSplit[1] != '0') ? parseInt(dateSplit[1]) - 1 : dateSplit[1], dateSplit[0]);
     }
     if (type == 8 && (this.tglLahir != null && this.tglLahir != '')) {
       var dateSplit = this.tglLahir.split("/");
-      myDate = new Date(dateSplit[2],(dateSplit[1] != '0') ? parseInt(dateSplit[1])-1 : dateSplit[1], dateSplit[0]);
+      myDate = new Date(dateSplit[2], (dateSplit[1] != '0') ? parseInt(dateSplit[1]) - 1 : dateSplit[1], dateSplit[0]);
     }
 
-      this.datePicker.show({
-        date: myDate,
-        mode: 'date',
-        // minDate: this.platform.is('ios') ? new Date() : (new Date()).valueOf(),
-        androidTheme: this.datePicker.ANDROID_THEMES.THEME_HOLO_LIGHT
-      }).then(date => {
-        if (type == 1) {
-          this.tanggalCapeg = this.datePipe.transform(date, 'dd/MM/yyyy');
-        }
-        if (type == 2) {
-          this.tmtPenuh = this.datePipe.transform(date, 'dd/MM/yyyy');
-        }
-        if (type == 3) {
-          this.tmtJabatan = this.datePipe.transform(date, 'dd/MM/yyyy');
-        }
-        if (type == 4) {
-          this.tmtKelasJabatan = this.datePipe.transform(date, 'dd/MM/yyyy');
-        }
-        if (type == 5) {
-          this.tmtGolongan = this.datePipe.transform(date, 'dd/MM/yyyy');
-        }
-        if (type == 6) {
-          this.tglMasukPPI = this.datePipe.transform(date, 'dd/MM/yyyy');
-        }
-        if (type == 7) {
-          this.tglLahir = this.datePipe.transform(date, 'dd/MM/yyyy');
-        }
-        if (type == 8) {
-          this.tglLahir = this.datePipe.transform(date, 'dd/MM/yyyy');
-        }
-      },
-        err => console.log('Error occurred while getting date: ', err)
-      );
+    this.datePicker.show({
+      date: myDate,
+      mode: 'date',
+      // minDate: this.platform.is('ios') ? new Date() : (new Date()).valueOf(),
+      androidTheme: this.datePicker.ANDROID_THEMES.THEME_HOLO_LIGHT
+    }).then(date => {
+      if (type == 1) {
+        this.tanggalCapeg = this.datePipe.transform(date, 'dd/MM/yyyy');
+      }
+      if (type == 2) {
+        this.tmtPenuh = this.datePipe.transform(date, 'dd/MM/yyyy');
+      }
+      if (type == 3) {
+        this.tmtJabatan = this.datePipe.transform(date, 'dd/MM/yyyy');
+      }
+      if (type == 4) {
+        this.tmtKelasJabatan = this.datePipe.transform(date, 'dd/MM/yyyy');
+      }
+      if (type == 5) {
+        this.tmtGolongan = this.datePipe.transform(date, 'dd/MM/yyyy');
+      }
+      if (type == 6) {
+        this.tglMasukPPI = this.datePipe.transform(date, 'dd/MM/yyyy');
+      }
+      if (type == 7) {
+        this.tglLahir = this.datePipe.transform(date, 'dd/MM/yyyy');
+      }
+      if (type == 8) {
+        this.tglLahir = this.datePipe.transform(date, 'dd/MM/yyyy');
+      }
+    },
+      err => console.log('Error occurred while getting date: ', err)
+    );
   }
 }

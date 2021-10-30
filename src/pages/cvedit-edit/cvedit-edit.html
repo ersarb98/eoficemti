@@ -229,49 +229,148 @@
   </div>
   <div *ngIf="kat == 'pelatihanppi';">
     <ion-item no-padding>
-      <ion-label stacked>Nama Pelatihan</ion-label>
-      <ion-input type="text" placeholder=""></ion-input>
+      <ion-label stacked>Nama Pelatihan*</ion-label>
+      <ion-input type="text" placeholder="" [(ngModel)]="namaPelatihan"></ion-input>
     </ion-item>
     <ion-item no-padding>
-      <ion-label stacked>Tahun Pelatihan</ion-label>
-      <ion-input type="number" placeholder=""></ion-input>
+      <ion-label stacked>Tahun Pelatihan*</ion-label>
+      <ion-input type="number" placeholder="" [(ngModel)]="tahunPelatihan"></ion-input>
     </ion-item>
     <ion-item no-padding>
-      <ion-label stacked>Nama Penyelenggara</ion-label>
-      <ion-input type="text" placeholder=""></ion-input>
+      <ion-label stacked>Nama Penyelenggara*</ion-label>
+      <ion-input type="text" placeholder="" [(ngModel)]="namaPenyelenggara"></ion-input>
     </ion-item>
-    <ion-item no-padding>
-      <ion-label stacked>Upload Bukti Serifikat</ion-label>
-    </ion-item>
+    <br>
+
+    <ion-card class="my-card">
+      <ion-card-content>
+        <div class="header-text">
+          <span ion-text text-wrap class="font-small">
+            <b>Upload Bukti Serifikat</b>
+          </span>
+        </div>
+        <div class="garis"></div>
+        <ion-item>
+          <span item-left>
+            <img src="assets/imgs/logo/document-icon.png" class="icons">
+          </span>
+          <ion-label stacked>Upload File</ion-label>
+          <ion-select [(ngModel)]="fileType2" cancelText="Cancel" okText="OK">
+            <div>
+              <ion-option value="file">File</ion-option>
+              <ion-option value="gambar">Foto</ion-option>
+            </div>
+          </ion-select>
+        </ion-item>
+        <div *ngIf="fileType2 == 'gambar'">
+          <div class="image-container">
+            <img (click)="takeImage(0,'2')" class="photo" src="{{ imageShow2 }}" />
+            <span ion-text style="text-align:center;color:gray;">Upload Foto (png, jpg, jpeg)</span>
+          </div>
+        </div>
+        <ion-item *ngIf="fileType2 == 'file'">
+          <ion-label stacked>Upload File (docx, doc, xlxs, xls,xlsx, pdf)</ion-label>
+          <ion-input type="text" [(ngModel)]="fileName2" [readonly]="true" (ionFocus)="openChooser('2')"
+            (click)="openChooser('2')" placeholder="pilih file"></ion-input>
+        </ion-item>
+      </ion-card-content>
+    </ion-card>
+
     <ion-item no-padding>
       <ion-label stacked>Evaluasi 1</ion-label>
-      <ion-input type="text" placeholder=""></ion-input>
+      <ion-input type="text" placeholder="" [(ngModel)]="evaluasi1"></ion-input>
     </ion-item>
-    <ion-item no-padding>
-      <ion-label stacked>Upload Dokumen Evaluasi 1</ion-label>
-    </ion-item>
+    <br>
+
+    <ion-card class="my-card">
+      <ion-card-content>
+        <div class="header-text">
+          <span ion-text text-wrap class="font-small">
+            <b>Upload Dokumen Evaluasi 1</b>
+          </span>
+        </div>
+        <div class="garis"></div>
+        <ion-item>
+          <span item-left>
+            <img src="assets/imgs/logo/document-icon.png" class="icons">
+          </span>
+          <ion-label stacked>Upload File</ion-label>
+          <ion-select [(ngModel)]="fileType3" cancelText="Cancel" okText="OK">
+            <div>
+              <ion-option value="file">File</ion-option>
+              <ion-option value="gambar">Foto</ion-option>
+            </div>
+          </ion-select>
+        </ion-item>
+        <div *ngIf="fileType3 == 'gambar'">
+          <div class="image-container">
+            <img (click)="takeImage(0,'3')" class="photo" src="{{ imageShow3 }}" />
+            <span ion-text style="text-align:center;color:gray;">Upload Foto (png, jpg, jpeg)</span>
+          </div>
+        </div>
+        <ion-item *ngIf="fileType3 == 'file'">
+          <ion-label stacked>Upload File (docx, doc, xlxs, xls,xlsx, pdf)</ion-label>
+          <ion-input type="text" [(ngModel)]="fileName3" [readonly]="true" (ionFocus)="openChooser('3')"
+            (click)="openChooser('3')" placeholder="pilih file"></ion-input>
+        </ion-item>
+      </ion-card-content>
+    </ion-card>
+
     <ion-item no-padding>
       <ion-label stacked>Evaluasi 2</ion-label>
-      <ion-input type="text" placeholder=""></ion-input>
+      <ion-input type="text" placeholder="" [(ngModel)]="evaluasi2"></ion-input>
+    </ion-item>
+    <br>
+
+    <ion-card class="my-card">
+      <ion-card-content>
+        <div class="header-text">
+          <span ion-text text-wrap class="font-small">
+            <b>Upload Dokumen Evaluasi 2</b>
+          </span>
+        </div>
+        <div class="garis"></div>
+        <ion-item>
+          <span item-left>
+            <img src="assets/imgs/logo/document-icon.png" class="icons">
+          </span>
+          <ion-label stacked>Upload File</ion-label>
+          <ion-select [(ngModel)]="fileType4" cancelText="Cancel" okText="OK">
+            <div>
+              <ion-option value="file">File</ion-option>
+              <ion-option value="gambar">Foto</ion-option>
+            </div>
+          </ion-select>
+        </ion-item>
+        <div *ngIf="fileType4 == 'gambar'">
+          <div class="image-container">
+            <img (click)="takeImage(0,'4')" class="photo" src="{{ imageShow4 }}" />
+            <span ion-text style="text-align:center;color:gray;">Upload Foto (png, jpg, jpeg)</span>
+          </div>
+        </div>
+        <ion-item *ngIf="fileType4 == 'file'">
+          <ion-label stacked>Upload File (docx, doc, xlxs, xls,xlsx, pdf)</ion-label>
+          <ion-input type="text" [(ngModel)]="fileName4" [readonly]="true" (ionFocus)="openChooser('4')"
+            (click)="openChooser('4')" placeholder="pilih file"></ion-input>
+        </ion-item>
+      </ion-card-content>
+    </ion-card>
+
+    <ion-item no-padding>
+      <ion-label stacked>Harga Pelatihan*</ion-label>
+      <ion-input type="number" placeholder="" [(ngModel)]="hargaPelatihan"></ion-input>
     </ion-item>
     <ion-item no-padding>
-      <ion-label stacked>Upload Dokumen Evaluasi 2</ion-label>
+      <ion-label stacked>Lokasi*</ion-label>
+      <ion-input type="text" placeholder="" [(ngModel)]="lokasiPelatihan"></ion-input>
     </ion-item>
     <ion-item no-padding>
-      <ion-label stacked>Harga Pelatihan</ion-label>
-      <ion-input type="text" placeholder=""></ion-input>
-    </ion-item>
-    <ion-item no-padding>
-      <ion-label stacked>Lokasi</ion-label>
-      <ion-input type="text" placeholder=""></ion-input>
-    </ion-item>
-    <ion-item no-padding>
-      <ion-label stacked>Tanggal Pelatihan</ion-label>
-      <ion-input type="text" (click)="showDatePicker(1)" (ionFocus)="checkFocus(1)" placeholder=""></ion-input>
+      <ion-label stacked>Tanggal Pelatihan*</ion-label>
+      <ion-input type="text" (click)="showDatePicker(5)" (ionFocus)="checkFocus(5)" placeholder="" [(ngModel)]="tglPelatihan"></ion-input>
     </ion-item>
     <ion-item no-padding>
       <ion-label stacked>Keterangan</ion-label>
-      <ion-input type="text" placeholder=""></ion-input>
+      <ion-input type="text" placeholder="" [(ngModel)]="ketPelatihan"></ion-input>
     </ion-item>
     <div class="row">
       <div class="col">
@@ -281,29 +380,29 @@
         </button>
       </div>
       <div class="col">
-        <button ion-button icon-start full color="primary" style="border-radius: 5px" margin-top>
+        <button ion-button icon-start full color="primary" style="border-radius: 5px" margin-top (click)="submit('pelatihan')">
           <ion-icon name="ios-search"></ion-icon>
           Simpan
         </button>
       </div>
     </div>
   </div>
-  <div *ngIf="kat == 'identitaskeluarga';">
+  <div *ngIf="kat == 'identitaskeluarga'">
     <ion-item no-padding>
       <ion-label stacked>Nama</ion-label>
-      <ion-input type="text" placeholder=""></ion-input>
+      <ion-input type="text" placeholder="" [(ngModel)]="namaKeluarga"></ion-input>
     </ion-item>
     <ion-item no-padding>
       <ion-label stacked>Tanggal Lahir</ion-label>
-      <ion-input type="text" (click)="showDatePicker(1)" (ionFocus)="checkFocus(1)" placeholder=""></ion-input>
+      <ion-input type="text" (click)="showDatePicker(4)" (ionFocus)="checkFocus(4)" placeholder="" [(ngModel)]="tglLahirKeluarga"></ion-input>
     </ion-item>
     <ion-item no-padding>
       <ion-label stacked>Hubungan</ion-label>
-      <ion-input type="text" placeholder=""></ion-input>
+      <ion-input type="text" placeholder="" [(ngModel)]="hubKeluarga"></ion-input>
     </ion-item>
     <ion-item no-padding>
       <ion-label stacked>NIK</ion-label>
-      <ion-input type="number" placeholder=""></ion-input>
+      <ion-input type="number" placeholder="" [(ngModel)]="nikKeluarga"></ion-input>
     </ion-item>
     <div class="row">
       <div class="col">
@@ -313,29 +412,29 @@
         </button>
       </div>
       <div class="col">
-        <button ion-button icon-start full color="primary" style="border-radius: 5px" margin-top>
+        <button ion-button icon-start full color="primary" style="border-radius: 5px" margin-top (click)="submit('identitaskeluarga')">
           <ion-icon name="ios-search"></ion-icon>
           Simpan
         </button>
       </div>
     </div>
   </div>
-  <div *ngIf="kat == 'rewardpunish';">
+  <div *ngIf="kat == 'rewardpunish'">
     <ion-item no-padding>
       <ion-label stacked>Deskripsi</ion-label>
-      <ion-input type="text" placeholder=""></ion-input>
+      <ion-input type="text" placeholder="" [(ngModel)]="deskripsiReward" ></ion-input>
     </ion-item>
     <ion-item no-padding>
       <ion-label stacked>Tahun</ion-label>
-      <ion-input type="text" placeholder=""></ion-input>
+      <ion-input type="text" placeholder="" [(ngModel)]="tahunReward"></ion-input>
     </ion-item>
     <ion-item no-padding>
       <ion-label stacked>Jenis</ion-label>
-      <ion-input type="text" placeholder=""></ion-input>
+      <ion-input type="text" placeholder="" [(ngModel)]="jenisReward"></ion-input>
     </ion-item>
     <ion-item no-padding>
       <ion-label stacked>Instansi yang Mengeluarkan</ion-label>
-      <ion-input type="text" placeholder=""></ion-input>
+      <ion-input type="text" placeholder="" [(ngModel)]="instansiReward"></ion-input>
     </ion-item>
     <div class="row">
       <div class="col">
@@ -345,25 +444,25 @@
         </button>
       </div>
       <div class="col">
-        <button ion-button icon-start full color="primary" style="border-radius: 5px" margin-top>
+        <button ion-button icon-start full color="primary" style="border-radius: 5px" margin-top (click)="submit('rewardpunish')" >
           <ion-icon name="ios-search"></ion-icon>
           Simpan
         </button>
       </div>
     </div>
   </div>
-  <div *ngIf="kat == 'performa';">
+  <div *ngIf="kat == 'performa'">
     <ion-item no-padding>
       <ion-label stacked>Nilai Kerja Tahunan</ion-label>
-      <ion-input type="text" placeholder=""></ion-input>
+      <ion-input type="number" placeholder="" [(ngModel)]="nilaiKerjaTahunan"></ion-input>
     </ion-item>
     <ion-item no-padding>
       <ion-label stacked>Kategori</ion-label>
-      <ion-input type="text" placeholder=""></ion-input>
+      <ion-input type="text" placeholder="" [(ngModel)]="kategoriPerformansi"></ion-input>
     </ion-item>
     <ion-item no-padding>
       <ion-label stacked>Tahun</ion-label>
-      <ion-input type="number" placeholder=""></ion-input>
+      <ion-input type="number" placeholder="" [(ngModel)]="tahunPerformansi"></ion-input>
     </ion-item>
     <div class="row">
       <div class="col">
@@ -373,7 +472,7 @@
         </button>
       </div>
       <div class="col">
-        <button ion-button icon-start full color="primary" style="border-radius: 5px" margin-top>
+        <button ion-button icon-start full color="primary" style="border-radius: 5px" margin-top (click)="submit('performa')" >
           <ion-icon name="ios-search"></ion-icon>
           Simpan
         </button>

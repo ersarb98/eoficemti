@@ -379,6 +379,7 @@ export class MapPage {
 
     var latlng = { lat: parseFloat(lat), lng: parseFloat(long) };
     geocoder.geocode({ 'location': latlng }, (results, status) => {
+      console.log(results);
       if (status === 'OK') {
         if (results[0]) {
           console.log(results[0].formatted_address);

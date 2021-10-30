@@ -59,6 +59,60 @@ export class CveditEditPage {
   fileType: any;
   imageFileName: any;
 
+  //file Data Pelatihan - sertifikat
+  imageURI2: any = "";
+  imageShow2: any = "assets/imgs/logo/camera.png";
+  fileDocPath2: any;
+  fileName2: any;
+  fileType2: any;
+  imageFileName2: any;
+
+  //file Data Pelatihan - evaluasi 1
+  imageURI3: any = "";
+  imageShow3: any = "assets/imgs/logo/camera.png";
+  fileDocPath3: any;
+  fileName3: any;
+  fileType3: any;
+  imageFileName3: any;
+
+  //file Data Pelatihan - evaluasi 2
+  imageURI4: any = "";
+  imageShow4: any = "assets/imgs/logo/camera.png";
+  fileDocPath4: any;
+  fileName4: any;
+  fileType4: any;
+  imageFileName4: any;
+
+  namaKeluarga: any = '';
+  tglLahirKeluarga: any = '';
+  hubKeluarga: any = '';
+  nikKeluarga = '';
+
+  deskripsiReward: any = '';
+  tahunReward: any = '';
+  jenisReward: any = '';
+  instansiReward: any = '';
+
+  nilaiKerjaTahunan: any = '';
+  kategoriPerformansi: any = '';
+  tahunPerformansi: any = '';
+
+  namaPelatihan: any = '';
+  tahunPelatihan: any = '';
+  namaPenyelenggara: any = '';
+  evaluasi1: any = '';
+  evaluasi2: any = '';
+  hargaPelatihan: any = '';
+  lokasiPelatihan: any = '';
+  tglPelatihan: any = '';
+  ketPelatihan: any = '';
+
+  namaFileSertifikat: any = '';
+  namaFileEvaluasi1: any = '';
+  namaFileEvaluasi2: any = '';
+
+
+
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
@@ -335,6 +389,252 @@ export class CveditEditPage {
       } else {
         this.upload('kesehatan');
       }
+    } else if (type == 'identitaskeluarga') {
+      var err = [];
+      if (this.namaKeluarga == '' || this.namaKeluarga == null) {
+        err.push("Nama Keluarga");
+      }
+      if (this.tglLahirKeluarga == '' || this.tglLahirKeluarga == null) {
+        err.push("Tanggal Lahir");
+      }
+      if (this.hubKeluarga == '' || this.hubKeluarga == null) {
+        err.push("Hubungan Keluarga");
+      }
+      if (this.nikKeluarga == '' || this.nikKeluarga == null) {
+        err.push("NIK Keluarga");
+      }
+
+      var showErr = '';
+      for (var i = 0; i < err.length; i++) {
+        if (i == err.length - 1) {
+          showErr = showErr + err[i];
+        } else {
+          showErr = showErr + err[i] + ', ';
+        }
+      }
+
+      if (err.length > 0) {
+        let alertError = this.alertCtrl.create({
+          title: 'Peringatan',
+          subTitle: 'Field ' + showErr + ' tidak boleh kosong !',
+          cssClass: 'alert',
+          buttons: [
+            {
+              text: 'TUTUP',
+              role: 'cancel',
+              handler: () => {
+                //console.log('Cancel clicked');
+              }
+            }
+          ]
+        });
+        alertError.present();
+      } else {
+        this.viewCtrl.dismiss({
+          data: {
+            "NAMA": this.namaKeluarga,
+            "TGL_LAHIR": this.tglLahirKeluarga,
+            "HUBUNGAN": this.hubKeluarga,
+            "NIK": this.nikKeluarga,
+            "TGL_NIKAH": null,
+            'ID_IDENTITAS': '0',
+            "IS_DELETED": '2',
+          }
+        });
+      }
+    } else if (type == 'rewardpunish') {
+      var err = [];
+      if (this.deskripsiReward == '' || this.deskripsiReward == null) {
+        err.push("Deskripsi");
+      }
+      if (this.tahunReward == '' || this.tahunReward == null) {
+        err.push("Tanggal");
+      }
+      if (this.jenisReward == '' || this.jenisReward == null) {
+        err.push("Jenis");
+      }
+      if (this.instansiReward == '' || this.instansiReward == null) {
+        err.push("Instansi");
+      }
+
+      var showErr = '';
+      for (var i = 0; i < err.length; i++) {
+        if (i == err.length - 1) {
+          showErr = showErr + err[i];
+        } else {
+          showErr = showErr + err[i] + ', ';
+        }
+      }
+
+      if (err.length > 0) {
+        let alertError = this.alertCtrl.create({
+          title: 'Peringatan',
+          subTitle: 'Field ' + showErr + ' tidak boleh kosong !',
+          cssClass: 'alert',
+          buttons: [
+            {
+              text: 'TUTUP',
+              role: 'cancel',
+              handler: () => {
+                //console.log('Cancel clicked');
+              }
+            }
+          ]
+        });
+        alertError.present();
+      } else {
+        this.viewCtrl.dismiss({
+          data: {
+            "DESKRIPSI": this.deskripsiReward,
+            "TAHUN": this.tahunReward,
+            "JENIS": this.jenisReward,
+            "INSTANSI_YANG_MENGELUARKAN": this.instansiReward,
+            "ID_PENGHUK": '0',
+            "IS_DELETED": '2'
+          }
+        });
+      }
+    } else if (type == 'performa') {
+      var err = [];
+      if (this.nilaiKerjaTahunan == '' || this.nilaiKerjaTahunan == null) {
+        err.push("Nilai Kerja Tahunan");
+      }
+      if (this.kategoriPerformansi == '' || this.kategoriPerformansi == null) {
+        err.push("Kategori");
+      }
+      if (this.tahunPerformansi == '' || this.tahunPerformansi == null) {
+        err.push("Tahun");
+      }
+
+      var showErr = '';
+      for (var i = 0; i < err.length; i++) {
+        if (i == err.length - 1) {
+          showErr = showErr + err[i];
+        } else {
+          showErr = showErr + err[i] + ', ';
+        }
+      }
+
+      if (err.length > 0) {
+        let alertError = this.alertCtrl.create({
+          title: 'Peringatan',
+          subTitle: 'Field ' + showErr + ' tidak boleh kosong !',
+          cssClass: 'alert',
+          buttons: [
+            {
+              text: 'TUTUP',
+              role: 'cancel',
+              handler: () => {
+                //console.log('Cancel clicked');
+              }
+            }
+          ]
+        });
+        alertError.present();
+      } else {
+        this.viewCtrl.dismiss({
+          data: {
+            "NILAI_KINERJA_TAHUNAN": this.nilaiKerjaTahunan,
+            "KATEGORI": this.kategoriPerformansi,
+            "TAHUN": this.tahunPerformansi,
+            "ID_RIWAYAT_PERFORMA": '0',
+            "IS_DELETED": '2'
+          }
+        });
+      }
+    } else if (type == 'pelatihan') {
+      var err = [];
+      if (this.hargaPelatihan == '' || this.hargaPelatihan == null) {
+        err.push("Harga Pelatihan");
+      }
+      if (this.lokasiPelatihan == '' || this.lokasiPelatihan == null) {
+        err.push("Lokasi");
+      }
+      if (this.tglPelatihan == '' || this.tglPelatihan == null) {
+        err.push("Tanggal Pelatihan");
+      }
+      if (this.namaPelatihan == '' || this.namaPelatihan == null) {
+        err.push("Nama Pelatihan");
+      }
+      if (this.tahunPelatihan == '' || this.tahunPelatihan == null) {
+        err.push("tahun Pelatihan");
+      }
+      if (this.namaPenyelenggara == '' || this.namaPenyelenggara == null) {
+        err.push("Nama Penyelenggara");
+      }
+
+      var showErr = '';
+      for (var i = 0; i < err.length; i++) {
+        if (i == err.length - 1) {
+          showErr = showErr + err[i];
+        } else {
+          showErr = showErr + err[i] + ', ';
+        }
+      }
+
+      if (err.length > 0) {
+        let alertError = this.alertCtrl.create({
+          title: 'Peringatan',
+          subTitle: 'Field ' + showErr + ' tidak boleh kosong !',
+          cssClass: 'alert',
+          buttons: [
+            {
+              text: 'TUTUP',
+              role: 'cancel',
+              handler: () => {
+                //console.log('Cancel clicked');
+              }
+            }
+          ]
+        });
+        alertError.present();
+      } else {
+        let loading = this.loadingCtrl.create({
+          spinner: 'dots',
+          content: "Menambahkan Data...",
+          cssClass: 'transparent',
+          dismissOnPageChange: true
+        });
+        loading.present();
+
+        if (
+          ((this.imageURI2 == null || this.imageURI2 == '') && (this.fileName2 == null || this.fileName2 == ''))
+          && ((this.imageURI3 == null || this.imageURI3 == '') && (this.fileName3 == null || this.fileName3 == ''))
+          && ((this.imageURI4 == null || this.imageURI4 == '') && (this.fileName4 == null || this.fileName4 == ''))
+        ) {
+          this.viewCtrl.dismiss({
+            data: {
+              "NAMA_PELATIHAN": this.namaPelatihan,
+              "TAHUN_PELATIHAN": this.tahunPelatihan,
+              "NAMA_PENYELENGGARA": this.namaPenyelenggara,
+              "UPLOAD_BUKTI_SERTIFIKAT": this.namaFileSertifikat,
+              "EVALUASI1": this.evaluasi1,
+              "UPLOAD_DOK_EVAL1": this.namaFileEvaluasi1,
+              "EVALUASI2": this.evaluasi2,
+              "UPLOAD_DOK_EVAL2": this.namaFileEvaluasi2,
+              "HARGA_PELATIHAN": this.hargaPelatihan,
+              "LOKASI": this.lokasiPelatihan,
+              "TGL_PELATIHAN": this.tglPelatihan,
+              "KETERANGAN": this.ketPelatihan,
+              "ID_RIWAYAT_PELATIHAN": '0',
+              "IS_DELETED": '2'
+            }
+          });
+          loading.dismiss();
+        } else if (
+          ((this.imageURI2 != null && this.imageURI2 != '') || (this.fileName2 != null && this.fileName2 != ''))
+        ) {
+          this.uploadSertifikat(loading);
+        } else if (
+          ((this.imageURI3 != null && this.imageURI3 != '') || (this.fileName3 != null && this.fileName3 != ''))
+        ) {
+          this.uploadEvaluasi1(loading);
+        } else if (
+          ((this.imageURI4 != null && this.imageURI4 != '') || (this.fileName4 != null && this.fileName4 != ''))
+        ) {
+          this.uploadEvaluasi2(loading);
+        }
+      }
     }
 
   }
@@ -350,15 +650,23 @@ export class CveditEditPage {
 
     if (type == 1 && (this.tglMulaiJab != null && this.tglMulaiJab != '')) {
       var dateSplit = this.tglMulaiJab.split("/");
-      myDate = new Date(dateSplit[2], (dateSplit[1] != '0') ? parseInt(dateSplit[1])-1 : dateSplit[1], dateSplit[0]);
+      myDate = new Date(dateSplit[2], (dateSplit[1] != '0') ? parseInt(dateSplit[1]) - 1 : dateSplit[1], dateSplit[0]);
     }
     if (type == 2 && (this.tglAkhirJab != null && this.tglAkhirJab != '')) {
       var dateSplit = this.tglAkhirJab.split("/");
-      myDate = new Date(dateSplit[2], (dateSplit[1] != '0') ? parseInt(dateSplit[1])-1 : dateSplit[1], dateSplit[0]);
+      myDate = new Date(dateSplit[2], (dateSplit[1] != '0') ? parseInt(dateSplit[1]) - 1 : dateSplit[1], dateSplit[0]);
     }
     if (type == 3 && (this.tglMCU != null && this.tglMCU != '')) {
       var dateSplit = this.tglMCU.split("/");
-      myDate = new Date(dateSplit[2], (dateSplit[1] != '0') ? parseInt(dateSplit[1])-1 : dateSplit[1], dateSplit[0]);
+      myDate = new Date(dateSplit[2], (dateSplit[1] != '0') ? parseInt(dateSplit[1]) - 1 : dateSplit[1], dateSplit[0]);
+    }
+    if (type == 4 && (this.tglLahirKeluarga != null && this.tglLahirKeluarga != '')) {
+      var dateSplit = this.tglLahirKeluarga.split("/");
+      myDate = new Date(dateSplit[2], (dateSplit[1] != '0') ? parseInt(dateSplit[1]) - 1 : dateSplit[1], dateSplit[0]);
+    } 
+    if (type == 5 && (this.tglPelatihan != null && this.tglPelatihan != '')) {
+      var dateSplit = this.tglPelatihan.split("/");
+      myDate = new Date(dateSplit[2], (dateSplit[1] != '0') ? parseInt(dateSplit[1]) - 1 : dateSplit[1], dateSplit[0]);
     }
     // if (type == 3 && (this.tmtJabatan != null && this.tmtJabatan != '')) {
     //   var dateSplit = this.tmtJabatan.split("/");
@@ -399,8 +707,8 @@ export class CveditEditPage {
         if (this.tglMulaiJab != '' || this.tglMulaiJab != null) {
           var tglMulaiSplit = this.tglMulaiJab.split('/');
           var tglAkhirSplit = this.tglAkhirJab.split('/');
-          var tglMulaiDate = new Date(tglMulaiSplit[2], (tglMulaiSplit[1] != '0') ? parseInt(tglMulaiSplit[1])-1 : tglMulaiSplit[1], tglMulaiSplit[0]);
-          var tglAkhirDate = new Date(tglAkhirSplit[2], (tglAkhirSplit[1] != '0') ? parseInt(tglAkhirSplit[1])-1 : tglAkhirSplit[1], tglAkhirSplit[0]);
+          var tglMulaiDate = new Date(tglMulaiSplit[2], (tglMulaiSplit[1] != '0') ? parseInt(tglMulaiSplit[1]) - 1 : tglMulaiSplit[1], tglMulaiSplit[0]);
+          var tglAkhirDate = new Date(tglAkhirSplit[2], (tglAkhirSplit[1] != '0') ? parseInt(tglAkhirSplit[1]) - 1 : tglAkhirSplit[1], tglAkhirSplit[0]);
 
           if (tglMulaiDate > tglAkhirDate) {
             this.lamaJabatan = '';
@@ -414,15 +722,12 @@ export class CveditEditPage {
       if (type == 3) {
         this.tglMCU = this.datePipe.transform(date, 'dd/MM/yyyy');
       }
-      // if (type == 3) {
-      //   this.tmtJabatan = this.datePipe.transform(date, 'dd/MM/yyyy');
-      // }
-      // if (type == 4) {
-      //   this.tmtKelasJabatan = this.datePipe.transform(date, 'dd/MM/yyyy');
-      // }
-      // if (type == 5) {
-      //   this.tmtGolongan = this.datePipe.transform(date, 'dd/MM/yyyy');
-      // }
+      if (type == 4) {
+        this.tglLahirKeluarga = this.datePipe.transform(date, 'dd/MM/yyyy');
+      }
+      if (type == 5) {
+        this.tglPelatihan = this.datePipe.transform(date, 'dd/MM/yyyy');
+      }
       // if (type == 6) {
       //   this.tglMasukPPI = this.datePipe.transform(date, 'dd/MM/yyyy');
       // }
@@ -439,14 +744,14 @@ export class CveditEditPage {
 
   getCountDate(startDate, endDate) {
     var endDateSplit = endDate.split('/');
-    var today = new Date(endDateSplit[2], (endDateSplit[1] != '0') ? parseInt(endDateSplit[1])-1 : endDateSplit[1], endDateSplit[0]);
+    var today = new Date(endDateSplit[2], (endDateSplit[1] != '0') ? parseInt(endDateSplit[1]) - 1 : endDateSplit[1], endDateSplit[0]);
 
     var yearNow = today.getFullYear();
     var monthNow = today.getMonth();
     var dateNow = today.getDate();
 
     var startDateSplit = startDate.split('/');
-    var dob = new Date(startDateSplit[2], (endDateSplit[1] != '0') ? parseInt(endDateSplit[1])-1 : endDateSplit[1], startDateSplit[0]);
+    var dob = new Date(startDateSplit[2], (endDateSplit[1] != '0') ? parseInt(endDateSplit[1]) - 1 : endDateSplit[1], startDateSplit[0]);
 
     var yearDob = dob.getFullYear();
     var monthDob = dob.getMonth();
@@ -530,11 +835,21 @@ export class CveditEditPage {
         this.imageURI = imageData;
         URI = this.imageURI;
       }
-      // else if (type == '2') {
-      //   this.imageShow2 = this.win.Ionic.WebView.convertFileSrc(imageData);
-      //   this.imageURI2 = imageData;
-      //   URI = this.imageURI2;
-      // }
+      else if (type == '2') {
+        this.imageShow2 = this.win.Ionic.WebView.convertFileSrc(imageData);
+        this.imageURI2 = imageData;
+        URI = this.imageURI2;
+      }
+      else if (type == '3') {
+        this.imageShow3 = this.win.Ionic.WebView.convertFileSrc(imageData);
+        this.imageURI3 = imageData;
+        URI = this.imageURI3;
+      }
+      else if (type == '4') {
+        this.imageShow4 = this.win.Ionic.WebView.convertFileSrc(imageData);
+        this.imageURI4 = imageData;
+        URI = this.imageURI4;
+      }
 
 
       if (this.platform.is('android') && sourceType === this.camera.PictureSourceType.PHOTOLIBRARY) {
@@ -560,9 +875,15 @@ export class CveditEditPage {
       if (type == '1') {
         this.imageFileName = filename;
       }
-      // else if (type == '2') {
-      //   this.imageFileName2 = filename;
-      // }
+      else if (type == '2') {
+        this.imageFileName2 = filename;
+      }
+      else if (type == '3') {
+        this.imageFileName3 = filename;
+      }
+      else if (type == '4') {
+        this.imageFileName4 = filename;
+      }
 
       console.log(this.imageFileName);
     }, error => {
@@ -580,14 +901,30 @@ export class CveditEditPage {
         // console.log('error disini');
       }
     }
-    // else if (type == '2') {
-    //   if (this.fileType2 == 'gambar') {
-    //     var d = new Date(), n = d.getTime();
-    //     newFileName = n + "_konsumsi.jpg";
-    //   } else {
-    //     // console.log('error disini');
-    //   }
-    // }
+    else if (type == '2') {
+      if (this.fileType2 == 'gambar') {
+        var d = new Date(), n = d.getTime();
+        newFileName = n + "_konsumsi.jpg";
+      } else {
+        // console.log('error disini');
+      }
+    }
+    else if (type == '3') {
+      if (this.fileType3 == 'gambar') {
+        var d = new Date(), n = d.getTime();
+        newFileName = n + "_konsumsi.jpg";
+      } else {
+        // console.log('error disini');
+      }
+    }
+    else if (type == '4') {
+      if (this.fileType4 == 'gambar') {
+        var d = new Date(), n = d.getTime();
+        newFileName = n + "_konsumsi.jpg";
+      } else {
+        // console.log('error disini');
+      }
+    }
 
     // console.log(newFileName);
     return newFileName;
@@ -611,12 +948,24 @@ export class CveditEditPage {
           this.fileName = this.fileName.substr(10);
           this.fileName = this.fileName.replace(/%20/g, " ");
         }
-        // else if (type == '2') {
-        //   this.fileDocPath2 = uri;
-        //   this.fileName2 = uri.substr(uri.lastIndexOf('/') + 1);
-        //   this.fileName2 = this.fileName.substr(10);
-        //   this.fileName2 = this.fileName.replace(/%20/g, " ");
-        // }
+        else if (type == '2') {
+          this.fileDocPath2 = uri;
+          this.fileName2 = uri.substr(uri.lastIndexOf('/') + 1);
+          this.fileName2 = this.fileName.substr(10);
+          this.fileName2 = this.fileName.replace(/%20/g, " ");
+        }
+        else if (type == '3') {
+          this.fileDocPath3 = uri;
+          this.fileName3 = uri.substr(uri.lastIndexOf('/') + 1);
+          this.fileName3 = this.fileName.substr(10);
+          this.fileName3 = this.fileName.replace(/%20/g, " ");
+        }
+        else if (type == '4') {
+          this.fileDocPath4 = uri;
+          this.fileName4 = uri.substr(uri.lastIndexOf('/') + 1);
+          this.fileName4 = this.fileName.substr(10);
+          this.fileName4 = this.fileName.replace(/%20/g, " ");
+        }
 
         console.log(this.fileName);
         // console.log(this.fileName2);
@@ -693,7 +1042,7 @@ export class CveditEditPage {
               });
               toast.present();
             }
-            
+
           } else {
             let toast = this.toastCtrl.create({
               message: "file attachment gagal diupload, silahkan hubungi admin.",
@@ -711,7 +1060,7 @@ export class CveditEditPage {
             position: 'bottom'
           });
           toast.present();
-          loading.present();
+          loading.dismiss();
         });
     } else if (myFileType == 'gambar') {
       const fileTransfer: FileTransferObject = this.transfer.create();
@@ -771,4 +1120,512 @@ export class CveditEditPage {
     }
   }
 
+  uploadSertifikat(loader) {
+    var myfileName = this.fileName2;
+    var myPathImage = this.pathForImage(this.imageFileName2);
+    var myFileDocPath = this.fileDocPath2;
+    var myFileType = this.fileType2;
+
+    if (myFileType == 'file') {
+      const fileTransfer: FileTransferObject = this.transfer.create();
+      var options = {
+        fileKey: "file",
+        fileName: myfileName,
+        chunkedMode: false,
+        mimeType: "multipart/form-data",
+        params: {}
+      };
+
+      fileTransfer.upload(
+        myFileDocPath,
+        url_upload_att_cv, options)
+        .then((data) => {
+          // console.log(JSON.stringify(data));
+          // console.log(" Uploaded Successfully");    
+          if (data['responseCode'] == 200) {
+            var responData = JSON.parse(String(data['response']));
+            console.log(responData);
+
+            if (responData['rcmsg'] == 'SUCCESS') {
+              this.namaFileSertifikat = responData['data'];
+              if (
+                (((this.imageURI3 != null && this.imageURI3 != '') || (this.fileName3 != null && this.fileName3 != '')) && (this.namaFileEvaluasi1 == null || this.namaFileEvaluasi1 == ''))
+              ) {
+                this.uploadEvaluasi1(loader);
+              } else if (
+                (((this.imageURI4 != null && this.imageURI4 != '') || (this.fileName4 != null && this.fileName4 != '')) && (this.namaFileEvaluasi2 == null || this.namaFileEvaluasi2 == ''))
+              ) {
+                this.uploadEvaluasi2(loader);
+              } else {
+                this.viewCtrl.dismiss({
+                  data: {
+                    "NAMA_PELATIHAN": this.namaPelatihan,
+                    "TAHUN_PELATIHAN": this.tahunPelatihan,
+                    "NAMA_PENYELENGGARA": this.namaPenyelenggara,
+                    "UPLOAD_BUKTI_SERTIFIKAT": this.namaFileSertifikat,
+                    "EVALUASI1": this.evaluasi1,
+                    "UPLOAD_DOK_EVAL1": this.namaFileEvaluasi1,
+                    "EVALUASI2": this.evaluasi2,
+                    "UPLOAD_DOK_EVAL2": this.namaFileEvaluasi2,
+                    "HARGA_PELATIHAN": this.hargaPelatihan,
+                    "LOKASI": this.lokasiPelatihan,
+                    "TGL_PELATIHAN": this.tglPelatihan,
+                    "KETERANGAN": this.ketPelatihan,
+                    "ID_RIWAYAT_PELATIHAN": '0',
+                    "IS_DELETED": '2'
+                  }
+                });
+                loader.dismiss();
+              }
+
+            } else {
+              let toast = this.toastCtrl.create({
+                message: "file attachment gagal diupload, silahkan hubungi admin.",
+                duration: 3000,
+                position: 'bottom'
+              });
+              toast.present();
+              loader.dismiss();
+            }
+
+          } else {
+            let toast = this.toastCtrl.create({
+              message: "file attachment gagal diupload, silahkan hubungi admin.",
+              duration: 3000,
+              position: 'bottom'
+            });
+            toast.present();
+            loader.dismiss();
+          }
+
+        }, (err) => {
+          let toast = this.toastCtrl.create({
+            message: "file attachment gagal diupload, silahkan hubungi admin.",
+            duration: 3000,
+            position: 'bottom'
+          });
+          toast.present();
+          loader.dismiss();
+        });
+    } else if (myFileType == 'gambar') {
+      const fileTransfer: FileTransferObject = this.transfer.create();
+
+      var options = {
+        fileKey: "file",
+        fileName: myfileName,
+        chunkedMode: false,
+        mimeType: "multipart/form-data",
+        params: {}
+      };
+
+      fileTransfer.upload(
+        myPathImage,
+        url_upload_att_cv, options)
+        .then((data) => {
+          if (data['responseCode'] == 200) {
+
+            var responData = JSON.parse(String(data['response']));
+            console.log(responData);
+
+            if (responData['rcmsg'] == 'SUCCESS') {
+              this.namaFileSertifikat = responData['data'];
+              if (
+                (((this.imageURI3 != null && this.imageURI3 != '') || (this.fileName3 != null && this.fileName3 != '')) && (this.namaFileEvaluasi1 == null || this.namaFileEvaluasi1 == ''))
+              ) {
+                this.uploadEvaluasi1(loader);
+              } else if (
+                (((this.imageURI4 != null && this.imageURI4 != '') || (this.fileName4 != null && this.fileName4 != '')) && (this.namaFileEvaluasi2 == null || this.namaFileEvaluasi2 == ''))
+              ) {
+                this.uploadEvaluasi2(loader);
+              } else {
+                this.viewCtrl.dismiss({
+                  data: {
+                    "NAMA_PELATIHAN": this.namaPelatihan,
+                    "TAHUN_PELATIHAN": this.tahunPelatihan,
+                    "NAMA_PENYELENGGARA": this.namaPenyelenggara,
+                    "UPLOAD_BUKTI_SERTIFIKAT": this.namaFileSertifikat,
+                    "EVALUASI1": this.evaluasi1,
+                    "UPLOAD_DOK_EVAL1": this.namaFileEvaluasi1,
+                    "EVALUASI2": this.evaluasi2,
+                    "UPLOAD_DOK_EVAL2": this.namaFileEvaluasi2,
+                    "HARGA_PELATIHAN": this.hargaPelatihan,
+                    "LOKASI": this.lokasiPelatihan,
+                    "TGL_PELATIHAN": this.tglPelatihan,
+                    "KETERANGAN": this.ketPelatihan,
+                    "ID_RIWAYAT_PELATIHAN": '0',
+                    "IS_DELETED": '2'
+                  }
+                });
+                loader.dismiss();
+              }
+            } else {
+              let toast = this.toastCtrl.create({
+                message: "file attachment gagal diupload, silahkan hubungi admin.",
+                duration: 3000,
+                position: 'bottom'
+              });
+              toast.present();
+              loader.dismiss();
+            }
+          } else {
+            let toast = this.toastCtrl.create({
+              message: "file attachment gagal diupload, silahkan hubungi admin.",
+              duration: 3000,
+              position: 'bottom'
+            });
+            toast.present();
+            loader.dismiss();
+          }
+          
+        }, (err) => {
+          let toast = this.toastCtrl.create({
+            message: "file attachment gagal diupload, silahkan hubungi admin.",
+            duration: 3000,
+            position: 'bottom'
+          });
+          toast.present();
+          loader.dismiss();
+        });
+    }
+  }
+
+  uploadEvaluasi1(loader) {
+    var myfileName = this.fileName3;
+    var myPathImage = this.pathForImage(this.imageFileName3);
+    var myFileDocPath = this.fileDocPath3;
+    var myFileType = this.fileType3;
+
+    if (myFileType == 'file') {
+      const fileTransfer: FileTransferObject = this.transfer.create();
+      var options = {
+        fileKey: "file",
+        fileName: myfileName,
+        chunkedMode: false,
+        mimeType: "multipart/form-data",
+        params: {}
+      };
+
+      fileTransfer.upload(
+        myFileDocPath,
+        url_upload_att_cv, options)
+        .then((data) => {
+          // console.log(JSON.stringify(data));
+          // console.log(" Uploaded Successfully");    
+          if (data['responseCode'] == 200) {
+            var responData = JSON.parse(String(data['response']));
+            console.log(responData);
+
+            if (responData['rcmsg'] == 'SUCCESS') {
+              this.namaFileEvaluasi1 = responData['data'];
+              if (
+                (((this.imageURI2 != null && this.imageURI2 != '') || (this.fileName2 != null && this.fileName2 != '')) && (this.namaFileSertifikat == null || this.namaFileSertifikat == ''))
+              ) {
+                this.uploadSertifikat(loader);
+              } else if (
+                (((this.imageURI4 != null && this.imageURI4 != '') || (this.fileName4 != null && this.fileName4 != '')) && (this.namaFileEvaluasi2 == null || this.namaFileEvaluasi2 == ''))
+              ) {
+                this.uploadEvaluasi2(loader);
+              } else {
+                this.viewCtrl.dismiss({
+                  data: {
+                    "NAMA_PELATIHAN": this.namaPelatihan,
+                    "TAHUN_PELATIHAN": this.tahunPelatihan,
+                    "NAMA_PENYELENGGARA": this.namaPenyelenggara,
+                    "UPLOAD_BUKTI_SERTIFIKAT": this.namaFileSertifikat,
+                    "EVALUASI1": this.evaluasi1,
+                    "UPLOAD_DOK_EVAL1": this.namaFileEvaluasi1,
+                    "EVALUASI2": this.evaluasi2,
+                    "UPLOAD_DOK_EVAL2": this.namaFileEvaluasi2,
+                    "HARGA_PELATIHAN": this.hargaPelatihan,
+                    "LOKASI": this.lokasiPelatihan,
+                    "TGL_PELATIHAN": this.tglPelatihan,
+                    "KETERANGAN": this.ketPelatihan,
+                    "ID_RIWAYAT_PELATIHAN": '0',
+                    "IS_DELETED": '2'
+                  }
+                });
+                loader.dismiss();
+              }
+
+            } else {
+              let toast = this.toastCtrl.create({
+                message: "file attachment gagal diupload, silahkan hubungi admin.",
+                duration: 3000,
+                position: 'bottom'
+              });
+              toast.present();
+              loader.dismiss();
+            }
+
+          } else {
+            let toast = this.toastCtrl.create({
+              message: "file attachment gagal diupload, silahkan hubungi admin.",
+              duration: 3000,
+              position: 'bottom'
+            });
+            toast.present();
+            loader.dismiss();
+          }
+          
+
+        }, (err) => {
+          let toast = this.toastCtrl.create({
+            message: "file attachment gagal diupload, silahkan hubungi admin.",
+            duration: 3000,
+            position: 'bottom'
+          });
+          toast.present();
+          loader.dismiss();
+        });
+    } else if (myFileType == 'gambar') {
+      const fileTransfer: FileTransferObject = this.transfer.create();
+
+      var options = {
+        fileKey: "file",
+        fileName: myfileName,
+        chunkedMode: false,
+        mimeType: "multipart/form-data",
+        params: {}
+      };
+
+      fileTransfer.upload(
+        myPathImage,
+        url_upload_att_cv, options)
+        .then((data) => {
+          if (data['responseCode'] == 200) {
+
+            var responData = JSON.parse(String(data['response']));
+            console.log(responData);
+
+            if (responData['rcmsg'] == 'SUCCESS') {
+              this.namaFileEvaluasi1 = responData['data'];
+              if (
+                (((this.imageURI2 != null && this.imageURI2 != '') || (this.fileName2 != null && this.fileName2 != '')) && (this.namaFileSertifikat == null || this.namaFileSertifikat == ''))
+              ) {
+                this.uploadSertifikat(loader);
+              } else if (
+                (((this.imageURI4 != null && this.imageURI4 != '') || (this.fileName4 != null && this.fileName4 != '')) && (this.namaFileEvaluasi2 == null || this.namaFileEvaluasi2 == ''))
+              ) {
+                this.uploadEvaluasi2(loader);
+              } else {
+                this.viewCtrl.dismiss({
+                  data: {
+                    "NAMA_PELATIHAN": this.namaPelatihan,
+                    "TAHUN_PELATIHAN": this.tahunPelatihan,
+                    "NAMA_PENYELENGGARA": this.namaPenyelenggara,
+                    "UPLOAD_BUKTI_SERTIFIKAT": this.namaFileSertifikat,
+                    "EVALUASI1": this.evaluasi1,
+                    "UPLOAD_DOK_EVAL1": this.namaFileEvaluasi1,
+                    "EVALUASI2": this.evaluasi2,
+                    "UPLOAD_DOK_EVAL2": this.namaFileEvaluasi2,
+                    "HARGA_PELATIHAN": this.hargaPelatihan,
+                    "LOKASI": this.lokasiPelatihan,
+                    "TGL_PELATIHAN": this.tglPelatihan,
+                    "KETERANGAN": this.ketPelatihan,
+                    "ID_RIWAYAT_PELATIHAN": '0',
+                    "IS_DELETED": '2'
+                  }
+                });
+                loader.dismiss();
+              }
+
+            } else {
+              let toast = this.toastCtrl.create({
+                message: "file attachment gagal diupload, silahkan hubungi admin.",
+                duration: 3000,
+                position: 'bottom'
+              });
+              toast.present();
+              loader.dismiss();
+            }
+          } else {
+            let toast = this.toastCtrl.create({
+              message: "file attachment gagal diupload, silahkan hubungi admin.",
+              duration: 3000,
+              position: 'bottom'
+            });
+            toast.present();
+            loader.dismiss();
+          }
+          
+        }, (err) => {
+          let toast = this.toastCtrl.create({
+            message: "file attachment gagal diupload, silahkan hubungi admin.",
+            duration: 3000,
+            position: 'bottom'
+          });
+          toast.present();
+          loader.dismiss();
+        });
+    }
+  }
+
+  uploadEvaluasi2(loader) {
+    var myfileName = this.fileName4;
+    var myPathImage = this.pathForImage(this.imageFileName4);
+    var myFileDocPath = this.fileDocPath4;
+    var myFileType = this.fileType4;
+
+    if (myFileType == 'file') {
+      const fileTransfer: FileTransferObject = this.transfer.create();
+      var options = {
+        fileKey: "file",
+        fileName: myfileName,
+        chunkedMode: false,
+        mimeType: "multipart/form-data",
+        params: {}
+      };
+
+      fileTransfer.upload(
+        myFileDocPath,
+        url_upload_att_cv, options)
+        .then((data) => {
+          // console.log(JSON.stringify(data));
+          // console.log(" Uploaded Successfully");    
+          if (data['responseCode'] == 200) {
+            var responData = JSON.parse(String(data['response']));
+            console.log(responData);
+
+            if (responData['rcmsg'] == 'SUCCESS') {
+              this.namaFileEvaluasi2 = responData['data'];
+              if (
+                (((this.imageURI3 != null && this.imageURI3 != '') || (this.fileName3 != null && this.fileName3 != '')) && (this.namaFileEvaluasi1 == null || this.namaFileEvaluasi1 == ''))
+              ) {
+                this.uploadEvaluasi1(loader);
+              } else if (
+                (((this.imageURI2 != null && this.imageURI2 != '') || (this.fileName2 != null && this.fileName2 != '')) && (this.namaFileSertifikat == null || this.namaFileSertifikat == ''))
+              ) {
+                this.uploadSertifikat(loader);
+              } else {
+                this.viewCtrl.dismiss({
+                  data: {
+                    "NAMA_PELATIHAN": this.namaPelatihan,
+                    "TAHUN_PELATIHAN": this.tahunPelatihan,
+                    "NAMA_PENYELENGGARA": this.namaPenyelenggara,
+                    "UPLOAD_BUKTI_SERTIFIKAT": this.namaFileSertifikat,
+                    "EVALUASI1": this.evaluasi1,
+                    "UPLOAD_DOK_EVAL1": this.namaFileEvaluasi1,
+                    "EVALUASI2": this.evaluasi2,
+                    "UPLOAD_DOK_EVAL2": this.namaFileEvaluasi2,
+                    "HARGA_PELATIHAN": this.hargaPelatihan,
+                    "LOKASI": this.lokasiPelatihan,
+                    "TGL_PELATIHAN": this.tglPelatihan,
+                    "KETERANGAN": this.ketPelatihan,
+                    "ID_RIWAYAT_PELATIHAN": '0',
+                    "IS_DELETED": '2'
+                  }
+                });
+                loader.dismiss();
+              }
+
+            } else {
+              let toast = this.toastCtrl.create({
+                message: "file attachment gagal diupload, silahkan hubungi admin.",
+                duration: 3000,
+                position: 'bottom'
+              });
+              toast.present();
+            }
+
+          } else {
+            let toast = this.toastCtrl.create({
+              message: "file attachment gagal diupload, silahkan hubungi admin.",
+              duration: 3000,
+              position: 'bottom'
+            });
+            toast.present();
+          }
+          loader.dismiss();
+
+        }, (err) => {
+          let toast = this.toastCtrl.create({
+            message: "file attachment gagal diupload, silahkan hubungi admin.",
+            duration: 3000,
+            position: 'bottom'
+          });
+          toast.present();
+          loader.dismiss();
+        });
+    } else if (myFileType == 'gambar') {
+      const fileTransfer: FileTransferObject = this.transfer.create();
+
+      var options = {
+        fileKey: "file",
+        fileName: myfileName,
+        chunkedMode: false,
+        mimeType: "multipart/form-data",
+        params: {}
+      };
+
+      fileTransfer.upload(
+        myPathImage,
+        url_upload_att_cv, options)
+        .then((data) => {
+          if (data['responseCode'] == 200) {
+
+            var responData = JSON.parse(String(data['response']));
+            console.log(responData);
+
+            if (responData['rcmsg'] == 'SUCCESS') {
+              this.namaFileEvaluasi2 = responData['data'];
+              if (
+                (((this.imageURI3 != null && this.imageURI3 != '') || (this.fileName3 != null && this.fileName3 != '')) && (this.namaFileEvaluasi1 == null || this.namaFileEvaluasi1 == ''))
+              ) {
+                this.uploadEvaluasi1(loader);
+              } else if (
+                (((this.imageURI2 != null && this.imageURI2 != '') || (this.fileName2 != null && this.fileName2 != '')) && (this.namaFileSertifikat == null || this.namaFileSertifikat == ''))
+              ) {
+                this.uploadSertifikat(loader);
+              } else {
+                this.viewCtrl.dismiss({
+                  data: {
+                    "NAMA_PELATIHAN": this.namaPelatihan,
+                    "TAHUN_PELATIHAN": this.tahunPelatihan,
+                    "NAMA_PENYELENGGARA": this.namaPenyelenggara,
+                    "UPLOAD_BUKTI_SERTIFIKAT": this.namaFileSertifikat,
+                    "EVALUASI1": this.evaluasi1,
+                    "UPLOAD_DOK_EVAL1": this.namaFileEvaluasi1,
+                    "EVALUASI2": this.evaluasi2,
+                    "UPLOAD_DOK_EVAL2": this.namaFileEvaluasi2,
+                    "HARGA_PELATIHAN": this.hargaPelatihan,
+                    "LOKASI": this.lokasiPelatihan,
+                    "TGL_PELATIHAN": this.tglPelatihan,
+                    "KETERANGAN": this.ketPelatihan,
+                    "ID_RIWAYAT_PELATIHAN": '0',
+                    "IS_DELETED": '2'
+                  }
+                });
+                loader.dismiss();
+              }
+
+            } else {
+              let toast = this.toastCtrl.create({
+                message: "file attachment gagal diupload, silahkan hubungi admin.",
+                duration: 3000,
+                position: 'bottom'
+              });
+              toast.present();
+              loader.dismiss();
+            }
+          } else {
+            let toast = this.toastCtrl.create({
+              message: "file attachment gagal diupload, silahkan hubungi admin.",
+              duration: 3000,
+              position: 'bottom'
+            });
+            toast.present();
+            loader.dismiss();
+          }
+         
+        }, (err) => {
+          let toast = this.toastCtrl.create({
+            message: "file attachment gagal diupload, silahkan hubungi admin.",
+            duration: 3000,
+            position: 'bottom'
+          });
+          toast.present();
+          loader.dismiss();
+        });
+    }
+  }
 }
