@@ -59,13 +59,13 @@
     <ion-card class="header-card" *ngIf="isLoadingHadirkoe == false && dataValidasi != null">
       <div class="menu-container">
         <div class="menu-content" (click)="openPage('InboxPage')">
-          <div class="img-container color-1"><img src="assets/imgs/menu-icon/inbox-white.png" /></div>
+          <div class="img-container color-1"><img src="assets/imgs/menu-icon/inbox-color.png" /></div>
           <span ion-text text-wrap>Surat Masuk</span>
           <ion-badge class="my-badge" *ngIf="badgesList != null && parse(badgesList['JUMLAH_SURAT_ALL_BADGES'])" color="danger">{{badgesList['JUMLAH_SURAT_ALL_BADGES']}}</ion-badge>
         </div>
 
         <div class="menu-content" (click)="openPage('OutboxPage')">
-          <div class="img-container color-2"><img src="assets/imgs/menu-icon/outbox-white.png" /></div>
+          <div class="img-container color-4"><img src="assets/imgs/menu-icon/outbox-color.png" /></div>
           <span ion-text text-wrap>Surat Keluar</span>
         </div>
 
@@ -116,23 +116,23 @@
     <div *ngIf="userdataTPK['data']['TNO'] == false">
       <div style="margin-top: 55%" class="menu-container">
         <div class="menu-content-2" (click)="openPage('AbsenListPage')">
-          <div class="img-container-2"><img src="assets/imgs/menu-icon/absensi.png" /></div>
+          <div class="img-container-2"><img src="assets/imgs/menu-icon/absen-color.png" /></div>
           <span ion-text text-wrap>Absensi</span>
           <ion-badge class="my-badge" *ngIf="badgesList != null && parse(badgesList['JUMLAH_ABSEN_BELUM_KOREKSI'])" color="danger">{{ badgesList['JUMLAH_ABSEN_BELUM_KOREKSI'] }} </ion-badge>
         </div>
 
         <div class="menu-content-2" (click)="openPage('CutiListPage')">
-          <div class="img-container-2"><img src="assets/imgs/menu-icon/cuti.png" /></div>
+          <div class="img-container-2"><img src="assets/imgs/menu-icon/cuti-color.png" /></div>
           <span ion-text text-wrap>Cuti/Izin</span>
         </div>
 
         <div class="menu-content-2" (click)="openPage('SppdListPage')">
-          <div class="img-container-2"><img src="assets/imgs/menu-icon/sppd-2.png" /></div>
+          <div class="img-container-2"><img src="assets/imgs/menu-icon/sppd-color.png" /></div>
           <span ion-text text-wrap>SPPD</span>
         </div>
 
         <div class="menu-content-2" (click)="openPage('ArsipPage')">
-          <div class="img-container-2"><img src="assets/imgs/menu-icon/survey.png" /></div>
+          <div class="img-container-2"><img src="assets/imgs/menu-icon/arsip-personal-color.png" /></div>
           <span ion-text text-wrap>Arsip Personal</span>
         </div>
       </div>
@@ -140,18 +140,18 @@
       <div *ngIf="dataValidasi != null">
         <div style="margin-top: 20px" class="menu-container">
           <div class="menu-content-2" (click)="openPage('CvPage')">
-            <div class="img-container-2"><img src="assets/flat-icon/resume.png" /></div>
+            <div class="img-container-2"><img src="assets/imgs/menu-icon/cv-color.png" /></div>
             <span ion-text text-wrap>E-CV</span>
           </div>
 
           <div class="menu-content-2" *ngIf="isAtasan == true" (click)="openPage2('TabsLemburPage',badgesList['JUMLAH_LEMBUR_BAWAHAN'])">
-            <div class="img-container-2"><img src="assets/flat-icon/overtime.png" /></div>
+            <div class="img-container-2"><img src="assets/imgs/menu-icon/lembur-color.png" /></div>
             <span ion-text text-wrap>Lembur</span>
             <ion-badge class="my-badge" *ngIf="badgesList != null && parse(badgesList['JUMLAH_LEMBUR_BAWAHAN'])" color="danger">{{badgesList['JUMLAH_LEMBUR_BAWAHAN']}}</ion-badge>
           </div>
 
           <div class="menu-content-2" *ngIf="isAtasan == false" (click)="openPage('LemburPage')">
-            <div class="img-container-2"><img src="assets/flat-icon/overtime.png" /></div>
+            <div class="img-container-2"><img src="assets/imgs/menu-icon/lembur-color.png" /></div>
             <span ion-text text-wrap>Lembur</span>
           </div>
 
