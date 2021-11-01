@@ -70,6 +70,8 @@ export class MapPage {
 
   dataValidasi:any;
 
+  geoLoc:any = '';
+
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
@@ -383,6 +385,7 @@ export class MapPage {
       if (status === 'OK') {
         if (results[0]) {
           console.log(results[0].formatted_address);
+
           // this.currAddress = results[0];   
           var geoResult = results[0].formatted_address;
           if (geoResult.length > 125) {
@@ -415,7 +418,7 @@ export class MapPage {
       'filename': this.filename,
       'fileBase64':fileBase64,
       // 'address': this.currAddress
-      'address': "",
+      'address': this.geoLoc,
       'addressData':this.addressData,
       "dataValidasi":this.dataValidasi
     }).then(() => {
@@ -701,6 +704,7 @@ export class MapPage {
         if(json){
           console.log(json);
             this.currAddress = json['display_name'];
+            this.geoLoc = json['address']['city_district'] + ', ' + json['address']['city']
             
         }else{
             // this.error = "Error Map, Please Try Again";
