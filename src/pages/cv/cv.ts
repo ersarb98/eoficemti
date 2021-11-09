@@ -1,9 +1,12 @@
 import { Component, ViewChild } from "@angular/core";
-import { IonicPage, NavController, NavParams, ToastController } from "ionic-angular";
+import { IonicPage, NavController, NavParams, ToastController, LoadingController, AlertController } from "ionic-angular";
 import { SoapService } from "../soap.service";
 import { Storage } from "@ionic/storage";
 import { api_base_url, api_user, api_pass, urldownload_srt } from "../../config";
 import { InAppBrowser, InAppBrowserOptions } from "@ionic-native/in-app-browser";
+import { FileTransfer, FileUploadOptions, FileTransferObject } from "@ionic-native/file-transfer";
+import { File } from "@ionic-native/file";
+import { FileOpener } from "@ionic-native/file-opener";
 // import { AnimationService, AnimationBuilder } from 'css-animator';
 
 /**
@@ -34,17 +37,22 @@ export class CvPage {
   showAssignHistory: Boolean = false;
   showReward: boolean = false;
   showEmergency: boolean = false;
-  showWorkingHistory:boolean = false;
-  showMedical:boolean = false;
+  showWorkingHistory: boolean = false;
+  showMedical: boolean = false;
 
   constructor(
-    public navCtrl: NavController, 
-    public navParams: NavParams, 
-    public soapService: SoapService, 
-    public storage: Storage, 
+    public navCtrl: NavController,
+    public loadingCtrl: LoadingController,
+    public navParams: NavParams,
+    public soapService: SoapService,
+    public storage: Storage,
     public toastCtrl: ToastController,
-    public inAppBrowser: InAppBrowser
-    ) {
+    public inAppBrowser: InAppBrowser,
+    public alertCtrl: AlertController,
+    public transfer: FileTransfer,
+    public file: File,
+    public fileOpener: FileOpener
+  ) {
     this.storage.get("userdataTPK").then((val) => {
       this.userdataTPK = val;
       this.getDataCV();
@@ -148,6 +156,59 @@ export class CvPage {
     const options: InAppBrowserOptions = {
       zoom: "no",
     };
-    const browser = this.inAppBrowser.create(urldownload_srt + 'upload_personal_info/' + data, "_system", options);
+    const browser = this.inAppBrowser.create(urldownload_srt + "upload_personal_info/" + data, "_system", options);
+  }
+
+  downloadEcv() {
+    let loading = this.loadingCtrl.create({
+      spinner: "dots",
+      content: "Mengunduh Absen ...",
+      cssClass: "transparent",
+      dismissOnPageChange: true,
+    });
+    loading.present();
+
+    var link = "";
+    link = urldownload_srt + "DownloadMobile/cetak_lengkap?nipp=" + this.userdataTPK["data"]["NIPP"] + "&personal=" + this.dataCV["ID_PERSONAL"];
+
+    console.log(link);
+    var localPath1 = "";
+
+    const fileTransfer: FileTransferObject = this.transfer.create();
+    fileTransfer.download(link, this.file.dataDirectory + "e_cv_" + this.userdataTPK["data"]["NIPP"] + ".pdf").then(
+      (entry) => {
+        console.log("download complete 1: " + entry.toURL());
+        localPath1 = entry.toURL();
+
+        loading.dismiss();
+        let alert = this.alertCtrl.create({
+          subTitle: "Generate E-CV PDF Berhasil!",
+          cssClass: "alert",
+          buttons: [
+            {
+              text: "Tutup",
+              role: "cancel",
+              handler: () => {
+                //console.log('Cancel clicked');
+              },
+            },
+            {
+              text: "Buka E-CV",
+              handler: () => {
+                this.fileOpener
+                  .open(localPath1, "application/pdf")
+                  .then(() => console.log("File is opened"))
+                  .catch((e) => console.log("Error opening file", e));
+              },
+            },
+          ],
+        });
+        alert.present();
+      },
+      (error) => {
+        // handle error
+        loading.dismiss();
+      }
+    );
   }
 }
