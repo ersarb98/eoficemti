@@ -24,7 +24,7 @@
             <img src="assets/imgs/menu-icon/jenis_cuti.png" class="icons">
         </span>
         <ion-label stacked>Jenis Pengajuan</ion-label>
-        <ion-select [(ngModel)]="selectValue" placeholder="">
+        <ion-select [(ngModel)]="selectValue" placeholder="" (ionChange)="onChangePengajuan()">
             <!-- <ion-option value="Izin">Izin</ion-option>            
             <ion-option value="Izin Tidak Memotong Cuti">Izin Tidak Memotong Cuti</ion-option>            
             <ion-option value="Cuti Tahunan">Cuti Tahunan</ion-option>
@@ -36,7 +36,8 @@
             <ion-option value="Cuti Massal">Cuti Massal / Cuti Bersama</ion-option>        
             <ion-option value="Masa Haid">Cuti Haid</ion-option> -->
             <div *ngIf="jenisPengajuanList.length > 0">
-                <ion-option *ngFor="let jn_cuti of jenisPengajuanList; let i = index" value="{{ jn_cuti['ID'] }}">{{ jn_cuti['JN_PENGAJUAN'] }}</ion-option> 
+                <ion-option *ngFor="let jn_cuti of jenisPengajuanList; let i = index" value="{{ jn_cuti['ID'] }}">
+                    {{ jn_cuti['JN_PENGAJUAN'] }}</ion-option>
             </div>
         </ion-select>
     </ion-item>
@@ -47,7 +48,8 @@
                 <img src="assets/imgs/menu-icon/start_date.png" class="icons">
             </span>
             <ion-label stacked>Tanggal Mulai</ion-label>
-            <ion-input type="text" [readonly]="true" (ionFocus)="checkFocus(1)" (click)="checkFocus(1)" [(ngModel)]="tanggalMulai"></ion-input>
+            <ion-input type="text" [readonly]="true" (ionFocus)="checkFocus(1)" (click)="checkFocus(1)"
+                [(ngModel)]="tanggalMulai"></ion-input>
         </ion-item>
 
         <ion-item style="width:30%; float:right;padding-top:14px;padding-left:3px !important;">
@@ -90,7 +92,8 @@
             </span>
             <ion-label stacked>Tanggal Selesai</ion-label>
             <!-- <ion-input type="text" [readonly]="true" (ionFocus)="checkFocus(2)" [(ngModel)]="tanggalSelesai"> -->
-                <ion-input type="text" [readonly]="true" (click)="checkFocus(2)" (ionFocus)="checkFocus(2)" [(ngModel)]="tanggalSelesai">
+            <ion-input type="text" [readonly]="true" (click)="checkFocus(2)" (ionFocus)="checkFocus(2)"
+                [(ngModel)]="tanggalSelesai">
             </ion-input>
         </ion-item>
 
@@ -127,7 +130,7 @@
         </ion-item>
     </div>
 
-    <div *ngIf="tanggalSelesai != ''" >
+    <div *ngIf="tanggalSelesai != ''">
         <ion-item>
             <span item-left>
                 <img src="assets/imgs/menu-icon/jumHari.png" class="icons">
@@ -136,9 +139,45 @@
             <ion-input type="number" [(ngModel)]="jumHari"></ion-input>
         </ion-item>
 
-        <p ion-text text-wrap color="color4" style="padding-left:8px !important;">*Bila terdapat kesalahan jumlah hari silahkan disesuaikan</p>
-        <p ion-text text-wrap color="danger" style="padding-left:8px !important;">Jumlah Cuti Terpakai Tahun 2021 : <b>{{ userdataTPK['data']['SISA_CUTI'] }}</b></p>
+        <p ion-text text-wrap color="color4" style="padding-left:8px !important;">*Bila terdapat kesalahan jumlah hari
+            silahkan disesuaikan</p>
+        <p ion-text text-wrap color="danger" style="padding-left:8px !important;">Sisa Cuti Tahun ini :
+            <b>{{ userdataTPK['data']['SISA_CUTI'] }}</b></p>
+        <p ion-text text-wrap color="danger" style="padding-left:8px !important;">Sisa Cuti Tahun lalu :
+            <b>{{ userdataTPK['data']['SISA_CUTI_LAST_YEAR'] }}</b></p>
     </div>
+
+    <ion-item *ngIf="showLastYear == true" no-lines>
+        <span item-left>
+            <img src="assets/imgs/menu-icon/cuti.png" class="icons">
+        </span>
+        <div style="position: relative; width: 100%;">
+            <span ion-text="" style="color: #959595;font-size: 1.2rem;">Ambil Sisa Cuti Tahun Lalu</span>
+
+            <div style="margin-top: 10px">
+                <label class="radio-button">
+                    <input type="radio" [(ngModel)]="ambilSisaCuti" id="ambilSisaCutiYes" name="ambilSisaCuti"
+                        value="YA" checked />
+                    <!-- <label for="WFH">WFH (Work From Home)</label> -->
+                    <span class="label-visible">
+                        <span class="fake-radiobutton"></span>
+                        Ya
+                    </span>
+                </label>
+            </div>
+            <div style="margin-top: 15px">
+                <label class="radio-button">
+                    <input type="radio" [(ngModel)]="ambilSisaCuti" id="ambilSisaCutiNo" name="ambilSisaCuti"
+                        value="TIDAK" />
+                    <!-- <label for="WFC">WFC (Work From Client)</label> -->
+                    <span class="label-visible">
+                        <span class="fake-radiobutton"></span>
+                        Tidak
+                    </span>
+                </label>
+            </div>
+        </div>
+    </ion-item>
 
     <ion-item>
         <span item-left>

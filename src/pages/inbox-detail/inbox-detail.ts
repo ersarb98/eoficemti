@@ -71,6 +71,8 @@ export class InboxDetailPage {
   tanggalSelesai: any = "";
 
   sisaCuti: any;
+  sisaCutiLastYear: any;
+  ambilTahunLalu:boolean = false;
   dataJenisCuti: any;
   jumHari: any = 0;
   errorMsg: any = "";
@@ -189,9 +191,9 @@ export class InboxDetailPage {
     this.messageData = this.navParams.get("messageData");
     this.isRevisi = this.navParams.get("isRevisi");
     this.isLaporan = this.navParams.get("isLaporan");
-    console.log(this.isRevisi);
+    console.log(this.isRevisi); 
 
-    // console.log(this.messageData);
+    console.log(this.messageData);
     this.from_modul = this.navParams.get("from_modul");
     this.storage.get("userdataTPK").then((val) => {
       this.userdataTPK = val;
@@ -252,7 +254,7 @@ export class InboxDetailPage {
             this.tanggalSelesaiRevisi = this.datePipe.transform(dateSelesai, "dd/MM/yyyy");
           }
 
-          if (this.messageDetail.hasOwnProperty["Status"]) {
+          if (this.messageData["Status"]) {
             if (this.messageData["Status"].indexOf("PERIKSA") != -1) {
               var mySubString = this.messageData["Status"].substring(this.messageData["Status"].indexOf("(") + 1, this.messageData["Status"].lastIndexOf(")"));
 
@@ -1181,6 +1183,8 @@ export class InboxDetailPage {
         //console.log(responData);
         if (responData["rcmsg"] == "SUCCESS") {
           this.sisaCuti = responData["data"]["SISA_CUTI"];
+          this.sisaCutiLastYear = responData["data"]["SISA_CUTI_LAST_YEAR"];
+          this.ambilTahunLalu = responData['data']['AMBIL_TAHUN_LALU'];
           console.log("sisa cuti : " + this.sisaCuti);
           this.getJenisCuti();
         } else {
@@ -1253,9 +1257,11 @@ export class InboxDetailPage {
 
       if (validationForm) {
         this.errorMsg = "*mohon melengkapi seluruh input.";
-      } else if (this.dataJenisCuti[0]["IS_POTONG"] == "1" && parseInt(this.jumHari) > parseInt(this.sisaCuti)) {
+      } else if (this.dataJenisCuti[0]["IS_POTONG"] == "1" && this.ambilTahunLalu == false && parseInt(this.jumHari) > parseInt(this.sisaCuti)) {
         this.errorMsg = "*Jumlah hari cuti melebihi sisa cuti.";
-      } else {
+      } else if (this.dataJenisCuti[0]["IS_POTONG"] == "1" && this.ambilTahunLalu == true && parseInt(this.jumHari) > (parseInt(this.sisaCuti)+parseInt(this.sisaCutiLastYear) )) {
+        this.errorMsg = "*Jumlah hari cuti melebihi sisa cuti.";
+      }  else {
         let alert = this.alertCtrl.create({
           subTitle: "Anda yakin ingin menangguhkan cuti ?",
           cssClass: "alert",
@@ -1293,6 +1299,9 @@ export class InboxDetailPage {
                       jam_mulai: this.jamMulai,
                       jam_selesai: this.jamSelesai,
                       jumlah: this.jumHari,
+                      sisa_cuti_last_year: this.sisaCutiLastYear,
+                      sisa_cuti: this.sisaCuti,
+                      ambil_sisa_cuti: this.ambilTahunLalu
                     }),
                   })
                   .then((result) => {

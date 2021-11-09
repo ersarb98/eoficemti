@@ -43,6 +43,9 @@ export class AddCutiPage {
   secondDate: any;
   disable: Boolean = false;
 
+  showLastYear: Boolean = false;
+  ambilSisaCuti:any = 'TIDAK';
+
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
@@ -76,6 +79,17 @@ export class AddCutiPage {
     this.viewCtrl.dismiss();
   }
 
+  onChangePengajuan() {
+    let dataJenisPengajuan = this.jenisPengajuanList.filter(x => x.ID.includes(this.selectValue));
+    console.log(dataJenisPengajuan[0]['ALLOW_LAST_YEAR']);
+    if (dataJenisPengajuan[0]['ALLOW_LAST_YEAR']) {
+      this.showLastYear = true;
+    } else {
+      this.showLastYear = false;
+    }
+   
+  }
+
   getJenisCuti() {
     let loading = this.loadingCtrl.create({
       spinner: 'dots',
@@ -98,7 +112,7 @@ export class AddCutiPage {
         console.log(responData);
         if (responData['rcmsg'] == "SUCCESS") {
           this.jenisPengajuanList = responData['data'];
-          loading.dismiss();          
+          this.refreshSession(loading);     
 
         } else {
           let toast = this.toastCtrl.create({
@@ -116,6 +130,48 @@ export class AddCutiPage {
           message: 'Gagal mendapatkan hari, silahkan periksa koneksi internet anda.',
           duration: 3000,
           position: 'bottom'
+        });
+        toast.present();
+        loading.dismiss();
+      });
+  }
+
+  refreshSession(loading) {
+    this.soapService
+      .post(api_base_url, "eoffice_get_user_data", {
+        fStream: JSON.stringify({
+          usernameEDI: api_user,
+          passwordEDI: api_pass,
+          username: this.userdataTPK["data"]["NIPP"],
+        }),
+      })
+      .then((result) => {
+        let responData = JSON.parse(String(result));
+        if (responData["rcmsg"] == "SUCCESS") {
+          if (responData["data"]["login_status"] == "404 Not Found") {
+            // console.log(responData['data']['login_status']);
+          } else if (responData["data"] == undefined) {
+            // console.log(responData['data']);
+          } else if (responData["data"]["login_status"] == "AP NOT ALLOWED") {
+            // console.log(responData['data']['login_status']);
+          } else {
+            this.userdataTPK = responData;
+            this.storage.set("userdataTPK", responData).then(() => {
+              //this.getData(type, functionName, loading);
+            });
+          }
+          loading.dismiss();
+        } else {
+          // console.log("error here");
+          loading.dismiss();
+          // this.isLoading = false;
+        }
+      })
+      .catch((error) => {
+        let toast = this.toastCtrl.create({
+          message: "Terjadi Masalah Koneksi, Silahkan Coba Kembali.",
+          duration: 3000,
+          position: "bottom",
         });
         toast.present();
         loading.dismiss();
@@ -316,7 +372,9 @@ export class AddCutiPage {
                       alasan_cuti_penting: this.alasan,
                       lokasi: this.alamat,
                       jumlah: this.jumHari,
-                      sisa_cuti: this.userdataTPK['data']['SISA_CUTI']
+                      sisa_cuti: this.userdataTPK['data']['SISA_CUTI'],
+                      sisa_cuti_last_year: this.userdataTPK['data']['SISA_CUTI_LAST_YEAR'],
+                      ambil_sisa_cuti: this.ambilSisaCuti
                     }
                   )
                 })
