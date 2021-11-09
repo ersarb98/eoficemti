@@ -1061,9 +1061,9 @@ export class AddSppdPage {
     if (this.kotaTujuan == '' || this.kotaTujuan == null) {
       err.push("Kota Tujuan");
     }
-    if (this.proyek == '' || this.proyek == null) {
-      err.push("Proyek");
-    }
+    // if (this.proyek == '' || this.proyek == null) {
+    //   err.push("Proyek");
+    // }
     if (this.angkutan == '' || this.angkutan == null) {
       err.push("Angkutan yang Digunakan");
     }

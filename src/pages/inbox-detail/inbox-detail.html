@@ -1028,7 +1028,7 @@
             </button>
           </ion-col>
         </ion-row>
-        <ion-row *ngIf="messageDetail['URUT_PEMERIKSA'] != '' && (messageDetail['URUT_PEMERIKSA'] != messageDetail['JUMLAH_PEMERIKSA'] || messageDetail['JUMLAH_PEMERIKSA'] == '1')">
+        <ion-row *ngIf="(messageDetail['URUT_PEMERIKSA'] != '' && (messageDetail['URUT_PEMERIKSA'] != messageDetail['JUMLAH_PEMERIKSA']) || messageDetail['JUMLAH_PEMERIKSA'] == '1')">
           <ion-col col-12>
             <button style="border-radius: 5px" icon-start ion-button block (click)="ditangguhkan()" color="primary">
               <ion-icon name="md-remove-circle"></ion-icon>
