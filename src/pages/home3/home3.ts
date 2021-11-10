@@ -57,7 +57,6 @@ export class Home3Page {
 
   ionViewWillEnter() {
     this.storage.get("userdataTPK").then((val) => {
-      // console.log(val);
       this.userdataTPK = val;
       this.getBadges();
       this.getBadgesP2b();
@@ -66,6 +65,7 @@ export class Home3Page {
       this.newSession("first", "");
       this.getData("first", "");
       this.cekVersi();
+      console.log(this.userdataTPK);
       if (this.userdataTPK["data"]["DATA_BAWAHAN"].length == 0 && this.userdataTPK["data"]["DATA_BAWAHAN_TNO"].length == 0) {
         this.isAtasan = false;
       } else {

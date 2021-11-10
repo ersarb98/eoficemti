@@ -16,6 +16,12 @@
   <div class="header-container">
     <div class="header-img"></div>
     <div class="img-container">
+      <ion-buttons class="edit-img" style="padding-right: 5px">
+        <button ion-button>
+          <ion-icon name="md-create"></ion-icon>
+        </button>
+      </ion-buttons>
+
       <img *ngIf="notEmpty(userdataTPK)" src="{{ userdataTPK['data']['FOTO'] }}" class="my-img" />
       <img *ngIf="!notEmpty(userdataTPK)" src="assets/imgs/menu-icon/person.png" class="my-img" />
       <!-- <img src="assets/imgs/setting-icon/camera_blue.png" class="edit-profile"> -->
@@ -23,42 +29,29 @@
   </div>
 
   <div *ngIf="isLoading == false && notEmpty(userdataTPK)">
-    <div style="margin-top:50px;" class="user-info">
-      <span ion-text class="user-info-name">
-          <b>{{ userdataTPK['data']['NAMA'] }}</b>
-      </span><br>
-      <span ion-text text-wrap class="user-info-jab">
-          {{ userdataTPK['data']['NAMAJABATAN'] }}
-      </span>
+    <div style="margin-top: 50px" class="user-info">
+      <span ion-text class="user-info-name"> <b>{{ userdataTPK['data']['NAMA'] }}</b> </span><br />
+      <span ion-text text-wrap class="user-info-jab"> {{ userdataTPK['data']['NAMAJABATAN'] }} </span>
     </div>
 
     <ion-card class="setting-card">
       <ion-item>
         <div item-start class="icon-container">
-          <img src="assets/imgs/setting-icon/nipp.png" class="icons">
+          <img src="assets/imgs/setting-icon/nipp.png" class="icons" />
         </div>
-        <span ion-text text-wrap class="font-mini" color="gray">
-          NIPP
-        </span> <br>
-        <span ion-text text-wrap class="font-small">
-          {{ userdataTPK['data']['NIPP'] }}
-        </span>
+        <span ion-text text-wrap class="font-mini" color="gray"> NIPP </span> <br />
+        <span ion-text text-wrap class="font-small"> {{ userdataTPK['data']['NIPP'] }} </span>
       </ion-item>
     </ion-card>
 
     <ion-card class="setting-card" style="border-left: 4px solid lightblue">
       <ion-item>
         <div item-start class="icon-container">
-          <img src="assets/imgs/setting-icon/email.png" class="icons">
+          <img src="assets/imgs/setting-icon/email.png" class="icons" />
         </div>
-        <span ion-text text-wrap class="font-mini" color="gray">
-          Email
-        </span> <br>
-        <span ion-text text-wrap class="font-small">
-          {{ userdataTPK['data']['EMAIL'] }}
-        </span>
-        <span item-end ion-text text-wrap class="font-small" style="float:right !important;" color="primary"
-          (click)="goToUpdate('email')">
+        <span ion-text text-wrap class="font-mini" color="gray"> Email </span> <br />
+        <span ion-text text-wrap class="font-small"> {{ userdataTPK['data']['EMAIL'] }} </span>
+        <span item-end ion-text text-wrap class="font-small" style="float: right !important" color="primary" (click)="goToUpdate('email')">
           <ion-icon name="md-create"></ion-icon>
           Ubah
         </span>
@@ -68,35 +61,25 @@
     <ion-card class="setting-card" style="border-left: 4px solid lightgreen">
       <ion-item>
         <div item-start class="icon-container">
-          <img src="assets/imgs/setting-icon/phone.png" class="icons">
+          <img src="assets/imgs/setting-icon/phone.png" class="icons" />
         </div>
-        <span ion-text text-wrap class="font-mini" color="gray">
-          Nomor Telepon
-        </span> <br>
-        <span ion-text text-wrap class="font-small">
-            {{ userdataTPK['data']['HP'] }}
-          </span>
-        <span item-end ion-text text-wrap class="font-small" style="float:right !important;" color="primary"
-          (click)="goToUpdate('hp')">
+        <span ion-text text-wrap class="font-mini" color="gray"> Nomor Telepon </span> <br />
+        <span ion-text text-wrap class="font-small"> {{ userdataTPK['data']['HP'] }} </span>
+        <span item-end ion-text text-wrap class="font-small" style="float: right !important" color="primary" (click)="goToUpdate('hp')">
           <ion-icon name="md-create"></ion-icon>
           Ubah
         </span>
       </ion-item>
     </ion-card>
 
-    <ion-card class="setting-card" style="border-left: 4px solid mediumpurple;margin-bottom: 50px;">
+    <ion-card class="setting-card" style="border-left: 4px solid mediumpurple; margin-bottom: 50px">
       <ion-item>
         <div item-start class="icon-container">
-          <img src="assets/imgs/setting-icon/pass3.png" class="icons">
+          <img src="assets/imgs/setting-icon/pass3.png" class="icons" />
         </div>
-        <span ion-text text-wrap class="font-mini" color="gray">
-          Password
-        </span> <br>
-        <span ion-text text-wrap class="font-small">
-          ************
-        </span>
-        <span item-end ion-text text-wrap class="font-small" style="float:right !important;" color="primary"
-          (click)="goToUpdate('pass')">
+        <span ion-text text-wrap class="font-mini" color="gray"> Password </span> <br />
+        <span ion-text text-wrap class="font-small"> ************ </span>
+        <span item-end ion-text text-wrap class="font-small" style="float: right !important" color="primary" (click)="goToUpdate('pass')">
           <ion-icon name="md-create"></ion-icon>
           Ubah
         </span>
@@ -105,15 +88,15 @@
   </div>
 
   <div *ngIf="isLoading == true && !notEmpty(userdataTPK)">
-    <div style="margin-top:50px;padding:0px 10px 0px 10px;width: 100%;" class="user-info">
-      <div class="animate-skeleton-background load-2" style="margin-left:auto;margin-right:auto;"></div>
-      <div class="animate-skeleton-background load-1" style="margin-left:auto;margin-right:auto;"></div>
+    <div style="margin-top: 50px; padding: 0px 10px 0px 10px; width: 100%" class="user-info">
+      <div class="animate-skeleton-background load-2" style="margin-left: auto; margin-right: auto"></div>
+      <div class="animate-skeleton-background load-1" style="margin-left: auto; margin-right: auto"></div>
     </div>
 
     <ion-card class="setting-card">
       <ion-item>
         <div item-start class="icon-container">
-          <img src="assets/imgs/setting-icon/nipp.png" class="icons">
+          <img src="assets/imgs/setting-icon/nipp.png" class="icons" />
         </div>
         <div class="animate-skeleton-background load-2"></div>
         <div class="animate-skeleton-background load-1"></div>
@@ -123,7 +106,7 @@
     <ion-card class="setting-card" style="border-left: 4px solid lightblue">
       <ion-item>
         <div item-start class="icon-container">
-          <img src="assets/imgs/setting-icon/email.png" class="icons">
+          <img src="assets/imgs/setting-icon/email.png" class="icons" />
         </div>
         <div class="animate-skeleton-background load-2"></div>
         <div class="animate-skeleton-background load-1"></div>
@@ -133,27 +116,25 @@
     <ion-card class="setting-card" style="border-left: 4px solid lightgreen">
       <ion-item>
         <div item-start class="icon-container">
-          <img src="assets/imgs/setting-icon/phone.png" class="icons">
+          <img src="assets/imgs/setting-icon/phone.png" class="icons" />
         </div>
         <div class="animate-skeleton-background load-2"></div>
         <div class="animate-skeleton-background load-1"></div>
       </ion-item>
     </ion-card>
 
-    <ion-card class="setting-card" style="border-left: 4px solid mediumpurple;margin-bottom: 50px;">
+    <ion-card class="setting-card" style="border-left: 4px solid mediumpurple; margin-bottom: 50px">
       <ion-item>
         <div item-start class="icon-container">
-          <img src="assets/imgs/setting-icon/pass3.png" class="icons">
+          <img src="assets/imgs/setting-icon/pass3.png" class="icons" />
         </div>
         <div class="animate-skeleton-background load-2"></div>
         <div class="animate-skeleton-background load-1"></div>
       </ion-item>
     </ion-card>
   </div>
-
 
   <div class="version">
     <span ion-text text-wrap>Versi 1.1.0</span>
   </div>
-
 </ion-content>
