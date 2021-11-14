@@ -58,7 +58,7 @@
   <div *ngIf="updateType == 'ttd' || updateType == 'foto' ">
     <ion-card class="my-card" (click)="getImage()">
       <ion-item>
-        <img  class="photo" src="{{ imageURI }}" />
+        <img  class="photo" src="{{ imageShow }}" />
         <div style="text-align: -webkit-center;">
             <span ion-text text-wrap style="text-align:center;color:gray;" *ngIf="updateType == 'ttd'" >Upload Tanda Tangan</span>
             <span ion-text text-wrap style="text-align:center;color:gray;" *ngIf="updateType == 'foto'">Upload Foto CV (akan ditampilkan di E-CV)</span>
