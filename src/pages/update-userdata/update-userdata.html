@@ -6,11 +6,55 @@
 -->
 <ion-header>
   <ion-navbar>
-    <span ion-text color="light" class="fw500">Ubah Profile</span>
+    <ion-title>
+      <span ion-text color="light">Ubah Data Diri</span>
+    </ion-title>
   </ion-navbar>
-</ion-header> 
+</ion-header>
 
 <ion-content padding>
+  <ion-item *ngIf="updateType == 'email'">
+    <span item-left>
+      <img src="assets/imgs/setting-icon/email.png" class="icons">
+    </span>
+    <ion-label stacked>Email</ion-label>
+    <ion-input type="text" [(ngModel)]="email"></ion-input>
+  </ion-item>
+
+  <ion-item *ngIf="updateType == 'hp'">
+    <span item-left>
+      <img src="assets/imgs/setting-icon/phone.png" class="icons">
+    </span>
+    <ion-label stacked>No. Telpon</ion-label>
+    <ion-input type="number" [(ngModel)]="hp"></ion-input>
+  </ion-item>
+
+  <div *ngIf="updateType == 'pass'">
+    <ion-item>
+      <span item-left>
+        <img src="assets/imgs/setting-icon/pass3.png" class="icons">
+      </span>
+      <ion-label stacked>Password Lama (harus diisi)</ion-label>
+      <ion-input type="password" [(ngModel)]="passLama"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <span item-left>
+        <img src="assets/imgs/setting-icon/pass1.png" class="icons">
+      </span>
+      <ion-label stacked>Password Baru</ion-label>
+      <ion-input type="password" [(ngModel)]="passBaru"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <span item-left>
+        <img src="assets/imgs/setting-icon/pass2.png" class="icons">
+      </span>
+      <ion-label stacked>Confirm Password</ion-label>
+      <ion-input type="password" [(ngModel)]="confPass"></ion-input>
+    </ion-item>
+  </div>
+
   <div *ngIf="updateType == 'ttd' || updateType == 'foto' ">
     <ion-card class="my-card" (click)="getImage()">
       <ion-item>
