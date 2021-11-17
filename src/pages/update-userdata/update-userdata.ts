@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ToastController, LoadingController, AlertController, Platform } from 'ionic-angular';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { SoapService } from '../soap.service';
-import { api_base_url, api_user, api_pass } from '../../config';
+import { api_base_url, api_user, api_pass, api_res } from '../../config';
 import { Storage } from '@ionic/storage';
 
 import { FileTransfer, FileUploadOptions, FileTransferObject } from '@ionic-native/file-transfer';
@@ -25,7 +25,9 @@ import { HttpClient } from '@angular/common/http';
   templateUrl: 'update-userdata.html',
 })
 export class UpdateUserdataPage {
-  imageURI: any = "assets/imgs/logo/rotate.png";
+  private win: any = window;
+  imageURI: any = "";
+  imageShow: any = "assets/imgs/logo/camera.png";
   updateType: any = "";
   email: any = "";
   hp: any = "";
@@ -246,7 +248,9 @@ export class UpdateUserdataPage {
     };
 
     this.camera.getPicture(options).then((imageData) => {
+      this.imageShow = this.win.Ionic.WebView.convertFileSrc(imageData);
       this.imageURI = imageData;
+      // this.imageURI = imageData;
       if (this.platform.is('android') && sourceType === this.camera.PictureSourceType.PHOTOLIBRARY) {
         this.filepath.resolveNativePath(this.imageURI)
           .then(filePath => {
@@ -298,7 +302,7 @@ export class UpdateUserdataPage {
       params: { 'id_user': this.userdataTPK['data']['IDUSER'], 'nipp': this.userdataTPK['data']['NIPP'] }
     };
 
-    let filePath = 'http://103.19.80.243/cfs_dev/apiptpdev/f55_eoffice_upload_ttd.php';
+    let filePath = api_res + 'f55_eoffice_upload_ttd.php';
 
     fileTransfer.upload(
       this.pathForImage(this.imageFileName),
@@ -360,7 +364,7 @@ export class UpdateUserdataPage {
       params: { 'id_user': this.userdataTPK['data']['IDUSER'], 'nipp': this.userdataTPK['data']['NIPP'] }
     };
 
-    let filePath = 'http://103.19.80.243/cfs_dev/apiptpdev/f64_eoffice_upload_foto_cv.php';
+    let filePath = api_res + 'f64_eoffice_upload_foto_cv.php';
 
     fileTransfer.upload(
       this.pathForImage(this.imageFileName),

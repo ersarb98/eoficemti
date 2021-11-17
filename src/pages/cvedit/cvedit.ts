@@ -828,8 +828,8 @@ export class CveditPage {
       var dateSplit = this.tglMasukPPI.split("/");
       myDate = new Date(dateSplit[2], (dateSplit[1] != '0') ? parseInt(dateSplit[1]) - 1 : dateSplit[1], dateSplit[0]);
     }
-    if (type == 7 && (this.tglLahir != null && this.tglLahir != '')) {
-      var dateSplit = this.tglLahir.split("/");
+    if (type == 7 && (this.tglKeluarPPI != null && this.tglKeluarPPI != '')) {
+      var dateSplit = this.tglKeluarPPI.split("/");
       myDate = new Date(dateSplit[2], (dateSplit[1] != '0') ? parseInt(dateSplit[1]) - 1 : dateSplit[1], dateSplit[0]);
     }
     if (type == 8 && (this.tglLahir != null && this.tglLahir != '')) {
@@ -862,7 +862,7 @@ export class CveditPage {
         this.tglMasukPPI = this.datePipe.transform(date, 'dd/MM/yyyy');
       }
       if (type == 7) {
-        this.tglLahir = this.datePipe.transform(date, 'dd/MM/yyyy');
+        this.tglKeluarPPI = this.datePipe.transform(date, 'dd/MM/yyyy');
       }
       if (type == 8) {
         this.tglLahir = this.datePipe.transform(date, 'dd/MM/yyyy');

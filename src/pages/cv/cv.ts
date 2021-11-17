@@ -162,7 +162,7 @@ export class CvPage {
   downloadEcv() {
     let loading = this.loadingCtrl.create({
       spinner: "dots",
-      content: "Mengunduh Absen ...",
+      content: "Mengunduh CV ...",
       cssClass: "transparent",
       dismissOnPageChange: true,
     });

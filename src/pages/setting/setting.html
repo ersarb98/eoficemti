@@ -15,16 +15,10 @@
 <ion-content no-padding>
   <div class="header-container">
     <div class="header-img"></div>
-    <div class="img-container">
-      <ion-buttons class="edit-img" style="padding-right: 5px">
-        <button ion-button>
-          <ion-icon name="md-create"></ion-icon>
-        </button>
-      </ion-buttons>
-
+    <div class="img-container" (click)="goToUpdate('foto')">
       <img *ngIf="notEmpty(userdataTPK)" src="{{ userdataTPK['data']['FOTO'] }}" class="my-img" />
       <img *ngIf="!notEmpty(userdataTPK)" src="assets/imgs/menu-icon/person.png" class="my-img" />
-      <!-- <img src="assets/imgs/setting-icon/camera_blue.png" class="edit-profile"> -->
+      <img src="assets/imgs/setting-icon/edit-image3.png" class="edit-profile">
     </div>
   </div>
 
