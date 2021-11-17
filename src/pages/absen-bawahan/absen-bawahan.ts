@@ -1,5 +1,5 @@
 import { Component } from "@angular/core";
-import { IonicPage, NavController, NavParams, LoadingController, AlertController, ToastController } from "ionic-angular";
+import { Platform, IonicPage, NavController, NavParams, ViewController, LoadingController, AlertController, ToastController } from "ionic-angular";
 import { SoapService } from "../soap.service";
 import { Storage } from "@ionic/storage";
 import { InAppBrowser, InAppBrowserOptions } from "@ionic-native/in-app-browser";
@@ -48,7 +48,9 @@ export class AbsenBawahanPage {
     public http: HttpClient,
     public transfer: FileTransfer,
     public file: File,
-    public fileOpener: FileOpener
+    public fileOpener: FileOpener,
+    public viewCtrl: ViewController,
+    private platform: Platform
   ) {
     let date = new Date();
     let currentYear = date.getFullYear();
@@ -96,11 +98,13 @@ export class AbsenBawahanPage {
           this.bawahanList.push(this.userdataTPK["data"]["DATA_BAWAHAN_TNO"][i]);
         }
       }
-      loading.dismiss();
+      
     });
+    loading.dismiss();
   }
 
-  ionViewDidLoad() {}
+  ionViewDidLoad() {
+  }
 
   getAbsen(bulan, tahun) {
     var bawahanSplit = this.dataBawahan.split("_");

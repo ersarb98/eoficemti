@@ -32,7 +32,12 @@ export class MenuAbsenPage {
     public alertCtrl: AlertController,
     public platform: Platform
   ) {
-    
+    // this.platform.ready().then(() => {
+    //   console.log('asd');
+    //   this.platform.registerBackButtonAction(() => {
+    //         this.viewCtrl.dismiss();
+    //   });
+    // });
   }
 
   ionViewDidEnter() {
@@ -47,7 +52,8 @@ export class MenuAbsenPage {
   }
 
   goToPage(page) {    
-    this.navCtrl.push(page).then(() => { this.viewCtrl.dismiss() });
+     this.viewCtrl.dismiss();
+     this.app.getRootNav().push(page);
   }
 
   getBadges() {

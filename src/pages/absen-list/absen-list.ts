@@ -1,5 +1,5 @@
 import { Component } from "@angular/core";
-import { IonicPage, NavController, NavParams, ActionSheetController, LoadingController, AlertController, PopoverController, ModalController, ToastController } from "ionic-angular";
+import { Platform, IonicPage, NavController, NavParams, ActionSheetController, LoadingController, AlertController, PopoverController, ModalController, ToastController } from "ionic-angular";
 import { SoapService } from "../soap.service";
 import { Storage } from "@ionic/storage";
 import { InAppBrowser, InAppBrowserOptions } from "@ionic-native/in-app-browser";
@@ -55,8 +55,10 @@ export class AbsenListPage {
     public http: HttpClient,
     public transfer: FileTransfer,
     public file: File,
-    public fileOpener: FileOpener
-  ) {}
+    public fileOpener: FileOpener,
+    public platform: Platform
+  ) {
+  }
 
   ionViewDidLoad() {
     let date = new Date();

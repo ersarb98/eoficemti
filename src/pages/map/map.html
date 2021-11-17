@@ -9,7 +9,12 @@
     <ion-title>
       <span style="color:#FFF" *ngIf="fromPage == 'AbsenMobileDetailPage'" >Lokasi</span>
       <span style="color:#FFF" *ngIf="fromPage == 'FingerprintModalPage'" >Lokasi Anda</span>
-    </ion-title>      
+    </ion-title> 
+    <ion-buttons end style="padding-right: 5px">      
+      <button ion-button (click)="insertAddress()">
+        <ion-icon style="font-size: 2.4rem" name="ios-pin" color="light"></ion-icon>
+      </button>
+    </ion-buttons>         
   </ion-navbar>
 </ion-header>
 
