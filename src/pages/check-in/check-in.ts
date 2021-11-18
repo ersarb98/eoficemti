@@ -54,6 +54,7 @@ export class CheckInPage {
 
   dataValidasi: any;
 
+  isLembur:Boolean = false;
   showLembur: Boolean = false;
 
   keteranganLembur: any = "";
@@ -92,6 +93,10 @@ export class CheckInPage {
     this.imageShow = url_image + "/" + this.filename;
     //this.imageShow = this.sanitizer.bypassSecurityTrustUrl("data:Image/*;base64," + this.fileBase64);
     console.log(this.dataValidasi["SHIFT_DATE"]);
+
+    if(new Date().getTime() > new Date(this.dataValidasi["SHIFT_DATE"] + ' ' +  this.dataValidasi["JAM_PULANG"]).getTime() == true){
+      this.isLembur = true;
+    }
 
     // this.imageShow = url_image + '/' + '20200625_094623_1770451718.jpg';
 
