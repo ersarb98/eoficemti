@@ -933,4 +933,8 @@ export class InsertNoteAttendancePage {
     //   }
     // }
   }
+
+  skip() {
+    this.navCtrl.pop();
+  }
 }

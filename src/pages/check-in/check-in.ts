@@ -147,22 +147,44 @@ export class CheckInPage {
           toast.present();
         }
       } else if (this.attendanceType == "WFO") {
-        var lat_kantor = "";
-        var long_kantor = "";
+        var lat_kantor1 = this.addressData["LAT_WFO_1"];
+        var long_kantor1 = this.addressData["LONG_WFO_1"];
 
-        if (this.userdataTPK["data"]["IDCABANG"] == "31") {
-          lat_kantor = this.addressData["LAT_PPI_PUSAT"];
-          long_kantor = this.addressData["LONG_PPI_PUSAT"];
-        } else if (this.userdataTPK["data"]["IDCABANG"] == "32") {
-          lat_kantor = this.addressData["LAT_TPK_JAMBI"];
-          long_kantor = this.addressData["LONG_TPK_JAMBI"];
-        } else if (this.userdataTPK["data"]["IDCABANG"] == "33") {
-          lat_kantor = this.addressData["LAT_TPK_PONTIANAK"];
-          long_kantor = this.addressData["LONG_TPK_PONTIANAK"];
-        }
+        var lat_kantor2 = this.addressData["LAT_WFO_2"];
+        var long_kantor2 = this.addressData["LONG_WFO_2"];
 
-        var countJarak = this.getDistanceFromLatLonInKm(lat_kantor, long_kantor, this.lat, this.long);
-        if (countJarak <= parseInt(this.addressData["RADIUS_WFO"])) {
+        var lat_kantor3 = this.addressData["LAT_WFO_3"];
+        var long_kantor3 = this.addressData["LONG_WFO_3"];
+
+        var lat_kantor4 = this.addressData["LAT_WFO_4"];
+        var long_kantor4 = this.addressData["LONG_WFO_4"];
+
+        var lat_kantor5 = this.addressData["LAT_WFO_5"];
+        var long_kantor5 = this.addressData["LONG_WFO_5"];
+
+        // if (this.userdataTPK["data"]["IDCABANG"] == "31") {
+        //   lat_kantor = this.addressData["LAT_PPI_PUSAT"];
+        //   long_kantor = this.addressData["LONG_PPI_PUSAT"];
+        // } else if (this.userdataTPK["data"]["IDCABANG"] == "32") {
+        //   lat_kantor = this.addressData["LAT_TPK_JAMBI"];
+        //   long_kantor = this.addressData["LONG_TPK_JAMBI"];
+        // } else if (this.userdataTPK["data"]["IDCABANG"] == "33") {
+        //   lat_kantor = this.addressData["LAT_TPK_PONTIANAK"];
+        //   long_kantor = this.addressData["LONG_TPK_PONTIANAK"];
+        // }
+
+        var countJarak1 = this.getDistanceFromLatLonInKm(lat_kantor1, long_kantor1, this.lat, this.long);
+        var countJarak2 = this.getDistanceFromLatLonInKm(lat_kantor2, long_kantor2, this.lat, this.long);
+        var countJarak3 = this.getDistanceFromLatLonInKm(lat_kantor3, long_kantor3, this.lat, this.long);
+        var countJarak4 = this.getDistanceFromLatLonInKm(lat_kantor4, long_kantor4, this.lat, this.long);
+        var countJarak5 = this.getDistanceFromLatLonInKm(lat_kantor5, long_kantor5, this.lat, this.long);
+        if (
+          (countJarak1 <= parseInt(this.addressData["RADIUS_WFO"]))
+          || (countJarak2 <= parseInt(this.addressData["RADIUS_WFO"]))
+          || (countJarak3 <= parseInt(this.addressData["RADIUS_WFO"]))
+          || (countJarak4 <= parseInt(this.addressData["RADIUS_WFO"]))
+          || (countJarak5 <= parseInt(this.addressData["RADIUS_WFO"]))
+          ) {
           if (this.attendanceType == null || this.attendanceType == undefined) {
             this.attendanceType = "";
           }
@@ -217,22 +239,44 @@ export class CheckInPage {
       }
     } else {
       if (this.attendanceType == "WFO") {
-        var lat_kantor = "";
-        var long_kantor = "";
+        var lat_kantor1 = this.addressData["LAT_WFO_1"];
+        var long_kantor1 = this.addressData["LONG_WFO_1"];
 
-        if (this.userdataTPK["data"]["IDCABANG"] == "31") {
-          lat_kantor = this.addressData["LAT_PPI_PUSAT"];
-          long_kantor = this.addressData["LONG_PPI_PUSAT"];
-        } else if (this.userdataTPK["data"]["IDCABANG"] == "32") {
-          lat_kantor = this.addressData["LAT_TPK_JAMBI"];
-          long_kantor = this.addressData["LONG_TPK_JAMBI"];
-        } else if (this.userdataTPK["data"]["IDCABANG"] == "33") {
-          lat_kantor = this.addressData["LAT_TPK_PONTIANAK"];
-          long_kantor = this.addressData["LONG_TPK_PONTIANAK"];
-        }
+        var lat_kantor2 = this.addressData["LAT_WFO_2"];
+        var long_kantor2 = this.addressData["LONG_WFO_2"];
 
-        var countJarak = this.getDistanceFromLatLonInKm(lat_kantor, long_kantor, this.lat, this.long);
-        if (countJarak < this.addressData["RADIUS_WFO"]) {
+        var lat_kantor3 = this.addressData["LAT_WFO_3"];
+        var long_kantor3 = this.addressData["LONG_WFO_3"];
+
+        var lat_kantor4 = this.addressData["LAT_WFO_4"];
+        var long_kantor4 = this.addressData["LONG_WFO_4"];
+
+        var lat_kantor5 = this.addressData["LAT_WFO_5"];
+        var long_kantor5 = this.addressData["LONG_WFO_5"];
+
+        // if (this.userdataTPK["data"]["IDCABANG"] == "31") {
+        //   lat_kantor = this.addressData["LAT_PPI_PUSAT"];
+        //   long_kantor = this.addressData["LONG_PPI_PUSAT"];
+        // } else if (this.userdataTPK["data"]["IDCABANG"] == "32") {
+        //   lat_kantor = this.addressData["LAT_TPK_JAMBI"];
+        //   long_kantor = this.addressData["LONG_TPK_JAMBI"];
+        // } else if (this.userdataTPK["data"]["IDCABANG"] == "33") {
+        //   lat_kantor = this.addressData["LAT_TPK_PONTIANAK"];
+        //   long_kantor = this.addressData["LONG_TPK_PONTIANAK"];
+        // }
+
+        var countJarak1 = this.getDistanceFromLatLonInKm(lat_kantor1, long_kantor1, this.lat, this.long);
+        var countJarak2 = this.getDistanceFromLatLonInKm(lat_kantor2, long_kantor2, this.lat, this.long);
+        var countJarak3 = this.getDistanceFromLatLonInKm(lat_kantor3, long_kantor3, this.lat, this.long);
+        var countJarak4 = this.getDistanceFromLatLonInKm(lat_kantor4, long_kantor4, this.lat, this.long);
+        var countJarak5 = this.getDistanceFromLatLonInKm(lat_kantor5, long_kantor5, this.lat, this.long);
+        if (
+          (countJarak1 <= parseInt(this.addressData["RADIUS_WFO"]))
+          || (countJarak2 <= parseInt(this.addressData["RADIUS_WFO"]))
+          || (countJarak3 <= parseInt(this.addressData["RADIUS_WFO"]))
+          || (countJarak4 <= parseInt(this.addressData["RADIUS_WFO"]))
+          || (countJarak5 <= parseInt(this.addressData["RADIUS_WFO"]))
+        ) {
           let alert = this.alertCtrl.create({
             subTitle: "Anda yakin ingin " + this.check_type + " " + this.attendanceType + " ?",
             cssClass: "alert",

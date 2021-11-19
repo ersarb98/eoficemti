@@ -7,7 +7,7 @@
 <ion-header>
   <ion-navbar>
     <ion-title>
-      <span ion-text color="light" *ngIf="fromPage != 'AbsenActivityPage'">Activity</span>
+      <span ion-text color="light" *ngIf="fromPage != 'AbsenActivityPage'">Activity (Optional)</span>
       <span ion-text color="light" *ngIf="fromPage == 'AbsenActivityPage'">{{ date }}</span>
     </ion-title>
   </ion-navbar>
@@ -65,7 +65,8 @@
       </ion-grid> -->
       <div *ngFor="let inputActivity of inputActivityList; let i = index" class="my-card">
         <div class="delete-class" *ngIf="i > 0 && inputActivity['att_activity_id'] == ''">
-          <button ion-button icon-only color="danger" clear style="border-radius: 8px !important" (click)="delActivity(i)">
+          <button ion-button icon-only color="danger" clear style="border-radius: 8px !important"
+            (click)="delActivity(i)">
             <ion-icon name="md-close"></ion-icon>
             <!-- Delete -->
           </button>
@@ -121,10 +122,12 @@
         </ion-item>
 
         <div style="margin-left: 10px" *ngIf="checkType == 'CHECK_OUT' && inputActivity['att_activity_id'] != ''">
-          <div *ngIf="inputActivity['status'] != null && originalActivityList[i]['status'] != null && inputActivity['status'] != '' && originalActivityList[i]['status'] != ''">
-            <span text-wrap ion-text style="color: red; font-size: 1.2rem" *ngIf="inputActivity['status'] != 'Batal' && (numberExtractor(originalActivityList[i]['status']) > numberExtractor(inputActivityList[i]['status']))"
-              >*Presentase status tidak boleh kurang dari sebelumnya ( {{ numberExtractor(originalActivityList[i]['status']) }}% ).</span
-            >
+          <div
+            *ngIf="inputActivity['status'] != null && originalActivityList[i]['status'] != null && inputActivity['status'] != '' && originalActivityList[i]['status'] != ''">
+            <span text-wrap ion-text style="color: red; font-size: 1.2rem"
+              *ngIf="inputActivity['status'] != 'Batal' && (numberExtractor(originalActivityList[i]['status']) > numberExtractor(inputActivityList[i]['status']))">*Presentase
+              status tidak boleh kurang dari sebelumnya ( {{ numberExtractor(originalActivityList[i]['status']) }}%
+              ).</span>
             <br />
           </div>
           <!-- <span text-wrap ion-text style="color:red; font-size: 1.2rem;" >{{ originalActivityList[i]['status'] }}</span> -->
@@ -156,9 +159,18 @@
             </button>
           </td>
           <td width="50%" align="center">
-            <button ion-button icon-start style="width: 95% !important; border-radius: 10px" color="secondary" (click)="submitActivity('INSERT')" [disabled]="disableSubmitButton()">
+            <button ion-button icon-start style="width: 95% !important; border-radius: 10px" color="secondary"
+              (click)="submitActivity('INSERT')" [disabled]="disableSubmitButton()">
               <ion-icon name="md-checkmark-circle-outline"></ion-icon>
               Submit
+            </button>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2" align="center" (click)="skip()">
+            <button ion-button icon-start style="width: 95% !important; border-radius: 10px" color="color2">
+              <ion-icon name="ios-fastforward-outline"></ion-icon>
+              Lewati
             </button>
           </td>
         </tr>
@@ -363,7 +375,8 @@
 
         <div *ngFor="let inputActivity of inputActivityList; let i = index" class="my-card">
           <div class="delete-class" *ngIf="i > 0 && inputActivity['att_activity_id'] == ''">
-            <button ion-button icon-only color="danger" clear style="border-radius: 8px !important" (click)="delActivity(i)">
+            <button ion-button icon-only color="danger" clear style="border-radius: 8px !important"
+              (click)="delActivity(i)">
               <ion-icon name="md-close"></ion-icon>
             </button>
           </div>
@@ -404,10 +417,12 @@
           </ion-item>
 
           <div style="margin-left: 10px" *ngIf="checkType == 'CHECK_OUT' && inputActivity['att_activity_id'] != ''">
-            <div *ngIf="inputActivity['status'] != null && originalActivityList[i]['status'] != null && inputActivity['status'] != '' && originalActivityList[i]['status'] != ''">
-              <span text-wrap ion-text style="color: red; font-size: 1.2rem" *ngIf="inputActivity['status'] != 'Batal' && (numberExtractor(originalActivityList[i]['status']) > numberExtractor(inputActivityList[i]['status']))"
-                >*Presentase status tidak boleh kurang dari sebelumnya ( {{ numberExtractor(originalActivityList[i]['status']) }}% ).</span
-              >
+            <div
+              *ngIf="inputActivity['status'] != null && originalActivityList[i]['status'] != null && inputActivity['status'] != '' && originalActivityList[i]['status'] != ''">
+              <span text-wrap ion-text style="color: red; font-size: 1.2rem"
+                *ngIf="inputActivity['status'] != 'Batal' && (numberExtractor(originalActivityList[i]['status']) > numberExtractor(inputActivityList[i]['status']))">*Presentase
+                status tidak boleh kurang dari sebelumnya ( {{ numberExtractor(originalActivityList[i]['status']) }}%
+                ).</span>
               <br />
             </div>
             <!-- <span text-wrap ion-text style="color:red; font-size: 1.2rem;" >{{ originalActivityList[i]['status'] }}</span> -->
@@ -440,7 +455,8 @@
               </button>
             </td>
             <td width="50%" align="center">
-              <button ion-button icon-start style="width: 95% !important; border-radius: 10px" color="secondary" (click)="submitActivity('INSERT')" [disabled]="disableSubmitButton()">
+              <button ion-button icon-start style="width: 95% !important; border-radius: 10px" color="secondary"
+                (click)="submitActivity('INSERT')" [disabled]="disableSubmitButton()">
                 <ion-icon name="md-checkmark-circle-outline"></ion-icon>
                 Submit
               </button>
