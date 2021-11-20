@@ -43,17 +43,19 @@ export class LemburBawahanPage {
     console.log("ionViewDidLoad LemburBawahanPage");
     this.storage.get("userdataTPK").then((val) => {
       this.userdataTPK = val;
+      console.log('asd');
       if (this.userdataTPK["data"]["DATA_BAWAHAN"].length == 0 && this.userdataTPK["data"]["DATA_BAWAHAN_TNO"].length == 0) {
         this.isAtasan = false;
       } else {
         this.isAtasan = true;
       }
+      this.lemburBawahanList = [];
+      this.getLemburBawahanList("first", "");
     });
   }
 
   ionViewWillEnter() {
-    this.lemburBawahanList = [];
-    this.getLemburBawahanList("first", "");
+    
   }
 
   getLemburBawahanList(type, functionName) {
