@@ -11,6 +11,7 @@
     </ion-title>
 
     <ion-buttons end>
+      <ion-badge class="my-badge" *ngIf="jumReqDomisili > 0" color="danger">{{jumReqDomisili}}</ion-badge>
       <button ion-button (click)="openAddressPage()" *ngIf='isAtasan == true' >
         <!-- <ion-icon style="font-size:2.4rem;" name="md-analytics" color="light"></ion-icon> -->
         <img src="assets/flat-icon/address.png" style="    max-height: 27px;

@@ -13,7 +13,7 @@
 </ion-header>
 
 <ion-content padding>
-  <div class="container">
+  <div class="container" *ngIf="isLoading == false">
     <!-- Personal -->
     <div class="content-4">
       <div class="fill-4">
@@ -24,40 +24,47 @@
         <div class="body-content-4" *ngIf="showPersonal">
           <ion-item no-padding>
             <ion-label stacked>Nama Personal</ion-label>
-            <ion-input type="text" placeholder="" [(ngModel)]="namaPersonal"></ion-input>
+            <ion-input type="text" placeholder="" [(ngModel)]="namaPersonal"
+              [ngClass]="{'bg-yellow': namaPersonal != dataCV['DATA_HEADER']['NAMA_USER'] }"></ion-input>
           </ion-item>
           <ion-item no-padding>
             <ion-label stacked>NIPP</ion-label>
-            <ion-input type="number" placeholder="" [(ngModel)]="nipp"></ion-input>
+            <ion-input type="number" placeholder="" [(ngModel)]="nipp"
+              [ngClass]="{'bg-yellow': nipp != this.dataCV['DATA_HEADER']['NIPP'] }"></ion-input>
           </ion-item>
           <ion-item no-padding>
             <ion-label stacked>Puspel</ion-label>
-            <ion-input type="text" placeholder="" [(ngModel)]="puspel"></ion-input>
+            <ion-input type="text" placeholder="" [(ngModel)]="puspel"
+              [ngClass]="{'bg-yellow': puspel != this.dataCV['DATA_HEADER']['PUSPEL'] }"></ion-input>
           </ion-item>
           <ion-item no-padding>
             <ion-label stacked>Direktorat</ion-label>
-            <ion-select placeholder="" [(ngModel)]="direktorat">
+            <ion-select placeholder="" [(ngModel)]="direktorat"
+              [ngClass]="{'bg-yellow': direktorat != this.dataCV['DATA_HEADER']['DIREKTORAT'] }">
               <ion-option *ngFor="let direktorat of this.dataCV['DATA_DIREKTORAT']" value="{{ direktorat['ID_UNIT'] }}">
                 {{ direktorat['NM_UNIT'] }}</ion-option>
             </ion-select>
           </ion-item>
           <ion-item no-padding>
             <ion-label stacked>Divisi</ion-label>
-            <ion-select placeholder="" [(ngModel)]="divisi">
+            <ion-select placeholder="" [(ngModel)]="divisi"
+              [ngClass]="{'bg-yellow': divisi !=  this.dataCV['DATA_HEADER']['DIVISI']}">
               <ion-option *ngFor="let divisi of this.dataCV['DATA_DIVISI']" value="{{ divisi['ID_UNIT'] }}">
                 {{ divisi['NM_UNIT'] }}</ion-option>
             </ion-select>
           </ion-item>
           <ion-item no-padding>
             <ion-label stacked>Sub Divisi</ion-label>
-            <ion-select placeholder="" [(ngModel)]="subDivisi">
+            <ion-select placeholder="" [(ngModel)]="subDivisi"
+              [ngClass]="{'bg-yellow': subDivisi !=  this.dataCV['DATA_HEADER']['SUB_DIVISI']}">
               <ion-option *ngFor="let subdivisi of this.dataCV['DATA_SUBDIVISI']" value="{{ subdivisi['ID_UNIT'] }}">
                 {{ subdivisi['NM_UNIT'] }}</ion-option>
             </ion-select>
           </ion-item>
           <ion-item no-padding>
             <ion-label stacked>Kategori Jabatan</ion-label>
-            <ion-select placeholder="" [(ngModel)]="kategoriJabatan">
+            <ion-select placeholder="" [(ngModel)]="kategoriJabatan"
+              [ngClass]="{'bg-yellow': kategoriJabatan !=  this.dataCV['DATA_HEADER']['KATEGORI_JABATAN']}">
               <ion-option value="DIREKSI">DIREKSI</ion-option>
               <ion-option value="VP">VP</ion-option>
               <ion-option value="DVP">DVP</ion-option>
@@ -68,23 +75,28 @@
           </ion-item>
           <ion-item no-padding>
             <ion-label stacked>Jabatan</ion-label>
-            <ion-input type="text" placeholder="" [(ngModel)]="jabatan"></ion-input>
+            <ion-input type="text" placeholder="" [(ngModel)]="jabatan"
+              [ngClass]="{'bg-yellow': jabatan !=  this.dataCV['DATA_HEADER']['JABATAN']}"></ion-input>
           </ion-item>
           <ion-item no-padding>
             <ion-label stacked>Kelas Jabatan</ion-label>
-            <ion-input type="text" placeholder="" [(ngModel)]="kelasJabatan"></ion-input>
+            <ion-input type="text" placeholder="" [(ngModel)]="kelasJabatan"
+              [ngClass]="{'bg-yellow': kelasJabatan !=  this.dataCV['DATA_HEADER']['KELAS_JABATAN']}"></ion-input>
           </ion-item>
           <ion-item no-padding>
             <ion-label stacked>Area Kerja</ion-label>
-            <ion-input type="text" placeholder="" [(ngModel)]="areaKerja"></ion-input>
+            <ion-input type="text" placeholder="" [(ngModel)]="areaKerja"
+              [ngClass]="{'bg-yellow': areaKerja !=  this.dataCV['DATA_HEADER']['AREA_KERJA']}"></ion-input>
           </ion-item>
           <ion-item no-padding>
             <ion-label stacked>Golongan</ion-label>
-            <ion-input type="text" placeholder="" [(ngModel)]="golongan"></ion-input>
+            <ion-input type="text" placeholder="" [(ngModel)]="golongan"
+              [ngClass]="{'bg-yellow': golongan !=  this.dataCV['DATA_HEADER']['GOLONGAN']}"></ion-input>
           </ion-item>
           <ion-item no-padding>
             <ion-label stacked>Status Pekerja</ion-label>
-            <ion-select placeholder="" [(ngModel)]="statusPekerja">
+            <ion-select placeholder="" [(ngModel)]="statusPekerja"
+              [ngClass]="{'bg-yellow': statusPekerja !=  this.dataCV['DATA_HEADER']['STATUS_PEKERJA']}">
               <ion-option value="Organik">Organik</ion-option>
               <ion-option value="PKWT">PKWT</ion-option>
               <ion-option value="TNO">TNO</ion-option>
@@ -92,7 +104,8 @@
           </ion-item>
           <ion-item no-padding>
             <ion-label stacked>Status Jabatan</ion-label>
-            <ion-select placeholder="" [(ngModel)]="statusJabatan">
+            <ion-select placeholder="" [(ngModel)]="statusJabatan"
+              [ngClass]="{'bg-yellow': statusJabatan !=  this.dataCV['DATA_HEADER']['STATUS_JABATAN']}">
               <ion-option value="PJS">PJS</ion-option>
               <ion-option value="PJ">PJ</ion-option>
               <ion-option value="Definitif">Definitif</ion-option>
@@ -100,7 +113,8 @@
           </ion-item>
           <ion-item no-padding>
             <ion-label stacked>Kelompok Posisi</ion-label>
-            <ion-select placeholder="" [(ngModel)]="kelompokPosisi">
+            <ion-select placeholder="" [(ngModel)]="kelompokPosisi"
+              [ngClass]="{'bg-yellow': kelompokPosisi !=  this.dataCV['DATA_HEADER']['KELOMPOK_POSISI']}">
               <ion-option value="Fungsional">Fungsional</ion-option>
               <ion-option value="Struktural">Struktural</ion-option>
               <ion-option value="Spesialis">Spesialis</ion-option>
@@ -108,7 +122,8 @@
           </ion-item>
           <ion-item no-padding>
             <ion-label stacked>Kategori Posisi</ion-label>
-            <ion-select placeholder="" [(ngModel)]="kategoriPosisi">
+            <ion-select placeholder="" [(ngModel)]="kategoriPosisi"
+              [ngClass]="{'bg-yellow': kategoriPosisi !=  this.dataCV['DATA_HEADER']['KATEGORI_POSISI']}">
               <ion-option value="Penunjang Operasional">Penunjang Operasional</ion-option>
               <ion-option value="Operasional Langsung">Operasional Langsung</ion-option>
               <ion-option value="Operasional Tidak Langsung">Operasional Tidak Langsung</ion-option>
@@ -117,47 +132,57 @@
           <ion-item no-padding>
             <ion-label stacked>Tanggal Capeg</ion-label>
             <ion-input type="text" [readonly]="true" (ionFocus)="showDatePicker(1)" (click)="showDatePicker(1)"
-              [(ngModel)]="tanggalCapeg"></ion-input>
+              [(ngModel)]="tanggalCapeg"
+              [ngClass]="{'bg-yellow': tanggalCapeg !=  this.dataCV['DATA_HEADER']['TGL_CAPEG']}"></ion-input>
           </ion-item>
           <ion-item no-padding>
             <ion-label stacked>Kelas Capeg</ion-label>
-            <ion-select placeholder="" [(ngModel)]="kelasCapeg">
+            <ion-select placeholder="" [(ngModel)]="kelasCapeg"
+              [ngClass]="{'bg-yellow': kelasCapeg !=  this.dataCV['DATA_HEADER']['KELAS_CAPEG']}">
               <ion-option value="0">Belum Dibaca</ion-option>
             </ion-select>
           </ion-item>
           <ion-item no-padding>
             <ion-label stacked>TMT Penuh</ion-label>
             <ion-input type="text" [readonly]="true" (ionFocus)="showDatePicker(2)" (click)="showDatePicker(2)"
-              [(ngModel)]="tmtPenuh"></ion-input>
+              [(ngModel)]="tmtPenuh" [ngClass]="{'bg-yellow': tmtPenuh !=  this.dataCV['DATA_HEADER']['TMT_PENUH']}">
+            </ion-input>
           </ion-item>
           <ion-item no-padding>
             <ion-label stacked>TMT Jabatan</ion-label>
             <ion-input type="text" [readonly]="true" (ionFocus)="showDatePicker(3)" (click)="showDatePicker(3)"
-              [(ngModel)]="tmtJabatan"></ion-input>
+              [(ngModel)]="tmtJabatan"
+              [ngClass]="{'bg-yellow': tmtJabatan !=  this.dataCV['DATA_HEADER']['TMT_JABATAN']}"></ion-input>
           </ion-item>
           <ion-item no-padding>
             <ion-label stacked>TMT Kelas Jabatan</ion-label>
             <ion-input type="text" [readonly]="true" (ionFocus)="showDatePicker(4)" (click)="showDatePicker(4)"
-              [(ngModel)]="tmtKelasJabatan"></ion-input>
+              [(ngModel)]="tmtKelasJabatan"
+              [ngClass]="{'bg-yellow': tmtKelasJabatan !=  this.dataCV['DATA_HEADER']['TMT_KELAS_JABATAN']}">
+            </ion-input>
           </ion-item>
           <ion-item no-padding>
             <ion-label stacked>TMT Golongan</ion-label>
             <ion-input type="text" [readonly]="true" (ionFocus)="showDatePicker(5)" (click)="showDatePicker(5)"
-              [(ngModel)]="tmtGolongan"></ion-input>
+              [(ngModel)]="tmtGolongan"
+              [ngClass]="{'bg-yellow': tmtGolongan !=  this.dataCV['DATA_HEADER']['TMT_GOLONGAN']}"></ion-input>
           </ion-item>
           <ion-item no-padding>
             <ion-label stacked>Tanggal Masuk PPI</ion-label>
             <ion-input type="text" [readonly]="true" (ionFocus)="showDatePicker(6)" (click)="showDatePicker(6)"
-              [(ngModel)]="tglMasukPPI"></ion-input>
+              [(ngModel)]="tglMasukPPI"
+              [ngClass]="{'bg-yellow': tglMasukPPI !=  this.dataCV['DATA_HEADER']['TGL_MASUK_PPI']}"></ion-input>
           </ion-item>
           <ion-item no-padding>
             <ion-label stacked>Tanggal Keluar PPI</ion-label>
             <ion-input type="text" [readonly]="true" (ionFocus)="showDatePicker(7)" (click)="showDatePicker(7)"
-              [(ngModel)]="tglKeluarPPI"></ion-input>
+              [(ngModel)]="tglKeluarPPI"
+              [ngClass]="{'bg-yellow': tglKeluarPPI !=  this.dataCV['DATA_HEADER']['TGL_KELUAR_PPI']}"></ion-input>
           </ion-item>
           <ion-item no-padding>
             <ion-label stacked>Alasan Keluar</ion-label>
-            <ion-select placeholder="" [(ngModel)]="alasanKeluar">
+            <ion-select placeholder="" [(ngModel)]="alasanKeluar"
+              [ngClass]="{'bg-yellow': alasanKeluar !=  this.dataCV['DATA_HEADER']['ALASAN_KELUAR']}">
               <ion-option value="Pensiun">Pensiun</ion-option>
               <ion-option value="Habis Kontrak">Habis Kontrak</ion-option>
               <ion-option value="Indispliner">Indispliner</ion-option>
@@ -165,19 +190,23 @@
           </ion-item>
           <ion-item no-padding>
             <ion-label stacked>Masa Kerja PPI</ion-label>
-            <ion-input readonly placeholder="" [(ngModel)]="masaKerjaPPI"></ion-input>
+            <ion-input readonly placeholder="" [(ngModel)]="masaKerjaPPI"
+              [ngClass]="{'bg-yellow': masaKerjaPPI !=  this.dataCV['DATA_HEADER']['MASA_KERJA_PPI']}"></ion-input>
           </ion-item>
           <ion-item no-padding>
             <ion-label stacked>Nomor KTP</ion-label>
-            <ion-input type="number" placeholder="" [(ngModel)]="nomorKTP"></ion-input>
+            <ion-input type="number" placeholder="" [(ngModel)]="nomorKTP"
+              [ngClass]="{'bg-yellow': nomorKTP !=  this.dataCV['DATA_HEADER']['NO_KTP']}"></ion-input>
           </ion-item>
           <ion-item no-padding>
             <ion-label stacked>Nomor NPWP</ion-label>
-            <ion-input type="number" placeholder="" [(ngModel)]="nomorNPWP"></ion-input>
+            <ion-input type="number" placeholder="" [(ngModel)]="nomorNPWP"
+              [ngClass]="{'bg-yellow': nomorNPWP !=  this.dataCV['DATA_HEADER']['NO_NPWP']}"></ion-input>
           </ion-item>
           <ion-item no-padding>
             <ion-label stacked>Status Pajak</ion-label>
-            <ion-select placeholder="" [(ngModel)]="statusPajak">
+            <ion-select placeholder="" [(ngModel)]="statusPajak"
+              [ngClass]="{'bg-yellow': statusPajak !=  this.dataCV['DATA_HEADER']['STATUS_PAJAK']}">
               <ion-option value="M0">M0</ion-option>
               <ion-option value="M1">M1</ion-option>
               <ion-option value="M2">M2</ion-option>
@@ -186,59 +215,74 @@
           </ion-item>
           <ion-item no-padding>
             <ion-label stacked>Nomor KK</ion-label>
-            <ion-input type="number" placeholder="" [(ngModel)]="nomorKK"></ion-input>
+            <ion-input type="number" placeholder="" [(ngModel)]="nomorKK"
+              [ngClass]="{'bg-yellow': nomorKK !=  this.dataCV['DATA_HEADER']['NO_KK']}"></ion-input>
           </ion-item>
           <ion-item no-padding>
             <ion-label stacked>Nomor BPJS Kesehatan</ion-label>
-            <ion-input type="number" placeholder="" [(ngModel)]="bpjsKesehatan"></ion-input>
+            <ion-input type="number" placeholder="" [(ngModel)]="bpjsKesehatan"
+              [ngClass]="{'bg-yellow': bpjsKesehatan !=  this.dataCV['DATA_HEADER']['NO_BPJS_KESEHATAN']}"></ion-input>
           </ion-item>
           <ion-item no-padding>
             <ion-label stacked>Nomor BPJS Ketenagakerjaan</ion-label>
-            <ion-input type="number" placeholder="" [(ngModel)]="bpjsKetenagakerjaan"></ion-input>
+            <ion-input type="number" placeholder="" [(ngModel)]="bpjsKetenagakerjaan"
+              [ngClass]="{'bg-yellow': bpjsKetenagakerjaan !=  this.dataCV['DATA_HEADER']['NO_BPJS_KETENAGAKERJAAN']}">
+            </ion-input>
           </ion-item>
           <ion-item no-padding>
             <ion-label stacked>Tanggal Lahir</ion-label>
             <ion-input type="text" [readonly]="true" (ionFocus)="showDatePicker(8)" (click)="showDatePicker(8)"
-              [(ngModel)]="tglLahir"></ion-input>
+              [ngClass]="{'bg-yellow': tglLahir !=  this.dataCV['DATA_HEADER']['TGL_LAHIR']}" [(ngModel)]="tglLahir">
+            </ion-input>
           </ion-item>
           <ion-item no-padding>
             <ion-label stacked>Tempat Lahir</ion-label>
-            <ion-input type="text" placeholder="" [(ngModel)]="tempatLahir"></ion-input>
+            <ion-input type="text" placeholder="" [(ngModel)]="tempatLahir"
+              [ngClass]="{'bg-yellow': tempatLahir !=  this.dataCV['DATA_HEADER']['TEMPAT_LAHIR']}"></ion-input>
           </ion-item>
           <ion-item no-padding>
             <ion-label stacked>Agama</ion-label>
-            <ion-input type="text" placeholder="" [(ngModel)]="agama"></ion-input>
+            <ion-input type="text" placeholder="" [(ngModel)]="agama"
+              [ngClass]="{'bg-yellow': agama !=  this.dataCV['DATA_HEADER']['AGAMA']}"></ion-input>
           </ion-item>
           <ion-item no-padding>
             <ion-label stacked>Pendidikan Terakhir</ion-label>
-            <ion-input type="text" placeholder="" [(ngModel)]="pendidikanTerakhir"></ion-input>
+            <ion-input type="text" placeholder="" [(ngModel)]="pendidikanTerakhir"
+              [ngClass]="{'bg-yellow': pendidikanTerakhir !=  this.dataCV['DATA_HEADER']['PEND_TERAKHIR']}"></ion-input>
           </ion-item>
           <ion-item no-padding>
             <ion-label stacked>Jurusan</ion-label>
-            <ion-input type="text" placeholder="" [(ngModel)]="jurusan"></ion-input>
+            <ion-input type="text" placeholder="" [(ngModel)]="jurusan"
+              [ngClass]="{'bg-yellow': jurusan !=  this.dataCV['DATA_HEADER']['JURUSAN']}"></ion-input>
           </ion-item>
           <ion-item no-padding>
             <ion-label stacked>Nama Institusi Pandidikan</ion-label>
-            <ion-input type="text" placeholder="" [(ngModel)]="namaInstitusi"></ion-input>
+            <ion-input type="text" placeholder="" [(ngModel)]="namaInstitusi"
+              [ngClass]="{'bg-yellow': namaInstitusi !=  this.dataCV['DATA_HEADER']['NAMA_INSTITUSI']}"></ion-input>
           </ion-item>
           <ion-item no-padding>
             <ion-label stacked>Jenis Kelamin</ion-label>
-            <ion-select placeholder="" [(ngModel)]="jenisKelamin">
+            <ion-select placeholder="" [(ngModel)]="jenisKelamin"
+              [ngClass]="{'bg-yellow': jenisKelamin !=  this.dataCV['DATA_HEADER']['JENIS_KELAMIN']}">
               <ion-option value="Laki-laki">Laki-laki</ion-option>
               <ion-option value="Perempuan">Perempuan</ion-option>
             </ion-select>
           </ion-item>
           <ion-item no-padding>
             <ion-label stacked>Alamat KTP</ion-label>
-            <ion-textarea rows="3" [(ngModel)]="alamatKTP"></ion-textarea>
+            <ion-textarea rows="3" [(ngModel)]="alamatKTP"
+              [ngClass]="{'bg-yellow': alamatKTP !=  this.dataCV['DATA_HEADER']['ALAMAT_KTP']}"></ion-textarea>
           </ion-item>
           <ion-item no-padding>
             <ion-label stacked>Alamat Domisili</ion-label>
-            <ion-textarea rows="3" [(ngModel)]="alamatDomisili"></ion-textarea>
+            <ion-textarea rows="3" [(ngModel)]="alamatDomisili"
+              [ngClass]="{'bg-yellow': alamatDomisili !=  this.dataCV['DATA_HEADER']['ALAMAT_DOMISILI']}">
+            </ion-textarea>
           </ion-item>
           <ion-item no-padding>
             <ion-label stacked>Status Perkawinan</ion-label>
-            <ion-select placeholder="" [(ngModel)]="statusPerkawinan">
+            <ion-select placeholder="" [(ngModel)]="statusPerkawinan"
+              [ngClass]="{'bg-yellow': statusPerkawinan !=  this.dataCV['DATA_HEADER']['STATUS_PERKAWINAN']}">
               <ion-option value="TKO">TKO</ion-option>
               <ion-option value="TK1">TK1</ion-option>
               <ion-option value="TK2">TK2</ion-option>
@@ -259,31 +303,47 @@
           </ion-item>
           <ion-item no-padding>
             <ion-label stacked>Jumlah Anak</ion-label>
-            <ion-input type="number" placeholder="" [(ngModel)]="jumlahAnak"></ion-input>
+            <ion-input type="number" placeholder="" [(ngModel)]="jumlahAnak"
+              [ngClass]="{'bg-yellow': jumlahAnak !=  this.dataCV['DATA_HEADER']['JUMLAH_ANAK']}"></ion-input>
           </ion-item>
           <ion-item no-padding>
             <ion-label stacked>Jumlah Tanggungan</ion-label>
-            <ion-input type="number" placeholder="" [(ngModel)]="jumlahTanggungan"></ion-input>
+            <ion-input type="number" placeholder="" [(ngModel)]="jumlahTanggungan"
+              [ngClass]="{'bg-yellow': jumlahTanggungan !=  this.dataCV['DATA_HEADER']['JUMLAH_TANGGUNGAN']}">
+            </ion-input>
           </ion-item>
           <ion-item no-padding>
             <ion-label stacked>Ahli Waris</ion-label>
-            <ion-input type="text" placeholder="" [(ngModel)]="ahliWaris"></ion-input>
+            <ion-input type="text" placeholder="" [(ngModel)]="ahliWaris"
+              [ngClass]="{'bg-yellow': ahliWaris !=  this.dataCV['DATA_HEADER']['AHLI_WARIS']}"></ion-input>
+          </ion-item>
+          <!-- <ion-item no-padding>
+            <ion-label stacked>Nama Bank</ion-label>
+            <ion-input type="text" placeholder="" [(ngModel)]="namaBank" [ngClass]="{'bg-yellow':namaBank  !=  this.dataCV['DATA_HEADER']['']}"></ion-input>
           </ion-item>
           <ion-item no-padding>
+            <ion-label stacked>Nomor Rekening</ion-label>
+            <ion-input type="number" placeholder="" [(ngModel)]="nomorRekening" [ngClass]="{'bg-yellow': nomorRekening !=  this.dataCV['DATA_HEADER']['']}"></ion-input>
+          </ion-item> -->
+          <ion-item no-padding>
             <ion-label stacked>E-Mail</ion-label>
-            <ion-input type="email" placeholder="" [(ngModel)]="email"></ion-input>
+            <ion-input type="email" placeholder="" [(ngModel)]="email"
+              [ngClass]="{'bg-yellow': email !=  this.dataCV['DATA_HEADER']['EMAIL1']}"></ion-input>
           </ion-item>
           <ion-item no-padding>
             <ion-label stacked>2nd E-mail</ion-label>
-            <ion-input type="email" placeholder="" [(ngModel)]="email2"></ion-input>
+            <ion-input type="email" placeholder="" [(ngModel)]="email2"
+              [ngClass]="{'bg-yellow': email2 !=  this.dataCV['DATA_HEADER']['EMAIL2']}"></ion-input>
           </ion-item>
           <ion-item no-padding>
             <ion-label stacked>No. Handphone</ion-label>
-            <ion-input type="number" placeholder="" [(ngModel)]="noHp"></ion-input>
+            <ion-input type="number" placeholder="" [(ngModel)]="noHp"
+              [ngClass]="{'bg-yellow': noHp !=  this.dataCV['DATA_HEADER']['NO_HP']}"></ion-input>
           </ion-item>
           <ion-item no-padding>
             <ion-label stacked>No. Telepon Rumah</ion-label>
-            <ion-input type="number" placeholder="" [(ngModel)]="noTelpRumah"></ion-input>
+            <ion-input type="number" placeholder="" [(ngModel)]="noTelpRumah"
+              [ngClass]="{'bg-yellow': noTelpRumah !=  this.dataCV['DATA_HEADER']['NO_TELP']}"></ion-input>
           </ion-item>
         </div>
         <div class="body-content-4" *ngIf="showPersonal == true" (click)="togglePersonal()">
@@ -310,13 +370,14 @@
         <div class="body-content-4" *ngIf="showPDarurat">
           <div style="width: 100%;position: relative;display: flex;">
             <button ion-button icon-end round color="primary" style="    margin-right: 0;
-            margin-left: auto;" (click)="openPage('panggilandarurat')">
+            margin-left: auto;" (click)="openPage('panggilandarurat',null,'insert')">
               Tambah
               <ion-icon name="md-add"></ion-icon>
             </button>
           </div>
           <div *ngFor="let emergency of dataCV['DATA_PANGGILAN_DARURAT'];let i = index">
-            <ion-item *ngIf="emergency['IS_DELETED'] == '0' || emergency['IS_DELETED'] == '2'"
+            <ion-item
+              *ngIf="emergency['IS_DELETED'] == '0' || emergency['IS_DELETED'] == '2' || emergency['IS_DELETED'] == '3'"
               style="margin-bottom: 10px" no-lines>
               <span item-start>
                 <img src="assets/imgs/setting-icon/phone.png" class="icon-family" />
@@ -327,6 +388,10 @@
                 style="font-weight: normal !important">{{ emergency['STATUS_HUBUNGAN'] }}</span>
               <br />
               <span ion-text text-wrap class="small-text">Nomor Darurat : {{ emergency['NO_DARURAT'] }}</span>
+              <span item-end *ngIf="emergency['ID_INFO'] != '0'">
+                <ion-icon name="md-create" style="margin-right: 5px;font-size: 2.3rem;" color="danger"
+                  (click)="openPage('panggilandarurat',i,'update', emergency)"></ion-icon>
+              </span>
               <span item-end>
                 <ion-icon name="md-close" style="margin-right: 5px;font-size: 2.3rem;" color="danger"
                   (click)="delete('emergency',i,emergency)"></ion-icon>
@@ -365,14 +430,15 @@
         <div class="body-content-4" *ngIf="showPFormal">
           <div style="width: 100%;position: relative;display: flex;">
             <button ion-button icon-end round color="primary" style="    margin-right: 0;
-            margin-left: auto;" (click)="openPage('pendidikanformal')">
+            margin-left: auto;" (click)="openPage('pendidikanformal',null,'insert')">
               Tambah
               <ion-icon name="md-add"></ion-icon>
             </button>
           </div>
           <div *ngIf="dataCV['DATA_PEND_FORMAL'].length > 0">
             <table width="100%" *ngFor="let pendFormal of dataCV['DATA_PEND_FORMAL'];let i = index">
-              <tr *ngIf="pendFormal['IS_DELETED'] == '0' || pendFormal['IS_DELETED'] == '2'">
+              <tr
+                *ngIf="pendFormal['IS_DELETED'] == '0' || pendFormal['IS_DELETED'] == '2' || pendFormal['IS_DELETED'] == '3'">
                 <td>
                   <ion-item style="margin-bottom: 10px" no-lines>
                     <span item-start>
@@ -388,8 +454,11 @@
                     <span ion-text text-wrap class="medium-text" color="color7">
                       {{ pendFormal['TAHUN_LULUS'] }} </span>
 
+                    <span item-end *ngIf="pendFormal['ID_RIWAYAT_PEND'] != '0'">
+                      <ion-icon name="md-create" style="margin-right: 5px;font-size: 2.3rem;" color="danger"
+                        (click)="openPage('pendidikanformal',i,'update', pendFormal)"></ion-icon>
+                    </span>
                     <span item-end>
-
                       <ion-icon name="md-close" style="margin-right: 5px;font-size: 2.3rem;" color="danger"
                         (click)="delete('pend_formal',i,pendFormal)"></ion-icon>
                     </span>
@@ -428,14 +497,14 @@
         <div class="body-content-4" *ngIf="showPekerjaan">
           <div style="width: 100%;position: relative;display: flex;">
             <button ion-button icon-end round color="primary" style="    margin-right: 0;
-            margin-left: auto;" (click)="openPage('pekerjaan')">
+            margin-left: auto;" (click)="openPage('pekerjaan',null,'insert')">
               Tambah
               <ion-icon name="md-add"></ion-icon>
             </button>
           </div>
           <div *ngIf="dataCV['DATA_PEKERJAAN'].length > 0">
             <table width="100%" *ngFor="let working of dataCV['DATA_PEKERJAAN'];let i = index">
-              <tr *ngIf="working['IS_DELETED'] == '0' || working['IS_DELETED'] == '2'">
+              <tr *ngIf="working['IS_DELETED'] == '0' || working['IS_DELETED'] == '2' || working['IS_DELETED'] == '3'">
                 <td style="vertical-align: top">
                   <ion-item style="margin-bottom: 10px" no-lines>
                     <span item-start>
@@ -447,6 +516,10 @@
                       Lama Bekerja : {{ working['LAMA_KERJA'] }} </span><br />
                     <span ion-text text-wrap class="small-text">
                       Prestasi : {{ working['LAMA_KERJA'] }} </span>
+                    <span item-end *ngIf="working['ID_RIWAYAT_PEKERJAAN'] != '0'">
+                      <ion-icon name="md-create" style="margin-right: 5px;font-size: 2.3rem;" color="danger"
+                        (click)="openPage('pekerjaan',i,'update', working)"></ion-icon>
+                    </span>
                     <span item-end>
                       <ion-icon name="md-close" style="margin-right: 5px;font-size: 2.3rem;" color="danger"
                         (click)="delete('working',i,working)"></ion-icon>
@@ -487,7 +560,7 @@
         <div class="body-content-4" *ngIf="showAsHistory">
           <div style="width: 100%;position: relative;display: flex;">
             <button ion-button icon-end round color="primary" style="    margin-right: 0;
-            margin-left: auto;" (click)="openPage('assigmenthistory')">
+            margin-left: auto;" (click)="openPage('assigmenthistory',null,'insert')">
               Tambah
               <ion-icon name="md-add"></ion-icon>
             </button>
@@ -495,7 +568,8 @@
 
           <div *ngIf="dataCV['DATA_ASSIGN_HISTORY'].length > 0">
             <table width="100%" *ngFor="let assignHistory of dataCV['DATA_ASSIGN_HISTORY'];let i = index">
-              <tr *ngIf="assignHistory['IS_DELETED'] == '0' || assignHistory['IS_DELETED'] == '2'">
+              <tr
+                *ngIf="assignHistory['IS_DELETED'] == '0' || assignHistory['IS_DELETED'] == '2'  || assignHistory['IS_DELETED'] == '3'">
                 <td>
                   <ion-item style="margin-bottom: 10px" no-lines>
                     <span item-start>
@@ -507,6 +581,10 @@
                       style="font-weight: normal !important">{{ assignHistory['NO_SK'] }}</span><br />
                     <span ion-text text-wrap class="small-text">
                       {{ assignHistory['LAMA_JABATAN'] }} </span>
+                    <span item-end *ngIf="assignHistory['ID_ASSIGNMENT'] != '0'">
+                      <ion-icon name="md-create" style="margin-right: 5px;font-size: 2.3rem;" color="danger"
+                        (click)="openPage('assigmenthistory',i,'update', assignHistory)"></ion-icon>
+                    </span>
                     <span item-end>
                       <ion-icon name="md-close" style="margin-right: 5px;font-size: 2.3rem;" color="danger"
                         (click)="delete('assignHistory',i,assignHistory)"></ion-icon>
@@ -547,14 +625,14 @@
         <div class="body-content-4" *ngIf="showKesehatan">
           <div style="width: 100%;position: relative;display: flex;">
             <button ion-button icon-end round color="primary" style="    margin-right: 0;
-            margin-left: auto;" (click)="openPage('kesehatan')">
+            margin-left: auto;" (click)="openPage('kesehatan',null,'insert')">
               Tambah
               <ion-icon name="md-add"></ion-icon>
             </button>
           </div>
           <div *ngIf="dataCV['DATA_KESEHATAN'].length > 0">
             <table width="100%" *ngFor="let medical of dataCV['DATA_KESEHATAN'];let i = index">
-              <tr *ngIf="medical['IS_DELETED'] == '0' || medical['IS_DELETED'] == '2'">
+              <tr *ngIf="medical['IS_DELETED'] == '0' || medical['IS_DELETED'] == '2' || medical['IS_DELETED'] == '3'">
                 <td style="vertical-align: top">
                   <ion-item style="margin-bottom: 10px" no-lines>
                     <span item-start>
@@ -568,6 +646,10 @@
                     <br />
                     <span ion-text text-wrap class="small-text">Level Kesehatan :
                       {{ medical['LEVEL_KESEHATAN'] }}</span>
+                    <span item-end *ngIf="medical['ID_RIWAYAT_KESEHATAN'] != '0'">
+                      <ion-icon name="md-create" style="margin-right: 5px;font-size: 2.3rem;" color="danger"
+                        (click)="openPage('kesehatan',i,'update', medical)"></ion-icon>
+                    </span>
                     <span item-end>
                       <ion-icon name="md-close" style="margin-right: 5px;font-size: 2.3rem;" color="danger"
                         (click)="delete('kesehatan',i,medical)"></ion-icon>
@@ -607,14 +689,15 @@
         <div class="body-content-4" *ngIf="showPelatihanPPI">
           <div style="width: 100%;position: relative;display: flex;">
             <button ion-button icon-end round color="primary" style="    margin-right: 0;
-            margin-left: auto;" (click)="openPage('pelatihanppi')">
+            margin-left: auto;" (click)="openPage('pelatihanppi',null,'insert')">
               Tambah
               <ion-icon name="md-add"></ion-icon>
             </button>
           </div>
           <div *ngIf="dataCV['DATA_PELATIHAN'].length > 0">
             <table width="100%" *ngFor="let training of dataCV['DATA_PELATIHAN'];let i = index">
-              <tr *ngIf="training['IS_DELETED'] == '0' || training['IS_DELETED'] == '2'">
+              <tr
+                *ngIf="training['IS_DELETED'] == '0' || training['IS_DELETED'] == '2' || training['IS_DELETED'] == '3'">
                 <td style="vertical-align: top">
                   <ion-item style="margin-bottom: 10px" no-lines>
                     <span item-start>
@@ -674,7 +757,7 @@
         <div class="body-content-4" *ngIf="showIdentiasKeluarga">
           <div style="width: 100%;position: relative;display: flex;">
             <button ion-button icon-end round color="primary" style="    margin-right: 0;
-            margin-left: auto;" (click)="openPage('identitaskeluarga')">
+            margin-left: auto;" (click)="openPage('identitaskeluarga',null,'insert')">
               Tambah
               <ion-icon name="md-add"></ion-icon>
             </button>
@@ -682,7 +765,8 @@
 
           <div *ngIf="dataCV['DATA_IDENTITAS_KELUARGA'].length > 0">
             <table width="100%" *ngFor="let family of dataCV['DATA_IDENTITAS_KELUARGA'];let i = index">
-              <tr width="100%" *ngIf="family['IS_DELETED'] == '0' || family['IS_DELETED'] == '2'">
+              <tr width="100%"
+                *ngIf="family['IS_DELETED'] == '0' || family['IS_DELETED'] == '2' || family['IS_DELETED'] == '3'">
                 <td style="vertical-align: top">
                   <ion-item style="margin-bottom: 10px" no-lines>
                     <span item-start>
@@ -694,6 +778,10 @@
                       style="color: black !important">{{ family['HUBUNGAN'] }}</span>
                     <br />
                     <span ion-text text-wrap class="small-text">Tanggal Lahir: {{ family['TGL_LAHIR'] }}</span>
+                    <span item-end *ngIf="family['ID_IDENTITAS'] != '0'">
+                      <ion-icon name="md-create" style="margin-right: 5px;font-size: 2.3rem;" color="danger"
+                        (click)="openPage('identitaskeluarga',i,'update', family)"></ion-icon>
+                    </span>
                     <span item-end>
                       <ion-icon name="md-close" style="margin-right: 5px;font-size: 2.3rem;" color="danger"
                         (click)="delete('keluarga',i,family)"></ion-icon>
@@ -733,7 +821,7 @@
         <div class="body-content-4" *ngIf="showRewardDanPunishment">
           <div style="width: 100%;position: relative;display: flex;">
             <button ion-button icon-end round color="primary" style="    margin-right: 0;
-            margin-left: auto;" (click)="openPage('rewardpunish')">
+            margin-left: auto;" (click)="openPage('rewardpunish',null,'insert')">
               Tambah
               <ion-icon name="md-add"></ion-icon>
             </button>
@@ -741,7 +829,8 @@
 
           <div *ngIf="dataCV['DATA_PENGHARGAAN_HK'].length > 0">
             <table width="100%" *ngFor="let reward of dataCV['DATA_PENGHARGAAN_HK'];let i = index">
-              <tr width="100%" *ngIf="reward['IS_DELETED'] == '0' || reward['IS_DELETED'] == '2'">
+              <tr width="100%"
+                *ngIf="reward['IS_DELETED'] == '0' || reward['IS_DELETED'] == '2' || reward['IS_DELETED'] == '3'">
                 <td style="vertical-align: top">
                   <ion-item style="margin-bottom: 10px" no-lines>
                     <span item-start>
@@ -755,6 +844,10 @@
                       }}</span>
                     <br />
                     <span ion-text text-wrap class="small-text">Result: {{ reward['JENIS'] }}</span>
+                    <span item-end *ngIf="reward['ID_PENGHUK'] != '0'">
+                      <ion-icon name="md-create" style="margin-right: 5px;font-size: 2.3rem;" color="danger"
+                        (click)="openPage('rewardpunish',i,'update', reward)"></ion-icon>
+                    </span>
                     <span item-end>
                       <ion-icon name="md-close" style="margin-right: 5px;font-size: 2.3rem;" color="danger"
                         (click)="delete('penghargaan',i,reward)"></ion-icon>
@@ -795,14 +888,14 @@
         <div class="body-content-4" *ngIf="showPerformance">
           <div style="width: 100%;position: relative;display: flex;">
             <button ion-button icon-end round color="primary" style="    margin-right: 0;
-            margin-left: auto;" (click)="openPage('performa')">
+            margin-left: auto;" (click)="openPage('performa',null,'insert')">
               Tambah
               <ion-icon name="md-add"></ion-icon>
             </button>
           </div>
           <div *ngIf="dataCV['DATA_PERFORMANSI'].length > 0">
             <table width="100%" *ngFor="let perform of dataCV['DATA_PERFORMANSI'];let i = index">
-              <tr *ngIf="perform['IS_DELETED'] == '0' || perform['IS_DELETED'] == '2'">
+              <tr *ngIf="perform['IS_DELETED'] == '0' || perform['IS_DELETED'] == '2' || perform['IS_DELETED'] == '3'">
                 <td style="vertical-align: top">
                   <ion-item style="margin-bottom: 10px" no-lines>
                     <span item-start>
@@ -821,7 +914,10 @@
                     <span ion-text text-wrap class="medium-text" color="color7">
                       {{ perform['NILAI_KINERJA_TAHUNAN'] }}
                     </span>
-
+                    <span item-end *ngIf="perform['ID_RIWAYAT_PERFORMA'] != '0'">
+                      <ion-icon name="md-create" style="margin-right: 5px;font-size: 2.3rem;" color="danger"
+                        (click)="openPage('performa',i,'update', perform)"></ion-icon>
+                    </span>
                     <span item-end>
                       <ion-icon name="md-close" style="margin-right: 5px;font-size: 2.3rem;" color="danger"
                         (click)="delete('performansi',i,perform)"></ion-icon>

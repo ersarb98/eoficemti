@@ -150,7 +150,7 @@
               <div item-start>
                 <img class="icon-style" src="assets/imgs/menu-icon/alamat.png" />
               </div>
-              <span ion-text text-wrap class="small-text">Place of Birth</span>
+              <span ion-text text-wrap class="small-text">Tempat Lahir</span>
             </ion-item>
             <div style="margin-left: 27px">
               <span ion-text text-wrap class="medium-text" *ngIf="dataCV['DATA_HEADER']['TEMPAT_LAHIR'] != null">{{ dataCV['DATA_HEADER']['TEMPAT_LAHIR'] }}</span>
@@ -162,7 +162,7 @@
               <div item-start>
                 <img class="icon-style" src="assets/imgs/menu-icon/jumHari.png" />
               </div>
-              <span ion-text text-wrap class="small-text">Date of Birth</span>
+              <span ion-text text-wrap class="small-text">Tanggal Lahir</span>
             </ion-item>
             <div style="margin-left: 27px">
               <span ion-text text-wrap class="medium-text" *ngIf="dataCV['DATA_HEADER']['TGL_LAHIR'] != null">{{ dataCV['DATA_HEADER']['TGL_LAHIR'] }}</span>
@@ -177,7 +177,7 @@
               <div item-start>
                 <img class="icon-style" src="assets/imgs/logo/gender.png" />
               </div>
-              <span ion-text text-wrap class="small-text">Gender</span>
+              <span ion-text text-wrap class="small-text">Jenis Kelamin</span>
             </ion-item>
             <div style="margin-left: 27px">
               <span ion-text text-wrap class="medium-text" *ngIf="dataCV['DATA_HEADER']['JENIS_KELAMIN'] != null">{{ dataCV['DATA_HEADER']['JENIS_KELAMIN'] }}</span>
@@ -189,7 +189,7 @@
               <div item-start>
                 <img class="icon-style" src="assets/imgs/logo/heart.png" />
               </div>
-              <span ion-text text-wrap class="small-text">Marital Status</span>
+              <span ion-text text-wrap class="small-text">Status Perkawinan</span>
             </ion-item>
             <div style="margin-left: 27px">
               <span ion-text text-wrap class="medium-text" *ngIf="dataCV['DATA_HEADER']['STATUS_PERKAWINAN'] != null">{{ dataCV['DATA_HEADER']['STATUS_PERKAWINAN'] }}</span>
@@ -204,7 +204,7 @@
               <div item-start>
                 <img class="icon-style" src="assets/imgs/logo/pray.png" />
               </div>
-              <span ion-text text-wrap class="small-text">Religion</span>
+              <span ion-text text-wrap class="small-text">Agama</span>
             </ion-item>
             <div style="margin-left: 27px">
               <span ion-text text-wrap class="medium-text" *ngIf="dataCV['DATA_HEADER']['AGAMA'] != null">{{ dataCV['DATA_HEADER']['AGAMA'] }}</span>
@@ -231,7 +231,7 @@
       <div class="content-4">
         <div class="fill-4">
           <div class="header-content-4">
-            <span ion-text text-wrap>Assignment</span>
+            <span ion-text text-wrap>Detail</span>
           </div>
 
           <div class="body-content-4" *ngIf="showAssigment" #assignmentAnim>
@@ -241,10 +241,10 @@
                   <div item-start>
                     <img class="icon-style" src="assets/flat-icon/building.png" />
                   </div>
-                  <span ion-text text-wrap class="small-text">Company Name - Type</span>
+                  <span ion-text text-wrap class="small-text">Nama Perusahaan</span>
                 </ion-item>
                 <div style="margin-left: 27px">
-                  <span ion-text text-wrap class="medium-text">PELINDO II - BUMN</span>
+                  <span ion-text text-wrap class="medium-text">PT Pengembang Pelabuhan Indonesia</span>
                 </div>
               </ion-col>
             </ion-row>
@@ -255,7 +255,7 @@
                   <div item-start>
                     <img class="icon-style" src="assets/flat-icon/jabatan.png" />
                   </div>
-                  <span ion-text text-wrap class="small-text">Position Title</span>
+                  <span ion-text text-wrap class="small-text">Jabatan</span>
                 </ion-item>
                 <div style="margin-left: 27px">
                   <span ion-text text-wrap class="medium-text" *ngIf="dataCV['DATA_HEADER']['NAMA_JABATAN'] != null">{{ dataCV['DATA_HEADER']['NAMA_JABATAN'] }}</span>
@@ -270,7 +270,7 @@
                   <div item-start>
                     <img class="icon-style" src="assets/flat-icon/checkin.png" />
                   </div>
-                  <span ion-text text-wrap class="small-text">Start Date</span>
+                  <span ion-text text-wrap class="small-text">Tanggal Masuk PPI</span>
                 </ion-item>
                 <div style="margin-left: 27px">
                   <span ion-text text-wrap class="medium-text" *ngIf="dataCV['DATA_HEADER']['TGL_MASUK_PPI'] != null">{{ dataCV['DATA_HEADER']['TGL_MASUK_PPI'] }}</span>
@@ -296,7 +296,7 @@
                   <div item-start>
                     <img class="icon-style" src="assets/flat-icon/diagram.png" />
                   </div>
-                  <span ion-text text-wrap class="small-text">Organization</span>
+                  <span ion-text text-wrap class="small-text">Divisi</span>
                 </ion-item>
                 <div style="margin-left: 27px">
                   <span ion-text text-wrap class="medium-text" *ngIf="dataCV['DATA_HEADER']['NAMA_UNIT'] != null">{{ dataCV['DATA_HEADER']['NAMA_UNIT'] }}</span>
@@ -311,7 +311,7 @@
                   <div item-start>
                     <img class="icon-style" src="assets/flat-icon/jenis_cuti.png" />
                   </div>
-                  <span ion-text text-wrap class="small-text">Assigment Category</span>
+                  <span ion-text text-wrap class="small-text">Penugasan</span>
                 </ion-item>
                 <div style="margin-left: 27px">
                   <span ion-text text-wrap class="medium-text">PEKERJA</span>
@@ -322,7 +322,7 @@
                   <div item-start>
                     <img class="icon-style" src="assets/flat-icon/bar-chart.png" />
                   </div>
-                  <span ion-text text-wrap class="small-text">Grade</span>
+                  <span ion-text text-wrap class="small-text">Kelas Jabatan</span>
                 </ion-item>
                 <div style="margin-left: 27px">
                   <span ion-text text-wrap class="medium-text"> - </span>
@@ -336,7 +336,7 @@
                   <div item-start>
                     <img class="icon-style" src="assets/flat-icon/nama.png" />
                   </div>
-                  <span ion-text text-wrap class="small-text">Superordinate</span>
+                  <span ion-text text-wrap class="small-text">Atasan</span>
                 </ion-item>
                 <div style="margin-left: 27px">
                   <span ion-text text-wrap class="medium-text" *ngIf="dataCV['DATA_HEADER']['NAMA_ATASAN'] != null">{{ dataCV['DATA_HEADER']['NAMA_ATASAN'] }}</span>
@@ -347,11 +347,11 @@
           </div>
 
           <div class="body-content-4" *ngIf="showAssigment == true" (click)="toggleAssigment()">
-            <button ion-button round outline style="width: 100%; font-size: 1.3rem" color="danger">Sembunyikan Data Assignment</button>
+            <button ion-button round outline style="width: 100%; font-size: 1.3rem" color="danger">Sembunyikan Data Detail</button>
           </div>
 
           <div class="body-content-4" *ngIf="showAssigment == false" (click)="toggleAssigment()">
-            <button ion-button round outline style="width: 100%; font-size: 1.3rem">Tampilkan Data Assignment</button>
+            <button ion-button round outline style="width: 100%; font-size: 1.3rem">Tampilkan Data Detail</button>
           </div>
         </div>
       </div>
@@ -361,7 +361,7 @@
       <div class="content-4">
         <div class="fill-4">
           <div class="header-content-4">
-            <span ion-text text-wrap>Performance Record</span>
+            <span ion-text text-wrap>Riwayat Performansi</span>
           </div>
 
           <div class="body-content-4" *ngIf="showPerform">
@@ -386,16 +386,16 @@
             </table>
 
             <div *ngIf="dataCV['DATA_PERFORMANSI'].length == 0" style="text-align: center">
-              <span ion-text text-wrap class="small-text">Tidak ada data Performance Record.</span>
+              <span ion-text text-wrap class="small-text">Tidak ada data Riwayat Performansi.</span>
             </div>
           </div>
 
           <div class="body-content-4" *ngIf="showPerform == true" (click)="togglePerform()">
-            <button ion-button round outline style="width: 100%; font-size: 1.3rem" color="danger">Sembunyikan Performance Record</button>
+            <button ion-button round outline style="width: 100%; font-size: 1.3rem" color="danger">Sembunyikan Riwayat Performansi</button>
           </div>
 
           <div class="body-content-4" *ngIf="showPerform == false" (click)="togglePerform()">
-            <button ion-button round outline style="width: 100%; font-size: 1.3rem">Tampilkan Performance Record</button>
+            <button ion-button round outline style="width: 100%; font-size: 1.3rem">Tampilkan Riwayat Performansi</button>
           </div>
         </div>
       </div>
@@ -405,7 +405,7 @@
       <div class="content-4">
         <div class="fill-4">
           <div class="header-content-4">
-            <span ion-text text-wrap>Formal Education</span>
+            <span ion-text text-wrap>Pendidikan Formal</span>
           </div>
 
           <div class="body-content-4" *ngIf="showEducation">
@@ -444,16 +444,16 @@
             </table>
 
             <div *ngIf="dataCV['DATA_PEND_FORMAL'].length == 0" style="text-align: center">
-              <span ion-text text-wrap class="small-text">Tidak ada data Formal Education.</span>
+              <span ion-text text-wrap class="small-text">Tidak ada data Pendidikan Formal.</span>
             </div>
           </div>
 
           <div class="body-content-4" *ngIf="showEducation == true" (click)="toggleEducation()">
-            <button ion-button round outline style="width: 100%; font-size: 1.3rem" color="danger">Sembunyikan Formal Education</button>
+            <button ion-button round outline style="width: 100%; font-size: 1.3rem" color="danger">Sembunyikan Pendidikan Formal</button>
           </div>
 
           <div class="body-content-4" *ngIf="showEducation == false" (click)="toggleEducation()">
-            <button ion-button round outline style="width: 100%; font-size: 1.3rem">Tampilkan Formal Education</button>
+            <button ion-button round outline style="width: 100%; font-size: 1.3rem">Tampilkan Formal Pendidikan Formal</button>
           </div>
         </div>
       </div>
@@ -463,7 +463,7 @@
       <div class="content-4">
         <div class="fill-4">
           <div class="header-content-4">
-            <span ion-text text-wrap>Training Record</span>
+            <span ion-text text-wrap>Riwayat Pelatihan/Sertifikasi</span>
           </div>
 
           <div class="body-content-4" *ngIf="showTraining">
@@ -490,16 +490,16 @@
             </table>
 
             <div *ngIf="dataCV['DATA_PELATIHAN'].length == 0" style="text-align: center">
-              <span ion-text text-wrap class="small-text">Tidak ada data Training Record.</span>
+              <span ion-text text-wrap class="small-text">Tidak ada data Pelatihan/Sertifikasi.</span>
             </div>
           </div>
 
           <div class="body-content-4" *ngIf="showTraining == true" (click)="toggleTraining()">
-            <button ion-button round outline style="width: 100%; font-size: 1.3rem" color="danger">Sembunyikan Data Training Record</button>
+            <button ion-button round outline style="width: 100%; font-size: 1.3rem" color="danger">Sembunyikan data Pelatihan/Sertifikasi</button>
           </div>
 
           <div class="body-content-4" *ngIf="showTraining == false" (click)="toggleTraining()">
-            <button ion-button round outline style="width: 100%; font-size: 1.3rem">Tampilkan Data Training Record</button>
+            <button ion-button round outline style="width: 100%; font-size: 1.3rem">Tampilkan data Pelatihan/Sertifikasi</button>
           </div>
         </div>
       </div>
@@ -509,7 +509,7 @@
       <div class="content-4">
         <div class="fill-4">
           <div class="header-content-4">
-            <span ion-text text-wrap>Family Identity</span>
+            <span ion-text text-wrap>Identitas Keluarga</span>
           </div>
 
           <div class="body-content-4" *ngIf="showFamily">
@@ -526,16 +526,16 @@
             </div>
 
             <div *ngIf="dataCV['DATA_IDENTITAS_KELUARGA'].length == 0" style="text-align: center">
-              <span ion-text text-wrap class="small-text">Tidak ada data Family Identity.</span>
+              <span ion-text text-wrap class="small-text">Tidak ada data Identitas Keluarga.</span>
             </div>
           </div>
 
           <div class="body-content-4" *ngIf="showFamily == true" (click)="toggleFamily()">
-            <button ion-button round outline style="width: 100%; font-size: 1.3rem" color="danger">Sembunyikan Data Family Identity</button>
+            <button ion-button round outline style="width: 100%; font-size: 1.3rem" color="danger">Sembunyikan Data Identitas Keluarga</button>
           </div>
 
           <div class="body-content-4" *ngIf="showFamily == false" (click)="toggleFamily()">
-            <button ion-button round outline style="width: 100%; font-size: 1.3rem">Tampilkan Data Family Identity</button>
+            <button ion-button round outline style="width: 100%; font-size: 1.3rem">Tampilkan Data Identitas Keluarga</button>
           </div>
         </div>
       </div>
@@ -545,7 +545,7 @@
       <div class="content-4">
         <div class="fill-4">
           <div class="header-content-4">
-            <span ion-text text-wrap>Assignment History</span>
+            <span ion-text text-wrap>Riwayat Penugasan</span>
           </div>
 
           <div class="body-content-4" *ngIf="showAssignHistory">
@@ -582,16 +582,16 @@
             </table>
 
             <div *ngIf="dataCV['DATA_ASSIGN_HISTORY'].length == 0" style="text-align: center">
-              <span ion-text text-wrap class="small-text">Tidak ada data Assignment History.</span>
+              <span ion-text text-wrap class="small-text">Tidak ada data Riwayat Penugasan.</span>
             </div>
           </div>
 
           <div class="body-content-4" *ngIf="showAssignHistory == true" (click)="toggleAssignHistory()">
-            <button ion-button round outline style="width: 100%; font-size: 1.3rem" color="danger">Sembunyikan Data Assignment History</button>
+            <button ion-button round outline style="width: 100%; font-size: 1.3rem" color="danger">Sembunyikan Data Riwayat Penugasan</button>
           </div>
 
           <div class="body-content-4" *ngIf="showAssignHistory == false" (click)="toggleAssignHistory()">
-            <button ion-button round outline style="width: 100%; font-size: 1.3rem">Tampilkan Data Assignment History</button>
+            <button ion-button round outline style="width: 100%; font-size: 1.3rem">Tampilkan Data Riwayat Penugasan</button>
           </div>
         </div>
       </div>
@@ -601,7 +601,7 @@
       <div class="content-4">
         <div class="fill-4">
           <div class="header-content-4">
-            <span ion-text text-wrap>Reward & Punishment</span>
+            <span ion-text text-wrap>Penghargaan dan Hukuman</span>
           </div>
 
           <div class="body-content-4" *ngIf="showReward">
@@ -618,16 +618,16 @@
             </div>
 
             <div *ngIf="dataCV['DATA_PENGHARGAAN_HK'].length == 0" style="text-align: center">
-              <span ion-text text-wrap class="small-text">Tidak ada data Reward & Punishment.</span>
+              <span ion-text text-wrap class="small-text">Tidak ada data Penghargaan dan Hukuman.</span>
             </div>
           </div>
 
           <div class="body-content-4" *ngIf="showReward == true" (click)="toggleReward()">
-            <button ion-button round outline style="width: 100%; font-size: 1.3rem" color="danger">Sembunyikan Data Reward & Punishment</button>
+            <button ion-button round outline style="width: 100%; font-size: 1.3rem" color="danger">Sembunyikan Data Penghargaan dan Hukuman</button>
           </div>
 
           <div class="body-content-4" *ngIf="showReward == false" (click)="toggleReward()">
-            <button ion-button round outline style="width: 100%; font-size: 1.3rem">Tampilkan Data Reward & Punishment</button>
+            <button ion-button round outline style="width: 100%; font-size: 1.3rem">Tampilkan Data Penghargaan dan Hukuman</button>
           </div>
         </div>
       </div>
@@ -637,7 +637,7 @@
       <div class="content-4">
         <div class="fill-4">
           <div class="header-content-4">
-            <span ion-text text-wrap>Emergency Contact</span>
+            <span ion-text text-wrap>Kontak Darurat</span>
           </div>
 
           <div class="body-content-4" *ngIf="showEmergency">
@@ -654,16 +654,16 @@
             </div>
 
             <div *ngIf="dataCV['DATA_PANGGILAN_DARURAT'].length == 0" style="text-align: center">
-              <span ion-text text-wrap class="small-text">Tidak ada data Emergency Contact</span>
+              <span ion-text text-wrap class="small-text">Tidak ada data Kontak Darurat</span>
             </div>
           </div>
 
           <div class="body-content-4" *ngIf="showEmergency == true" (click)="toggleEmergency()">
-            <button ion-button round outline style="width: 100%; font-size: 1.3rem" color="danger">Sembunyikan Data Emergency Contact</button>
+            <button ion-button round outline style="width: 100%; font-size: 1.3rem" color="danger">Sembunyikan Data Kontak Darurat</button>
           </div>
 
           <div class="body-content-4" *ngIf="showEmergency == false" (click)="toggleEmergency()">
-            <button ion-button round outline style="width: 100%; font-size: 1.3rem">Tampilkan Data Emergency Contact</button>
+            <button ion-button round outline style="width: 100%; font-size: 1.3rem">Tampilkan Data Kontak Darurat</button>
           </div>
         </div>
       </div>
@@ -673,7 +673,7 @@
       <div class="content-4">
         <div class="fill-4">
           <div class="header-content-4">
-            <span ion-text text-wrap>Working History</span>
+            <span ion-text text-wrap>Riwayat Kerja</span>
           </div>
 
           <div class="body-content-4" *ngIf="showWorkingHistory">
@@ -711,16 +711,16 @@
             </table>
 
             <div *ngIf="dataCV['DATA_PEKERJAAN'].length == 0" style="text-align: center">
-              <span ion-text text-wrap class="small-text">Tidak ada data Working History.</span>
+              <span ion-text text-wrap class="small-text">Tidak ada data Riwayat Kerja.</span>
             </div>
           </div>
 
           <div class="body-content-4" *ngIf="showWorkingHistory == true" (click)="toggleWorkingHistory()">
-            <button ion-button round outline style="width: 100%; font-size: 1.3rem" color="danger">Sembunyikan Data Working History</button>
+            <button ion-button round outline style="width: 100%; font-size: 1.3rem" color="danger">Sembunyikan Data Riwayat Kerja</button>
           </div>
 
           <div class="body-content-4" *ngIf="showWorkingHistory == false" (click)="toggleWorkingHistory()">
-            <button ion-button round outline style="width: 100%; font-size: 1.3rem">Tampilkan Data Working History</button>
+            <button ion-button round outline style="width: 100%; font-size: 1.3rem">Tampilkan Data Riwayat Kerja</button>
           </div>
         </div>
       </div>
@@ -730,7 +730,7 @@
       <div class="content-4">
         <div class="fill-4">
           <div class="header-content-4">
-            <span ion-text text-wrap>Medical History</span>
+            <span ion-text text-wrap>Riwayat Kesehatan</span>
           </div>
 
           <div class="body-content-4" *ngIf="showMedical">
@@ -747,16 +747,16 @@
             </div>
 
             <div *ngIf="dataCV['DATA_KESEHATAN'].length == 0" style="text-align: center">
-              <span ion-text text-wrap class="small-text">Tidak ada data Medical History</span>
+              <span ion-text text-wrap class="small-text">Tidak ada data Riwayat Kesehatan.</span>
             </div>
           </div>
 
           <div class="body-content-4" *ngIf="showMedical == true" (click)="toggleMedical()">
-            <button ion-button round outline style="width: 100%; font-size: 1.3rem" color="danger">Sembunyikan Data Medical History</button>
+            <button ion-button round outline style="width: 100%; font-size: 1.3rem" color="danger">Sembunyikan Data Riwayat Kesehatan</button>
           </div>
 
           <div class="body-content-4" *ngIf="showMedical == false" (click)="toggleMedical()">
-            <button ion-button round outline style="width: 100%; font-size: 1.3rem">Tampilkan Data Medical History</button>
+            <button ion-button round outline style="width: 100%; font-size: 1.3rem">Tampilkan Data Riwayat Kesehatan</button>
           </div>
         </div>
       </div>

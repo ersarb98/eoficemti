@@ -156,6 +156,13 @@ page-absen-team-hadirkoe {
         font-size: 1.3rem;
         color: gray;
     }
+
+    .my-badge {
+        position: absolute;
+        z-index: 99;
+        right: 12vw;
+
+    }
     
     // .font-header {
     //     // color: color($colors, red);

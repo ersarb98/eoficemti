@@ -184,7 +184,7 @@
             </div>
           </div>
 
-          <div *ngIf="showJamuan == true">
+          <div *ngIf="showJamuan == true" style="width: 100%;">
             <div style="position: relative; width: 100%;" >
               <br>
               <span ion-text="" style="color: #959595" text-wrap="" class="text text-md">Jamuan Rapat</span>
@@ -210,15 +210,24 @@
                 </label>
               </div>
             </div>
-
             <div style="position: relative; width: 100%;" >
+              <ion-item>
+                <ion-label stacked>Konsumsi Jamuan Rapat</ion-label>
+                <ion-select [(ngModel)]="konsumsiJamuanRapat" placeholder="" multiple="true">
+                  <ion-option value="Coffe Break">Coffe Break</ion-option>
+                  <ion-option value="Lunch">Lunch</ion-option>
+                  <ion-option value="Dinner">Dinner</ion-option>
+                </ion-select>
+              </ion-item>
+            </div>
+           
+            <!-- <div style="position: relative; width: 100%;" >
               <br>
               <span ion-text="" style="color: #959595" text-wrap="" class="text text-md">Konsumsi Jamuan Rapat</span>
   
               <div style="margin-top: 10px">
                 <label class="radio-button">
                   <input type="radio" [(ngModel)]="konsumsiJamuanRapat" id="konsumsiJamuanRapatYa" name="konsumsiJamuanRapat" value="Coffe Break" checked />
-                  <!-- <label for="WFH">WFH (Work From Home)</label> -->
                   <span class="label-visible">
                     <span class="fake-radiobutton"></span>
                     Coffe Break
@@ -228,7 +237,6 @@
               <div style="margin-top: 15px">
                 <label class="radio-button">
                   <input type="radio" [(ngModel)]="konsumsiJamuanRapat" id="konsumsiJamuanRapatNo" name="konsumsiJamuanRapat" value="Lunch" />
-                  <!-- <label for="WFC">WFC (Work From Client)</label> -->
                   <span class="label-visible">
                     <span class="fake-radiobutton"></span>
                     Lunch
@@ -238,14 +246,13 @@
               <div style="margin-top: 15px">
                 <label class="radio-button">
                   <input type="radio" [(ngModel)]="konsumsiJamuanRapat" id="konsumsiJamuanRapatNo" name="konsumsiJamuanRapat" value="Dinner" />
-                  <!-- <label for="WFC">WFC (Work From Client)</label> -->
                   <span class="label-visible">
                     <span class="fake-radiobutton"></span>
                     Dinner
                   </span>
                 </label>
               </div>
-            </div>
+            </div> -->
           </div>
 
           <div style="position: relative; width: 100%;" *ngIf="showLaundry == true">

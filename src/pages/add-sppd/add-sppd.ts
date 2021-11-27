@@ -1044,13 +1044,15 @@ export class AddSppdPage {
   setPenanggungJawab(data) {
     this.dataPenanggungJawab = data;
     this.penanggungJawab = data['NAMA'] + ' | ' + data['NM_JABATAN'];
-    console.log(this.dataPenanggungJawab);
+    
     // console.log(this.pengirim);
     this.showResultPenanggungJawab = false;
   }
 
   submit(submitType) {
-    console.log(this.pesertaEksternalList);
+    // console.log(this.konsumsiJamuanRapat.toString());
+    // console.log(this.konsumsiJamuanRapat);
+    // console.log(this.pesertaEksternalList);
     var err = [];
     if (this.klasifikasiPerjalananDinas == '' || this.klasifikasiPerjalananDinas == null) {
       err.push("Klasifikasi Perjalanan Dinas");
@@ -1248,7 +1250,7 @@ export class AddSppdPage {
           "ruang_rapat": this.ruangRapat,
           "tipe_ruang_rapat": this.tipeRuangRapat,
           "jamuan": this.jamuanRapat,
-          "Konsumsi_jamuan": this.konsumsiJamuanRapat,
+          "Konsumsi_jamuan": this.konsumsiJamuanRapat.toString(),
           "laundry": this.laundry,
           "screening_covid": this.screeningCovid,
           "penanggungjawab": this.dataPenanggungJawab,
