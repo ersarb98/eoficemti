@@ -92,7 +92,7 @@ export class LemburPage {
       .subscribe(
         (result) => {
           var responseData = result;
-          console.log(responseData["data"]["Lembur"].length);
+          console.log(responseData);
           if (responseData["rcmsg"] == "SUCCESS") {
             if (type == "refresh" && functionName != "") {
               this.lemburList = [];
