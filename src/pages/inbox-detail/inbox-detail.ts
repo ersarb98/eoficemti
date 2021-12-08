@@ -72,7 +72,7 @@ export class InboxDetailPage {
 
   sisaCuti: any;
   sisaCutiLastYear: any;
-  ambilTahunLalu:boolean = false;
+  ambilTahunLalu: boolean = false;
   dataJenisCuti: any;
   jumHari: any = 0;
   errorMsg: any = "";
@@ -97,6 +97,20 @@ export class InboxDetailPage {
 
   alasanRevisi: any;
   komentarRevisi: any;
+
+  pesertaJabatanList: any = [];
+  pesertaJabatanSearchResultList: Array<any> = [];
+  pesertaJabatanInputFocused: any;
+  pesertaJabatanshowResult: boolean = false;
+  pesertaJabatanindex: any;
+
+  pesertaPekerjaList: any = [];
+  pesertaPekerjaSearchResultList: Array<any> = [];
+  pesertaPekerjaInputFocused: any;
+  pesertaPekerjashowResult: boolean = false;
+  pesertaPekerjaindex: any;
+
+  pesertaEksternalList: Array<any> = [];
 
   private win: any = window;
   imageURI: any = "";
@@ -184,14 +198,14 @@ export class InboxDetailPage {
     this.showDetailPesan = !this.showDetailPesan;
   }
 
-  ionViewWillLoad() {}
+  ionViewWillLoad() { }
 
   ionViewDidLoad() {
     this.isLoading = true;
     this.messageData = this.navParams.get("messageData");
     this.isRevisi = this.navParams.get("isRevisi");
     this.isLaporan = this.navParams.get("isLaporan");
-    console.log(this.isRevisi); 
+    console.log(this.isRevisi);
 
     console.log(this.messageData);
     this.from_modul = this.navParams.get("from_modul");
@@ -246,12 +260,16 @@ export class InboxDetailPage {
             var tglMulaiSplit = this.messageDetail["Agenda"]["Tanggal Mulai"].split("-");
             var tglSelesaiSplit = this.messageDetail["Agenda"]["Tanggal Akhir"].split("-");
             console.log(tglMulaiSplit);
-            var dateMulai = new Date(tglMulaiSplit[2], (tglMulaiSplit[1] != '0') ? parseInt(tglMulaiSplit[1])-1 : tglMulaiSplit[1], tglMulaiSplit[0]);
+            var dateMulai = new Date(tglMulaiSplit[2], (tglMulaiSplit[1] != '0') ? parseInt(tglMulaiSplit[1]) - 1 : tglMulaiSplit[1], tglMulaiSplit[0]);
 
-            var dateSelesai = new Date(tglSelesaiSplit[2], (tglSelesaiSplit[1] != '0') ? parseInt(tglSelesaiSplit[1])-1 : tglSelesaiSplit[1], tglSelesaiSplit[0]);
+            var dateSelesai = new Date(tglSelesaiSplit[2], (tglSelesaiSplit[1] != '0') ? parseInt(tglSelesaiSplit[1]) - 1 : tglSelesaiSplit[1], tglSelesaiSplit[0]);
             console.log(dateMulai);
             this.tanggalMulaiRevisi = this.datePipe.transform(dateMulai, "dd/MM/yyyy");
             this.tanggalSelesaiRevisi = this.datePipe.transform(dateSelesai, "dd/MM/yyyy");
+
+            this.pesertaJabatanList.push({ value: '' });
+            this.pesertaPekerjaList.push({ value: '' });
+            this.pesertaEksternalList.push({ value: '', jabatan: '', golongan: '' });
           }
 
           if (this.messageData["Status"]) {
@@ -393,7 +411,7 @@ export class InboxDetailPage {
             this.getDataBawahan();
             this.getPenerima();
 
-            this.storage.set("userdataTPK", responData).then(() => {});
+            this.storage.set("userdataTPK", responData).then(() => { });
           }
         } else {
         }
@@ -559,7 +577,7 @@ export class InboxDetailPage {
         {
           text: "TIDAK",
           role: "cancel",
-          handler: () => {},
+          handler: () => { },
         },
         {
           text: "YA",
@@ -743,7 +761,7 @@ export class InboxDetailPage {
             {
               text: "TIDAK",
               role: "cancel",
-              handler: () => {},
+              handler: () => { },
             },
             {
               text: "YA",
@@ -813,7 +831,7 @@ export class InboxDetailPage {
             {
               text: "TIDAK",
               role: "cancel",
-              handler: () => {},
+              handler: () => { },
             },
             {
               text: "YA",
@@ -883,7 +901,7 @@ export class InboxDetailPage {
             {
               text: "TIDAK",
               role: "cancel",
-              handler: () => {},
+              handler: () => { },
             },
             {
               text: "YA",
@@ -1259,9 +1277,9 @@ export class InboxDetailPage {
         this.errorMsg = "*mohon melengkapi seluruh input.";
       } else if (this.dataJenisCuti[0]["IS_POTONG"] == "1" && this.ambilTahunLalu == false && parseInt(this.jumHari) > parseInt(this.sisaCuti)) {
         this.errorMsg = "*Jumlah hari cuti melebihi sisa cuti.";
-      } else if (this.dataJenisCuti[0]["IS_POTONG"] == "1" && this.ambilTahunLalu == true && parseInt(this.jumHari) > (parseInt(this.sisaCuti)+parseInt(this.sisaCutiLastYear) )) {
+      } else if (this.dataJenisCuti[0]["IS_POTONG"] == "1" && this.ambilTahunLalu == true && parseInt(this.jumHari) > (parseInt(this.sisaCuti) + parseInt(this.sisaCutiLastYear))) {
         this.errorMsg = "*Jumlah hari cuti melebihi sisa cuti.";
-      }  else {
+      } else {
         let alert = this.alertCtrl.create({
           subTitle: "Anda yakin ingin menangguhkan cuti ?",
           cssClass: "alert",
@@ -1591,7 +1609,7 @@ export class InboxDetailPage {
       link = urldownload_srt + "outbox/cetak_surat_dup/prev_dir_dup/" + this.messageDetail["ID Surat"];
     }
     const fileTransfer: FileTransferObject = this.transfer.create();
-    
+
     fileTransfer.download(link, this.file.dataDirectory + "Generate_" + this.messageData["NO_SURAT"] + ".pdf").then(
       (entry) => {
         console.log("download complete 2: " + entry.toURL());
@@ -1749,6 +1767,54 @@ export class InboxDetailPage {
     }
   }
 
+  showDatePickerLaporan(type: number, index) {
+    
+    var tglMulaiSplit = this.messageDetail['PENERIMA_UNDANGAN'][index]['TGL_MULAI'].split("-");
+    var tglAkhirSplit = this.messageDetail['PENERIMA_UNDANGAN'][index]['TGL_SELESAI'].split("-");
+    var tglMulai = new Date(tglMulaiSplit[2],tglMulaiSplit[1]-1,tglMulaiSplit[0]);
+    var tglSelesai = new Date(tglAkhirSplit[2],tglAkhirSplit[1]-1,tglAkhirSplit[0]);
+
+    var minDateSplit = this.messageDetail['Agenda']['Tanggal Mulai'].split("-");
+    var maxDateSplit = this.messageDetail['Agenda']['Tanggal Akhir'].split("-");
+    var minDate = new Date(minDateSplit[2],minDateSplit[1]-1,minDateSplit[0]);
+    var maxDate = new Date(maxDateSplit[2],maxDateSplit[1]-1,maxDateSplit[0]);
+
+    console.log(tglMulai);
+    console.log(tglSelesai);
+
+    if (type == 1) {
+      this.datePicker
+        .show({
+          date: tglMulai,
+          mode: "date",
+          minDate: this.platform.is("ios") ? minDate : minDate.valueOf(),
+          maxDate: this.platform.is("ios") ? maxDate : maxDate.valueOf(),
+          androidTheme: this.datePicker.ANDROID_THEMES.THEME_HOLO_LIGHT,
+        })
+        .then(
+          (date) => {
+            this.messageDetail['PENERIMA_UNDANGAN'][index]['TGL_MULAI'] = this.datePipe.transform(date, "dd-MM-yyyy");
+          },
+          (err) => console.log("Error occurred while getting date: ", err)
+        );
+    } else if (type == 2) {
+      this.datePicker
+        .show({
+          date: tglSelesai,
+          mode: "date",
+          minDate: this.platform.is("ios") ? minDate : minDate.valueOf(),
+          maxDate: this.platform.is("ios") ? maxDate : maxDate.valueOf(),
+          androidTheme: this.datePicker.ANDROID_THEMES.THEME_HOLO_LIGHT,
+        })
+        .then(
+          (date) => {
+            this.messageDetail['PENERIMA_UNDANGAN'][index]['TGL_SELESAI'] = this.datePipe.transform(date, "dd-MM-yyyy");
+          },
+          (err) => console.log("Error occurred while getting date: ", err)
+        );
+    }
+  }
+
   takeImage(sourceType: number, type) {
     let mType = this.camera.MediaType.PICTURE;
     // console.log(mType);
@@ -1887,7 +1953,7 @@ export class InboxDetailPage {
           // this.presentToast(err);
         });
     } else if (this.fileType == 'gambar') {
-     
+
       console.log(this.imageFileName);
       console.log(this.fileName);
       console.log("image file path : " + this.pathForImage(this.imageFileName));
@@ -1941,19 +2007,19 @@ export class InboxDetailPage {
             this.navCtrl.pop();
           }
         },
-        (err) => {
-          // console.log("masuk sini");
-          // console.log(err);
-          let toast = this.toastCtrl.create({
-            message: "Revisi SPPD Berhasil, namun file attachment gagal diupload, silahkan hubungi admin.",
-            duration: 3000,
-            position: "bottom",
-          });
-          toast.present();
-          loader.dismiss();
-          this.navCtrl.pop();
-        }
-      );
+          (err) => {
+            // console.log("masuk sini");
+            // console.log(err);
+            let toast = this.toastCtrl.create({
+              message: "Revisi SPPD Berhasil, namun file attachment gagal diupload, silahkan hubungi admin.",
+              duration: 3000,
+              position: "bottom",
+            });
+            toast.present();
+            loader.dismiss();
+            this.navCtrl.pop();
+          }
+        );
     }
   }
 
@@ -1986,6 +2052,43 @@ export class InboxDetailPage {
     }
     if (this.komentarRevisi == "" || this.komentarRevisi == null) {
       err.push("Komentar Revisi");
+    }
+
+    if (this.pesertaJabatanList.length == 1 && this.pesertaJabatanList[0]['value'] == '') {
+      this.pesertaJabatanList = [];
+    }
+    if (this.pesertaPekerjaList.length == 1 && this.pesertaPekerjaList[0]['value'] == '') {
+      this.pesertaPekerjaList = [];
+    }
+    if (this.pesertaEksternalList.length == 1 && (this.pesertaEksternalList[0]['value'] == '' && this.pesertaEksternalList[0]['jabatan'] == '' && this.pesertaEksternalList[0]['golongan'] == '')) {
+      this.pesertaEksternalList = [];
+    }
+
+    if (this.pesertaJabatanList.length > 1) {
+      for (var i = 0; i < this.pesertaJabatanList.length; i++) {
+        if (this.pesertaJabatanList[i]['value'] == '') {
+          err.push('Peserta Jabatan');
+          break;
+        }
+      }
+    }
+
+    if (this.pesertaPekerjaList.length > 1) {
+      for (var i = 0; i < this.pesertaPekerjaList.length; i++) {
+        if (this.pesertaPekerjaList[i]['value'] == '') {
+          err.push('Peserta Pekerja');
+          break;
+        }
+      }
+    }
+
+    if (this.pesertaEksternalList.length > 1) {
+      for (var i = 0; i < this.pesertaEksternalList.length; i++) {
+        if (this.pesertaEksternalList[i]['value'] == '' || this.pesertaEksternalList[i]['jabatan'] == '' || this.pesertaEksternalList[i]['golongan'] == '') {
+          err.push('Peserta Eksternal');
+          break;
+        }
+      }
     }
 
     var showErr = "";
@@ -2048,6 +2151,9 @@ export class InboxDetailPage {
                     tgl_surat: "",
                     tgl_mulai: this.tanggalMulaiRevisi,
                     tgl_selesai: this.tanggalSelesaiRevisi,
+                    "peserta_jabatan": this.pesertaJabatanList,
+                    "peserta_pekerja": this.pesertaPekerjaList,
+                    "peserta_eksternal": this.pesertaEksternalList,
                     komentar: this.komentarRevisi,
                     id_surat_asli: atob(this.messageDetail["ID Surat"]),
                     alasan_revisi: this.alasanRevisi,
@@ -2295,6 +2401,7 @@ export class InboxDetailPage {
   }
 
   doLaporan() {
+
     var err = [];
 
     if (this.komentarLaporan == '' || this.komentarLaporan == null) {
@@ -2328,6 +2435,16 @@ export class InboxDetailPage {
       });
       alertError.present();
     } else {
+      console.log(JSON.stringify({
+        usernameEDI: api_user,
+        passwordEDI: api_pass,
+        nipp_pembuat: this.userdataTPK["data"]["NIPP"],
+        nama_pembuat: this.userdataTPK["data"]["NAMA"],
+        id_pembuat: this.userdataTPK["data"]["IDUSER"],
+        komentar: this.komentarRevisi,
+        id_surat_asli: atob(this.messageDetail["ID Surat"]),
+        penerima_undangan: this.messageDetail['PENERIMA_UNDANGAN']
+      }));
       let alert = this.alertCtrl.create({
         subTitle: 'Anda yakin ingin melakukan Pelaporan SPPD?',
         cssClass: 'alert',
@@ -2361,6 +2478,7 @@ export class InboxDetailPage {
                     id_pembuat: this.userdataTPK["data"]["IDUSER"],
                     komentar: this.komentarRevisi,
                     id_surat_asli: atob(this.messageDetail["ID Surat"]),
+                    penerima_undangan: this.messageDetail['PENERIMA_UNDANGAN']
                   })
                 }).then((result) => {
                   var responData = JSON.parse(String(result));
@@ -2514,7 +2632,7 @@ export class InboxDetailPage {
                 isUpload = false;
               }
 
-              if (i+1 == parseInt(this.jumFileLaporan)) {
+              if (i + 1 == parseInt(this.jumFileLaporan)) {
                 loading.dismiss();
                 let toast = this.toastCtrl.create({
                   message: 'Laporan SPPD Berhasil.',
@@ -2526,7 +2644,7 @@ export class InboxDetailPage {
               }
 
             }, (err) => {
-              if (i+1 == parseInt(this.jumFileLaporan)) {
+              if (i + 1 == parseInt(this.jumFileLaporan)) {
                 loading.dismiss();
                 let toast = this.toastCtrl.create({
                   message: 'Laporan SPPD Berhasil, namun file attachment gagal diupload, hubungi admin.',
@@ -2534,7 +2652,7 @@ export class InboxDetailPage {
                   position: 'bottom'
                 });
                 toast.present();
-                this,this.navCtrl.pop();
+                this, this.navCtrl.pop();
               }
               err.push("error upload file ke - " + i);
               isUpload = false;
@@ -2571,7 +2689,7 @@ export class InboxDetailPage {
                 err.push("gagal upload gambar ke - " + i);
                 isUpload = false;
               }
-              if (i+1 == parseInt(this.jumFileLaporan)) {
+              if (i + 1 == parseInt(this.jumFileLaporan)) {
                 loading.dismiss();
                 let toast = this.toastCtrl.create({
                   message: 'Laporan SPPD Berhasil.',
@@ -2579,12 +2697,12 @@ export class InboxDetailPage {
                   position: 'bottom'
                 });
                 toast.present();
-                this,this.navCtrl.pop();
+                this, this.navCtrl.pop();
               }
             }, (err) => {
               err.push("error upload gambar ke - " + i);
               isUpload = false;
-              if (i+1 == parseInt(this.jumFileLaporan)) {
+              if (i + 1 == parseInt(this.jumFileLaporan)) {
                 loading.dismiss();
                 let toast = this.toastCtrl.create({
                   message: 'Laporan SPPD Berhasil, namun file attachment gagal diupload, hubungi admin.',
@@ -2592,7 +2710,7 @@ export class InboxDetailPage {
                   position: 'bottom'
                 });
                 toast.present();
-                this,this.navCtrl.pop();
+                this, this.navCtrl.pop();
               }
             });
         }
@@ -2697,6 +2815,251 @@ export class InboxDetailPage {
 
   }
 
+  addPesertaJabatan() {
+    //console.log('clicked');
+    this.pesertaJabatanList.push({ value: '' });
+  }
+
+  removePesertaJabatan(i) {
+    this.pesertaJabatanList.splice(i, 1);
+  }
+
+
+  checkFocusPesertaJabatan(i) {
+    this.pesertaJabatanInputFocused = i;
+    //console.log(this.pesertaJabatanInputFocused);
+  }
+
+  getPesertaJabatan(i, value) {
+    //console.log(this.pesertaJabatanList[i]['value']);
+    if (this.pesertaJabatanList[i]['value'] == '') {
+      this.pesertaJabatanshowResult = false;
+    } else {
+      this.soapService
+        .post(api_base_url, 'eoffice_get_peserta_sppd', {
+          fStream: JSON.stringify(
+            {
+              "usernameEDI": api_user,
+              "passwordEDI": api_pass,
+              "search": this.pesertaJabatanList[i]['value'],
+              "atas": "1",
+              "bawah": "10",
+              "id_cabang": this.userdataTPK['data']['IDCABANG'],
+              "peserta_type": "jabatan"
+            }
+
+          )
+        }).then(result => {
+          var responData = JSON.parse(String(result));
+          //console.log(responData);
+          if (responData['rcmsg'] == "SUCCESS") {
+            this.pesertaJabatanSearchResultList = [];
+            this.pesertaJabatanSearchResultList = responData['data'];
+            this.pesertaJabatanshowResult = true;
+            //console.log(this.pesertaJabatanSearchResultList);
+          } else {
+            let toast = this.toastCtrl.create({
+              message: 'Mohon Maaf Sedang Terjadi Kesalahan, Coba Beberapa Saat Lagi.',
+              duration: 3000,
+              position: 'bottom'
+            });
+            toast.present();
+            this.pesertaJabatanshowResult = false;
+          }
+        })
+        .catch(error => {
+          //console.log(error);
+          let toast = this.toastCtrl.create({
+            message: 'Terjadi Masalah Koneksi, Silahkan Coba Kembali.',
+            duration: 3000,
+            position: 'bottom'
+          });
+          toast.present();
+          this.pesertaJabatanshowResult = false;
+        });
+    }
+  }
+
+  setPesertaJabatan(pesertaJabatanSearchResult, i) {
+    this.pesertaJabatanindex = i;
+    this.pesertaJabatanList[this.pesertaJabatanindex]['value'] = pesertaJabatanSearchResult['NM_JABATAN'];
+    this.pesertaJabatanList[this.pesertaJabatanindex]['ID_USER'] = pesertaJabatanSearchResult['ID_USER'];
+    this.pesertaJabatanList[this.pesertaJabatanindex]['NIPP'] = pesertaJabatanSearchResult['NIPP'];
+    this.pesertaJabatanList[this.pesertaJabatanindex]['NAMA'] = pesertaJabatanSearchResult['NAMA'];
+    this.pesertaJabatanList[this.pesertaJabatanindex]['NM_JABATAN'] = pesertaJabatanSearchResult['NM_JABATAN'];
+    this.pesertaJabatanList[this.pesertaJabatanindex]['ID_JABATAN'] = pesertaJabatanSearchResult['ID_JABATAN'];
+    this.pesertaJabatanList[this.pesertaJabatanindex]['ID_CABANG'] = pesertaJabatanSearchResult['ID_CABANG'];
+    this.pesertaJabatanList[this.pesertaJabatanindex]['KD_PARA'] = pesertaJabatanSearchResult['KD_PARA'];
+    this.pesertaJabatanList[this.pesertaJabatanindex]['NAMA_CABANG'] = pesertaJabatanSearchResult['NAMA_CABANG'];
+    this.pesertaJabatanshowResult = false;
+    //console.log(this.pesertaJabatanList);
+  }
+
+  addPesertaPekerja() {
+    //console.log('clicked');
+    this.pesertaPekerjaList.push({ value: '' });
+  }
+
+  removePesertaPekerja(i) {
+    this.pesertaPekerjaList.splice(i, 1);
+  }
+
+  checkFocusPesertaPekerja(i) {
+    this.pesertaPekerjaInputFocused = i;
+    //console.log(this.pesertaPekerjaInputFocused);
+  }
+
+  getPesertaPekerja(i, value) {
+    //console.log(this.pesertaPekerjaList[i]['value']);
+    if (this.pesertaPekerjaList[i]['value'] == '') {
+      this.pesertaPekerjashowResult = false;
+    } else {
+      this.soapService
+        .post(api_base_url, 'eoffice_get_peserta_sppd', {
+          fStream: JSON.stringify(
+            {
+              "usernameEDI": api_user,
+              "passwordEDI": api_pass,
+              "search": this.pesertaPekerjaList[i]['value'],
+              "atas": "1",
+              "bawah": "10",
+              "id_cabang": this.userdataTPK['data']['IDCABANG'],
+              "peserta_type": "pekerja"
+            }
+
+          )
+        }).then(result => {
+          var responData = JSON.parse(String(result));
+          //console.log(responData);
+          if (responData['rcmsg'] == "SUCCESS") {
+            this.pesertaPekerjaSearchResultList = [];
+            this.pesertaPekerjaSearchResultList = responData['data'];
+            this.pesertaPekerjashowResult = true;
+            //console.log(this.pesertaPekerjaSearchResultList);
+          } else {
+            let toast = this.toastCtrl.create({
+              message: 'Mohon Maaf Sedang Terjadi Kesalahan, Coba Beberapa Saat Lagi.',
+              duration: 3000,
+              position: 'bottom'
+            });
+            toast.present();
+            this.pesertaPekerjashowResult = false;
+          }
+        })
+        .catch(error => {
+          //console.log(error);
+          let toast = this.toastCtrl.create({
+            message: 'Terjadi Masalah Koneksi, Silahkan Coba Kembali.',
+            duration: 3000,
+            position: 'bottom'
+          });
+          toast.present();
+          this.pesertaPekerjashowResult = false;
+        });
+    }
+  }
+
+  setPesertaPekerja(pesertaPekerjaSearchResult, i) {
+    let loading = this.loadingCtrl.create({
+      spinner: 'dots',
+      content: "Memeriksa data peserta...",
+      cssClass: 'transparent',
+      dismissOnPageChange: true
+    });
+    loading.present();
+
+    this.soapService
+      .post(api_base_url, 'eoffice_validasi_peserta_sppd', {
+        fStream: JSON.stringify(
+          {
+            "usernameEDI": api_user,
+            "passwordEDI": api_pass,
+            "id_user": pesertaPekerjaSearchResult['ID_USER'],
+            "nipp": pesertaPekerjaSearchResult['NIPP'],
+            "tgl_mulai": this.tanggalMulaiRevisi,
+            "tgl_akhir": this.tanggalSelesaiRevisi,
+          }
+
+        )
+      }).then(result => {
+        var responData = JSON.parse(String(result));
+        console.log(responData);
+        this.pesertaPekerjaindex = i;
+        if (responData['rcmsg'] == "SUCCESS") {
+          var jumLaporan = parseInt(responData['data']['JUMLAH_SPPD_ASLI']) - parseInt(responData['data']['JUMLAH_SPPD_LAPORAN']);
+          if (parseInt(responData['data']['JUMLAH_CUTI']) > 0) {
+            let toast = this.toastCtrl.create({
+              message: 'Pegawai ' + pesertaPekerjaSearchResult['NAMA'] + ' Tidak bisa diundang dikarenakan sedang cuti pada range tanggal tersebut.',
+              duration: 3000,
+              position: 'bottom'
+            });
+            toast.present();
+            this.pesertaPekerjaList[this.pesertaPekerjaindex]['value'] = '';
+          } else if (parseInt(responData['data']['JUMLAH_SPPD']) > 0) {
+            let toast = this.toastCtrl.create({
+              message: 'Pegawai ' + pesertaPekerjaSearchResult['NAMA'] + ' sedang dinas pada range tanggal tersebut.',
+              duration: 3000,
+              position: 'bottom'
+            });
+            toast.present();
+            this.pesertaPekerjaList[this.pesertaPekerjaindex]['value'] = '';
+
+          } else if (jumLaporan > 3) {
+            let toast = this.toastCtrl.create({
+              message: 'Pegawai ' + pesertaPekerjaSearchResult['NAMA'] + ' ini memiliki ' + jumLaporan + ' perjalanan dinas yang belum di laporkan.',
+              duration: 3000,
+              position: 'bottom'
+            });
+            toast.present();
+            this.pesertaPekerjaList[this.pesertaPekerjaindex]['value'] = '';
+          } else {
+
+            // this.pesertaPekerjaList[this.pesertaPekerjaindex]['value'] = pesertaPekerjaSearchResult['NM_JABATAN'] + " | " + pesertaPekerjaSearchResult['NM_JABATAN'];
+            this.pesertaPekerjaList[this.pesertaPekerjaindex]['value'] = pesertaPekerjaSearchResult['NAMA'];
+            this.pesertaPekerjaList[this.pesertaPekerjaindex]['ID_USER'] = pesertaPekerjaSearchResult['ID_USER'];
+            this.pesertaPekerjaList[this.pesertaPekerjaindex]['NIPP'] = pesertaPekerjaSearchResult['NIPP'];
+            this.pesertaPekerjaList[this.pesertaPekerjaindex]['NAMA'] = pesertaPekerjaSearchResult['NAMA'];
+            this.pesertaPekerjaList[this.pesertaPekerjaindex]['NM_JABATAN'] = pesertaPekerjaSearchResult['NM_JABATAN'];
+            this.pesertaPekerjaList[this.pesertaPekerjaindex]['ID_JABATAN'] = pesertaPekerjaSearchResult['ID_JABATAN'];
+            this.pesertaPekerjaList[this.pesertaPekerjaindex]['ID_CABANG'] = pesertaPekerjaSearchResult['ID_CABANG'];
+            this.pesertaPekerjaList[this.pesertaPekerjaindex]['KD_PARA'] = pesertaPekerjaSearchResult['KD_PARA'];
+            this.pesertaPekerjaList[this.pesertaPekerjaindex]['NAMA_CABANG'] = pesertaPekerjaSearchResult['NAMA_CABANG'];
+
+            //console.log(this.pesertaPekerjaList);
+          }
+          this.pesertaPekerjashowResult = false;
+          loading.dismiss();
+        } else {
+          let toast = this.toastCtrl.create({
+            message: 'Mohon Maaf Sedang Terjadi Kesalahan, Coba Beberapa Saat Lagi.',
+            duration: 3000,
+            position: 'bottom'
+          });
+          toast.present();
+          loading.dismiss();
+        }
+      })
+      .catch(error => {
+        console.log(error);
+        let toast = this.toastCtrl.create({
+          message: 'Terjadi Masalah Koneksi, Silahkan Coba Kembali.',
+          duration: 3000,
+          position: 'bottom'
+        });
+        toast.present();
+        loading.dismiss();
+      });
+  }
+
+  addPesertaEksternal() {
+    //console.log('clicked');
+    this.pesertaEksternalList.push({ value: '', jabatan: '', golongan: '' });
+  }
+
+  removePesertaEksternal(i) {
+    this.pesertaEksternalList.splice(i, 1);
+  }
+
   tesUploadRevisi(id_surat) {
     let loading = this.loadingCtrl.create({
       spinner: 'dots',
@@ -2707,4 +3070,5 @@ export class InboxDetailPage {
     loading.present();
     this.upload(id_surat, loading);
   }
+
 }

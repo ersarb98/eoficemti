@@ -125,7 +125,8 @@
         </ion-item>
       </div>
     </div>
-    <img src="assets/imgs/user-img.jpg" alt="" class="img-style" />
+    <img *ngIf="dataCV['FOTO_CV'] != null" src="{{ dataCV['FOTO_CV'] }}" alt="" class="img-style" />
+    <img *ngIf="dataCV['FOTO_CV'] == null" src="assets/flat-icon/photo_dummy.jpg" alt="" class="img-style" />
 
     <div class="content-2">
       <div class="fill-2">

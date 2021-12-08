@@ -1108,11 +1108,11 @@ export class AddSppdPage {
       err.push('Penanggung Jawab');
     }
 
-    if (this.actionType == 'add' || (this.actionType == 'edit' && this.attachmentPermintaan == null)) {
-      if ((this.imageURI == null || this.imageURI == '') && (this.fileName == null || this.fileName == '')) {
-        err.push("Form Permintaan SPPD");
-      }
-    }
+    // if (this.actionType == 'add' || (this.actionType == 'edit' && this.attachmentPermintaan == null)) {
+    //   if ((this.imageURI == null || this.imageURI == '') && (this.fileName == null || this.fileName == '')) {
+    //     err.push("Form Permintaan SPPD");
+    //   }
+    // }
 
     if (this.pengirim == null) {
       err.push("Pengirim");
@@ -1250,12 +1250,13 @@ export class AddSppdPage {
           "ruang_rapat": this.ruangRapat,
           "tipe_ruang_rapat": this.tipeRuangRapat,
           "jamuan": this.jamuanRapat,
-          "Konsumsi_jamuan": this.konsumsiJamuanRapat.toString(),
+          "Konsumsi_jamuan": this.konsumsiJamuanRapat,
           "laundry": this.laundry,
           "screening_covid": this.screeningCovid,
           "penanggungjawab": this.dataPenanggungJawab,
           "id_surat": this.id_surat
-        }));
+        }
+      ));
 
 
       var action = '';

@@ -42,6 +42,7 @@
         </ion-select>
     </ion-item>
 
+   
     <div>
         <ion-item style="width:70%; float: left;">
             <span item-left>
@@ -173,11 +174,24 @@
                     <span class="label-visible">
                         <span class="fake-radiobutton"></span>
                         Tidak
-                    </span>
+                    </span> 
                 </label>
             </div>
         </div>
     </ion-item>
+
+    <ion-item *ngIf="showIsbayar && ambilSisaCuti != 'TIDAK'" >
+        <span item-left>
+            <img src="assets/imgs/menu-icon/jenis_cuti.png" class="icons">
+        </span>
+        <ion-label stacked>Cuti dibayar/tidak dibayar</ion-label>
+        <ion-select [(ngModel)]="isDibayar" placeholder="">
+            <ion-option value="0">Cuti Tahunan Tidak Dibayar</ion-option>
+            <ion-option value="1">Cuti Tahunan Dibayar</ion-option>
+            
+        </ion-select>
+    </ion-item>
+
 
     <ion-item>
         <span item-left>

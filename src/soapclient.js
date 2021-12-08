@@ -198,7 +198,7 @@ SOAPClient._sendSoapRequest = function(url, method, parameters, async, callback,
 	}
 	else
 		xmlHttp.open("POST", url, async);
-       xmlHttp.timeout = 15000;
+       xmlHttp.timeout = 30000;
 	var soapaction = ((ns.lastIndexOf("/") != ns.length - 1) ? ns + "/" : ns) + encodeURIComponent(method);
 	xmlHttp.setRequestHeader("SOAPAction", soapaction); 
 	xmlHttp.setRequestHeader("Content-Type", "text/xml; charset=utf-8");

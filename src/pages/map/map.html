@@ -113,7 +113,8 @@
       </button>
     </div>
 
-    <div *ngIf="addressData != null && addressData['ID_ADDRESS'] != '' && (addressData['STATUS'] == 'APPROVED' || addressData['STATUS'] == 'WAITING')">
+    <!-- <div *ngIf="addressData != null && addressData['ID_ADDRESS'] != '' && (addressData['STATUS'] == 'APPROVED' || addressData['STATUS'] == 'WAITING')"> -->
+    <div>
       <button ion-button icon-end  *ngIf="type == 'checkin'" class="my-button" color="secondary" (click)="takeImage(1)">
         Check In
         <ion-icon name="md-finger-print"></ion-icon>
