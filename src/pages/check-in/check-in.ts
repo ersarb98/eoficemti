@@ -94,7 +94,10 @@ export class CheckInPage {
     //this.imageShow = this.sanitizer.bypassSecurityTrustUrl("data:Image/*;base64," + this.fileBase64);
     console.log(this.dataValidasi["SHIFT_DATE"]);
 
-    if(new Date().getTime() > new Date(this.dataValidasi["SHIFT_DATE"] + ' ' +  this.dataValidasi["JAM_PULANG"]).getTime() == true){
+    var shift = this.dataValidasi["SHIFT_DATE"].split("-");
+    var currentShiftDate = new Date(shift[2] + "-" + shift[1] + "-" + shift[0] + " " + this.dataValidasi["JAM_PULANG"]);
+
+    if (new Date() > currentShiftDate) {
       this.isLembur = true;
     }
 
