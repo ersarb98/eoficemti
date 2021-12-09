@@ -169,7 +169,7 @@ export class CvPage {
     loading.present();
 
     var link = "";
-    link = urldownload_srt + "DownloadMobile/cetak_lengkap?nipp=" + this.userdataTPK["data"]["NIPP"] + "&personal=" + this.dataCV["ID_PERSONAL"];
+    link = urldownload_srt + "DownloadMobile/cetak_summary_new?nipp=" + this.userdataTPK["data"]["NIPP"] + "&personal=" + this.dataCV["ID_PERSONAL"];
 
     console.log(link);
     var localPath1 = "";

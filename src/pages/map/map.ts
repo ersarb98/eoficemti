@@ -8,12 +8,13 @@ import { FilePath } from '@ionic-native/file-path';
 import { File } from '@ionic-native/file';
 
 import { Camera, CameraOptions } from '@ionic-native/camera';
-import { api_base_url, api_user, api_pass, api_res } from '../../config';
+import { api_base_url, api_user, api_pass, api_res,oneSignalAppId, sender_id  } from '../../config';
 import leaflet from 'leaflet';
 import { isRightSide } from 'ionic-angular/umd/util/util';
 import { AndroidPermissions } from '@ionic-native/android-permissions';
 
 import { Base64 } from '@ionic-native/base64';
+import { SoapService } from '../soap.service';
 
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
@@ -21,6 +22,8 @@ import { Storage } from '@ionic/storage';
 import { DatePipe } from '@angular/common';
 import { Diagnostic } from '@ionic-native/diagnostic';
 import { OpenNativeSettings } from '@ionic-native/open-native-settings';
+
+import { OneSignal } from '@ionic-native/onesignal';
 // declare var google;
 
 /**
@@ -33,6 +36,7 @@ import { OpenNativeSettings } from '@ionic-native/open-native-settings';
 @IonicPage()
 @Component({
   selector: 'page-map',
+  providers: [SoapService],
   templateUrl: 'map.html',
 })
 
@@ -90,8 +94,13 @@ export class MapPage {
     public storage: Storage,
     public datepipe: DatePipe,
     public diagnostic: Diagnostic,
-    public openNativeSetting: OpenNativeSettings
+    public openNativeSetting: OpenNativeSettings,
+    public oneSignal: OneSignal,
+    public soapService: SoapService
   ) {
+    oneSignal.startInit(oneSignalAppId, sender_id);
+    oneSignal.endInit();
+
 
     if (this.platform.is('android')) {
       this.androidPermissions.checkPermission(this.androidPermissions.PERMISSION.CAMERA).then(
@@ -802,6 +811,7 @@ export class MapPage {
                   buttons: ['OK']
                 });
                 alert.present();        
+                this.pushNotif();
                 this.navCtrl.pop();      
                
               } else {
@@ -828,6 +838,35 @@ export class MapPage {
       ]
     });
     alert.present();
+  }
+
+  pushNotif() {
+    this.oneSignal.getIds().then((id) => {      
+      this.soapService
+        .post(api_base_url, 'eoffice_notif_imove', {
+          fStream: JSON.stringify(
+            {
+              usernameEDI: api_user,
+              passwordEDI: api_pass,
+              id_user: [this.userdataTPK['data']['ID_USER_ATASAN']],
+              data: {
+                res: "Home3Page"
+              },
+              content: {
+                "en": "Request Pengajuan Lokasi Domisili " + this.userdataTPK['data']['NAMA'] + " memerlukan persetujuan."
+              },
+              heading : {
+                "en": "Request Lokasi Domisili"
+              }
+            }
+          )
+        }).then(result => {
+          let hasil = JSON.parse(String(result));          
+        }).catch(error => {
+          //console.log(error);
+          this.navCtrl.pop();
+        });
+    });
   }
 
 

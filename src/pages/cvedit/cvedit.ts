@@ -80,6 +80,8 @@ export class CveditPage {
   jumlahAnak: any = '';
   jumlahTanggungan: any = '';
   ahliWaris: any = '';
+  namaBank:any = '';
+  nomorRekening:any = '';
   email: any = '';
   email2: any = '';
   noHp: any = '';
@@ -151,6 +153,13 @@ export class CveditPage {
   }
 
   getDataCV() {
+    let loading = this.loadingCtrl.create({
+      spinner: "dots",
+      content: "Mendapatkan Data CV...",
+      cssClass: "transparent",
+    });
+    loading.present();
+
     this.isLoading = true;
     this.soapService
       .post(api_base_url, "eoffice_get_cv", {
@@ -200,8 +209,8 @@ export class CveditPage {
           this.tglLahir = this.dataCV['DATA_HEADER']['TGL_LAHIR'];
           this.tempatLahir = this.dataCV['DATA_HEADER']['TEMPAT_LAHIR'];
           this.agama = this.dataCV['DATA_HEADER']['AGAMA'];
-          this.pendidikanTerakhir = this.dataCV['DATA_HEADER'][''];
-          this.jurusan = this.dataCV['DATA_HEADER']['PEND_TERAKHIR'];
+          this.pendidikanTerakhir = this.dataCV['DATA_HEADER']['PEND_TERAKHIR'];
+          this.jurusan = this.dataCV['DATA_HEADER']['JURUSAN'];
           this.namaInstitusi = this.dataCV['DATA_HEADER']['NAMA_INSTITUSI'];
           this.jenisKelamin = this.dataCV['DATA_HEADER']['JENIS_KELAMIN'];
           this.alamatDomisili = this.dataCV['DATA_HEADER']['ALAMAT_DOMISILI'];
@@ -224,7 +233,7 @@ export class CveditPage {
           });
           toast.present();
         }
-        // loading.dismiss();
+        loading.dismiss();
         this.isLoading = false;
       })
       .catch((error) => {
@@ -234,18 +243,20 @@ export class CveditPage {
           position: "bottom",
         });
         toast.present();
-        // loading.dismiss();
+        loading.dismiss();
         this.isLoading = false;
       });
   }
-  openPage(kategori) {
+  openPage(kategori,index, action, content) {
+    console.log("masuk sini : " + index);
     // this.navCtrl.push('CveditEditPage', {
     //   kat: kategori
     // });
     let modal = this.modalCtrl.create(
       "CveditEditPage",
       {
-        kat: kategori
+        kat: kategori,
+        data: content
       },
       {
         enableBackdropDismiss: true,
@@ -258,127 +269,209 @@ export class CveditPage {
       if (data != null) {
         console.log(data);
         if (kategori == 'panggilandarurat') {
-          this.dataCV['DATA_PANGGILAN_DARURAT'].push(
-            {
-              "ID_INFO": '0',
-              "NO_DARURAT": data['data']['NO_DARURAT'],
-              "NAMA": data['data']['NAMA'],
-              "STATUS_HUBUNGAN": data['data']['STATUS_HUBUNGAN'],
-              "IS_DELETED": data['data']['IS_DELETED']
-            }
-          );
+          if (action == 'insert') {
+            this.dataCV['DATA_PANGGILAN_DARURAT'].push(
+              {
+                "ID_INFO": '0',
+                "NO_DARURAT": data['data']['NO_DARURAT'],
+                "NAMA": data['data']['NAMA'],
+                "STATUS_HUBUNGAN": data['data']['STATUS_HUBUNGAN'],
+                "IS_DELETED": data['data']['IS_DELETED']
+              }
+            );
+          } else if (action == 'update') {
+            this.dataCV['DATA_PANGGILAN_DARURAT'][index]['ID_INFO'] = data['data']['ID_INFO'];
+            this.dataCV['DATA_PANGGILAN_DARURAT'][index]['NO_DARURAT'] = data['data']['NO_DARURAT'];
+            this.dataCV['DATA_PANGGILAN_DARURAT'][index]['NAMA'] = data['data']['NAMA'];
+            this.dataCV['DATA_PANGGILAN_DARURAT'][index]['STATUS_HUBUNGAN'] = data['data']['STATUS_HUBUNGAN'];
+            this.dataCV['DATA_PANGGILAN_DARURAT'][index]['IS_DELETED'] = data['data']['IS_DELETED'];
+          }
+          
 
           console.log(this.dataCV['DATA_PANGGILAN_DARURAT']);
         } else if (kategori == 'pendidikanformal') {
-          this.dataCV['DATA_PEND_FORMAL'].push(
-            {
-              "ID_RIWAYAT_PEND": '0',
-              "TINGKAT_PEND": data['data']['TINGKAT_PEND'],
-              "NAMA_INSTANSI": data['data']['NAMA_INSTANSI'],
-              "JURUSAN": data['data']['JURUSAN'],
-              "TAHUN_LULUS": data['data']['TAHUN_LULUS'],
-              "IS_DELETED": '2'
-            }
-          );
+          if (action == 'insert') {
+            this.dataCV['DATA_PEND_FORMAL'].push(
+              {
+                "ID_RIWAYAT_PEND": '0',
+                "TINGKAT_PEND": data['data']['TINGKAT_PEND'],
+                "NAMA_INSTANSI": data['data']['NAMA_INSTANSI'],
+                "JURUSAN": data['data']['JURUSAN'],
+                "TAHUN_LULUS": data['data']['TAHUN_LULUS'],
+                "IS_DELETED": data['data']['IS_DELETED'],
+              }
+            );
+          } else if (action == 'update') {
+            this.dataCV['DATA_PEND_FORMAL'][index]['ID_RIWAYAT_PEND'] = data['data']['ID_RIWAYAT_PEND'];
+            this.dataCV['DATA_PEND_FORMAL'][index]['TINGKAT_PEND'] = data['data']['TINGKAT_PEND'];
+            this.dataCV['DATA_PEND_FORMAL'][index]['NAMA_INSTANSI'] = data['data']['NAMA_INSTANSI'];
+            this.dataCV['DATA_PEND_FORMAL'][index]['JURUSAN'] = data['data']['JURUSAN'];
+            this.dataCV['DATA_PEND_FORMAL'][index]['TAHUN_LULUS'] = data['data']['TAHUN_LULUS'];
+            this.dataCV['DATA_PEND_FORMAL'][index]['IS_DELETED'] = data['data']['IS_DELETED'];
+          }
+         
 
           console.log(this.dataCV['DATA_PEND_FORMAL']);
         } else if (kategori == 'pekerjaan') {
-          this.dataCV['DATA_PEKERJAAN'].push(
-            {
-              "JABATAN": data['data']['JABATAN'],
-              "NAMA_PERUSAHAAN": data['data']['NAMA_PERUSAHAAN'],
-              "LAMA_KERJA": data['data']['LAMA_KERJA'],
-              "PRESTASI": data['data']['PRESTASI'],
-              "ID_RIWAYAT_PEKERJAAN": '0',
-              "IS_DELETED": '2'
-            }
-          );
+          if (action == 'insert') {
+            this.dataCV['DATA_PEKERJAAN'].push(
+              {
+                "JABATAN": data['data']['JABATAN'],
+                "NAMA_PERUSAHAAN": data['data']['NAMA_PERUSAHAAN'],
+                "LAMA_KERJA": data['data']['LAMA_KERJA'],
+                "PRESTASI": data['data']['PRESTASI'],
+                "ID_RIWAYAT_PEKERJAAN": '0',
+                "IS_DELETED": data['data']['IS_DELETED'],
+              }
+            );
+          } else if (action == 'update') {
+            this.dataCV['DATA_PEKERJAAN'][index]['JABATAN'] = data['data']['JABATAN'];
+            this.dataCV['DATA_PEKERJAAN'][index]['NAMA_PERUSAHAAN'] = data['data']['NAMA_PERUSAHAAN'];
+            this.dataCV['DATA_PEKERJAAN'][index]['LAMA_KERJA'] = data['data']['LAMA_KERJA'];
+            this.dataCV['DATA_PEKERJAAN'][index]['PRESTASI'] = data['data']['PRESTASI'];
+            this.dataCV['DATA_PEKERJAAN'][index]['ID_RIWAYAT_PEKERJAAN'] = data['data']['ID_RIWAYAT_PEKERJAAN'];
+            this.dataCV['DATA_PEKERJAAN'][index]['IS_DELETED'] = data['data']['IS_DELETED'];
+          }
+          
 
           console.log(this.dataCV['DATA_PEKERJAAN']);
         } else if (kategori == 'assigmenthistory') {
-          this.dataCV['DATA_ASSIGN_HISTORY'].push(
-            {
-              "POSISI_JABATAN": data['data']['POSISI_JABATAN'],
-              "NO_SK": data['data']['NO_SK'],
-              "TGL_MULAI_JABATAN": data['data']['TGL_MULAI_JABATAN'],
-              "TGL_AKHIR_JABATAN": data['data']['TGL_AKHIR_JABATAN'],
-              "LAMA_JABATAN": data['data']['LAMA_JABATAN'],
-              'ID_ASSIGNMENT': '0',
-              "IS_DELETED": '2',
-            }
-          );
-
+          if (action == 'insert') {
+            this.dataCV['DATA_ASSIGN_HISTORY'].push(
+              {
+                "POSISI_JABATAN": data['data']['POSISI_JABATAN'],
+                "NO_SK": data['data']['NO_SK'],
+                "TGL_MULAI_JABATAN": data['data']['TGL_MULAI_JABATAN'],
+                "TGL_AKHIR_JABATAN": data['data']['TGL_AKHIR_JABATAN'],
+                "LAMA_JABATAN": data['data']['LAMA_JABATAN'],
+                'ID_ASSIGNMENT': '0',
+                "IS_DELETED": data['data']['IS_DELETED'],
+              }
+            );
+          } else if (action == 'update') {
+            this.dataCV['DATA_ASSIGN_HISTORY'][index]['POSISI_JABATAN'] = data['data']['POSISI_JABATAN'];
+            this.dataCV['DATA_ASSIGN_HISTORY'][index]['NO_SK'] = data['data']['NO_SK'];
+            this.dataCV['DATA_ASSIGN_HISTORY'][index]['TGL_MULAI_JABATAN'] = data['data']['TGL_MULAI_JABATAN'];
+            this.dataCV['DATA_ASSIGN_HISTORY'][index]['TGL_AKHIR_JABATAN'] = data['data']['TGL_AKHIR_JABATAN'];
+            this.dataCV['DATA_ASSIGN_HISTORY'][index]['LAMA_JABATAN'] = data['data']['LAMA_JABATAN'];
+            this.dataCV['DATA_ASSIGN_HISTORY'][index]['ID_ASSIGNMENT'] = data['data']['ID_ASSIGNMENT'];
+            this.dataCV['DATA_ASSIGN_HISTORY'][index]['IS_DELETED'] = data['data']['IS_DELETED'];
+          }
+          
           console.log(this.dataCV['DATA_ASSIGN_HISTORY']);
         } else if (kategori == 'kesehatan') {
-          this.dataCV['DATA_KESEHATAN'].push(
-            {
-              "TGL_MCU": data['data']['TGL_MCU'],
-              "LEVEL_KESEHATAN": data['data']['LEVEL_KESEHATAN'],
-              "UPLOAD_HASIL_MCU": data['data']['UPLOAD_HASIL_MCU'],
-              "ID_RIWAYAT_KESEHATAN": '0',
-              "IS_DELETED": '2',
-            }
-          );
-
+          if (action == 'insert') {
+            this.dataCV['DATA_KESEHATAN'].push(
+              {
+                "TGL_MCU": data['data']['TGL_MCU'],
+                "LEVEL_KESEHATAN": data['data']['LEVEL_KESEHATAN'],
+                "UPLOAD_HASIL_MCU": data['data']['UPLOAD_HASIL_MCU'],
+                "ID_RIWAYAT_KESEHATAN": '0',
+                "IS_DELETED": data['data']['IS_DELETED'],
+              }
+            );
+          } else if (action == 'update') {
+            this.dataCV['DATA_KESEHATAN'][index]['TGL_MCU'] = data['data']['TGL_MCU'];
+            this.dataCV['DATA_KESEHATAN'][index]['LEVEL_KESEHATAN'] = data['data']['LEVEL_KESEHATAN'];
+            this.dataCV['DATA_KESEHATAN'][index]['UPLOAD_HASIL_MCU'] = data['data']['UPLOAD_HASIL_MCU'];
+            this.dataCV['DATA_KESEHATAN'][index]['ID_RIWAYAT_KESEHATAN'] = data['data']['ID_RIWAYAT_KESEHATAN'];
+            this.dataCV['DATA_KESEHATAN'][index]['IS_DELETED'] = data['data']['IS_DELETED'];
+          }
+        
           console.log(this.dataCV['DATA_KESEHATAN']);
         } else if (kategori == 'identitaskeluarga') {
-          this.dataCV['DATA_IDENTITAS_KELUARGA'].push(
-            {
-              "NAMA": data['data']['NAMA'],
-              "TGL_LAHIR": data['data']['TGL_LAHIR'],
-              "HUBUNGAN": data['data']['HUBUNGAN'],
-              "NIK": data['data']['NIK'],
-              "TGL_NIKAH": data['data']['TGL_NIKAH'],
-              'ID_IDENTITAS': '0',
-              "IS_DELETED": '2',
-            }
-          );
+          if (action == 'insert') {
+            this.dataCV['DATA_IDENTITAS_KELUARGA'].push(
+              {
+                "NAMA": data['data']['NAMA'],
+                "TGL_LAHIR": data['data']['TGL_LAHIR'],
+                "HUBUNGAN": data['data']['HUBUNGAN'],
+                "NIK": data['data']['NIK'],
+                "TGL_NIKAH": data['data']['TGL_NIKAH'],
+                'ID_IDENTITAS': '0',
+                "IS_DELETED": data['data']['IS_DELETED'],
+              }
+            );
+          } else if (action == 'update') {
+            this.dataCV['DATA_IDENTITAS_KELUARGA'][index]['NAMA'] = data['data']['NAMA'];
+            this.dataCV['DATA_IDENTITAS_KELUARGA'][index]['TGL_LAHIR'] = data['data']['TGL_LAHIR'];
+            this.dataCV['DATA_IDENTITAS_KELUARGA'][index]['HUBUNGAN'] = data['data']['HUBUNGAN'];
+            this.dataCV['DATA_IDENTITAS_KELUARGA'][index]['NIK'] = data['data']['NIK'];
+            this.dataCV['DATA_IDENTITAS_KELUARGA'][index]['TGL_NIKAH'] = data['data']['TGL_NIKAH'];
+            this.dataCV['DATA_IDENTITAS_KELUARGA'][index]['ID_IDENTITAS'] = data['data']['ID_IDENTITAS'];
+            this.dataCV['DATA_IDENTITAS_KELUARGA'][index]['IS_DELETED'] = data['data']['IS_DELETED'];
+          }
+          
 
           console.log(this.dataCV['DATA_IDENTITAS_KELUARGA']);
         } else if (kategori == 'rewardpunish') {
-          this.dataCV['DATA_PENGHARGAAN_HK'].push(
-            {
-              "DESKRIPSI": data['data']['DESKRIPSI'],
-              "TAHUN": data['data']['TAHUN'],
-              "JENIS": data['data']['JENIS'],
-              "INSTANSI_YANG_MENGELUARKAN": data['data']['INSTANSI_YANG_MENGELUARKAN'],
-              "ID_PENGHUK": '0',
-              "IS_DELETED": '2'
-            }
-          );
+          if (action == 'insert') {
+            this.dataCV['DATA_PENGHARGAAN_HK'].push(
+              {
+                "DESKRIPSI": data['data']['DESKRIPSI'],
+                "TAHUN": data['data']['TAHUN'],
+                "JENIS": data['data']['JENIS'],
+                "INSTANSI_YANG_MENGELUARKAN": data['data']['INSTANSI_YANG_MENGELUARKAN'],
+                "ID_PENGHUK": '0',
+                "IS_DELETED": data['data']['IS_DELETED'],
+              }
+            );
+          } else if (action == 'update') {
+            this.dataCV['DATA_PENGHARGAAN_HK'][index]['DESKRIPSI'] = data['data']['DESKRIPSI'];
+            this.dataCV['DATA_PENGHARGAAN_HK'][index]['TAHUN'] = data['data']['TAHUN'];
+            this.dataCV['DATA_PENGHARGAAN_HK'][index]['JENIS'] = data['data']['JENIS'];
+            this.dataCV['DATA_PENGHARGAAN_HK'][index]['INSTANSI_YANG_MENGELUARKAN'] = data['data']['INSTANSI_YANG_MENGELUARKAN'];
+            this.dataCV['DATA_PENGHARGAAN_HK'][index]['ID_PENGHUK'] = data['data']['ID_PENGHUK'];
+            this.dataCV['DATA_PENGHARGAAN_HK'][index]['IS_DELETED'] = data['data']['IS_DELETED'];
+          }
+          
 
           console.log(this.dataCV['DATA_PENGHARGAAN_HK']);
         } else if (kategori == 'performa') {
-          this.dataCV['DATA_PERFORMANSI'].push(
-            {
-              "NILAI_KINERJA_TAHUNAN": data['data']['NILAI_KINERJA_TAHUNAN'],
-              "KATEGORI": data['data']['KATEGORI'],
-              "TAHUN": data['data']['TAHUN'],
-              "ID_RIWAYAT_PERFORMA": '0',
-              "IS_DELETED": '2'
-            }
-          );
+          if (action == 'insert') {
+            this.dataCV['DATA_PERFORMANSI'].push(
+              {
+                "NILAI_KINERJA_TAHUNAN": data['data']['NILAI_KINERJA_TAHUNAN'],
+                "KATEGORI": data['data']['KATEGORI'],
+                "TAHUN": data['data']['TAHUN'],
+                "ID_RIWAYAT_PERFORMA": '0',
+                "IS_DELETED": data['data']['IS_DELETED'],
+              }
+            );
+          } else if (action == 'update') {
+            this.dataCV['DATA_PENGHARGAAN_HK'][index]['NILAI_KINERJA_TAHUNAN'] = data['data']['NILAI_KINERJA_TAHUNAN'];
+            this.dataCV['DATA_PENGHARGAAN_HK'][index]['KATEGORI'] = data['data']['KATEGORI'];
+            this.dataCV['DATA_PENGHARGAAN_HK'][index]['TAHUN'] = data['data']['TAHUN'];
+            this.dataCV['DATA_PENGHARGAAN_HK'][index]['ID_RIWAYAT_PERFORMA'] = data['data']['ID_RIWAYAT_PERFORMA'];
+            this.dataCV['DATA_PENGHARGAAN_HK'][index]['IS_DELETED'] = data['data']['IS_DELETED'];
+          }
+          
 
           console.log(this.dataCV['DATA_PERFORMANSI']);
         } else if (kategori == 'pelatihanppi') {
-          this.dataCV['DATA_PELATIHAN'].push(
-            {
-              "NAMA_PELATIHAN": data['data']['NAMA_PELATIHAN'],
-              "TAHUN_PELATIHAN": data['data']['TAHUN_PELATIHAN'],
-              "NAMA_PENYELENGGARA": data['data']['NAMA_PENYELENGGARA'],
-              "UPLOAD_BUKTI_SERTIFIKAT": data['data']['UPLOAD_BUKTI_SERTIFIKAT'],
-              "EVALUASI1": data['data']['EVALUASI1'],
-              "UPLOAD_DOK_EVAL1": data['data']['UPLOAD_DOK_EVAL1'],
-              "EVALUASI2": data['data']['EVALUASI2'],
-              "UPLOAD_DOK_EVAL2": data['data']['UPLOAD_DOK_EVAL2'],
-              "HARGA_PELATIHAN": data['data']['HARGA_PELATIHAN'],
-              "LOKASI": data['data']['LOKASI'],
-              "TGL_PELATIHAN": data['data']['TGL_PELATIHAN'],
-              "KETERANGAN": data['data']['KETERANGAN'],
-              "ID_RIWAYAT_PELATIHAN": '0',
-              "IS_DELETED": '2'
-            }
-          );
+          if (action == 'insert') {
+            this.dataCV['DATA_PELATIHAN'].push(
+              {
+                "NAMA_PELATIHAN": data['data']['NAMA_PELATIHAN'],
+                "TAHUN_PELATIHAN": data['data']['TAHUN_PELATIHAN'],
+                "NAMA_PENYELENGGARA": data['data']['NAMA_PENYELENGGARA'],
+                "UPLOAD_BUKTI_SERTIFIKAT": data['data']['UPLOAD_BUKTI_SERTIFIKAT'],
+                "EVALUASI1": data['data']['EVALUASI1'],
+                "UPLOAD_DOK_EVAL1": data['data']['UPLOAD_DOK_EVAL1'],
+                "EVALUASI2": data['data']['EVALUASI2'],
+                "UPLOAD_DOK_EVAL2": data['data']['UPLOAD_DOK_EVAL2'],
+                "HARGA_PELATIHAN": data['data']['HARGA_PELATIHAN'],
+                "LOKASI": data['data']['LOKASI'],
+                "TGL_PELATIHAN": data['data']['TGL_PELATIHAN'],
+                "KETERANGAN": data['data']['KETERANGAN'],
+                "ID_RIWAYAT_PELATIHAN": '0',
+                "IS_DELETED": data['data']['IS_DELETED'],
+              }
+            );
+          } else if (action == 'update') {
+            
+          }
+          
 
           console.log(this.dataCV['DATA_PELATIHAN']);
         }
@@ -734,69 +827,83 @@ export class CveditPage {
   delete(type, index, data) {
     console.log(data);
     if (type == 'emergency') {
-      if (data['IS_DELETED'] == '0') {
+      if (data['IS_DELETED'] == '0' || data['IS_DELETED'] == '3') {
         this.dataCV['DATA_PANGGILAN_DARURAT'][index]['IS_DELETED'] = '1';
       } else if (data['IS_DELETED'] == '2') {
         this.dataCV['DATA_PANGGILAN_DARURAT'].splice(index, 1);
       }
     } else if (type == 'pend_formal') {
       console.log('mausuk');
-      if (data['IS_DELETED'] == '0') {
+      if (data['IS_DELETED'] == '0' || data['IS_DELETED'] == '3') {
         this.dataCV['DATA_PEND_FORMAL'][index]['IS_DELETED'] = '1';
       } else if (data['IS_DELETED'] == '2') {
         this.dataCV['DATA_PEND_FORMAL'].splice(index, 1);
       }
     } else if (type == 'working') {
       console.log('mausuk');
-      if (data['IS_DELETED'] == '0') {
+      if (data['IS_DELETED'] == '0' || data['IS_DELETED'] == '3') {
         this.dataCV['DATA_PEKERJAAN'][index]['IS_DELETED'] = '1';
       } else if (data['IS_DELETED'] == '2') {
         this.dataCV['DATA_PEKERJAAN'].splice(index, 1);
       }
     } else if (type == 'assignHistory') {
       console.log('mausuk');
-      if (data['IS_DELETED'] == '0') {
+      if (data['IS_DELETED'] == '0' || data['IS_DELETED'] == '3') {
         this.dataCV['DATA_ASSIGN_HISTORY'][index]['IS_DELETED'] = '1';
       } else if (data['IS_DELETED'] == '2') {
         this.dataCV['DATA_ASSIGN_HISTORY'].splice(index, 1);
       }
     } else if (type == 'kesehatan') {
       console.log('mausuk');
-      if (data['IS_DELETED'] == '0') {
+      if (data['IS_DELETED'] == '0' || data['IS_DELETED'] == '3') {
         this.dataCV['DATA_KESEHATAN'][index]['IS_DELETED'] = '1';
       } else if (data['IS_DELETED'] == '2') {
         this.dataCV['DATA_KESEHATAN'].splice(index, 1);
       }
     } else if (type == 'keluarga') {
       console.log('mausuk');
-      if (data['IS_DELETED'] == '0') {
+      if (data['IS_DELETED'] == '0' || data['IS_DELETED'] == '3') {
         this.dataCV['DATA_IDENTITAS_KELUARGA'][index]['IS_DELETED'] = '1';
       } else if (data['IS_DELETED'] == '2') {
         this.dataCV['DATA_IDENTITAS_KELUARGA'].splice(index, 1);
       }
     } else if (type == 'penghargaan') {
       console.log('mausuk');
-      if (data['IS_DELETED'] == '0') {
+      if (data['IS_DELETED'] == '0' || data['IS_DELETED'] == '3') {
         this.dataCV['DATA_PENGHARGAAN_HK'][index]['IS_DELETED'] = '1';
       } else if (data['IS_DELETED'] == '2') {
         this.dataCV['DATA_PENGHARGAAN_HK'].splice(index, 1);
       }
     } else if (type == 'performansi') {
       console.log('mausuk');
-      if (data['IS_DELETED'] == '0') {
+      if (data['IS_DELETED'] == '0' || data['IS_DELETED'] == '3') {
         this.dataCV['DATA_PERFORMANSI'][index]['IS_DELETED'] = '1';
       } else if (data['IS_DELETED'] == '2') {
         this.dataCV['DATA_PERFORMANSI'].splice(index, 1);
       }
     } else if (type == 'pelatihan') {
       console.log('mausuk');
-      if (data['IS_DELETED'] == '0') {
+      if (data['IS_DELETED'] == '0' || data['IS_DELETED'] == '3') {
         this.dataCV['DATA_PELATIHAN'][index]['IS_DELETED'] = '1';
       } else if (data['IS_DELETED'] == '2') {
         this.dataCV['DATA_PELATIHAN'].splice(index, 1);
       }
     }
 
+  }
+
+  edit(type, index, data) {
+    let modal = this.modalCtrl.create(
+      "CveditEditPage",
+      {
+        kat: type
+      },
+      {
+        enableBackdropDismiss: true,
+        showBackdrop: true,
+      }
+    );
+    modal.present();
   }
 
   showDatePicker(type: number) {

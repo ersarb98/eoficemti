@@ -31,6 +31,7 @@ export class AbsenTeamHadirkoePage {
   dateConvert:any;
   monthConvert:any;
   yearConvert:any;
+  jumReqDomisili: any = 0;
   
 
   isPageAbsen: Boolean = true;
@@ -79,7 +80,7 @@ export class AbsenTeamHadirkoePage {
       this.yearConvert = split[2];
       console.log(this.dayConvert + ", " + this.dateConvert + " " + this.monthConvert + " " + this.yearConvert);
       console.log("dateconvert : " + this.dateConvert);
-      this.getList(this.idUser, this.date);
+     
 
       this.storage.get('userdataTPK').then(val => {
         this.userdataTPK = val;
@@ -89,6 +90,8 @@ export class AbsenTeamHadirkoePage {
         } else {
           this.isAtasan = true;
         }
+
+        this.getList(this.idUser, this.date);
       });
 
   }
@@ -101,7 +104,8 @@ export class AbsenTeamHadirkoePage {
     this.isLoading = true;
     this.http.post(api_res + 'am8_team.php', {
       usernameEDI: api_user,
-      passwordEDI: api_pass,      
+      passwordEDI: api_pass,  
+      id_jabatan: this.userdataTPK['data']['IDJABATAN'],    
       id_user: idUser,
       tgl : mydate
     }).subscribe(data => {
@@ -110,6 +114,7 @@ export class AbsenTeamHadirkoePage {
       if (data['rcmsg'] == 'SUCCESS') {
         this.absenList = data['data']['ABSEN'];
         this.notAbsenList = data['data']['NOT_ABSEN'];
+        this.jumReqDomisili = data['data']['JUM_REQ_DOMISILI']; 
       } else {
         let alert = this.alertCtrl.create({
           title: '',

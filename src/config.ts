@@ -29,7 +29,8 @@ export const url_image = "http://103.29.187.218/api_itpk/foto_absen";
 export const api_base_url = 'http://103.29.187.218/api_itpk/index.php?wsdl';
 export const api_p2b_url = 'http://103.19.80.188/api/index.php?wsdl';
 export const urldownload_srt = 'http://103.29.187.218/';
-export const url_upload_sppd = 'http://103.29.187.218/api_itpk/f116_eoffice_upload_attachment_sppd.php'
+export const url_upload_sppd = 'http://103.29.187.218/api_itpk/f116_eoffice_upload_attachment_sppd.php';
+export const url_download_att_cv = 'http://103.29.187.218/upload_personal_info/';
 export const url_upload_att_cv = 'http://103.29.187.218/api_itpk/f147_eoffice_upload_attachment_cv.php';
 
 

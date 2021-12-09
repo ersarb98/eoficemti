@@ -45,6 +45,9 @@ export class AddCutiPage {
 
   showLastYear: Boolean = false;
   ambilSisaCuti:any = 'TIDAK';
+  showIsbayar:Boolean = false;
+
+  isDibayar:any = 0;
 
   constructor(
     public navCtrl: NavController,
@@ -65,9 +68,10 @@ export class AddCutiPage {
 
     this.storage.get('userdataTPK').then(val => {      
       this.userdataTPK = val;
+      this.getJenisCuti();
     });
 
-    this.getJenisCuti();
+    
 
   }
 
@@ -87,6 +91,12 @@ export class AddCutiPage {
     } else {
       this.showLastYear = false;
     }
+
+    if (dataJenisPengajuan[0]['JN_PENGAJUAN'] == 'Cuti Tahunan' && dataJenisPengajuan[0]['ALLOW_DIBAYAR'] == true) {
+      this.showIsbayar = true;
+    } else {
+      this.showIsbayar = false;
+    }
    
   }
 
@@ -103,7 +113,8 @@ export class AddCutiPage {
         fStream: JSON.stringify(
           {
             usernameEDI: api_user,
-            passwordEDI: api_pass,     
+            passwordEDI: api_pass,   
+            id_user: this.userdataTPK['data']['IDUSER']
           }
         )
       })
@@ -374,7 +385,8 @@ export class AddCutiPage {
                       jumlah: this.jumHari,
                       sisa_cuti: this.userdataTPK['data']['SISA_CUTI'],
                       sisa_cuti_last_year: this.userdataTPK['data']['SISA_CUTI_LAST_YEAR'],
-                      ambil_sisa_cuti: this.ambilSisaCuti
+                      ambil_sisa_cuti: this.ambilSisaCuti,
+                      is_dibayar: this.isDibayar
                     }
                   )
                 })

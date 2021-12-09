@@ -133,13 +133,13 @@
 
     <ion-item no-padding>
       <ion-label stacked>Tanggal Mulai Jabatan</ion-label>
-      <ion-input type="text" (click)="showDatePicker(1)" (ionFocus)="checkFocus(1)" placeholder=""
+      <ion-input type="text" [readonly]="true" (click)="showDatePicker(1)" (ionFocus)="checkFocus(1)" placeholder=""
         [(ngModel)]="tglMulaiJab"></ion-input>
     </ion-item>
 
     <ion-item no-padding>
       <ion-label stacked>Tanggal Akhir Jabatan</ion-label>
-      <ion-input type="text" (click)="showDatePicker(2)" (ionFocus)="checkFocus(2)" placeholder=""
+      <ion-input type="text" [readonly]="true" (click)="showDatePicker(2)" (ionFocus)="checkFocus(2)" placeholder=""
         [(ngModel)]="tglAkhirJab"></ion-input>
     </ion-item>
 
@@ -167,7 +167,7 @@
   <div *ngIf="kat == 'kesehatan'">
     <ion-item no-padding>
       <ion-label stacked>Tanggal MCU</ion-label>
-      <ion-input type="text" (click)="showDatePicker(3)" (ionFocus)="checkFocus(3)" placeholder="" [(ngModel)]="tglMCU">
+      <ion-input type="text" [readonly]="true"  (click)="showDatePicker(3)" (ionFocus)="checkFocus(3)" placeholder="" [(ngModel)]="tglMCU">
       </ion-input>
     </ion-item>
     <ion-item no-padding>
@@ -177,6 +177,7 @@
 
     <br>
 
+   
     <ion-card class="my-card">
       <ion-card-content>
         <div class="header-text">
@@ -185,6 +186,9 @@
           </span>
         </div>
         <div class="garis"></div>
+        <div *ngIf="data != null" (click)="downloadAtt(data['UPLOAD_HASIL_MCU'])">
+          <span ion-text color="primary">{{ data['UPLOAD_HASIL_MCU'] }}</span>
+        </div>
         <ion-item>
           <span item-left>
             <img src="assets/imgs/logo/document-icon.png" class="icons">
@@ -366,7 +370,7 @@
     </ion-item>
     <ion-item no-padding>
       <ion-label stacked>Tanggal Pelatihan*</ion-label>
-      <ion-input type="text" (click)="showDatePicker(5)" (ionFocus)="checkFocus(5)" placeholder="" [(ngModel)]="tglPelatihan"></ion-input>
+      <ion-input type="text" [readonly]="true" (click)="showDatePicker(5)" (ionFocus)="checkFocus(5)" placeholder="" [(ngModel)]="tglPelatihan"></ion-input>
     </ion-item>
     <ion-item no-padding>
       <ion-label stacked>Keterangan</ion-label>
@@ -394,7 +398,7 @@
     </ion-item>
     <ion-item no-padding>
       <ion-label stacked>Tanggal Lahir</ion-label>
-      <ion-input type="text" (click)="showDatePicker(4)" (ionFocus)="checkFocus(4)" placeholder="" [(ngModel)]="tglLahirKeluarga"></ion-input>
+      <ion-input type="text" [readonly]="true" (click)="showDatePicker(4)" (ionFocus)="checkFocus(4)" placeholder="" [(ngModel)]="tglLahirKeluarga"></ion-input>
     </ion-item>
     <ion-item no-padding>
       <ion-label stacked>Hubungan</ion-label>

@@ -8,7 +8,8 @@ import { File } from '@ionic-native/file';
 import { FileTransfer, FileUploadOptions, FileTransferObject } from '@ionic-native/file-transfer';
 import { FileChooser } from '@ionic-native/file-chooser';
 import { Camera, CameraOptions } from '@ionic-native/camera';
-import { url_upload_att_cv } from '../../config';
+import { url_upload_att_cv,url_download_att_cv } from '../../config';
+import { InAppBrowser, InAppBrowserOptions } from "@ionic-native/in-app-browser";
 
 /**
  * Generated class for the CveditEditPage page.
@@ -111,6 +112,8 @@ export class CveditEditPage {
   namaFileEvaluasi1: any = '';
   namaFileEvaluasi2: any = '';
 
+  data:any;
+
 
 
   constructor(
@@ -127,10 +130,61 @@ export class CveditEditPage {
     public camera: Camera,
     public platform: Platform,
     public toastCtrl: ToastController,
-    public loadingCtrl: LoadingController
+    public loadingCtrl: LoadingController,
+    public inAppBrowser: InAppBrowser
   ) {
     let kat = navParams.get('kat');
+    this.data = navParams.get('data');
     console.log(kat);
+    console.log(this.data);
+
+    if (kat == 'panggilandarurat' && this.data != null) {
+      this.noDarurat = this.data['NO_DARURAT'];
+      this.namaDarurat = this.data['NAMA'];
+      this.hubunganDarurat = this.data['STATUS_HUBUNGAN'];
+    }
+    if (kat == 'pendidikanformal' && this.data != null) {
+      this.tingkatPendidikan = this.data['TINGKAT_PEND'];
+      this.namaSekolah = this.data['NAMA_INSTANSI'];
+      this.jurusan = this.data['JURUSAN'];
+      this.tahunLulus = this.data['TAHUN_LULUS'];
+    }
+    if (kat == 'pekerjaan' && this.data != null) {
+      this.jabatanPekerjaan = this.data['JABATAN'];
+      this.namaPerusahaan = this.data['NAMA_PERUSAHAAN'];
+      this.lamaKerja = this.data['LAMA_KERJA'];
+      this.prestasi = this.data['PRESTASI'];
+    }
+    if(kat == 'assigmenthistory' && this.data != null) {
+      this.posisiJabatan = this.data['POSISI_JABATAN'];
+      this.noSK = this.data['NO_SK'];
+      this.tglMulaiJab = this.data['TGL_MULAI_JABATAN'];
+      this.tglAkhirJab = this.data['TGL_AKHIR_JABATAN'];
+      this.lamaJabatan = this.data['LAMA_JABATAN'];
+    }
+    if (kat == 'kesehatan' && this.data != null) {
+      this.tglMCU = this.data['TGL_MCU'];
+      this.levelKesehatan = this.data['LEVEL_KESEHATAN'];
+    }
+    if (kat == 'identitaskeluarga'&& this.data != null) {
+      this.namaKeluarga = this.data['NAMA'];
+      this.tglLahirKeluarga = this.data['TGL_LAHIR'];
+      this.hubKeluarga = this.data['HUBUNGAN'];
+      this.nikKeluarga = this.data['NIK'];
+    }
+    if(kat == 'rewardpunish' && this.data != null) {
+      this.deskripsiReward  = this.data['DESKRIPSI'];
+      this.tahunReward = this.data['TAHUN'];
+      this.jenisReward = this.data['JENIS'];
+      this.instansiReward = this.data['INSTANSI_YANG_MENGELUARKAN'];
+    }
+    if(kat == 'performa'&& this.data != null) {
+      this.nilaiKerjaTahunan = this.data['NILAI_KINERJA_TAHUNAN'];
+      this.kategoriPerformansi = this.data['KATEGORI'];
+      this.tahunPerformansi = this.data['TAHUN'];
+    }
+
+
   }
 
   ionViewDidLoad() {
@@ -184,10 +238,11 @@ export class CveditEditPage {
       } else {
         this.viewCtrl.dismiss({
           data: {
+            "ID_INFO": (this.data != null ) ? this.data['ID_INFO'] : '0',
             "NO_DARURAT": this.noDarurat,
             "NAMA": this.namaDarurat,
             "STATUS_HUBUNGAN": this.hubunganDarurat,
-            "IS_DELETED": '2'
+            "IS_DELETED": (this.data != null ) ? '3' : '2'
           }
         });
       }
@@ -234,11 +289,12 @@ export class CveditEditPage {
       } else {
         this.viewCtrl.dismiss({
           data: {
+            "ID_RIWAYAT_PEND": (this.data != null ) ? this.data['ID_RIWAYAT_PEND'] : '0',
             "TINGKAT_PEND": this.tingkatPendidikan,
             "NAMA_INSTANSI": this.namaSekolah,
             "JURUSAN": this.jurusan,
             "TAHUN_LULUS": this.tahunLulus,
-            "IS_DELETED": '2'
+            "IS_DELETED": (this.data != null ) ? '3' : '2'
           }
         });
       }
@@ -285,11 +341,12 @@ export class CveditEditPage {
       } else {
         this.viewCtrl.dismiss({
           data: {
+            "ID_RIWAYAT_PEKERJAAN": (this.data != null ) ? this.data['ID_RIWAYAT_PEKERJAAN'] : '0',
             "JABATAN": this.jabatanPekerjaan,
             "NAMA_PERUSAHAAN": this.namaPerusahaan,
             "LAMA_KERJA": this.lamaKerja,
             "PRESTASI": this.prestasi,
-            "IS_DELETED": '2'
+            "IS_DELETED": (this.data != null ) ? '3' : '2'
           }
         });
       }
@@ -344,8 +401,8 @@ export class CveditEditPage {
             "TGL_MULAI_JABATAN": this.tglMulaiJab,
             "TGL_AKHIR_JABATAN": this.tglAkhirJab,
             "LAMA_JABATAN": this.lamaJabatan,
-            'ID_ASSIGNMENT': '0',
-            "IS_DELETED": '2',
+            'ID_ASSIGNMENT': (this.data != null ) ? this.data['ID_ASSIGNMENT'] : '0',
+            "IS_DELETED": (this.data != null ) ? '3' : '2'
           }
         });
       }
@@ -357,9 +414,13 @@ export class CveditEditPage {
       if (this.levelKesehatan == '' || this.levelKesehatan == null) {
         err.push("Level Kesehatan");
       }
-      if ((this.imageURI == null || this.imageURI == '') && (this.fileName == null || this.fileName == '')) {
-        err.push("File Hasil MCU");
+
+      if (this.data == null) {
+        if ((this.imageURI == null || this.imageURI == '') && (this.fileName == null || this.fileName == '')) {
+          err.push("File Hasil MCU");
+        }
       }
+      
 
       var showErr = '';
       for (var i = 0; i < err.length; i++) {
@@ -387,7 +448,21 @@ export class CveditEditPage {
         });
         alertError.present();
       } else {
-        this.upload('kesehatan');
+        if ((this.imageURI == null || this.imageURI == '') && (this.fileName == null || this.fileName == '')) {
+          this.viewCtrl.dismiss({
+            data: {
+              "TGL_MCU": this.tglMCU,
+              "LEVEL_KESEHATAN": this.levelKesehatan,
+              "UPLOAD_HASIL_MCU": (this.data != null ) ? this.data['UPLOAD_HASIL_MCU'] : '',
+              "ID_RIWAYAT_KESEHATAN": (this.data != null ) ? this.data['ID_RIWAYAT_KESEHATAN'] : '0',
+              "IS_DELETED": (this.data != null ) ? '3' : '2'
+            }
+          });
+        } else {
+          this.upload('kesehatan');
+        }
+          
+        
       }
     } else if (type == 'identitaskeluarga') {
       var err = [];
@@ -437,8 +512,8 @@ export class CveditEditPage {
             "HUBUNGAN": this.hubKeluarga,
             "NIK": this.nikKeluarga,
             "TGL_NIKAH": null,
-            'ID_IDENTITAS': '0',
-            "IS_DELETED": '2',
+            'ID_IDENTITAS': (this.data != null ) ? this.data['ID_IDENTITAS'] : '0',
+            "IS_DELETED": (this.data != null ) ? '3' : '2'
           }
         });
       }
@@ -489,8 +564,8 @@ export class CveditEditPage {
             "TAHUN": this.tahunReward,
             "JENIS": this.jenisReward,
             "INSTANSI_YANG_MENGELUARKAN": this.instansiReward,
-            "ID_PENGHUK": '0',
-            "IS_DELETED": '2'
+            "ID_PENGHUK": (this.data != null ) ? this.data['ID_PENGHUK'] :'0',
+            "IS_DELETED": (this.data != null ) ? '3' : '2'
           }
         });
       }
@@ -537,8 +612,8 @@ export class CveditEditPage {
             "NILAI_KINERJA_TAHUNAN": this.nilaiKerjaTahunan,
             "KATEGORI": this.kategoriPerformansi,
             "TAHUN": this.tahunPerformansi,
-            "ID_RIWAYAT_PERFORMA": '0',
-            "IS_DELETED": '2'
+            "ID_RIWAYAT_PERFORMA": (this.data != null ) ? this.data['ID_RIWAYAT_PERFORMA'] : '0',
+            "IS_DELETED": (this.data != null ) ? '3' : '2'
           }
         });
       }
@@ -617,7 +692,7 @@ export class CveditEditPage {
               "TGL_PELATIHAN": this.tglPelatihan,
               "KETERANGAN": this.ketPelatihan,
               "ID_RIWAYAT_PELATIHAN": '0',
-              "IS_DELETED": '2'
+              "IS_DELETED": (this.data != null ) ? '3' : '2'
             }
           });
           loading.dismiss();
@@ -1000,8 +1075,8 @@ export class CveditEditPage {
         "TGL_MCU": this.tglMCU,
         "LEVEL_KESEHATAN": this.levelKesehatan,
         "UPLOAD_HASIL_MCU": '',
-        "ID_RIWAYAT_KESEHATAN": '0',
-        "IS_DELETED": '2'
+        "ID_RIWAYAT_KESEHATAN": (this.data != null ) ? this.data['ID_RIWAYAT_KESEHATAN'] : '0',
+        "IS_DELETED": (this.data != null ) ? '3' : '2'
       }
     }
 
@@ -1172,7 +1247,7 @@ export class CveditEditPage {
                     "TGL_PELATIHAN": this.tglPelatihan,
                     "KETERANGAN": this.ketPelatihan,
                     "ID_RIWAYAT_PELATIHAN": '0',
-                    "IS_DELETED": '2'
+                    "IS_DELETED": (this.data != null ) ? '3' : '2'
                   }
                 });
                 loader.dismiss();
@@ -1253,7 +1328,7 @@ export class CveditEditPage {
                     "TGL_PELATIHAN": this.tglPelatihan,
                     "KETERANGAN": this.ketPelatihan,
                     "ID_RIWAYAT_PELATIHAN": '0',
-                    "IS_DELETED": '2'
+                    "IS_DELETED": (this.data != null ) ? '3' : '2'
                   }
                 });
                 loader.dismiss();
@@ -1341,7 +1416,7 @@ export class CveditEditPage {
                     "TGL_PELATIHAN": this.tglPelatihan,
                     "KETERANGAN": this.ketPelatihan,
                     "ID_RIWAYAT_PELATIHAN": '0',
-                    "IS_DELETED": '2'
+                    "IS_DELETED": (this.data != null ) ? '3' : '2'
                   }
                 });
                 loader.dismiss();
@@ -1423,7 +1498,7 @@ export class CveditEditPage {
                     "TGL_PELATIHAN": this.tglPelatihan,
                     "KETERANGAN": this.ketPelatihan,
                     "ID_RIWAYAT_PELATIHAN": '0',
-                    "IS_DELETED": '2'
+                    "IS_DELETED": (this.data != null ) ? '3' : '2'
                   }
                 });
                 loader.dismiss();
@@ -1512,7 +1587,7 @@ export class CveditEditPage {
                     "TGL_PELATIHAN": this.tglPelatihan,
                     "KETERANGAN": this.ketPelatihan,
                     "ID_RIWAYAT_PELATIHAN": '0',
-                    "IS_DELETED": '2'
+                    "IS_DELETED": (this.data != null ) ? '3' : '2'
                   }
                 });
                 loader.dismiss();
@@ -1592,7 +1667,7 @@ export class CveditEditPage {
                     "TGL_PELATIHAN": this.tglPelatihan,
                     "KETERANGAN": this.ketPelatihan,
                     "ID_RIWAYAT_PELATIHAN": '0',
-                    "IS_DELETED": '2'
+                    "IS_DELETED": (this.data != null ) ? '3' : '2'
                   }
                 });
                 loader.dismiss();
@@ -1627,5 +1702,13 @@ export class CveditEditPage {
           loader.dismiss();
         });
     }
+  }
+
+
+  downloadAtt(data) {
+    const options: InAppBrowserOptions = {
+      zoom: "no",
+    };
+    const browser = this.inAppBrowser.create(url_download_att_cv + data, "_system", options);
   }
 }
